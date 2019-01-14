@@ -1,6 +1,6 @@
 #******************************************************************************
 #                                                                             *
-#                  Copyright (C) 2016 IFSC                                    *
+#                  Copyright (C) 2019 IFSC                                    *
 #                                                                             *
 #                                                                             *
 # All information provided herein is provided on an "as is" basis,            *
@@ -15,22 +15,40 @@
 #******************************************************************************
 
 vlib work
-vcom ./memory/imemory.vhd
+# vcom ./memory/imemory.vhd
+vcom ./memory/imemory_load.vhd
 vcom ./decoder/iregister.vhd
+vcom ./registers/register_file.vhd
+vcom ./core/core.vhd
+vcom ./core/testbench.vhd
 
-vsim -t ns work.detectprior_tb
+vsim -t ns work.testbench
 
 view wave
-add wave -radix binary /p0
-add wave -radix binary /p1
-add wave -radix binary /p2
-add wave -radix binary /p3
+add wave -radix binary /clk
+add wave -radix binary /rst
+add wave  /iaddress
+add wave -radix hex /q
 
-add wave -radix binary /x0
-add wave -radix binary /x1
+# iregister debug 
+add wave -label opcode  /myRiscv/opcode 
+add wave -label funct3 /myRiscv/funct3 
+add wave -label funct7 /myRiscv/funct7 
+add wave -label rd /myRiscv/rd   
+add wave -label rs1 /myRiscv/rs1
+add wave -label rs2 /myRiscv/rs2
+add wave -label imm_i /myRiscv/imm_i
+add wave -label imm_s /myRiscv/imm_s 
+add wave -label imm_b /myRiscv/imm_b
+add wave -label imm_u /myRiscv/imm_u
+add wave -label imm_j /myRiscv/imm_j
 
-add wave -radix binary /dec_1/x
+# register file debug
+add wave -label w_ena /myRiscv/rf_w_ena
+add wave -label w_data /myRiscv/rd_data
+add wave -label r1_data /myRiscv/rs1_data
+add wave -label r2_data /myRiscv/rs2_data
 
-add wave -radix binary /int
 
-run 50 ns
+
+run 100 ns
