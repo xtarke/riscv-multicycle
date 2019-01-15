@@ -17,8 +17,13 @@
 vlib work
 # vcom ./memory/imemory.vhd
 vcom ./memory/imemory_load.vhd
+vcom ./alu/alu_types.vhd
+vcom ./alu/alu.vhd
+vcom ./decoder/decoder_types.vhd
 vcom ./decoder/iregister.vhd
+vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
+
 vcom ./core/core.vhd
 vcom ./core/testbench.vhd
 
@@ -31,9 +36,7 @@ add wave  /iaddress
 add wave -radix hex /q
 
 # iregister debug 
-add wave -label opcode  /myRiscv/opcode 
-add wave -label funct3 /myRiscv/funct3 
-add wave -label funct7 /myRiscv/funct7 
+add wave -label opcode  /myRiscv/opcodes 
 add wave -label rd /myRiscv/rd   
 add wave -label rs1 /myRiscv/rs1
 add wave -label rs2 /myRiscv/rs2
@@ -44,11 +47,21 @@ add wave -label imm_u /myRiscv/imm_u
 add wave -label imm_j /myRiscv/imm_j
 
 # register file debug
+add wave -label registers -radix decimal /myRiscv/registers/ram
 add wave -label w_ena /myRiscv/rf_w_ena
-add wave -label w_data /myRiscv/rd_data
-add wave -label r1_data /myRiscv/rs1_data
-add wave -label r2_data /myRiscv/rs2_data
+add wave -label w_data /myRiscv/rw_data
+add wave -label r1_data -radix hex /myRiscv/rs1_data
+add wave -label r2_data -radix hex /myRiscv/rs2_data
+
+# decoder debug
+add wave -label states /myRiscv/decoder0/state
 
 
+# alu debug
+add wave -label aluData /myRiscv/alu_data
+add wave -label aluOut /myRiscv/alu_out
 
-run 100 ns
+
+run 2000 ns
+
+wave zoom full
