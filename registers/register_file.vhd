@@ -27,8 +27,20 @@ architecture RTL of register_file is
 	-- Declare the RAM signal.
 	-- signal ram : memory_t;
 	
-	type mem is array (0 to 31) of std_logic_vector(31 downto 0);	--! Array 31 x 31 bits type creation
-    signal ram: mem;	--! RAM Block instance
+	type RamType is array (0 to 31) of std_logic_vector(31 downto 0);	--! Array 31 x 31 bits type creation
+	
+	impure function InitRam return RamType is		
+		variable RAM : RamType;	
+	begin
+		
+		for i in RamType'range loop
+			RAM(i) :=  (others => '0');		
+		end loop;
+		
+		return RAM;	
+	end function;	
+	
+    signal ram: RamType := InitRam;	--! RAM Block instance
    
 	type reg_array is array (0 to 31) of std_logic_vector(31 downto 0);
 	signal registers : reg_array;
@@ -50,7 +62,7 @@ begin
 				if(w_ena = '1') then
 					ram(w_address) <= w_data;
 					-- Read-during-write on the same port returns NEW data
-					r1_data <= w_data;
+					-- r1_data <= w_data;
 				else
 					-- Read-during-write on the mixed port returns OLD data
 					r1_data <= ram(r1_address);
@@ -61,14 +73,14 @@ begin
 		process(clk)
 		begin
 			if(rising_edge(clk)) then -- Port B
-				if(we_b = '1') then
-					ram(w_address) <= w_data;
-					-- Read-during-write on the same port returns NEW data
-					r2_data <= w_data;
-				else
+--				if(we_b = '1') then
+--					ram(w_address) <= w_data;
+--					-- Read-during-write on the same port returns NEW data
+--					r2_data <= w_data;
+--				else
 					-- Read-during-write on the mixed port returns OLD data
 					r2_data <= ram(r2_address);
-				end if;
+				--end if;
 			end if;
 		end process;
 		

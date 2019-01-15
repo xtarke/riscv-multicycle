@@ -10,6 +10,7 @@ library ieee;
 	--! Use conversion functions
 	use ieee.numeric_std.all;
 
+use work.decoder_types.all;
 
 --! iregister decodes (bit slicing) a instruction word into
 --! several parameters (register addresses, call addresses,
@@ -20,10 +21,12 @@ entity iregister is
 		rst : in std_logic;	--! Asynchronous reset
 		
 		data : in std_logic_vector(31 downto 0);
+				
+		opcodes : out opcodes_t;	--! Instruction decoding information. See decoder_types.vhd		
 		
-		opcode : out std_logic_vector(6 downto 0);	--! Instruction opcode
-		funct3 : out std_logic_vector(2 downto 0);	--! Instruction function: 7 bits
-		funct7 : out std_logic_vector(6 downto 0);	--! Instruction function: 3 bits
+		-- opcode : out std_logic_vector(6 downto 0);	--! Instruction opcode
+		-- funct3 : out std_logic_vector(2 downto 0);	--! Instruction function: 7 bits
+		-- funct7 : out std_logic_vector(6 downto 0);	--! Instruction function: 3 bits
 		
 		rd  : out integer range 0 to 31;		--! Register address destination
 		rs1 : out integer range 0 to 31;		--! Register address source operand 1
@@ -45,9 +48,9 @@ begin
 	p1: process (rst, clk)
 	begin
 		if rst = '1' then
-			opcode <= (others => '0');
-			funct3 <= (others => '0');
-			funct7 <= (others => '0');
+			opcodes.opcode <= (others => '0');
+			opcodes.funct3 <= (others => '0');
+			opcodes.funct7 <= (others => '0');
 			rd <= 0;
 			rs1 <= 0;
 			rs2 <= 0;
@@ -59,10 +62,10 @@ begin
 			imm_j <= 0;
 		else
 			if rising_edge(clk) then
-				opcode <= data (6 downto 0);
+				opcodes.opcode <= data (6 downto 0);				
+				opcodes.funct3 <= data(14 downto 12);
+				opcodes.funct7 <= data(31 downto 25);
 				
-				funct3 <= data(14 downto 12);
-				funct7 <= data(31 downto 25);
 				rd  <= to_integer(unsigned(data(11 downto 7)));
 				rs1 <= to_integer(unsigned(data(19 downto 15)));
 				rs2 <= to_integer(unsigned(data(24 downto 20)));

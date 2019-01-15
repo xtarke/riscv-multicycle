@@ -45,12 +45,18 @@ architecture RTL of imemory is
 		variable RamFileLine : line;
 		variable RAM : RamType;
 		variable hex : std_logic_vector(31 downto 0);
+		variable stringRead: string (7 downto 0);
+		
 	begin
 		
-		for I in RamType'range loop
+		for i in RamType'range loop
 			readline(RamFile, RamFileLine);			
 			hread(RamFileLine, hex);
-			RAM(I) := hex;			
+			
+			--read (RamFileLine, stringRead);			
+			--report "Data: " & stringRead;
+			
+			RAM(i) := hex;			
 		end loop;
 		
 		return RAM;
