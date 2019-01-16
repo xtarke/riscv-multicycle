@@ -6,13 +6,23 @@ use work.decoder_types.all;
 use work.alu_types.all;
 
 entity core is
+	generic (
+		--! Num of 32-bits memory words 
+		MEMORY_WORDS : integer := 256 
+	);
 	port(
 		clk : in std_logic;
 		rst : in std_logic;
 		
-		iaddress  : out  integer range 0 to 31;
-		idata	  : in 	std_logic_vector(31 downto 0)
+		iaddress  : out  integer range 0 to MEMORY_WORDS-1;
+		idata	  : in 	std_logic_vector(31 downto 0);
 		
+		daddress  : out  std_logic_vector(7 downto 0);
+		
+		ddata_r	  : in 	std_logic_vector(31 downto 0);
+		ddata_w   : out	std_logic_vector(31 downto 0);
+		d_we      : out std_logic;
+		dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
 	);
 end entity core;
 
@@ -60,6 +70,7 @@ architecture RTL of core is
 			ulaMuxData : out std_logic_vector(1 downto 0);
 			ulaCod     : out std_logic_vector(2 downto 0);
 			
+			writeBackMux: out std_logic_vector(2 downto 0);
 			reg_write	: out std_logic
 		);
 	end component decoder;
@@ -71,7 +82,7 @@ architecture RTL of core is
 		);
 	end component ULA;
 	
-	signal pc : integer range 0 to 31;
+	signal pc : integer range 0 to MEMORY_WORDS-1;
 	signal opcodes :  opcodes_t;
 
 	signal rd     :  integer range 0 to 31;
@@ -97,6 +108,7 @@ architecture RTL of core is
 	signal pc_load    : std_logic;
 	signal pcMux      : std_logic;
 	signal ulaMuxData : std_logic_vector(1 downto 0);
+	signal writeBackMux : std_logic_vector(2 downto 0);
 	
 	
 	signal temp	: std_logic_vector(31 downto 0);
@@ -150,11 +162,15 @@ begin
 			r2_data    => rs2_data
 		);
 		
-	alu_data.a <= to_integer(signed(rs1_data));
-	alu_data.b <= to_integer(signed(rs2_data));
-	
-	rw_data <= (others => '1');
+	writeBackMuxBlock: block 
+	begin
+		with writeBackMux select
+			rw_data <= std_logic_vector(to_unsigned(alu_out,32)) when "000",
+			           std_logic_vector(to_unsigned(imm_u,32))   when "001",
+			           std_logic_vector(to_unsigned(imm_i,32))   when others;
 		
+	end block;
+			
 	decoder0: component decoder
 		port map(
 			clk        => clk,
@@ -165,6 +181,7 @@ begin
 			opcodes    => opcodes,
 			ulaMuxData => ulaMuxData,
 			ulaCod     => alu_data.code,
+			writeBackMux => writeBackMux,
 			reg_write  => rf_w_ena
 		);
 	
@@ -175,6 +192,23 @@ begin
 			alu_data => alu_data,
 			dataOut  => alu_out
 		);
+	
+	alu_data.a <= to_integer(signed(rs1_data));
+	
+	aluMuxBlock: block 
+	begin
+		with ulaMuxData select
+			alu_data.b <= to_integer(signed(rs2_data)) when "00",
+			              imm_i   when "01",
+			              imm_b   when others;		
+	end block;
+	
+	memAddrTypeSBlock: block 
+		signal addr : std_logic_vector(31 downto 0);
+	begin
+		addr <= std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_s,32));
+		daddress <= "00" & addr(7 downto 2);
+	end block;
 		
 	
 
