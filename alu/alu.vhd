@@ -16,7 +16,8 @@ architecture RTL of ULA is
 begin
 
 	ula_op : with alu_data.code select
-	dataOut <=	alu_data.a + alu_data.b when ALU_ADD,	
+	dataOut <=	alu_data.a + alu_data.b when ALU_ADD,
+				alu_data.a - alu_data.b when ALU_SUB,
 		       (0) when others;
 
 end architecture RTL;

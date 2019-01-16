@@ -17,6 +17,7 @@
 vlib work
 # vcom ./memory/imemory.vhd
 vcom ./memory/imemory_load.vhd
+vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
 vcom ./decoder/decoder_types.vhd
@@ -33,7 +34,7 @@ view wave
 add wave -radix binary /clk
 add wave -radix binary /rst
 add wave  /iaddress
-add wave -radix hex /q
+add wave -radix hex idata
 
 # iregister debug 
 add wave -label opcode  /myRiscv/opcodes 
@@ -56,10 +57,12 @@ add wave -label r2_data -radix hex /myRiscv/rs2_data
 # decoder debug
 add wave -label states /myRiscv/decoder0/state
 
-
 # alu debug
 add wave -label aluData /myRiscv/alu_data
 add wave -label aluOut /myRiscv/alu_out
+
+# data memory debug 
+add wave -label daddress -radix hex /myRiscv/daddress
 
 
 run 2000 ns

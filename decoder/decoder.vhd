@@ -31,6 +31,9 @@ entity decoder is
 		ulaMuxData  : out std_logic_vector(1 downto 0);
 		ulaCod		: out std_logic_vector(2 downto 0);
 		
+		--! Write back contrl
+		
+		writeBackMux: out std_logic_vector(2 downto 0);
 		reg_write	: out std_logic
 		
 		-- Comparator signals
@@ -43,7 +46,7 @@ entity decoder is
 end entity decoder;
 
 architecture RTL of decoder is
-	type state_type is (READ, FETCH, DECODE, EXE_ALU, BEQ, BLEZ, BRANCH_JUMP, LOAD_IME, MUL_OP, JUMP, LW_SW, LW_SW2, WRITEBACK, ERROR);
+	type state_type is (READ, FETCH, DECODE, EXE_ALU, BEQ, BLEZ, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, JUMP, LW_SW, LW_SW2, WRITEBACK, ERROR);
 	signal state : state_type := READ;
 
 	
@@ -62,7 +65,11 @@ begin
 					state <= DECODE;
 				when DECODE =>
 					case opcodes.opcode is
+						when TYPE_I => state <= ST_TYPE_I;			
+						when TYPE_LUI => state <= ST_TYPE_U;						
 						when TYPE_R => state <= EXE_ALU;
+						when TYPE_S =>  state <= ST_TYPE_S;		
+						
 						
 						when others => state <= ERROR;
 					end case;
@@ -73,7 +80,7 @@ begin
 				
 				when BEQ =>
 --					if compResult = '1' then
---						state <= BRANCH_JUMP;
+--						state <= TYPE_I;
 --					else
 --						state <= READ;
 --					end if;					
@@ -83,18 +90,25 @@ begin
 --					else
 --						state <= READ;
 					-- end if;
-				when BRANCH_JUMP =>
-					state <= READ;
+				when ST_TYPE_I =>
+					state <= WRITEBACK;
+				
+				
 				when EXE_ALU =>
 					
 					state <= WRITEBACK;
 					
 					
 					
-				when LOAD_IME =>
-					state <= READ;
-				when MUL_OP =>
-					state <= READ;
+				when ST_TYPE_U =>
+					state <= WRITEBACK;
+					
+					
+					
+				when ST_TYPE_S =>
+					state <= WRITEBACK;
+					
+					
 				when JUMP =>
 					state <= READ;
 				when LW_SW =>
@@ -115,9 +129,11 @@ begin
 --		rd_rom <= '0';
 --		--ir_load <= '0';
 --		br_w_ena 	<= '0';
---		ulaMuxData <= MUX_ULA_R;
+		ulaMuxData <= "00";
+		
 		pc_inc <= '0';
 		
+		writeBackMux <= "000";
 		reg_write <= '0';
 				
 --		pc_load <= '0';
@@ -142,7 +158,27 @@ begin
 				
 			when BLEZ =>
 				
-			when BRANCH_JUMP =>
+			when ST_TYPE_I =>
+				case opcodes.funct3 is
+					when TYPE_ADDI =>
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_ADD;
+										
+					when TYPE_SLTI =>
+					when TYPE_SLTIU =>
+					when TYPE_XORI =>
+					when TYPE_ORI =>
+					when TYPE_ANDI =>
+					
+						
+					when others =>						
+				end case;
+				
+				
+				
+				--writeBackMux <= "001";
+				pc_inc <= '1';
+				reg_write <= '1';	
 				
 				
 			when EXE_ALU =>
@@ -161,10 +197,23 @@ begin
 				reg_write <= '1';				
 				
 				
-			when MUL_OP =>
+			when ST_TYPE_S =>
+				case opcodes.funct3 is
+					when TYPE_SB =>
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_ADD;					
+					when TYPE_SH =>
+					when TYPE_SW =>
+					when others =>	
+				end case;
+							
 			
 			
-			when LOAD_IME =>
+			when ST_TYPE_U =>
+				writeBackMux <= "001";
+				pc_inc <= '1';
+				reg_write <= '1';	
+				
 				
 			when JUMP =>				
 			

@@ -11,12 +11,34 @@ package decoder_types is
 	end record opcodes_t;
 
 	--! Arithmetic type R opcode
-	constant TYPE_R	: std_logic_vector(6 downto 0) := "0010011";
+	constant TYPE_R	: std_logic_vector(6 downto 0) := "0110011";
 		--! Func3 opcodes
 		constant TYPE_ADD_SUB	: std_logic_vector(2 downto 0) := "000";
 			--! Func7 opcodes
 			constant TYPE_ADD	: std_logic_vector(6 downto 0) := "0000000";
 			constant TYPE_SUB	: std_logic_vector(6 downto 0) := "0100000";
+			
+	--! Arithmetic type I opcode
+	constant TYPE_I	: std_logic_vector(6 downto 0) := "0010011";
+		--! Func3 opcodes
+		constant TYPE_ADDI	: std_logic_vector(2 downto 0) := "000";
+		constant TYPE_SLTI	: std_logic_vector(2 downto 0) := "010";
+		constant TYPE_SLTIU	: std_logic_vector(2 downto 0) := "011";
+		constant TYPE_XORI	: std_logic_vector(2 downto 0) := "100";
+		constant TYPE_ORI	: std_logic_vector(2 downto 0) := "110";
+		constant TYPE_ANDI	: std_logic_vector(2 downto 0) := "111";
+	
+	--! Memory type S opcode
+	constant TYPE_S	: std_logic_vector(6 downto 0) := "0100011";
+		--! Func3 opcodes
+		constant TYPE_SB	: std_logic_vector(2 downto 0) := "000";
+		constant TYPE_SH	: std_logic_vector(2 downto 0) := "001";
+		constant TYPE_SW	: std_logic_vector(2 downto 0) := "010";
+	
+	
+	--! Special type U opcode
+	constant TYPE_LUI	: std_logic_vector(6 downto 0) := "0110111";
+	constant TYPE_AUIPC	: std_logic_vector(6 downto 0) := "0010111";
 	
 	
 --	constant PLUS_ULA	: std_logic_vector(2 downto 0) := "000";
