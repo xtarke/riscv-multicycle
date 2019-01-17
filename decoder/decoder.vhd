@@ -10,22 +10,14 @@ entity decoder is
 		clk : in std_logic;
 		rst : in std_logic;
 		
-		-- PC signals
-	 	pc_inc	: out std_logic;
-	 	pc_load : out std_logic;
-	 	pcMux	: out std_logic;
-		-- pc_load	: out std_logic_vector(31 downto 0);
-		
 		-- RAM signals
-		--ram_w_en	: out std_logic;
-		--ram_r_en	: out std_logic;
+		dmemory : out mem_ctrl_t;
 			
 		-- IR signals
 		opcodes : in opcodes_t;		--! Instruction decoding information. See decoder_types.vhd		
 		
-		-- BR signals		
---		br_w_ena 	: out std_logic;
---		br_ula_mux	: out std_logic;
+		-- Jump and branches signals
+		jumps : out jumps_ctrl_t;	
 		
 		-- ULA signals
 		ulaMuxData  : out std_logic_vector(1 downto 0);
@@ -46,7 +38,7 @@ entity decoder is
 end entity decoder;
 
 architecture RTL of decoder is
-	type state_type is (READ, FETCH, DECODE, EXE_ALU, BEQ, BLEZ, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, JUMP, LW_SW, LW_SW2, WRITEBACK, ERROR);
+	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, BLEZ, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, JUMP, LW_SW, LW_SW2, WRITEBACK, ERROR);
 	signal state : state_type := READ;
 
 	
@@ -69,7 +61,7 @@ begin
 						when TYPE_LUI => state <= ST_TYPE_U;						
 						when TYPE_R => state <= EXE_ALU;
 						when TYPE_S =>  state <= ST_TYPE_S;		
-						
+						when TYPE_JAL => state <= ST_TYPE_JAL;
 						
 						when others => state <= ERROR;
 					end case;
@@ -78,12 +70,8 @@ begin
 				
 				
 				
-				when BEQ =>
---					if compResult = '1' then
---						state <= TYPE_I;
---					else
---						state <= READ;
---					end if;					
+				when ST_TYPE_JAL =>
+					state <= WRITEBACK;
 				when BLEZ =>
 --					if compResult = '1' then
 --						state <= BRANCH_JUMP;
@@ -131,7 +119,9 @@ begin
 --		br_w_ena 	<= '0';
 		ulaMuxData <= "00";
 		
-		pc_inc <= '0';
+		jumps.inc <= '0';
+		jumps.load <= '0';
+		jumps.load_from <= "00";
 		
 		writeBackMux <= "000";
 		reg_write <= '0';
@@ -145,6 +135,11 @@ begin
 --		pcMux	<= PC_DT_PSEUDO;
 
 		ulaCod <= (others => '0');
+		
+		-- !Memory interface default signal values
+		dmemory.read  <= '0';
+		dmemory.write <= '0';
+		dmemory.word_size <= "00";	
 
 		
 		case state is 
@@ -154,7 +149,9 @@ begin
 				
 			when DECODE =>
 			
-			when BEQ =>
+			when ST_TYPE_JAL =>
+				jumps.load <= '1';
+				jumps.load_from <= "00";				
 				
 			when BLEZ =>
 				
@@ -165,19 +162,21 @@ begin
 						ulaCod <= ALU_ADD;
 										
 					when TYPE_SLTI =>
+						report "Not implemented" severity Failure;
 					when TYPE_SLTIU =>
+						report "Not implemented" severity Failure;
 					when TYPE_XORI =>
+						report "Not implemented" severity Failure;
 					when TYPE_ORI =>
+						report "Not implemented" severity Failure;
 					when TYPE_ANDI =>
-					
-						
+						report "Not implemented" severity Failure;
+											
 					when others =>						
-				end case;
-				
-				
+				end case;				
 				
 				--writeBackMux <= "001";
-				pc_inc <= '1';
+				jumps.inc <= '1';
 				reg_write <= '1';	
 				
 				
@@ -193,25 +192,29 @@ begin
 					when others =>						
 				end case;
 				
-				pc_inc <= '1';
+				jumps.inc <= '1';
 				reg_write <= '1';				
 				
 				
 			when ST_TYPE_S =>
+				
 				case opcodes.funct3 is
 					when TYPE_SB =>
-						ulaMuxData <= "01";	
-						ulaCod <= ALU_ADD;					
+						report "Not implemented" severity Failure;
 					when TYPE_SH =>
+						report "Not implemented" severity Failure;
 					when TYPE_SW =>
+						dmemory.write <= '1';
+						dmemory.word_size <= "00";	
 					when others =>	
 				end case;
-							
+				
+				jumps.inc <= '1';						
 			
 			
 			when ST_TYPE_U =>
 				writeBackMux <= "001";
-				pc_inc <= '1';
+				jumps.inc <= '1';
 				reg_write <= '1';	
 				
 				
@@ -222,7 +225,7 @@ begin
 			when LW_SW2 =>
 				
 			when ERROR =>
-				
+				report "Not implemented" severity Failure;
 				
 			when WRITEBACK => 
 				

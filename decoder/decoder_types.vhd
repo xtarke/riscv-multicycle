@@ -9,6 +9,20 @@ package decoder_types is
 		funct3 : std_logic_vector(2 downto 0);	--! Instruction function: 7 bits
 		funct7 : std_logic_vector(6 downto 0);	--! Instruction function: 3 bits
 	end record opcodes_t;
+	
+	--! Record for memory controller
+	type mem_ctrl_t is record
+		read : std_logic;	--! Memory read signal
+		write: std_logic;	--! Memory write signal
+		word_size : std_logic_vector(1 downto 0);	--! "00": word, "01": half word, "11" byte
+	end record mem_ctrl_t;
+	
+	--! Record for control flow instructions
+	type jumps_ctrl_t is record
+		inc : std_logic;	--! Memory read signal
+		load: std_logic;	--! Memory write signal
+		load_from : std_logic_vector(1 downto 0);	--! "00": pc + j_imm
+	end record jumps_ctrl_t;			 
 
 	--! Arithmetic type R opcode
 	constant TYPE_R	: std_logic_vector(6 downto 0) := "0110011";
@@ -34,6 +48,10 @@ package decoder_types is
 		constant TYPE_SB	: std_logic_vector(2 downto 0) := "000";
 		constant TYPE_SH	: std_logic_vector(2 downto 0) := "001";
 		constant TYPE_SW	: std_logic_vector(2 downto 0) := "010";
+	
+	--! Jumps opcode
+	constant TYPE_JAL	: std_logic_vector(6 downto 0) := "1101111";
+	constant TYPE_JALR	: std_logic_vector(6 downto 0) := "1100111";
 	
 	
 	--! Special type U opcode
