@@ -33,8 +33,11 @@ vsim -t ns work.testbench
 view wave
 add wave -radix binary /clk
 add wave -radix binary /rst
-add wave  /iaddress
+add wave -radix hex /iaddress
 add wave -radix hex idata
+
+add wave -radix hex -label pc /myRiscv/pc
+add wave -radix hex -label jal_target /myRiscv/jal_target
 
 # iregister debug 
 add wave -label opcode  /myRiscv/opcodes 
@@ -63,6 +66,10 @@ add wave -label aluOut /myRiscv/alu_out
 
 # data memory debug 
 add wave -label daddress -radix hex /myRiscv/daddress
+add wave -label daddress -radix hex /myRiscv/dmask
+add wave -label dmemory  /myRiscv/dmemory
+
+add wave -label SRAM -radix hex /dmem/ram_block
 
 
 run 2000 ns

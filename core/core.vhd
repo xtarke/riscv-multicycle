@@ -63,12 +63,14 @@ architecture RTL of core is
 		port(
 			clk        : in  std_logic;
 			rst        : in  std_logic;
-			pc_inc     : out std_logic;
-			pc_load    : out std_logic;
-			pcMux      : out std_logic;
+		
+			jumps 	: out jumps_ctrl_t;	
+		
 			opcodes    : in  opcodes_t;
 			ulaMuxData : out std_logic_vector(1 downto 0);
 			ulaCod     : out std_logic_vector(2 downto 0);
+			
+			dmemory : out mem_ctrl_t;
 			
 			writeBackMux: out std_logic_vector(2 downto 0);
 			reg_write	: out std_logic
@@ -82,8 +84,8 @@ architecture RTL of core is
 		);
 	end component ULA;
 	
-	signal pc : integer range 0 to MEMORY_WORDS-1;
-	signal opcodes :  opcodes_t;
+	signal pc      : std_logic_vector(31 downto 0);
+	signal opcodes : opcodes_t;
 
 	signal rd     :  integer range 0 to 31;
 	signal rs1    :  integer range 0 to 31;
@@ -104,14 +106,18 @@ architecture RTL of core is
 	signal alu_out : integer;
 	
 	--! Controls signals
-	signal pc_inc     : std_logic;
-	signal pc_load    : std_logic;
-	signal pcMux      : std_logic;
+	signal jumps : jumps_ctrl_t;	
+	
+	
 	signal ulaMuxData : std_logic_vector(1 downto 0);
 	signal writeBackMux : std_logic_vector(2 downto 0);
 	
+	signal dmemory : mem_ctrl_t;
+	
 	
 	signal temp	: std_logic_vector(31 downto 0);
+	
+	signal jal_target : integer;
 	
 begin
 	
@@ -120,17 +126,27 @@ begin
 		pc_proc: process (clk, rst)
 		begin			
 			if rst = '1' then 
-				pc <= 0;
+				pc <= (others => '0');
 			else
 				if rising_edge(clk) then
-					if pc_inc = '1' then
-						pc <= pc + 1;
+					if jumps.inc = '1' then
+						pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + 4,32));
+					 elsif jumps.load = '1' then						
+						case jumps.load_from is 
+							when "00" =>
+								pc <= std_logic_vector(to_unsigned(jal_target,32));
+							when others =>
+								report "Not implemented" severity Failure;
+						end case;						
+					
 					end if;
 				end if;
 			end if;			
 		end process;
 		
-		iaddress <= pc;	
+		jal_target <= to_integer(signed(pc)) + imm_j;	
+		
+		iaddress <= to_integer(signed(pc(10 downto 2)));	
 	end block;
 		
 	ireg: component iregister
@@ -175,12 +191,13 @@ begin
 		port map(
 			clk        => clk,
 			rst        => rst,
-			pc_inc     => pc_inc,
-			pc_load    => pc_load,
-			pcMux      => pcMux,
+			jumps	   => jumps,
 			opcodes    => opcodes,
 			ulaMuxData => ulaMuxData,
 			ulaCod     => alu_data.code,
+			
+			dmemory => dmemory,
+			
 			writeBackMux => writeBackMux,
 			reg_write  => rf_w_ena
 		);
@@ -208,6 +225,32 @@ begin
 	begin
 		addr <= std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_s,32));
 		daddress <= "00" & addr(7 downto 2);
+		
+		ddata_w <= rs2_data;
+		d_we <= dmemory.write;		--! Write signal
+		
+		dmaskGen: process(dmemory, addr)
+		begin
+			case dmemory.word_size is 
+				when "00" =>
+					dmask <= "1111";
+					
+					if dmemory.write = '1' then
+						if addr(1 downto 0) /= "00" then								
+							report "Word Address not aligned!" severity Failure;
+						end if;
+					end if;
+				
+				when others => 	
+					if dmemory.write = '1' then					
+						report "Not implemented" severity Failure;
+					end if;	
+									
+			end case;
+		end process;
+		
+		
+		
 	end block;
 		
 	
