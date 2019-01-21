@@ -71,9 +71,9 @@ begin
 				rs2 <= to_integer(unsigned(data(24 downto 20)));
 			
 				imm_i <= to_integer(signed(data(31 downto 20)));
-				imm_s <= to_integer(signed(data(31 downto 25) & data(11 downto 7)));
-				imm_b <= to_integer(signed(data(12) & data(7) & data(30 downto 25) & data(11 downto 6) & '0'));
-				imm_u <= to_integer(signed(data(31 downto 12)));
+				imm_s <= to_integer(signed(data(31 downto 25) & data(11 downto 7)));			
+				imm_b <= to_integer(signed(data(31) & data(7) & data(30 downto 25) & data(11 downto 8) & '0'));				
+				imm_u <= to_integer(signed(data(31 downto 12) & "000000000000"));
 				imm_j <= to_integer(signed(data(31) &  data(19 downto 12) & data(20) & data(30 downto 21) & '0'));
 				
 			end if;

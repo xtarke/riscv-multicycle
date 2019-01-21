@@ -38,6 +38,7 @@ add wave -radix hex idata
 
 add wave -radix hex -label pc /myRiscv/pc
 add wave -radix hex -label jal_target /myRiscv/jal_target
+add wave -label branch_cmp /myRiscv/branch_cmp
 
 # iregister debug 
 add wave -label opcode  /myRiscv/opcodes 
@@ -72,6 +73,6 @@ add wave -label dmemory  /myRiscv/dmemory
 add wave -label SRAM -radix hex /dmem/ram_block
 
 
-run 2000 ns
+run 3100 ns
 
 wave zoom full

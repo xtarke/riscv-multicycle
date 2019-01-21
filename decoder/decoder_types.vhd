@@ -41,6 +41,17 @@ package decoder_types is
 		constant TYPE_XORI	: std_logic_vector(2 downto 0) := "100";
 		constant TYPE_ORI	: std_logic_vector(2 downto 0) := "110";
 		constant TYPE_ANDI	: std_logic_vector(2 downto 0) := "111";
+		constant TYPE_SLLI	: std_logic_vector(2 downto 0) := "001";
+		
+	--! Branch opcodes
+	constant TYPE_BRANCH : std_logic_vector(6 downto 0) := "1100011";
+		--! Func3 opcodes
+		constant TYPE_BEQ	: std_logic_vector(2 downto 0) := "000";
+		constant TYPE_BNE	: std_logic_vector(2 downto 0) := "010";
+		constant TYPE_BLT	: std_logic_vector(2 downto 0) := "100";
+		constant TYPE_BGE	: std_logic_vector(2 downto 0) := "101";
+		constant TYPE_BLTU	: std_logic_vector(2 downto 0) := "110";
+		constant TYPE_BGEU	: std_logic_vector(2 downto 0) := "111";
 	
 	--! Memory type S opcode
 	constant TYPE_S	: std_logic_vector(6 downto 0) := "0100011";
@@ -52,7 +63,6 @@ package decoder_types is
 	--! Jumps opcode
 	constant TYPE_JAL	: std_logic_vector(6 downto 0) := "1101111";
 	constant TYPE_JALR	: std_logic_vector(6 downto 0) := "1100111";
-	
 	
 	--! Special type U opcode
 	constant TYPE_LUI	: std_logic_vector(6 downto 0) := "0110111";

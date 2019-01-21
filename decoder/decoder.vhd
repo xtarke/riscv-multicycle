@@ -38,7 +38,9 @@ entity decoder is
 end entity decoder;
 
 architecture RTL of decoder is
-	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, BLEZ, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, JUMP, LW_SW, LW_SW2, WRITEBACK, ERROR);
+	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, 
+		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, LW_SW, LW_SW2, WRITEBACK, ERROR
+	);
 	signal state : state_type := READ;
 
 	
@@ -58,47 +60,31 @@ begin
 				when DECODE =>
 					case opcodes.opcode is
 						when TYPE_I => state <= ST_TYPE_I;			
+						when TYPE_AUIPC => state <= ST_TYPE_AUIPC;
 						when TYPE_LUI => state <= ST_TYPE_U;						
 						when TYPE_R => state <= EXE_ALU;
 						when TYPE_S =>  state <= ST_TYPE_S;		
 						when TYPE_JAL => state <= ST_TYPE_JAL;
+						when TYPE_BRANCH => state <= ST_BRANCH;
 						
 						when others => state <= ERROR;
 					end case;
-				
-				
-				
-				
-				
+			
 				when ST_TYPE_JAL =>
 					state <= WRITEBACK;
-				when BLEZ =>
---					if compResult = '1' then
---						state <= BRANCH_JUMP;
---					else
---						state <= READ;
-					-- end if;
+				when ST_TYPE_AUIPC =>
+					state <= WRITEBACK;
 				when ST_TYPE_I =>
-					state <= WRITEBACK;
-				
-				
-				when EXE_ALU =>
-					
-					state <= WRITEBACK;
-					
-					
-					
+					state <= WRITEBACK;				
+				when EXE_ALU =>					
+					state <= WRITEBACK;				
 				when ST_TYPE_U =>
 					state <= WRITEBACK;
-					
-					
-					
 				when ST_TYPE_S =>
 					state <= WRITEBACK;
-					
-					
-				when JUMP =>
-					state <= READ;
+				when ST_BRANCH =>
+					state <= WRITEBACK;
+				
 				when LW_SW =>
 					state <= LW_SW2;
 				when LW_SW2 =>
@@ -151,9 +137,14 @@ begin
 			
 			when ST_TYPE_JAL =>
 				jumps.load <= '1';
-				jumps.load_from <= "00";				
+				jumps.load_from <= "00";
+				writeBackMux <= "011";
+				reg_write <= '1';					
 				
-			when BLEZ =>
+			when ST_TYPE_AUIPC =>
+				writeBackMux <= "010";
+				jumps.inc <= '1';
+				reg_write <= '1';			
 				
 			when ST_TYPE_I =>
 				case opcodes.funct3 is
@@ -171,8 +162,13 @@ begin
 						report "Not implemented" severity Failure;
 					when TYPE_ANDI =>
 						report "Not implemented" severity Failure;
+					
+					when TYPE_SLLI =>
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_SLL;
 											
-					when others =>						
+					when others =>
+						report "Not implemented" severity Failure;				
 				end case;				
 				
 				--writeBackMux <= "001";
@@ -209,8 +205,7 @@ begin
 					when others =>	
 				end case;
 				
-				jumps.inc <= '1';						
-			
+				jumps.inc <= '1';				
 			
 			when ST_TYPE_U =>
 				writeBackMux <= "001";
@@ -218,7 +213,9 @@ begin
 				reg_write <= '1';	
 				
 				
-			when JUMP =>				
+			when ST_BRANCH =>	
+				jumps.load <= '1';
+				jumps.load_from <= "01";			
 			
 			when LW_SW =>
 				

@@ -3,6 +3,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity testbench is
+	generic (
+		--! Num of 32-bits memory words 
+		IMEMORY_WORDS : integer := 1024 
+	);
 	
 end entity testbench;
 
@@ -37,13 +41,13 @@ architecture RTL of testbench is
 	component core
 		generic (
 			--! Num of 32-bits memory words 
-			MEMORY_WORDS : integer := 256 
+			IMEMORY_WORDS : integer := 256 
 		);
 		port(
 			clk : in std_logic;
 			rst : in std_logic;
 			
-			iaddress  : out  integer range 0 to MEMORY_WORDS-1;
+			iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
 			idata	  : in 	std_logic_vector(31 downto 0);
 			
 			daddress  : out  std_logic_vector(7 downto 0);
@@ -69,7 +73,7 @@ architecture RTL of testbench is
 	signal RAMaddress :  integer range 0 to 256 - 1;
 	
 	
-	signal iaddress  : integer range 0 to 255 := 0;
+	signal iaddress  : integer range 0 to IMEMORY_WORDS-1 := 0;
 
 	signal q             : std_logic_vector(31 downto 0);
 	
@@ -94,7 +98,7 @@ begin
 	
 	imem: component imemory
 		generic map(
-			MEMORY_WORDS => 256
+			MEMORY_WORDS => IMEMORY_WORDS
 		)
 		port map(
 			clk           => clk,
@@ -123,7 +127,7 @@ begin
 
 	myRiscv: component core
 		generic map(
-			MEMORY_WORDS => 256
+			IMEMORY_WORDS => IMEMORY_WORDS
 		)
 		port map(
 			clk      => clk,
