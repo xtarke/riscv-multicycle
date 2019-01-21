@@ -8,13 +8,13 @@ use work.alu_types.all;
 entity core is
 	generic (
 		--! Num of 32-bits memory words 
-		MEMORY_WORDS : integer := 256 
+		IMEMORY_WORDS : integer := 1024 
 	);
 	port(
 		clk : in std_logic;
 		rst : in std_logic;
 		
-		iaddress  : out  integer range 0 to MEMORY_WORDS-1;
+		iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
 		idata	  : in 	std_logic_vector(31 downto 0);
 		
 		daddress  : out  std_logic_vector(7 downto 0);
@@ -85,6 +85,7 @@ architecture RTL of core is
 	end component ULA;
 	
 	signal pc      : std_logic_vector(31 downto 0);
+	signal next_pc : std_logic_vector(31 downto 0);
 	signal opcodes : opcodes_t;
 
 	signal rd     :  integer range 0 to 31;
@@ -117,12 +118,18 @@ architecture RTL of core is
 	
 	signal temp	: std_logic_vector(31 downto 0);
 	
-	signal jal_target : integer;
+	signal jal_target : integer;	--!= Target address for jump instruction 
+	signal auipc_offtet : integer;	--!= PC plus offset for aiupc instruction
+
+	signal branch_cmp : std_logic;
 	
 begin
 	
 	pc_blk: block
 	begin		
+		
+		next_pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + 4,32));
+		
 		pc_proc: process (clk, rst)
 		begin			
 			if rst = '1' then 
@@ -130,11 +137,17 @@ begin
 			else
 				if rising_edge(clk) then
 					if jumps.inc = '1' then
-						pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + 4,32));
+						pc <= next_pc;
 					 elsif jumps.load = '1' then						
 						case jumps.load_from is 
 							when "00" =>
 								pc <= std_logic_vector(to_unsigned(jal_target,32));
+							
+							when "01" =>
+								if branch_cmp = '1' then
+									pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + imm_b,32));						
+								end if;							
+							
 							when others =>
 								report "Not implemented" severity Failure;
 						end case;						
@@ -144,9 +157,38 @@ begin
 			end if;			
 		end process;
 		
-		jal_target <= to_integer(signed(pc)) + imm_j;	
+		jal_target <= to_integer(signed(pc)) + imm_j;
+		auipc_offtet <= to_integer(signed(pc)) + imm_u;
 		
-		iaddress <= to_integer(signed(pc(10 downto 2)));	
+		iaddress <= to_integer(unsigned(pc(16 downto 2)));	
+	end block;
+	
+	
+	branch_unit: block
+	begin	
+		cmp_prc: process(clk, rst)
+		begin
+			if rst = '1' then
+				branch_cmp <= '0';
+			else
+				if rising_edge(clk) then				
+					branch_cmp <= '0';
+					case opcodes.funct3 is
+						when TYPE_BGEU =>						
+							if (to_integer(unsigned(rs1_data)) >= (to_integer(unsigned(rs2_data)))) then
+								branch_cmp <= '1';											
+							end if;
+						
+				
+						when others =>
+							
+						
+					end case;
+					
+					
+				end if;
+			end if;		
+		end process;		
 	end block;
 		
 	ireg: component iregister
@@ -181,9 +223,11 @@ begin
 	writeBackMuxBlock: block 
 	begin
 		with writeBackMux select
-			rw_data <= std_logic_vector(to_unsigned(alu_out,32)) when "000",
-			           std_logic_vector(to_unsigned(imm_u,32))   when "001",
-			           std_logic_vector(to_unsigned(imm_i,32))   when others;
+			rw_data <= std_logic_vector(to_signed(alu_out,32)) when "000",
+			           std_logic_vector(to_signed(imm_u,32))   when "001",
+			           std_logic_vector(to_signed(auipc_offtet,32)) when "010",
+			           next_pc when "011",
+			           std_logic_vector(to_signed(imm_i,32))   when others;
 		
 	end block;
 			

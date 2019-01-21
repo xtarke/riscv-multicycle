@@ -24,7 +24,7 @@ use std.textio.all;
 entity imemory is
 	generic (
 		--! Num of 32-bits memory words 
-		MEMORY_WORDS : integer := 256 
+		MEMORY_WORDS : integer := 1024 
 	);
 	
 	port(
@@ -55,8 +55,15 @@ architecture RTL of imemory is
 	begin
 		
 		for i in RamType'range loop
-			readline(RamFile, RamFileLine);			
-			hread(RamFileLine, hex);
+			
+			if(not endfile(RamFile)) then
+        		--v_data_row_counter := v_data_row_counter + 1;
+        		--readline(test_vector,row);
+        		readline(RamFile, RamFileLine);			
+				hread(RamFileLine, hex);
+        	else
+        		hex := (others => '0');
+      		end if;
 			
 			--read (RamFileLine, stringRead);			
 			--report "Data: " & stringRead;

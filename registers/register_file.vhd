@@ -48,18 +48,29 @@ architecture RTL of register_file is
 	signal w_vector : std_logic_vector(31 downto 0);	
 	
 	signal we_b : std_logic;
+	signal w_ena_prot : std_logic;
+	
+		
 	
 begin	
 	-- Port B never writes
 	we_b <= '0';	
 	
+	--ot <= i0 when s1 = ’0’ and s0=’0’ else
+--i1 when s1 = ’0’ and s0=’1’ else
+--i2 when s1 = ’0’ and s0=’0’ else
+--i3;
+	
+	w_ena_prot <= '0' when w_address = 0 else
+					w_ena;
+
 	dual_port_ram: block
 	begin
 	
 		process(clk)
 		begin
 			if(rising_edge(clk)) then -- Port A
-				if(w_ena = '1') then
+				if(w_ena_prot = '1') then
 					ram(w_address) <= w_data;
 					-- Read-during-write on the same port returns NEW data
 					-- r1_data <= w_data;
