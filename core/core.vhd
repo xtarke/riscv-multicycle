@@ -119,6 +119,7 @@ architecture RTL of core is
 	signal temp	: std_logic_vector(31 downto 0);
 	
 	signal jal_target : integer;	--!= Target address for jump instruction 
+	signal jalr_target : integer;	--!= Target address for jalr instruction
 	signal auipc_offtet : integer;	--!= PC plus offset for aiupc instruction
 
 	signal branch_cmp : std_logic;
@@ -146,7 +147,10 @@ begin
 							when "01" =>
 								if branch_cmp = '1' then
 									pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + imm_b,32));						
-								end if;							
+								end if;	
+								
+							when "11" =>
+								pc <= std_logic_vector(to_unsigned(jalr_target,32));							
 							
 							when others =>
 								report "Not implemented" severity Failure;
@@ -159,6 +163,7 @@ begin
 		
 		jal_target <= to_integer(signed(pc)) + imm_j;
 		auipc_offtet <= to_integer(signed(pc)) + imm_u;
+		jalr_target <= to_integer(signed(rs1_data)) + imm_i;
 		
 		iaddress <= to_integer(unsigned(pc(16 downto 2)));	
 	end block;
@@ -266,25 +271,42 @@ begin
 	
 	memAddrTypeSBlock: block 
 		signal addr : std_logic_vector(31 downto 0);
+		signal byteSel: std_logic_vector(1 downto 0);
 	begin
 		addr <= std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_s,32));
+		byteSel <= addr(1 downto 0);
 		daddress <= "00" & addr(7 downto 2);
 		
 		ddata_w <= rs2_data;
 		d_we <= dmemory.write;		--! Write signal
 		
-		dmaskGen: process(dmemory, addr)
+		dmaskGen: process(dmemory, byteSel)
 		begin
+			dmask <= "0000";
+			
 			case dmemory.word_size is 
 				when "00" =>
 					dmask <= "1111";
 					
 					if dmemory.write = '1' then
-						if addr(1 downto 0) /= "00" then								
+						if byteSel /= "00" then								
 							report "Word Address not aligned!" severity Failure;
 						end if;
 					end if;
 				
+				when "01" =>					
+					case byteSel is
+						when "00" => 
+							dmask <= "0001";				
+						when "01" => 
+							dmask <= "0010";		
+						when "10" => 
+							dmask <= "0100";							
+						when "11" => 
+							dmask <= "1000";							
+						when others =>
+					end case;			
+					
 				when others => 	
 					if dmemory.write = '1' then					
 						report "Not implemented" severity Failure;
@@ -292,6 +314,15 @@ begin
 									
 			end case;
 		end process;
+		
+--		debug: process(pc)
+--		begin
+--			
+--			if pc > x"00000534" then
+--				report "debug Abort" severity Failure;
+--			end if;
+--			
+--		end process;
 		
 		
 		

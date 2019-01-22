@@ -39,7 +39,7 @@ end entity decoder;
 
 architecture RTL of decoder is
 	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, 
-		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, LW_SW, LW_SW2, WRITEBACK, ERROR
+		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, LW_SW2, WRITEBACK, ERROR
 	);
 	signal state : state_type := READ;
 
@@ -65,6 +65,7 @@ begin
 						when TYPE_R => state <= EXE_ALU;
 						when TYPE_S =>  state <= ST_TYPE_S;		
 						when TYPE_JAL => state <= ST_TYPE_JAL;
+						when TYPE_JALR => state <= ST_TYPE_JALR;
 						when TYPE_BRANCH => state <= ST_BRANCH;
 						
 						when others => state <= ERROR;
@@ -85,8 +86,8 @@ begin
 				when ST_BRANCH =>
 					state <= WRITEBACK;
 				
-				when LW_SW =>
-					state <= LW_SW2;
+				when ST_TYPE_JALR =>
+					state <= WRITEBACK;
 				when LW_SW2 =>
 					state <= READ;
 				when ERROR =>
@@ -196,7 +197,8 @@ begin
 				
 				case opcodes.funct3 is
 					when TYPE_SB =>
-						report "Not implemented" severity Failure;
+						dmemory.write <= '1';
+						dmemory.word_size <= "01";	
 					when TYPE_SH =>
 						report "Not implemented" severity Failure;
 					when TYPE_SW =>
@@ -217,7 +219,9 @@ begin
 				jumps.load <= '1';
 				jumps.load_from <= "01";			
 			
-			when LW_SW =>
+			when ST_TYPE_JALR =>
+				jumps.load <= '1';
+				jumps.load_from <= "11";	
 				
 			when LW_SW2 =>
 				

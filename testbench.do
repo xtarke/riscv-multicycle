@@ -38,6 +38,7 @@ add wave -radix hex idata
 
 add wave -radix hex -label pc /myRiscv/pc
 add wave -radix hex -label jal_target /myRiscv/jal_target
+add wave -radix hex -label jalr_target /myRiscv/jalr_target
 add wave -label branch_cmp /myRiscv/branch_cmp
 
 # iregister debug 
@@ -52,7 +53,7 @@ add wave -label imm_u /myRiscv/imm_u
 add wave -label imm_j /myRiscv/imm_j
 
 # register file debug
-add wave -label registers -radix decimal /myRiscv/registers/ram
+add wave -label registers -radix hex /myRiscv/registers/ram
 add wave -label w_ena /myRiscv/rf_w_ena
 add wave -label w_data /myRiscv/rw_data
 add wave -label r1_data -radix hex /myRiscv/rs1_data
@@ -66,8 +67,15 @@ add wave -label aluData /myRiscv/alu_data
 add wave -label aluOut /myRiscv/alu_out
 
 # data memory debug 
+add wave -label mState /dmem/state
+add wave -label fsm_we /dmem/fsm_we
+add wave -label fsm_data -radix hex /dmem/fsm_data
+add wave -label ram_data -radix hex /dmem/ram_data
+
+
+add wave -label d_we /myRiscv/d_we
 add wave -label daddress -radix hex /myRiscv/daddress
-add wave -label daddress -radix hex /myRiscv/dmask
+add wave -label dmask /myRiscv/dmask
 add wave -label dmemory  /myRiscv/dmemory
 
 add wave -label SRAM -radix hex /dmem/ram_block
