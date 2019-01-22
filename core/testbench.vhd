@@ -28,11 +28,12 @@ architecture RTL of testbench is
     component dmemory
     	generic(MEMORY_WORDS : integer);
     	port(
+    		rst : in std_logic;
     		clk     : in  std_logic;
     		data    : in  std_logic_vector(31 downto 0);
     		address : in  integer range 0 to MEMORY_WORDS - 1;
     		we      : in  std_logic;
-    		dmask   : out std_logic_vector(3 downto 0);
+    		dmask   : in std_logic_vector(3 downto 0);
     		q       : out std_logic_vector(31 downto 0)
     	);
     end component dmemory;
@@ -114,6 +115,7 @@ begin
 			MEMORY_WORDS => 256
 		)
 		port map(
+			rst => rst,
 			clk     => clk,
 			data    => ddata_w,
 			address => RAMaddress,
