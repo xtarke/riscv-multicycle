@@ -39,7 +39,8 @@ end entity decoder;
 
 architecture RTL of decoder is
 	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, 
-		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, LW_SW2, WRITEBACK, ERROR
+		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, ST_TYPE_L, 
+		WRITEBACK, WRITEBACK_MEM, ERROR
 	);
 	signal state : state_type := READ;
 
@@ -64,6 +65,7 @@ begin
 						when TYPE_LUI => state <= ST_TYPE_U;						
 						when TYPE_R => state <= EXE_ALU;
 						when TYPE_S =>  state <= ST_TYPE_S;		
+						when TYPE_L =>  state <= ST_TYPE_L;
 						when TYPE_JAL => state <= ST_TYPE_JAL;
 						when TYPE_JALR => state <= ST_TYPE_JALR;
 						when TYPE_BRANCH => state <= ST_BRANCH;
@@ -84,15 +86,16 @@ begin
 				when ST_TYPE_S =>
 					state <= WRITEBACK;
 				when ST_BRANCH =>
-					state <= WRITEBACK;
-				
+					state <= WRITEBACK;				
 				when ST_TYPE_JALR =>
 					state <= WRITEBACK;
-				when LW_SW2 =>
-					state <= READ;
+				when ST_TYPE_L =>
+					state <= WRITEBACK_MEM;				
 				when ERROR =>
 					state <= ERROR;
 				when WRITEBACK => 
+					state <= FETCH;
+				when WRITEBACK_MEM =>
 					state <= FETCH;
 				
 			end case;
@@ -167,6 +170,17 @@ begin
 					when TYPE_SLLI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_SLL;
+					when TYPE_SR =>
+						case opcodes.funct7 is
+							when TYPE_SRLI =>
+								ulaMuxData <= "01";	
+								ulaCod <= ALU_SRL;								
+							when TYPE_SRAI =>
+								ulaMuxData <= "01";	
+								ulaCod <= ALU_SRA;								
+							when others =>
+						end case;
+						
 											
 					when others =>
 						report "Not implemented" severity Failure;				
@@ -223,16 +237,28 @@ begin
 				jumps.load <= '1';
 				jumps.load_from <= "11";	
 				
-			when LW_SW2 =>
+			when ST_TYPE_L =>
+				case opcodes.funct3 is
+					when TYPE_LB =>
+						report "Not implemented" severity Failure;	
+					when TYPE_LH =>
+						report "Not implemented" severity Failure;
+					when TYPE_LW =>
+						dmemory.read <= '1';
+						dmemory.word_size <= "00";	
+					when others =>	
+				end case;
+				
+				jumps.inc <= '1';				
 				
 			when ERROR =>
 				report "Not implemented" severity Failure;
 				
 			when WRITEBACK => 
 				
-				
-				
-						
+			when WRITEBACK_MEM =>
+				writeBackMux <= "100";
+				reg_write <= '1';						
 		end case;
 		
 	end process moore;

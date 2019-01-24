@@ -35,6 +35,7 @@ add wave -radix binary /clk
 add wave -radix binary /rst
 add wave -radix hex /iaddress
 add wave -radix hex idata
+add wave -radix hex /imem/RAM
 
 add wave -radix hex -label pc /myRiscv/pc
 add wave -radix hex -label jal_target /myRiscv/jal_target
@@ -67,12 +68,15 @@ add wave -label aluData /myRiscv/alu_data
 add wave -label aluOut /myRiscv/alu_out
 
 # data memory debug 
+add wave -label daddr -radix hex /myRiscv/memAddrTypeSBlock/addr
+add wave -label q -radix hex /ddata_r
+
 add wave -label mState /dmem/state
 add wave -label fsm_we /dmem/fsm_we
 add wave -label fsm_data -radix hex /dmem/fsm_data
 add wave -label ram_data -radix hex /dmem/ram_data
 
-
+add wave -label dcsel /myRiscv/dcsel
 add wave -label d_we /myRiscv/d_we
 add wave -label daddress -radix hex /myRiscv/daddress
 add wave -label dmask /myRiscv/dmask
@@ -81,6 +85,6 @@ add wave -label dmemory  /myRiscv/dmemory
 add wave -label SRAM -radix hex /dmem/ram_block
 
 
-run 3100 ns
+run 5100 ns
 
 wave zoom full

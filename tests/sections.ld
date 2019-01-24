@@ -9,9 +9,10 @@ means.
 
 /* starting address needs to be > 0 due to known bug in RISCV/GNU linker */
 MEMORY {
-	#rom(rwx) : ORIGIN = 0x00000100, LENGTH = 63k
+	/* rom(rwx) : ORIGIN = 0x00000100, LENGTH = 63k */
 	rom(rwx) : ORIGIN = 0x00000000, LENGTH = 63k
-    ram(rwx) : ORIGIN = 0x00020000, LENGTH = 16k
+    /* ram(rwx) : ORIGIN = 0x00020000, LENGTH = 16k */
+    ram(rwx) : ORIGIN = 0x00020000, LENGTH = 2k
 }
 
 ENTRY(_pvstart);

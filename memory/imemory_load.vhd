@@ -30,10 +30,11 @@ entity imemory is
 	port(
 		clk : in std_logic;							--! Clock input
 		data: in std_logic_vector (31 downto 0);	--! Write data input
-		write_address: in integer range 0 to MEMORY_WORDS-1;	--! Address to be written
-    	read_address:  in integer range 0 to MEMORY_WORDS-1;	--! Address to be read
-    	we: in std_logic;							--! Write Enable
-    	q:  out std_logic_vector (31 downto 0)		--! Read output
+		read_address_a: in integer range 0 to MEMORY_WORDS-1;	--! Address to be written
+    	read_address_b: in integer range 0 to MEMORY_WORDS-1;	--! Address to be read
+    	q_a:  out std_logic_vector (31 downto 0);		--! Read output
+    	csel : in std_logic;    	
+    	q_b:  out std_logic_vector (31 downto 0)		--! Read output
 	);
 end entity imemory;
 
@@ -76,25 +77,29 @@ architecture RTL of imemory is
 	end function;
 	
 	--! RAM Block instance
-	signal RAM : RamType := InitRamFromFile("memory.hex");	
+	signal RAM : RamType := InitRamFromFile("firmware32.hex");	
 	
 	--type mem is array (0 to 31) of std_logic_vector(31 downto 0);	--! Array 31 x 31 bits type creation
     --signal ram_block: mem;	
-    signal read_address_reg: integer range 0 to MEMORY_WORDS-1;	--! Read address register
+    signal read_address_reg_a: integer range 0 to MEMORY_WORDS-1;	--! Read address register
+    signal read_address_reg_b: integer range 0 to MEMORY_WORDS-1;	--! Read address register
 begin
 	
 	--! @brief Memory transaction process. Must me synchronous and with this format
 	p1: process (clk)
 	begin
-		if rising_edge(clk) then
-	        if (we = '1') then
-	            RAM(write_address) <= data;
-	        end if;
-	        
-	        read_address_reg <= read_address;
+		if rising_edge(clk) then	        
+			read_address_reg_a <= read_address_a;
+			read_address_reg_b <= read_address_b;
 	    end if;
 	end process;
 
-    q <= RAM(read_address_reg);
+    q_a <= RAM(read_address_reg_a);
+    
+    with csel select    
+    	q_b <= RAM(read_address_reg_b) when '1',
+    	    (others => 'Z') when others;
+    
+    
 
 end architecture RTL;
