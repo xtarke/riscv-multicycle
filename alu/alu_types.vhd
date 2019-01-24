@@ -15,6 +15,7 @@ package alu_types is
 	
 	constant ALU_SLL	: std_logic_vector(2 downto 0) := "010";
 	constant ALU_SRL	: std_logic_vector(2 downto 0) := "011";
+	constant ALU_SRA	: std_logic_vector(2 downto 0) := "100";
 	
 	
 	constant MUL_ULA 	: std_logic_vector(2 downto 0) := "001";

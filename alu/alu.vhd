@@ -20,9 +20,9 @@ begin
 	ula_op : with alu_data.code select
 	dataOut <=	alu_data.a + alu_data.b when ALU_ADD,
 				alu_data.a - alu_data.b when ALU_SUB,				
-				to_integer(to_unsigned(alu_data.a,32) sll to_integer(unsigned(shamt))) when ALU_SLL,	
-				
-				
+				to_integer(to_unsigned(alu_data.a,32) sll to_integer(unsigned(shamt))) when ALU_SLL,
+				to_integer(to_unsigned(alu_data.a,32) srl to_integer(unsigned(shamt))) when ALU_SRL,
+				to_integer(to_signed(alu_data.a,32) srl to_integer(unsigned(shamt))) when ALU_SRA,				
 		       (0) when others;
 
 end architecture RTL;

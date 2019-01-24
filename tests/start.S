@@ -37,9 +37,12 @@ addi x30, zero, 0
 addi x31, zero, 0
 
 /* set stack pointer */
+/* lui sp, %hi(4*1024*1024) */
+/* addi sp, sp, %lo(4*1024*1024) */
 
-lui sp, %hi(4*1024*1024)
-addi sp, sp, %lo(4*1024*1024)
+/* set stack pointer: ram(rwx) : ORIGIN = 0x00020000, LENGTH = 2k = 0x20800  = 133120*/
+lui sp, %hi(133120)         
+addi sp, sp,%lo(133120)
 
 /* push zeros on the stack for argc and argv */
 /* (stack is aligned to 16 bytes in riscv calling convention) */
@@ -50,4 +53,6 @@ sw zero,8(sp)
 sw zero,12(sp)
 
 j _start
+ 
+
  

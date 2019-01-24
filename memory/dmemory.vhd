@@ -27,6 +27,7 @@ entity dmemory is
 		data: in std_logic_vector (31 downto 0);	--! Write data input
 		address:  in integer range 0 to MEMORY_WORDS-1;	--! Address to be read
     	we: in std_logic;							--! Write Enable
+    	csel : in std_logic;						--! Chip select
     	dmask     : in std_logic_vector(3 downto 0);	--! Byte enable mask 
     	q:  out std_logic_vector (31 downto 0)		--! Read output
 	);
@@ -37,7 +38,20 @@ end entity dmemory;
 --! @details More details about this imemory element.
 architecture RTL of dmemory is
 	type mem is array (0 to MEMORY_WORDS-1) of std_logic_vector(31 downto 0);	--! Array MEMORY_WORDS x 31 bits type creation
-    signal ram_block: mem;	--! RAM Block instance
+    
+   	impure function InitRam return mem is		
+		variable RAM : mem;	
+	begin
+		
+		for i in mem'range loop
+			RAM(i) :=  (others => '0');		
+		end loop;
+		
+		return RAM;	
+	end function;	
+    
+    
+    signal ram_block: mem := InitRam;	--! RAM Block instance
     signal read_address_reg: integer range 0 to MEMORY_WORDS-1;	--! Read address register
 
 
@@ -132,6 +146,11 @@ begin
 	end process;
 
     ram_data <= ram_block(address);    
-    q <= ram_data;
+    
+    with csel select
+			q <= ram_data when '1',
+			      (others => 'Z') when others;		
+    
+    
 
 end architecture RTL;

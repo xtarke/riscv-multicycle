@@ -8,7 +8,7 @@ data = []
 
 def write_data():
     if len(data) != 0:
-        print("@%08x" % (ptr >> 2))
+        # print("@%08x" % (ptr >> 2))
         while len(data) % 4 != 0:
             data.append(0)
         for word_bytes in zip(*([iter(data)]*4)):

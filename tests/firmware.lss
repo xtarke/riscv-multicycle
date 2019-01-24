@@ -50,9 +50,9 @@ Disassembly of section .rom:
   70:	00000e93          	li	t4,0
   74:	00000f13          	li	t5,0
   78:	00000f93          	li	t6,0
-  7c:	00400137          	lui	sp,0x400
-  80:	00010113          	mv	sp,sp
-  84:	ff010113          	addi	sp,sp,-16 # 3ffff0 <_bss_end+0x3dfbc0>
+  7c:	00021137          	lui	sp,0x21
+  80:	80010113          	addi	sp,sp,-2048 # 20800 <_bss_end+0x3d0>
+  84:	ff010113          	addi	sp,sp,-16
   88:	00012023          	sw	zero,0(sp)
   8c:	00012223          	sw	zero,4(sp)
   90:	00012423          	sw	zero,8(sp)

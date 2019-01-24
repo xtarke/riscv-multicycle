@@ -8,7 +8,8 @@ use work.alu_types.all;
 entity core is
 	generic (
 		--! Num of 32-bits memory words 
-		IMEMORY_WORDS : integer := 1024 
+		IMEMORY_WORDS : integer := 1024;
+		DMEMORY_WORDS : integer := 512
 	);
 	port(
 		clk : in std_logic;
@@ -17,11 +18,12 @@ entity core is
 		iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
 		idata	  : in 	std_logic_vector(31 downto 0);
 		
-		daddress  : out  std_logic_vector(7 downto 0);
+		daddress  : out  integer range 0 to DMEMORY_WORDS-1;
 		
 		ddata_r	  : in 	std_logic_vector(31 downto 0);
 		ddata_w   : out	std_logic_vector(31 downto 0);
 		d_we      : out std_logic;
+		dcsel	  : out std_logic_vector(1 downto 0);	--! Chip select 
 		dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
 	);
 end entity core;
@@ -147,6 +149,8 @@ begin
 							when "01" =>
 								if branch_cmp = '1' then
 									pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + imm_b,32));						
+								else
+									pc <= next_pc;
 								end if;	
 								
 							when "11" =>
@@ -171,28 +175,39 @@ begin
 	
 	branch_unit: block
 	begin	
-		cmp_prc: process(clk, rst)
-		begin
-			if rst = '1' then
+		cmp_prc: process(rs1_data, rs2_data)
+		begin		
 				branch_cmp <= '0';
-			else
-				if rising_edge(clk) then				
-					branch_cmp <= '0';
-					case opcodes.funct3 is
-						when TYPE_BGEU =>						
-							if (to_integer(unsigned(rs1_data)) >= (to_integer(unsigned(rs2_data)))) then
-								branch_cmp <= '1';											
-							end if;
-						
 				
-						when others =>
-							
-						
-					end case;
+				case opcodes.funct3 is
+					when TYPE_BEQ =>
+						if rs1_data = rs2_data then
+							branch_cmp <= '1';											
+						end if;	
+					when TYPE_BNE => 
+						if rs1_data /= rs2_data then
+							branch_cmp <= '1';											
+						end if;
+					when TYPE_BLT => 
+						if (to_integer(signed(rs1_data)) < (to_integer(signed(rs2_data)))) then
+							branch_cmp <= '1';											
+						end if;	
+					when TYPE_BGE => 
+						if (to_integer(signed(rs1_data)) >= (to_integer(signed(rs2_data)))) then
+							branch_cmp <= '1';											
+						end if;		
+					when TYPE_BLTU =>						
+						if (to_integer(unsigned(rs1_data)) < (to_integer(unsigned(rs2_data)))) then
+							branch_cmp <= '1';											
+						end if;		
 					
+					when TYPE_BGEU =>						
+						if (to_integer(unsigned(rs1_data)) >= (to_integer(unsigned(rs2_data)))) then
+							branch_cmp <= '1';											
+						end if;
 					
-				end if;
-			end if;		
+					when others =>
+				end case;		
 		end process;		
 	end block;
 		
@@ -232,6 +247,7 @@ begin
 			           std_logic_vector(to_signed(imm_u,32))   when "001",
 			           std_logic_vector(to_signed(auipc_offtet,32)) when "010",
 			           next_pc when "011",
+			           ddata_r when "100",
 			           std_logic_vector(to_signed(imm_i,32))   when others;
 		
 	end block;
@@ -273,12 +289,22 @@ begin
 		signal addr : std_logic_vector(31 downto 0);
 		signal byteSel: std_logic_vector(1 downto 0);
 	begin
-		addr <= std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_s,32));
+		-- != Load and Store instructions have different address generation 
+		with dmemory.read select
+			addr <= std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_i,32)) when '1',
+				    std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_s,32)) when others;		
+		
 		byteSel <= addr(1 downto 0);
-		daddress <= "00" & addr(7 downto 2);
+		daddress <= to_integer(unsigned(addr(10 downto 2)));
 		
 		ddata_w <= rs2_data;
 		d_we <= dmemory.write;		--! Write signal
+		
+		--! Chip Select
+		with addr(17) select
+			dcsel <= "01" when '0',
+			         "10" when '1',
+			         "00" when others;		
 		
 		dmaskGen: process(dmemory, byteSel)
 		begin
@@ -288,11 +314,11 @@ begin
 				when "00" =>
 					dmask <= "1111";
 					
-					if dmemory.write = '1' then
-						if byteSel /= "00" then								
-							report "Word Address not aligned!" severity Failure;
-						end if;
-					end if;
+--					if dmemory.write = '1' then
+--						if byteSel /= "00" then								
+--							report "Word Address not aligned!" severity Failure;
+--						end if;
+--					end if;
 				
 				when "01" =>					
 					case byteSel is
@@ -315,14 +341,14 @@ begin
 			end case;
 		end process;
 		
---		debug: process(pc)
---		begin
---			
---			if pc > x"00000534" then
---				report "debug Abort" severity Failure;
---			end if;
---			
---		end process;
+		debug: process(pc)
+		begin
+		
+			if pc = x"00000360" then
+				-- report "debug Abort" severity Failure;
+			end if;
+			
+		end process;
 		
 		
 		

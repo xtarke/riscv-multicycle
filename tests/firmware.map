@@ -68,7 +68,7 @@ Memory Configuration
 
 Name             Origin             Length             Attributes
 rom              0x0000000000000000 0x000000000000fc00 xrw
-ram              0x0000000000020000 0x0000000000004000 xrw
+ram              0x0000000000020000 0x0000000000000800 xrw
 *default*        0x0000000000000000 0xffffffffffffffff
 
 Linker script and memory map
