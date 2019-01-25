@@ -51,7 +51,7 @@ architecture RTL of dmemory is
 	end function;	
     
     
-    signal ram_block: mem := InitRam;	--! RAM Block instance
+    signal ram_block: mem; -- := InitRam;	--! RAM Block instance
     signal read_address_reg: integer range 0 to MEMORY_WORDS-1;	--! Read address register
 
 

@@ -93,4 +93,26 @@ void _exit(int exit_status)
 	__builtin_unreachable();
 }
 
+void init_data_section(){
+
+	extern unsigned char _edata[];
+	extern unsigned char _data[];
+	extern unsigned char _data_lma[];
+
+	long size = (long)_edata - (long)_data;
+
+	memcpy(_data, _data_lma, size);
+
+	//*_data = *_data_lma;
+
+
+	/* unsigned *flash_ptr = _data_lma;
+
+	while (ram_ptr < ram_ptr + size)
+		flash_ptr++;
+		*ram_ptr = *flash_ptr;*/
+
+
+}
+
  

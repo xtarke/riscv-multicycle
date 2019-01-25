@@ -31,6 +31,15 @@ package decoder_types is
 			--! Func7 opcodes
 			constant TYPE_ADD	: std_logic_vector(6 downto 0) := "0000000";
 			constant TYPE_SUB	: std_logic_vector(6 downto 0) := "0100000";
+		constant TYPE_SLL		: std_logic_vector(2 downto 0) := "001";
+		constant TYPE_SLT		: std_logic_vector(2 downto 0) := "010";
+		constant TYPE_SLU		: std_logic_vector(2 downto 0) := "011";
+		constant TYPE_XOR		: std_logic_vector(2 downto 0) := "100";
+		-- constant TYPE_SR: Uses same logic of TYPE_I
+		constant TYPE_OR		: std_logic_vector(2 downto 0) := "110";
+		constant TYPE_AND		: std_logic_vector(2 downto 0) := "111";
+		
+		
 			
 	--! Arithmetic type I opcode
 	constant TYPE_I	: std_logic_vector(6 downto 0) := "0010011";

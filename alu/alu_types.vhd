@@ -7,15 +7,24 @@ package alu_types is
 	type alu_data_t is record
 		a : integer;	--! Source operand A
 		b : integer;	--! Source operand B
-		code  : std_logic_vector(2 downto 0);	--! Alu operation code
+		code  : std_logic_vector(3 downto 0);	--! Alu operation code
 	end record alu_data_t;
 	
-	constant ALU_ADD	: std_logic_vector(2 downto 0) := "000";
-	constant ALU_SUB	: std_logic_vector(2 downto 0) := "001";
+	constant ALU_ADD	: std_logic_vector(3 downto 0) := "0000";
+	constant ALU_SUB	: std_logic_vector(3 downto 0) := "0001";
 	
-	constant ALU_SLL	: std_logic_vector(2 downto 0) := "010";
-	constant ALU_SRL	: std_logic_vector(2 downto 0) := "011";
-	constant ALU_SRA	: std_logic_vector(2 downto 0) := "100";
+	constant ALU_SLL	: std_logic_vector(3 downto 0) := "0010";
+	constant ALU_SRL	: std_logic_vector(3 downto 0) := "0011";
+	constant ALU_SRA	: std_logic_vector(3 downto 0) := "0100";
+	
+	constant ALU_SLT	: std_logic_vector(3 downto 0) := "0101";
+	constant ALU_SLTU	: std_logic_vector(3 downto 0) := "0111";
+	
+	constant ALU_XOR	: std_logic_vector(3 downto 0) := "1000";
+	constant ALU_OR  	: std_logic_vector(3 downto 0) := "1001";
+	constant ALU_AND  	: std_logic_vector(3 downto 0) := "1010";
+	
+	
 	
 	
 	constant MUL_ULA 	: std_logic_vector(2 downto 0) := "001";

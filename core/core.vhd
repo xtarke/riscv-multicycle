@@ -70,7 +70,7 @@ architecture RTL of core is
 		
 			opcodes    : in  opcodes_t;
 			ulaMuxData : out std_logic_vector(1 downto 0);
-			ulaCod     : out std_logic_vector(2 downto 0);
+			ulaCod     : out std_logic_vector(3 downto 0);
 			
 			dmemory : out mem_ctrl_t;
 			
@@ -344,8 +344,8 @@ begin
 		debug: process(pc)
 		begin
 		
-			if pc = x"00000360" then
-				-- report "debug Abort" severity Failure;
+			if pc = x"000005c8" then
+				report "debug Abort" severity Failure;
 			end if;
 			
 		end process;
