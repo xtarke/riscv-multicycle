@@ -21,7 +21,7 @@ entity decoder is
 		
 		-- ULA signals
 		ulaMuxData  : out std_logic_vector(1 downto 0);
-		ulaCod		: out std_logic_vector(2 downto 0);
+		ulaCod		: out std_logic_vector(3 downto 0);
 		
 		--! Write back contrl
 		
@@ -200,7 +200,8 @@ begin
 						else
 							ulaCod <= ALU_SUB;
 						end if;					
-					when others =>						
+					when others =>		
+						report "Not implemented" severity Failure;				
 				end case;
 				
 				jumps.inc <= '1';

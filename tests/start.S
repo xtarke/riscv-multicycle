@@ -1,10 +1,11 @@
 .section .text
 .global _start
 .global _pvstart
+.global init_data_section
 
 _pvstart:
 /* zero-initialize all registers */
-addi x1, zero, 0
+/* addi x1, zero, 0
 addi x2, zero, 0
 addi x3, zero, 0
 addi x4, zero, 0
@@ -34,7 +35,7 @@ addi x27, zero, 0
 addi x28, zero, 0
 addi x29, zero, 0
 addi x30, zero, 0
-addi x31, zero, 0
+addi x31, zero, 0 */
 
 /* set stack pointer */
 /* lui sp, %hi(4*1024*1024) */
@@ -43,6 +44,12 @@ addi x31, zero, 0
 /* set stack pointer: ram(rwx) : ORIGIN = 0x00020000, LENGTH = 2k = 0x20800  = 133120*/
 lui sp, %hi(133120)         
 addi sp, sp,%lo(133120)
+
+/* Set Global pointer: RAM init @  ORIGIN = 0x00020000,*/
+lui gp, %hi(131072)
+addi gp, gp, %lo(131072)
+
+jal init_data_section
 
 /* push zeros on the stack for argc and argv */
 /* (stack is aligned to 16 bytes in riscv calling convention) */
