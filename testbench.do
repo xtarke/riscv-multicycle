@@ -85,6 +85,6 @@ add wave -label dmemory  /myRiscv/dmemory
 add wave -label SRAM -radix hex /dmem/ram_block
 
 
-run 5100 ns
+run 100100 ns
 
 wave zoom full
