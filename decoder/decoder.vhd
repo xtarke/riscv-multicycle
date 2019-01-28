@@ -40,7 +40,7 @@ end entity decoder;
 architecture RTL of decoder is
 	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, 
 		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, ST_TYPE_L, 
-		WRITEBACK, WRITEBACK_MEM, ERROR
+		WRITEBACK, WRITEBACK_MEM, ERROR, HALT
 	);
 	signal state : state_type := READ;
 
@@ -69,7 +69,7 @@ begin
 						when TYPE_JAL => state <= ST_TYPE_JAL;
 						when TYPE_JALR => state <= ST_TYPE_JALR;
 						when TYPE_BRANCH => state <= ST_BRANCH;
-						
+						when TYPE_ENV_BREAK => state <= HALT;						
 						when others => state <= ERROR;
 					end case;
 			
@@ -97,6 +97,7 @@ begin
 					state <= FETCH;
 				when WRITEBACK_MEM =>
 					state <= FETCH;
+				when HALT =>
 				
 			end case;
 		end if;
@@ -104,11 +105,9 @@ begin
 	
 	moore : process(state, opcodes) is
 	begin
---		rd_rom <= '0';
---		--ir_load <= '0';
---		br_w_ena 	<= '0';
 		ulaMuxData <= "00";
 		
+		-- !Control flow default signal values
 		jumps.inc <= '0';
 		jumps.load <= '0';
 		jumps.load_from <= "00";
@@ -116,14 +115,6 @@ begin
 		writeBackMux <= "000";
 		reg_write <= '0';
 				
---		pc_load <= '0';
---		br_ula_mux <= MUX_BR_ULA;
---		ram_r_en <= '0';
---		ram_w_en <= '0';
---		ulaCod <= (others => '1');
---		compMux <= MUX_COMP_0;
---		pcMux	<= PC_DT_PSEUDO;
-
 		ulaCod <= (others => '0');
 		
 		-- !Memory interface default signal values
@@ -164,8 +155,10 @@ begin
 						report "Not implemented" severity Failure;
 					when TYPE_ORI =>
 						report "Not implemented" severity Failure;
+					
 					when TYPE_ANDI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_AND;
 					
 					when TYPE_SLLI =>
 						ulaMuxData <= "01";	
@@ -199,7 +192,17 @@ begin
 							ulaCod <= ALU_ADD;
 						else
 							ulaCod <= ALU_SUB;
-						end if;					
+						end if;
+						
+					when TYPE_AND =>
+						ulaCod <= ALU_AND;	
+										
+					when TYPE_SLL =>
+						ulaCod <= ALU_SLL;
+					
+					when TYPE_XOR =>
+						ulaCod <= ALU_XOR;
+										
 					when others =>		
 						report "Not implemented" severity Failure;				
 				end case;
@@ -214,6 +217,7 @@ begin
 					when TYPE_SB =>
 						dmemory.write <= '1';
 						dmemory.word_size <= "01";	
+						-- report "Not implemented" severity Failure;
 					when TYPE_SH =>
 						report "Not implemented" severity Failure;
 					when TYPE_SW =>
@@ -254,6 +258,9 @@ begin
 				
 			when ERROR =>
 				report "Not implemented" severity Failure;
+			
+			when HALT =>
+				report "Simulation success!" severity Failure;
 				
 			when WRITEBACK => 
 				

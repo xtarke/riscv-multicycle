@@ -175,7 +175,7 @@ begin
 	
 	branch_unit: block
 	begin	
-		cmp_prc: process(rs1_data, rs2_data)
+		cmp_prc: process(opcodes, rs1_data, rs2_data)
 		begin		
 				branch_cmp <= '0';
 				
@@ -291,11 +291,11 @@ begin
 	begin
 		-- != Load and Store instructions have different address generation 
 		with dmemory.read select
-			addr <= std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_i,32)) when '1',
-				    std_logic_vector(to_unsigned(to_integer(signed(rs1_data)) + imm_s,32)) when others;		
+			addr <= std_logic_vector(to_signed(to_integer(signed(rs1_data)) + imm_i,32)) when '1',   -- to_unsigned
+				    std_logic_vector(to_signed(to_integer(signed(rs1_data)) + imm_s,32)) when others;		-- to_unsigned
 		
 		byteSel <= addr(1 downto 0);
-		daddress <= to_integer(unsigned(addr(10 downto 2)));
+		daddress <= to_integer(unsigned(addr(11 downto 2)));
 		
 		ddata_w <= rs2_data;
 		d_we <= dmemory.write;		--! Write signal
@@ -344,8 +344,8 @@ begin
 		debug: process(pc)
 		begin
 		
-			if pc = x"000005c8" then
-				report "debug Abort" severity Failure;
+			if pc = x"00000010" then
+			--	report "debug Abort" severity Failure;
 			end if;
 			
 		end process;

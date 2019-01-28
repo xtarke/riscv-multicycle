@@ -145,7 +145,7 @@ begin
 						
 	end process;
 
-    ram_data <= ram_block(address);    
+    ram_data <= ram_block(read_address_reg);    
     
     with csel select
 			q <= ram_data when '1',

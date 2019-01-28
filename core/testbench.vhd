@@ -6,7 +6,7 @@ entity testbench is
 	generic (
 		--! Num of 32-bits memory words 
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
-		DMEMORY_WORDS : integer := 512  	--!= 2k (512 * 2) bytes
+		DMEMORY_WORDS : integer := 1024  	--!= 2k (512 * 2) bytes
 	);
 	
 end entity testbench;

@@ -90,6 +90,12 @@ package decoder_types is
 	constant TYPE_LUI	: std_logic_vector(6 downto 0) := "0110111";
 	constant TYPE_AUIPC	: std_logic_vector(6 downto 0) := "0010111";
 	
+	--!  Environment Call and Breakpoints
+	constant TYPE_ENV_BREAK :  std_logic_vector(6 downto 0) := "1110011";
+		--! Func3 opcodes
+		constant TYPE_EBREAK_ECALL	: std_logic_vector(2 downto 0) := "000";
+			--! Func7 opcodes
+			constant TYPE_EBREAK	: std_logic_vector(6 downto 0) := "0000001";
 	
 --	constant PLUS_ULA	: std_logic_vector(2 downto 0) := "000";
 --	constant MUL_ULA 	: std_logic_vector(2 downto 0) := "001";
