@@ -24,8 +24,9 @@ vcom ./decoder/decoder_types.vhd
 vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
-
 vcom ./core/core.vhd
+vcom ./core/txt_util.vhdl
+vcom ./core/trace_debug.vhd
 vcom ./core/testbench.vhd
 
 vsim -t ns work.testbench

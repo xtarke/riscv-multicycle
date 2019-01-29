@@ -64,6 +64,14 @@ architecture RTL of testbench is
 			dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
 		);
 	end component core;
+
+	component trace_debug
+		generic(MEMORY_WORDS : integer);
+		port(
+			pc   : in integer range 0 to MEMORY_WORDS - 1;
+			data : in std_logic_vector(31 downto 0)
+		);
+	end component trace_debug;
 	
 	signal clk : std_logic;
 	signal rst : std_logic;
@@ -169,6 +177,14 @@ begin
 			dmask    => dmask
 		);
 		
+	debug: component trace_debug
+		generic map(
+			MEMORY_WORDS => IMEMORY_WORDS
+		)
+		port map(
+			pc   => iaddress,
+			data => idata
+		);
 	
 
 end architecture RTL;

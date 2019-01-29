@@ -11,7 +11,7 @@ int main(){
 
 	int i;
 
-	for (i=0; i < 100; i++){
+	for (i=0; i < 4; i++){
 		foo();
 	}
 
