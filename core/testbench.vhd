@@ -26,6 +26,19 @@ architecture RTL of testbench is
 		);
 	end component imemory;
 	
+	
+	component iram_quartus
+		PORT
+		(
+			address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+			byteena		: IN STD_LOGIC_VECTOR (3 DOWNTO 0) :=  (OTHERS => '1');
+			clock		: IN STD_LOGIC  := '1';
+			data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			wren		: IN STD_LOGIC ;
+			q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+		);
+	end component;
+	
 	    
     component dmemory
     	generic(MEMORY_WORDS : integer);
@@ -92,6 +105,9 @@ architecture RTL of testbench is
 
 	signal q             : std_logic_vector(31 downto 0);
 	
+	signal address : std_logic_vector(9 downto 0);
+	
+	
 begin
 	
 	clock_driver : process
@@ -123,6 +139,18 @@ begin
 --			we            => '0',
 --			q             => idata 
 --	);
+
+	iram_quartus_inst : iram_quartus PORT MAP (
+			address	 => address,
+			byteena	 => "1111",
+			clock	 => clk,
+			data	 => (others => '0'),
+			wren	 => '0',
+			q	 => q
+		);
+		
+	address <= std_logic_vector(to_unsigned(iaddress,10)) ;
+	
 	
 	imem: component imemory
 		generic map(

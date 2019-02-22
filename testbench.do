@@ -17,6 +17,7 @@
 vlib work
 # vcom ./memory/imemory.vhd
 vcom ./memory/imemory_load.vhd
+vcom ./memory/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
@@ -37,6 +38,7 @@ add wave -radix binary /rst
 add wave -radix hex /iaddress
 add wave -radix hex idata
 add wave -radix hex /imem/RAM
+add wave -radix hex /q
 
 add wave -radix hex -label pc /myRiscv/pc
 add wave -radix hex -label jal_target /myRiscv/jal_target

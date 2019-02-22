@@ -51,8 +51,7 @@ architecture RTL of imemory is
 		variable RamFileLine : line;
 		variable RAM : RamType;
 		variable hex : std_logic_vector(31 downto 0);
-		variable stringRead: string (7 downto 0);
-		
+				
 	begin
 		
 		for i in RamType'range loop

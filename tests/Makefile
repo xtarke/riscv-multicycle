@@ -21,6 +21,7 @@ firmware32.hex: firmware.elf hex8tohex32.py
 	$(RISCV_TOOLS_PREFIX)objcopy -O verilog firmware.elf firmware.tmp
 	$(RISCV_TOOLS_PREFIX)objdump -h -S firmware.elf > "firmware.lss"
 	python3 hex8tohex32.py firmware.tmp > firmware32.hex
+	python3 hex8tointel.py firmware.tmp > quartus.hex
 
 
 firmware_dbg.v: firmware.map
