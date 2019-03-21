@@ -14,7 +14,10 @@ entity decoder is
 		dmemory : out mem_ctrl_t;
 			
 		-- IR signals
-		opcodes : in opcodes_t;		--! Instruction decoding information. See decoder_types.vhd		
+		opcodes : in opcodes_t;		--! Instruction decoding information. See decoder_types.vhd	
+		
+		-- bus lag
+		bus_lag : in std_logic;
 		
 		-- Jump and branches signals
 		jumps : out jumps_ctrl_t;	
@@ -96,7 +99,12 @@ begin
 				when WRITEBACK => 
 					state <= FETCH;
 				when WRITEBACK_MEM =>
-					state <= FETCH;
+					
+					if (bus_lag = '0') then
+						state <= FETCH;
+					else
+						state <= READ;
+					end if;
 				when HALT =>
 				
 			end case;

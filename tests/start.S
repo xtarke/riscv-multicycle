@@ -1,5 +1,6 @@
 .section .text
 .global _start
+.global _start
 .global _pvstart
 .global init_data_section
 
@@ -49,7 +50,7 @@ addi sp, sp,%lo(133120)
 lui gp, %hi(131072)
 addi gp, gp, %lo(131072)
 
-jal init_data_section
+/* jal init_data_section */
 
 /* push zeros on the stack for argc and argv */
 /* (stack is aligned to 16 bytes in riscv calling convention) */
@@ -59,7 +60,9 @@ sw zero,4(sp)
 sw zero,8(sp)
 sw zero,12(sp)
 
-j _start
+/* j _start */
+jal main
+ebreak
  
 
  
