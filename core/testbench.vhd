@@ -73,6 +73,7 @@ architecture RTL of testbench is
 			ddata_r	  : in 	std_logic_vector(31 downto 0);
 			ddata_w   : out	std_logic_vector(31 downto 0);
 			d_we      : out std_logic;
+			d_rd	  : out std_logic;
 			dcsel	  : out std_logic_vector(1 downto 0);
 			dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
 		);
@@ -105,8 +106,9 @@ architecture RTL of testbench is
 	
 	signal address : std_logic_vector(9 downto 0);
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
+	signal d_rd : std_logic;
 		
-	
+	signal input_out	: std_logic_vector(31 downto 0);
 begin
 	
 	clock_driver : process
@@ -141,9 +143,17 @@ begin
 
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	with dcsel select 
-		address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
-				   std_logic_vector(to_unsigned(iaddress,10)) when others;		
+	--with dcsel select 
+	--	address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
+	--			   std_logic_vector(to_unsigned(iaddress,10)) when others;				   
+	process(d_rd, dcsel, daddress, iaddress)
+	begin
+		if (d_rd = '1') and (dcsel = "00") then
+			address <= std_logic_vector(to_unsigned(daddress,10));
+		else
+			address <= std_logic_vector(to_unsigned(iaddress,10));
+		end if;		
+	end process;
 
 	iram_quartus_inst : iram_quartus PORT MAP (
 			address	 => address,
@@ -152,15 +162,8 @@ begin
 			data	 => (others => '0'),
 			wren	 => '0',
 			q	 => idata
-		);
-		
-
-	-- CPU data bus mux
-	with dcsel select 
-		ddata_r <= idata when "01",
-		           ddata_r_mem when others;
+		);		
 	
-
 --	imem: component imemory
 --		generic map(
 --			MEMORY_WORDS => IMEMORY_WORDS
@@ -184,16 +187,20 @@ begin
 		)
 		port map(
 			rst => rst,
-			clk     => clk,
-			data    => ddata_w,
+			clk => clk,
+			data => ddata_w,
 			address => daddress, --RAMaddress,
-			csel	=> dcsel(1),
-			we      => d_we,
-			dmask   => dmask,
-			q       => ddata_r_mem
+			we => d_we,
+			csel => dcsel(0),
+			dmask => dmask,
+			q => ddata_r_mem
 		);
-
-	-- RAMaddress <= to_integer(unsigned(daddress));
+		
+	with dcsel select 
+		ddata_r <= idata when "00",
+		           ddata_r_mem when "01",
+		           input_out when "10",
+		           (others => '0') when others;
 	
 
 	myRiscv: component core
@@ -202,16 +209,17 @@ begin
 			DMEMORY_WORDS => DMEMORY_WORDS
 		)
 		port map(
-			clk      => clk,
-			rst      => rst,
+			clk => clk,
+			rst => rst,
 			iaddress => iaddress,
-			idata    => idata,
+			idata => idata,
 			daddress => daddress,
-			ddata_r  => ddata_r,
-			ddata_w  => ddata_w,
-			dcsel	 => dcsel,
-			d_we     => d_we,
-			dmask    => dmask
+			ddata_r => ddata_r,
+			ddata_w => ddata_w,
+			d_we => d_we,
+			d_rd => d_rd,
+			dcsel => dcsel,
+			dmask => dmask
 		);
 		
 	debug: component trace_debug

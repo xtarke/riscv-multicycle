@@ -85,7 +85,7 @@ begin
 		
 				case state is 
 					when READ =>
-						if we = '1' then
+						if we = '1' and csel='1' then
 							case dmask is 
 								when "1111" =>
 									state <= WORD;

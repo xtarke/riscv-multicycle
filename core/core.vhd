@@ -23,6 +23,7 @@ entity core is
 		ddata_r	  : in 	std_logic_vector(31 downto 0);
 		ddata_w   : out	std_logic_vector(31 downto 0);
 		d_we      : out std_logic;
+		d_rd	  : out std_logic;
 		dcsel	  : out std_logic_vector(1 downto 0);	--! Chip select 
 		dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
 	);
@@ -63,19 +64,16 @@ architecture RTL of core is
 		
 	component decoder
 		port(
-			clk        : in  std_logic;
-			rst        : in  std_logic;
-		
-			jumps 	: out jumps_ctrl_t;	
-		
-			opcodes    : in  opcodes_t;
-			ulaMuxData : out std_logic_vector(1 downto 0);
-			ulaCod     : out std_logic_vector(3 downto 0);
-			
-			dmemory : out mem_ctrl_t;
-			
-			writeBackMux: out std_logic_vector(2 downto 0);
-			reg_write	: out std_logic
+			clk          : in  std_logic;
+			rst          : in  std_logic;
+			dmemory      : out mem_ctrl_t;
+			opcodes      : in  opcodes_t;
+			bus_lag      : in  std_logic;
+			jumps        : out jumps_ctrl_t;
+			ulaMuxData   : out std_logic_vector(1 downto 0);
+			ulaCod       : out std_logic_vector(3 downto 0);
+			writeBackMux : out std_logic_vector(2 downto 0);
+			reg_write    : out std_logic
 		);
 	end component decoder;
 	
@@ -116,15 +114,13 @@ architecture RTL of core is
 	signal writeBackMux : std_logic_vector(2 downto 0);
 	
 	signal dmemory : mem_ctrl_t;
-	
-	
-	signal temp	: std_logic_vector(31 downto 0);
-	
+		
 	signal jal_target : integer;	--!= Target address for jump instruction 
 	signal jalr_target : integer;	--!= Target address for jalr instruction
 	signal auipc_offtet : integer;	--!= PC plus offset for aiupc instruction
 
 	signal branch_cmp : std_logic;
+	signal bus_lag : std_logic;
 		
 begin
 	
@@ -260,6 +256,7 @@ begin
 			opcodes    => opcodes,
 			ulaMuxData => ulaMuxData,
 			ulaCod     => alu_data.code,
+			bus_lag    => bus_lag,
 			
 			dmemory => dmemory,
 			
@@ -298,19 +295,24 @@ begin
 		byteSel <= addr(1 downto 0);
 		daddress <= to_integer(unsigned(addr(11 downto 2)));
 		
-		ddata_w <= rs2_data;
+		ddata_w <= rs2_data;		--! Data to write
 		d_we <= dmemory.write;		--! Write signal
-		
+		d_rd <= dmemory.read;		--! Read signal
+				
+		bus_lag <= not addr(17);	--! Stall another cycle when reading from imem
+				
+		-- Address space (check sections.ld):
+		-- 0x00000    ->    0b000 0000 0000 0000 0000
+		-- 0x20000    ->    0b010 0000 0000 0000 0000
+		-- 0x40000    ->    0b100 0000 0000 0000 0000		
+		dcsel <= addr(18 downto 17);
+				
 		--! Chip Select
-		with addr(17) select
-			dcsel_block <= "01"  when '0',
-			         "10" when '1',
-			         "00" when others;
-		
-		-- dcsel(0) shoud wait for decoder when reading from instruction memory
-		dcsel(1) <= dcsel_block(1) and dmemory.read;
-		dcsel(0) <= dcsel_block(0) and dmemory.read;
-		
+		--with addr(17) select
+		--	dcsel_block <= "01"  when '0',
+		--	         "10" when '1',
+		--	         "00" when others;
+				
 		dmaskGen: process(dmemory, byteSel)
 		begin
 			dmask <= "0000";
