@@ -266,7 +266,8 @@ begin
 				
 			when WRITEBACK_MEM =>
 				writeBackMux <= "100";
-				reg_write <= '1';						
+				reg_write <= '1';
+				dmemory.read <= '1';					
 		end case;
 		
 	end process moore;

@@ -98,15 +98,14 @@ architecture RTL of testbench is
 	signal dcsel : std_logic_vector(1 downto 0);
 	signal d_we            : std_logic := '0';
 	
-	signal RAMaddress :  integer range 0 to 256 - 1;
-	
-	
+		
 	signal iaddress  : integer range 0 to IMEMORY_WORDS-1 := 0;
 
-	signal q             : std_logic_vector(31 downto 0);
+	
 	
 	signal address : std_logic_vector(9 downto 0);
-	
+	signal ddata_r_mem : std_logic_vector(31 downto 0);
+		
 	
 begin
 	
@@ -140,31 +139,41 @@ begin
 --			q             => idata 
 --	);
 
+	-- IMem shoud be read from instruction and data buses
+	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
+	with dcsel select 
+		address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
+				   std_logic_vector(to_unsigned(iaddress,10)) when others;		
+
 	iram_quartus_inst : iram_quartus PORT MAP (
 			address	 => address,
 			byteena	 => "1111",
 			clock	 => clk,
 			data	 => (others => '0'),
 			wren	 => '0',
-			q	 => q
+			q	 => idata
 		);
 		
-	address <= std_logic_vector(to_unsigned(iaddress,10)) ;
+
+	-- CPU data bus mux
+	with dcsel select 
+		ddata_r <= idata when "01",
+		           ddata_r_mem when others;
 	
-	
-	imem: component imemory
-		generic map(
-			MEMORY_WORDS => IMEMORY_WORDS
-		)
-		port map(
-			clk            => clk,
-			data           => idata,
-			read_address_a => iaddress,
-			read_address_b => daddress,
-			q_a            => idata,
-			csel           => dcsel(0),
-			q_b            => ddata_r
-		);
+
+--	imem: component imemory
+--		generic map(
+--			MEMORY_WORDS => IMEMORY_WORDS
+--		)
+--		port map(
+--			clk            => clk,
+--			data           => idata,
+--			read_address_a => iaddress,
+--			read_address_b => daddress,
+--			q_a            => idata,
+--			csel           => dcsel(0),
+--			q_b            => ddata_r
+--		);
 	
 	-- RAMaddress <= to_integer(unsigned(daddress));
 	
@@ -181,7 +190,7 @@ begin
 			csel	=> dcsel(1),
 			we      => d_we,
 			dmask   => dmask,
-			q       => ddata_r
+			q       => ddata_r_mem
 		);
 
 	-- RAMaddress <= to_integer(unsigned(daddress));

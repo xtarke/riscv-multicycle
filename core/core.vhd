@@ -125,7 +125,7 @@ architecture RTL of core is
 	signal auipc_offtet : integer;	--!= PC plus offset for aiupc instruction
 
 	signal branch_cmp : std_logic;
-	
+		
 begin
 	
 	pc_blk: block
@@ -288,6 +288,7 @@ begin
 	memAddrTypeSBlock: block 
 		signal addr : std_logic_vector(31 downto 0);
 		signal byteSel: std_logic_vector(1 downto 0);
+		signal dcsel_block   :  std_logic_vector(1 downto 0);	--! Chip select
 	begin
 		-- != Load and Store instructions have different address generation 
 		with dmemory.read select
@@ -302,9 +303,13 @@ begin
 		
 		--! Chip Select
 		with addr(17) select
-			dcsel <= "01" when '0',
+			dcsel_block <= "01"  when '0',
 			         "10" when '1',
-			         "00" when others;		
+			         "00" when others;
+		
+		-- dcsel(0) shoud wait for decoder when reading from instruction memory
+		dcsel(1) <= dcsel_block(1) and dmemory.read;
+		dcsel(0) <= dcsel_block(0) and dmemory.read;
 		
 		dmaskGen: process(dmemory, byteSel)
 		begin
