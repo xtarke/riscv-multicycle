@@ -35,10 +35,10 @@ vsim -t ns work.testbench
 view wave
 add wave -radix binary /clk
 add wave -radix binary /rst
-add wave -radix hex /iaddress
+add wave -radix hex /address
 add wave -radix hex idata
-add wave -radix hex /imem/RAM
-add wave -radix hex /q
+# add wave -radix hex /imem/RAM
+# add wave -radix hex /q
 
 add wave -radix hex -label pc /myRiscv/pc
 add wave -radix hex -label jal_target /myRiscv/jal_target
