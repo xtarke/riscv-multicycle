@@ -85,6 +85,7 @@ add wave -label daddress -radix hex /myRiscv/daddress
 add wave -label dmask /myRiscv/dmask
 add wave -label dmemory  /myRiscv/dmemory
 
+add wave -label ddata_w -radix hex /ddata_w
 add wave -label SRAM -radix hex /dmem/ram_block
 
 

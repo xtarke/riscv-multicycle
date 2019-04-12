@@ -14,25 +14,25 @@ foo(){
 void delay(){
     int i;
     
-    for (i=0; i < 50000; i++);
+    for (i=0; i < 500000; i++);
 }
 
 
 int main(){
 
 	int i;
-    int loop = 15;
+    int loop = 3;
         
     uint32_t *io_map = 0x00040000;
 
-	//while (loop){
+	while (loop){
         *io_map = 1;
-        //delay();
+        delay();
         *io_map = 0;
-        //delay();
+        delay();
         
-        loop--;
-    //}
+        //loop--;
+    }
 
 	return 0;
 }

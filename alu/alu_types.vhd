@@ -1,12 +1,13 @@
 LIBRARY ieee;
-USE IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 package alu_types is
 
 	--! Record for instruction decoding
 	type alu_data_t is record
-		a : integer;	--! Source operand A
-		b : integer;	--! Source operand B
+		a : signed(31 downto 0);	--! Source operand A
+		b : signed(31 downto 0);	--! Source operand B
 		code  : std_logic_vector(3 downto 0);	--! Alu operation code
 	end record alu_data_t;
 	
@@ -23,10 +24,7 @@ package alu_types is
 	constant ALU_XOR	: std_logic_vector(3 downto 0) := "1000";
 	constant ALU_OR  	: std_logic_vector(3 downto 0) := "1001";
 	constant ALU_AND  	: std_logic_vector(3 downto 0) := "1010";
-	
-	
-	
-	
+		
 	constant MUL_ULA 	: std_logic_vector(2 downto 0) := "001";
 	constant AND_ULA 	: std_logic_vector(2 downto 0) := "010";
 	constant OR_ULA 	: std_logic_vector(2 downto 0) := "011";

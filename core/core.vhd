@@ -25,7 +25,9 @@ entity core is
 		d_we      : out std_logic;
 		d_rd	  : out std_logic;
 		dcsel	  : out std_logic_vector(1 downto 0);	--! Chip select 
-		dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
+		dmask     : out std_logic_vector(3 downto 0);	--! Byte enable mask
+		
+		state	  : out cpu_state_t 
 	);
 end entity core;
 
@@ -73,14 +75,15 @@ architecture RTL of core is
 			ulaMuxData   : out std_logic_vector(1 downto 0);
 			ulaCod       : out std_logic_vector(3 downto 0);
 			writeBackMux : out std_logic_vector(2 downto 0);
-			reg_write    : out std_logic
+			reg_write    : out std_logic;
+			cpu_state    : out cpu_state_t
 		);
 	end component decoder;
 	
 	component ULA
 		port(
 			alu_data : in  alu_data_t;
-			dataOut  : out integer
+			dataOut  : out signed(31 downto 0)
 		);
 	end component ULA;
 	
@@ -104,7 +107,7 @@ architecture RTL of core is
 	
 	--! Signals for alu control
 	signal alu_data : alu_data_t;
-	signal alu_out : integer;
+	signal alu_out : signed(31 downto 0);
 	
 	--! Controls signals
 	signal jumps : jumps_ctrl_t;	
@@ -239,7 +242,7 @@ begin
 	writeBackMuxBlock: block 
 	begin
 		with writeBackMux select
-			rw_data <= std_logic_vector(to_signed(alu_out,32)) when "000",
+			rw_data <= std_logic_vector(alu_out) when "000",
 			           std_logic_vector(to_signed(imm_u,32))   when "001",
 			           std_logic_vector(to_signed(auipc_offtet,32)) when "010",
 			           next_pc when "011",
@@ -249,19 +252,18 @@ begin
 	end block;
 			
 	decoder0: component decoder
-		port map(
-			clk        => clk,
-			rst        => rst,
-			jumps	   => jumps,
-			opcodes    => opcodes,
-			ulaMuxData => ulaMuxData,
-			ulaCod     => alu_data.code,
-			bus_lag    => bus_lag,
-			
+		port map(			
+			clk => clk,
+			rst => rst,
 			dmemory => dmemory,
-			
+			opcodes => opcodes,
+			bus_lag => bus_lag,
+			jumps => jumps,
+			ulaMuxData => ulaMuxData,
+			ulaCod => alu_data.code,
 			writeBackMux => writeBackMux,
-			reg_write  => rf_w_ena
+			reg_write => rf_w_ena,
+			cpu_state => state
 		);
 	
 	
@@ -272,14 +274,14 @@ begin
 			dataOut  => alu_out
 		);
 	
-	alu_data.a <= to_integer(signed(rs1_data));
+	alu_data.a <= (signed(rs1_data));
 	
 	aluMuxBlock: block 
 	begin
 		with ulaMuxData select
-			alu_data.b <= to_integer(signed(rs2_data)) when "00",
-			              imm_i   when "01",
-			              imm_b   when others;		
+			alu_data.b <= (signed(rs2_data)) when "00",
+			              to_signed(imm_i,32)   when "01",
+			              to_signed(imm_b,32)   when others;		
 	end block;
 	
 	memAddrTypeSBlock: block 

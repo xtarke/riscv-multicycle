@@ -26,10 +26,11 @@ entity decoder is
 		ulaMuxData  : out std_logic_vector(1 downto 0);
 		ulaCod		: out std_logic_vector(3 downto 0);
 		
-		--! Write back contrl
-		
+		--! Write back contrl		
 		writeBackMux: out std_logic_vector(2 downto 0);
-		reg_write	: out std_logic
+		reg_write	: out std_logic;
+		
+		cpu_state	  : out cpu_state_t 
 		
 		-- Comparator signals
 --		compResult	: in std_logic;
@@ -130,6 +131,8 @@ begin
 		dmemory.write <= '0';
 		dmemory.word_size <= "00";	
 
+		cpu_state.halted <= '0';
+		cpu_state.error  <= '0';
 		
 		case state is 
 			when READ =>
@@ -265,9 +268,11 @@ begin
 				jumps.inc <= '1';				
 				
 			when ERROR =>
+				cpu_state.error  <= '0';
 				report "Not implemented" severity Failure;
 			
 			when HALT =>
+				cpu_state.halted <= '0';
 				report "Simulation success!" severity Failure;
 				
 			when WRITEBACK => 
