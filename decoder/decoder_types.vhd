@@ -25,6 +25,12 @@ package decoder_types is
 		load_from : std_logic_vector(1 downto 0);	--! "00": pc + j_imm
 	end record jumps_ctrl_t;			 
 
+	--! Record for cpu state
+	type cpu_state_t is record
+		halted : std_logic;	--! CPU is halted (execution of ebreak) 
+		error  : std_logic;	--! There is an error
+	end record cpu_state_t;		
+
 	--! Arithmetic type R opcode
 	constant TYPE_R	: std_logic_vector(6 downto 0) := "0110011";
 		--! Func3 opcodes

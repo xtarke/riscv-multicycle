@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.decoder_types.all;
+
 entity testbench is
 	generic (
 		--! Num of 32-bits memory words 
@@ -75,7 +77,8 @@ architecture RTL of testbench is
 			d_we      : out std_logic;
 			d_rd	  : out std_logic;
 			dcsel	  : out std_logic_vector(1 downto 0);
-			dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
+			dmask     : out std_logic_vector(3 downto 0);	--! Byte enable mask
+			state	  : out cpu_state_t 
 		);
 	end component core;
 
@@ -109,6 +112,7 @@ architecture RTL of testbench is
 	signal d_rd : std_logic;
 		
 	signal input_out	: std_logic_vector(31 downto 0);
+	signal cpu_state    : cpu_state_t;
 begin
 	
 	clock_driver : process
@@ -219,7 +223,8 @@ begin
 			d_we => d_we,
 			d_rd => d_rd,
 			dcsel => dcsel,
-			dmask => dmask
+			dmask => dmask,
+			state => cpu_state
 		);
 		
 	debug: component trace_debug

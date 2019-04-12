@@ -9,6 +9,8 @@ LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
+use work.decoder_types.all;
+
 entity de0_lite is 
 	generic (
 		--! Num of 32-bits memory words 
@@ -148,7 +150,8 @@ architecture rtl of de0_lite is
 			d_we      : out std_logic;
 			d_rd 	  : out std_logic;
 			dcsel	  : out std_logic_vector(1 downto 0);
-			dmask     : out std_logic_vector(3 downto 0)	--! Byte enable mask 
+			dmask     : out std_logic_vector(3 downto 0);	--! Byte enable mask
+			state	  : out cpu_state_t  
 		);
 	end component core;
 
@@ -183,6 +186,7 @@ architecture rtl of de0_lite is
 	signal d_rd : std_logic;
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal input_out : std_logic_vector(31 downto 0);
+	signal state : cpu_state_t;
 	
 begin
 
@@ -193,7 +197,9 @@ begin
 		locked	 => locked_sig
 	);
 	
-	rst <= SW(0);
+	rst <= SW(1);
+	LEDR(8) <= not state.halted;
+	LEDR(7) <= not state.error;	
 	
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -218,13 +224,15 @@ begin
 			q	 => idata
 	);
 	
+	DRAM_ADDR(9 downto 0) <= address;
+	
 	
 	dmem: component dmemory
 		generic map(
 			MEMORY_WORDS => DMEMORY_WORDS
 		)
 		port map(
-			rst => rst,
+			rst => SW(1),
 			clk     => clk,
 			data    => ddata_w,
 			address => daddress, --RAMaddress,
@@ -279,7 +287,8 @@ begin
 			dcsel	 => dcsel,
 			d_we     => d_we,
 			d_rd 	 => d_rd,
-			dmask    => dmask
+			dmask    => dmask,
+			state => state
 		);
 		
 		
