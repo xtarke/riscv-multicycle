@@ -149,7 +149,7 @@ begin
     
     with csel select
 			q <= ram_data when '1',
-			      (others => 'Z') when others;		
+			      (others => '0') when others;		
     
     
 

@@ -13,8 +13,8 @@ end entity ULA;
 
 architecture RTL of ULA is
 	signal shamt : std_logic_vector(4 downto 0);
-	signal comp_l  : std_logic_vector(0 downto 0);
-	signal comp_lu  : std_logic_vector(0 downto 0);
+	signal comp_l  : std_logic_vector(31 downto 0);
+	signal comp_lu  : std_logic_vector(31 downto 0);
 	
 	signal or_vector : std_logic_vector(31 downto 0);
 	signal xor_vector : std_logic_vector(31 downto 0);
@@ -24,12 +24,11 @@ begin
 	-- shamt <= std_logic_vector(to_signed(alu_data.b,5));  -- to_unsigned
 	shamt <= std_logic_vector(alu_data.b(4 downto 0));  -- to_unsigned
 	
-	comp_l <= "1" when alu_data.a < alu_data.b else "0";
+	comp_l <= x"00000001" when alu_data.a < alu_data.b else (others => '0');
 	--comp_lu <= "1" when (to_unsigned(alu_data.a,32)) < (to_unsigned(alu_data.a,32)) else
 	--	      "0";
-	comp_lu <= "1" when (unsigned(alu_data.a) < unsigned(alu_data.a)) else "0";
+	comp_lu <= x"00000001" when (unsigned(alu_data.a) < unsigned(alu_data.a)) else (others => '0');
 	
-		      
 	--or_vector <= std_logic_vector(to_signed(alu_data.a,32)) or std_logic_vector(to_signed(alu_data.b,32));
 	or_vector <= std_logic_vector(alu_data.a or alu_data.b);
 	-- xor_vector <= std_logic_vector(to_signed(alu_data.a,32)) xor std_logic_vector(to_signed(alu_data.b,32));
