@@ -21,17 +21,17 @@ void delay(){
 int main(){
 
 	int i;
-    int loop = 3;
+    int loop = 1;
         
     uint32_t *io_map = 0x00040000;
 
 	while (loop){
         *io_map = 1;
-        delay();
+        // delay();
         *io_map = 0;
-        delay();
+        // delay();
         
-        //loop--;
+        loop--;
     }
 
 	return 0;

@@ -33,60 +33,6 @@ end entity core;
 
 architecture RTL of core is
 	
-	component iregister
-		port(
-			clk    : in  std_logic;
-			rst    : in  std_logic;
-			data   : in  std_logic_vector(31 downto 0);
-			opcodes : out opcodes_t;		
-			rd     : out integer range 0 to 31;
-			rs1    : out integer range 0 to 31;
-			rs2    : out integer range 0 to 31;
-			imm_i  : out integer;
-			imm_s  : out integer;
-			imm_b  : out integer;
-			imm_u  : out integer;
-			imm_j  : out integer
-		);
-	end component iregister;
-	
-	component register_file
-	port(
-		clk        : in  std_logic;
-		rst        : in  std_logic;
-		w_ena      : in  std_logic;
-		w_address  : in  integer range 0 to 31;
-		w_data     : in  std_logic_vector(31 downto 0);
-		r1_address : in  integer range 0 to 31;
-		r1_data    : out std_logic_vector(31 downto 0);
-		r2_address : in  integer range 0 to 31;
-		r2_data    : out std_logic_vector(31 downto 0)
-	);
-	end component register_file;
-		
-	component decoder
-		port(
-			clk          : in  std_logic;
-			rst          : in  std_logic;
-			dmemory      : out mem_ctrl_t;
-			opcodes      : in  opcodes_t;
-			bus_lag      : in  std_logic;
-			jumps        : out jumps_ctrl_t;
-			ulaMuxData   : out std_logic_vector(1 downto 0);
-			ulaCod       : out std_logic_vector(3 downto 0);
-			writeBackMux : out std_logic_vector(2 downto 0);
-			reg_write    : out std_logic;
-			cpu_state    : out cpu_state_t
-		);
-	end component decoder;
-	
-	component ULA
-		port(
-			alu_data : in  alu_data_t;
-			dataOut  : out signed(31 downto 0)
-		);
-	end component ULA;
-	
 	signal pc      : std_logic_vector(31 downto 0);
 	signal next_pc : std_logic_vector(31 downto 0);
 	signal opcodes : opcodes_t;
@@ -109,7 +55,7 @@ architecture RTL of core is
 	signal alu_data : alu_data_t;
 	signal alu_out : signed(31 downto 0);
 	
-	--! Controls signals
+	--! Control flow signals signals
 	signal jumps : jumps_ctrl_t;	
 	
 	
@@ -210,23 +156,25 @@ begin
 		end process;		
 	end block;
 		
-	ireg: component iregister
+		
+	ins_register: entity work.iregister
 		port map(
-			clk    => clk,
-			rst    => rst,
-			data   => idata,
+			clk     => clk,
+			rst     => rst,
+			data    => idata,
 			opcodes => opcodes,
-			rd     => rd,
-			rs1    => rs1,
-			rs2    => rs2,
-			imm_i  => imm_i,
-			imm_s  => imm_s,
-			imm_b  => imm_b,
-			imm_u  => imm_u,
-			imm_j  => imm_j
+			rd      => rd,
+			rs1     => rs1,
+			rs2     => rs2,
+			imm_i   => imm_i,
+			imm_s   => imm_s,
+			imm_b   => imm_b,
+			imm_u   => imm_u,
+			imm_j   => imm_j
 		);
 		
-	registers: component register_file
+
+	registers: entity work.register_file
 		port map(
 			clk        => clk,
 			rst        => rst,
@@ -249,31 +197,30 @@ begin
 			           ddata_r when "100",
 			           std_logic_vector(to_signed(imm_i,32))   when others;
 		
-	end block;
+	end block;			
 			
-	decoder0: component decoder
-		port map(			
-			clk => clk,
-			rst => rst,
-			dmemory => dmemory,
-			opcodes => opcodes,
-			bus_lag => bus_lag,
-			jumps => jumps,
-			ulaMuxData => ulaMuxData,
-			ulaCod => alu_data.code,
+	decoder0: entity work.decoder
+		port map(
+			clk          => clk,
+			rst          => rst,
+			dmemory      => dmemory,
+			opcodes      => opcodes,
+			bus_lag      => bus_lag,
+			jumps        => jumps,
+			ulaMuxData   => ulaMuxData,
+			ulaCod       => alu_data.code,
 			writeBackMux => writeBackMux,
-			reg_write => rf_w_ena,
-			cpu_state => state
+			reg_write    => rf_w_ena,
+			cpu_state    => state
 		);
-	
-	
-	
-	alu_0: component ULA
+
+
+	alu_0: entity work.ULA
 		port map(
 			alu_data => alu_data,
 			dataOut  => alu_out
 		);
-	
+		
 	alu_data.a <= (signed(rs1_data));
 	
 	aluMuxBlock: block 
@@ -286,8 +233,7 @@ begin
 	
 	memAddrTypeSBlock: block 
 		signal addr : std_logic_vector(31 downto 0);
-		signal byteSel: std_logic_vector(1 downto 0);
-		signal dcsel_block   :  std_logic_vector(1 downto 0);	--! Chip select
+		signal byteSel: std_logic_vector(1 downto 0);		
 	begin
 		-- != Load and Store instructions have different address generation 
 		with dmemory.read select
