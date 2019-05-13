@@ -208,7 +208,16 @@ begin
 				end if;
 			end if;
 		end if;		
-	end process;	
+	end process;
+	
+	romTest: entity work.rom
+	port map (
+		clk => clk,
+		we => '0',
+		data_in => (others => '1'),
+		addr_a => to_integer(unsigned(SW(3 downto 0))),
+		q_a => HEX0(6 downto 0)
+	);
 
 end;
 
