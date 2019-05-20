@@ -27,4 +27,4 @@ A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ sup
 Após a compilação, mova, copie ou faça um _link_ simbólico de ./tests/quartus.hex para a raiz do projeto.
 
 
-
+Simulador do RISV baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
