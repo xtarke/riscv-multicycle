@@ -200,24 +200,16 @@ begin
 	process(clk, rst)
 	begin		
 		if rst = '1' then
-			LEDR(0) <= '0';
+			LEDR(3 downto 0) <= (others => '0');
 		else
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = "10") then
-					LEDR(0) <= 	ddata_w(0);				
+					LEDR(3 downto 0) <= 	ddata_w(3 downto 0);				
 				end if;
 			end if;
 		end if;		
 	end process;
 	
-	romTest: entity work.rom
-	port map (
-		clk => clk,
-		we => '0',
-		data_in => (others => '1'),
-		addr_a => to_integer(unsigned(SW(3 downto 0))),
-		q_a => HEX0(6 downto 0)
-	);
 
 end;
 

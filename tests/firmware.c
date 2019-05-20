@@ -1,37 +1,30 @@
-#include <stdio.h>
-#include <stdint.h>
+/*
+ * firmware.c
+ *
+ *  Created on: Jan 20, 2019
+ *      Author: Renan Augusto Starke
+ *      Instituto Federal de Santa Catarina
+ * 
+ * 
+ * Simple LED blink example.
+ * -----------------------------------------
+ */
 
 
-
-
-
-foo(){
-	int y;
-
-	y = 3 +4;
-}
-
-void delay(){
-    int i;
-    
-    for (i=0; i < 500000; i++);
-}
+#include "utils.h"
+#include "hardware.h"
 
 
 int main(){
 
 	int i;
-    int loop = 1;
-        
-    uint32_t *io_map = 0x00040000;
-
+    int loop = 1;      
+   
 	while (loop){
-        *io_map = 1;
-        // delay();
-        *io_map = 0;
-        // delay();
-        
-        loop--;
+        OUTBUS = 3;
+        delay_(10000);
+        OUTBUS = 0;
+        delay_(10000);
     }
 
 	return 0;
