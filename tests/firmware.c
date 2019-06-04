@@ -22,9 +22,9 @@ int main(){
    
 	while (loop){
         OUTBUS = 3;
-        delay_(10000);
+        delay_(1000);
         OUTBUS = 0;
-        delay_(10000);
+        delay_(1000);
     }
 
 	return 0;
