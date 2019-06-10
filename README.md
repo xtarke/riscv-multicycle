@@ -22,9 +22,39 @@ Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv
 
 ## Getting Started (software):
 
-A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ suportando o subconjunto RV32I. Em ./tests/ há um exemplo bem simples de Makefile. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). libc ainda não é testado suportado.
+A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ suportando o subconjunto RV32I. Em ./tests/ há um exemplo bem simples de Makefile. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). libc ainda não foi testado/suportado.
+
+### Instalação compilador no Windows (Windows Subsystem for Linux)
+
+1. Instalar o WSL: [Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+2. Instalar o Ubuntu no WSL
+3. No shell Ubuntu (bsusque Ubuntu no Iniciar do Windows):
+4. Instalar os pacotes para o nodejs:
+
+```sudo apt update
+sudo apt upgrade
+sudo apt install nodejs
+sudo apt install npm
+sudo npm --global install xpm```
+
+5. Instalaar por xmp [GNU Eclipse](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/):
+
+```xpm install --global @gnu-mcu-eclipse/riscv-none-gcc```
+
+6. Altere o caminho do compilador no _Makefile_:
+	- de:
+```RISCV_TOOLS_PREFIX = riscv32-unknown-elf-```
+- para:
+```RISCV_TOOLS_PREFIX = ~/opt/xPacks/@<versão compilador>/.contents/bin/riscv-none-embed-```
+
+7. Utilizando o shell Ubuntu,  mude o diretório atual para o repositório:
+
+```cd /mnt/c/<caminho sistema arquivos Windows>```
+
+8. Para compilar, _make_.
 
 Após a compilação, mova, copie ou faça um _link_ simbólico de ./tests/quartus.hex para a raiz do projeto.
 
+## Simulador Assembly:
 
-Simulador do RISV baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
+RISV baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
