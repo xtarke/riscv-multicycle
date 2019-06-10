@@ -35,7 +35,8 @@ A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ sup
 sudo apt upgrade
 sudo apt install nodejs
 sudo apt install npm
-sudo npm --global install xpm```
+sudo npm --global install xpm
+```
 
 5. Instalaar por xmp [GNU Eclipse](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/):
 
