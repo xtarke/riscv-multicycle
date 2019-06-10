@@ -10,15 +10,19 @@ Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv
 - Simulação:
     - ModelSim: execução do script testbench.do
     - testbench: ./core/testbench.vhd
-    - Utilizar uma memória SRAM IP (32-bits x 1024 words Quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor)
+    - Utilizar uma memória SRAM IP (32-bits x 1024 words):
+        - Quartus RAM: catálogo de IPS, RAM 1-port
+        - Na aba de confguração  __Regs/Clken/Byte Enable/AClrs__, desabilite __'q' output port__ e habilite __Create byte enable for port A__
+        - Na aba de configuração __Mem Init__, habilite e configure o arquivo de inicialização da memória de instruções para __quartus.hex__
+        - Na aba de configuração __Mem Init__, habilite Allow In-System Memory Content Editor.
+    - Se necessário, altere o caminho do arquivo de inicialização de memória (__quartus.hex__) no arquivo iram_quartus.vhdl
 
 - Síntese: Quartus 15 ou superior (testado no Kit de desenvolvimento DE10-Lite)
     - Projeto: utilize ./sint/de10_lite
     - Para gravação do programa pós síntese:
-        - Utilizar uma memória SRAM IP (32-bits x 1024 words Quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor)
-        - Gravação pelo In-System Memory Editor
+        - Utilizar uma memória SRAM IP (32-bits x 1024 words Quartus RAM
+        - Gravação pelo Tools -> In-System Memory Editor
     - Utilize uma PLL para ajuste do clock
-
 
 ## Getting Started (software):
 
@@ -38,7 +42,7 @@ sudo apt install npm
 sudo npm --global install xpm
 ```
 
-5. Instalaar por xmp [GNU Eclipse](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/):
+5. Instalar por xmp [GNU Eclipse](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/):
 
 ```xpm install --global @gnu-mcu-eclipse/riscv-none-gcc```
 
