@@ -5,8 +5,6 @@ RISC SoftCore é uma implementação em VHDL com fins diádicos do conjunto de i
 
 Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv.org/software-status/).
 
-Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-gcc/releases).
-
 ## Getting Started (hardware):
 
 - Simulação:
@@ -30,7 +28,13 @@ Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-g
 
 A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ suportando o subconjunto RV32I. Em ./tests/ há um exemplo bem simples de Makefile. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). libc ainda não foi testado/suportado.
 
-### Instalação compilador no Windows (Windows Subsystem for Linux)
+### Instalação do compilador no Linux
+
+Guia para instalação no [gnu-mcu-eclipse.github.io](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/#gnulinux)
+
+Toolchain Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-gcc/releases).
+
+### Instalação do compilador no Windows (Windows Subsystem for Linux)
 
 1. Instalar o WSL: [Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 2. Instalar o Ubuntu no WSL
