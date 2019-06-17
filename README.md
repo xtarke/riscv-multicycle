@@ -55,7 +55,7 @@ sudo npm --global install xpm
 6. Altere o caminho do compilador no _Makefile_:
 	- de:
 ```RISCV_TOOLS_PREFIX = riscv32-unknown-elf-```
-- para:
+	- para:
 ```RISCV_TOOLS_PREFIX = ~/opt/xPacks/@<versão compilador>/.contents/bin/riscv-none-embed-```
 
 7. Utilizando o shell Ubuntu,  mude o diretório atual para o repositório:
