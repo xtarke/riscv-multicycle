@@ -5,6 +5,8 @@ RISC SoftCore é uma implementação em VHDL com fins diádicos do conjunto de i
 
 Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv.org/software-status/).
 
+Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-gcc/releases).
+
 ## Getting Started (hardware):
 
 - Simulação:
