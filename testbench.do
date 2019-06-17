@@ -35,28 +35,31 @@ vsim -t ns work.testbench
 view wave
 add wave -radix binary /clk
 add wave -radix binary /rst
+add wave -height 15 -divider "Instruction Memory"
 add wave -radix hex /address
 add wave -radix hex idata
+# add wave /debugString
 # add wave -radix hex /imem/RAM
 # add wave -radix hex /q
 
+add wave -height 15 -divider "PC and Ctrl Targers"
 add wave -radix hex -label pc /myRiscv/pc
 add wave -radix hex -label jal_target /myRiscv/jal_target
 add wave -radix hex -label jalr_target /myRiscv/jalr_target
 add wave -label branch_cmp /myRiscv/branch_cmp
 
-# iregister debug 
-add wave -label opcode  /myRiscv/opcodes 
+add wave -height 15 -divider "Iregister debug"
+# add wave -label opcode  /myRiscv/opcodes 
 add wave -label rd /myRiscv/rd   
 add wave -label rs1 /myRiscv/rs1
 add wave -label rs2 /myRiscv/rs2
-add wave -label imm_i /myRiscv/imm_i
-add wave -label imm_s /myRiscv/imm_s 
-add wave -label imm_b /myRiscv/imm_b
-add wave -label imm_u /myRiscv/imm_u
-add wave -label imm_j /myRiscv/imm_j
+# add wave -label imm_i /myRiscv/imm_i
+# add wave -label imm_s /myRiscv/imm_s 
+# add wave -label imm_b /myRiscv/imm_b
+# add wave -label imm_u /myRiscv/imm_u
+# add wave -label imm_j /myRiscv/imm_j
 
-# register file debug
+add wave -height 15 -divider "Register file debug"
 add wave -label registers -radix hex /myRiscv/registers/ram
 add wave -label w_ena /myRiscv/rf_w_ena
 add wave -label w_data /myRiscv/rw_data
@@ -64,29 +67,31 @@ add wave -label r1_data -radix hex /myRiscv/rs1_data
 add wave -label r2_data -radix hex /myRiscv/rs2_data
 
 # decoder debug
-add wave -label states /myRiscv/decoder0/state
+# add wave -label states /myRiscv/decoder0/state
 
-# alu debug
+add wave -height 15 -divider "Alu debug"
 add wave -label aluData /myRiscv/alu_data
 add wave -label aluOut /myRiscv/alu_out
 
-# data memory debug 
+add wave -height 15 -divider "Data memory debug"
 add wave -label daddr -radix hex /myRiscv/memAddrTypeSBlock/addr
-add wave -label q -radix hex /ddata_r
-
-add wave -label mState /dmem/state
-add wave -label fsm_we /dmem/fsm_we
 add wave -label fsm_data -radix hex /dmem/fsm_data
 add wave -label ram_data -radix hex /dmem/ram_data
+add wave -label mState /dmem/state
+add wave -label fsm_we /dmem/fsm_we
 
-add wave -label dcsel /myRiscv/dcsel
-add wave -label d_we /myRiscv/d_we
-add wave -label daddress -radix hex /myRiscv/daddress
-add wave -label dmask /myRiscv/dmask
-add wave -label dmemory  /myRiscv/dmemory
-
+add wave -height 15 -divider "Data bus"
+add wave -label daddress -radix hex /daddress
+add wave -label ddata_r -radix hex /ddata_r
 add wave -label ddata_w -radix hex /ddata_w
-add wave -label SRAM -radix hex /dmem/ram_block
+add wave -label dmask -radix bin /dmask
+add wave -label dcsel /dcsel
+add wave -label d_we /d_we
+add wave -label d_rd /d_rd
+
+
+add wave -height 15 -divider "Input/Output SIM"
+add wave -label LEDR -radix hex /LEDR
 
 
 run 100100 ns

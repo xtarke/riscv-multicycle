@@ -93,7 +93,7 @@ END GROUP
 LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a
 LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
 
-.rom            0x0000000000000000      0x858
+.rom            0x0000000000000000      0x864
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -106,75 +106,75 @@ LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crt
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0x60 firmware.o
+ .text          0x0000000000000144       0x6c firmware.o
                 0x0000000000000144                main
- .text          0x00000000000001a4      0x1e8 syscalls.o
-                0x00000000000001a4                _getpid
-                0x00000000000001a4                _utime
-                0x00000000000001a4                _sysconf
-                0x00000000000001a4                _ftime
-                0x00000000000001a4                _isatty
-                0x00000000000001a4                _open
-                0x00000000000001a4                _times
-                0x00000000000001a4                _stat
-                0x00000000000001a4                _chdir
-                0x00000000000001a4                _wait
-                0x00000000000001a4                _lseek
-                0x00000000000001a4                _fstatat
-                0x00000000000001a4                _link
-                0x00000000000001a4                _chown
-                0x00000000000001a4                _access
-                0x00000000000001a4                _openat
-                0x00000000000001a4                _execve
-                0x00000000000001a4                _chmod
-                0x00000000000001a4                _lstat
-                0x00000000000001a4                _unlink
-                0x00000000000001a4                _fork
-                0x00000000000001a4                _getcwd
-                0x00000000000001a4                _kill
-                0x00000000000001a4                _gettimeofday
-                0x00000000000001a4                _faccessat
-                0x00000000000001a8                unimplemented_syscall
-                0x00000000000001ec                _read
-                0x0000000000000218                _write
-                0x000000000000027c                _close
-                0x00000000000002a0                _fstat
-                0x00000000000002e0                _sbrk
-                0x000000000000032c                _exit
-                0x0000000000000340                init_data_section
- .text          0x000000000000038c       0x34 utils.o
-                0x000000000000038c                delay_
- .text          0x00000000000003c0       0x14 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
-                0x00000000000003c0                atexit
- .text          0x00000000000003d4        0x8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
-                0x00000000000003d4                __errno
- .text          0x00000000000003dc       0x34 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
-                0x00000000000003dc                exit
- .text          0x0000000000000410       0x5c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
-                0x0000000000000410                __libc_fini_array
- .text          0x000000000000046c       0xa8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
-                0x000000000000046c                __libc_init_array
- .text          0x0000000000000514       0xd8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
-                0x0000000000000514                memcpy
- .text          0x00000000000005ec       0xdc /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
-                0x00000000000005ec                memset
- .text          0x00000000000006c8       0x80 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
-                0x00000000000006c8                __register_exitproc
- .text          0x0000000000000748      0x110 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
-                0x0000000000000748                __call_exitprocs
+ .text          0x00000000000001b0      0x1e8 syscalls.o
+                0x00000000000001b0                _getpid
+                0x00000000000001b0                _utime
+                0x00000000000001b0                _sysconf
+                0x00000000000001b0                _ftime
+                0x00000000000001b0                _isatty
+                0x00000000000001b0                _open
+                0x00000000000001b0                _times
+                0x00000000000001b0                _stat
+                0x00000000000001b0                _chdir
+                0x00000000000001b0                _wait
+                0x00000000000001b0                _lseek
+                0x00000000000001b0                _fstatat
+                0x00000000000001b0                _link
+                0x00000000000001b0                _chown
+                0x00000000000001b0                _access
+                0x00000000000001b0                _openat
+                0x00000000000001b0                _execve
+                0x00000000000001b0                _chmod
+                0x00000000000001b0                _lstat
+                0x00000000000001b0                _unlink
+                0x00000000000001b0                _fork
+                0x00000000000001b0                _getcwd
+                0x00000000000001b0                _kill
+                0x00000000000001b0                _gettimeofday
+                0x00000000000001b0                _faccessat
+                0x00000000000001b4                unimplemented_syscall
+                0x00000000000001f8                _read
+                0x0000000000000224                _write
+                0x0000000000000288                _close
+                0x00000000000002ac                _fstat
+                0x00000000000002ec                _sbrk
+                0x0000000000000338                _exit
+                0x000000000000034c                init_data_section
+ .text          0x0000000000000398       0x34 utils.o
+                0x0000000000000398                delay_
+ .text          0x00000000000003cc       0x14 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
+                0x00000000000003cc                atexit
+ .text          0x00000000000003e0        0x8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
+                0x00000000000003e0                __errno
+ .text          0x00000000000003e8       0x34 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
+                0x00000000000003e8                exit
+ .text          0x000000000000041c       0x5c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
+                0x000000000000041c                __libc_fini_array
+ .text          0x0000000000000478       0xa8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
+                0x0000000000000478                __libc_init_array
+ .text          0x0000000000000520       0xd8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
+                0x0000000000000520                memcpy
+ .text          0x00000000000005f8       0xdc /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
+                0x00000000000005f8                memset
+ .text          0x00000000000006d4       0x80 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
+                0x00000000000006d4                __register_exitproc
+ .text          0x0000000000000754      0x110 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
+                0x0000000000000754                __call_exitprocs
 
-.rodata         0x0000000000000858       0x23
- .rodata        0x0000000000000858       0x23 syscalls.o
+.rodata         0x0000000000000864       0x23
+ .rodata        0x0000000000000864       0x23 syscalls.o
 
-.srodata        0x000000000000087c        0x4
- .srodata       0x000000000000087c        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
-                0x000000000000087c                _global_impure_ptr
+.srodata        0x0000000000000888        0x4
+ .srodata       0x0000000000000888        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
+                0x0000000000000888                _global_impure_ptr
 
-.rela.dyn       0x0000000000000880        0x0
- .rela.text     0x0000000000000880        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
+.rela.dyn       0x000000000000088c        0x0
+ .rela.text     0x000000000000088c        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
 
-.data           0x0000000000020000      0x42c load address 0x0000000000000880
-                0x0000000000000880                _data_lma = LOADADDR (.data)
+.data           0x0000000000020000      0x42c load address 0x000000000000088c
+                0x000000000000088c                _data_lma = LOADADDR (.data)
                 0x0000000000020000                _data = .
                 0x0000000000020000                __global_pointer$ = .
  *(.data .data.*)
@@ -185,7 +185,7 @@ LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crt
                 0x000000000002042c                . = ALIGN (0x4)
                 0x000000000002042c                _edata = .
 
-.bss            0x000000000002042c        0x4 load address 0x0000000000000cac
+.bss            0x000000000002042c        0x4 load address 0x0000000000000cb8
                 0x000000000002042c                _bss_start = .
  *(.bss .bss.*)
  .bss           0x000000000002042c        0x4 syscalls.o
