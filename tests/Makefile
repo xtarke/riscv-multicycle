@@ -35,6 +35,9 @@ firmware.elf: firmware.o syscalls.o start.o utils.o
 	$(CC) $(LDFLAGS),-Map=firmware.map -o $@ $^ -T sections.ld $(LDLIBS)
 	chmod -x firmware.elf
 
+sint:
+	$(QUARTUS_DIR)quartus_sh --flow compile ../sint/de10_lite/de0_lite.cdf
+	
 fpga:
 	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../sint/de10_lite/de0_lite.sof"
 
