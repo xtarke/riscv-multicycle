@@ -1,5 +1,5 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
+RISCV_TOOLS_PREFIX = C:/Users/Cleissom/AppData/Roaming/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
 endif
 QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32i
@@ -21,12 +21,12 @@ LDLIBS =
 firmware32.hex: firmware.elf hex8tohex32.py
 	$(RISCV_TOOLS_PREFIX)objcopy -O verilog firmware.elf firmware.tmp
 	$(RISCV_TOOLS_PREFIX)objdump -h -S firmware.elf > "firmware.lss"
-	python3 hex8tohex32.py firmware.tmp > firmware32.hex
-	python3 hex8tointel.py firmware.tmp > quartus.hex
+	python hex8tohex32.py firmware.tmp > firmware32.hex
+	python hex8tointel.py firmware.tmp > quartus.hex
 
 
 firmware_dbg.v: firmware.map
-	python3 map2debug.py
+	python map2debug.py
 
 start.o: start.S
 	$(CC) -c -nostdlib start.S $(LDLIBS)

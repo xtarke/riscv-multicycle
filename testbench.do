@@ -17,7 +17,7 @@
 vlib work
 # vcom ./memory/imemory.vhd
 vcom ./memory/imemory_load.vhd
-vcom ./memory/iram_quartus.vhd
+vcom ./sint/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
