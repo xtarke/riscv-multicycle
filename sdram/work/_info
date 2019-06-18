@@ -1,0 +1,237 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Cleissom/eclipse-workspace/riscv-multicycle/sdram
+Pcpu_typedef_package
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+w1560771389
+R0
+8./cpu_typedef_package.vhdl
+F./cpu_typedef_package.vhdl
+l0
+L5
+VNgVmG9WWNE@j8?iLK=SQ]2
+!s100 Ua]OFIdTLXPhmMUgda23F3
+Z4 OV;C;10.5b;63
+32
+Z5 !s110 1560780525
+!i10b 1
+Z6 !s108 1560780525.000000
+Z7 !s90 -reportprogress|300|./tristate.vhd|./cpu_typedef_package.vhdl|sdram_controller.vhd|./sim/mti_pkg.vhd|./sim/mt48lc8m16a2.vhd|testbench_sdram.vhd|
+Z8 !s107 testbench_sdram.vhd|./sim/mt48lc8m16a2.vhd|./sim/mti_pkg.vhd|sdram_controller.vhd|./cpu_typedef_package.vhdl|./tristate.vhd|
+!i113 1
+Z9 tExplicit 1 CvgOpt 0
+Emt48lc8m16a2
+Z10 w1539588126
+Z11 DPx4 work 7 mti_pkg 0 22 aJBDZK<<UCV93h`n[Fj;90
+R2
+R3
+R0
+Z12 8./sim/mt48lc8m16a2.vhd
+Z13 F./sim/mt48lc8m16a2.vhd
+l0
+L45
+V1`[lTd`><IH6;g?2Q8V_H1
+!s100 X71zLQ?FJ]ll[m[]52J[G2
+R4
+32
+Z14 !s110 1560780526
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Abehave
+R11
+R2
+R3
+Z15 DEx4 work 12 mt48lc8m16a2 0 22 1`[lTd`><IH6;g?2Q8V_H1
+l112
+L87
+Z16 V9>IdmJNeC9?nHB2Ha6KZV2
+Z17 !s100 5ofIk`:lOziNO_PMg56Aa1
+R4
+32
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Pmti_pkg
+R2
+R3
+R10
+R0
+Z18 8./sim/mti_pkg.vhd
+Z19 F./sim/mti_pkg.vhd
+l0
+L14
+VaJBDZK<<UCV93h`n[Fj;90
+!s100 ne3zjabUb9PdNm?A64_:W0
+R4
+32
+b1
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Bbody
+R11
+R2
+R3
+l0
+L24
+Z20 V]<6]OX4m;8:Won_m[G@z90
+Z21 !s100 :NW<X4ZFzXWfjH=[0CFoJ2
+R4
+32
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Esdram_controller
+R10
+Z22 DPx4 work 19 cpu_typedef_package 0 22 NgVmG9WWNE@j8?iLK=SQ]2
+R1
+Z23 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z24 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R2
+R3
+R0
+Z25 8sdram_controller.vhd
+Z26 Fsdram_controller.vhd
+l0
+L37
+VYWiaYC:bK[:kSBCO0MQ_E2
+!s100 HKdKE9Gm1S5SA9`<eHGe53
+R4
+32
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Artl
+R22
+R1
+R23
+R24
+R2
+R3
+Z27 DEx4 work 16 sdram_controller 0 22 YWiaYC:bK[:kSBCO0MQ_E2
+l161
+L89
+Z28 V6METbmWGT_Y^BY@V@GjHd0
+Z29 !s100 z7eb=>2NW1]gO60Ad2FT]0
+R4
+32
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Etestbench_sdram
+Z30 w1560780522
+R1
+R2
+R3
+R0
+Z31 8testbench_sdram.vhd
+Z32 Ftestbench_sdram.vhd
+l0
+L5
+V6Dj@Qn7Xde_Ze@UddhQiW3
+!s100 Ba;BbCTdYjeoW2Wo`z<6Z3
+R4
+32
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Artl
+R11
+R15
+R22
+R23
+R24
+R27
+R1
+R2
+R3
+Z33 DEx4 work 15 testbench_sdram 0 22 6Dj@Qn7Xde_Ze@UddhQiW3
+l39
+L8
+VCD1QR_O9Oeafk?7LAG8Cg0
+!s100 :6iC=Zi?kmZmZHb@9Xk052
+R4
+32
+R14
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Etristate
+Z34 w1560776380
+R24
+R2
+R3
+R0
+Z35 8./tristate.vhd
+Z36 F./tristate.vhd
+l0
+L5
+VKMX]KH7IIf5DknjL5]2J33
+!s100 OUVFYcjLdC@V9?A^zR=l`0
+R4
+32
+R5
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
+Artl
+R24
+R2
+R3
+Z37 DEx4 work 8 tristate 0 22 KMX]KH7IIf5DknjL5]2J33
+l14
+L13
+Z38 V1TfC>aADES80aoY=A4S1i3
+Z39 !s100 :GzQYmZ[mk>QH;WS[DXBI1
+R4
+32
+R5
+!i10b 1
+R6
+R7
+R8
+!i113 1
+R9
