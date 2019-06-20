@@ -27,7 +27,7 @@ end entity testbench;
 
 architecture RTL of testbench is
 	signal clk : std_logic;
-	signal clk2        : std_logic;
+	signal clk_sdram        : std_logic;
 	signal rst : std_logic;
 
 	signal idata : std_logic_vector(31 downto 0);
@@ -51,8 +51,8 @@ architecture RTL of testbench is
 	signal debugString : string(64 downto 1);
 
 
-
-	signal chipselect  : std_logic;
+	-- SDRAM Signals
+	signal chipselect_sdram  : std_logic;
 	signal waitrequest : std_logic;
 	signal DRAM_ADDR   : std_logic_vector(12 downto 0);
 	signal DRAM_BA     : std_logic_vector(1 downto 0);
@@ -144,7 +144,8 @@ begin
 	-- Adress space mux ((check sections.ld) -> Data chip select:
 	-- 0x00000    ->    Instruction memory
 	-- 0x20000    ->    Data memory
-	-- 0x40000    ->    Input/Output generic address space		
+	-- 0x40000    ->    Input/Output generic address space
+	-- 0x60000    ->    SDRAM address space	
 	with dcsel select ddata_r <=
 		idata when "00",
 		ddata_r_mem when "01",
@@ -152,7 +153,9 @@ begin
 		sdram_read_16 when "11",
 		(others => '0') when others;
 	
+	-- sdram output is 16 bits while data bus is 32 bits
 	sdram_read_16 <= x"0000" & sdram_read;
+	
 	-- Softcore instatiation
 	myRiscv : entity work.core
 		generic map(
@@ -220,15 +223,13 @@ begin
 		end if;
 	end process;
 
-	chipselect <= dcsel(0) and dcsel(1);
-	sdram_addr <= std_logic_vector(to_unsigned(daddress, 32));
-
+	-- SDRAM instatiation
 	sdram_controller : entity work.sdram_controller
 		port map(
 			address     => sdram_addr,
 			byteenable  => "11",
-			chipselect  => chipselect,
-			clk         => clk2,
+			chipselect  => chipselect_sdram,
+			clk         => clk_sdram,
 			clken       => '1',
 			reset       => rst,
 			reset_req   => rst,
@@ -249,7 +250,12 @@ begin
 			DRAM_RAS_N  => DRAM_RAS_N,
 			DRAM_WE_N   => DRAM_WE_N
 		);
+		
+	-- SDRAM Signals
+	chipselect_sdram <= dcsel(0) and dcsel(1);
+	sdram_addr <= std_logic_vector(to_unsigned(daddress, 32));
 
+	-- SDRAM model instatiation
 	sdram : entity work.mt48lc8m16a2
 		generic map(
 			addr_bits => 13
@@ -258,7 +264,7 @@ begin
 			Dq    => DRAM_DQ,
 			Addr  => DRAM_ADDR,
 			Ba    => DRAM_BA,
-			Clk   => clk2,
+			Clk   => clk_sdram,
 			Cke   => DRAM_CKE,
 			Cs_n  => DRAM_CS_N,
 			Ras_n => DRAM_RAS_N,
@@ -267,14 +273,14 @@ begin
 			Dqm   => DRAM_DQM
 		);
 
-	clock2_driver : process
+	clk_sdram_driver : process
 		constant period : time := 8 ns;
 	begin
-		clk2 <= '0';
+		clk_sdram <= '0';
 		wait for period / 2;
-		clk2 <= '1';
+		clk_sdram <= '1';
 		wait for period / 2;
-	end process clock2_driver;
+	end process clk_sdram_driver;
 	
 
 	-- FileOutput DEBUG	

@@ -126,6 +126,7 @@ architecture rtl of sdram_controller is
 begin
 
 	reset_n <= not reset;
+	DRAM_CLK <= clk;
 
 	-- DRAM_CS_N <= cs_n(0);
 
