@@ -75,10 +75,8 @@ Discarded input sections
  .data          0x0000000000000000        0x0 syscalls.o
  .data          0x0000000000000000        0x0 start.o
  .bss           0x0000000000000000        0x0 start.o
- .text          0x0000000000000000       0x34 utils.o
  .data          0x0000000000000000        0x0 utils.o
  .bss           0x0000000000000000        0x0 utils.o
- .comment       0x0000000000000000       0x3a utils.o
  .text          0x0000000000000000        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-atexit.o)
  .data          0x0000000000000000        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-atexit.o)
  .bss           0x0000000000000000        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-atexit.o)
@@ -162,7 +160,7 @@ END GROUP
 LOAD c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32\libgcc.a
 LOAD c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x4a8
+.rom            0x0000000000000000      0x514
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -175,117 +173,119 @@ LOAD c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.
                 0x0000000000000100                _start
                 0x0000000000000140                _fini
                 0x0000000000000140                _init
- .text          0x0000000000000144       0xa0 firmware.o
+ .text          0x0000000000000144       0xd8 firmware.o
                 0x0000000000000144                main
- .text          0x00000000000001e4      0x1e8 syscalls.o
-                0x00000000000001e4                _getpid
-                0x00000000000001e4                _utime
-                0x00000000000001e4                _sysconf
-                0x00000000000001e4                _ftime
-                0x00000000000001e4                _faccessat
-                0x00000000000001e4                _isatty
-                0x00000000000001e4                _open
-                0x00000000000001e4                _gettimeofday
-                0x00000000000001e4                _times
-                0x00000000000001e4                _stat
-                0x00000000000001e4                _chdir
-                0x00000000000001e4                _wait
-                0x00000000000001e4                _lseek
-                0x00000000000001e4                _kill
-                0x00000000000001e4                _fstatat
-                0x00000000000001e4                _link
-                0x00000000000001e4                _chown
-                0x00000000000001e4                _access
-                0x00000000000001e4                _openat
-                0x00000000000001e4                _execve
-                0x00000000000001e4                _getcwd
-                0x00000000000001e4                _chmod
-                0x00000000000001e4                _lstat
-                0x00000000000001e4                _unlink
-                0x00000000000001e4                _fork
-                0x00000000000001e8                unimplemented_syscall
-                0x000000000000022c                _read
-                0x0000000000000258                _write
-                0x00000000000002bc                _close
-                0x00000000000002e0                _fstat
-                0x0000000000000320                _sbrk
-                0x000000000000036c                _exit
-                0x0000000000000380                init_data_section
- .text          0x00000000000003cc       0xdc c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-memset.o)
-                0x00000000000003cc                memset
+ .text          0x000000000000021c      0x1e8 syscalls.o
+                0x000000000000021c                _getpid
+                0x000000000000021c                _utime
+                0x000000000000021c                _sysconf
+                0x000000000000021c                _ftime
+                0x000000000000021c                _faccessat
+                0x000000000000021c                _isatty
+                0x000000000000021c                _open
+                0x000000000000021c                _gettimeofday
+                0x000000000000021c                _times
+                0x000000000000021c                _stat
+                0x000000000000021c                _chdir
+                0x000000000000021c                _wait
+                0x000000000000021c                _lseek
+                0x000000000000021c                _kill
+                0x000000000000021c                _fstatat
+                0x000000000000021c                _link
+                0x000000000000021c                _chown
+                0x000000000000021c                _access
+                0x000000000000021c                _openat
+                0x000000000000021c                _execve
+                0x000000000000021c                _getcwd
+                0x000000000000021c                _chmod
+                0x000000000000021c                _lstat
+                0x000000000000021c                _unlink
+                0x000000000000021c                _fork
+                0x0000000000000220                unimplemented_syscall
+                0x0000000000000264                _read
+                0x0000000000000290                _write
+                0x00000000000002f4                _close
+                0x0000000000000318                _fstat
+                0x0000000000000358                _sbrk
+                0x00000000000003a4                _exit
+                0x00000000000003b8                init_data_section
+ .text          0x0000000000000404       0x34 utils.o
+                0x0000000000000404                delay_
+ .text          0x0000000000000438       0xdc c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-memset.o)
+                0x0000000000000438                memset
 
-.text.atexit    0x00000000000004a8       0x14
- .text.atexit   0x00000000000004a8       0x14 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-atexit.o)
-                0x00000000000004a8                atexit
+.text.atexit    0x0000000000000514       0x14
+ .text.atexit   0x0000000000000514       0x14 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-atexit.o)
+                0x0000000000000514                atexit
 
-.text.__errno   0x00000000000004bc        0xc
- .text.__errno  0x00000000000004bc        0xc c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-errno.o)
-                0x00000000000004bc                __errno
+.text.__errno   0x0000000000000528        0xc
+ .text.__errno  0x0000000000000528        0xc c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-errno.o)
+                0x0000000000000528                __errno
 
-.text.exit      0x00000000000004c8       0x38
- .text.exit     0x00000000000004c8       0x38 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-exit.o)
-                0x00000000000004c8                exit
+.text.exit      0x0000000000000534       0x38
+ .text.exit     0x0000000000000534       0x38 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-exit.o)
+                0x0000000000000534                exit
 
 .text.__libc_fini_array
-                0x0000000000000500       0x60
+                0x000000000000056c       0x60
  .text.__libc_fini_array
-                0x0000000000000500       0x60 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-fini.o)
-                0x0000000000000500                __libc_fini_array
+                0x000000000000056c       0x60 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-fini.o)
+                0x000000000000056c                __libc_fini_array
 
 .text.__libc_init_array
-                0x0000000000000560       0x98
+                0x00000000000005cc       0x98
  .text.__libc_init_array
-                0x0000000000000560       0x98 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-init.o)
-                0x0000000000000560                __libc_init_array
+                0x00000000000005cc       0x98 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-init.o)
+                0x00000000000005cc                __libc_init_array
 
-.text.memcpy    0x00000000000005f8      0x11c
- .text.memcpy   0x00000000000005f8      0x11c c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-memcpy.o)
-                0x00000000000005f8                memcpy
+.text.memcpy    0x0000000000000664      0x11c
+ .text.memcpy   0x0000000000000664      0x11c c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-memcpy.o)
+                0x0000000000000664                memcpy
 
 .text.__register_exitproc
-                0x0000000000000714       0xec
+                0x0000000000000780       0xec
  .text.__register_exitproc
-                0x0000000000000714       0xec c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-__atexit.o)
-                0x0000000000000714                __register_exitproc
+                0x0000000000000780       0xec c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-__atexit.o)
+                0x0000000000000780                __register_exitproc
 
 .text.__call_exitprocs
-                0x0000000000000800      0x138
+                0x000000000000086c      0x138
  .text.__call_exitprocs
-                0x0000000000000800      0x138 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-__call_atexit.o)
-                0x0000000000000800                __call_exitprocs
+                0x000000000000086c      0x138 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-__call_atexit.o)
+                0x000000000000086c                __call_exitprocs
 
 .text.__retarget_lock_acquire_recursive
-                0x0000000000000938        0x4
+                0x00000000000009a4        0x4
  .text.__retarget_lock_acquire_recursive
-                0x0000000000000938        0x4 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-lock.o)
-                0x0000000000000938                __retarget_lock_acquire_recursive
+                0x00000000000009a4        0x4 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-lock.o)
+                0x00000000000009a4                __retarget_lock_acquire_recursive
 
 .text.__retarget_lock_release_recursive
-                0x000000000000093c        0x4
+                0x00000000000009a8        0x4
  .text.__retarget_lock_release_recursive
-                0x000000000000093c        0x4 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-lock.o)
-                0x000000000000093c                __retarget_lock_release_recursive
+                0x00000000000009a8        0x4 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-lock.o)
+                0x00000000000009a8                __retarget_lock_release_recursive
 
-.rodata         0x0000000000000940       0x23
- .rodata        0x0000000000000940       0x23 syscalls.o
+.rodata         0x00000000000009ac       0x23
+ .rodata        0x00000000000009ac       0x23 syscalls.o
 
 .sdata2._global_impure_ptr
-                0x0000000000000964        0x4
+                0x00000000000009d0        0x4
  .sdata2._global_impure_ptr
-                0x0000000000000964        0x4 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-impure.o)
-                0x0000000000000964                _global_impure_ptr
+                0x00000000000009d0        0x4 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-impure.o)
+                0x00000000000009d0                _global_impure_ptr
 
-.rela.dyn       0x0000000000000968        0x0
- .rela.text     0x0000000000000968        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+.rela.dyn       0x00000000000009d4        0x0
+ .rela.text     0x00000000000009d4        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
  .rela.text.__libc_fini_array
-                0x0000000000000968        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+                0x00000000000009d4        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
  .rela.text.__libc_init_array
-                0x0000000000000968        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+                0x00000000000009d4        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
  .rela.sdata.__atexit_recursive_mutex
-                0x0000000000000968        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+                0x00000000000009d4        0x0 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
 
-.data           0x0000000000020000      0x430 load address 0x0000000000000968
-                0x0000000000000968                _data_lma = LOADADDR (.data)
+.data           0x0000000000020000      0x430 load address 0x00000000000009d4
+                0x00000000000009d4                _data_lma = LOADADDR (.data)
                 0x0000000000020000                _data = .
                 0x0000000000020000                __global_pointer$ = .
  *(.data .data.*)
@@ -301,7 +301,7 @@ LOAD c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.
                 0x0000000000020430                . = ALIGN (0x4)
                 0x0000000000020430                _edata = .
 
-.bss            0x0000000000020430       0x25 load address 0x0000000000000d98
+.bss            0x0000000000020430       0x25 load address 0x0000000000000e04
                 0x0000000000020430                _bss_start = .
  *(.bss .bss.*)
  .bss           0x0000000000020430        0x4 syscalls.o
@@ -324,6 +324,7 @@ OUTPUT(firmware.elf elf32-littleriscv)
  .comment       0x0000000000000000       0x39 firmware.o
                                          0x3a (size before relaxing)
  .comment       0x0000000000000039       0x3a syscalls.o
+ .comment       0x0000000000000039       0x3a utils.o
 
 .debug_frame    0x0000000000000000      0x25c
  .debug_frame   0x0000000000000000       0x20 c:/users/cleissom/appdata/roaming/xpacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32\libg.a(lib_a-atexit.o)

@@ -40,7 +40,23 @@
 					"strict" : false
 				},
 				{
-					"name" : "DRAM_ADDR[9]",
+					"name" : "DRAM_ADDR[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CAS_N",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CKE",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_RAS_N",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_WE_N",
 					"strict" : false
 				},
 				{
@@ -328,6 +344,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "SW[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[3]",
+					"strict" : false
+				},
+				{
 					"name" : "SW[2]",
 					"strict" : false
 				},
@@ -337,14 +361,6 @@
 				},
 				{
 					"name" : "SW[0]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[3]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[4]",
 					"strict" : false
 				},
 				{

@@ -26,17 +26,17 @@ int main(){
 		sdram[2] = 0x2;
 		sdram[3] = 0x3;
 		sdram[4] = 0x4;
-		sdram[5] = sdram[1] + sdram[4];
+		sdram[5] = sdram[1] + sdram[2] + sdram[4];
 		OUTBUS = sdram[5];
 		
 		/* To blink */
 		//OUTBUS = 0x10;
 		//SEGMENTS = 0xFFFFFFC0;
-		//delay_(10000);
+		delay_(10000);
         
-		//OUTBUS = 0;
+		OUTBUS = 0;
     //SEGMENTS = 0xFFFFFFFF;
-		//delay_(10000); 
+		delay_(10000); 
         
 		/* To test Data Bus 
 		x = INBUS;        

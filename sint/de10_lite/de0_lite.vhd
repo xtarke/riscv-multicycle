@@ -110,13 +110,11 @@ architecture rtl of de0_lite is
 	signal state : cpu_state_t;
 	signal chipselect : std_logic;
 	signal sdram_addr  : std_logic_vector(31 downto 0);
-	signal sdram_read  : std_logic_vector(31 DOWNTO 0);
-	signal sdram_read_16 : std_logic_vector(31 downto 0);
+	signal sdram_read  : std_logic_vector(15 DOWNTO 0);
+	signal sdram_read_32 : std_logic_vector(31 downto 0);
 	signal waitrequest : std_logic;
-	signal DRAM_DQM : std_logic_vector(3 downto 0);
+	signal DRAM_DQM : std_logic_vector(1 downto 0);
 	signal DRAM_CLK_dummy : std_logic;
-	signal DRAM_DQ_32 : std_logic_vector(31 downto 0);
-	signal dummy16 : std_logic_vector(15 downto 0);
 	
 begin
 	
@@ -181,10 +179,10 @@ begin
 		idata when "00",
 		ddata_r_mem when "01",
 		input_in when "10",
-		sdram_read_16 when "11",
+		sdram_read_32 when "11",
 		(others => '0') when others;
 	
-	sdram_read_16 <= x"0000" & sdram_read(15 downto 0);
+	sdram_read_32 <= x"0000" & sdram_read;
 	-- Softcore instatiation
 	myRisc: entity work.core
 		generic map(
@@ -260,7 +258,7 @@ begin
 	sdram_controller : entity work.sdram_controller
 		port map(
 			address     => sdram_addr,
-			byteenable  => "1111",
+			byteenable  => "11",
 			chipselect  => chipselect,
 			clk         => clk_sdram,
 			clken       => '1',
@@ -278,13 +276,12 @@ begin
 			DRAM_CKE    => DRAM_CKE,
 			DRAM_CLK    => DRAM_CLK_dummy,
 			DRAM_CS_N   => DRAM_CS_N,
-			DRAM_DQ     => DRAM_DQ_32,
+			DRAM_DQ     => DRAM_DQ,
 			DRAM_DQM    => DRAM_DQM,
 			DRAM_RAS_N  => DRAM_RAS_N,
 			DRAM_WE_N   => DRAM_WE_N
 		);
 		
-		DRAM_DQ_32 <= dummy16 & DRAM_DQ;
 		DRAM_UDQM <= DRAM_DQM(1);
 		DRAM_LDQM <= DRAM_DQM(0);
 		DRAM_CLK <= clk_sdram;
