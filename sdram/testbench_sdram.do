@@ -4,7 +4,7 @@
 vlib work
 
 #compila projeto: todos os aquivo. Ordem é importante
-vcom ./tristate.vhd ./cpu_typedef_package.vhdl sdram_controller.vhd ./sim/mti_pkg.vhd ./sim/mt48lc8m16a2.vhd testbench_sdram.vhd
+vcom sdram_controller.vhd ./sim/mti_pkg.vhd ./sim/mt48lc8m16a2.vhd testbench_sdram.vhd
 
 #Simula
 vsim -t ps work.testbench_sdram
@@ -39,7 +39,7 @@ add wave -radix unsigned -label DRAM_DQ /DRAM_DQ
 add wave -radix unsigned -label mem_state /sdram_controller_0/mem_state
 
 #Simula até um 500ns
-run 1us
+run 500ns
 
 wave zoomfull
 write wave wave.ps

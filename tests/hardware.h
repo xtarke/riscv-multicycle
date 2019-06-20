@@ -35,9 +35,14 @@
 
 #define PERIPH_BASE		((uint32_t)0x40000)          /*!< Peripheral base address */
 
+#define SDRAM_BASE		((uint32_t)0x60000)          /*!< Peripheral base address */
+
 #define INBUS 			(*(_IO32 *) (PERIPH_BASE))		/*!< Generic INPUT BUS - 32-bit register */
 #define OUTBUS			(*(_IO32 *) (PERIPH_BASE + 4))	/*!< Generic OUPUT BUS - 32-bit register */
 #define SEGMENTS		(*(_IO32 *) (PERIPH_BASE + 8))	/*!< Generic INPUT BUS - 32-bit register */
 
+#define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
+#define SDRAM0 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
+#define SDRAM1 			(*(_IO32 *) (SDRAM_BASE + 4))		/*!< SDRAM base address */
 
 #endif //HARDWARE_H
