@@ -33,9 +33,9 @@
 #define _IO32 volatile uint32_t
 #endif
 
-#define PERIPH_BASE		((uint32_t)0x40000)          /*!< Peripheral base address */
+#define PERIPH_BASE		((uint32_t)0x4000000)          /*!< Peripheral base address */
 
-#define SDRAM_BASE		((uint32_t)0x60000)          /*!< Peripheral base address */
+#define SDRAM_BASE		((uint32_t)0x6000000)          /*!< Peripheral base address */
 
 #define INBUS 			(*(_IO32 *) (PERIPH_BASE))		/*!< Generic INPUT BUS - 32-bit register */
 #define OUTBUS			(*(_IO32 *) (PERIPH_BASE + 4))	/*!< Generic OUPUT BUS - 32-bit register */

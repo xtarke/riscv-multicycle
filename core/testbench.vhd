@@ -32,7 +32,7 @@ architecture RTL of testbench is
 
 	signal idata : std_logic_vector(31 downto 0);
 
-	signal daddress : integer range 0 to DMEMORY_WORDS - 1;
+	signal daddress : natural;
 	signal ddata_r  : std_logic_vector(31 downto 0);
 	signal ddata_w  : std_logic_vector(31 downto 0);
 	signal dmask    : std_logic_vector(3 downto 0);
@@ -41,7 +41,7 @@ architecture RTL of testbench is
 
 	signal iaddress : integer range 0 to IMEMORY_WORDS - 1 := 0;
 
-	signal address     : std_logic_vector(9 downto 0);
+	signal address     : std_logic_vector(31 downto 0);
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd        : std_logic;
 
@@ -67,6 +67,8 @@ architecture RTL of testbench is
 	signal sdram_addr  : std_logic_vector(31 downto 0);
 	signal sdram_read  : std_logic_vector(15 DOWNTO 0);
 	signal sdram_read_16 : std_logic_vector(31 downto 0);
+	
+	signal dmemory_address : natural;
 
 begin
 
@@ -108,16 +110,16 @@ begin
 	process(d_rd, dcsel, daddress, iaddress)
 	begin
 		if (d_rd = '1') and (dcsel = "00") then
-			address <= std_logic_vector(to_unsigned(daddress, 10));
+			address <= std_logic_vector(to_unsigned(daddress, 32));
 		else
-			address <= std_logic_vector(to_unsigned(iaddress, 10));
+			address <= std_logic_vector(to_unsigned(iaddress, 32));
 		end if;
 	end process;
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst : entity work.iram_quartus
 		port map(
-			address => address,
+			address => address(9 downto 0),
 			byteena => "1111",
 			clock   => clk,
 			data    => (others => '0'),
@@ -125,6 +127,9 @@ begin
 			q       => idata
 		);
 
+
+
+	dmemory_address <= to_integer(to_unsigned(daddress, 10));
 	-- Data Memory RAM
 	dmem : entity work.dmemory
 		generic map(
@@ -134,7 +139,7 @@ begin
 			rst     => rst,
 			clk     => clk,
 			data    => ddata_w,
-			address => daddress,
+			address => dmemory_address,
 			we      => d_we,
 			csel    => dcsel(0),
 			dmask   => dmask,
