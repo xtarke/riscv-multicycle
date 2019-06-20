@@ -356,10 +356,10 @@ begin
 					when "00" =>
 
 					when "01" =>
-						readdata <= x"000000" & DRAM_DQ(7 downto 0);
+						readdata <= x"00" & DRAM_DQ(7 downto 0);
 
 					when "10" =>
-						readdata <= x"000000" & DRAM_DQ(15 downto 8);
+						readdata <= x"00" & DRAM_DQ(15 downto 8);
 
 					when "11" =>
 						readdata <= DRAM_DQ;
