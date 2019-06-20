@@ -42,7 +42,5 @@
 #define SEGMENTS		(*(_IO32 *) (PERIPH_BASE + 8))	/*!< Generic INPUT BUS - 32-bit register */
 
 #define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
-#define SDRAM0 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
-#define SDRAM1 			(*(_IO32 *) (SDRAM_BASE + 4))		/*!< SDRAM base address */
 
 #endif //HARDWARE_H

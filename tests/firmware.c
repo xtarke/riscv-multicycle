@@ -26,7 +26,7 @@ int main(){
 		sdram[2] = 0x2;
 		sdram[3] = 0x3;
 		sdram[4] = 0x4;
-		sdram[5] = sdram[1] + sdram[2] + sdram[4];
+		sdram[5] = sdram[1] + sdram[4];
 		OUTBUS = sdram[5];
 		
 		/* To blink */
