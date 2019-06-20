@@ -28,9 +28,10 @@ vcom ./registers/register_file.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
 vcom ./core/trace_debug.vhd
+vcom ./sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
 vcom ./core/testbench.vhd
 
-vsim -t ns work.testbench
+vsim -t ps work.testbench
 
 view wave
 add wave -radix binary /clk
@@ -60,11 +61,11 @@ add wave -label rs2 /myRiscv/rs2
 # add wave -label imm_j /myRiscv/imm_j
 
 add wave -height 15 -divider "Register file debug"
-add wave -label registers -radix hex /myRiscv/registers/ram
-add wave -label w_ena /myRiscv/rf_w_ena
-add wave -label w_data /myRiscv/rw_data
-add wave -label r1_data -radix hex /myRiscv/rs1_data
-add wave -label r2_data -radix hex /myRiscv/rs2_data
+# add wave -label registers -radix hex /myRiscv/registers/ram
+# add wave -label w_ena /myRiscv/rf_w_ena
+# add wave -label w_data /myRiscv/rw_data
+# add wave -label r1_data -radix hex /myRiscv/rs1_data
+# add wave -label r2_data -radix hex /myRiscv/rs2_data
 
 # decoder debug
 # add wave -label states /myRiscv/decoder0/state
@@ -89,11 +90,20 @@ add wave -label dcsel /dcsel
 add wave -label d_we /d_we
 add wave -label d_rd /d_rd
 
+add wave -height 15 -divider "SDRAM"
+add wave -label clk2		 /clk2
+add wave -label chipselect	 /chipselect
+add wave -label DRAM_ADDR -radix hex /DRAM_ADDR
+add wave -label ddata_w -radix hex /ddata_w
+add wave -label sdram_read -radix hex /sdram_read
+add wave -label DRAM_DQ -radix hex /DRAM_DQ
+add wave -label mem_state /sdram_controller/mem_state
+
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 
 
-run 100100 ns
+run 250000 ns
 
 wave zoom full

@@ -124,11 +124,11 @@ begin
   process
     begin   
          clk2 <= '0';
-         wait for 4000 ps;
+         wait for 400 ps;
          clk2 <= '1';
-         wait for 5000 ps;
+         wait for 500 ps;
          clk2 <= '0';
-         wait for 1000 ps;
+         wait for 100 ps;
   end process;
 
 end architecture RTL;

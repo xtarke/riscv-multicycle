@@ -49,8 +49,8 @@ ENTITY mt48lc8m16a2 IS
         tAS       : TIME    :=  2.0 ns; 
         tCH       : TIME    :=  3.0 ns; 
         tCL       : TIME    :=  3.0 ns; 
-       -- tCK       : TIME    :=  7.5 ns;          -- 133mhz operation 
-        tCK       : TIME    :=  10.0 ns;          -- 100mhz operation 
+        tCK       : TIME    :=  7.5 ns;          -- 133mhz operation 
+        --tCK       : TIME    :=  10.0 ns;          -- 100mhz operation 
         tDH       : TIME    :=  1.0 ns; 
         tDS       : TIME    :=  2.0 ns; 
         tCKH      : TIME    :=  1.0 ns; 
@@ -61,7 +61,7 @@ ENTITY mt48lc8m16a2 IS
         tOH       : TIME    :=  3.0 ns; 
         tMRD      : INTEGER :=  2; 
         tRAS      : TIME    := 50.0 ns; 
-        tRC       : TIME    := 70.0 ns; 
+        tRC       : TIME    := 80.0 ns; 
         tRCD      : TIME    := 20.0 ns; 
         tRP       : TIME    := 20.0 ns; 
         tRRD      : TIME    := 20.0 ns; 

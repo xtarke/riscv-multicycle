@@ -61,19 +61,6 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
-set_global_assignment -name VHDL_FILE de0_lite.vhd
-set_global_assignment -name VHDL_FILE ../../registers/register_file.vhd
-set_global_assignment -name VHDL_FILE ../../memory/imemory.vhd
-set_global_assignment -name VHDL_FILE ../../memory/dmemory.vhd
-set_global_assignment -name VHDL_FILE ../../decoder/iregister.vhd
-set_global_assignment -name VHDL_FILE ../../decoder/decoder_types.vhd
-set_global_assignment -name VHDL_FILE ../../decoder/decoder.vhd
-set_global_assignment -name VHDL_FILE ../../core/core.vhd
-set_global_assignment -name VHDL_FILE ../../alu/alu_types.vhd
-set_global_assignment -name VHDL_FILE ../../alu/alu.vhd
-set_global_assignment -name MIF_FILE ../mif.mif
-set_global_assignment -name QIP_FILE ../iram_quartus.qip
-set_global_assignment -name QIP_FILE ../pll.qip
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity adc_max -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity adc_max -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -entity adc_max -section_id Top
@@ -231,4 +218,18 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -entity nios_max -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity nios_max -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity adc_max -section_id Top
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_controller.vhd
+set_global_assignment -name VHDL_FILE de0_lite.vhd
+set_global_assignment -name VHDL_FILE ../../registers/register_file.vhd
+set_global_assignment -name VHDL_FILE ../../memory/imemory.vhd
+set_global_assignment -name VHDL_FILE ../../memory/dmemory.vhd
+set_global_assignment -name VHDL_FILE ../../decoder/iregister.vhd
+set_global_assignment -name VHDL_FILE ../../decoder/decoder_types.vhd
+set_global_assignment -name VHDL_FILE ../../decoder/decoder.vhd
+set_global_assignment -name VHDL_FILE ../../core/core.vhd
+set_global_assignment -name VHDL_FILE ../../alu/alu_types.vhd
+set_global_assignment -name VHDL_FILE ../../alu/alu.vhd
+set_global_assignment -name MIF_FILE ../mif.mif
+set_global_assignment -name QIP_FILE ../iram_quartus.qip
+set_global_assignment -name QIP_FILE ../pll.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

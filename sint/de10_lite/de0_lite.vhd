@@ -80,6 +80,8 @@ end entity;
 architecture rtl of de0_lite is
 		
 	signal clk : std_logic;
+	signal clk_sdram : std_logic;
+	
 	signal rst : std_logic;
 	
 	-- Instruction bus signals
@@ -106,6 +108,15 @@ architecture rtl of de0_lite is
 	
 	-- CPU state signals
 	signal state : cpu_state_t;
+	signal chipselect : std_logic;
+	signal sdram_addr  : std_logic_vector(31 downto 0);
+	signal sdram_read  : std_logic_vector(31 DOWNTO 0);
+	signal sdram_read_16 : std_logic_vector(31 downto 0);
+	signal waitrequest : std_logic;
+	signal DRAM_DQM : std_logic_vector(3 downto 0);
+	signal DRAM_CLK_dummy : std_logic;
+	signal DRAM_DQ_32 : std_logic_vector(31 downto 0);
+	signal dummy16 : std_logic_vector(15 downto 0);
 	
 begin
 	
@@ -114,16 +125,15 @@ begin
 			areset => '0',
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
+			c1		=> clk_sdram,
 			locked => locked_sig
 		);
 	
 	rst <= SW(9);
 	
 	-- Dummy out signals
-	DRAM_DQ <= ddata_r(15 downto 0);
 	ARDUINO_IO <= ddata_r(31 downto 16);
 	LEDR(9) <= SW(9);
-	DRAM_ADDR(9 downto 0) <= address;
 		
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -167,12 +177,14 @@ begin
 	-- 0x00000    ->    Instruction memory
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space		
-	with dcsel select 
-		ddata_r <= idata when "00",
-		           ddata_r_mem when "01",
-		           input_in when "10",
-		           (others => '0') when others;
+	with dcsel select ddata_r <=
+		idata when "00",
+		ddata_r_mem when "01",
+		input_in when "10",
+		sdram_read_16 when "11",
+		(others => '0') when others;
 	
+	sdram_read_16 <= x"0000" & sdram_read(15 downto 0);
 	-- Softcore instatiation
 	myRisc: entity work.core
 		generic map(
@@ -241,6 +253,41 @@ begin
 		end if;		
 	end process;
 	
+
+	chipselect <= dcsel(0) and dcsel(1);
+	sdram_addr <= std_logic_vector(to_unsigned(daddress, 32));
+
+	sdram_controller : entity work.sdram_controller
+		port map(
+			address     => sdram_addr,
+			byteenable  => "1111",
+			chipselect  => chipselect,
+			clk         => clk_sdram,
+			clken       => '1',
+			reset       => rst,
+			reset_req   => rst,
+			write       => d_we,
+			read        => d_rd,
+			writedata   => ddata_w,
+			-- outputs:
+			readdata    => sdram_read,
+			waitrequest => waitrequest,
+			DRAM_ADDR   => DRAM_ADDR,
+			DRAM_BA     => DRAM_BA,
+			DRAM_CAS_N  => DRAM_CAS_N,
+			DRAM_CKE    => DRAM_CKE,
+			DRAM_CLK    => DRAM_CLK_dummy,
+			DRAM_CS_N   => DRAM_CS_N,
+			DRAM_DQ     => DRAM_DQ_32,
+			DRAM_DQM    => DRAM_DQM,
+			DRAM_RAS_N  => DRAM_RAS_N,
+			DRAM_WE_N   => DRAM_WE_N
+		);
+		
+		DRAM_DQ_32 <= dummy16 & DRAM_DQ;
+		DRAM_UDQM <= DRAM_DQM(1);
+		DRAM_LDQM <= DRAM_DQM(0);
+		DRAM_CLK <= clk_sdram;
 
 end;
 
