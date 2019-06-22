@@ -237,8 +237,8 @@ begin
 	begin
 		-- != Load and Store instructions have different address generation 
 		with dmemory.read select
-			addr <= std_logic_vector(to_signed(to_integer(signed(rs1_data)) + imm_i,32)) when '1',   -- to_unsigned
-				    std_logic_vector(to_signed(to_integer(signed(rs1_data)) + imm_s,32)) when others;		-- to_unsigned
+			addr <= std_logic_vector(to_signed(to_integer(unsigned(rs1_data)) + imm_i,32)) when '1',   -- to_unsigned
+				    std_logic_vector(to_signed(to_integer(unsigned(rs1_data)) + imm_s,32)) when others;		-- to_unsigned
 		
 		byteSel <= addr(1 downto 0);
 		daddress <= to_integer(unsigned(addr(31 downto 2)));
