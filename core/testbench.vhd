@@ -26,9 +26,9 @@ entity testbench is
 end entity testbench;
 
 architecture RTL of testbench is
-	signal clk : std_logic;
-	signal clk_sdram        : std_logic;
-	signal rst : std_logic;
+	signal clk       : std_logic;
+	signal clk_sdram : std_logic;
+	signal rst       : std_logic;
 
 	signal idata : std_logic_vector(31 downto 0);
 
@@ -50,24 +50,23 @@ architecture RTL of testbench is
 
 	signal debugString : string(64 downto 1);
 
-
 	-- SDRAM Signals
-	signal chipselect_sdram  : std_logic;
-	signal waitrequest : std_logic;
-	signal DRAM_ADDR   : std_logic_vector(12 downto 0);
-	signal DRAM_BA     : std_logic_vector(1 downto 0);
-	signal DRAM_CAS_N  : std_logic;
-	signal DRAM_CKE    : std_logic;
-	signal DRAM_CLK    : std_logic;
-	signal DRAM_CS_N   : std_logic;
-	signal DRAM_DQ     : std_logic_vector(15 downto 0);
-	signal DRAM_DQM    : std_logic_vector(1 downto 0);
-	signal DRAM_RAS_N  : std_logic;
-	signal DRAM_WE_N   : std_logic;
-	signal sdram_addr  : std_logic_vector(31 downto 0);
-	signal sdram_read  : std_logic_vector(15 DOWNTO 0);
-	signal sdram_read_16 : std_logic_vector(31 downto 0);
-	
+	signal chipselect_sdram : std_logic;
+	signal waitrequest      : std_logic;
+	signal DRAM_ADDR        : std_logic_vector(12 downto 0);
+	signal DRAM_BA          : std_logic_vector(1 downto 0);
+	signal DRAM_CAS_N       : std_logic;
+	signal DRAM_CKE         : std_logic;
+	signal DRAM_CLK         : std_logic;
+	signal DRAM_CS_N        : std_logic;
+	signal DRAM_DQ          : std_logic_vector(15 downto 0);
+	signal DRAM_DQM         : std_logic_vector(1 downto 0);
+	signal DRAM_RAS_N       : std_logic;
+	signal DRAM_WE_N        : std_logic;
+	signal sdram_addr       : std_logic_vector(31 downto 0);
+	signal sdram_read       : std_logic_vector(15 DOWNTO 0);
+	signal sdram_read_16    : std_logic_vector(31 downto 0);
+
 	signal dmemory_address : natural;
 
 begin
@@ -127,8 +126,6 @@ begin
 			q       => idata
 		);
 
-
-
 	dmemory_address <= to_integer(to_unsigned(daddress, 10));
 	-- Data Memory RAM
 	dmem : entity work.dmemory
@@ -155,12 +152,11 @@ begin
 		idata when "00",
 		ddata_r_mem when "01",
 		input_in when "10",
-		sdram_read_16 when "11",
-		(others => '0') when others;
-	
+		sdram_read_16 when "11",(others => '0') when others;
+
 	-- sdram output is 16 bits while data bus is 32 bits
 	sdram_read_16 <= x"0000" & sdram_read;
-	
+
 	-- Softcore instatiation
 	myRiscv : entity work.core
 		generic map(
@@ -255,10 +251,10 @@ begin
 			DRAM_RAS_N  => DRAM_RAS_N,
 			DRAM_WE_N   => DRAM_WE_N
 		);
-		
+
 	-- SDRAM Signals
 	chipselect_sdram <= dcsel(0) and dcsel(1);
-	sdram_addr <= std_logic_vector(to_unsigned(daddress, 32));
+	sdram_addr       <= std_logic_vector(to_unsigned(daddress, 32));
 
 	-- SDRAM model instatiation
 	sdram : entity work.mt48lc8m16a2
@@ -286,7 +282,6 @@ begin
 		clk_sdram <= '1';
 		wait for period / 2;
 	end process clk_sdram_driver;
-	
 
 	-- FileOutput DEBUG	
 	debug : entity work.trace_debug

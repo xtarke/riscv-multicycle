@@ -21,12 +21,13 @@ int main(){
    
 	while (1){
 		
+		//OUTBUS = 0;
 		sdram[0] = 0x0;
 		sdram[1] = 0x1;
 		sdram[2] = 0x2;
-		sdram[3] = 0x3;
-		sdram[2577152] = 0x4;
-		sdram[5] = sdram[1] + sdram[2577152];
+		sdram[131072] = 0x4;
+		sdram[4] = 0x8;
+		sdram[5] = sdram[2] + sdram[131072];
 		OUTBUS = sdram[5];
 		
 		/* To blink */
