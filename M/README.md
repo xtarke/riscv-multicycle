@@ -58,3 +58,6 @@ rs1(31 downto 0) <= rs1_7(3 downto 0)*(2^28) +
  				    rs1_1(3 downto 0)*(2^04) + 
  				    rs1_0(3 downto 0); 
 ```
+
+
+![](./img/mul_machine_state.png)
