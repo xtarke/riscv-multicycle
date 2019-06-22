@@ -40,7 +40,27 @@
 					"strict" : false
 				},
 				{
+					"name" : "DRAM_ADDR[9]",
+					"strict" : false
+				},
+				{
 					"name" : "DRAM_ADDR[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[12]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_BA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_BA[1]",
 					"strict" : false
 				},
 				{
@@ -209,6 +229,62 @@
 				},
 				{
 					"name" : "LEDR[9]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_B[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_B[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_HS",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_VS",
 					"strict" : false
 				},
 				{
