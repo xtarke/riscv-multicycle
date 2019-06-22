@@ -275,7 +275,7 @@ begin
 		);
 
 	clk_sdram_driver : process
-		constant period : time := 8 ns;
+		constant period : time := 10 ns;
 	begin
 		clk_sdram <= '0';
 		wait for period / 2;
