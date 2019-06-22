@@ -79,7 +79,7 @@ architecture rtl of de0_lite is
 	signal address  : std_logic_vector(9 downto 0);
 
 	-- Data bus signals
-	signal daddress : integer range 0 to DMEMORY_WORDS - 1;
+	signal daddress : natural;
 	signal ddata_r  : std_logic_vector(31 downto 0);
 	signal ddata_w  : std_logic_vector(31 downto 0);
 	signal dmask    : std_logic_vector(3 downto 0);
@@ -105,6 +105,8 @@ architecture rtl of de0_lite is
 	signal sdram_read_32    : std_logic_vector(31 downto 0);
 	signal waitrequest      : std_logic;
 	signal DRAM_DQM         : std_logic_vector(1 downto 0);
+
+	signal dmemory_address : natural;
 
 begin
 
@@ -137,7 +139,7 @@ begin
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst : entity work.iram_quartus
 		port map(
-			address => address,
+			address => address(9 downto 0),
 			byteena => "1111",
 			clock   => clk,
 			data    => (others => '0'),
@@ -145,6 +147,7 @@ begin
 			q       => idata
 		);
 
+	dmemory_address <= to_integer(to_unsigned(daddress, 10));
 	-- Data Memory RAM
 	dmem : entity work.dmemory
 		generic map(
@@ -154,7 +157,7 @@ begin
 			rst     => rst,
 			clk     => clk,
 			data    => ddata_w,
-			address => daddress,
+			address => dmemory_address,
 			we      => d_we,
 			csel    => dcsel(0),
 			dmask   => dmask,
