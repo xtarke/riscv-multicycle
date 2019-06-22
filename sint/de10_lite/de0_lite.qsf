@@ -218,6 +218,7 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -entity nios_max -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity nios_max -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity adc_max -section_id Top
+set_global_assignment -name VHDL_FILE ../../vga/vga_controller.vhd
 set_global_assignment -name VHDL_FILE ../../sdram/sdram_controller.vhd
 set_global_assignment -name VHDL_FILE de0_lite.vhd
 set_global_assignment -name VHDL_FILE ../../registers/register_file.vhd

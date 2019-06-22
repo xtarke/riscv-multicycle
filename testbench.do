@@ -28,6 +28,7 @@ vcom ./registers/register_file.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
 vcom ./core/trace_debug.vhd
+vcom ./vga/vga_controller.vhd
 vcom ./sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
 vcom ./core/testbench.vhd
 
@@ -44,16 +45,16 @@ add wave -radix hex idata
 # add wave -radix hex /q
 
 add wave -height 15 -divider "PC and Ctrl Targers"
-add wave -radix hex -label pc 			/myRiscv/pc
-add wave -radix hex -label jal_target 	/myRiscv/jal_target
-add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
-add wave -label branch_cmp 				/myRiscv/branch_cmp
+# add wave -radix hex -label pc 			/myRiscv/pc
+# add wave -radix hex -label jal_target 	/myRiscv/jal_target
+# add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
+# add wave -label branch_cmp 				/myRiscv/branch_cmp
 
 add wave -height 15 -divider "Iregister debug"
 # add wave -label opcode  /myRiscv/opcodes 
-add wave -label rd 		/myRiscv/rd   
-add wave -label rs1 	/myRiscv/rs1
-add wave -label rs2 	/myRiscv/rs2
+# add wave -label rd 		/myRiscv/rd   
+# add wave -label rs1 	/myRiscv/rs1
+# add wave -label rs2 	/myRiscv/rs2
 # add wave -label imm_i /myRiscv/imm_i
 # add wave -label imm_s /myRiscv/imm_s 
 # add wave -label imm_b /myRiscv/imm_b
@@ -70,9 +71,9 @@ add wave -height 15 -divider "Register file debug"
 # decoder debug
 # add wave -label states /myRiscv/decoder0/state
 
-add wave -height 15 -divider "Alu debug"
-add wave -label aluData /myRiscv/alu_data
-add wave -label aluOut 	/myRiscv/alu_out
+# add wave -height 15 -divider "Alu debug"
+# add wave -label aluData /myRiscv/alu_data
+#add wave -label aluOut 	/myRiscv/alu_out
 
 add wave -height 15 -divider "Data memory debug"
 add wave -label daddr -radix hex /myRiscv/memAddrTypeSBlock/addr
@@ -93,11 +94,23 @@ add wave -label d_rd 	/d_rd
 add wave -height 15 -divider "SDRAM"
 add wave -label clk_sdram		 		/clk_sdram
 add wave -label chipselect_sdram	 	/chipselect_sdram
+add wave -label sdram_addr -radix hex 	/sdram_addr
 add wave -label DRAM_ADDR -radix hex 	/DRAM_ADDR
+add wave -label d_we		 			/d_we
+add wave -label sdram_d_rd		 		/sdram_d_rd
 add wave -label ddata_w -radix hex 		/ddata_w
 add wave -label sdram_read -radix hex 	/sdram_read
 add wave -label DRAM_DQ -radix hex 		/DRAM_DQ
 add wave -label mem_state 				/sdram_controller/mem_state
+
+add wave -height 15 -divider "VGA"
+add wave -label clk_vga		 			/clk_vga
+add wave -label VGA_HS	 				/VGA_HS
+add wave -label VGA_VS	 				/VGA_VS
+add wave -label VGA_R 		-radix hex 	/VGA_R
+add wave -label VGA_G 		-radix hex 	/VGA_G
+add wave -label VGA_B 		-radix hex 	/VGA_B
+add wave -label vga_addr 	-radix hex 	/vga_addr
 
 
 add wave -height 15 -divider "Input/Output SIM"

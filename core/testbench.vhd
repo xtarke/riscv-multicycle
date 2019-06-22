@@ -28,7 +28,9 @@ end entity testbench;
 architecture RTL of testbench is
 	signal clk       : std_logic;
 	signal clk_sdram : std_logic;
+	signal clk_vga : std_logic;
 	signal rst       : std_logic;
+	signal rst_n : std_logic;
 
 	signal idata : std_logic_vector(31 downto 0);
 
@@ -49,10 +51,10 @@ architecture RTL of testbench is
 	signal cpu_state : cpu_state_t;
 
 	signal debugString : string(64 downto 1);
+	
+	signal dmemory_address : natural;
 
 	-- SDRAM Signals
-	signal chipselect_sdram : std_logic;
-	signal waitrequest      : std_logic;
 	signal DRAM_ADDR        : std_logic_vector(12 downto 0);
 	signal DRAM_BA          : std_logic_vector(1 downto 0);
 	signal DRAM_CAS_N       : std_logic;
@@ -63,11 +65,26 @@ architecture RTL of testbench is
 	signal DRAM_DQM         : std_logic_vector(1 downto 0);
 	signal DRAM_RAS_N       : std_logic;
 	signal DRAM_WE_N        : std_logic;
+	signal daddress_to_sdram : std_logic_vector(31 downto 0);
 	signal sdram_addr       : std_logic_vector(31 downto 0);
+	signal chipselect_sdram : std_logic;
+	signal sdram_d_rd        : std_logic;
+	signal waitrequest      : std_logic;
 	signal sdram_read       : std_logic_vector(15 DOWNTO 0);
 	signal sdram_read_16    : std_logic_vector(31 downto 0);
 
-	signal dmemory_address : natural;
+	-- VGA Signals
+	signal VGA_B    : std_logic_vector(3 downto 0);
+	signal VGA_G    : std_logic_vector(3 downto 0);
+	signal VGA_HS   : std_logic;
+	signal VGA_R    : std_logic_vector(3 downto 0);
+	signal VGA_VS   : std_logic;
+	signal vga_addr : std_logic_vector(31 downto 0);
+	signal disp_ena : std_logic;
+	signal n_blank  : std_logic;
+	signal n_sync   : std_logic;
+	signal column   : integer;
+	signal row      : integer;
 
 begin
 
@@ -87,6 +104,8 @@ begin
 		rst <= '0';
 		wait;
 	end process reset;
+	
+	rst_n <= not rst;
 
 	--	imem: component imemory
 	--		generic map(
@@ -224,6 +243,21 @@ begin
 		end if;
 	end process;
 
+
+	-- CORE, VGA and SDRAM muxes
+	with dcsel select sdram_addr <=
+		daddress_to_sdram when "11",
+		vga_addr when others;
+
+	with dcsel select sdram_d_rd <=
+		d_rd when "11",
+		clk_vga when others;
+
+	with dcsel select chipselect_sdram <=
+		'1' when "11",
+		clk_vga when others;
+
+
 	-- SDRAM instatiation
 	sdram_controller : entity work.sdram_controller
 		port map(
@@ -235,7 +269,7 @@ begin
 			reset       => rst,
 			reset_req   => rst,
 			write       => d_we,
-			read        => d_rd,
+			read        => sdram_d_rd,
 			writedata   => ddata_w,
 			-- outputs:
 			readdata    => sdram_read,
@@ -253,8 +287,7 @@ begin
 		);
 
 	-- SDRAM Signals
-	chipselect_sdram <= dcsel(0) and dcsel(1);
-	sdram_addr       <= std_logic_vector(to_unsigned(daddress, 32));
+	daddress_to_sdram       <= std_logic_vector(to_unsigned(daddress, 32));
 
 	-- SDRAM model instatiation
 	sdram : entity work.mt48lc8m16a2
@@ -274,6 +307,33 @@ begin
 			Dqm   => DRAM_DQM
 		);
 
+
+
+	vga_controller : entity work.vga_controller
+		port map(
+			pixel_clk => clk_vga,
+			reset_n   => rst_n,
+			h_sync    => VGA_HS,
+			v_sync    => VGA_VS,
+			disp_ena  => disp_ena,
+			column    => column,
+			row       => row,
+			addr      => vga_addr,
+			n_blank   => n_blank,
+			n_sync    => n_sync
+		);
+		
+	process(clk_vga)
+	begin
+		if rising_edge(clk_vga) then
+			VGA_R <= sdram_read(3 downto 0);
+			VGA_G <= sdram_read(7 downto 4);
+			VGA_B <= sdram_read(11 downto 8);
+		end if;
+	end process;
+	
+	
+
 	clk_sdram_driver : process
 		constant period : time := 10 ns;
 	begin
@@ -282,6 +342,15 @@ begin
 		clk_sdram <= '1';
 		wait for period / 2;
 	end process clk_sdram_driver;
+	
+	clk_vga_driver : process
+		constant period : time := 25 ns;
+	begin
+		clk_vga <= '0';
+		wait for period / 2;
+		clk_vga <= '1';
+		wait for period / 2;
+	end process clk_vga_driver;
 
 	-- FileOutput DEBUG	
 	debug : entity work.trace_debug

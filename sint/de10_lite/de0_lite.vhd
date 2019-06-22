@@ -70,8 +70,10 @@ architecture rtl of de0_lite is
 
 	signal clk       : std_logic;
 	signal clk_sdram : std_logic;
+	signal clk_vga   : std_logic;
 
-	signal rst : std_logic;
+	signal rst   : std_logic;
+	signal rst_n : std_logic;
 
 	-- Instruction bus signals
 	signal idata    : std_logic_vector(31 downto 0);
@@ -88,6 +90,8 @@ architecture rtl of de0_lite is
 
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd        : std_logic;
+	
+	signal dmemory_address : natural;
 
 	-- I/O signals
 	signal input_in : std_logic_vector(31 downto 0);
@@ -99,14 +103,22 @@ architecture rtl of de0_lite is
 	signal state : cpu_state_t;
 
 	-- SDRAM signals
-	signal chipselect_sdram : std_logic;
-	signal sdram_addr       : std_logic_vector(31 downto 0);
-	signal sdram_read       : std_logic_vector(15 DOWNTO 0);
-	signal sdram_read_32    : std_logic_vector(31 downto 0);
-	signal waitrequest      : std_logic;
-	signal DRAM_DQM         : std_logic_vector(1 downto 0);
+	signal daddress_to_sdram : std_logic_vector(31 downto 0);
+	signal sdram_addr        : std_logic_vector(31 downto 0);
+	signal chipselect_sdram  : std_logic;
+	signal sdram_d_rd        : std_logic;
+	signal sdram_read        : std_logic_vector(15 DOWNTO 0);
+	signal sdram_read_32     : std_logic_vector(31 downto 0);
+	signal waitrequest       : std_logic;
+	signal DRAM_DQM          : std_logic_vector(1 downto 0);
 
-	signal dmemory_address : natural;
+	-- VGA signals
+	signal vga_addr : std_logic_vector(31 downto 0);
+	signal disp_ena : std_logic;
+	signal n_blank  : std_logic;
+	signal n_sync   : std_logic;
+	signal column   : integer;
+	signal row      : integer;
 
 begin
 
@@ -116,10 +128,12 @@ begin
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
 			c1     => clk_sdram,
+			c2     => clk_vga,
 			locked => locked_sig
 		);
 
-	rst <= SW(9);
+	rst   <= SW(9);
+	rst_n <= not rst;
 
 	-- Dummy out signals
 	ARDUINO_IO <= ddata_r(31 downto 16);
@@ -244,6 +258,20 @@ begin
 			end if;
 		end if;
 	end process;
+	
+	
+	-- CORE, VGA and SDRAM muxes
+	with dcsel select sdram_addr <=
+		daddress_to_sdram when "11",
+		vga_addr when others;
+
+	with dcsel select sdram_d_rd <=
+		d_rd when "11",
+		clk_vga when others;
+
+	with dcsel select chipselect_sdram <=
+		'1' when "11",
+		clk_vga when others;
 
 	-- SDRAM instatiation
 	sdram_controller : entity work.sdram_controller
@@ -256,7 +284,7 @@ begin
 			reset       => rst,
 			reset_req   => rst,
 			write       => d_we,
-			read        => d_rd,
+			read        => sdram_d_rd,
 			writedata   => ddata_w,
 			-- outputs:
 			readdata    => sdram_read,
@@ -274,9 +302,35 @@ begin
 		);
 
 	-- SDRAM Signals
-	chipselect_sdram <= dcsel(0) and dcsel(1);
-	sdram_addr       <= std_logic_vector(to_unsigned(daddress, 32));
-	DRAM_UDQM        <= DRAM_DQM(1);
-	DRAM_LDQM        <= DRAM_DQM(0);
+	daddress_to_sdram <= std_logic_vector(to_unsigned(daddress, 32));
+	DRAM_UDQM         <= DRAM_DQM(1);
+	DRAM_LDQM         <= DRAM_DQM(0);
+	--chipselect_sdram  <= dcsel(0) and dcsel(1);
+
+	vga_controller : entity work.vga_controller
+		port map(
+			pixel_clk => clk_vga,
+			reset_n   => rst_n,
+			h_sync    => VGA_HS,
+			v_sync    => VGA_VS,
+			disp_ena  => disp_ena,
+			column    => column,
+			row       => row,
+			addr      => vga_addr,
+			n_blank   => n_blank,
+			n_sync    => n_sync
+		);
+		
+	process(clk_vga)
+	begin
+		if rising_edge(clk_vga) then
+			VGA_R <= sdram_read(3 downto 0);
+			VGA_G <= sdram_read(7 downto 4);
+			VGA_B <= sdram_read(11 downto 8);
+		end if;
+	end process;
+	
+	
+
 end;
 
