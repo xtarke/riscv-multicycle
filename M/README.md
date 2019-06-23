@@ -41,7 +41,7 @@ b(31 downto 0) <= b7*(2^28) +
 
 rd <= ab7*(2^28) + ab6*(2^24) + ab5*(2^20) + ab4*(2^16) + ab3*(2^12) + ab2*(2^08) + ab1*(2^04) + ab0; 
 rd <= a*b
-
+rd <= rs2*rs1
 ```
 
 ![](./img/mul_machine_state.png)
