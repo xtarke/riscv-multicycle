@@ -90,7 +90,7 @@ architecture rtl of de0_lite is
 
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd        : std_logic;
-	
+
 	signal dmemory_address : natural;
 
 	-- I/O signals
@@ -111,14 +111,20 @@ architecture rtl of de0_lite is
 	signal sdram_read_32     : std_logic_vector(31 downto 0);
 	signal waitrequest       : std_logic;
 	signal DRAM_DQM          : std_logic_vector(1 downto 0);
+	signal burst             : std_logic;
 
 	-- VGA signals
-	signal vga_addr : std_logic_vector(31 downto 0);
-	signal disp_ena : std_logic;
-	signal n_blank  : std_logic;
-	signal n_sync   : std_logic;
-	signal column   : integer;
-	signal row      : integer;
+	signal vga_addr             : std_logic_vector(31 downto 0);
+	signal disp_ena             : std_logic;
+	signal n_blank              : std_logic;
+	signal n_sync               : std_logic;
+	signal column               : integer;
+	signal row                  : integer;
+	signal vga_data_read        : std_logic;
+	signal buffer_to_sdram_addr : std_logic_vector(31 downto 0);
+	signal VGA_RR : std_logic_vector(3 downto 0);
+	signal VGA_GG : std_logic_vector(3 downto 0);
+	signal VGA_BB : std_logic_vector(3 downto 0);
 
 begin
 
@@ -133,7 +139,7 @@ begin
 		);
 
 	rst   <= SW(9);
-	rst_n <= not rst;
+	rst_n <= SW(8);
 
 	-- Dummy out signals
 	ARDUINO_IO <= ddata_r(31 downto 16);
@@ -258,20 +264,23 @@ begin
 			end if;
 		end if;
 	end process;
-	
-	
+
 	-- CORE, VGA and SDRAM muxes
 	with dcsel select sdram_addr <=
 		daddress_to_sdram when "11",
-		vga_addr when others;
+		buffer_to_sdram_addr when others;
 
 	with dcsel select sdram_d_rd <=
 		d_rd when "11",
-		clk_vga when others;
+		vga_data_read when others;
 
 	with dcsel select chipselect_sdram <=
 		'1' when "11",
-		clk_vga when others;
+		vga_data_read when others;
+
+	with dcsel select burst <=
+		'0' when "11",
+		'1' when others;
 
 	-- SDRAM instatiation
 	sdram_controller : entity work.sdram_controller
@@ -286,6 +295,7 @@ begin
 			write       => d_we,
 			read        => sdram_d_rd,
 			writedata   => ddata_w,
+			burst       => burst,
 			-- outputs:
 			readdata    => sdram_read,
 			waitrequest => waitrequest,
@@ -320,17 +330,36 @@ begin
 			n_blank   => n_blank,
 			n_sync    => n_sync
 		);
+
+	vga_buffer : entity work.vga_buffer
+		port map(
+			clk           => clk_sdram,
+			rst           => rst,
+			address_vga   => vga_addr,
+			sdram_data    => sdram_read,
+			sdram_address => buffer_to_sdram_addr,
+			sdram_r       => vga_data_read,
+			VGA_R         => VGA_RR,
+			VGA_G         => VGA_GG,
+			VGA_B         => VGA_BB
+		);
 		
-	process(clk_vga)
-	begin
-		if rising_edge(clk_vga) then
-			VGA_R <= sdram_read(3 downto 0);
-			VGA_G <= sdram_read(7 downto 4);
-			VGA_B <= sdram_read(11 downto 8);
-		end if;
-	end process;
-	
-	
+		
+		PROCESS(disp_ena)
+  BEGIN
+
+    IF(disp_ena = '1') THEN        --display time
+      VGA_R <= VGA_RR;
+		VGA_G <= VGA_GG;
+		VGA_B <= VGA_BB;
+    ELSE                           --blanking time
+       VGA_R <= "0000";
+		VGA_G <= "0000";
+		VGA_B <= "0000";
+    END IF;
+  
+  END PROCESS;
+		
 
 end;
 
