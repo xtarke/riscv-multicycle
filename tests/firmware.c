@@ -21,9 +21,22 @@ int main(){
 	uint32_t *sdram = &SDRAM;
    
 	while (1){
+
+
+		// sdram[512] = 0x1;
+		// sdram[513] = 0x2;
+		// sdram[514] = 0x3;
+		// sdram[515] = 0x4;
+		// sdram[516] = 0x8;
+		// sdram[517] = 0x2;
+		// sdram[518] = 0x3;
+		// sdram[519] = 0x4;
+		// sdram[520] = 0x8;
+		// sdram[5] = sdram[514] + sdram[513];
+		// OUTBUS = sdram[5];
 		
-		for(x=0; x<64000; x++){
-			sdram[x] = 0x7;
+		for(x=0; x<128000; x++){
+			sdram[x] = 0x00F;
 			// if (x%800 == 0){
 			// 	i++;
 			// }
@@ -32,13 +45,13 @@ int main(){
 		
 		while(1){
 			/* To blink */
-		OUTBUS = 0x10;
-		SEGMENTS = 0xFFFFFFC0;
-		delay_(10000);
+		// OUTBUS = 0x10;
+		// SEGMENTS = 0xFFFFFFC0;
+		// delay_(10000);
         
-		OUTBUS = 0;
-    SEGMENTS = 0xFFFFFFFF;
-		delay_(10000); 
+		// OUTBUS = 0;
+    // SEGMENTS = 0xFFFFFFFF;
+		// delay_(10000); 
 		}
         
 		/* To test Data Bus 
