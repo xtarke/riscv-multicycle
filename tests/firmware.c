@@ -22,11 +22,11 @@ int main(){
 		/* To blink */
 		OUTBUS = 0x10;
 		SEGMENTS = 0xFFFFFFC0;
-		delay_(10000);
+		delay_(25000);
         
 		OUTBUS = 0;
         SEGMENTS = 0xFFFFFFFF;
-		delay_(10000); 
+		delay_(25000); 
         
 		/* To test Data Bus 
 		x = INBUS;        
