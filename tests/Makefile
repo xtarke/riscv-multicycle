@@ -2,11 +2,11 @@ ifndef RISCV_TOOLS_PREFIX
 RISCV_TOOLS_PREFIX = /home/lucas/ssd2/vhdl/softcore/gnu-mcu-riscv/gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2-20190521-0004/bin/riscv-none-embed-
 endif
 QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
-CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32i
-CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
-AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
+CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
+CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1
+AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 CXXFLAGS = -MD -Os -Wall -std=c++11
-CCFLAGS = -MD -Os -Wall
+CCFLAGS = -MD -Os -Wall 
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl,--gc-sections
 LDLIBS =

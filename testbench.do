@@ -49,15 +49,15 @@ add wave -radix hex -label jalr_target /myRiscv/jalr_target
 add wave -label branch_cmp /myRiscv/branch_cmp
 
 add wave -height 15 -divider "Iregister debug"
-# add wave -label opcode  /myRiscv/opcodes 
+add wave -label opcode  /myRiscv/opcodes 
 add wave -label rd /myRiscv/rd   
 add wave -label rs1 /myRiscv/rs1
 add wave -label rs2 /myRiscv/rs2
-# add wave -label imm_i /myRiscv/imm_i
-# add wave -label imm_s /myRiscv/imm_s 
-# add wave -label imm_b /myRiscv/imm_b
-# add wave -label imm_u /myRiscv/imm_u
-# add wave -label imm_j /myRiscv/imm_j
+add wave -label imm_i /myRiscv/imm_i
+add wave -label imm_s /myRiscv/imm_s 
+add wave -label imm_b /myRiscv/imm_b
+add wave -label imm_u /myRiscv/imm_u
+add wave -label imm_j /myRiscv/imm_j
 
 add wave -height 15 -divider "Register file debug"
 add wave -label registers -radix hex /myRiscv/registers/ram
