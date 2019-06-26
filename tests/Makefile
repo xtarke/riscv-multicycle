@@ -3,7 +3,7 @@ RISCV_TOOLS_PREFIX = C:/Users/Cleissom/AppData/Roaming/xPacks/@gnu-mcu-eclipse/r
 endif
 QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32i
-CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
+CC = $(RISCV_TOOLS_PREFIX)gcc -O1 -march=rv32i
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
 CXXFLAGS = -MD -Os -Wall -std=c++11
 CCFLAGS = -MD -Os -Wall

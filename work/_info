@@ -22,9 +22,9 @@ V]<XKkdd[a<F6EI`>^WT3H3
 !s100 jB7m<aOmJ^DN9=F23cHi30
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1561040375
+Z8 !s110 1561410428
 !i10b 1
-Z9 !s108 1561040375.000000
+Z9 !s108 1561410427.000000
 Z10 !s90 -reportprogress|300|./alu/alu_types.vhd|
 Z11 !s107 ./alu/alu_types.vhd|
 !i113 1
@@ -48,7 +48,7 @@ R11
 !i113 1
 R12
 Ecore
-Z14 w1560970767
+Z14 w1561164030
 R13
 Z15 DPx4 work 13 decoder_types 0 22 z8mQlC>3OR>>8Y>h@XGkF2
 R1
@@ -59,39 +59,39 @@ Z16 8./core/core.vhd
 Z17 F./core/core.vhd
 l0
 L8
-VR3LQLZU`dj_a5mLe23iDE0
-!s100 CP9?8aabM:mWQF`i=KZ;S0
+VbQ5`BJ^_Zn0g[]bEk>T:]0
+!s100 OS?_gmgZ34X`Hgdg31izh3
 R7
 32
 R8
 !i10b 1
-R9
-Z18 !s90 -reportprogress|300|./core/core.vhd|
-Z19 !s107 ./core/core.vhd|
+Z18 !s108 1561410428.000000
+Z19 !s90 -reportprogress|300|./core/core.vhd|
+Z20 !s107 ./core/core.vhd|
 !i113 1
 R12
 Artl
-Z20 DEx4 work 3 ula 0 22 _hQ6FLQFcFN3nP4VbZ3XY0
-Z21 DEx4 work 7 decoder 0 22 XdhF1U@F3BcBWCXE19[ze3
-Z22 DEx4 work 13 register_file 0 22 89BR2QLbOe:WjRG9fI8KV1
-Z23 DEx4 work 9 iregister 0 22 OzOXZ@GmaJ2T<QB`X_=Rj2
+Z21 DEx4 work 3 ula 0 22 _hQ6FLQFcFN3nP4VbZ3XY0
+Z22 DEx4 work 7 decoder 0 22 XdhF1U@F3BcBWCXE19[ze3
+Z23 DEx4 work 13 register_file 0 22 89BR2QLbOe:WjRG9fI8KV1
+Z24 DEx4 work 9 iregister 0 22 OzOXZ@GmaJ2T<QB`X_=Rj2
 R13
 R15
 R1
 R2
 R3
-Z24 DEx4 work 4 core 0 22 R3LQLZU`dj_a5mLe23iDE0
+Z25 DEx4 work 4 core 0 22 bQ5`BJ^_Zn0g[]bEk>T:]0
 l74
 L34
-VmP7f5CRfQT7jgfR60JZl63
-!s100 R=4:2]@n7FE1kiI<W;G_g3
+VmhUff4BgITYe2QOBoXO=e1
+!s100 QWoACmKgM7aGfEAQ7eI^J2
 R7
 32
 R8
 !i10b 1
-R9
 R18
 R19
+R20
 !i113 1
 R12
 Edecoder
@@ -102,8 +102,8 @@ R1
 R2
 R3
 R0
-Z25 8./decoder/decoder.vhd
-Z26 F./decoder/decoder.vhd
+Z26 8./decoder/decoder.vhd
+Z27 F./decoder/decoder.vhd
 l0
 L8
 VXdhF1U@F3BcBWCXE19[ze3
@@ -112,9 +112,9 @@ R7
 32
 R8
 !i10b 1
-R9
-Z27 !s90 -reportprogress|300|./decoder/decoder.vhd|
-Z28 !s107 ./decoder/decoder.vhd|
+R18
+Z28 !s90 -reportprogress|300|./decoder/decoder.vhd|
+Z29 !s107 ./decoder/decoder.vhd|
 !i113 1
 R12
 Artl
@@ -123,7 +123,7 @@ R13
 R1
 R2
 R3
-R21
+R22
 l52
 L44
 V`9RZYDI11dBahfbnAd_D01
@@ -132,9 +132,9 @@ R7
 32
 R8
 !i10b 1
-R9
-R27
+R18
 R28
+R29
 !i113 1
 R12
 Pdecoder_types
@@ -142,8 +142,8 @@ R2
 R3
 R4
 R0
-Z29 8./decoder/decoder_types.vhd
-Z30 F./decoder/decoder_types.vhd
+Z30 8./decoder/decoder_types.vhd
+Z31 F./decoder/decoder_types.vhd
 l0
 L4
 Vz8mQlC>3OR>>8Y>h@XGkF2
@@ -152,9 +152,9 @@ R7
 32
 R8
 !i10b 1
-R9
-Z31 !s90 -reportprogress|300|./decoder/decoder_types.vhd|
-Z32 !s107 ./decoder/decoder_types.vhd|
+R18
+Z32 !s90 -reportprogress|300|./decoder/decoder_types.vhd|
+Z33 !s107 ./decoder/decoder_types.vhd|
 !i113 1
 R12
 Bbody
@@ -169,9 +169,9 @@ R7
 32
 R8
 !i10b 1
-R9
-R31
+R18
 R32
+R33
 !i113 1
 R12
 Edmemory
@@ -180,17 +180,17 @@ R1
 R2
 R3
 R0
-Z33 8./memory/dmemory.vhd
-Z34 F./memory/dmemory.vhd
+Z34 8./memory/dmemory.vhd
+Z35 F./memory/dmemory.vhd
 l0
 L19
 VaEVBkezW2VIC4iMlb8CL^2
 !s100 f_?`4IXQONBKkISe7A[d30
 R7
 32
-Z35 !s110 1561040374
+Z36 !s110 1561410427
 !i10b 1
-Z36 !s108 1561040374.000000
+R9
 Z37 !s90 -reportprogress|300|./memory/dmemory.vhd|
 Z38 !s107 ./memory/dmemory.vhd|
 !i113 1
@@ -206,9 +206,9 @@ VlWiN6dNQc8hhiaO>W?FZE1
 !s100 fV6o<7[[BECLdJBSBcgj>3
 R7
 32
-R35
-!i10b 1
 R36
+!i10b 1
+R9
 R37
 R38
 !i113 1
@@ -228,9 +228,9 @@ VXBX7H1WVKloP:=BG:JO3C3
 !s100 Y19KiDm>T]o9S2VS6`0fR1
 R7
 32
-R35
-!i10b 1
 R36
+!i10b 1
+R9
 Z44 !s90 -reportprogress|300|./memory/imemory_load.vhd|
 Z45 !s107 ./memory/imemory_load.vhd|
 !i113 1
@@ -247,15 +247,15 @@ Vhmh[<M6l=8R2k4lo6[>`32
 !s100 VQ_6LXDlDb>eSl1FT4Tc`0
 R7
 32
-R35
-!i10b 1
 R36
+!i10b 1
+R9
 R44
 R45
 !i113 1
 R12
 Eiram_quartus
-Z46 w1561037332
+Z46 w1561223926
 Z47 DPx9 altera_mf 20 altera_mf_components 0 22 Sn8Ol<dGSW99iM6NfOU>g1
 R2
 R3
@@ -268,9 +268,9 @@ V7C9CjZBlm4C1?POXhlAz71
 !s100 J>:GS;]2;=LLI>UA3`iS12
 R7
 32
-R35
-!i10b 1
 R36
+!i10b 1
+R9
 Z50 !s90 -reportprogress|300|./sint/iram_quartus.vhd|
 Z51 !s107 ./sint/iram_quartus.vhd|
 !i113 1
@@ -286,9 +286,9 @@ VX9QFG=iW[3=En]916;WNj3
 !s100 PDciBiBzf:7:dV<?N>f<B3
 R7
 32
-R35
-!i10b 1
 R36
+!i10b 1
+R9
 R50
 R51
 !i113 1
@@ -310,7 +310,7 @@ R7
 32
 R8
 !i10b 1
-R9
+R18
 Z55 !s90 -reportprogress|300|./decoder/iregister.vhd|
 Z56 !s107 ./decoder/iregister.vhd|
 !i113 1
@@ -320,7 +320,7 @@ R15
 R1
 R2
 R3
-R23
+R24
 l46
 L43
 VcY]^=N9Q?S@zTLnQP`JmX3
@@ -329,13 +329,13 @@ R7
 32
 R8
 !i10b 1
-R9
+R18
 R55
 R56
 !i113 1
 R12
 Emt48lc8m16a2
-Z57 w1561033412
+Z57 w1561405660
 Z58 DPx4 work 7 mti_pkg 0 22 aJBDZK<<UCV93h`n[Fj;90
 R2
 R3
@@ -344,13 +344,13 @@ Z59 8./sdram/sim/mt48lc8m16a2.vhd
 Z60 F./sdram/sim/mt48lc8m16a2.vhd
 l0
 L45
-V`h0T69zVJdSSY8AGKR`]R2
-!s100 a302:KciYDo]3Zo@DK1Re2
+V[h<<m66aiJX1S_lQL>Y?I1
+!s100 fe]N:zP1O1@TG4Q[N5E;W0
 R7
 32
-Z61 !s110 1561040376
+Z61 !s110 1561410429
 !i10b 1
-Z62 !s108 1561040376.000000
+Z62 !s108 1561410429.000000
 Z63 !s90 -reportprogress|300|./sdram/sim/mti_pkg.vhd|./sdram/sim/mt48lc8m16a2.vhd|./sdram/sdram_controller.vhd|
 Z64 !s107 ./sdram/sdram_controller.vhd|./sdram/sim/mt48lc8m16a2.vhd|./sdram/sim/mti_pkg.vhd|
 !i113 1
@@ -359,7 +359,7 @@ Abehave
 R58
 R2
 R3
-Z65 DEx4 work 12 mt48lc8m16a2 0 22 `h0T69zVJdSSY8AGKR`]R2
+Z65 DEx4 work 12 mt48lc8m16a2 0 22 [h<<m66aiJX1S_lQL>Y?I1
 l112
 L87
 V9>IdmJNeC9?nHB2Ha6KZV2
@@ -427,7 +427,7 @@ R7
 32
 R8
 !i10b 1
-R9
+R18
 Z71 !s90 -reportprogress|300|./registers/register_file.vhd|
 Z72 !s107 ./registers/register_file.vhd|
 !i113 1
@@ -436,7 +436,7 @@ Artl
 R1
 R2
 R3
-R22
+R23
 l43
 L24
 Vh9@ZaCIKRJLiePdz3S[1U1
@@ -445,13 +445,13 @@ R7
 32
 R8
 !i10b 1
-R9
+R18
 R71
 R72
 !i113 1
 R12
 Esdram_controller
-Z73 w1561040372
+Z73 w1561398332
 R1
 Z74 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z75 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
@@ -462,8 +462,8 @@ Z76 8./sdram/sdram_controller.vhd
 Z77 F./sdram/sdram_controller.vhd
 l0
 L35
-VOS_R]kNC5g^WCdkP9]z602
-!s100 [@[[;n`3@d7FO``ElhTOe0
+VnbkOlH>`Bf8_UHUa;OA?83
+!s100 WWKD77M:Ab9kKC`[VZdz>2
 R7
 32
 R61
@@ -479,11 +479,11 @@ R74
 R75
 R2
 R3
-Z78 DEx4 work 16 sdram_controller 0 22 OS_R]kNC5g^WCdkP9]z602
-l126
-L82
-VLB^7[WV0Ce>6zJ1:7Q6<k0
-!s100 L0L<[<0ALT83FL;MEYj9^0
+Z78 DEx4 work 16 sdram_controller 0 22 nbkOlH>`Bf8_UHUa;OA?83
+l128
+L83
+VRWUeUfadX=:1]C:L0TDKd2
+!s100 4P3ieSPQBfoEb>Nm[9Ha;3
 R7
 32
 R61
@@ -494,7 +494,7 @@ R64
 !i113 1
 R12
 Etestbench
-Z79 w1561040153
+Z79 w1561409498
 R15
 R1
 R2
@@ -518,13 +518,15 @@ R12
 Artl
 Z84 DPx4 work 8 txt_util 0 22 OM1Nc<1Xic]h2lmMohkE71
 Z85 DEx4 work 11 trace_debug 0 22 iVajQbg:ac0VR@C4fIKW?0
+Z86 DEx4 work 10 vga_buffer 0 22 0oONe@TTE?Gb8m4E?6GRF3
+Z87 DEx4 work 14 vga_controller 0 22 mfGdNnD3;:=H`Jb7^QR4_3
 R58
 R65
 R74
 R75
 R78
 R13
-R24
+R25
 R39
 R47
 R52
@@ -532,11 +534,11 @@ R15
 R1
 R2
 R3
-Z86 DEx4 work 9 testbench 0 22 ;j>W?9[KWd0Om4ZB_=olX3
-l71
+Z88 DEx4 work 9 testbench 0 22 ;j>W?9[KWd0Om4ZB_=olX3
+l95
 L28
-Z87 V]^RhgK[iL:3bNM6MN?3_J2
-Z88 !s100 Kd^L<D:A:]iTWzo;RNU@b2
+Z89 Vkj`TdbCJTnGhGKB^H_PAl3
+Z90 !s100 n`UaW2d:BV7M5e0Z]L_R<0
 R7
 32
 R61
@@ -547,15 +549,15 @@ R83
 !i113 1
 R12
 Etrace_debug
-Z89 w1560859550
+Z91 w1560859550
 R84
 R15
 R1
 R2
 R3
 R0
-Z90 8./core/trace_debug.vhd
-Z91 F./core/trace_debug.vhd
+Z92 8./core/trace_debug.vhd
+Z93 F./core/trace_debug.vhd
 l0
 L11
 ViVajQbg:ac0VR@C4fIKW?0
@@ -564,9 +566,9 @@ R7
 32
 R61
 !i10b 1
-R62
-Z92 !s90 -reportprogress|300|./core/trace_debug.vhd|
-Z93 !s107 ./core/trace_debug.vhd|
+R18
+Z94 !s90 -reportprogress|300|./core/trace_debug.vhd|
+Z95 !s107 ./core/trace_debug.vhd|
 !i113 1
 R12
 Artl
@@ -584,9 +586,9 @@ R7
 32
 R61
 !i10b 1
-R62
-R92
-R93
+R18
+R94
+R95
 !i113 1
 R12
 Ptxt_util
@@ -594,8 +596,8 @@ R2
 R3
 R4
 R0
-Z94 8./core/txt_util.vhdl
-Z95 F./core/txt_util.vhdl
+Z96 8./core/txt_util.vhdl
+Z97 F./core/txt_util.vhdl
 l0
 L6
 VOM1Nc<1Xic]h2lmMohkE71
@@ -605,9 +607,9 @@ R7
 b1
 R8
 !i10b 1
-R9
-Z96 !s90 -reportprogress|300|./core/txt_util.vhdl|
-Z97 !s107 ./core/txt_util.vhdl|
+R18
+Z98 !s90 -reportprogress|300|./core/txt_util.vhdl|
+Z99 !s107 ./core/txt_util.vhdl|
 !i113 1
 R12
 Bbody
@@ -622,9 +624,9 @@ R7
 32
 R8
 !i10b 1
-R9
-R96
-R97
+R18
+R98
+R99
 !i113 1
 R12
 Eula
@@ -634,8 +636,8 @@ R1
 R2
 R3
 R0
-Z98 8./alu/alu.vhd
-Z99 F./alu/alu.vhd
+Z100 8./alu/alu.vhd
+Z101 F./alu/alu.vhd
 l0
 L7
 V_hQ6FLQFcFN3nP4VbZ3XY0
@@ -644,9 +646,9 @@ R7
 32
 R8
 !i10b 1
-R9
-Z100 !s90 -reportprogress|300|./alu/alu.vhd|
-Z101 !s107 ./alu/alu.vhd|
+R18
+Z102 !s90 -reportprogress|300|./alu/alu.vhd|
+Z103 !s107 ./alu/alu.vhd|
 !i113 1
 R12
 Artl
@@ -654,7 +656,7 @@ R13
 R1
 R2
 R3
-R20
+R21
 l23
 L14
 VFhV]RMYSde?<aQj261aQJ0
@@ -663,8 +665,86 @@ R7
 32
 R8
 !i10b 1
-R9
-R100
-R101
+R18
+R102
+R103
+!i113 1
+R12
+Evga_buffer
+Z104 w1561258126
+R1
+R2
+R3
+R0
+Z105 8./vga/vga_buffer.vhd
+Z106 F./vga/vga_buffer.vhd
+l0
+L5
+V0oONe@TTE?Gb8m4E?6GRF3
+!s100 k^:V910^iE^NAeeTc7GFZ3
+R7
+32
+R61
+!i10b 1
+R62
+Z107 !s90 -reportprogress|300|./vga/vga_controller.vhd|./vga/vga_buffer.vhd|
+Z108 !s107 ./vga/vga_buffer.vhd|./vga/vga_controller.vhd|
+!i113 1
+R12
+Artl
+R1
+R2
+R3
+R86
+l29
+L19
+VOFCDPA8;dhkZ5Xd`l>U4R0
+!s100 :SBDfUhHC254e_Vkc2=gb1
+R7
+32
+R61
+!i10b 1
+R62
+R107
+R108
+!i113 1
+R12
+Evga_controller
+Z109 w1561224991
+R1
+R2
+R3
+R0
+Z110 8./vga/vga_controller.vhd
+Z111 F./vga/vga_controller.vhd
+l0
+L29
+VmfGdNnD3;:=H`Jb7^QR4_3
+!s100 D]]K@RY6WQ>7OeOLRVU?42
+R7
+32
+R61
+!i10b 1
+R62
+R107
+R108
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+R87
+l58
+L54
+V2ZkePa:?Z<Ol<6occ[VLA2
+!s100 8Bd3XJcSjJ[P0G^BJn6?j3
+R7
+32
+R61
+!i10b 1
+R62
+R107
+R108
 !i113 1
 R12

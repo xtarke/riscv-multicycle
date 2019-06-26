@@ -36,19 +36,21 @@ entity sdram_controller is
 
 	-- Altera SDRAM controller configuration
 	generic(
-		ASIZE      : integer := 23;
+		ASIZE      : integer := 25;
 		DSIZE      : integer := 32;
 		ROWSIZE    : integer := 13;
-		COLSIZE    : integer := 9;
+		COLSIZE    : integer := 10;
 		BANKSIZE   : integer := 2;
-		ROWSTART   : integer := 9;
+		ROWSTART   : integer := 10;
 		COLSTART   : integer := 0;
-		BANKSTART  : integer := 20;
+		BANKSTART  : integer := 23;
 		-- SDRAM latencies
 		DATA_AVAL  : integer := 2;      -- cycles
 		RESET_NOP  : integer := 4;      -- cycles
 		RAS_TO_CAS : integer := 2;      -- cycles			
-		PRE_TO_ACT : integer := 3       -- cycles
+		PRE_TO_ACT : integer := 3;      -- cycles
+		tRP        : integer := 2;      -- cycles
+		tRC        : integer := 10       -- cycles
 	);
 
 	port(
@@ -82,7 +84,7 @@ end entity sdram_controller;
 
 architecture rtl of sdram_controller is
 
-	type mem_state_type is (CONFIG, C_PRE, C_PRE_NOP, C_LD, C_LD_BURST, C_AUTO_REFRESH, IDLE, WRITE_ROW, WRITE_COL, DATA_REG, DONE);
+	type mem_state_type is (CONFIG, C_PRE, C_PRE_NOP, C_INIT_AUTO_REFRESH1, C_INIT_AUTO_REFRESH2, C_LD, C_LD_BURST, C_AUTO_REFRESH, IDLE, WRITE_ROW, WRITE_COL, DATA_REG, DONE);
 	signal mem_state     : mem_state_type;
 	signal nop_nxt_state : mem_state_type;
 
@@ -137,6 +139,8 @@ begin
 	-- FS_ADDR <= address(21 downto 2);
 
 	do_clk_mem_acc_state : process(clk, reset, cmdack)
+		variable refresh_counter      : natural;
+		variable init_refresh_counter : natural;
 	begin
 		if reset = '1' then
 			mem_state   <= CONFIG;
@@ -151,9 +155,10 @@ begin
 							wait_cycles <= wait_cycles - 1;
 
 							if wait_cycles = 0 then
-								mem_state     <= C_PRE;
-								nop_nxt_state <= C_LD;
-								wait_cycles   <= std_logic_vector(to_unsigned(PRE_TO_ACT - 1, wait_cycles'length));
+								init_refresh_counter := 0;
+								mem_state            <= C_PRE;
+								nop_nxt_state        <= C_LD;
+								wait_cycles          <= std_logic_vector(to_unsigned(PRE_TO_ACT - 1, wait_cycles'length));
 							end if;
 						else
 							wait_cycles <= "0000";
@@ -169,6 +174,16 @@ begin
 							mem_state <= nop_nxt_state;
 						end if;
 
+					when C_INIT_AUTO_REFRESH1 =>
+						wait_cycles   <= std_logic_vector(to_unsigned(tRC, wait_cycles'length));
+						mem_state     <= C_PRE_NOP;
+						nop_nxt_state <= C_INIT_AUTO_REFRESH2;
+						
+					when C_INIT_AUTO_REFRESH2 =>
+						wait_cycles   <= std_logic_vector(to_unsigned(tRC, wait_cycles'length));
+						mem_state     <= C_PRE_NOP;
+						nop_nxt_state <= IDLE;
+
 					when C_LD =>
 						wait_cycles   <= std_logic_vector(to_unsigned(PRE_TO_ACT, wait_cycles'length));
 						mem_state     <= C_PRE_NOP;
@@ -180,18 +195,26 @@ begin
 						nop_nxt_state <= C_AUTO_REFRESH;
 
 					when C_AUTO_REFRESH =>
-						mem_state     <= IDLE;
+						wait_cycles   <= std_logic_vector(to_unsigned(tRC, wait_cycles'length));
+						mem_state     <= C_PRE_NOP;
 						nop_nxt_state <= IDLE;
 
 					when IDLE =>
-						if burst = '1' and burst_last_value = '0' then
-							mem_state <= C_LD_BURST;
+						if refresh_counter = 10 then
+							refresh_counter := 0;
+							mem_state       <= C_AUTO_REFRESH;
+						elsif burst = '1' and burst_last_value = '0' then
+							refresh_counter := 0;
+							mem_state       <= C_LD_BURST;
 						elsif burst = '0' and burst_last_value = '1' then
-							mem_state <= C_LD;
+							refresh_counter := 0;
+							mem_state       <= C_LD;
 						elsif chipselect = '1' and (read = '1' and read_last_value = '0') then
+							refresh_counter := 0;
 							read_last_value <= '1';
 							mem_state       <= WRITE_ROW;
 						elsif chipselect = '1' and (write = '1' and write_last_value = '0') then
+							refresh_counter  := 0;
 							write_last_value <= '1';
 							mem_state        <= WRITE_ROW;
 						end if;
@@ -205,6 +228,8 @@ begin
 						if burst /= burst_last_value then
 							burst_last_value <= burst;
 						end if;
+
+						refresh_counter := refresh_counter + 1;
 
 					when WRITE_ROW =>
 						wait_cycles   <= std_logic_vector(to_unsigned(RAS_TO_CAS - 2, wait_cycles'length));
@@ -231,9 +256,9 @@ begin
 		end if;
 	end process;
 
-	row_addr  <= address(ROWSTART + ROWSIZE - 1 downto ROWSTART); -- (9 + (12 - 1) downto 9)	       -- assignment of the row address bits from address
-	col_addr  <= address(COLSTART + COLSIZE - 1 downto COLSTART); -- (0 + (9 - 1) downto 	0)	       -- assignment of the column address bits
-	bank_addr <= address(BANKSTART + BANKSIZE - 1 downto BANKSTART); -- (20 + (2 -1) downto 20)    -- assignment of the bank address bits
+	row_addr  <= address(ROWSTART + ROWSIZE - 1 downto ROWSTART); -- (10 + (13 - 1) downto 9) -> (22 downto 10)	       -- assignment of the row address bits from address
+	col_addr  <= address(COLSTART + COLSIZE - 1 downto COLSTART); -- (0 + (9 - 1) downto 	0) -> (9 downto 0)	       -- assignment of the column address bits
+	bank_addr <= address(BANKSTART + BANKSIZE - 1 downto BANKSTART); -- (23 + (2 - 1) downto 23) -> (24 downto 23)    -- assignment of the bank address bits
 
 	do_clk_mem_acc_state_output : process(mem_state, reset, chipselect, write, byteenable, address, chip_en_reg, byteenable_reg, bank_addr, row_addr, col_addr)
 	begin
@@ -318,8 +343,8 @@ begin
 				DRAM_ADDR(6 downto 4)   <= "010";
 				-- Op mode: standard operation
 				DRAM_ADDR(8 downto 7)   <= "00";
-				-- Write burst mode: Programmed Burst Length
-				DRAM_ADDR(9)            <= '0';
+				-- Write burst mode: single location
+				DRAM_ADDR(9)            <= '1';
 				-- reserved
 				DRAM_ADDR(12 downto 10) <= "001";
 
@@ -329,6 +354,24 @@ begin
 				DRAM_RAS_N <= '0';
 				DRAM_CAS_N <= '0';
 				DRAM_WE_N  <= '0';
+				
+			when C_INIT_AUTO_REFRESH1 =>
+
+				-- commands
+				DRAM_BA    <= "00";
+				DRAM_CS_N  <= '0';
+				DRAM_RAS_N <= '0';
+				DRAM_CAS_N <= '0';
+				DRAM_WE_N  <= '1';
+
+			when C_INIT_AUTO_REFRESH2 =>
+
+				-- commands
+				DRAM_BA    <= "00";
+				DRAM_CS_N  <= '0';
+				DRAM_RAS_N <= '0';
+				DRAM_CAS_N <= '0';
+				DRAM_WE_N  <= '1';
 
 			when C_AUTO_REFRESH =>
 
