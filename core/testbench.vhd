@@ -88,6 +88,9 @@ architecture RTL of testbench is
 	signal row      : integer;
 	signal vga_data_read : std_logic;
 	signal buffer_to_sdram_addr : std_logic_vector(31 downto 0);
+	signal sel : std_logic;
+	signal cs : std_logic;
+	signal clk_sdram_ctrl : std_logic;
 
 begin
 
@@ -245,22 +248,25 @@ begin
 			end if;
 		end if;
 	end process;
-
+	
+	sel <= '1';
+	cs <= dcsel(1) and dcsel(0);
+	
 	-- CORE, VGA and SDRAM muxes
-	with dcsel select sdram_addr <=
-		daddress_to_sdram when "11",
+	with sel select sdram_addr <=
+		daddress_to_sdram when '1',
 		buffer_to_sdram_addr when others;
 
-	with dcsel select sdram_d_rd <=
-		d_rd when "11",
+	with sel select sdram_d_rd <=
+		d_rd when '1',
 		vga_data_read when others;
 
-	with dcsel select chipselect_sdram <=
-		'1' when "11",
+	with sel select chipselect_sdram <=
+		cs when '1',
 		vga_data_read when others;
 		
-	with dcsel select burst <=
-		'0' when "11",
+	with sel select burst <=
+		'0' when '1',
 		'1' when others;
 
 	-- SDRAM instatiation
@@ -269,7 +275,7 @@ begin
 			address     => sdram_addr,
 			byteenable  => "11",
 			chipselect  => chipselect_sdram,
-			clk         => clk_sdram,
+			clk         => clk_sdram_ctrl,
 			clken       => '1',
 			reset       => rst,
 			reset_req   => rst,
@@ -329,7 +335,7 @@ begin
 		
 	vga_buffer : entity work.vga_buffer
 		port map(
-			clk           => clk_sdram,
+			clk           => clk_sdram_ctrl,
 			rst           => rst,
 			address_vga   => vga_addr,
 			sdram_data    => sdram_read,
@@ -341,17 +347,27 @@ begin
 		);
 
 
-	clk_sdram_driver : process
+	clk_sdram_ctrl_driver : process
 		constant period : time := 10 ns;
 	begin
+		clk_sdram_ctrl <= '0';
+		wait for period / 2;
+		clk_sdram_ctrl <= '1';
+		wait for period / 2;
+	end process clk_sdram_ctrl_driver;
+
+	clk_sdram_driver : process
+	begin
 		clk_sdram <= '0';
-		wait for period / 2;
-		clk_sdram <= '1';
-		wait for period / 2;
+         wait for 4000 ps;
+         clk_sdram <= '1';
+         wait for 5000 ps;
+         clk_sdram <= '0';
+         wait for 1000 ps;
 	end process clk_sdram_driver;
 
 	clk_vga_driver : process
-		constant period : time := 25 ns;
+		constant period : time := 2500 ns;
 	begin
 		clk_vga <= '0';
 		wait for period / 2;

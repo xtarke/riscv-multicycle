@@ -12,20 +12,19 @@ vsim -t ps work.testbench_sdram
 #Mosta forma de onda
 view wave
 
-#Adiciona ondas específicas
-# -radix: binary, hex, dec
-# -label: nome da forma de onda
-add wave -label clk /clk
-add wave -label clk2 /clk2
-add wave -label byteenable /byteenable
-add wave -label chipselect /chipselect
-add wave -label address /address
-add wave -label reset /reset
-add wave -label reset_req /reset_req
-add wave -label write /write
-add wave -label read /read
-add wave -label writedata /writedata
-add wave -label readdata /readdata
+add wave -height 15 -divider "SDRAM"
+add wave -label clk_sdram		 		/clk_sdram
+add wave -label chipselect_sdram	 	/chipselect_sdram
+add wave -label sdram_addr -radix hex 	/sdram_addr
+add wave -label DRAM_ADDR -radix hex 	/DRAM_ADDR
+add wave -label d_we		 			/d_we
+add wave -label sdram_d_rd		 		/sdram_d_rd
+add wave -label ddata_w -radix hex 		/ddata_w
+add wave -label sdram_read -radix hex 	/sdram_read
+add wave -label DRAM_DQ -radix hex 		/DRAM_DQ
+add wave -label burst		 			/burst
+add wave -label mem_state 				/sdram_controller/mem_state
+add wave -label d_read 				/sdram_controller/d_read
 
 
 add wave -radix unsigned -label DRAM_ADDR /DRAM_ADDR
@@ -36,10 +35,8 @@ add wave -radix unsigned -label DRAM_CAS_N /DRAM_CAS_N
 add wave -radix unsigned -label DRAM_WE_N /DRAM_WE_N    
 add wave -radix unsigned -label DRAM_DQ /DRAM_DQ
 
-add wave -radix unsigned -label mem_state /sdram_controller_0/mem_state
-
 #Simula até um 500ns
-run 500ns
+run 5000ns
 
 wave zoomfull
 write wave wave.ps

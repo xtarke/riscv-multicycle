@@ -62,11 +62,11 @@ add wave -height 15 -divider "Iregister debug"
 # add wave -label imm_j /myRiscv/imm_j
 
 add wave -height 15 -divider "Register file debug"
-# add wave -label registers -radix hex /myRiscv/registers/ram
-# add wave -label w_ena 	/myRiscv/rf_w_ena
-# add wave -label w_data 	/myRiscv/rw_data
-# add wave -label r1_data -radix hex /myRiscv/rs1_data
-# add wave -label r2_data -radix hex /myRiscv/rs2_data
+ add wave -label registers -radix hex /myRiscv/registers/ram
+ add wave -label w_ena 	/myRiscv/rf_w_ena
+ add wave -label w_data 	/myRiscv/rw_data
+ add wave -label r1_data -radix hex /myRiscv/rs1_data
+ add wave -label r2_data -radix hex /myRiscv/rs2_data
 
 # decoder debug
 # add wave -label states /myRiscv/decoder0/state
@@ -104,6 +104,9 @@ add wave -label DRAM_DQ -radix hex 		/DRAM_DQ
 add wave -label burst		 			/burst
 add wave -label mem_state 				/sdram_controller/mem_state
 add wave -label d_read 				/sdram_controller/d_read
+add wave -label DRAM_BA -radix hex 		/DRAM_BA
+add wave -label DRAM_RAS_N -radix hex 		/DRAM_RAS_N
+add wave -radix binary 	/clk_sdram_ctrl
 
 add wave -height 15 -divider "VGA"
 add wave -label clk_vga		 			/clk_vga
@@ -126,6 +129,6 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 
 
-run 300000 ns
+run 950000 ns
 
 wave zoom full

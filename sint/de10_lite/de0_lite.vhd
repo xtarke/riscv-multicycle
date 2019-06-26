@@ -69,7 +69,8 @@ end entity;
 architecture rtl of de0_lite is
 
 	signal clk       : std_logic;
-	signal clk_sdram : std_logic;
+	signal clk_sdram_ctrl       : std_logic;
+	signal clk_sdram_chip : std_logic;
 	signal clk_vga   : std_logic;
 
 	signal rst   : std_logic;
@@ -125,6 +126,7 @@ architecture rtl of de0_lite is
 	signal VGA_RR : std_logic_vector(3 downto 0);
 	signal VGA_GG : std_logic_vector(3 downto 0);
 	signal VGA_BB : std_logic_vector(3 downto 0);
+	signal chipselect_core : std_logic;
 
 begin
 
@@ -133,8 +135,9 @@ begin
 			areset => '0',
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
-			c1     => clk_sdram,
+			c1     => clk_sdram_ctrl,
 			c2     => clk_vga,
+			c3 => clk_sdram_chip,
 			locked => locked_sig
 		);
 
@@ -266,20 +269,20 @@ begin
 	end process;
 
 	-- CORE, VGA and SDRAM muxes
-	with dcsel select sdram_addr <=
-		daddress_to_sdram when "11",
+	with SW(7) select sdram_addr <=
+		daddress_to_sdram when '1',
 		buffer_to_sdram_addr when others;
 
-	with dcsel select sdram_d_rd <=
-		d_rd when "11",
+	with SW(7) select sdram_d_rd <=
+		d_rd when '1',
 		vga_data_read when others;
 
-	with dcsel select chipselect_sdram <=
-		'1' when "11",
+	with SW(7) select chipselect_sdram <=
+		chipselect_core when '1',
 		vga_data_read when others;
 
-	with dcsel select burst <=
-		'0' when "11",
+	with SW(7) select burst <=
+		'0' when '1',
 		'1' when others;
 
 	-- SDRAM instatiation
@@ -288,7 +291,7 @@ begin
 			address     => sdram_addr,
 			byteenable  => "11",
 			chipselect  => chipselect_sdram,
-			clk         => clk_sdram,
+			clk         => clk_sdram_ctrl,
 			clken       => '1',
 			reset       => rst,
 			reset_req   => rst,
@@ -303,7 +306,7 @@ begin
 			DRAM_BA     => DRAM_BA,
 			DRAM_CAS_N  => DRAM_CAS_N,
 			DRAM_CKE    => DRAM_CKE,
-			DRAM_CLK    => DRAM_CLK,
+			DRAM_CLK    => open,
 			DRAM_CS_N   => DRAM_CS_N,
 			DRAM_DQ     => DRAM_DQ,
 			DRAM_DQM    => DRAM_DQM,
@@ -311,11 +314,13 @@ begin
 			DRAM_WE_N   => DRAM_WE_N
 		);
 
+	DRAM_CLK <= clk_sdram_chip;
 	-- SDRAM Signals
 	daddress_to_sdram <= std_logic_vector(to_unsigned(daddress, 32));
 	DRAM_UDQM         <= DRAM_DQM(1);
 	DRAM_LDQM         <= DRAM_DQM(0);
 	--chipselect_sdram  <= dcsel(0) and dcsel(1);
+	chipselect_core  <= dcsel(0) and dcsel(1);
 
 	vga_controller : entity work.vga_controller
 		port map(
@@ -333,7 +338,7 @@ begin
 
 	vga_buffer : entity work.vga_buffer
 		port map(
-			clk           => clk_sdram,
+			clk           => clk_sdram_ctrl,
 			rst           => rst,
 			address_vga   => vga_addr,
 			sdram_data    => sdram_read,
