@@ -16,7 +16,6 @@ architecture waveform of tb_M is
 	-- M
 	component M is
 		port(
-			CLOCK :in std_logic;
 			M_DATA : in M_data_t;		
 			DATAOUT  : out std_logic_vector(31 downto 0)
 		);
@@ -34,7 +33,7 @@ architecture waveform of tb_M is
 
 	--------------------------------------------------------------------
 	-- code
-	signal code_logic_vector: std_logic_vector (3 downto 0);
+	signal code_logic_vector: std_logic_vector (2 downto 0);
 
 	--------------------------------------------------------------------
 	-- M_data
@@ -48,28 +47,9 @@ architecture waveform of tb_M is
 
 begin
 	--===============================================================--
-	-- CLOCK
-	CLOCK_1_50: process -- 50 MHz phase 0
-	begin
-		clock_50_0_logic <= '1';
-		wait for 10 ns;
-		clock_50_0_logic <= '0';
-		wait for 10 ns;
-	end process;
-
-	CLOCK_2_50: process -- 50 MHz phase pi
-	begin
-		clock_50_PI_logic <= '0';
-		wait for 10 ns;
-		clock_50_PI_logic <= '1';
-		wait for 10 ns;
-	end process;
-
-	--===============================================================--
 	-- M
 	M_vhd: M
 		port map(
-			CLOCK => clock_50_0_logic,
 			M_DATA => M_data_record,
 			DATAOUT => M_data_out_logic_vector
 		);
@@ -89,21 +69,21 @@ begin
 	-- code 
 	SET_CODE: process -- 50 MHz phase pi
 	begin
-		code_logic_vector <= "0000";
+		code_logic_vector <= "000";
 		wait for 10 ns;
-		code_logic_vector <= "0001";
+		code_logic_vector <= "001";
 		wait for 10 ns;
-		code_logic_vector <= "0010";
+		code_logic_vector <= "010";
 		wait for 10 ns;
-		code_logic_vector <= "0011";
+		code_logic_vector <= "011";
 		wait for 10 ns;
-		code_logic_vector <= "0100";
+		code_logic_vector <= "100";
 		wait for 10 ns;
-		code_logic_vector <= "0101";
+		code_logic_vector <= "101";
 		wait for 10 ns;
-		code_logic_vector <= "0110";
+		code_logic_vector <= "110";
 		wait for 10 ns;
-		code_logic_vector <= "0111";
+		code_logic_vector <= "111";
 		wait for 10 ns;
 	end process;	
 	
