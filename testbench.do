@@ -21,6 +21,8 @@ vcom ./memory/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
+vcom ./M/M_types.vhd
+vcom ./M/M.vhd
 vcom ./decoder/decoder_types.vhd
 vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
