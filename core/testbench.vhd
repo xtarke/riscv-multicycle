@@ -10,6 +10,7 @@ entity testbench is
 		IMEMORY_WORDS : integer := 1024; --!= 4K (1024 * 4) bytes
 		DMEMORY_WORDS : integer := 1024 --!= 2k (512 * 2) bytes
 	);
+<<<<<<< HEAD
 	port(
 		----------- SEG7 ------------
 		HEX0 : out std_logic_vector(7 downto 0);
@@ -45,7 +46,6 @@ architecture RTL of testbench is
 
 	signal address     : std_logic_vector(31 downto 0);
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
-<<<<<<< HEAD
 	signal d_rd : std_logic;
 		
 	signal input_in	: std_logic_vector(31 downto 0);
@@ -53,7 +53,6 @@ architecture RTL of testbench is
 	
 	signal debugString  : string(1 to 40) := (others => '0');
 	
-=======
 	signal d_rd        : std_logic;
 
 	signal input_in  : std_logic_vector(31 downto 0);
