@@ -215,6 +215,9 @@ begin
 					
 					when TYPE_XOR =>
 						ulaCod <= ALU_XOR;
+					
+					when TYPE_OR =>
+						ulaCod <= ALU_OR;
 										
 					when others =>		
 						report "Not implemented" severity Failure;				
