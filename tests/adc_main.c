@@ -1,19 +1,20 @@
 /*
- * firmware.c
+ * adc_main.c
  *
  *  Created on: Jan 20, 2019
  *      Author: Jeferson Pedroso
- *      Instituto Federal de Santa Catarina
+ *      Modified: Renan Augusto Starke
+ * 		Instituto Federal de Santa Catarina
  * 
  * 
- * Simple LED blink example.
+ * ADC main example.
  * -----------------------------------------
  */
 
 
 #include "utils.h"
 #include "hardware.h"
-#include "hardware_ADC_7SEG.h"
+#include "adc.h"
 
 int main(){	
 	struct adc_read adc_r;
