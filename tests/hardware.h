@@ -39,13 +39,13 @@
 
 #define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
 
-#define INBUS 			(*(_IO32 *) (PERIPH_BASE))		/*!< Generic INPUT BUS - 32-bit register */
-#define OUTBUS			(*(_IO32 *) (PERIPH_BASE + 4))	/*!< Generic OUPUT BUS - 32-bit register */
-#define SEGMENTS		(*(_IO32 *) (PERIPH_BASE + 8))	/*!< Generic INPUT BUS - 32-bit register */
-#define UART_TX			(*(_IO32 *) (PERIPH_BASE + 12))	/*!< Generic INPUT BUS - 32-bit register */
-#define UART_RX			(*(_IO32 *) (PERIPH_BASE + 16))	/*!< Generic INPUT BUS - 32-bit register */
+#define INBUS 			(*(_IO32 *) (PERIPH_BASE))			/*!< Generic INPUT BUS - 32-bit register */
+#define OUTBUS			(*(_IO32 *) (PERIPH_BASE + 4))		/*!< Generic OUPUT BUS - 32-bit register */
+#define SEGMENTS		(*(_IO32 *) (PERIPH_BASE + 8))		/*!< Generic INPUT BUS - 32-bit register */
+#define UART_TX			(*(_IO32 *) (PERIPH_BASE + 12))		/*!< Generic INPUT BUS - 32-bit register */
+#define UART_RX			(*(_IO32 *) (PERIPH_BASE + 16))		/*!< Generic INPUT BUS - 32-bit register */
 #define INDATA_ADC		(*(_IO32 *) (PERIPH_BASE + 20))		/*!< Generic INPUT BUS - 32-bit register */
-#define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 24))	/*!< Generic OUPUT BUS - 32-bit register */
+#define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 24))		/*!< Generic OUPUT BUS - 32-bit register */
 #define SEL_CH_ADC		(*(_IO32 *) (PERIPH_BASE + 28))	
 
 
