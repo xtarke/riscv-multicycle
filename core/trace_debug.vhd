@@ -15,8 +15,7 @@ entity trace_debug is
 	);
 	port(
 		pc   : in integer range 0 to MEMORY_WORDS - 1;
-		data : in std_logic_vector(31 downto 0);
-		inst : out string
+		data : in std_logic_vector(31 downto 0)
 	);
 end entity trace_debug;
 
@@ -64,7 +63,7 @@ architecture RTL of trace_debug is
 				
 begin
 	
-	debug: process(pc, data)
+	debug: process(data)
 		
 		variable opcodes : opcodes_t;	--! Instruction decoding information. See decoder_types.vhd		
 		
@@ -108,7 +107,7 @@ begin
 				case opcodes.funct3 is
 					when TYPE_ADDI =>
 						swrite(my_line, typeIstring(data, "addi", pc, rd, rs1, imm_i));
-						writeline(my_output, my_line);			
+						writeline(my_output, my_line);						
 										
 					when TYPE_SLTI =>
 						swrite(my_line, typeIstring(data, "slti", pc, rd, rs1, imm_i));
@@ -180,6 +179,10 @@ begin
 					
 					when TYPE_XOR =>
 						swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
+						writeline(my_output, my_line);
+						
+					when TYPE_OR =>
+						swrite(my_line, typeRstring(data, "or", pc, rd, rs1, rs2));
 						writeline(my_output, my_line);
 										
 					when others =>		
