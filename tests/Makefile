@@ -1,7 +1,7 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
+RISCV_TOOLS_PREFIX = C:/_toolchain/gnu-mcu-eclipse-riscv-none/bin/riscv-none-embed-
+#riscv32-unknown-elf-
 endif
-QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32i
 CC = $(RISCV_TOOLS_PREFIX)gcc -O1 -march=rv32i
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
@@ -34,12 +34,6 @@ start.o: start.S
 firmware.elf: firmware.o syscalls.o start.o utils.o
 	$(CC) $(LDFLAGS),-Map=firmware.map -o $@ $^ -T sections.ld $(LDLIBS)
 	chmod -x firmware.elf
-
-sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../sint/de10_lite/de0_lite.cdf
-	
-fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../sint/de10_lite/de0_lite.sof"
 
 clean:
 	rm -f *.o *.d *.tmp start.elf

@@ -37,9 +37,12 @@
 
 #define SDRAM_BASE		((uint32_t)0x6000000)          /*!< Peripheral base address */
 
-#define INBUS 			(*(_IO32 *) (PERIPH_BASE))		/*!< Generic INPUT BUS - 32-bit register */
-#define OUTBUS			(*(_IO32 *) (PERIPH_BASE + 4))	/*!< Generic OUPUT BUS - 32-bit register */
-#define SEGMENTS		(*(_IO32 *) (PERIPH_BASE + 8))	/*!< Generic INPUT BUS - 32-bit register */
+#define INDATA_ADC		(*(_IO32 *) (PERIPH_BASE))		/*!< Generic INPUT BUS - 32-bit register */
+#define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 4))	/*!< Generic OUPUT BUS - 32-bit register */
+#define SEL_CH_ADC		(*(_IO32 *) (PERIPH_BASE + 8))	
+#define OUT_SEGS		(*(_IO32 *) (PERIPH_BASE + 12))	
+
+
 
 #define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
 
