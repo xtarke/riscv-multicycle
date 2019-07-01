@@ -10,22 +10,6 @@ entity testbench is
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
 		DMEMORY_WORDS : integer := 1024  	--!= 2k (512 * 2) bytes
 	);
-	port (
-		----------- SEG7 ------------
-		HEX0: out std_logic_vector(7 downto 0);
-		HEX1: out std_logic_vector(7 downto 0);
-		HEX2: out std_logic_vector(7 downto 0);
-		HEX3: out std_logic_vector(7 downto 0);
-		HEX4: out std_logic_vector(7 downto 0);
-		HEX5: out std_logic_vector(7 downto 0);
-		
-		----------- SW ------------
-		SW: in std_logic_vector(9 downto 0);
-		
-		
-		LEDR: out std_logic_vector(9 downto 0)
-	);	
-	
 	
 end entity testbench;
 
@@ -48,11 +32,11 @@ architecture RTL of testbench is
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd : std_logic;
 		
-	signal input_in	: std_logic_vector(31 downto 0);
+	signal input_out	: std_logic_vector(31 downto 0);
 	signal cpu_state    : cpu_state_t;
-	
-	signal debugString  : string(64 downto 1);
-	
+	--=======================================
+	signal LEDR : std_logic_vector (8 downto 0); 
+	--=======================================
 begin
 	
 	clock_driver : process
@@ -135,9 +119,14 @@ begin
 	with dcsel select 
 		ddata_r <= idata when "00",
 		           ddata_r_mem when "01",
-		           input_in when "10",
+		           input_out when "10",
 		           (others => '0') when others;
-
+				   
+	--================================
+	input_out <= (others => '1');
+	
+	--================================
+	
 	-- Softcore instatiation
 	myRiscv: entity work.core
 		generic map(
@@ -160,53 +149,6 @@ begin
 		);
 	
 	
-	-- Output register (Dummy LED blinky)
-	process(clk, rst)
-	begin		
-		if rst = '1' then
-			LEDR(3 downto 0) <= (others => '0');			
-			HEX0 <= (others => '1');
-			HEX1 <= (others => '1');
-			HEX2 <= (others => '1');
-			HEX3 <= (others => '1');
-			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');			
-		else
-			if rising_edge(clk) then		
-				if (d_we = '1') and (dcsel = "10")then					
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use address space?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(4 downto 0) <= ddata_w(4 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-					 	HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
-					end if;				
-				end if;
-			end if;
-		end if;		
-	end process;
-	
-	-- Input register
-	process(clk, rst)
-	begin		
-		if rst = '1' then
-			input_in <= (others => '0');
-		else
-			if rising_edge(clk) then		
-				if (d_we = '1') and (dcsel = "10") then
-					input_in(4 downto 0) <= SW(4 downto 0);				
-				end if;
-			end if;
-		end if;		
-	end process;
-	
-	
 	-- FileOutput DEBUG	
 	debug: entity work.trace_debug
 		generic map(
@@ -214,8 +156,26 @@ begin
 		)
 		port map(
 			pc   => iaddress,
-			data => idata,
-			inst => debugString
-		);	
+			data => idata
+		);
+		
+		
+	
+	--====================================================================
+			-- Output register (Dummy LED blinky)
+	process(clk, rst)
+	begin		
+		if rst = '1' then
+			LEDR(8 downto 0) <= (others => '0');
+		else
+			if rising_edge(clk) then		
+				if (d_we = '1') and (dcsel = "10") then
+					LEDR(8 downto 0) <= ddata_w(8 downto 0);
+						
+				end if;
+			end if;
+		end if;		
+	end process;
+	--====================================================================
 
 end architecture RTL;
