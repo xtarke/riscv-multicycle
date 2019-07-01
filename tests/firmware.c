@@ -16,18 +16,30 @@
 
 
 int main(){
-	int x = 0;
-   
+	int x = 3;
+	
+	uint32_t data = 0xFFFFFFC0;
+	
 	while (1){
 		/* To blink */
 		OUTBUS = 0x10;
-		SEGMENTS = 0xFFFFFFC0;
+		SEGMENTS = data;
 		delay_(10000);
-        
+        	
+	
 		OUTBUS = 0;
-        SEGMENTS = 0xFFFFFFFF;
+		SEGMENTS = 0xFFFFFFFF;
 		delay_(10000); 
         
+		data = data << 8;
+		x--;
+
+		if (!x){
+			data = 0xFFFFFFC0;
+			x = 3;
+		}
+
+
 		/* To test Data Bus 
 		x = INBUS;        
 		OUTBUS = x; */

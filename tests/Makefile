@@ -6,7 +6,7 @@ CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32i
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
 CXXFLAGS = -MD -Os -Wall -std=c++11
-CCFLAGS = -MD -Os -Wall
+CCFLAGS = -MD -Os -O1 -Wall
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl,--gc-sections
 LDLIBS =

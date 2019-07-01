@@ -163,9 +163,11 @@ begin
 					when TYPE_SLTIU =>
 						report "Not implemented" severity Failure;
 					when TYPE_XORI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_XOR;
 					when TYPE_ORI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_OR;
 					
 					when TYPE_ANDI =>
 						ulaMuxData <= "01";	
@@ -227,8 +229,7 @@ begin
 				case opcodes.funct3 is
 					when TYPE_SB =>
 						dmemory.write <= '1';
-						dmemory.word_size <= "01";	
-						-- report "Not implemented" severity Failure;
+						dmemory.word_size <= "01";						
 					when TYPE_SH =>
 						report "Not implemented" severity Failure;
 					when TYPE_SW =>

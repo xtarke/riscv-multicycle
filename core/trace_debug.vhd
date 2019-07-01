@@ -16,7 +16,7 @@ entity trace_debug is
 	port(
 		pc   : in integer range 0 to MEMORY_WORDS - 1;
 		data : in std_logic_vector(31 downto 0);
-		inst : out string
+		inst : out string(1 to 40)
 	);
 end entity trace_debug;
 
@@ -29,7 +29,7 @@ architecture RTL of trace_debug is
 	
 	function typeUstring (data: std_logic_vector; opcode: string; pc, rd, immediate: integer) return string is
 	begin		
-		return str(pc*4 ,16) & ": " & hstr(data)  & " : " & opcode & " x" & str(rd) & ", " & str(immediate);		
+		return str(pc*4 ,16) & ": " & hstr(data)  & " : " & opcode & " x" & str(rd) & ",  0x" & str(immediate, 16);		
 	end function;
 	
 	function typeRstring (data: std_logic_vector; opcode: string; pc, rd, rs1, rs2: integer) return string is
@@ -39,7 +39,7 @@ architecture RTL of trace_debug is
 	
 	function typeSstring (data: std_logic_vector; opcode: string; pc, rs1, rs2, immediate: integer) return string is
 	begin		
-		return str(pc*4,16) & ": " & hstr(data)  & " : " & opcode & " x" & str(rs1) & ", " & str(immediate) & "(x" & str(rs2) & ")";		
+		return str(pc*4,16) & ": " & hstr(data)  & " : " & opcode & " x" & str(rs2) & ", " & str(immediate) & "(x" & str(rs1) & ")";		
 	end function;
 	
 	function typeJstring (data: std_logic_vector; opcode: string; pc, rd, immediate: integer) return string is
@@ -61,10 +61,41 @@ architecture RTL of trace_debug is
 	begin		
 		return str(pc*4 ,16) &  ": " & hstr(data)  & " : " & opcode & " x" & str(rs1) & ", x" & str(rs2) & ", " & str(immediate);		
 	end function;
+	
+	function str_pad(s : string; pad_char : character; len : integer) return string is
+		variable ret : string(1 to len);
+		variable j : integer := 0;
+		variable rm : integer;
+	begin
+	  assert len >= s'length report "Specified length must be longer than the specified string" severity failure;
+	  
+	  -- Find last ':' character
+	  for i in 1 to s'high loop
+	  	if s(i) = ':' then
+	  		rm := i;
+	  	end if;	  	
+	  end loop;
+	  
+	  -- remove extra espaces 
+	  rm := rm + 2;	  
+	  j := rm; 
+	 
+	  for i in 1 to s'high-rm + 1 loop
+	    ret(i) := s(j);
+	    j := j + 1;
+	  end loop;
+	 
+	  for i in s'high-rm + 2 to len loop
+	    ret(i) := pad_char;
+	  end loop;
+	 
+	  return ret;
+	end function str_pad;
+	
 				
 begin
 	
-	debug: process(pc, data)
+	debug: process(data)
 		
 		variable opcodes : opcodes_t;	--! Instruction decoding information. See decoder_types.vhd		
 		
@@ -100,6 +131,7 @@ begin
 		imm_u := to_integer(signed(data(31 downto 12) & "000000000000"));
 		imm_j := to_integer(signed(data(31) &  data(19 downto 12) & data(20) & data(30 downto 21) & '0'));
 
+		inst <= (others => ' ');
 	
 		case opcodes.opcode is				
 			
@@ -108,41 +140,52 @@ begin
 				case opcodes.funct3 is
 					when TYPE_ADDI =>
 						swrite(my_line, typeIstring(data, "addi", pc, rd, rs1, imm_i));
-						writeline(my_output, my_line);			
+						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "addi", pc, rd, rs1, imm_i), ' ', 40);
 										
 					when TYPE_SLTI =>
 						swrite(my_line, typeIstring(data, "slti", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "slti", pc, rd, rs1, imm_i), ' ', 40);
 	
 					when TYPE_SLTIU =>
 						swrite(my_line, typeIstring(data, "sltiu", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "sltiu", pc, rd, rs1, imm_i), ' ', 40);
 
 					when TYPE_XORI =>
 						swrite(my_line, typeIstring(data, "xoir", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "xoir", pc, rd, rs1, imm_i), ' ', 40);
 
 					when TYPE_ORI =>	
 						swrite(my_line, typeIstring(data, "oir", pc, rd, rs1, imm_i));
-						writeline(my_output, my_line);	
+						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "oir", pc, rd, rs1, imm_i), ' ', 40);
 					
 					when TYPE_ANDI =>
 						swrite(my_line, typeIstring(data, "andi", pc, rd, rs1, imm_i));
-						writeline(my_output, my_line);	
+						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "andi", pc, rd, rs1, imm_i), ' ', 40);
 					
 					when TYPE_SLLI =>
 						swrite(my_line, typeIstring(data, "slli", pc, rd, rs1, imm_i));
-						writeline(my_output, my_line);	
+						writeline(my_output, my_line);
+						inst <= str_pad(typeIstring(data, "slli", pc, rd, rs1, imm_i), ' ', 40);
 						
 					when TYPE_SR =>
 						case opcodes.funct7 is
-							when TYPE_SRLI =>
-								swrite(my_line, typeIstring(data, "srli", pc, rd, rs1, imm_i));
-								writeline(my_output, my_line);	
+						when TYPE_SRLI =>
+								-- Shift ammount is rs2
+								swrite(my_line, typeIstring(data, "srli", pc, rd, rs1, rs2));
+								writeline(my_output, my_line);
+								inst <= str_pad(typeIstring(data, "srli", pc, rd, rs1, rs2), ' ', 40);
 											
 							when TYPE_SRAI =>
-								swrite(my_line, typeIstring(data, "srai", pc, rd, rs1, imm_i));
-								writeline(my_output, my_line);	
+								-- Shift ammount is rs2
+								swrite(my_line, typeIstring(data, "srai", pc, rd, rs1, rs2));
+								writeline(my_output, my_line);
+								inst <= str_pad(typeIstring(data, "srai", pc, rd, rs1, rs2), ' ', 40);
 														
 							when others =>
 						end case;
@@ -154,33 +197,40 @@ begin
 			
 			when TYPE_AUIPC =>
 				swrite(my_line, typeUstring(data, "auipc", pc, rd, imm_u));
-				writeline(my_output, my_line);	 
+				writeline(my_output, my_line);
+				inst <= str_pad(typeUstring(data, "auipc", pc, rd, imm_u), ' ', 40);
+				 
 			when TYPE_LUI =>
-				swrite(my_line, typeUstring(data, "lui", pc, rd, imm_i));
-				writeline(my_output, my_line);	 				
+				swrite(my_line, typeUstring(data, "lui", pc, rd, imm_u));
+				writeline(my_output, my_line);
+				inst <= str_pad(typeUstring(data, "lui", pc, rd, imm_u), ' ', 40);
+				 				
 			
 			when TYPE_R => 
 				case opcodes.funct3 is
 					when TYPE_ADD_SUB =>					
 						if opcodes.funct7 = TYPE_ADD then
 							swrite(my_line, typeRstring(data, "add", pc, rd, rs1, rs2));
-							writeline(my_output, my_line);	 
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "add", pc, rd, rs1, rs2), ' ', 40);							 
 						else
 							swrite(my_line, typeRstring(data, "sub", pc, rd, rs1, rs2));
-							writeline(my_output, my_line);	 
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "sub", pc, rd, rs1, rs2), ' ', 40);	 
 						end if;
 						
 					when TYPE_AND =>
 						swrite(my_line, typeRstring(data, "and", pc, rd, rs1, rs2));
 						writeline(my_output, my_line);
-										
+						inst <= str_pad(typeRstring(data, "and", pc, rd, rs1, rs2), ' ', 40);										
 					when TYPE_SLL =>
 						swrite(my_line, typeRstring(data, "sll", pc, rd, rs1, rs2));
 						writeline(my_output, my_line);
-					
+						inst <= str_pad(typeRstring(data, "sll", pc, rd, rs1, rs2), ' ', 40);					
 					when TYPE_XOR =>
 						swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeRstring(data, "xor", pc, rd, rs1, rs2), ' ', 40);
 										
 					when others =>		
 						report "Not implemented" severity Failure;				
@@ -192,14 +242,15 @@ begin
 					when TYPE_SB =>
 						swrite(my_line, typeSstring(data, "sb", pc, rs1, rs2, imm_s));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "sb", pc, rs1, rs2, imm_s), ' ', 40);						
 					when TYPE_SH =>
 						swrite(my_line, typeSstring(data, "sh", pc, rs1, rs2, imm_s));
 						writeline(my_output, my_line);
-						
+						inst <= str_pad(typeSstring(data, "sh", pc, rs1, rs2, imm_s), ' ', 40);						
 					when TYPE_SW =>
 						swrite(my_line, typeSstring(data, "sw", pc, rs1, rs2, imm_s));
 						writeline(my_output, my_line);
-						
+						inst <= str_pad(typeSstring(data, "sw", pc, rs1, rs2, imm_s), ' ', 40);						
 					when others =>	
 				end case;	
 				
@@ -208,12 +259,15 @@ begin
 					when TYPE_LB =>
 						swrite(my_line, typeSstring(data, "lb", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "lb", pc, rd, rs1, imm_i), ' ', 40);
 					when TYPE_LH =>
 						swrite(my_line, typeSstring(data, "lh", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "lh", pc, rd, rs1, imm_i), ' ', 40);
 					when TYPE_LW =>
 						swrite(my_line, typeSstring(data, "lw", pc, rd, rs1, imm_i));
-						writeline(my_output, my_line);	
+						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "lw", pc, rd, rs1, imm_i), ' ', 40);
 					when others =>	
 				end case;
 				
@@ -222,11 +276,13 @@ begin
 				writeline(my_output, my_line);
 				swrite(my_line, "");
 				writeline(my_output, my_line);
+				inst <= str_pad(typeJstring(data, "jal", pc, rd, imm_j), ' ', 40);
 			when TYPE_JALR => 
 				swrite(my_line, typeJRstring(data, "jalr", pc, rd,rs1 , imm_i));
 				writeline(my_output, my_line);
 				swrite(my_line, "");
 				writeline(my_output, my_line);
+				inst <= str_pad(typeJRstring(data, "jalr", pc, rd,rs1 , imm_i), ' ', 40);
 			when TYPE_BRANCH => 
 				
 				case opcodes.funct3 is
@@ -235,31 +291,37 @@ begin
 						writeline(my_output, my_line);
 						swrite(my_line, "");
 						writeline(my_output, my_line);
+						inst <= str_pad(typeBRstring(data, "beq", pc, rs1, rs2, imm_b), ' ', 40);
 					when TYPE_BNE => 
 						swrite(my_line, typeBRstring(data, "bne", pc, rs1, rs2, imm_b));
 						writeline(my_output, my_line);
 						swrite(my_line, "");
 						writeline(my_output, my_line);
+						inst <= str_pad(typeBRstring(data, "bne", pc, rs1, rs2, imm_b), ' ', 40);
 					when TYPE_BLT => 
 						swrite(my_line, typeBRstring(data, "blt", pc, rs1, rs2, imm_b));
 						writeline(my_output, my_line);
 						swrite(my_line, "");
 						writeline(my_output, my_line);
+						inst <= str_pad(typeBRstring(data, "blt", pc, rs1, rs2, imm_b), ' ', 40);
 					when TYPE_BGE => 
 						swrite(my_line, typeBRstring(data, "bge", pc, rs1, rs2, imm_b));
 						writeline(my_output, my_line);
 						swrite(my_line, "");
 						writeline(my_output, my_line);
+						inst <= str_pad(typeBRstring(data, "bge", pc, rs1, rs2, imm_b), ' ', 40);
 					when TYPE_BLTU =>						
 						swrite(my_line, typeBRstring(data, "bltu", pc, rs1, rs2, imm_b));
 						writeline(my_output, my_line);
 						swrite(my_line, "");
-						writeline(my_output, my_line);					
+						writeline(my_output, my_line);
+						inst <= str_pad(typeBRstring(data, "bltu", pc, rs1, rs2, imm_b), ' ', 40);					
 					when TYPE_BGEU =>						
 						swrite(my_line, typeBRstring(data, "bgeu", pc, rs1, rs2, imm_b));
 						writeline(my_output, my_line);
 						swrite(my_line, "");
-						writeline(my_output, my_line);					
+						writeline(my_output, my_line);
+						inst <= str_pad(typeBRstring(data, "bgeu", pc, rs1, rs2, imm_b), ' ', 40);		
 					when others =>
 				end case;		
 				
