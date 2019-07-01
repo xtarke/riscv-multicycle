@@ -107,7 +107,141 @@ architecture rtl of de0_lite is
 	-- CPU state signals
 	signal state : cpu_state_t;
 	
+	
+	--=====================================================
+	--DECLARACAO COMPONENTE ADC
+	-------------------------------------------------------	
+	-- qsys MAX10 ADC component
+	component adc_qsys is
+		port(
+			clk_clk                              : in  std_logic                    := 'X'; -- clk
+			clock_bridge_sys_out_clk_clk         : out std_logic; -- clk
+			modular_adc_0_command_valid          : in  std_logic                    := 'X'; -- valid
+			modular_adc_0_command_channel        : in  std_logic_vector(4 downto 0) := (others => 'X'); -- channel
+			modular_adc_0_command_startofpacket  : in  std_logic                    := 'X'; -- startofpacket
+			modular_adc_0_command_endofpacket    : in  std_logic                    := 'X'; -- endofpacket
+			modular_adc_0_command_ready          : out std_logic; -- ready
+			modular_adc_0_response_valid         : out std_logic; -- valid
+			modular_adc_0_response_channel       : out std_logic_vector(4 downto 0); -- channel
+			modular_adc_0_response_data          : out std_logic_vector(11 downto 0); -- data
+			modular_adc_0_response_startofpacket : out std_logic; -- startofpacket
+			modular_adc_0_response_endofpacket   : out std_logic; -- endofpacket
+			reset_reset_n                        : in  std_logic                    := 'X' -- reset_n
+		);
+	end component adc_qsys;
+
+	--=====================================================
+	--DECLARACAO DISPLAY COMPONENTE
+	-------------------------------------------------------
+	
+	component display_dec is
+		port(
+			hex  : in  std_logic_vector(3 downto 0);
+			dot  : in  std_logic;
+			disp : out std_logic_vector(7 downto 0)
+		);
+	end component display_dec;
+
+	type displays_type is array (0 to 5) of std_logic_vector(3 downto 0);
+	type displays_out_type is array (0 to 5) of std_logic_vector(7 downto 0);
+
+	signal displays     : displays_type;
+	signal displays_out : displays_out_type;
+	
+	--=======================================================
+	--SINAIS PARA adc_max
+	--=======================================================
+	
+	signal adc_out_clk            : std_logic;
+	signal command_valid          : std_logic;
+	signal command_channel        : std_logic_vector(4 downto 0);
+	signal command_startofpacket  : std_logic;
+	signal command_endofpacket    : std_logic;
+	signal command_ready          : std_logic;
+	signal response_valid         : std_logic;
+	signal response_channel       : std_logic_vector(4 downto 0);
+	signal response_data          : std_logic_vector(11 downto 0);
+	signal response_startofpacket : std_logic;
+	signal response_endofpacket   : std_logic;
+
+	signal adc_sample_data : std_logic_vector(11 downto 0);
+	signal cur_adc_ch      : std_logic_vector(4 downto 0);
+	signal reset     : std_logic;
+	signal reset_n   : std_logic;
+	
+	
 begin
+	
+	--=======================================================
+	--GENERATE DISPLAYS
+	--=======================================================
+	
+		hex_gen : for i in 0 to 5 generate
+		hex_dec : display_dec
+			port map(
+				hex  => displays(i),
+				dot  => '0',
+				disp => displays_out(i)
+			);
+	end generate;
+	
+	HEX0 <= displays_out(0);
+	HEX1 <= displays_out(1);
+	HEX2 <= displays_out(2);
+	HEX3 <= displays_out(3);
+	HEX4 <= displays_out(4);
+	HEX5 <= displays_out(5);
+	
+	--=====================================================
+	--PORTMAP ADC
+	-------------------------------------------------------	
+	u0 : component adc_qsys
+		port map(
+			clk_clk                              => MAX10_CLK1_50,
+			clock_bridge_sys_out_clk_clk         => adc_out_clk,
+			modular_adc_0_command_valid          => command_valid,
+			modular_adc_0_command_channel        => command_channel,
+			modular_adc_0_command_startofpacket  => command_startofpacket,
+			modular_adc_0_command_endofpacket    => command_endofpacket,
+			modular_adc_0_command_ready          => command_ready,
+			modular_adc_0_response_valid         => response_valid,
+			modular_adc_0_response_channel       => response_channel,
+			modular_adc_0_response_data          => response_data,
+			modular_adc_0_response_startofpacket => response_startofpacket,
+			modular_adc_0_response_endofpacket   => response_endofpacket,
+			reset_reset_n                        => reset_n --reset_n
+		);	
+		
+	--=====================================================
+	command_startofpacket <= '1';
+	command_endofpacket   <= '1';
+	command_valid         <= '1';
+
+	reset           <= SW(8);			--sw(9) e reset do ADC
+	reset_n         <= not reset;
+	LEDR(8)         <= reset;
+
+	--=====================================================
+	--process para ler adc
+	--=====================================================		           
+		           
+	process(adc_out_clk, reset) --adc_out_clk
+	begin
+		if reset = '1' then
+			adc_sample_data <= (others => '0');
+			cur_adc_ch      <= (others => '0');
+		else
+			if (rising_edge(adc_out_clk) and response_valid = '1') then --adc_out_clk
+				adc_sample_data <= response_data;
+				cur_adc_ch      <= response_channel;
+			end if;
+		end if;
+	end process;
+	
+	--=====================================================
+	
+	
+	
 	
 	pll_inst: entity work.pll
 		port map(
@@ -199,27 +333,29 @@ begin
 	begin		
 		if rst = '1' then
 			LEDR(3 downto 0) <= (others => '0');			
-			HEX0 <= (others => '1');
-			HEX1 <= (others => '1');
-			HEX2 <= (others => '1');
-			HEX3 <= (others => '1');
-			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');			
+			
 		else
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = "10")then					
 					-- ToDo: Simplify compartors
 					-- ToDo: Maybe use byte addressing?  
 					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(4 downto 0) <= ddata_w(4 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-					 	HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
+					
+					if to_unsigned(daddress, 32)(8 downto 0) = x"02" then --SEL_CH_ADC										
+						command_channel <= ddata_w(4 downto 0);
+						
+--					elsif to_unsigned(daddress, 32)(8 downto 0) = x"01" then --CH_ADC_FEED
+						
+						
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"03" then --OUT_SEGS
+					 	displays(0) <= ddata_w(3 downto 0);
+						displays(1) <= ddata_w(7 downto 4);
+						displays(2) <= ddata_w(11 downto 8);
+						displays(3) <= ddata_w(15 downto 12);
+						displays(4) <= ddata_w(19 downto 16);
+						displays(5) <= ddata_w(23 downto 20);
+						
+						
 					end if;				
 				end if;
 			end if;
@@ -235,7 +371,10 @@ begin
 		else
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = "10") then
-					input_in(4 downto 0) <= SW(4 downto 0);				
+--					input_in(8 downto 0) <= SW(8 downto 0);
+					input_in(11 downto 0) <= adc_sample_data;
+					input_in(15 downto 12) <= cur_adc_ch(3 downto 0);
+														
 				end if;
 			end if;
 		end if;		
