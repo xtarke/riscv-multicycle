@@ -38,8 +38,9 @@ view wave
 add wave -radix binary /clk
 add wave -radix binary /rst
 add wave -height 15 -divider "Instruction Memory"
-add wave -radix hex /address
-add wave -radix hex idata
+add wave -label iAddr -radix hex /address
+add wave -label iWord -radix hex idata
+add wave -label decoded -radix ASCII /debugString
 # add wave /debugString
 # add wave -radix hex /imem/RAM
 # add wave -radix hex /q
@@ -69,7 +70,7 @@ add wave -label r1_data -radix hex /myRiscv/rs1_data
 add wave -label r2_data -radix hex /myRiscv/rs2_data
 
 # decoder debug
-# add wave -label states /myRiscv/decoder0/state
+add wave -label states /myRiscv/decoder0/state
 
 add wave -height 15 -divider "Alu debug"
 add wave -label aluData /myRiscv/alu_data
@@ -98,4 +99,5 @@ add wave -label LEDR -radix hex /LEDR
 
 run 100100 ns
 
-wave zoom full
+# wave zoom full
+

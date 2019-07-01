@@ -51,7 +51,7 @@ architecture RTL of testbench is
 	signal input_in	: std_logic_vector(31 downto 0);
 	signal cpu_state    : cpu_state_t;
 	
-	signal debugString  : string(64 downto 1);
+	signal debugString  : string(1 to 40) := (others => '0');
 	
 begin
 	

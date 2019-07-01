@@ -167,19 +167,25 @@ begin
 				
 			when ST_TYPE_I =>
 				case opcodes.funct3 is
+
 					when TYPE_ADDI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_ADD;
 										
 					when TYPE_SLTI =>
 						report "Not implemented" severity Failure;
+
 					when TYPE_SLTIU =>
 						report "Not implemented" severity Failure;
+
 					when TYPE_XORI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_XOR;
+
 					when TYPE_ORI =>
-						report "Not implemented" severity Failure;
-					
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_OR;
+			
 					when TYPE_ANDI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_AND;
@@ -187,6 +193,7 @@ begin
 					when TYPE_SLLI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_SLL;
+
 					when TYPE_SR =>
 						case opcodes.funct7 is
 							when TYPE_SRLI =>
@@ -228,7 +235,10 @@ begin
 					when others =>		
 						report "Not implemented" severity Failure;				
 				end case;
+
 				writeBackMux <= "101";
+				jumps.inc <= '1';
+				reg_write <= '1';				
 
 			when EXE_ALU =>
 				case opcodes.funct3 is
@@ -247,6 +257,20 @@ begin
 					
 					when TYPE_XOR =>
 						ulaCod <= ALU_XOR;
+
+					when TYPE_OR =>
+						ulaCod <= ALU_OR;
+					
+					-- constant TYPE_SR: Uses same logic of TYPE_I
+					when TYPE_SR =>
+						case opcodes.funct7 is
+							when TYPE_SRLI =>
+								ulaCod <= ALU_SRL;								
+							when TYPE_SRAI =>
+								ulaCod <= ALU_SRA;								
+							when others =>
+						end case;
+
 										
 					when others =>		
 						report "Not implemented" severity Failure;				
