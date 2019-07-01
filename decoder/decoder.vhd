@@ -163,9 +163,11 @@ begin
 					when TYPE_SLTIU =>
 						report "Not implemented" severity Failure;
 					when TYPE_XORI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_XOR;
 					when TYPE_ORI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_OR;
 					
 					when TYPE_ANDI =>
 						ulaMuxData <= "01";	

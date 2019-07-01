@@ -1,40 +1,75 @@
 Archive member included to satisfy reference by file (symbol)
 
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o (atexit)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o (atexit)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-errno.o)
                               syscalls.o (__errno)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o (exit)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o (__libc_fini_array)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o) (_global_impure_ptr)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o (__libc_init_array)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o (exit)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-fini.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o (__libc_fini_array)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o) (_global_impure_ptr)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-init.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o (__libc_init_array)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memcpy.o)
                               syscalls.o (memcpy)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o (memset)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o) (__register_exitproc)
-/home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
-                              /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o) (__call_exitprocs)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memset.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o (memset)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o) (__register_exitproc)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o) (__call_exitprocs)
+/home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+                              /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o) (__retarget_lock_acquire_recursive)
+
+Allocating common symbols
+Common symbol       size              file
+
+__lock___atexit_recursive_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___arc4random_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___env_recursive_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___sinit_recursive_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___malloc_recursive_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___at_quick_exit_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___dd_hash_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___tz_mutex   0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+__lock___sfp_recursive_mutex
+                    0x1               /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
 
 Discarded input sections
 
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
- .text          0x0000000000000000      0x104 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .bss           0x0000000000000000       0x1c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .eh_frame      0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .eh_frame      0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
  .tm_clone_table
-                0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .sdata         0x0000000000000000        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .fini_array    0x0000000000000000        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .init_array    0x0000000000000000        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .comment       0x0000000000000000       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
+                0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .text.deregister_tm_clones
+                0x0000000000000000       0x28 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .text.register_tm_clones
+                0x0000000000000000       0x3c /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .sdata.__dso_handle
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .text.__do_global_dtors_aux
+                0x0000000000000000       0x54 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .fini_array    0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .text.frame_dummy
+                0x0000000000000000       0x44 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .init_array    0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .sbss.completed.3272
+                0x0000000000000000        0x1 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
+ .bss.object.3277
+                0x0000000000000000       0x18 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
  .data          0x0000000000000000        0x0 firmware.o
  .bss           0x0000000000000000        0x0 firmware.o
  .data          0x0000000000000000        0x0 syscalls.o
@@ -42,33 +77,66 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 start.o
  .data          0x0000000000000000        0x0 utils.o
  .bss           0x0000000000000000        0x0 utils.o
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
- .text          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
- .text          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
- .data          0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
- .bss           0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
- .eh_frame      0x0000000000000000        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
+ .data          0x0000000000000000        0x0 uart.o
+ .bss           0x0000000000000000        0x0 uart.o
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-errno.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-errno.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-errno.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-fini.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-fini.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-fini.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-init.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-init.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-init.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memcpy.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memcpy.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memcpy.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memset.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memset.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+ .text.startup.register_fini
+                0x0000000000000000       0x20 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+ .init_array.00000
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_init
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_init_recursive
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_close
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_close_recursive
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_acquire
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_try_acquire
+                0x0000000000000000        0x8 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_try_acquire_recursive
+                0x0000000000000000        0x8 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text.__retarget_lock_release
+                0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+ .text          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
+ .data          0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
+ .bss           0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
+ .eh_frame      0x0000000000000000        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
  .tm_clone_table
-                0x0000000000000000        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
- .comment       0x0000000000000000       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
+                0x0000000000000000        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
 
 Memory Configuration
 
@@ -79,21 +147,23 @@ ram              0x0000000000020000 0x0000000000000800 xrw
 
 Linker script and memory map
 
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtbegin.o
 LOAD firmware.o
 LOAD syscalls.o
 LOAD start.o
 LOAD utils.o
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a
+LOAD uart.o
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/libgcc.a
 START GROUP
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libgloss.a
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/libgcc.a
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libc.a
 END GROUP
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a
-LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/libgcc.a
+LOAD /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32i/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x864
+.rom            0x0000000000000000      0x4f0
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -102,109 +172,174 @@ LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crt
  *fill*         0x000000000000002c       0xd4 
                 0x0000000000000100                . = ALIGN (0x4)
  *(.text)
- .text          0x0000000000000100       0x44 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
+ .text          0x0000000000000100       0x44 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0x6c firmware.o
+ .text          0x0000000000000144       0x50 firmware.o
                 0x0000000000000144                main
- .text          0x00000000000001b0      0x1e8 syscalls.o
-                0x00000000000001b0                _getpid
-                0x00000000000001b0                _utime
-                0x00000000000001b0                _sysconf
-                0x00000000000001b0                _ftime
-                0x00000000000001b0                _isatty
-                0x00000000000001b0                _open
-                0x00000000000001b0                _times
-                0x00000000000001b0                _stat
-                0x00000000000001b0                _chdir
-                0x00000000000001b0                _wait
-                0x00000000000001b0                _lseek
-                0x00000000000001b0                _fstatat
-                0x00000000000001b0                _link
-                0x00000000000001b0                _chown
-                0x00000000000001b0                _access
-                0x00000000000001b0                _openat
-                0x00000000000001b0                _execve
-                0x00000000000001b0                _chmod
-                0x00000000000001b0                _lstat
-                0x00000000000001b0                _unlink
-                0x00000000000001b0                _fork
-                0x00000000000001b0                _getcwd
-                0x00000000000001b0                _kill
-                0x00000000000001b0                _gettimeofday
-                0x00000000000001b0                _faccessat
-                0x00000000000001b4                unimplemented_syscall
-                0x00000000000001f8                _read
-                0x0000000000000224                _write
-                0x0000000000000288                _close
-                0x00000000000002ac                _fstat
-                0x00000000000002ec                _sbrk
-                0x0000000000000338                _exit
-                0x000000000000034c                init_data_section
- .text          0x0000000000000398       0x34 utils.o
-                0x0000000000000398                delay_
- .text          0x00000000000003cc       0x14 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
-                0x00000000000003cc                atexit
- .text          0x00000000000003e0        0x8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
-                0x00000000000003e0                __errno
- .text          0x00000000000003e8       0x34 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
-                0x00000000000003e8                exit
- .text          0x000000000000041c       0x5c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
-                0x000000000000041c                __libc_fini_array
- .text          0x0000000000000478       0xa8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
-                0x0000000000000478                __libc_init_array
- .text          0x0000000000000520       0xd8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
-                0x0000000000000520                memcpy
- .text          0x00000000000005f8       0xdc /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
-                0x00000000000005f8                memset
- .text          0x00000000000006d4       0x80 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
-                0x00000000000006d4                __register_exitproc
- .text          0x0000000000000754      0x110 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
-                0x0000000000000754                __call_exitprocs
+ .text          0x0000000000000194      0x1e8 syscalls.o
+                0x0000000000000194                _getpid
+                0x0000000000000194                _utime
+                0x0000000000000194                _sysconf
+                0x0000000000000194                _ftime
+                0x0000000000000194                _isatty
+                0x0000000000000194                _open
+                0x0000000000000194                _times
+                0x0000000000000194                _stat
+                0x0000000000000194                _chdir
+                0x0000000000000194                _wait
+                0x0000000000000194                _lseek
+                0x0000000000000194                _fstatat
+                0x0000000000000194                _link
+                0x0000000000000194                _chown
+                0x0000000000000194                _access
+                0x0000000000000194                _openat
+                0x0000000000000194                _execve
+                0x0000000000000194                _chmod
+                0x0000000000000194                _lstat
+                0x0000000000000194                _unlink
+                0x0000000000000194                _fork
+                0x0000000000000194                _getcwd
+                0x0000000000000194                _kill
+                0x0000000000000194                _gettimeofday
+                0x0000000000000194                _faccessat
+                0x0000000000000198                unimplemented_syscall
+                0x00000000000001dc                _read
+                0x0000000000000208                _write
+                0x000000000000026c                _close
+                0x0000000000000290                _fstat
+                0x00000000000002d0                _sbrk
+                0x000000000000031c                _exit
+                0x0000000000000330                init_data_section
+ .text          0x000000000000037c       0x34 utils.o
+                0x000000000000037c                delay_
+ .text          0x00000000000003b0       0x64 uart.o
+                0x00000000000003b0                UART_write
+                0x00000000000003e4                UART_read
+ .text          0x0000000000000414       0xdc /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memset.o)
+                0x0000000000000414                memset
 
-.rodata         0x0000000000000864       0x23
- .rodata        0x0000000000000864       0x23 syscalls.o
+.text.atexit    0x00000000000004f0       0x14
+ .text.atexit   0x00000000000004f0       0x14 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o)
+                0x00000000000004f0                atexit
 
-.srodata        0x0000000000000888        0x4
- .srodata       0x0000000000000888        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
-                0x0000000000000888                _global_impure_ptr
+.text.__errno   0x0000000000000504        0xc
+ .text.__errno  0x0000000000000504        0xc /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-errno.o)
+                0x0000000000000504                __errno
 
-.rela.dyn       0x000000000000088c        0x0
- .rela.text     0x000000000000088c        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
+.text.exit      0x0000000000000510       0x38
+ .text.exit     0x0000000000000510       0x38 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o)
+                0x0000000000000510                exit
 
-.data           0x0000000000020000      0x42c load address 0x000000000000088c
-                0x000000000000088c                _data_lma = LOADADDR (.data)
+.text.__libc_fini_array
+                0x0000000000000548       0x60
+ .text.__libc_fini_array
+                0x0000000000000548       0x60 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-fini.o)
+                0x0000000000000548                __libc_fini_array
+
+.text.__libc_init_array
+                0x00000000000005a8       0x98
+ .text.__libc_init_array
+                0x00000000000005a8       0x98 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-init.o)
+                0x00000000000005a8                __libc_init_array
+
+.text.memcpy    0x0000000000000640      0x11c
+ .text.memcpy   0x0000000000000640      0x11c /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memcpy.o)
+                0x0000000000000640                memcpy
+
+.text.__register_exitproc
+                0x000000000000075c       0xec
+ .text.__register_exitproc
+                0x000000000000075c       0xec /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o)
+                0x000000000000075c                __register_exitproc
+
+.text.__call_exitprocs
+                0x0000000000000848      0x138
+ .text.__call_exitprocs
+                0x0000000000000848      0x138 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x0000000000000848                __call_exitprocs
+
+.text.__retarget_lock_acquire_recursive
+                0x0000000000000980        0x4
+ .text.__retarget_lock_acquire_recursive
+                0x0000000000000980        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000980                __retarget_lock_acquire_recursive
+
+.text.__retarget_lock_release_recursive
+                0x0000000000000984        0x4
+ .text.__retarget_lock_release_recursive
+                0x0000000000000984        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000984                __retarget_lock_release_recursive
+
+.rodata         0x0000000000000988       0x23
+ .rodata        0x0000000000000988       0x23 syscalls.o
+
+.sdata2._global_impure_ptr
+                0x00000000000009ac        0x4
+ .sdata2._global_impure_ptr
+                0x00000000000009ac        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
+                0x00000000000009ac                _global_impure_ptr
+
+.rela.dyn       0x00000000000009b0        0x0
+ .rela.text     0x00000000000009b0        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+ .rela.text.__libc_fini_array
+                0x00000000000009b0        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+ .rela.text.__libc_init_array
+                0x00000000000009b0        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+ .rela.sdata.__atexit_recursive_mutex
+                0x00000000000009b0        0x0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/crt0.o
+
+.data           0x0000000000020000      0x430 load address 0x00000000000009b0
+                0x00000000000009b0                _data_lma = LOADADDR (.data)
                 0x0000000000020000                _data = .
                 0x0000000000020000                __global_pointer$ = .
  *(.data .data.*)
- .data          0x0000000000020000      0x428 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
+ .data.impure_data
+                0x0000000000020000      0x428 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
  *(.sdata .sdata.*)
- .sdata         0x0000000000020428        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
+ .sdata._impure_ptr
+                0x0000000000020428        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-impure.o)
                 0x0000000000020428                _impure_ptr
-                0x000000000002042c                . = ALIGN (0x4)
-                0x000000000002042c                _edata = .
-
-.bss            0x000000000002042c        0x4 load address 0x0000000000000cb8
-                0x000000000002042c                _bss_start = .
- *(.bss .bss.*)
- .bss           0x000000000002042c        0x4 syscalls.o
+ .sdata.__atexit_recursive_mutex
+                0x000000000002042c        0x4 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x000000000002042c                __atexit_recursive_mutex
                 0x0000000000020430                . = ALIGN (0x4)
-                0x0000000000020430                _bss_end = .
-                0x0000000000020430                _end = .
+                0x0000000000020430                _edata = .
+
+.bss            0x0000000000020430       0x25 load address 0x0000000000000de0
+                0x0000000000020430                _bss_start = .
+ *(.bss .bss.*)
+ .bss           0x0000000000020430        0x4 syscalls.o
+                0x0000000000020434                . = ALIGN (0x4)
+                0x0000000000020434                _bss_end = .
+                0x0000000000020434                _end = .
+ COMMON         0x0000000000020434       0x21 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000020434                __lock___atexit_recursive_mutex
+                0x0000000000020438                __lock___arc4random_mutex
+                0x000000000002043c                __lock___env_recursive_mutex
+                0x0000000000020440                __lock___sinit_recursive_mutex
+                0x0000000000020444                __lock___malloc_recursive_mutex
+                0x0000000000020448                __lock___at_quick_exit_mutex
+                0x000000000002044c                __lock___dd_hash_mutex
+                0x0000000000020450                __lock___tz_mutex
+                0x0000000000020454                __lock___sfp_recursive_mutex
 OUTPUT(firmware.elf elf32-littleriscv)
 
-.comment        0x0000000000000000       0x11
- .comment       0x0000000000000000       0x11 firmware.o
-                                         0x12 (size before relaxing)
- .comment       0x0000000000000011       0x12 syscalls.o
- .comment       0x0000000000000011       0x12 utils.o
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
- .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
+.comment        0x0000000000000000       0x39
+ .comment       0x0000000000000000       0x39 firmware.o
+                                         0x3a (size before relaxing)
+ .comment       0x0000000000000039       0x3a syscalls.o
+ .comment       0x0000000000000039       0x3a utils.o
+ .comment       0x0000000000000039       0x3a uart.o
+
+.debug_frame    0x0000000000000000      0x25c
+ .debug_frame   0x0000000000000000       0x20 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-atexit.o)
+ .debug_frame   0x0000000000000020       0x20 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-errno.o)
+ .debug_frame   0x0000000000000040       0x28 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-exit.o)
+ .debug_frame   0x0000000000000068       0x34 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-fini.o)
+ .debug_frame   0x000000000000009c       0x3c /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-init.o)
+ .debug_frame   0x00000000000000d8       0x20 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-memcpy.o)
+ .debug_frame   0x00000000000000f8       0x48 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__atexit.o)
+ .debug_frame   0x0000000000000140       0x6c /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-__call_atexit.o)
+ .debug_frame   0x00000000000001ac       0xb0 /home/marcosleal/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32i/ilp32/libg.a(lib_a-lock.o)
