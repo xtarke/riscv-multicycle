@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="modular_adc_0"
+ megafunction_name="ALTERA_MODULAR_ADC"
+ intended_family="MAX 10"
+ specifies="all_ports">
+ <global>
+  <pin name="clock_clk" direction="input" scope="external" />
+  <pin name="reset_sink_reset_n" direction="input" scope="external" />
+  <pin name="adc_pll_clock_clk" direction="input" scope="external" />
+  <pin name="adc_pll_locked_export" direction="input" scope="external" />
+  <pin name="sequencer_csr_address" direction="input" scope="external" />
+  <pin name="sequencer_csr_read" direction="input" scope="external" />
+  <pin name="sequencer_csr_write" direction="input" scope="external" />
+  <pin
+     name="sequencer_csr_writedata[31..0]"
+     direction="input"
+     scope="external" />
+  <pin
+     name="sequencer_csr_readdata[31..0]"
+     direction="output"
+     scope="external" />
+  <pin
+     name="sample_store_csr_address[6..0]"
+     direction="input"
+     scope="external" />
+  <pin name="sample_store_csr_read" direction="input" scope="external" />
+  <pin name="sample_store_csr_write" direction="input" scope="external" />
+  <pin
+     name="sample_store_csr_writedata[31..0]"
+     direction="input"
+     scope="external" />
+  <pin
+     name="sample_store_csr_readdata[31..0]"
+     direction="output"
+     scope="external" />
+  <pin name="sample_store_irq_irq" direction="output" scope="external" />
+ </global>
+</pinplan>

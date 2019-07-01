@@ -42,13 +42,13 @@ addi x31, zero, 0 */
 /* lui sp, %hi(4*1024*1024) */
 /* addi sp, sp, %lo(4*1024*1024) */
 
-/* set stack pointer: ram(rwx) : ORIGIN = 0x00020000, LENGTH = 2k = 0x20800  = 133120*/
-lui sp, %hi(133120)         
-addi sp, sp,%lo(133120)
+/* set stack pointer: ram(rwx) : ORIGIN = 0x0002000000, LENGTH = 2k = 0x2000800  = 33556480*/
+lui sp, %hi(33556480)         
+addi sp, sp,%lo(33556480)
 
-/* Set Global pointer: RAM init @  ORIGIN = 0x00020000,*/
-lui gp, %hi(131072)
-addi gp, gp, %lo(131072)
+/* Set Global pointer: RAM init @  ORIGIN = 0x0002000000,*/
+lui gp, %hi(33554432)
+addi gp, gp, %lo(33554432)
 
 /* jal init_data_section */
 

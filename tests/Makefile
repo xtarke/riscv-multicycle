@@ -1,7 +1,6 @@
 ifndef RISCV_TOOLS_PREFIX
 RISCV_TOOLS_PREFIX = ~/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
 endif
-QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32i
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32i
@@ -35,12 +34,6 @@ firmware.elf: firmware.o syscalls.o start.o utils.o uart.o
 	$(CC) $(LDFLAGS),-Map=firmware.map -o $@ $^ -T sections.ld $(LDLIBS)
 	chmod -x firmware.elf
 
-sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../sint/de10_lite/de0_lite.cdf
-	
-fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../sint/de10_lite/de0_lite.sof"
-
 clean:
 	rm -f *.o *.d *.tmp start.elf
 	rm -f firmware.elf firmware.hex firmware32.hex
@@ -48,4 +41,3 @@ clean:
 
 -include *.d
 .PHONY: test clean
- 

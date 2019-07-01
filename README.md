@@ -34,6 +34,16 @@ Guia para instalação no [gnu-mcu-eclipse.github.io](https://gnu-mcu-eclipse.gi
 
 Toolchain Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-gcc/releases).
 
+1. Atualizar Makefile com o diretório da toolchain. 
+
+Exemplo:
+
+```RISCV_TOOLS_PREFIX = /home/lucas/ssd2/vhdl/softcore/gnu-mcu-riscv/gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2-20190521-0004/bin/riscv32-unknown-elf-```
+
+2. Para compilar, _make_.
+
+![](./readme_img/compilation_ss.png)
+
 ### Instalação do compilador no Windows (Windows Subsystem for Linux)
 
 1. Instalar o WSL: [Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
