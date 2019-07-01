@@ -26,7 +26,7 @@ int main(){
 	while (1){
 
 		for(x=0; x<16; x++){
-				 sdram[x] = 3; 
+				 sdram = 1; 
 		}
 
 		for(x=0; x<16; x++){
