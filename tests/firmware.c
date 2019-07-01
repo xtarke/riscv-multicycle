@@ -16,22 +16,6 @@
 
 
 int main(){
-<<<<<<< HEAD
-	int x = 3;
-	
-	uint32_t data = 0xFFFFFFC0;
-	
-	while (1){
-		/* To blink */
-		OUTBUS = 0x10;
-		SEGMENTS = data;
-		delay_(10000);
-        	
-	
-		OUTBUS = 0;
-		SEGMENTS = 0xFFFFFFFF;
-		delay_(10000); 
-=======
 	int x = 0;
 	int i = 0;
 	volatile uint32_t *sdram = &SDRAM;
@@ -89,7 +73,6 @@ int main(){
     // SEGMENTS = 0xFFFFFFFF;
 		// delay_(10000); 
 		//}
->>>>>>> Burst
         
 		data = data << 8;
 		x--;
