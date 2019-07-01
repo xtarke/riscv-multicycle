@@ -25,6 +25,7 @@ vcom ./decoder/decoder_types.vhd
 vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
+vcom ./uart/uart.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
 vcom ./core/trace_debug.vhd
@@ -89,9 +90,18 @@ add wave -label dcsel /dcsel
 add wave -label d_we /d_we
 add wave -label d_rd /d_rd
 
+add wave -height 15 -divider "UART"
+add wave -label clk_baud -radix hex /clk_baud
+add wave -radix binary -label state_tx /uart_inst/state_tx
+add wave -label csel -radix bin /uart_inst/csel
+add wave -label data_in -radix hex /data_in
+add wave -radix binary -label to_tx /uart_inst/to_tx
+add wave -label tx -radix bin /tx
+add wave -label tx_cmp -radix bin /tx_cmp
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
+add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
 
 run 100100 ns

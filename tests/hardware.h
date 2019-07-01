@@ -38,6 +38,7 @@
 #define INBUS 			(*(_IO32 *) (PERIPH_BASE))		/*!< Generic INPUT BUS - 32-bit register */
 #define OUTBUS			(*(_IO32 *) (PERIPH_BASE + 4))	/*!< Generic OUPUT BUS - 32-bit register */
 #define SEGMENTS		(*(_IO32 *) (PERIPH_BASE + 8))	/*!< Generic INPUT BUS - 32-bit register */
-
+#define UART_TX			(*(_IO32 *) (PERIPH_BASE + 12))	/*!< Generic INPUT BUS - 32-bit register */
+#define UART_RX			(*(_IO32 *) (PERIPH_BASE + 16))	/*!< Generic INPUT BUS - 32-bit register */
 
 #endif //HARDWARE_H
