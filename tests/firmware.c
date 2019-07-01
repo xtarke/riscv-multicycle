@@ -2,7 +2,7 @@
  * firmware.c
  *
  *  Created on: Jan 20, 2019
- *      Author: Renan Augusto Starke
+ *      Author: Jeferson Pedroso
  *      Instituto Federal de Santa Catarina
  * 
  * 
@@ -20,19 +20,6 @@ int main(){
    
 	while (1){
 		
-		// To test LEDR and Display 7 Seg
-		// OUTBUS = 0x10;
-		// SEGMENTS = 0xFFFFFFC0;
-		// delay_(10000);
-		
-		// OUTBUS = 0;
-		// SEGMENTS = 0xFFFFFFFF;
-		// delay_(10000);
-		
-		// To test Data Bus
-		//x = INBUS;        
-		//OUTBUS = x;
-		//delay_(10000); 
 		
 		// Testing UART - Transmission
 		UART_write('a');
