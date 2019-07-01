@@ -12,7 +12,7 @@ MEMORY {
 	/* rom(rwx) : ORIGIN = 0x00000100, LENGTH = 63k */
 	rom(rwx) : ORIGIN = 0x00000000, LENGTH = 63k
     /* ram(rwx) : ORIGIN = 0x00020000, LENGTH = 16k */
-    ram(rwx) : ORIGIN = 0x00020000, LENGTH = 2k
+    ram(rwx) : ORIGIN = 0x0002000000, LENGTH = 2k
 }
 
 ENTRY(_pvstart);
