@@ -2,7 +2,7 @@
  * firmware.c
  *
  *  Created on: Jan 20, 2019
- *      Author: Renan Augusto Starke
+ *      Author: Jeferson Pedroso
  *      Instituto Federal de Santa Catarina
  * 
  * 
@@ -12,8 +12,10 @@
 
 
 #include "utils.h"
+#include "uart.h"
 #include "hardware.h"
 #include <limits.h>
+
 
 int main(){
 	volatile int a_int32=3, b_int32=2;
@@ -33,7 +35,6 @@ int main(){
 
 	while (1){
 
-
 		mul_result = a_uint32 * b_int32;
 
 		mulh_result = a_int64*b_int64;
@@ -49,6 +50,19 @@ int main(){
 		div_result = a_int32%b_int32;
 
 		divu_result = a_uint32%b_uint32;
+
+		
+		
+		// Testing UART - Transmission
+		UART_write('a');
+		delay_(10000);
+		
+		// Testint UART - Reception
+		x = UART_read();
+		OUTBUS = x;
+		delay_(10000);
+		
+
 	}
 
 	return 0;

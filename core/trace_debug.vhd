@@ -1,3 +1,4 @@
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -204,8 +205,7 @@ begin
 				swrite(my_line, typeUstring(data, "lui", pc, rd, imm_u));
 				writeline(my_output, my_line);
 				inst <= str_pad(typeUstring(data, "lui", pc, rd, imm_u), ' ', 40);
-				 				
-			
+				
 			when TYPE_R => 
 				if opcodes.funct7 = TYPE_MULDIV then
 					case opcodes.funct3 is
@@ -276,17 +276,15 @@ begin
 						--	writeline(my_output, my_line);
 						--	inst <= str_pad(typeRstring(data, "slr", pc, rd, rs1, rs2), ' ', 40);
 						when TYPE_SR =>
-							report "entrei aqui";
+							
 							case opcodes.funct7 is
-								when TYPE_SRLI =>
-									report "entrei aqui SRLI";
+								when TYPE_SRLI =>									
 									-- Shift ammount is rs2
 									swrite(my_line, typeIstring(data, "srl", pc, rd, rs1, rs2));
 									writeline(my_output, my_line);
 									inst <= str_pad(typeIstring(data, "srl", pc, rd, rs1, rs2), ' ', 40);
 												
-								when TYPE_SRAI =>
-									report "entrei aqui SRAI";
+								when TYPE_SRAI =>									
 									-- Shift ammount is rs2
 									swrite(my_line, typeIstring(data, "sra", pc, rd, rs1, rs2));
 									writeline(my_output, my_line);
@@ -304,7 +302,36 @@ begin
 							report "Not implemented" severity Failure;				
 					end case;
 				end if;
-				
+
+				case opcodes.funct3 is
+					when TYPE_ADD_SUB =>					
+						if opcodes.funct7 = TYPE_ADD then
+							swrite(my_line, typeRstring(data, "add", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "add", pc, rd, rs1, rs2), ' ', 40);							 
+						else
+							swrite(my_line, typeRstring(data, "sub", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "sub", pc, rd, rs1, rs2), ' ', 40);	 
+						end if;
+						
+					when TYPE_AND =>
+						swrite(my_line, typeRstring(data, "and", pc, rd, rs1, rs2));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeRstring(data, "and", pc, rd, rs1, rs2), ' ', 40);										
+					when TYPE_SLL =>
+						swrite(my_line, typeRstring(data, "sll", pc, rd, rs1, rs2));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeRstring(data, "sll", pc, rd, rs1, rs2), ' ', 40);					
+					when TYPE_XOR =>
+						swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeRstring(data, "xor", pc, rd, rs1, rs2), ' ', 40);
+										
+					when others =>		
+						report "Not implemented" severity Failure;				
+				end case;
+								
 			when TYPE_S =>  				
 				case opcodes.funct3 is
 					when TYPE_SB =>
@@ -404,9 +431,5 @@ begin
 							
 			when others => 
 		end case;
-		
-		
 	end process;
-	
-
 end architecture RTL;
