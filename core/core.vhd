@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 use work.alu_types.all;
+use work.M_types.all;
 
 entity core is
 	generic (
@@ -54,7 +55,11 @@ architecture RTL of core is
 	--! Signals for alu control
 	signal alu_data : alu_data_t;
 	signal alu_out : signed(31 downto 0);
-	
+
+	--! Signals for M control
+	signal M_data : M_data_t;
+	signal M_out : std_logic_vector(31 downto 0);
+
 	--! Control flow signals signals
 	signal jumps : jumps_ctrl_t;	
 	
@@ -190,12 +195,13 @@ begin
 	writeBackMuxBlock: block 
 	begin
 		with writeBackMux select
-			rw_data <= std_logic_vector(alu_out) when "000",
-			           std_logic_vector(to_signed(imm_u,32))   when "001",
+			rw_data <= std_logic_vector(alu_out) 			        when "000",
+			           std_logic_vector(to_signed(imm_u,32))        when "001",
 			           std_logic_vector(to_signed(auipc_offtet,32)) when "010",
-			           next_pc when "011",
-			           ddata_r when "100",
-			           std_logic_vector(to_signed(imm_i,32))   when others;
+			           next_pc 									    when "011",
+			           ddata_r 									    when "100",
+			           M_out				 			       		when "101",
+			           std_logic_vector(to_signed(imm_i,32))   		when others;
 		
 	end block;			
 			
@@ -209,6 +215,7 @@ begin
 			jumps        => jumps,
 			ulaMuxData   => ulaMuxData,
 			ulaCod       => alu_data.code,
+			M_Cod        => M_data.code,
 			writeBackMux => writeBackMux,
 			reg_write    => rf_w_ena,
 			cpu_state    => state
@@ -231,6 +238,15 @@ begin
 			              to_signed(imm_b,32)   when others;		
 	end block;
 	
+	M_0: entity work.M
+		port map(
+			M_data   => M_data,
+			dataOut  => M_out
+		);
+		
+	M_data.a <= (signed(rs1_data));
+	M_data.b <= (signed(rs2_data));
+
 	memAddrTypeSBlock: block 
 		signal addr : std_logic_vector(31 downto 0);
 		signal byteSel: std_logic_vector(1 downto 0);		
