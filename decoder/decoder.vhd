@@ -4,6 +4,7 @@ library ieee;
 
 use work.alu_types.all;
 use work.decoder_types.all;
+use work.M_types.all;
 
 entity decoder is
 	port(
@@ -25,7 +26,10 @@ entity decoder is
 		-- ULA signals
 		ulaMuxData  : out std_logic_vector(1 downto 0);
 		ulaCod		: out std_logic_vector(3 downto 0);
-		
+
+		-- M signals
+		M_Cod		: out std_logic_vector(2 downto 0);
+
 		--! Write back contrl		
 		writeBackMux: out std_logic_vector(2 downto 0);
 		reg_write	: out std_logic;
@@ -42,8 +46,8 @@ entity decoder is
 end entity decoder;
 
 architecture RTL of decoder is
-	type state_type is (READ, FETCH, DECODE, EXE_ALU, ST_TYPE_JAL, 
-		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, ST_TYPE_L, 
+	type state_type is (READ, FETCH, DECODE, EXE_ALU, EXE_M, ST_TYPE_JAL, 
+		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, ST_TYPE_L,
 		WRITEBACK, WRITEBACK_MEM, ERROR, HALT
 	);
 	signal state : state_type := READ;
@@ -67,7 +71,12 @@ begin
 						when TYPE_I => state <= ST_TYPE_I;			
 						when TYPE_AUIPC => state <= ST_TYPE_AUIPC;
 						when TYPE_LUI => state <= ST_TYPE_U;						
-						when TYPE_R => state <= EXE_ALU;
+						when TYPE_R => 
+							if opcodes.funct7 = TYPE_MULDIV then
+								state <= EXE_M;
+							else
+								state <= EXE_ALU;
+							end if;
 						when TYPE_S =>  state <= ST_TYPE_S;		
 						when TYPE_L =>  state <= ST_TYPE_L;
 						when TYPE_JAL => state <= ST_TYPE_JAL;
@@ -84,7 +93,9 @@ begin
 				when ST_TYPE_I =>
 					state <= WRITEBACK;				
 				when EXE_ALU =>					
-					state <= WRITEBACK;				
+					state <= WRITEBACK;
+				when EXE_M =>					
+					state <= WRITEBACK;					
 				when ST_TYPE_U =>
 					state <= WRITEBACK;
 				when ST_TYPE_S =>
@@ -125,6 +136,8 @@ begin
 		reg_write <= '0';
 				
 		ulaCod <= (others => '0');
+
+		M_Cod <= (others => '0');
 		
 		-- !Memory interface default signal values
 		dmemory.read  <= '0';
@@ -154,21 +167,25 @@ begin
 				
 			when ST_TYPE_I =>
 				case opcodes.funct3 is
+
 					when TYPE_ADDI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_ADD;
 										
 					when TYPE_SLTI =>
 						report "Not implemented" severity Failure;
+
 					when TYPE_SLTIU =>
 						report "Not implemented" severity Failure;
+
 					when TYPE_XORI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_XOR;
+
 					when TYPE_ORI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_OR;
-					
+			
 					when TYPE_ANDI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_AND;
@@ -176,6 +193,7 @@ begin
 					when TYPE_SLLI =>
 						ulaMuxData <= "01";	
 						ulaCod <= ALU_SLL;
+
 					when TYPE_SR =>
 						case opcodes.funct7 is
 							when TYPE_SRLI =>
@@ -195,10 +213,34 @@ begin
 				--writeBackMux <= "001";
 				jumps.inc <= '1';
 				reg_write <= '1';	
-				
-				
+			--==================================================================================	
+			when EXE_M =>
+				case opcodes.funct3 is
+					when TYPE_MUL =>
+						M_Cod <= M_MUL;
+					when TYPE_MULH =>
+						M_Cod <= M_MULH;
+					when TYPE_MULHU =>
+						M_Cod <= M_MULHU;
+					when TYPE_MULHSU =>
+						M_Cod <= M_MULHSU;
+					when TYPE_DIV =>
+						M_Cod <= M_DIV;
+					when TYPE_DIVU =>
+						M_Cod <= M_DIVU;
+					when TYPE_REM =>
+						M_Cod <= M_REM;
+					when TYPE_REMU =>
+						M_Cod <= M_REMU;
+					when others =>		
+						report "Not implemented" severity Failure;				
+				end case;
+
+				writeBackMux <= "101";
+				jumps.inc <= '1';
+				reg_write <= '1';				
+
 			when EXE_ALU =>
-				
 				case opcodes.funct3 is
 					when TYPE_ADD_SUB =>					
 						if opcodes.funct7 = TYPE_ADD then
@@ -215,9 +257,19 @@ begin
 					
 					when TYPE_XOR =>
 						ulaCod <= ALU_XOR;
-					
+
 					when TYPE_OR =>
 						ulaCod <= ALU_OR;
+					
+					-- constant TYPE_SR: Uses same logic of TYPE_I
+					when TYPE_SR =>
+						case opcodes.funct7 is
+							when TYPE_SRLI =>
+								ulaCod <= ALU_SRL;								
+							when TYPE_SRAI =>
+								ulaCod <= ALU_SRA;								
+							when others =>
+						end case;
 										
 					when others =>		
 						report "Not implemented" severity Failure;				

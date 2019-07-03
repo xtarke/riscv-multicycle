@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -205,9 +205,104 @@ begin
 				swrite(my_line, typeUstring(data, "lui", pc, rd, imm_u));
 				writeline(my_output, my_line);
 				inst <= str_pad(typeUstring(data, "lui", pc, rd, imm_u), ' ', 40);
-				 				
-			
+				
 			when TYPE_R => 
+				if opcodes.funct7 = TYPE_MULDIV then
+					case opcodes.funct3 is
+						---------------------------------------------------------------------------
+						when TYPE_MUL =>
+							swrite(my_line, typeRstring(data, "mul", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "mul", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_MULH =>
+							swrite(my_line, typeRstring(data, "mulh", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "mulh", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_MULHU =>
+							swrite(my_line, typeRstring(data, "mulhu", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "mulhu", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_MULHSU =>
+							swrite(my_line, typeRstring(data, "mulhsu", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "mulhsu", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_DIV =>
+							swrite(my_line, typeRstring(data, "div", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "div", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_DIVU =>
+							swrite(my_line, typeRstring(data, "divu", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "divu", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_REM =>
+							swrite(my_line, typeRstring(data, "rem", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "rem", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_REMU =>
+							swrite(my_line, typeRstring(data, "remu", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "remu", pc, rd, rs1, rs2), ' ', 40);										
+						when others =>		
+							report "Not implemented" severity Failure;				
+					end case;
+				else
+					case opcodes.funct3 is
+						when TYPE_ADD_SUB =>					
+							if opcodes.funct7 = TYPE_ADD then
+								swrite(my_line, typeRstring(data, "add", pc, rd, rs1, rs2));
+								writeline(my_output, my_line);
+								inst <= str_pad(typeRstring(data, "add", pc, rd, rs1, rs2), ' ', 40);							 
+							else
+								swrite(my_line, typeRstring(data, "sub", pc, rd, rs1, rs2));
+								writeline(my_output, my_line);
+								inst <= str_pad(typeRstring(data, "sub", pc, rd, rs1, rs2), ' ', 40);	 
+							end if;
+							
+						when TYPE_AND =>
+							swrite(my_line, typeRstring(data, "and", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "and", pc, rd, rs1, rs2), ' ', 40);	
+						when TYPE_OR =>
+							swrite(my_line, typeRstring(data,"or", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "or", pc, rd, rs1, rs2), ' ', 40);											
+						when TYPE_SLL =>
+							swrite(my_line, typeRstring(data, "sll", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "sll", pc, rd, rs1, rs2), ' ', 40);	
+						------------------------------------------------------------------------------------
+						--when TYPE_SLR =>
+						--	swrite(my_line, typeRstring(data, "slr", pc, rd, rs1, rs2));
+						--	writeline(my_output, my_line);
+						--	inst <= str_pad(typeRstring(data, "slr", pc, rd, rs1, rs2), ' ', 40);
+						when TYPE_SR =>
+							
+							case opcodes.funct7 is
+								when TYPE_SRLI =>									
+									-- Shift ammount is rs2
+									swrite(my_line, typeIstring(data, "srl", pc, rd, rs1, rs2));
+									writeline(my_output, my_line);
+									inst <= str_pad(typeIstring(data, "srl", pc, rd, rs1, rs2), ' ', 40);
+												
+								when TYPE_SRAI =>									
+									-- Shift ammount is rs2
+									swrite(my_line, typeIstring(data, "sra", pc, rd, rs1, rs2));
+									writeline(my_output, my_line);
+									inst <= str_pad(typeIstring(data, "sra", pc, rd, rs1, rs2), ' ', 40);
+															
+								when others =>
+									report "nao entrei aqui";
+							end case;
+						------------------------------------------------------------------------------------													
+						when TYPE_XOR =>
+							swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
+							writeline(my_output, my_line);
+							inst <= str_pad(typeRstring(data, "xor", pc, rd, rs1, rs2), ' ', 40);					
+						when others =>		
+							report "Not implemented" severity Failure;				
+					end case;
+				end if;
+
 				case opcodes.funct3 is
 					when TYPE_ADD_SUB =>					
 						if opcodes.funct7 = TYPE_ADD then
@@ -236,9 +331,8 @@ begin
 					when others =>		
 						report "Not implemented" severity Failure;				
 				end case;
-				
-			when TYPE_S =>  
-				
+								
+			when TYPE_S =>  				
 				case opcodes.funct3 is
 					when TYPE_SB =>
 						swrite(my_line, typeSstring(data, "sb", pc, rs1, rs2, imm_s));
@@ -261,6 +355,10 @@ begin
 						swrite(my_line, typeSstring(data, "lb", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
 						inst <= str_pad(typeSstring(data, "lb", pc, rd, rs1, imm_i), ' ', 40);
+					when TYPE_LBU =>
+						swrite(my_line, typeSstring(data, "lbu", pc, rd, rs1, imm_i));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "lbu", pc, rd, rs1, imm_i), ' ', 40);
 					when TYPE_LH =>
 						swrite(my_line, typeSstring(data, "lh", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
@@ -269,7 +367,8 @@ begin
 						swrite(my_line, typeSstring(data, "lw", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
 						inst <= str_pad(typeSstring(data, "lw", pc, rd, rs1, imm_i), ' ', 40);
-					when others =>	
+					when others =>
+						report "Not implemented" severity Failure;	
 				end case;
 				
 			when TYPE_JAL =>				
@@ -332,9 +431,5 @@ begin
 							
 			when others => 
 		end case;
-		
-		
 	end process;
-	
-
 end architecture RTL;

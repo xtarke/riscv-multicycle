@@ -21,6 +21,8 @@ vcom ./sint/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
+vcom ./M/M_types.vhd
+vcom ./M/M.vhd
 vcom ./decoder/decoder_types.vhd
 vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
@@ -53,15 +55,16 @@ add wave -height 15 -divider "PC and Ctrl Targers"
 # add wave -label branch_cmp 				/myRiscv/branch_cmp
 
 add wave -height 15 -divider "Iregister debug"
-# add wave -label opcode  /myRiscv/opcodes 
-# add wave -label rd 		/myRiscv/rd   
-# add wave -label rs1 	/myRiscv/rs1
-# add wave -label rs2 	/myRiscv/rs2
-# add wave -label imm_i /myRiscv/imm_i
-# add wave -label imm_s /myRiscv/imm_s 
-# add wave -label imm_b /myRiscv/imm_b
-# add wave -label imm_u /myRiscv/imm_u
-# add wave -label imm_j /myRiscv/imm_j
+add wave -label opcode  /myRiscv/opcodes 
+add wave -label rd /myRiscv/rd   
+add wave -label rs1 /myRiscv/rs1
+add wave -label rs2 /myRiscv/rs2
+add wave -label imm_i /myRiscv/imm_i
+add wave -label imm_s /myRiscv/imm_s 
+add wave -label imm_b /myRiscv/imm_b
+add wave -label imm_u /myRiscv/imm_u
+add wave -label imm_j /myRiscv/imm_j
+
 
 add wave -height 15 -divider "Register file debug"
  add wave -label registers -radix hex /myRiscv/registers/ram
@@ -139,7 +142,4 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
-
 run 950000 ns
-
-# wave zoom full
