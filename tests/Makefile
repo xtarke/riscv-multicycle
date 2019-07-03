@@ -1,5 +1,5 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = /home/lucas/ssd2/vhdl/softcore/gnu-mcu-riscv/gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2-20190521-0004/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
 endif
 QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
@@ -24,9 +24,8 @@ firmware32.hex: firmware.elf hex8tohex32.py
 	python3 hex8tohex32.py firmware.tmp > firmware32.hex
 	python3 hex8tointel.py firmware.tmp > quartus.hex
 
-
-firmware_dbg.v: firmware.map
-	python3 map2debug.py
+#firmware_dbg.v: firmware.map
+#	python3 map2debug.py
 
 start.o: start.S
 	$(CC) -c -nostdlib start.S $(LDLIBS)

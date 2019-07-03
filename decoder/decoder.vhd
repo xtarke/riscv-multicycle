@@ -270,7 +270,6 @@ begin
 								ulaCod <= ALU_SRA;								
 							when others =>
 						end case;
-
 										
 					when others =>		
 						report "Not implemented" severity Failure;				
@@ -285,8 +284,7 @@ begin
 				case opcodes.funct3 is
 					when TYPE_SB =>
 						dmemory.write <= '1';
-						dmemory.word_size <= "01";	
-						-- report "Not implemented" severity Failure;
+						dmemory.word_size <= "01";						
 					when TYPE_SH =>
 						report "Not implemented" severity Failure;
 					when TYPE_SW =>

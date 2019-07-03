@@ -11,10 +11,10 @@ library ieee;
 	use ieee.numeric_std.all;
 
 
---! imemory entity brief description
+--! dmemory entity brief description
 
 --! Detailed description of this 
---! imemory design element.
+--! dmemory design element.
 
 entity dmemory is
 	generic (
@@ -154,3 +154,4 @@ begin
     
 
 end architecture RTL;
+ 

@@ -19,7 +19,7 @@ entity core is
 		iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
 		idata	  : in 	std_logic_vector(31 downto 0);
 		
-		daddress  : out  integer range 0 to DMEMORY_WORDS-1;
+		daddress  : out  natural;
 		
 		ddata_r	  : in 	std_logic_vector(31 downto 0);
 		ddata_w   : out	std_logic_vector(31 downto 0);
@@ -257,19 +257,20 @@ begin
 				    std_logic_vector(to_signed(to_integer(signed(rs1_data)) + imm_s,32)) when others;		-- to_unsigned
 		
 		byteSel <= addr(1 downto 0);
-		daddress <= to_integer(unsigned(addr(11 downto 2)));
+		daddress <= to_integer(unsigned(addr(31 downto 2)));
 		
 		ddata_w <= rs2_data;		--! Data to write
 		d_we <= dmemory.write;		--! Write signal
 		d_rd <= dmemory.read;		--! Read signal
 				
-		bus_lag <= not addr(17);	--! Stall another cycle when reading from imem
+		bus_lag <= not addr(25);	--! Stall another cycle when reading from imem
 				
 		-- Address space (check sections.ld):
 		-- 0x00000    ->    0b000 0000 0000 0000 0000
 		-- 0x20000    ->    0b010 0000 0000 0000 0000
 		-- 0x40000    ->    0b100 0000 0000 0000 0000		
-		dcsel <= addr(18 downto 17);
+		-- 0x60000    ->    0b110 0000 0000 0000 0000		
+		dcsel <= addr(26 downto 25);
 				
 		--! Chip Select
 		--with addr(17) select
