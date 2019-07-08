@@ -11,6 +11,7 @@
  * -----------------------------------------
  */
 
+#include "hardware.h"
 
 //Função para leitura do ADC. Recebe o canal a ser lido, bem como os ponteiros para gravar o valor e canal lidos.
 void ADC_READ (int channel_sel, int *channel_read, int *value_read)
@@ -37,5 +38,5 @@ void SEGS7_WRITE (int disp5, int disp4, int disp3, int disp2, int disp1, int dis
 	buffer |= (disp4<<16);
 	buffer |= (disp5<<20);
 	
-	OUT_SEGS = buffer;
+	SEGMENTS = buffer;
 }

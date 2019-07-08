@@ -265,19 +265,13 @@ begin
 				
 		bus_lag <= not addr(25);	--! Stall another cycle when reading from imem
 				
-		-- Address space (check sections.ld):
-		-- 0x00000    ->    0b000 0000 0000 0000 0000
-		-- 0x20000    ->    0b010 0000 0000 0000 0000
-		-- 0x40000    ->    0b100 0000 0000 0000 0000		
-		-- 0x60000    ->    0b110 0000 0000 0000 0000		
+		-- Address space (check sections.ld) and chip select:
+		-- 0x0000000000 ->  0b000 0000 0000 0000 0000 0000 0000
+		-- 0x0002000000 ->  0b010 0000 0000 0000 0000 0000 0000		
+		-- 0x0004000000 ->  0b100 0000 0000 0000 0000 0000 0000
+		-- 0x0006000000 ->  0b110 0000 0000 0000 0000 0000 0000		
 		dcsel <= addr(26 downto 25);
-				
-		--! Chip Select
-		--with addr(17) select
-		--	dcsel_block <= "01"  when '0',
-		--	         "10" when '1',
-		--	         "00" when others;
-				
+						
 		dmaskGen: process(dmemory, byteSel)
 		begin
 			dmask <= "0000";

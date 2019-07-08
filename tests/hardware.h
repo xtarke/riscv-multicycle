@@ -8,7 +8,7 @@
  * 
  * riscv-multicycle Hardware Map (registers)
  * -----------------------------------------
- * IO MAP mapped to  addr >= 0x40000 
+ * IO MAP mapped to  addr >= 0x4000000 
  * 
  * 
  */
@@ -35,7 +35,6 @@
 
 #define PERIPH_BASE		((uint32_t)0x4000000)          /*!< Peripheral base address */
 #define SDRAM_BASE		((uint32_t)0x6000000)          /*!< Peripheral base address */
-
 
 #define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
 

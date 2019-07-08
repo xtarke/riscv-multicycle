@@ -208,7 +208,7 @@ begin
 		else
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = "10")then					
-					-- ToDo: Simplify compartors
+					-- ToDo: Simplify comparators
 					-- ToDo: Maybe use byte addressing?  
 					--       x"01" (word addressing) is x"04" (byte addressing)
 					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
@@ -234,7 +234,7 @@ begin
 			input_in <= (others => '0');
 		else
 			if rising_edge(clk) then		
-				if (d_we = '1') and (dcsel = "10") then
+				if (d_rd = '1') and (dcsel = "10") then
 					input_in(4 downto 0) <= SW(4 downto 0);				
 				end if;
 			end if;
