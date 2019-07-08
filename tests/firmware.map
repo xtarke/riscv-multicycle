@@ -35,8 +35,8 @@ Discarded input sections
  .fini_array    0x0000000000000000        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
  .init_array    0x0000000000000000        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
  .comment       0x0000000000000000       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
- .data          0x0000000000000000        0x0 main_vga.o
- .bss           0x0000000000000000        0x0 main_vga.o
+ .data          0x0000000000000000        0x0 firmware.o
+ .bss           0x0000000000000000        0x0 firmware.o
  .data          0x0000000000000000        0x0 syscalls.o
  .bss           0x0000000000000000        0x0 syscalls.o
  .data          0x0000000000000000        0x0 start.o
@@ -82,7 +82,7 @@ Linker script and memory map
 
 LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
 LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtbegin.o
-LOAD main_vga.o
+LOAD firmware.o
 LOAD syscalls.o
 LOAD start.o
 LOAD utils.o
@@ -107,7 +107,7 @@ LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crt
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0x60 main_vga.o
+ .text          0x0000000000000144       0x60 firmware.o
                 0x0000000000000144                main
  .text          0x00000000000001a4       0xd4 syscalls.o
                 0x00000000000001a4                _getpid
@@ -200,7 +200,7 @@ OUTPUT(firmware.elf elf32-littleriscv)
  .sbss          0x000000000200042c        0x4 syscalls.o
 
 .comment        0x0000000000000000       0x11
- .comment       0x0000000000000000       0x11 main_vga.o
+ .comment       0x0000000000000000       0x11 firmware.o
                                          0x12 (size before relaxing)
  .comment       0x0000000000000011       0x12 syscalls.o
  .comment       0x0000000000000011       0x12 utils.o

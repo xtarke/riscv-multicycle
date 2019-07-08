@@ -62,24 +62,24 @@ Disassembly of section .rom:
  150:	00912a23          	sw	s1,20(sp)
  154:	01212823          	sw	s2,16(sp)
  158:	01312623          	sw	s3,12(sp)
- 15c:	06000437          	lui	s0,0x6000
- 160:	00f00993          	li	s3,15
- 164:	000024b7          	lui	s1,0x2
- 168:	71048493          	addi	s1,s1,1808 # 2710 <_data_lma+0x1fd4>
- 16c:	06008937          	lui	s2,0x6008
- 170:	01342023          	sw	s3,0(s0) # 6000000 <_edata+0x3fffbd4>
- 174:	00048513          	mv	a0,s1
- 178:	100000ef          	jal	ra,278 <delay_>
- 17c:	00440413          	addi	s0,s0,4
- 180:	ff2418e3          	bne	s0,s2,170 <main+0x2c>
- 184:	00000513          	li	a0,0
- 188:	01c12083          	lw	ra,28(sp)
- 18c:	01812403          	lw	s0,24(sp)
- 190:	01412483          	lw	s1,20(sp)
- 194:	01012903          	lw	s2,16(sp)
- 198:	00c12983          	lw	s3,12(sp)
- 19c:	02010113          	addi	sp,sp,32
- 1a0:	00008067          	ret
+ 15c:	01412423          	sw	s4,8(sp)
+ 160:	01512223          	sw	s5,4(sp)
+ 164:	040004b7          	lui	s1,0x4000
+ 168:	00448913          	addi	s2,s1,4 # 4000004 <_edata+0x1fffbd8>
+ 16c:	00300a93          	li	s5,3
+ 170:	fc000a13          	li	s4,-64
+ 174:	00002437          	lui	s0,0x2
+ 178:	71040413          	addi	s0,s0,1808 # 2710 <_data_lma+0x1fd4>
+ 17c:	fff00993          	li	s3,-1
+ 180:	01592023          	sw	s5,0(s2)
+ 184:	0144a423          	sw	s4,8(s1)
+ 188:	00040513          	mv	a0,s0
+ 18c:	0ec000ef          	jal	ra,278 <delay_>
+ 190:	00092023          	sw	zero,0(s2)
+ 194:	0134a423          	sw	s3,8(s1)
+ 198:	00040513          	mv	a0,s0
+ 19c:	0dc000ef          	jal	ra,278 <delay_>
+ 1a0:	fe1ff06f          	j	180 <main+0x3c>
 
 000001a4 <_access>:
  1a4:	0040006f          	j	1a8 <unimplemented_syscall>
@@ -434,7 +434,7 @@ Disassembly of section .rom:
  688:	000a0c63          	beqz	s4,6a0 <__call_exitprocs+0x98>
  68c:	10442783          	lw	a5,260(s0)
  690:	01478863          	beq	a5,s4,6a0 <__call_exitprocs+0x98>
- 694:	fff90913          	addi	s2,s2,-1 # 6007fff <_edata+0x4007bd3>
+ 694:	fff90913          	addi	s2,s2,-1
  698:	ffc40413          	addi	s0,s0,-4
  69c:	fbdff06f          	j	658 <__call_exitprocs+0x50>
  6a0:	0044a703          	lw	a4,4(s1)
