@@ -3,7 +3,7 @@ RISVC contributors (sorted alphabetically)
 
 * **[Cleisson Fernandes Da Silva](https://github.com/cleissom)**
 
-  * SDRAM firts integration (first attempt)
+  * SDRAM integration (first attempt)
   
 * **[Ian Schmiegelow Dannapel](https://github.com/Eximmius)**
 
