@@ -42,13 +42,14 @@ Exemplo:
 
 2. Para compilar, _make_.
 
-![](./readme_img/compilation_ss.png)
-
 ### Instalação do compilador no Windows (Windows Subsystem for Linux)
 
 1. Instalar o WSL: [Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 2. Instalar o Ubuntu no WSL
-3. No shell Ubuntu (bsusque Ubuntu no Iniciar do Windows):
+
+	- Para integrar o Visual Code com o compilador interno ao WSL, siga esse [link](https://devblogs.microsoft.com/commandline/an-in-depth-tutorial-on-linux-development-on-windows-with-wsl-and-visual-studio-code/)
+
+3. No shell Ubuntu (busque Ubuntu no Iniciar do Windows):
 4. Instalar os pacotes para o nodejs:
 
 ```sudo apt update
