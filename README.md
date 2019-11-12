@@ -38,6 +38,20 @@ Na utilização do xPacks talvez seja necessário exportar o `XPACKS_REPO_FOLDER
 
 ```export XPACKS_REPO_FOLDER=~/opt/xPacks/```
 
+Instruções para Arch Linux (adaptar para outras distribuições):
+```
+sudo pacman -Syyu npm
+sudo npm install --global xpm@latest
+export XPACKS_REPO_FOLDER=~/opt/xPacks/
+mkdir -p $XPACKS_REPO_FOLDER
+xpm install --global @xpack-dev-tools/riscv-none-embed-gcc@latest
+export MY_PLD_WORKSPACE=~/workspace_vhdl
+mkdir -p $MY_PLD_WORKSPACE
+cd $MY_PLD_WORKSPACE
+git clone https://github.com/xtarke/riscv-multicycle
+cd $MY_PLD_WORKSPACE/riscv-multicycle/tests
+```
+
 1. Atualizar Makefile com o diretório da toolchain. 
 
 Exemplo:
