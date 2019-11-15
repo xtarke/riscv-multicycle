@@ -16,10 +16,56 @@ end entity Timer;
 
 architecture RTL of Timer is
 	
-	
-		
+	signal counter : unsigned(31 downto 0) := (others => '0');
+	signal internal_clock : std_logic := '0';
 	
 begin
+	
+	p1 : process(internal_clock, reset) is
+	begin
+		
+		if rising_edge(internal_clock) then
+			
+			if reset = '1' then
+				output <= '0';
+				counter <= (others => '0');
+			end if;
+			
+			case timer_mode is
+				when "00" => -- one shot mode
+					
+					if counter >= compare then
+						output <= '1';
+					else
+						output <= '0';
+						counter <= counter + 1;
+					end if;
+					  
+				when "01" => -- clear on compare mode
+					
+					-- counter reset if reaches its maximum possible value
+					if counter = counter'high then
+						counter <= (others => '0');
+					else
+						counter <= counter + 1;
+					end if;
+					
+					if counter >= compare then
+						output <= '1';								
+					else
+						output <= '0';	
+					end if;
+
+				when others => -- none / error
+					output <= '0';
+			end case;
+			
+		end if;
+		
+		
+		 
+		
+	end process p1;
 	
 		
 end architecture RTL;
