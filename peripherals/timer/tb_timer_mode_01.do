@@ -29,4 +29,4 @@ add wave -radix binary -label internal_clock /dut/internal_clock
 run 300ns
 
 wave zoomfull
-write wave wave.ps
+write wave testbench_timer_mode_01_wave.ps
