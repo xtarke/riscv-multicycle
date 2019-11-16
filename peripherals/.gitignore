@@ -1,0 +1,14 @@
+# For Eclipse / Sigasi:
+.project
+.library_mapping.xml
+.settings
+
+# For Quartus:
+synth/*/*
+!synth/*/de10_lite.qpf
+!synth/*/de10_lite.qsf
+!synth/*/de10_lite.sdc
+!synth/*/de10_lite.ipregen.rpt
+!synth/*/de10_lite_description.txt
+!synth/*/de10_lite_assignment_defaults.qdf
+!synth/*/*.md
