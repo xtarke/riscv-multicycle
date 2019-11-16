@@ -13,17 +13,17 @@ view wave
 # Adiciona ondas específicas
 #  -radix: binary, hex, dec
 #  -label: nome da forma de onda
-add wave -radix binary  /clock
-add wave -radix binary  /reset
-add wave -radix dec  /timer_mode
-add wave -radix dec  /prescaler
-add wave -radix dec  /compare
-add wave -radix binary  /output
-add wave -radix binary  /inv_output
+add wave -radix binary -label clock /clock
+add wave -radix binary -label reset /reset
+add wave -radix dec -label mode /timer_mode
+add wave -radix dec -label prescaler /prescaler
+add wave -radix dec -label compare /compare
+add wave -radix binary -label output /output
+add wave -radix binary -label inv_output /inv_output
 
 # Mostra sinais internos do processo
-add wave -radix dec /dut/counter
-add wave -radix binary /dut/internal_clock
+add wave -radix dec -label counter /dut/counter
+add wave -radix binary -label internal_clock /dut/internal_clock
 
 # Simula
 run 300ns
