@@ -6,10 +6,10 @@ Esta é uma implementação para um timer em VHDL.
 
 - `clock`: sinal de entrada de clock. O contador interno do timer funciona na borda de subida do clock.
 - `reset`: sinal de reset do contador. O contador interno do timer é zerado, juntamente com sua saída, quando nível do sinal `reset` é alto.
-- `timer_mode`: o sinal de configuração do modo de funcionamento do timer (mais informações abaixo).
+- `timer_mode`: o sinal de configuração do modo de funcionamento do timer (mais informações em [Modos de Funcionamento](#modos-de-funcionamento)).
 - `prescaler`: o sinal de configuração para a frequência de contagem. O clock interno do timer será o sinal `clock` divido pelo valor do `prescaler`.
-- `compare`: o sinal de configuração para o valor de comparação do contador interno. Sua ação depende do modo de funcionamento configurado pelo sinal `timer_mode` (mais informações abaixo).
-- `output`: o sinal de saída do timer. Sua ação depende do modo de funcionamento configurado pelo sinal `timer_mode` (mais informações abaixo).
+- `compare`: o sinal de configuração para o valor de comparação do contador interno. Sua ação depende do modo de funcionamento configurado pelo sinal `timer_mode` (mais informações em [Modos de Funcionamento](#modos-de-funcionamento)).
+- `output`: o sinal de saída do timer. Sua ação depende do modo de funcionamento configurado pelo sinal `timer_mode` (mais informações em [Modos de Funcionamento](#modos-de-funcionamento)).
 - `inv_output`: sinal de saída logicamente complementar ao `output`.
 
 
