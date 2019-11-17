@@ -4,11 +4,14 @@
 .settings
 
 # For Quartus:
-synth/*/*
-!synth/*/de10_lite.qpf
-!synth/*/de10_lite.qsf
-!synth/*/de10_lite.sdc
-!synth/*/de10_lite.ipregen.rpt
-!synth/*/de10_lite_description.txt
-!synth/*/de10_lite_assignment_defaults.qdf
-!synth/*/*.md
+sint/*/*
+!sint/*/de10_lite.qpf
+!sint/*/de10_lite.qsf
+!sint/*/de10_lite.sdc
+!sint/*/de10_lite.ipregen.rpt
+!sint/*/de10_lite_description.txt
+!sint/*/de10_lite_assignment_defaults.qdf
+!sint/*/*.md
+
+# For Modelsim:
+*.ps
