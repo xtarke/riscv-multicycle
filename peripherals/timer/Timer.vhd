@@ -22,12 +22,13 @@ architecture RTL of Timer is
 begin
 	
 	p1 : process(internal_clock, reset) is
+		variable internal_output : std_logic := '0';
 	begin
 		
 		if rising_edge(internal_clock) then
 			
 			if reset = '1' then
-				output <= '0';
+				internal_output := '0';
 				counter <= (others => '0');
 			end if;
 			
@@ -35,9 +36,9 @@ begin
 				when "00" => -- one shot mode
 					
 					if counter >= compare then
-						output <= '1';
+						internal_output := '1';
 					else
-						output <= '0';
+						internal_output := '0';
 						counter <= counter + 1;
 					end if;
 					  
@@ -51,20 +52,20 @@ begin
 					end if;
 					
 					if counter >= compare then
-						output <= '1';								
+						internal_output := '1';								
 					else
-						output <= '0';	
+						internal_output := '0';	
 					end if;
 
 				when others => -- none / error
-					output <= '0';
+					internal_output := '0';
 			end case;
 			
+			output <= internal_output;
+			inv_output <= not(internal_output);
+			
 		end if;
-		
-		
-		 
-		
+				
 	end process p1;
 	
 		
