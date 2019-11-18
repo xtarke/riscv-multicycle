@@ -1,0 +1,29 @@
+
+State Machine - |DE2_115|core:myRisc|decoder:decoder0|state
+Name state.HALT state.ERROR state.WRITEBACK_MEM state.WRITEBACK state.ST_TYPE_L state.ST_TYPE_JALR state.ST_BRANCH state.ST_TYPE_S state.ST_TYPE_U state.ST_TYPE_I state.ST_TYPE_AUIPC state.ST_TYPE_JAL state.EXE_M state.EXE_ALU state.DECODE state.FETCH state.READ 
+state.READ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.FETCH 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.DECODE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.EXE_ALU 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.EXE_M 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.ST_TYPE_JAL 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.ST_TYPE_AUIPC 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.ST_TYPE_I 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.ST_TYPE_U 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.ST_TYPE_S 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.ST_BRANCH 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.ST_TYPE_JALR 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.ST_TYPE_L 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.WRITEBACK 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.WRITEBACK_MEM 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.HALT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |DE2_115|dmemory:dmem|state
+Name state.BYTE3 state.BYTE2 state.BYTE1 state.BYTE0 state.WORD state.READ 
+state.READ 0 0 0 0 0 0 
+state.WORD 0 0 0 0 1 1 
+state.BYTE0 0 0 0 1 0 1 
+state.BYTE1 0 0 1 0 0 1 
+state.BYTE2 0 1 0 0 0 1 
+state.BYTE3 1 0 0 0 0 1 

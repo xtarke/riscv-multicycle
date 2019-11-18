@@ -37,10 +37,10 @@ firmware.elf: firmware.o syscalls.o start.o utils.o
 	chmod -x firmware.elf
 
 sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../sint/de10_lite/de0_lite.cdf
+	$(QUARTUS_DIR)quartus_sh --flow compile ../sint/DE2_115/DE2_115.cdf
 	
 fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../sint/de10_lite/de0_lite.sof"
+	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../sint/DE2_115/DE2_115.sof"
 
 clean:
 	rm -f *.o *.d *.tmp start.elf
