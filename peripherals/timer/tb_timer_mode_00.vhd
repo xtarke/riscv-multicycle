@@ -61,8 +61,8 @@ begin
 		
 		-- configure to mode 00:
 		timer_mode <= "00";
-		prescaler <= x"0001";
-		compare <= x"00000002";
+		prescaler <= x"0002";
+		compare <= x"00000003";
 		wait for 1*clock_period;
 		
 		-- run timer:
