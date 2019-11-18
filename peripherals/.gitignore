@@ -6,6 +6,7 @@
 # For Quartus:
 */sint/*
 !*/sint/de10_lite.qpf
+!*/sint/de10_lite.qws
 !*/sint/de10_lite.qsf
 !*/sint/de10_lite.sdc
 !*/sint/de10_lite.ipregen.rpt
