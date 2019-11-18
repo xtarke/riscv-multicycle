@@ -15,7 +15,7 @@ view wave
 #  -label: nome da forma de onda
 add wave -radix binary -label clock /clock
 add wave -radix binary -label reset /reset
-add wave -radix dec -label mode /timer_mode
+add wave -radix dec -label timer_mode /timer_mode
 add wave -radix dec -label prescaler /prescaler
 add wave -radix dec -label compare /compare
 add wave -radix binary -label output /output
