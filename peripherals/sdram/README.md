@@ -10,6 +10,8 @@ Este diretório possui os seguintes arquivos:
 * sdram_controller.vhd: Arquivo principal do controlador.
 * testbench_sdram.vhd: Arquivo de testbench para o controlador.
 * testbench_sdtam.do: Script para simulação no ModelSim.
+* core_sdram_testbench.vhd: Arquivo de testbench do controlador integrado ao core.
+* coretestbench.do: Script para simulação do core no ModelSim.
   
 Além destes arquivos, o diretório possui uma pasta `sim/` com modelos comportamental de uma memória SDRAM.
 
