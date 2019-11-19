@@ -3,11 +3,11 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -------------------------------------
-entity testbench_timer_mode_03 is
-end entity testbench_timer_mode_03;
+entity testbench_timer_mode_02 is
+end entity testbench_timer_mode_02;
 ------------------------------
 
-architecture stimulus of testbench_timer_mode_03 is
+architecture stimulus of testbench_timer_mode_02 is
 
 	constant prescaler_size_for_test : integer := 16;
 	constant compare_size_for_test   : integer := 4;
