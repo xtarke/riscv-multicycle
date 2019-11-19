@@ -327,6 +327,10 @@ begin
 						swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
 						writeline(my_output, my_line);
 						inst <= str_pad(typeRstring(data, "xor", pc, rd, rs1, rs2), ' ', 40);
+					when TYPE_OR =>
+						swrite(my_line, typeRstring(data, "or", pc, rd, rs1, rs2));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeRstring(data, "or", pc, rd, rs1, rs2), ' ', 40);			
 										
 					when others =>		
 						report "Not implemented" severity Failure;				
