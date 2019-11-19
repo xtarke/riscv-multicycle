@@ -9,13 +9,20 @@ end entity testbench_timer_mode_00;
 
 architecture stimulus of testbench_timer_mode_00 is
 
+	constant prescaler_size_for_test : integer := 16;
+	constant compare_size_for_test   : integer := 4;
+
 	component Timer
+		generic(
+			prescaler_size : integer := prescaler_size_for_test;
+			compare_size   : integer := compare_size_for_test
+		);
 		port(
 			clock      : in  std_logic;
 			reset      : in  std_logic;
 			timer_mode : in  unsigned(1 downto 0);
-			prescaler  : in  unsigned(15 downto 0);
-			compare    : in  unsigned(31 downto 0);
+			prescaler  : in  unsigned(prescaler_size - 1 downto 0);
+			compare    : in  unsigned(compare_size - 1 downto 0);
 			output     : out std_logic;
 			inv_output : out std_logic
 		);
@@ -23,8 +30,8 @@ architecture stimulus of testbench_timer_mode_00 is
 	signal clock      : std_logic;
 	signal reset      : std_logic;
 	signal timer_mode : unsigned(1 downto 0);
-	signal prescaler  : unsigned(15 downto 0);
-	signal compare    : unsigned(31 downto 0);
+	signal prescaler  : unsigned(prescaler_size_for_test - 1 downto 0);
+	signal compare    : unsigned(compare_size_for_test - 1 downto 0);
 	signal output     : std_logic;
 	signal inv_output : std_logic;
 
@@ -49,34 +56,34 @@ begin
 		clock <= '1';
 		wait for clock_period;
 	end process;
-	
-	test: process
+
+	test : process
 	begin
 		-- reset:
-		reset <= '1';
-		prescaler <= (others => '0');
+		reset      <= '1';
+		prescaler  <= (others => '0');
 		timer_mode <= (others => '0');
-		compare <= (others => '0');
-		wait for 1*clock_period;
-		
+		compare    <= (others => '0');
+		wait for 1 * clock_period;
+
 		-- configure to mode 00:
 		timer_mode <= "00";
-		prescaler <= x"0002";
-		compare <= x"00000003";
-		wait for 1*clock_period;
-		
+		prescaler  <= x"0001";
+		compare    <= x"A";
+		wait for 1 * clock_period;
+
 		-- run timer:
 		reset <= '0';
-		wait for 10*clock_period;
-		
+		wait for 100 * clock_period;
+
 		-- reset timer:
 		reset <= '1';
-		wait for 1*clock_period;
+		wait for 1 * clock_period;
 
 		-- run timer again:
 		reset <= '0';
-		wait for 10*clock_period;
-		
+		wait for 10 * clock_period;
+
 		wait;
 	end process;
 
