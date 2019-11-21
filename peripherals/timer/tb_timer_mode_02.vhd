@@ -22,18 +22,28 @@ architecture stimulus of testbench_timer_mode_02 is
 			reset      : in  std_logic;
 			timer_mode : in  unsigned(1 downto 0);
 			prescaler  : in  unsigned(prescaler_size - 1 downto 0);
-			compare    : in  unsigned(compare_size - 1 downto 0);
-			output     : out std_logic;
-			inv_output : out std_logic
+			compare_0A : in  unsigned(compare_size - 1 downto 0);
+			compare_0B : in  unsigned(compare_size - 1 downto 0);
+			compare_1A : in  unsigned(compare_size - 1 downto 0);
+			compare_1B : in  unsigned(compare_size - 1 downto 0);
+			compare_2A : in  unsigned(compare_size - 1 downto 0);
+			compare_2B : in  unsigned(compare_size - 1 downto 0);
+			output_A     : out std_logic_vector(2 downto 0);
+			output_B : out std_logic_vector(2 downto 0)
 		);
 	end component Timer;
 	signal clock      : std_logic;
 	signal reset      : std_logic;
 	signal timer_mode : unsigned(1 downto 0);
 	signal prescaler  : unsigned(prescaler_size_for_test - 1 downto 0);
-	signal compare    : unsigned(compare_size_for_test - 1 downto 0);
-	signal output     : std_logic;
-	signal inv_output : std_logic;
+	signal compare_0A : unsigned(compare_size_for_test - 1 downto 0);
+	signal compare_0B : unsigned(compare_size_for_test - 1 downto 0);
+	signal compare_1A : unsigned(compare_size_for_test - 1 downto 0);
+	signal compare_1B : unsigned(compare_size_for_test - 1 downto 0);
+	signal compare_2A : unsigned(compare_size_for_test - 1 downto 0);
+	signal compare_2B : unsigned(compare_size_for_test - 1 downto 0);
+	signal output_A     : std_logic_vector(2 downto 0);
+	signal output_B : std_logic_vector(2 downto 0);
 
 	constant clock_period : time := 20 ns;
 
@@ -44,9 +54,14 @@ begin
 			reset      => reset,
 			timer_mode => timer_mode,
 			prescaler  => prescaler,
-			compare    => compare,
-			output     => output,
-			inv_output => inv_output
+			compare_0A => compare_0A,
+			compare_0B => compare_0B,
+			compare_1A => compare_1A,
+			compare_1B => compare_1B,
+			compare_2A => compare_2A,
+			compare_2B => compare_2B,
+			output_A     => output_A,
+			output_B => output_B
 		);
 
 	test_clock : process
@@ -63,18 +78,28 @@ begin
 		reset      <= '1';
 		prescaler  <= (others => '0');
 		timer_mode <= (others => '0');
-		compare    <= (others => '0');
+		compare_0A <= (others => '0');
+		compare_0B <= (others => '0');
+		compare_1A <= (others => '0');
+		compare_1B <= (others => '0');
+		compare_2A <= (others => '0');
+		compare_2B <= (others => '0');
 		wait for 1 * clock_period;
 
 		-- configure to mode 03:
 		timer_mode <= "10";
 		prescaler  <= x"0001";
-		compare    <= x"A";
+		compare_0A <= x"A";
+		compare_0B <= x"A";
+		compare_1A <= x"C";
+		compare_1B <= x"C";
+		compare_2A <= x"E";
+		compare_2B <= x"E";
 		wait for 1 * clock_period;
 
 		-- run timer:
 		reset <= '0';
-		wait for 100 * clock_period;
+		wait for 300 * clock_period;
 
 		-- reset timer:
 		reset <= '1';
