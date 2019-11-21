@@ -3,11 +3,11 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -------------------------------------
-entity testbench_timer_mode_02 is
-end entity testbench_timer_mode_02;
+entity testbench_timer_mode_03 is
+end entity testbench_timer_mode_03;
 ------------------------------
 
-architecture stimulus of testbench_timer_mode_02 is
+architecture stimulus of testbench_timer_mode_03 is
 
 	constant prescaler_size_for_test : integer := 16;
 	constant compare_size_for_test   : integer := 4;
@@ -87,19 +87,19 @@ begin
 		wait for 1 * clock_period;
 
 		-- configure to mode 03:
-		timer_mode <= "10";
+		timer_mode <= "11";
 		prescaler  <= x"0001";
-		compare_0A <= x"B";
-		compare_0B <= x"A";
-		compare_1A <= x"D";
-		compare_1B <= x"C";
-		compare_2A <= x"F";
-		compare_2B <= x"E";
+		compare_0A <= x"2";
+		compare_0B <= x"4";
+		compare_1A <= x"6";
+		compare_1B <= x"8";
+		compare_2A <= x"A";
+		compare_2B <= x"C";
 		wait for 1 * clock_period;
 
 		-- run timer:
 		reset <= '0';
-		wait for 300 * clock_period;
+		wait for 100 * clock_period;
 
 		-- reset timer:
 		reset <= '1';
