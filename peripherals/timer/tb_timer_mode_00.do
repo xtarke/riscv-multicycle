@@ -23,12 +23,12 @@ add wave -radix unsigned -label compare_1A /compare_1A
 add wave -radix unsigned -label compare_1B /compare_1B
 add wave -radix unsigned -label compare_2A /compare_2A
 add wave -radix unsigned -label compare_2B /compare_2B
-add wave -radix binary -label output_A /output_A(0)
-add wave -radix binary -label output_B /output_B(0)
-add wave -radix binary -label output_A /output_A(1)
-add wave -radix binary -label output_B /output_B(1)
-add wave -radix binary -label output_A /output_A(2)
-add wave -radix binary -label output_B /output_B(2)
+add wave -radix binary -label output_0A /output_A(0)
+add wave -radix binary -label output_0B /output_B(0)
+add wave -radix binary -label output_1A /output_A(1)
+add wave -radix binary -label output_1B /output_B(1)
+add wave -radix binary -label output_2A /output_A(2)
+add wave -radix binary -label output_2B /output_B(2)
 
 # Mostra sinais internos do processo
 add wave -radix unsigned -label counter /dut/counter
