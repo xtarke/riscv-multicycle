@@ -29,8 +29,9 @@ architecture RTL_fsm_cdm_data of write_cdmdata is
 	signal count	: unsigned(15 downto 0);
 begin
 
-	state_transation : process(clk, reset) is
+	state_transation : process(data, clk, reset) is
 	begin
+		--data_cp <= data;
 		if(reset = '1') then
 			state <= IDLE;
 			count <= (others => '0');

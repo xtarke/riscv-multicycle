@@ -14,7 +14,7 @@ vlib work
 vcom fifo.vhd tb_fifo.vhd
 
 #Simula (work é o diretorio, testbench é o nome da entity)
-vsim -t ns work.testbench
+vsim -t ns work.testbench_fifo
 
 #Mosta forma de onda
 view wave

@@ -54,8 +54,6 @@ begin
 		case state is 
 			when IDLE =>
 				start <= '0';
-				read_en1 <= '0';
-				read_en2 <= '0';
 			when READ =>
 				if (empty_1 = '0') then
 					mux_sel <= '0';
@@ -66,6 +64,8 @@ begin
 				end if;
 			when WRITE =>
 				start <= '1';
+				read_en1 <= '0';
+				read_en2 <= '0';
 		end case;
 	end process;
 	

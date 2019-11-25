@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity testbench is
-end entity testbench;
+entity testbench_write_fsm is
+end entity testbench_write_fsm;
 
-architecture stimulus of testbench is
+architecture stimulus_write_fsm of testbench_write_fsm is
 	
 	signal clk  	    : std_logic := '0';
 	signal reset		: std_logic := '0';
@@ -67,4 +67,4 @@ begin
 		wait;
 	end process;
 
-end architecture stimulus;
+end architecture stimulus_write_fsm;

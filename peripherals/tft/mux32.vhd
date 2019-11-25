@@ -6,10 +6,6 @@
 -- Description : 
 -------------------------------------------------------------------
 
---COPIADO DA INTERNET
---http://www.ele.ita.br/~damore/vhdl/v011_solucoes/cap03/
-
-
 -- Bibliotecas e clásulas
 LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
