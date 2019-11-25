@@ -47,6 +47,9 @@
 #define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 24))		/*!< Generic OUPUT BUS - 32-bit register */
 #define SEL_CH_ADC		(*(_IO32 *) (PERIPH_BASE + 28))	
 
+#define TIMER_ADDRESS			(*(_IO32 *) (PERIPH_BASE + 32))		/*!< Generic INPUT BUS - 32-bit register */
+//#define TIMER_RESERVED	(TIMER + 28)
+
 
 
 #endif //HARDWARE_H
