@@ -11,51 +11,31 @@ library ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 -------------------------------------
-ENTITY testbench IS
-END ENTITY testbench;
+ENTITY testbench_fifo IS
+END ENTITY testbench_fifo;
 ------------------------------
 
-ARCHITECTURE stimulus OF testbench IS
-
-	component ring_buffer
-		generic(
-			RAM_WIDTH : natural;
-			RAM_DEPTH : natural;
-			HEAD_INIT : natural;
-			FILENAME  : string
-		);
-		port(
-			clk        : IN  std_logic;
-			rst        : IN  std_logic;
-			wr_en      : IN  std_logic;
-			wr_data    : IN  std_logic_vector(RAM_WIDTH - 1 downto 0);
-			rd_en      : IN  std_logic;
-			rd_valid   : OUT std_logic;
-			rd_data    : OUT std_logic_vector(RAM_WIDTH - 1 downto 0);
-			empty      : OUT std_logic;
-			full       : OUT std_logic;
-			fill_count : OUT integer range RAM_DEPTH - 1 downto 0
-		);
-	end component ring_buffer;
+ARCHITECTURE stimulus_fifo OF testbench_fifo IS
 
 	SIGNAL clk        : std_logic;
 	SIGNAL rst        : std_logic;
 	SIGNAL wr_en      : std_logic;
-	SIGNAL wr_data    : std_logic_vector(31 downto 0);
+	SIGNAL wr_data    : unsigned(31 downto 0);
 	SIGNAL rd_en      : std_logic;
 	SIGNAL rd_valid   : std_logic;
-	SIGNAL rd_data    : std_logic_vector(31 downto 0);
+	SIGNAL rd_data    : unsigned(31 downto 0);
 	SIGNAL empty      : std_logic;
 	SIGNAL full       : std_logic;
 	SIGNAL fill_count : integer range 61 downto 0;
+    
 
 BEGIN                                   -- inicio do corpo da arquitetura
-	dut : ring_buffer
+	dut : entity work.ring_buffer
 		generic map(
 			RAM_WIDTH => 32,
 			RAM_DEPTH => 62,
 			HEAD_INIT => 42,
-			FILENAME => "ili9320_init.txt"
+			FILENAME  => "ili9320_init.txt"
 		)
 		port map(
 			clk        => clk,
@@ -107,4 +87,4 @@ BEGIN                                   -- inicio do corpo da arquitetura
 		wait;
 	end process;
 
-END ARCHITECTURE stimulus;
+END ARCHITECTURE stimulus_fifo;

@@ -24,11 +24,11 @@ use std.textio.all;
 	     rst        : IN  std_logic;
 	     
 	     wr_en      : IN  std_logic;
-	     wr_data    : IN  std_logic_vector(RAM_WIDTH - 1 downto 0);
+	     wr_data    : IN  unsigned(RAM_WIDTH - 1 downto 0);
 	     
 	     rd_en      : IN  std_logic;
 	     rd_valid   : OUT std_logic;
-	     rd_data    : OUT std_logic_vector(RAM_WIDTH - 1 downto 0);
+	     rd_data    : OUT unsigned(RAM_WIDTH - 1 downto 0);
 	     
 	     empty      : OUT std_logic;
 	     --empty_next : OUT std_logic;
@@ -40,7 +40,7 @@ end entity;
  
 -- Arquitetura e
 architecture rtl of ring_buffer IS
-	type MEM is array (0 to RAM_DEPTH - 1) of std_logic_vector(wr_data'range);
+	type MEM is array (0 to RAM_DEPTH - 1) of unsigned(wr_data'range);
 	
 	impure function InitMEMFromFile(RamFileName : in string) return MEM is
 	FILE MEMFile : text open read_mode is RamFileName;
@@ -60,7 +60,7 @@ architecture rtl of ring_buffer IS
         		hex := (others => '0');
       		end if;
       		
-			RAM(i) := hex;
+			RAM(i) := unsigned(hex);
 		end loop;
 		
 		return RAM;
