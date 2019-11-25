@@ -1,5 +1,5 @@
 Timing Analyzer report for DE2_115
-Mon Nov 18 09:19:50 2019
+Mon Nov 25 07:56:27 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -112,9 +112,9 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   9.2%      ;
-;     Processor 3            ;   9.1%      ;
-;     Processor 4            ;   9.1%      ;
+;     Processor 2            ;   9.1%      ;
+;     Processor 3            ;   8.8%      ;
+;     Processor 4            ;   8.7%      ;
 +----------------------------+-------------+
 
 
@@ -3260,7 +3260,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Mon Nov 18 09:19:46 2019
+    Info: Processing started: Mon Nov 25 07:56:23 2019
 Info: Command: quartus_sta DE2_115 -c DE2_115
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -3383,8 +3383,8 @@ Info (332114): Report Metastability: Found 1 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 20 warnings
-    Info: Peak virtual memory: 1107 megabytes
-    Info: Processing ended: Mon Nov 18 09:19:50 2019
+    Info: Peak virtual memory: 1102 megabytes
+    Info: Processing ended: Mon Nov 25 07:56:27 2019
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:05
 

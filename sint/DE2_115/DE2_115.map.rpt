@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_115
-Mon Nov 18 09:19:08 2019
+Mon Nov 25 07:55:39 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -52,9 +52,8 @@ Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
  44. Port Connectivity Checks: "pll:pll_inst"
  45. In-System Memory Content Editor Settings
  46. Post-Synthesis Netlist Statistics for Top Partition
- 47. Post-Synthesis Netlist Statistics for Partition sld_hub:auto_hub
- 48. Elapsed Time Per Partition
- 49. Analysis & Synthesis Messages
+ 47. Elapsed Time Per Partition
+ 48. Analysis & Synthesis Messages
 
 
 
@@ -81,7 +80,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 18 09:19:08 2019           ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 25 07:55:39 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
@@ -789,38 +788,32 @@ Encoding Type:  One-Hot
 +----------------------------------------------------+-----------------------------------------------+------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                                                                                                                                                                                                                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                                                                                                                                                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[5]                                                                                                                                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[17]                                                                                                                                                                                                             ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[9]                                                                                                                                                                                                              ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |DE2_115|core:myRisc|pc[0]                                                                                                                                                                                                                                                                                                                                        ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[4]                                                                                                                                                               ;
-; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |DE2_115|core:myRisc|pc[15]                                                                                                                                                                                                                                                                                                                                       ;
-; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[2]                                                                                                                                                                    ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector23                                                                                                                                                                                                                                                                                                                                  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector15                                                                                                                                                                                                                                                                                                                                  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector1                                                                                                                                                                                                                                                                                                                                   ;
-; 5:1                ; 27 bits   ; 81 LEs        ; 54 LEs               ; 27 LEs                 ; No         ; |DE2_115|Mux21                                                                                                                                                                                                                                                                                                                                                    ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |DE2_115|Mux30                                                                                                                                                                                                                                                                                                                                                    ;
-; 18:1               ; 6 bits    ; 72 LEs        ; 24 LEs               ; 48 LEs                 ; No         ; |DE2_115|dmemory:dmem|state                                                                                                                                                                                                                                                                                                                                       ;
-; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux54                                                                                                                                                                                                                                                                                                                                        ;
-; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux50                                                                                                                                                                                                                                                                                                                                        ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 112 LEs              ; 56 LEs                 ; No         ; |DE2_115|core:myRisc|Mux41                                                                                                                                                                                                                                                                                                                                        ;
-; 33:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; No         ; |DE2_115|core:myRisc|Mux58                                                                                                                                                                                                                                                                                                                                        ;
-; 33:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux37                                                                                                                                                                                                                                                                                                                                        ;
-; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux61                                                                                                                                                                                                                                                                                                                                        ;
-; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux35                                                                                                                                                                                                                                                                                                                                        ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|irsr_reg[2]                             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|hub_minor_ver_reg[3]                    ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg|word_counter[0] ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|mixer_addr_reg_internal[1]              ;
-; 34:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; Yes        ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|design_hash_reg[1]                      ;
-; 20:1               ; 4 bits    ; 52 LEs        ; 32 LEs               ; 20 LEs                 ; Yes        ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg|WORD_SR[1]      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[5]                                     ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[17]                                               ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[9]                                                ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |DE2_115|core:myRisc|pc[0]                                                                                                                                                                          ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[4] ;
+; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |DE2_115|core:myRisc|pc[15]                                                                                                                                                                         ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[2]      ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector23                                                                                                                                                                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector15                                                                                                                                                                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector1                                                                                                                                                                     ;
+; 5:1                ; 27 bits   ; 81 LEs        ; 54 LEs               ; 27 LEs                 ; No         ; |DE2_115|Mux21                                                                                                                                                                                      ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |DE2_115|Mux30                                                                                                                                                                                      ;
+; 18:1               ; 6 bits    ; 72 LEs        ; 24 LEs               ; 48 LEs                 ; No         ; |DE2_115|dmemory:dmem|state                                                                                                                                                                         ;
+; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux54                                                                                                                                                                          ;
+; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux50                                                                                                                                                                          ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 112 LEs              ; 56 LEs                 ; No         ; |DE2_115|core:myRisc|Mux41                                                                                                                                                                          ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; No         ; |DE2_115|core:myRisc|Mux58                                                                                                                                                                          ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux37                                                                                                                                                                          ;
+; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux61                                                                                                                                                                          ;
+; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux35                                                                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1855,44 +1848,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 
 
-+------------------------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Partition sld_hub:auto_hub ;
-+-----------------------+------------------------------------------+
-; Type                  ; Count                                    ;
-+-----------------------+------------------------------------------+
-; boundary_port         ; 103                                      ;
-; cycloneiii_ff         ; 86                                       ;
-;     CLR               ; 5                                        ;
-;     ENA               ; 16                                       ;
-;     ENA CLR           ; 27                                       ;
-;     ENA CLR SLD       ; 1                                        ;
-;     ENA SCLR          ; 5                                        ;
-;     ENA SLD           ; 9                                        ;
-;     SCLR              ; 7                                        ;
-;     plain             ; 16                                       ;
-; cycloneiii_lcell_comb ; 120                                      ;
-;     arith             ; 8                                        ;
-;         2 data inputs ; 8                                        ;
-;     normal            ; 112                                      ;
-;         0 data inputs ; 1                                        ;
-;         1 data inputs ; 6                                        ;
-;         2 data inputs ; 23                                       ;
-;         3 data inputs ; 31                                       ;
-;         4 data inputs ; 51                                       ;
-;                       ;                                          ;
-; Max LUT depth         ; 4.00                                     ;
-; Average LUT depth     ; 1.82                                     ;
-+-----------------------+------------------------------------------+
-
-
-+---------------------------------+
-; Elapsed Time Per Partition      ;
-+------------------+--------------+
-; Partition Name   ; Elapsed Time ;
-+------------------+--------------+
-; Top              ; 00:00:14     ;
-; sld_hub:auto_hub ; 00:00:00     ;
-+------------------+--------------+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:14     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -1901,7 +1863,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Mon Nov 18 09:18:31 2019
+    Info: Processing started: Mon Nov 25 07:55:00 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_115 -c DE2_115
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -2158,7 +2120,7 @@ Warning (10873): Using initial value X (don't care) for net "dmemory.bus_lag" at
 Info (12128): Elaborating entity "ULA" for hierarchy "core:myRisc|ULA:alu_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 225
 Info (12128): Elaborating entity "M" for hierarchy "core:myRisc|M:M_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 241
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2019.11.18.10:18:45 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2019.11.25.08:55:16 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2677,9 +2639,6 @@ Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "core:myRisc|Add1~22" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 101
     Info (17048): Logic cell "core:myRisc|jal_target[0]~22" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 72
-Info (13000): Registers with preset signals will power-up high File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd Line: 386
-Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info (286031): Timing-Driven Synthesis is running on partition "sld_hub:auto_hub"
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 62 input pin(s) that do not drive logic
@@ -2754,9 +2713,9 @@ Info (21057): Implemented 7375 device resources after synthesis - the final reso
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 462 warnings
-    Info: Peak virtual memory: 1211 megabytes
-    Info: Processing ended: Mon Nov 18 09:19:08 2019
-    Info: Elapsed time: 00:00:37
-    Info: Total CPU time (on all processors): 00:01:01
+    Info: Peak virtual memory: 1222 megabytes
+    Info: Processing ended: Mon Nov 25 07:55:39 2019
+    Info: Elapsed time: 00:00:39
+    Info: Total CPU time (on all processors): 00:00:59
 
 

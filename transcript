@@ -1,0 +1,117 @@
+cd /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115
+do tb.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:09:46 on Nov 25,2019
+# vcom -reportprogress 300 ula.vhd tb_ula.vhd 
+# ** Error: (vcom-7) Failed to open design unit file "ula.vhd" in read mode.
+# No such file or directory. (errno = ENOENT)
+# End time: 11:09:46 on Nov 25,2019, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: /opt/intelFPGA/18.1/modelsim_ae/linuxaloem/vcom failed.
+# Error in macro ./tb.do line 14
+# /opt/intelFPGA/18.1/modelsim_ae/linuxaloem/vcom failed.
+#     while executing
+# "vcom ula.vhd tb_ula.vhd"
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:10:36 on Nov 25,2019
+# vcom -reportprogress 300 sram.vhd tb_sram.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity sram
+# -- Compiling architecture RTL of sram
+# -- Compiling entity tb_sram
+# -- Compiling architecture RTL of tb_sram
+# End time: 11:10:36 on Nov 25,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t ns work.testbench 
+# Start time: 11:10:36 on Nov 25,2019
+# ** Error: (vsim-3170) Could not find 'testbench'.
+#         Searched libraries:
+#             /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115/work
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./tb.do PAUSED at line 17
+cd /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:11:57 on Nov 25,2019
+# vcom -reportprogress 300 sram.vhd tb_sram.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity sram
+# -- Compiling architecture RTL of sram
+# -- Compiling entity tb_sram
+# -- Compiling architecture RTL of tb_sram
+# End time: 11:11:57 on Nov 25,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t ns work.tb_sram 
+# Start time: 11:10:36 on Nov 25,2019
+# //  ModelSim - Intel FPGA Edition 10.5b Oct  5 2016Linux 3.10.0-957.27.2.el7.x86_64
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim - Intel FPGA Edition and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_sram(rtl)
+# Loading ieee.std_logic_textio(body)
+# Loading work.sram(rtl)
+# ** Warning: (vsim-8683) Uninitialized out port /tb_sram/dut/q(7 downto 0) has no driver.
+# This port will contribute value (UUUUUUUU) to the signal network.
+# .main_pane.wave.interior.cs.body.pw.wf
+# 0 ns
+# 525 ns
+# printing wave to file wave.ps
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:14:17 on Nov 25,2019
+# vcom -reportprogress 300 sram.vhd tb_sram.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity sram
+# -- Compiling architecture RTL of sram
+# -- Compiling entity tb_sram
+# -- Compiling architecture RTL of tb_sram
+# End time: 11:14:17 on Nov 25,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:14:17 on Nov 25,2019, Elapsed time: 0:03:41
+# Errors: 1, Warnings: 1
+# vsim -t ns work.tb_sram 
+# Start time: 11:14:17 on Nov 25,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_sram(rtl)
+# Loading ieee.std_logic_textio(body)
+# Loading work.sram(rtl)
+# ** Warning: (vsim-8683) Uninitialized out port /tb_sram/dut/q(7 downto 0) has no driver.
+# This port will contribute value (UUUUUUUU) to the signal network.
+# .main_pane.wave.interior.cs.body.pw.wf
+# 0 ns
+# 525 ns
+# printing wave to file wave.ps
