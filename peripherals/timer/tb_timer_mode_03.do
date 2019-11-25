@@ -2,10 +2,10 @@
 vlib work
 
 # Compila projeto: todos os aquivo. Ordem é importante
-vcom Timer.vhd tb_timer_mode_01.vhd
+vcom Timer.vhd tb_timer_mode_03.vhd
 
 # Simula (work é o diretorio, testbench é o nome da entity)
-vsim -t ns work.testbench_timer_mode_01
+vsim -t ns work.testbench_timer_mode_03
 
 # Mosta forma de onda
 view wave
@@ -39,4 +39,4 @@ add wave -radix binary -label counter_direction /dut/internal_counter_direction
 run 2400ns
 
 wave zoomfull
-write wave testbench_timer_mode_01_wave.ps
+write wave testbench_timer_mode_03_wave.ps
