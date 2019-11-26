@@ -20,6 +20,7 @@ architecture stimulus of testbench_timer_mode_03 is
 		port(
 			clock      : in  std_logic;
 			reset      : in  std_logic;
+			timer_reset      : in  std_logic;
 			timer_mode : in  unsigned(1 downto 0);
 			prescaler  : in  unsigned(prescaler_size - 1 downto 0);
 			compare_0A : in  unsigned(compare_size - 1 downto 0);
@@ -34,6 +35,7 @@ architecture stimulus of testbench_timer_mode_03 is
 	end component Timer;
 	signal clock      : std_logic;
 	signal reset      : std_logic;
+	signal timer_reset      : std_logic;
 	signal timer_mode : unsigned(1 downto 0);
 	signal prescaler  : unsigned(prescaler_size_for_test - 1 downto 0);
 	signal compare_0A : unsigned(compare_size_for_test - 1 downto 0);
@@ -52,6 +54,7 @@ begin
 		port map(
 			clock      => clock,
 			reset      => reset,
+			timer_reset      => timer_reset,
 			timer_mode => timer_mode,
 			prescaler  => prescaler,
 			compare_0A => compare_0A,
@@ -76,6 +79,7 @@ begin
 	begin
 		-- reset:
 		reset      <= '1';
+		timer_reset      <= '0';
 		prescaler  <= (others => '0');
 		timer_mode <= (others => '0');
 		compare_0A <= (others => '0');
@@ -102,11 +106,11 @@ begin
 		wait for 100 * clock_period;
 
 		-- reset timer:
-		reset <= '1';
+		timer_reset <= '1';
 		wait for 1 * clock_period;
 
 		-- run timer again:
-		reset <= '0';
+		timer_reset  <= '0';
 		wait for 10 * clock_period;
 
 		wait;
