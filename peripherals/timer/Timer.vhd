@@ -56,13 +56,11 @@ begin
 	begin
 		if reset = '0' then
 			if rising_edge(internal_clock) then
-
 				if timer_reset = '1' then
 					internal_output_A := (others => '0');
 					internal_output_B := (others => '0');
 					counter           <= (others => '0');
 					counter_direction := '0';
-
 				else
 					case timer_mode is
 						when "00" =>    -- one shot mode
@@ -291,15 +289,14 @@ begin
 
 					end case;
 				end if;
-			else
-				internal_output_A := (others => '0');
-				internal_output_B := (others => '0');
-				counter_direction := '0';
 			end if;
 
 			output_A <= internal_output_A;
 			output_B <= internal_output_B;
-
+		else
+			internal_output_A := (others => '0');
+			internal_output_B := (others => '0');
+			counter_direction := '0';
 		end if;
 
 	end process p2;
