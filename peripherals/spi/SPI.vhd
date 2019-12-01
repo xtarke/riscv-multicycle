@@ -80,10 +80,6 @@ begin
 	state_values : process(i_clk,i_rst,i_tx_start,cpol,tx_start_flag)
 	begin		
 	tx_start_flag <= i_tx_start;
-	
-	if	tx_start_flag = '1' then
-		 o_sclk <= i_clk;
-	end if;
 		
 	  if(i_rst='0') then
 	    tx_start_flag      <= '0';
@@ -152,6 +148,10 @@ begin
 	        when others  => 
 	    end case;
 	  end if;
+		  
+	if	tx_start_flag = '1' then
+		 o_sclk <= i_clk;
+	end if;
 	end process state_values;
 
 
