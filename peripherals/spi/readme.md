@@ -1,11 +1,14 @@
 # SPI básico
 
-Este módulo consiste em uma SPI com modo de operação em borda de subida para o envio (MOSI).
+Este módulo consiste em uma SPI-master com modo de operação em borda de subida para o envio (MOSI).
 
 Frequência de envio: 500 khz
 
 Foi implementado o MISO, porém este necessita de uma defasagem ou operar em borda de descida.
 Ele recebe, porém ocorre um deslocamento, pois pega o valor anterior no primeiro bit (zero).
+
+No testbench pode-se ver o valor enviado (xA9) e o valor recebido (x54, 1 bit deslocado pra direita),
+as ondas aparecem iguais pois é o mesmo sinal que realimenta MOSI->MISO, mas o registro é deslocado.
 
  A seguir, um resultado do testbench do módulo:
  
