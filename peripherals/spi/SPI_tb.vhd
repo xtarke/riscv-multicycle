@@ -61,22 +61,22 @@ begin
 		i_rst  <=  '0';
 		wait for 15 ns;
 		i_rst  <=  '1';
-		wait for 200 ns;
-	    i_rst  <=  '0';
-	    wait for 20 ns;
-	    i_rst  <=  '1';
+--		wait for 200 ns;
+--	    i_rst  <=  '0';
+--	    wait for 20 ns;
+--	    i_rst  <=  '1';
 	    wait;
 	    
 	end process;
 	
-	test : process 
+	test : process
+	 
 	begin
 		i_data  <=  x"a9";
 		i_tx_start  <= '0';
-		wait for 25 ns;
+		wait for 20 ns;
 		i_tx_start  <= '1';
 		wait until o_tx_end = '1';
-		wait for 20 ns;
 		i_tx_start  <= '0';
 		wait;
 		
