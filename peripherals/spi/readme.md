@@ -1,6 +1,6 @@
 # SPI básico
 
-Este módulo consiste em uma SPI com modo de operação em borda de subida para o envio (MOSI).
+Este módulo consiste em uma SPI-master com modo de operação em borda de subida para o envio (MOSI).
 
 Frequência de envio: 500 khz
 
