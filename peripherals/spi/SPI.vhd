@@ -142,6 +142,7 @@ begin
 	        o_tx_end         <= '1';
 	        counter_clock_en <= '0';
 	        o_ss             <= '1';
+	        o_mosi  		 <= '0';
 	        
 	        -- Debug
 	        debug_idle_flag  <= '0';
