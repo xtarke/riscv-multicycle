@@ -29,7 +29,6 @@ add wave -radix hex -label  debug_idle_flag   /debug_idle_flag
 add wave -radix hex -label  debug_tx_flag     /debug_tx_flag
 add wave -radix hex -label  debug_end_flag    /debug_end_flag
 
-
 #Como mostrar sinais internos do processo
 #add wave -radix dec /soma/p0/count
 
