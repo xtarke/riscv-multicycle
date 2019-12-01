@@ -19,7 +19,7 @@ entity SPI is
 	  o_ss          : out std_logic;
 	  o_mosi        : out std_logic;
 	  
-	  -- debug-- remove it later
+	  -- debug-- remover depois
 	 debug_idle_flag : buffer std_logic;
 	 debug_tx_flag   : buffer std_logic;
 	 debug_end_flag  : buffer std_logic
@@ -32,30 +32,16 @@ architecture rtl of SPI is
 	signal state           : spi_state_t;
 	signal next_state      : spi_state_t;
 	
-	signal counter_clock        : integer range 0 to n_bits*2;
 	signal counter_clock_en     : std_logic;
 	signal counter_bits         : integer range 0 to n_bits;
 	signal tx_start_flag        : std_logic;  						    -- start TX on serial line
 	signal tx_finish_flag       : std_logic;  						    -- finish TX on serial line
 	signal tx_data              : std_logic_vector(n_bits-1 downto 0);  -- data to sent
 	signal rx_data              : std_logic_vector(n_bits-1 downto 0);  -- received data
-	signal counter_data_flag    : std_logic;	
 	signal cpol 				: std_logic;
 		
 begin
 	cpol  <= '0';
-	
-	--- FSM sinc Update
-	sinc : process(i_clk,i_rst)
-	begin
-	  if(i_rst='0') then
-	    state <= ST_IDLE;
-	  elsif(rising_edge(i_clk)) then
-	  	state <= next_state;
-	  end if;
-	end process ;
-
- o_sclk           <= i_clk;
 
 	-- FSM check next state
 	fsm : process(state, tx_start_flag, tx_finish_flag)
@@ -88,10 +74,17 @@ begin
 	  end case;
 	end process ;
 
+	  	state <= next_state;
 
 	-- Update values according to the state
-	state_out : process(i_clk,i_rst)
-	begin
+	state_values : process(i_clk,i_rst,i_tx_start,cpol,tx_start_flag)
+	begin		
+	tx_start_flag <= i_tx_start;
+	
+	if	tx_start_flag = '1' then
+		 o_sclk <= i_clk;
+	end if;
+		
 	  if(i_rst='0') then
 	    tx_start_flag      <= '0';
 	    tx_data            <= (others=>'0');
@@ -100,7 +93,7 @@ begin
 	    o_data             <= (others=>'0');
 	    counter_bits       <= n_bits-1;
 	    counter_clock_en   <= '0';
---	    o_sclk             <= cpol;
+	    o_sclk             <= cpol;
 	    o_ss               <= '1';
 	    o_mosi             <= '0';
 	   
@@ -110,8 +103,7 @@ begin
 	   debug_end_flag   <= '0';
 	    
 	  elsif(rising_edge(i_clk)) then
-	  	tx_start_flag <= i_tx_start;
-	  	
+
 	  	case state is
 	  		
 	  	when ST_IDLE =>  -- ST_RESET	  		
@@ -119,7 +111,7 @@ begin
 	        o_tx_end         <= '0';
 	        counter_bits     <=  n_bits-1;
 	        counter_clock_en <= '0';
---	        o_sclk           <= cpol;
+	        o_sclk           <= cpol;
 	        o_ss             <= '1';
 	        o_mosi           <= '0';
 	        o_data  		 <=  x"00";
@@ -129,13 +121,10 @@ begin
 	   		debug_tx_flag    <= '0';
 	  		debug_end_flag   <= '0';
 	  		
-	  	when ST_TRANSFER =>	   
---	        o_tx_end         <= '0';
---	        o_sclk           <= i_clk;    
+	  	when ST_TRANSFER =>	     
+    		o_ss             <= '0'; 
 			o_mosi                <= tx_data(counter_bits);
-			rx_data(counter_bits) <= i_miso;
---	        counter_clock_en <= '1';			
-	        o_ss             <= '0';	  		
+			rx_data(counter_bits) <= i_miso;	
 	        
 	    	if counter_bits > 0 then 
 	    		counter_bits <= counter_bits -1;
@@ -152,7 +141,6 @@ begin
 	    when ST_END =>	   
 	        o_tx_end         <= '1';
 	        counter_clock_en <= '0';
---	        o_data <=  rx_data;
 	        o_ss             <= '1';
 	        
 	        -- Debug
@@ -163,27 +151,7 @@ begin
 	        when others  => 
 	    end case;
 	  end if;
-	end process state_out;
-	
-	
---	-- Clock  Counter
---	count_clock : process(i_clk,i_rst)
---	begin
---	  if(i_rst='0') then
---	    counter_bits       <=  n_bits-1;
---	    
---	  elsif(rising_edge(i_clk)) then
---	    if(counter_clock_en='1') then        
---	    	if counter_bits > 0 then 
---	    		counter_bits <= counter_bits -1;
---	    	else 
---	    		counter_data_flag  <= '1';
---	    		tx_finish_flag     <= '1';
---	    		counter_bits       <=  n_bits-1;
---	    	end if;
---	    else
---	    	  counter_bits <=  n_bits-1;
---	    end if;
---	  end if;
---	end process ;
+	end process state_values;
+
+
 end rtl;
