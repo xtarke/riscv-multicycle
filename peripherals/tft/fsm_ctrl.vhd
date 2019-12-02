@@ -4,32 +4,33 @@ use ieee.numeric_std.all;
 
 entity fsm is
 	port(
-		clk 		: in std_logic;
-		reset		: in std_logic;
-		
-		ready		: in std_logic;
-		start		: out std_logic;
-		
-		mux_sel		: out std_logic;
-		
-		empty_1		: in std_logic;
-		empty_2		: in std_logic;
-		read_en1	: out std_logic;
-		read_en2	: out std_logic
+		clk      : in  std_logic;
+		reset    : in  std_logic;
+		ready    : in  std_logic;
+		start    : out std_logic;
+		mux_sel  : out std_logic;
+		empty_1  : in  std_logic;
+		empty_2  : in  std_logic;
+		read_en1 : out std_logic;
+		read_en2 : out std_logic
 	);
 end entity fsm;
 
 architecture RTL_fsm of fsm is
 	type state_type is (IDLE, READ, WRITE);
-	signal state		: state_type;
+	signal state : state_type;
 begin
 
 	state_transation : process(clk, reset) is
 	begin
-		if(reset = '1') then
-			state <= IDLE;
+		if (reset = '1') then
+			--if (ready = '1') then
+				state <= WRITE;
+			--else
+			--	state <= IDLE;
+			--end if;
 		elsif rising_edge(clk) then
-			case state is 
+			case state is
 				when IDLE =>
 					if (ready = '1') then
 						state <= READ;
@@ -47,26 +48,40 @@ begin
 			end case;
 		end if;
 	end process;
-	
-	mealy_moore: process(state, empty_1, empty_2)
+
+	mealy_moore : process(state, empty_1, empty_2)
 	begin
-			
-		case state is 
+		start   <= '0';
+		mux_sel <= '0';
+		read_en1 <= '0';
+		read_en2 <= '0';
+		
+		case state is
 			when IDLE =>
-				start <= '0';
+				null;
 			when READ =>
+				read_en1 <= '0';
+				read_en2 <= '0';
+				--start <= '1';
 				if (empty_1 = '0') then
-					mux_sel <= '0';
+					mux_sel  <= '0';
 					read_en1 <= '1';
 				elsif (empty_2 = '0') then
-					mux_sel <= '1';
+					mux_sel  <= '1';
 					read_en2 <= '1';
 				end if;
 			when WRITE =>
-				start <= '1';
 				read_en1 <= '0';
 				read_en2 <= '0';
+				start    <= '1';
+				if (empty_1 = '0') then
+					mux_sel  <= '0';
+					read_en1 <= '1';
+				elsif (empty_2 = '0') then
+					mux_sel  <= '1';
+					read_en2 <= '1';
+				end if;
 		end case;
 	end process;
-	
+
 end architecture;

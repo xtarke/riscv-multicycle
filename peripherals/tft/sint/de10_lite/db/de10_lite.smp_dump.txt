@@ -1,0 +1,40 @@
+
+State Machine - |de10_lite|tft_controller:tft_controller_inst|fsm:fsm_inst|state
+Name state.IDLE state.READ state.WRITE 
+state.WRITE 0 0 0 
+state.READ 0 1 1 
+state.IDLE 1 0 1 
+
+State Machine - |de10_lite|tft_controller:tft_controller_inst|write_cdmdata:write_cdmdata_inst|state_out
+Name state_out.LCD_DATA_LOW state_out.LCD_DATA_HIGH state_out.LCD_CMD_LOW state_out.LCD_CMD_HIGH state_out.WR_HIGH state_out.WR_LOW state_out.DELAY state_out.RS_HIGH state_out.RS_LOW state_out.CS_HIGH state_out.CS_LOW state_out.DELAY_COUNT state_out.FINISH state_out.IDLE 
+state_out.IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state_out.FINISH 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state_out.DELAY_COUNT 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state_out.CS_LOW 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state_out.CS_HIGH 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state_out.RS_LOW 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state_out.RS_HIGH 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state_out.DELAY 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state_out.WR_LOW 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state_out.WR_HIGH 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state_out.LCD_CMD_HIGH 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state_out.LCD_CMD_LOW 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state_out.LCD_DATA_HIGH 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state_out.LCD_DATA_LOW 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |de10_lite|tft_controller:tft_controller_inst|write_cdmdata:write_cdmdata_inst|state
+Name state.LCD_DATA_LOW state.LCD_DATA_HIGH state.LCD_CMD_LOW state.LCD_CMD_HIGH state.WR_HIGH state.WR_LOW state.DELAY state.RS_HIGH state.RS_LOW state.CS_HIGH state.CS_LOW state.DELAY_COUNT state.FINISH state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.FINISH 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.DELAY_COUNT 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.CS_LOW 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.CS_HIGH 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.RS_LOW 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.RS_HIGH 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.DELAY 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.WR_LOW 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.WR_HIGH 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.LCD_CMD_HIGH 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.LCD_CMD_LOW 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.LCD_DATA_HIGH 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.LCD_DATA_LOW 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
