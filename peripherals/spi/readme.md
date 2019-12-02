@@ -36,3 +36,7 @@ as ondas aparecem iguais pois é o mesmo sinal que realimenta MOSI->MISO, mas o 
  ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_miso_leds.PNG)
  
  Pode-se observar o mesmo deslocamento ocorrido no testbench, os leds acesos estão deslocados em 1 bit para a direita.
+ 
+ ## Resultados dos testes com Arduino DUE
+ 
+ Foi utilizado o Arduino DUE para receber os dados, devido à sua pinagem também ser de 3,3 V como a placa DE10-Lite.
