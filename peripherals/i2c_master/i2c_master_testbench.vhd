@@ -44,6 +44,8 @@ begin
 			wait for 20 ns;
 			rst <= '0';
 			ena <= '1';
+			wait for 80 ns;
+			ena <= '0';
 			wait;			
 		end process;
 		
