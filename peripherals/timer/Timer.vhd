@@ -34,12 +34,14 @@ architecture RTL of Timer is
 begin
 
 	p1 : process(clock, reset) is       -- @suppress "Incomplete sensitivity list. Missing signals: internal_clock, prescaler"
-		variable temp_counter : unsigned(prescaler_size - 1 downto 0) := (others => '0'); -- 17 bits devido ao prescaler ser multiplicado por 2.
+		variable temp_counter : unsigned(prescaler_size - 1 downto 0) := (others => '0');
 	begin
 		if reset = '0' then
-			if rising_edge(clock) OR falling_edge(clock) then
+			if prescaler = x"0001" then
+				internal_clock <= clock;
+			elsif rising_edge(clock) then
 				temp_counter := temp_counter + 1;
-				if temp_counter >= prescaler then
+				if temp_counter >= prescaler - 1 then
 					internal_clock <= not (internal_clock);
 					temp_counter   := (others => '0');
 				end if;

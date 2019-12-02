@@ -92,7 +92,7 @@ begin
 
 		-- configure to mode 00:
 		timer_mode <= "00";
-		prescaler  <= x"0001";
+		prescaler  <= x"0005";
 		compare_0A <= x"4";
 		compare_0B <= x"5";
 		compare_1A <= x"6";
