@@ -257,21 +257,23 @@ begin
 						HEX3 <= ddata_w(31 downto 24);
 					-- HEX4 <= ddata_w(7 downto 0);
 					-- HEX5 <= ddata_w(7 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"20" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then -- TIMER_ADDRESS
 						timer_reset <= ddata_w(0);
-						timer_mode  <= unsigned(ddata_w(2 downto 1));
-						prescaler   <= unsigned(ddata_w(18 downto 3));
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"24" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then -- TIMER_ADDRESS
+						timer_mode  <= unsigned(ddata_w(1 downto 0));
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then -- TIMER_ADDRESS
+						prescaler   <= unsigned(ddata_w(15 downto 0));
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0B" then -- TIMER_ADDRESS
 						compare_0A <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"28" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0C" then -- TIMER_ADDRESS
 						compare_0B <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"2C" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0D" then -- TIMER_ADDRESS
 						compare_1A <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"30" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0E" then -- TIMER_ADDRESS
 						compare_1B <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"34" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0F" then -- TIMER_ADDRESS
 						compare_2A <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"38" then -- TIMER_ADDRESS
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"10" then -- TIMER_ADDRESS
 						compare_2B <= unsigned(ddata_w);
 					end if;
 				end if;

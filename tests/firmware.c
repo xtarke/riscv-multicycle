@@ -19,8 +19,30 @@
 
 
 int main(){
-	
-	TIMER_0->timer_reset = 0;
+
+    //*(uint32_t *)TIMER_0 = 3;
+
+	/*                 
+	TIMER_0->config.BIT.timer_reset = 1;
+	TIMER_0->config.BIT.timer_mode = 3;
+	TIMER_0->config.BIT.prescaler = 1;
+    */
+
+    TIMER_0->timer_reset = 1;
+
+    TIMER_0->timer_mode = 1;
+    TIMER_0->prescaler = 1;
+
+    TIMER_0->compare_0A = 2;
+    TIMER_0->compare_0B = 3;
+    TIMER_0->compare_1A = 4;
+    TIMER_0->compare_1B = 5;
+    TIMER_0->compare_2A = 6;
+    TIMER_0->compare_2B = 7;
+
+    TIMER_0->timer_reset = 0;
+
+    for(;;);
 
 //	uint8_t i = 0;
 //
