@@ -23,6 +23,7 @@ architecture stimulus of testbench_timer_mode_00 is
 			timer_reset : in  std_logic;
 			timer_mode  : in  unsigned(1 downto 0);
 			prescaler   : in  unsigned(prescaler_size - 1 downto 0);
+			top_counter : in  unsigned(prescaler_size - 1 downto 0);
 			compare_0A  : in  unsigned(compare_size - 1 downto 0);
 			compare_0B  : in  unsigned(compare_size - 1 downto 0);
 			compare_1A  : in  unsigned(compare_size - 1 downto 0);
@@ -38,6 +39,7 @@ architecture stimulus of testbench_timer_mode_00 is
 	signal timer_reset : std_logic;
 	signal timer_mode  : unsigned(1 downto 0);
 	signal prescaler   : unsigned(prescaler_size_for_test - 1 downto 0);
+	signal top_counter : unsigned(compare_size_for_test - 1 downto 0);
 	signal compare_0A  : unsigned(compare_size_for_test - 1 downto 0);
 	signal compare_0B  : unsigned(compare_size_for_test - 1 downto 0);
 	signal compare_1A  : unsigned(compare_size_for_test - 1 downto 0);
@@ -57,6 +59,7 @@ begin
 			timer_reset => timer_reset,
 			timer_mode  => timer_mode,
 			prescaler   => prescaler,
+			top_counter => top_counter,
 			compare_0A  => compare_0A,
 			compare_0B  => compare_0B,
 			compare_1A  => compare_1A,
@@ -93,6 +96,7 @@ begin
 		-- configure to mode 00:
 		timer_mode <= "00";
 		prescaler  <= x"0005";
+		top_counter <= x"A";
 		compare_0A <= x"4";
 		compare_0B <= x"5";
 		compare_1A <= x"6";

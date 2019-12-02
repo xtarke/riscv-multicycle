@@ -23,6 +23,7 @@ add wave -radix unsigned -label compare_1A /compare_1A
 add wave -radix unsigned -label compare_1B /compare_1B
 add wave -radix unsigned -label compare_2A /compare_2A
 add wave -radix unsigned -label compare_2B /compare_2B
+add wave -radix unsigned -label top_counter/ top_counter
 add wave -radix binary -label output_0A /output_A(0)
 add wave -radix binary -label output_0B /output_B(0)
 add wave -radix binary -label output_1A /output_A(1)
