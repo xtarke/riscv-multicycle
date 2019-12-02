@@ -1,6 +1,6 @@
 # SPI básico
 
-Este módulo consiste em uma SPI-master com modo de operação em borda de subida para o envio (MOSI).
+Este módulo consiste em uma SPI-master com modo de operação em borda de subida.
 
 Frequência de envio: 500 khz
 
@@ -8,15 +8,16 @@ Frequência de envio: 500 khz
 
 ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/FSM.jpeg)
 
-Foi implementado o MISO, porém este necessita de uma defasagem ou operar em borda de descida.
-Ele recebe, porém ocorre um deslocamento, pois pega o valor anterior no primeiro bit (zero).
 
-No testbench pode-se ver o valor enviado (xA9) e o valor recebido (x54, 1 bit deslocado pra direita),
-as ondas aparecem iguais pois é o mesmo sinal que realimenta MOSI->MISO, mas o registro é deslocado.
-
- ### A seguir, um resultado do testbench do módulo:
+ ### A seguir, resultados do testbench do módulo:
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/testbench.PNG)
+ Para 8 bits :
+ 
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/testbench_8bits.PNG)
+ 
+ Para 16 bits:
+ 
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/testbench_16bits.PNG)
  
  
  ### A seguir, imagens dos testes com osciloscópio
@@ -31,12 +32,10 @@ as ondas aparecem iguais pois é o mesmo sinal que realimenta MOSI->MISO, mas o 
  
  ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_mosi_osciloscope.PNG)
  
- Realimentando o MISO com MOSI. MOSI -> chaves, MISO -> leds
+ Realimentando o MISO com MOSI. MOSI -> chaves, MISO -> leds.
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_miso_leds.PNG)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_miso_leds.jpeg)
  
- Pode-se observar o mesmo deslocamento ocorrido no testbench, os leds acesos estão deslocados em 1 bit para a direita.
+ Pode-s observar que os leds são respectivos aos botões ativados.
  
- ## Resultados dos testes com Arduino DUE
- 
- Foi utilizado o Arduino DUE para receber os dados, devido à sua pinagem também ser de 3,3 V como a placa DE10-Lite.
+
