@@ -6,25 +6,25 @@ O envio acontece na borda de subida e a recepção do dado acontece também em b
 porém, com defasagem de 1 ciclo de clock. Diferentemente do SPI tradicional, que opera em modos,
 que são configurados para realizar o envio e o recebimento por alternância das bordas.
 
-![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_blocks.PNG)
+![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/spi_blocks.PNG)
 
-![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_edges.PNG)
+![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/spi_edges.PNG)
 
 
 ### A seguir, a máquina de estados do sistema:
 
-![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/FSM.jpeg)
+![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/FSM.jpeg)
 
 
  ### A seguir, resultados do testbench do módulo:
  
  Para 8 bits :
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/testbench_8bits.PNG)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/testbench_8bits.PNG)
  
  Para 16 bits:
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/testbench_16bits.PNG)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/testbench_16bits.PNG)
  
  
  ### A seguir, imagens dos testes com osciloscópio
@@ -33,15 +33,15 @@ que são configurados para realizar o envio e o recebimento por alternância das
  
  Clock:
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_clock_osciloscope.PNG)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/spi_clock_osciloscope.PNG)
  
  Dados no MOSI:
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_mosi_osciloscope.PNG)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/spi_mosi_osciloscope.PNG)
  
  Realimentando o MISO com MOSI. MOSI -> chaves, MISO -> leds.
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_miso_leds.PNG)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/spi_miso_leds.PNG)
  
  Pode-s observar que os leds são respectivos aos botões ativados.
  
