@@ -10,9 +10,9 @@ architecture rtl of spi_tb is
 	  constant n_bits : integer := 8;
 	  signal i_clk       : std_logic;
 	  signal i_rst       : std_logic;
-	  signal i_tx_start  : std_logic; 
+	  signal i_tx_start  : std_logic  :=  '1'; 
 	  signal i_miso      : std_logic; 
-	  signal i_data      : std_logic_vector(n_bits-1 downto 0);  
+	  signal i_data      : std_logic_vector(n_bits-1 downto 0)   := (others=>'0');  
 	  signal o_data      : std_logic_vector(n_bits-1 downto 0);  
 	  signal o_tx_end    : std_logic; 
 	  signal o_sclk      : std_logic;
@@ -51,9 +51,9 @@ begin
 	clock: process
 	begin
 		i_clk  <= '0';
-		wait for 5 ns;
+		wait for 2 ns;
 		i_clk  <= '1'; 
-		wait for 5 ns; 
+		wait for 2 ns; 
 	end process;
 	
 	reset : process 
@@ -61,7 +61,7 @@ begin
 		i_rst  <=  '0';
 		wait for 10 ns;
 		i_rst  <=  '1';
---		wait for 200 ns;
+--		wait for 100 ns;
 --	    i_rst  <=  '0';
 --	    wait for 20 ns;
 --	    i_rst  <=  '1';
@@ -69,18 +69,15 @@ begin
 	    
 	end process;
 	
-	i_data  <=  x"a9"; 
-	
 	test : process
 	begin
---		i_data  <=  x"a9";
-		i_tx_start  <= '0';
-		wait for 5 ns;
-		i_tx_start  <= '1';
+		i_data  <=  std_logic_vector(unsigned(i_data) + 1);
+--		i_tx_start  <= '0';
+--		wait for 5 ns;
+--		i_tx_start  <= '1';
 		wait until o_tx_end = '1';
 --		i_tx_start  <= '0';
 --		wait;
-		
 	end process;
 	
 
