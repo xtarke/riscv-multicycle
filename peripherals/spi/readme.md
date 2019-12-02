@@ -1,8 +1,15 @@
 # SPI básico
 
-Este módulo consiste em uma SPI-master com modo de operação em borda de subida.
+Este módulo consiste em uma SPI-master com modo de operação em borda de subida e frequência de 500 khz.
 
-Frequência de envio: 500 khz
+O envio acontece na borda de subida e a recepção do dado acontece também em borda de subida,
+porém, com defasagem de 1 ciclo de clock. Diferentemente do SPI tradicional, que opera em modos,
+que são configurados para realizar o envio e o recebimento por alternância das bordas.
+
+![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_blocks.PNG)
+
+![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_edges.PNG)
+
 
 ### A seguir, a máquina de estados do sistema:
 
