@@ -4,14 +4,14 @@ use ieee.numeric_std.all;
 
 entity SPI is
 	generic(
-	  n_bits      : integer := 8   );  
+	  n_bits        : integer);  
 	port (
 	  i_clk         : in  std_logic;
 	  i_rst         : in  std_logic;
 	  
 	  i_tx_start    : in  std_logic;  							 
 	  i_data    	: in  std_logic_vector(n_bits-1 downto 0);  
-	  o_data    	: out std_logic_vector(n_bits-1 downto 0)  :=  x"00";  
+	  o_data    	: out std_logic_vector(n_bits-1 downto 0);
 	  o_tx_end      : out std_logic;  							 
 	 
 	  i_miso        : in  std_logic  := '0';
@@ -34,7 +34,6 @@ architecture rtl of SPI is
 	
 	signal counter_bits    : integer range 0 to n_bits;
 	signal tx_start_flag   : std_logic;  						  
-	signal tx_finish_flag  : std_logic;  						 
 	signal cpol 		   : std_logic;
 	signal ss        	   : std_logic  := '1';
 		
@@ -54,7 +53,7 @@ begin
 			o_sclk <= cpol;
 		end if;
 		
-	    if(i_rst='0') then
+	    if i_rst='0' then
 		    tx_start_flag  <= '0';
 		    o_tx_end       <= '0';
 		    o_data         <= (others=>'1');
@@ -67,7 +66,7 @@ begin
 		   debug_tx_flag   <= '0';
 		   debug_end_flag  <= '0';
 		    
-		elsif(rising_edge(i_clk)) then
+		elsif rising_edge(i_clk) then
 		
 			case state is
 				
@@ -94,17 +93,20 @@ begin
 			  		debug_end_flag   <= '0';
 			  		------------------------
 			  		
-		  			ss                    <= '0'; 
-					o_mosi                <= i_data(counter_bits);		
-					o_data(counter_bits)  <= i_miso;		
-			        
+		  			ss                   <= '0'; 
+					o_mosi               <= i_data(counter_bits);	
+--					o_data(counter_bits) <= i_miso;
+					
+					if counter_bits < n_bits-1 then
+						o_data(counter_bits +1) <= i_miso;
+					end if;	
+										
 			    	if counter_bits > 0 then 
 			    		counter_bits <= counter_bits - 1;
 			    	else 
-			    		tx_finish_flag <= '1';
-			    		next_state     <= ST_END;
+			    		next_state   <= ST_END;
 					end if;    
-			       
+
 		  	
 			    when  ST_END =>
 			    	-- Debug ---------------
@@ -113,15 +115,15 @@ begin
 			   		debug_end_flag   <= '1';
 			   		------------------------
 			   		
-			        counter_bits     <=  0;
+			   		o_data(0)        <= i_miso;
 			        o_tx_end         <= '1';
 			        ss               <= '1';
 			        o_mosi  		 <= '0';
-			        next_state  <= ST_IDLE;  
+			        next_state       <= ST_IDLE;  
 			     
 			    when  others  =>  next_state  <= ST_IDLE;
 		  end case;
-	 end if;
+		end if;
 	end process ;
 
 end rtl;
