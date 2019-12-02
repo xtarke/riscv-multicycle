@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_textio.all;
 use std.textio.all;
+
 entity sram is
 	PORT(
 		SRAM_OE_N     : out   std_logic;
@@ -17,12 +18,12 @@ entity sram is
 		clk           : IN    STD_LOGIC;
 		chipselect    : IN    STD_LOGIC;
 		write         : IN    STD_LOGIC;
-		--data          : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+		data_out          : in  STD_LOGIC_VECTOR(15 DOWNTO 0);
 		address       : in    std_logic_vector(19 downto 0);
-		read_address  : IN    unsigned(15 downto 0);
-		write_address : IN    unsigned(15 downto 0);
+		--read_address  : IN    unsigned(15 downto 0);
+		--write_address : IN    unsigned(15 downto 0);
 		--we            : IN  STD_LOGIC;
-		q             : OUT   STD_LOGIC_VECTOR(7 DOWNTO 0)
+		data_in             : OUT   STD_LOGIC_VECTOR(15 DOWNTO 0)
 	);
 end entity sram;
 
@@ -30,21 +31,13 @@ architecture RTL of sram is
 	type mem_state_type is (IDLE, READ_M, WRITE_M, DONE);
 	signal mem_state : mem_state_type;
 
-	signal d_read  : std_logic;
-	signal d_write : std_logic;
-
-	signal byteenable_reg : STD_LOGIC_VECTOR(3 DOWNTO 0);
-
-	signal in_reg_en : std_logic;
-
-	signal chip_en_reg : std_logic;
 	--type reg_array is array (0 to 31) of std_logic_vector(7 downto 0);
 	--signal memory : reg_array;
 
 begin
 	SRAM_ADDR <= address(19 downto 0);
 
-	memory_state : process(clk, mem_state)
+	memory_state : process(clk)
 	begin
 		if rising_edge(clk) then
 			case mem_state is
@@ -74,10 +67,14 @@ begin
 
 	end process;
 
-	memory_state_output : process(mem_state, chipselect, write, address, chip_en_reg, byteenable_reg)
+	memory_state_output : process(mem_state, SRAM_DQ, data_out)
 	begin
-
+		
 		SRAM_CE_N <= '1';
+		--SRAM_LB_N <= '0';
+		--SRAM_UB_N <= '0';
+		--SRAM_WE_N <= '0';
+		--SRAM_OE_N <= '0';
 
 		case mem_state is
 
@@ -85,6 +82,8 @@ begin
 				SRAM_WE_N <= '1';
 				SRAM_CE_N <= '0';
 				SRAM_OE_N <= '1';
+				SRAM_LB_N <= '0';
+				SRAM_UB_N <= '0';
 				
 			when READ_M =>
 				SRAM_WE_N <= '1';
@@ -92,26 +91,20 @@ begin
 				SRAM_OE_N <= '0';
 				SRAM_LB_N <= '0';
 				SRAM_UB_N <= '1';
-
+				data_in <= SRAM_DQ;
+				
 			when WRITE_M =>
+				SRAM_OE_N <= '0';
 				SRAM_CE_N <= '0';
 				SRAM_WE_N <= '0';
 				SRAM_LB_N <= '0';
 				SRAM_UB_N <= '1';
- 
-				SRAM_DQ <= "0000010000000000";
+				SRAM_DQ <= data_out;
 
 			when DONE =>
 
 		end case;
 	end process;
 
---	process(clk)
---	begin
---		if rising_edge(clk) then
---			SRAM_DQ <= address;
---		end if;
-
---	end process;
 
 end architecture RTL;

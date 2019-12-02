@@ -27,3 +27,10 @@ state.BYTE0 0 0 0 1 0 1
 state.BYTE1 0 0 1 0 0 1 
 state.BYTE2 0 1 0 0 0 1 
 state.BYTE3 1 0 0 0 0 1 
+
+State Machine - |DE2_115|sram:sram|mem_state
+Name mem_state.DONE mem_state.WRITE_M mem_state.READ_M mem_state.IDLE 
+mem_state.IDLE 0 0 0 0 
+mem_state.READ_M 0 0 1 1 
+mem_state.WRITE_M 0 1 0 1 
+mem_state.DONE 1 0 0 1 

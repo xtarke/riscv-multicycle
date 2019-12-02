@@ -32,6 +32,8 @@ add wave -radix binary  /SRAM_ADDR
 add wave -radix binary  /SRAM_DQ
 add wave -radix binary  /SRAM_UB_N
 add wave -radix binary  /SRAM_LB_N
+add wave -radix binary  /data_in
+add wave -radix binary  /data_out
 #Como mostrar sinais internos do processo
 
 

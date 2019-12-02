@@ -16,15 +16,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[3]",
+					"name" : "LEDR[6]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[4]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[9]",
+					"name" : "LEDR[11]",
 					"strict" : false
 				},
 				{
@@ -180,6 +176,22 @@
 					"strict" : false
 				},
 				{
+					"name" : "SRAM_CE_N",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_OE_N",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_UB_N",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_WE_N",
+					"strict" : false
+				},
+				{
 					"name" : "DRAM_DQ[0]",
 					"strict" : false
 				},
@@ -305,6 +317,14 @@
 				},
 				{
 					"name" : "DRAM_DQ[31]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[17]",
 					"strict" : false
 				},
 				{

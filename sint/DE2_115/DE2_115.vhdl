@@ -171,6 +171,16 @@ architecture rtl of DE2_115 is
 	
 	-- CPU state signals
 	signal state : cpu_state_t;
+	signal chipselect : STD_LOGIC;
+	signal write : STD_LOGIC;
+	signal read_address : unsigned(15 downto 0);
+	signal write_address : unsigned(15 downto 0);
+	signal q : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	signal addressram : std_logic_vector(19 downto 0);
+	signal data_out : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	signal data_in : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	signal clk_ram : std_logic;
 	
 begin
 	
@@ -187,7 +197,7 @@ begin
 	-- Dummy out signals
 	DRAM_DQ <= ddata_r(31 downto 0);
 	--DRAM_DQ <= ddata_r(31 downto 16);
-	LEDR(9) <= SW(9);
+	--LEDR(9) <= SW(9);
 	DRAM_ADDR(9 downto 0) <= address;
 		
 	-- IMem shoud be read from instruction and data buses
@@ -200,6 +210,46 @@ begin
 			address <= std_logic_vector(to_unsigned(iaddress,10));
 		end if;		
 	end process;
+	------------------------------------
+	chipselect <= '1';
+	
+	addressram <= "01001111001001010000";
+	clk_ram<= SW(17);
+	
+	sram: entity work.sram
+		port map(
+			SRAM_OE_N  => SRAM_OE_N,
+			SRAM_WE_N  => SRAM_WE_N,
+			SRAM_CE_N  => SRAM_CE_N,
+			SRAM_ADDR  => SRAM_ADDR,
+			SRAM_DQ    => SRAM_DQ,
+			SRAM_UB_N  => SRAM_UB_N,
+			SRAM_LB_N  => SRAM_LB_N,
+			clk        => clk_ram,
+			chipselect => chipselect,
+			write      => write,
+			data_out   => data_out,
+			address    => addressram,
+			data_in    => data_in
+		);
+		
+	process (clk_ram)
+	begin
+		if rising_edge(clk_ram) then
+			if (SW(5) = '1') then
+				write <= '1';
+				data_out <= "0000100001000111";
+				LEDR(15 DOWNTO 0) <= "0000000000000000";
+			else
+				write <= '0';
+				LEDR(15 DOWNTO 0) <= data_in;
+			end if;
+		end if;
+	end process;
+		
+	
+	
+	------------------------------------
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst: entity work.iram_quartus
@@ -263,7 +313,7 @@ begin
 	process(clk, rst)
 	begin		
 		if rst = '1' then
-			LEDR(3 downto 0) <= (others => '0');			
+			--LEDR(3 downto 0) <= (others => '0');			
 			HEX0 <= (others => '1');
 			HEX1 <= (others => '1');
 			HEX2 <= (others => '1');
@@ -277,7 +327,7 @@ begin
 					-- ToDo: Maybe use byte addressing?  
 					--       x"01" (word addressing) is x"04" (byte addressing)
 					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(4 downto 0) <= ddata_w(4 downto 0);
+						--LEDR(4 downto 0) <= ddata_w(4 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
 					 	HEX0 <= ddata_w(6 downto 0);
 						HEX1 <= ddata_w(13 downto 7);
