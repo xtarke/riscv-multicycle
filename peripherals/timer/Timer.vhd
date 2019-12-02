@@ -13,6 +13,7 @@ entity Timer is
 		timer_reset : in  std_logic;
 		timer_mode  : in  unsigned(1 downto 0);
 		prescaler   : in  unsigned(prescaler_size - 1 downto 0);
+		top_counter : in  unsigned(compare_size - 1 downto 0);
 		compare_0A  : in  unsigned(compare_size - 1 downto 0);
 		compare_0B  : in  unsigned(compare_size - 1 downto 0);
 		compare_1A  : in  unsigned(compare_size - 1 downto 0);
@@ -25,7 +26,6 @@ entity Timer is
 end entity Timer;
 
 architecture RTL of Timer is
-	constant counter_max              : unsigned(compare_size - 1 downto 0) := (others => '1');
 	signal counter                    : unsigned(compare_size - 1 downto 0) := (others => '0');
 	signal internal_clock             : std_logic                           := '1';
 	signal internal_counter_direction : std_logic                           := '0';
@@ -113,7 +113,7 @@ begin
 
 							-- the counter resets if reaches B comparator.
 							-- the output has a rectangular waveform like a simple PWM, but active when between A and B comparators
-							if counter >= counter_max then
+							if counter >= top_counter - 1 then
 								counter <= (others => '0');
 							else
 								counter <= counter + 1;
@@ -148,7 +148,7 @@ begin
 							-- the counter change its direction (up or down) when it reaches its maximum possible value
 							-- the output has a rectangular waveform centered to the top value, active when between A and B comparators. 
 							if counter_direction = '0' then
-								if counter >= counter_max then
+								if counter >= top_counter - 1 then
 									counter_direction := '1';
 									counter           <= counter - 1;
 								else
@@ -243,7 +243,7 @@ begin
 
 							-- the counter resets if reaches its maximum possible value
 							-- the output has a rectangular waveform like a simple PWM
-							if counter >= counter_max then
+							if counter >= top_counter - 1 then
 								counter <= (others => '0');
 							else
 								counter <= counter + 1;
