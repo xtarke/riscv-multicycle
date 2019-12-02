@@ -5,10 +5,10 @@ RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.
 endif
 QUARTUS_DIR=/opt/altera/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
-CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1
+CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
-CXXFLAGS = -MD -Os -Wall -std=c++11
-CCFLAGS = -MD -Os -Wall 
+#CXXFLAGS = -MD -O1 -Wall -std=c++11
+#CCFLAGS = -MD -O1 -Wall 
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl,--gc-sections
 LDLIBS =

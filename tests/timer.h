@@ -14,25 +14,53 @@
 #include "hardware.h"
 
 
-typedef struct {
-	uint32_t timer_reset : 1; // 0x20, bit 0
-	uint32_t timer_mode : 3;  // 0x20, bit 1,2,3
-	uint32_t prescaler : 16;  // 0x20, bit 4,5,...,18,19
-	uint32_t output_0A : 1;   // 0x20, bit 20
-	uint32_t output_1A : 1;   // 0x20, bit 21
-	uint32_t output_2A : 1;   // 0x20, bit 22
-	uint32_t output_0B : 1;   // 0x20, bit 23
-	uint32_t output_1B : 1;   // 0x20, bit 24
-	uint32_t output_2B : 1;   // 0x20, bit 25
-    uint32_t unused : 6;      // 0x20, bit 26 to 31
+/*typedef struct {
+    union{
+        _IO32 MASK;
+        struct{
+            _IO32 timer_reset : 1; // 0x20, bit 0
+            _IO32 timer_mode : 3;  // 0x20, bit 1,2,3
+            _IO32 prescaler : 16;  // 0x20, bit 4,5,...,18,19
+        }BIT;
+    }config;
 
-	uint32_t compare_0A;      // 0x24
-	uint32_t compare_0B;      // 0x28
-	uint32_t compare_1A;      // 0x2C
-	uint32_t compare_1B;      // 0x30
-	uint32_t compare_2A;      // 0x34
-	uint32_t compare_2B;      // 0x38
+	_IO32 output_0A : 1;   // 0x20, bit 20
+	_IO32 output_1A : 1;   // 0x20, bit 21
+	_IO32 output_2A : 1;   // 0x20, bit 22
+	_IO32 output_0B : 1;   // 0x20, bit 23
+	_IO32 output_1B : 1;   // 0x20, bit 24
+	_IO32 output_2B : 1;   // 0x20, bit 25
+    _IO32 unused : 6;      // 0x20, bit 26 to 31
+
+	_IO32 compare_0A;      // 0x24
+	_IO32 compare_0B;      // 0x28
+	_IO32 compare_1A;      // 0x2C
+	_IO32 compare_1B;      // 0x30
+	_IO32 compare_2A;      // 0x34
+	_IO32 compare_2B;      // 0x38
 } TIMER_TYPE;
+*/
+typedef struct {
+    _IO32 timer_reset; // 0x20
+    _IO32 timer_mode;  // 0x24
+    _IO32 prescaler;  // 0x28
+
+	_IO32 compare_0A;      // 0x2C
+	_IO32 compare_0B;      // 0x30
+	_IO32 compare_1A;      // 0x34
+	_IO32 compare_1B;      // 0x38
+	_IO32 compare_2A;      // 0x3C
+	_IO32 compare_2B;      // 0x40
+
+	_IO32 output_0A : 1;   // 0x44, bit 0
+	_IO32 output_1A : 1;   // 0x44, bit 1
+	_IO32 output_2A : 1;   // 0x44, bit 2
+	_IO32 output_0B : 1;   // 0x44, bit 3
+	_IO32 output_1B : 1;   // 0x44, bit 4
+	_IO32 output_2B : 1;   // 0x44, bit 5
+    _IO32 reserved : 26;
+} TIMER_TYPE;
+
 
 #define TIMER_0 ((TIMER_TYPE *) &TIMER_ADDRESS)
 

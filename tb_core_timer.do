@@ -109,17 +109,19 @@ add wave -height 15 -divider "Timer"
 add wave -label timer_reset -radix binary /timer/timer_reset
 add wave -label timer_mode -radix unsigned /timer/timer_mode
 add wave -label prescaler -radix unsigned /timer/prescaler
-add wave -label compare_0A -radix binary /timer/compare_0A
-add wave -label compare_0B -radix binary /timer/compare_0B
-add wave -label compare_1A -radix binary /timer/compare_1A
-add wave -label compare_1B -radix binary /timer/compare_1B
-add wave -label compare_2A -radix binary /timer/compare_2A
-add wave -label compare_2B -radix binary /timer/compare_2B
+add wave -label compare_0A -radix unsigned /timer/compare_0A
+add wave -label compare_0B -radix unsigned /timer/compare_0B
+add wave -label compare_1A -radix unsigned /timer/compare_1A
+add wave -label compare_1B -radix unsigned /timer/compare_1B
+add wave -label compare_2A -radix unsigned /timer/compare_2A
+add wave -label compare_2B -radix unsigned /timer/compare_2B
 add wave -label output_0A -radix binary /timer/output_A(0)
 add wave -label output_0B -radix binary /timer/output_B(0)
 add wave -label output_1A -radix binary /timer/output_A(1)
 add wave -label output_1B -radix binary /timer/output_B(1)
 add wave -label output_2A -radix binary /timer/output_A(2)
 add wave -label output_2B -radix binary /timer/output_B(2)
+add wave -label internal_clock -radix binary /timer/internal_clock
+# add wave -label internal_clock -radix binary /timer/internal_clock
 
-run 950000 ns
+run 1000000 ns
