@@ -59,7 +59,7 @@ begin
 	reset : process 
 	begin
 		i_rst  <=  '0';
-		wait for 15 ns;
+		wait for 10 ns;
 		i_rst  <=  '1';
 --		wait for 200 ns;
 --	    i_rst  <=  '0';
@@ -69,16 +69,17 @@ begin
 	    
 	end process;
 	
+	i_data  <=  x"a9"; 
+	
 	test : process
-	 
 	begin
-		i_data  <=  x"a9";
+--		i_data  <=  x"a9";
 		i_tx_start  <= '0';
-		wait for 20 ns;
+		wait for 5 ns;
 		i_tx_start  <= '1';
 		wait until o_tx_end = '1';
-		i_tx_start  <= '0';
-		wait;
+--		i_tx_start  <= '0';
+--		wait;
 		
 	end process;
 	

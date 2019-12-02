@@ -68,6 +68,12 @@ end entity;
 
 architecture rtl of de0_lite is
 	signal clock : std_logic;
+	signal clock2 : std_logic  := '0';
+	signal jmp   : std_logic;
+	signal counter : integer  :=  0;
+	signal inp : std_logic;
+	signal div : integer range 0 to 50;
+	
 begin
 	
 	pll: ENTITY work.pll_500khz 
@@ -80,7 +86,7 @@ begin
 	spi: entity work.SPI
 	port map(
 	  i_clk  	 => clock,                   
-	  i_rst      => not  KEY(0),        
+	  i_rst      => SW(9),        
 	  i_tx_start => KEY(1),         
 	  i_data     => SW(7 downto 0),        
 	  i_miso     => ARDUINO_IO(4),        
@@ -88,9 +94,36 @@ begin
 	  o_tx_end   => ARDUINO_IO(0),       
 	  o_sclk     => ARDUINO_IO(1),       
 	  o_ss       => ARDUINO_IO(2),      
-	  o_mosi     => ARDUINO_IO(3)       
-	
+	  o_mosi     => ARDUINO_IO(3),
+	  debug_idle_flag  => ARDUINO_IO(5),
+	  debug_tx_flag    => ARDUINO_IO(6),
+	  debug_end_flag   => ARDUINO_IO(7)      
 	);
-
+	
+--	process(clock)
+--	begin
+--		if rising_edge(clock) then
+--			div  <=  div +1;
+--			if div = 0 then
+--				clock2  <=  not clock2;
+--			end if;
+--		end if;
+--	end process;
+	
+--	process(clock,KEY(1))
+--	begin
+--		if rising_edge(clock) and KEY(1) = '1' then
+--			counter  <=  counter + 1;
+--			inp  <= '1';
+--			
+--			if counter <= 32 then
+--				inp  <= '0';
+--			end if;
+--		end if;
+--		if KEY(1) = '0' then	
+--			counter  <= 0;
+--		end if;
+--		
+--	end process;
 end;
 
