@@ -27,14 +27,14 @@ use std.textio.all;
 	     wr_data    : IN  unsigned(RAM_WIDTH - 1 downto 0);
 	     
 	     rd_en      : IN  std_logic;
-	     rd_valid   : OUT std_logic;
+	     --rd_valid   : OUT std_logic;
 	     rd_data    : OUT unsigned(RAM_WIDTH - 1 downto 0);
 	     
 	     empty      : OUT std_logic;
 	     --empty_next : OUT std_logic;
-	     full       : OUT std_logic;
+	     full       : OUT std_logic
 	     --full_next  : OUT std_logic;
-	     fill_count : OUT integer range RAM_DEPTH - 1 downto 0
+	     --fill_count : OUT integer range RAM_DEPTH - 1 downto 0
 	    );
 end entity;
  
@@ -90,7 +90,7 @@ architecture rtl of ring_buffer IS
 begin
 	empty      <= empty_i;
 	full       <= full_i;
-	fill_count <= fill_count_i;
+	--fill_count <= fill_count_i;
 
 	-- Set the flags
 	empty_i    <= '1' when fill_count_i = 0 else '0';
@@ -120,13 +120,13 @@ begin
 		if rising_edge(clk) then
 			if rst = '1' then
 				tail     <= 0;
-				rd_valid <= '0';				
+				--rd_valid <= '0';				
 			else
-				rd_valid <= '0';
+				--rd_valid <= '0';
 
 				if rd_en = '1' and empty_i = '0' then
 					incr(tail);
-					rd_valid <= '1';
+					--rd_valid <= '1';
 				end if;
 
 			end if;
@@ -137,7 +137,10 @@ begin
 	PROC_RAM : process(clk)
 	begin
 		if rising_edge(clk) then
-			ram_block(head) <= wr_data;
+			if wr_en = '1' then
+				ram_block(head) <= wr_data;
+			end if;
+
 			rd_data   <= ram_block(tail);
 		end if;
 	end process;
