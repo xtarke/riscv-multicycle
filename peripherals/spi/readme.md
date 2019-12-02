@@ -34,7 +34,7 @@ Frequência de envio: 500 khz
  
  Realimentando o MISO com MOSI. MOSI -> chaves, MISO -> leds.
  
- ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_miso_leds.jpeg)
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/spi_miso_leds.PNG)
  
  Pode-s observar que os leds são respectivos aos botões ativados.
  
