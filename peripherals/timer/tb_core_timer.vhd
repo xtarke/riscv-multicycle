@@ -77,6 +77,7 @@ architecture RTL of tb_core_timer is
 	signal timer_reset : std_logic;
 	signal timer_mode  : unsigned(1 downto 0);
 	signal prescaler   : unsigned(15 downto 0);
+	signal top_counter : unsigned(31 downto 0);
 	signal compare_0A  : unsigned(31 downto 0);
 	signal compare_1A  : unsigned(31 downto 0);
 	signal compare_2A  : unsigned(31 downto 0);
@@ -88,7 +89,7 @@ architecture RTL of tb_core_timer is
 
 begin
 
-    -- timer instantiation
+	-- timer instantiation
 	timer : entity work.Timer
 		generic map(
 			prescaler_size => 16,
@@ -100,6 +101,7 @@ begin
 			timer_reset => timer_reset,
 			timer_mode  => timer_mode,
 			prescaler   => prescaler,
+            top_counter => top_counter,
 			compare_0A  => compare_0A,
 			compare_0B  => compare_0B,
 			compare_1A  => compare_1A,
@@ -260,20 +262,22 @@ begin
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then -- TIMER_ADDRESS
 						timer_reset <= ddata_w(0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then -- TIMER_ADDRESS
-						timer_mode  <= unsigned(ddata_w(1 downto 0));
+						timer_mode <= unsigned(ddata_w(1 downto 0));
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then -- TIMER_ADDRESS
-						prescaler   <= unsigned(ddata_w(15 downto 0));
+						prescaler <= unsigned(ddata_w(15 downto 0));
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0B" then -- TIMER_ADDRESS
-						compare_0A <= unsigned(ddata_w);
+						top_counter <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0C" then -- TIMER_ADDRESS
-						compare_0B <= unsigned(ddata_w);
+						compare_0A <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0D" then -- TIMER_ADDRESS
-						compare_1A <= unsigned(ddata_w);
+						compare_0B <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0E" then -- TIMER_ADDRESS
-						compare_1B <= unsigned(ddata_w);
+						compare_1A <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0F" then -- TIMER_ADDRESS
-						compare_2A <= unsigned(ddata_w);
+						compare_1B <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"10" then -- TIMER_ADDRESS
+						compare_2A <= unsigned(ddata_w);
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"11" then -- TIMER_ADDRESS
 						compare_2B <= unsigned(ddata_w);
 					end if;
 				end if;
@@ -294,6 +298,9 @@ begin
 						input_in(4 downto 0) <= SW(4 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then
 						input_in(7 downto 0) <= data_out;
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"12" then
+					    input_in(2 downto 0) <= output_A(2 downto 0);
+					    input_in(5 downto 3) <= output_B(2 downto 0);
 					end if;
 				end if;
 			end if;
