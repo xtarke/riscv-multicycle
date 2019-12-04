@@ -30,8 +30,15 @@ add wave -radix binary /scl
 add wave -radix binary /rst
 add wave -radix binary /ena
 add wave -radix binary /rw
-add wave -radix hex /addr
-add wave -radix hex /data_w
+add wave -radix binary /ack_err
+add wave -radix binary /addr
+
+add wave -radix hex /dut/cnt_ack
+
+add wave -radix hex /dut/state
+add wave -radix hex /dut/scl_state_machine
+add wave -radix hex /dut/scl_ena
+add wave -radix hex /dut/data_tx
 
 
 #Simula até 60ns
