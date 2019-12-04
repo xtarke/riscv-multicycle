@@ -3,13 +3,15 @@ firmware.elf:     file format elf32-littleriscv
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .rom          0000014c  00000000  00000000  00001000  2**2
+  0 .rom          0000021c  00000000  00000000  00001000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  02000000  02000000  0000114c  2**0
+  1 .data         00000000  02000000  02000000  0000121c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000000  02000000  02000000  00000000  2**0
+  2 .bss          00000000  02000000  0000021c  00000000  2**0
                   ALLOC
-  3 .comment      00000033  00000000  00000000  0000114c  2**0
+  3 .sbss         00000004  02000000  0000021c  00002000  2**2
+                  ALLOC
+  4 .comment      00000033  00000000  00000000  0000121c  2**0
                   CONTENTS, READONLY
 
 Disassembly of section .rom:
@@ -30,21 +32,73 @@ Disassembly of section .rom:
 
 00000100 <main>:
  100:	04000737          	lui	a4,0x4000
- 104:	00100693          	li	a3,1
- 108:	02d72023          	sw	a3,32(a4) # 4000020 <__global_pointer$+0x2000020>
- 10c:	02d72223          	sw	a3,36(a4)
- 110:	02d72423          	sw	a3,40(a4)
- 114:	00200693          	li	a3,2
- 118:	02d72623          	sw	a3,44(a4)
- 11c:	00300693          	li	a3,3
- 120:	02d72823          	sw	a3,48(a4)
- 124:	00400693          	li	a3,4
- 128:	02d72a23          	sw	a3,52(a4)
- 12c:	00500693          	li	a3,5
- 130:	02d72c23          	sw	a3,56(a4)
- 134:	00600693          	li	a3,6
- 138:	02d72e23          	sw	a3,60(a4)
- 13c:	00700693          	li	a3,7
- 140:	04d72023          	sw	a3,64(a4)
- 144:	02072023          	sw	zero,32(a4)
- 148:	0000006f          	j	148 <main+0x48>
+ 104:	02070713          	addi	a4,a4,32 # 4000020 <__global_pointer$+0x2000020>
+ 108:	00100593          	li	a1,1
+ 10c:	00058e13          	mv	t3,a1
+ 110:	00a00313          	li	t1,10
+ 114:	00200813          	li	a6,2
+ 118:	00300513          	li	a0,3
+ 11c:	00400893          	li	a7,4
+ 120:	00500f93          	li	t6,5
+ 124:	00600f13          	li	t5,6
+ 128:	00700e93          	li	t4,7
+ 12c:	0900006f          	j	1bc <main+0xbc>
+ 130:	00b72023          	sw	a1,0(a4)
+ 134:	00b72223          	sw	a1,4(a4)
+ 138:	00b72423          	sw	a1,8(a4)
+ 13c:	00672623          	sw	t1,12(a4)
+ 140:	00072023          	sw	zero,0(a4)
+ 144:	00a1a023          	sw	a0,0(gp) # 2000000 <__global_pointer$>
+ 148:	00300693          	li	a3,3
+ 14c:	02872783          	lw	a5,40(a4)
+ 150:	0017f793          	andi	a5,a5,1
+ 154:	fe078ce3          	beqz	a5,14c <main+0x4c>
+ 158:	fff68693          	addi	a3,a3,-1
+ 15c:	fe0698e3          	bnez	a3,14c <main+0x4c>
+ 160:	00b72023          	sw	a1,0(a4)
+ 164:	01072223          	sw	a6,4(a4)
+ 168:	01072423          	sw	a6,8(a4)
+ 16c:	00072023          	sw	zero,0(a4)
+ 170:	00a1a023          	sw	a0,0(gp) # 2000000 <__global_pointer$>
+ 174:	00300693          	li	a3,3
+ 178:	02872783          	lw	a5,40(a4)
+ 17c:	0017f793          	andi	a5,a5,1
+ 180:	fe078ce3          	beqz	a5,178 <main+0x78>
+ 184:	fff68693          	addi	a3,a3,-1
+ 188:	fe0698e3          	bnez	a3,178 <main+0x78>
+ 18c:	00b72023          	sw	a1,0(a4)
+ 190:	00a72223          	sw	a0,4(a4)
+ 194:	01072423          	sw	a6,8(a4)
+ 198:	00072023          	sw	zero,0(a4)
+ 19c:	00a1a023          	sw	a0,0(gp) # 2000000 <__global_pointer$>
+ 1a0:	00300693          	li	a3,3
+ 1a4:	02872783          	lw	a5,40(a4)
+ 1a8:	0017f793          	andi	a5,a5,1
+ 1ac:	fe078ce3          	beqz	a5,1a4 <main+0xa4>
+ 1b0:	fff68693          	addi	a3,a3,-1
+ 1b4:	fe0698e3          	bnez	a3,1a4 <main+0xa4>
+ 1b8:	0001a023          	sw	zero,0(gp) # 2000000 <__global_pointer$>
+ 1bc:	01c72023          	sw	t3,0(a4)
+ 1c0:	00072223          	sw	zero,4(a4)
+ 1c4:	01c72423          	sw	t3,8(a4)
+ 1c8:	00672623          	sw	t1,12(a4)
+ 1cc:	01072823          	sw	a6,16(a4)
+ 1d0:	00a72a23          	sw	a0,20(a4)
+ 1d4:	01172c23          	sw	a7,24(a4)
+ 1d8:	01f72e23          	sw	t6,28(a4)
+ 1dc:	03e72023          	sw	t5,32(a4)
+ 1e0:	03d72223          	sw	t4,36(a4)
+ 1e4:	00072023          	sw	zero,0(a4)
+ 1e8:	0111a023          	sw	a7,0(gp) # 2000000 <__global_pointer$>
+ 1ec:	0001a683          	lw	a3,0(gp) # 2000000 <__global_pointer$>
+ 1f0:	f40680e3          	beqz	a3,130 <main+0x30>
+ 1f4:	02872783          	lw	a5,40(a4)
+ 1f8:	0027d793          	srli	a5,a5,0x2
+ 1fc:	0017f793          	andi	a5,a5,1
+ 200:	fe0788e3          	beqz	a5,1f0 <main+0xf0>
+ 204:	00b72023          	sw	a1,0(a4)
+ 208:	0001a783          	lw	a5,0(gp) # 2000000 <__global_pointer$>
+ 20c:	fff78793          	addi	a5,a5,-1
+ 210:	00f1a023          	sw	a5,0(gp) # 2000000 <__global_pointer$>
+ 214:	00072023          	sw	zero,0(a4)
+ 218:	fd5ff06f          	j	1ec <main+0xec>

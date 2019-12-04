@@ -196,7 +196,7 @@ END GROUP
 LOAD /home/joaoantoniocardoso/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/8.3.0/rv32im/ilp32/libgcc.a
 LOAD /home/joaoantoniocardoso/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/8.3.0/rv32im/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x14c
+.rom            0x0000000000000000      0x21c
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -205,11 +205,11 @@ LOAD /home/joaoantoniocardoso/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8
  *fill*         0x000000000000002c       0xd4 
                 0x0000000000000100                . = ALIGN (0x4)
  *(.text)
- .text          0x0000000000000100       0x4c firmware.o
+ .text          0x0000000000000100      0x11c firmware.o
                 0x0000000000000100                main
 
-.data           0x0000000002000000        0x0 load address 0x000000000000014c
-                0x000000000000014c                _data_lma = LOADADDR (.data)
+.data           0x0000000002000000        0x0 load address 0x000000000000021c
+                0x000000000000021c                _data_lma = LOADADDR (.data)
                 0x0000000002000000                _data = .
                 0x0000000002000000                __global_pointer$ = .
  *(.data .data.*)
@@ -217,13 +217,16 @@ LOAD /home/joaoantoniocardoso/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8
                 0x0000000002000000                . = ALIGN (0x4)
                 0x0000000002000000                _edata = .
 
-.bss            0x0000000002000000        0x0 load address 0x000000000000014c
+.bss            0x0000000002000000        0x0 load address 0x000000000000021c
                 0x0000000002000000                _bss_start = .
  *(.bss .bss.*)
                 0x0000000002000000                . = ALIGN (0x4)
                 0x0000000002000000                _bss_end = .
                 0x0000000002000000                _end = .
 OUTPUT(firmware.elf elf32-littleriscv)
+
+.sbss           0x0000000002000000        0x4 load address 0x000000000000021c
+ .sbss          0x0000000002000000        0x4 firmware.o
 
 .comment        0x0000000000000000       0x33
  .comment       0x0000000000000000       0x33 firmware.o
