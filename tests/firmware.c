@@ -19,12 +19,12 @@
 
 int main(){
 
+	SEGMENTS = 0xFFFFFFF0;
+
 	uint8_t i = 0;
 	
-	
-	SEGMENTS = 0xFFFFFFF0;
-	
 	while (1){
+		
 		/* To blink */
 		OUTBUS = 0x07;
 		//SEGMENTS = 0xFFFFFFC0;
@@ -40,10 +40,7 @@ int main(){
 
 		/* To test Data Bus 
 		x = INBUS;        
-		OUTBUS = x; */		
-
-		
-		i++;
+		OUTBUS = x; */
 	}
 
 	return 0;
