@@ -363,6 +363,10 @@ begin
 						swrite(my_line, typeSstring(data, "lbu", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
 						inst <= str_pad(typeSstring(data, "lbu", pc, rd, rs1, imm_i), ' ', 40);
+					when TYPE_LHU =>
+						swrite(my_line, typeSstring(data, "lhu", pc, rd, rs1, imm_i));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "lhu", pc, rd, rs1, imm_i), ' ', 40);					
 					when TYPE_LH =>
 						swrite(my_line, typeSstring(data, "lh", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
