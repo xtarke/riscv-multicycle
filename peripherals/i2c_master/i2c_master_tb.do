@@ -34,6 +34,7 @@ add wave -radix binary /ack_err
 add wave -radix binary /addr
 
 add wave -radix hex /dut/cnt_ack
+add wave -radix hex /dut/cnt_stop
 
 add wave -radix hex /dut/state
 add wave -radix hex /dut/scl_state_machine

@@ -26,9 +26,9 @@ architecture RTL of i2c_master is
 	signal data_tx           : std_logic_vector(7 downto 0);
 	signal cnt_sda           : integer    := 7;
 	signal cnt_ack 			 : integer;
-	signal cnt_stop          : integer;
+	signal cnt_stop          : integer := 5;
 	signal scl_ena           : std_logic_vector(1 downto 0);
-	signal sda_ena           : std_logic;
+	--signal sda_ena           : std_logic;
 	signal rw_temp           : std_logic;
 	--	signal data_rx : std_logic_vector(7 downto 0);
 begin
@@ -78,6 +78,7 @@ begin
 							cnt_sda <= 7;
 						else
 							ack_err <= '1';
+							cnt_stop <= 1;
 							state <= stop;
 						end if;
 					else
@@ -172,15 +173,21 @@ begin
 					data_tx <= data_w;
 				when rw_st =>
 					if data_tx(cnt_sda) = '0' then
-						sda_ena <= '0';
+					--	sda_ena <= '0';
 					else
-						sda_ena <= 'Z';
+--						sda_ena <= 'Z';
 					end if;
 				when slv_ack_2 =>
 					if cnt_ack = 1 then
-						sda_ena <= 'Z';
+	--					sda_ena <= 'Z';
+					elsif cnt_ack = 0 then
+					
 					end if;
 				when stop =>
+					sda <= 'Z';
+					if cnt_stop = 1 then
+						sda <= '0';
+					end if;
 				when others =>
 					sda <= 'Z';         --sets sda high impedance
 			end case;
@@ -209,7 +216,7 @@ begin
 					scl_ena <= "11";
 				when slv_ack_2 =>
 				when stop =>
-					scl_ena <= "11";
+					scl_ena <= "00";
 				when others =>
 
 			end case;
