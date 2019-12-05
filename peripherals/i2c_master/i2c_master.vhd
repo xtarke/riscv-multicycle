@@ -29,7 +29,7 @@ architecture RTL of i2c_master is
 	signal cnt_stop          : integer := 5;
 	signal scl_ena           : std_logic_vector(1 downto 0);
 	--signal sda_ena           : std_logic;
-	signal rw_temp           : std_logic;
+	--signal rw_temp           : std_logic;
 	--	signal data_rx : std_logic_vector(7 downto 0);
 begin
 
@@ -110,6 +110,8 @@ begin
 
 
 					if cnt_ack = 0 then
+						
+						cnt_ack <= 2;
 						if  sda = '0' then 					-- verifica o ack
 							if ena = '1' then
 								state <= rw_st;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
@@ -159,7 +161,6 @@ begin
 
 				when env_addr_cm =>
 					
-
 					if data_tx(cnt_sda) = '0' then
 						sda <= '0';
 					else
@@ -169,20 +170,20 @@ begin
 					if cnt_ack = 1 then
 						sda <= 'Z';
 					end if;
-					rw_temp <= rw;
+				--	rw_temp <= rw;
 					data_tx <= data_w;
 				when rw_st =>
 					if data_tx(cnt_sda) = '0' then
-					--	sda_ena <= '0';
+						sda <= '0';
 					else
---						sda_ena <= 'Z';
+						sda <= 'Z';
 					end if;
 				when slv_ack_2 =>
 					if cnt_ack = 1 then
-	--					sda_ena <= 'Z';
-					elsif cnt_ack = 0 then
-					
+						sda <= 'Z';
 					end if;
+				--	rw_temp <= rw;
+					data_tx <= data_w;
 				when stop =>
 					sda <= 'Z';
 					if cnt_stop = 1 then
@@ -200,13 +201,9 @@ begin
 			case scl_state_machine is
 				when ready =>
 					scl_ena <= "00";    --sets scl high impedance
-
 				when start =>
 					scl_ena <= "01";    --sets scl zero
 				when env_addr_cm =>
-					-- verificar se funciona
-					-- parte do start bit, scl sendo habilitado um ciclo atrasado
-					-- se não funcionar, mudar para ativalo na borda de descida do ciclo anterior
 					scl_ena <= "11";
 				when slv_ack_cm =>
 					if cnt_ack = 2	then
@@ -215,6 +212,9 @@ begin
 				when rw_st =>
 					scl_ena <= "11";
 				when slv_ack_2 =>
+					if cnt_ack = 2	then
+						scl_ena <= "01";    --sets scl zero
+					end if;
 				when stop =>
 					scl_ena <= "00";
 				when others =>

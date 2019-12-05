@@ -43,7 +43,7 @@ add wave -radix hex /dut/data_tx
 
 
 #Simula até 60ns
-run 500ns
+run 1200ns
 
 wave zoomfull
 write wave wave.ps

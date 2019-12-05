@@ -33,21 +33,9 @@ begin
 			ack_err => ack_err
 		);
 		
-		data_w <= "10101100";
 		addr <= "1101000";
 		rw <= '0';
 		
-		process
-		begin
-			rst <= '1';
-			ena <= '0';
-			wait for 20 ns;
-			rst <= '0';
-			ena <= '1';
-			wait for 80 ns;
-			ena <= '0';
-			wait;			
-		end process;
 		
 		process
 		begin
@@ -69,6 +57,41 @@ begin
 			end loop;
 			
 		end process;
+		
+		process
+		begin
+			rst <= '1';
+			ena <= '0';
+			
+			data_w <= "10101100";
+			wait for 20 ns;
+			rst <= '0';
+			ena <= '1';
+			wait for 80 ns;
+			ena <= '0';
+			wait for 300 ns;
+			
+			data_w <= "10100011";
+			ena <= '1';
+			wait;			
+		end process;
+		
+		process
+		begin
+			
+			sda <= 'Z';
+			wait for 235 ns;
+			sda <= '0';
+			wait for 20 ns;
+			sda <= 'Z';
+			wait for 180 ns;
+			sda <= '0';
+			wait for 20 ns;
+			sda <= 'Z';
+			wait;			
+			
+		end process;
+		
 		
 
 end architecture RTL;
