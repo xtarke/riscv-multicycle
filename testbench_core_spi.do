@@ -39,7 +39,7 @@ vcom ./core/testbench.vhd
 
 vcom ./peripherals/spi/SPI.vhd
 
-vsim -t ns work.testbench_int
+vsim -t ns work.testbench_core_spi
 
 view wave
 add wave -radix binary 	/clk
