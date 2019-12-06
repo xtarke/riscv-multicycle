@@ -34,6 +34,7 @@ vcom ./core/trace_debug.vhd
 vcom ./vga/vga_controller.vhd ./vga/vga_buffer.vhd
 vcom ./sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
 vcom ./core/testbench.vhd
+vcom ./spi/SPI.vhd
 
 vsim -t ns work.testbench
 
@@ -141,5 +142,17 @@ add wave -label tx_cmp -radix bin /tx_cmp
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
+
+add wave -height 15 -divider "SPI"
+add wave -radix hex -label  i_clk       /i_clk
+add wave -radix hex -label  i_rst       /i_rst
+add wave -radix hex -label  i_tx_start  /i_tx_start
+add wave -radix hex -label  i_data      /i_data
+add wave -radix hex -label  i_miso      /i_miso
+add wave -radix hex -label  o_data      /o_data
+add wave -radix hex -label  o_tx_end    /o_tx_end
+add wave -radix hex -label  o_sclk      /o_sclk
+add wave -radix hex -label  o_ss        /o_ss
+add wave -radix hex -label  o_mosi      /o_mosi
 
 run 950000 ns
