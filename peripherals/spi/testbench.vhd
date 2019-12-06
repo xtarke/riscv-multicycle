@@ -1,7 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-
 use work.decoder_types.all;
 
 entity testbench is
@@ -9,7 +8,7 @@ entity testbench is
 		--! Num of 32-bits memory words 
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
 		DMEMORY_WORDS : integer := 1024;  	--!= 2k (512 * 2) bytes
-		constant SIZE : integer := 8		-- 8 bytes UART package
+		constant SIZE : integer := 8		-- 8 bits
 	);
 	port(
 		----------- SEG7 ------------
@@ -53,7 +52,7 @@ architecture RTL of testbench is
 	signal d_rd : std_logic;
 		
 	signal input_in	: std_logic_vector(31 downto 0);
-	signal cpu_state    : cpu_state_t;
+--	signal cpu_state    : cpu_state_t;
 	
 	signal debugString  : string(64 downto 1);
 	
@@ -67,9 +66,41 @@ architecture RTL of testbench is
 	signal rx : std_logic;
 	signal rx_cmp : std_logic;
 	
-	signal csel_uart : std_logic;
+	signal tx_start : std_logic;
+	
+	-- SPI Signals
+  constant n_bits : integer := 8;
+  signal i_clk       : std_logic;
+  signal i_rst       : std_logic;
+  signal i_tx_start  : std_logic  :=  '1'; 
+  signal i_miso      : std_logic; 
+  signal i_data      : std_logic_vector(n_bits-1 downto 0)   := (others=>'0');  
+  signal o_data      : std_logic_vector(n_bits-1 downto 0);  
+  signal o_tx_end    : std_logic; 
+  signal o_sclk      : std_logic;
+  signal o_ss        : std_logic;
+  signal o_mosi      : std_logic;
+	  
 	
 begin
+	
+	spi_t: entity work.SPI 
+	generic map(
+	  n_bits      =>  n_bits	  )  
+	port map (
+	  i_clk        => clk,
+	  i_rst        => i_rst,      ---------> fazer
+	  i_tx_start   => tx_start,
+	  i_data       => data_in,
+	  i_miso       => ARDUINO_IO(10),
+	  o_data       => data_out,   ---------> fazer
+	  o_tx_end     => o_tx_end,   ---------> fazer
+	  o_sclk       => ARDUINO_IO(8), 
+	  o_ss         => ARDUINO_IO(9),
+	  o_mosi       => ARDUINO_IO(11)
+	 ); 
+	
+	
 	
 	clock_driver : process
 		constant period : time := 10 ns;
@@ -130,21 +161,21 @@ begin
 			q       => idata
 		);
 	
-	-- UART instatiation
-	uart_inst: entity work.uart
-		port map(
-			clk_in_1M => clk,
-			clk_baud  => clk_baud,
-			csel	  => csel_uart,
-			data_in   => data_in,
-			tx        => ARDUINO_IO(1),
-			tx_cmp    => tx_cmp,
-			data_out  => data_out,
-			rx        => ARDUINO_IO(0),
-			rx_cmp    => rx_cmp
-		);
-		
-	clk_baud <= clk;		-- Just for simulation
+--	-- UART instatiation
+--	uart_inst: entity work.uart
+--		port map(
+--			clk_in_1M => clk,
+--			clk_baud  => clk_baud,
+--			csel	  => csel_uart,
+--			data_in   => data_in,
+--			tx        => ARDUINO_IO(1),
+--			tx_cmp    => tx_cmp,
+--			data_out  => data_out,
+--			rx        => ARDUINO_IO(0),
+--			rx_cmp    => rx_cmp
+--		);
+--		
+--	clk_baud <= clk;		-- Just for simulation
 
 	-- Data Memory RAM
 	dmem: entity work.dmemory
@@ -205,10 +236,10 @@ begin
 			HEX3 <= (others => '1');
 			HEX4 <= (others => '1');
 			HEX5 <= (others => '1');
-			csel_uart <= '0';			
+			tx_start <= '0';			
 		else
 			if rising_edge(clk) then
-				csel_uart <= '0';		
+				tx_start <= '0';		
 				if (d_we = '1') and (dcsel = "10") then					
 					-- ToDo: Simplify compartors
 					-- ToDo: Maybe use byte addressing?  
@@ -224,7 +255,12 @@ begin
 						-- HEX5 <= ddata_w(7 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"03" then
 					 	data_in <= ddata_w(7 downto 0);
-						csel_uart <= ddata_w(8);
+						tx_start <= ddata_w(8);
+						
+					-- SPI write
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
+					 	data_in <= ddata_w(7 downto 0);
+						tx_start <= ddata_w(8);
 					end if;				
 				end if;
 			end if;
@@ -242,6 +278,10 @@ begin
 					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then		
 						input_in(4 downto 0) <= SW(4 downto 0);	
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
+						input_in(7 downto 0) <= data_out;
+						
+					-- SPI read
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then								
 						input_in(7 downto 0) <= data_out;
 					end if;
 				end if;
