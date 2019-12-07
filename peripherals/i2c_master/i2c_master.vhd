@@ -5,9 +5,9 @@ use ieee.numeric_std.all;
 entity i2c_master is
 	port(
 		sda     : inout std_logic;
-		scl     : out   std_logic;
+		scl     : inout   std_logic;
 		clk     : in    std_logic;
-		clk_scl : in    std_logic;      -- defasado em 90º -- PLL
+		clk_scl : in    std_logic;      -- defasado em 90ï¿½ -- PLL
 		rst     : in    std_logic;
 		ena     : in    std_logic;
 		rw      : in    std_logic;      -- 0 to write 1 to read
@@ -28,6 +28,8 @@ architecture RTL of i2c_master is
 	signal cnt_ack 			 : integer;
 	signal cnt_stop          : integer := 5;
 	signal scl_ena           : std_logic_vector(1 downto 0);
+	signal scl_clk_sig		 : std_logic;
+	signal ack_received		 : std_logic;
 	--signal sda_ena           : std_logic;
 	--signal rw_temp           : std_logic;
 	--	signal data_rx : std_logic_vector(7 downto 0);
@@ -66,14 +68,14 @@ begin
 					end if;
 					
 				when slv_ack_cm =>
-					-- intervalo onde o mestre libera sda e passa à ouvir
-					-- sda é liberado na borda de subida do clock do mestre	
+					-- intervalo onde o mestre libera sda e passa ï¿½ ouvir
+					-- sda ï¿½ liberado na borda de subida do clock do mestre	
 					--sda_ena <= 'Z'		
 				
 					if cnt_ack = 0 then
 						
 						cnt_ack <= 2;
-						if  sda = '0' then 					-- verifica o ack
+						if  ack_received = '1' then 					-- verifica o ack
 							state <= rw_st;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
 							cnt_sda <= 7;
 						else
@@ -103,16 +105,16 @@ begin
 
 				when slv_ack_2 =>
 
-					-- intervalo onde o mestre libera sda e passa à ouvir
-					-- sda é liberado na borda de subida do clock do mestre	
+					-- intervalo onde o mestre libera sda e passa ï¿½ ouvir
+					-- sda ï¿½ liberado na borda de subida do clock do mestre	
 					--sda_ena <= 'Z';
-					-- na próxima borda de subida do clock do slave
+					-- na prï¿½xima borda de subida do clock do slave
 
 
 					if cnt_ack = 0 then
 						
 						cnt_ack <= 2;
-						if  sda = '0' then 					-- verifica o ack
+						if  ack_received = '1' then 				-- verifica o ack
 							if ena = '1' then
 								state <= rw_st;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
 								cnt_sda <= 7;
@@ -206,16 +208,29 @@ begin
 				when env_addr_cm =>
 					scl_ena <= "11";
 				when slv_ack_cm =>
+				
+					if sda = '0' then
+						ack_received <= '1';
+					end if;
+				
 					if cnt_ack = 2	then
 						scl_ena <= "01";    --sets scl zero
 					end if;
+					
 				when rw_st =>
+					ack_received <= '0';
 					scl_ena <= "11";
 				when slv_ack_2 =>
+				
+					if sda = '0' then
+							ack_received <= '1';
+					end if;
+					
 					if cnt_ack = 2	then
 						scl_ena <= "01";    --sets scl zero
 					end if;
 				when stop =>
+					ack_received <= '0';
 					scl_ena <= "00";
 				when others =>
 
@@ -224,8 +239,11 @@ begin
 	end process;
 
 	-- quando habilitado scl recebe o clock de uma pll
+	
+	scl_clk_sig <= '0' when clk_scl ='0' else '1';
+	
 	with scl_ena select scl <=
-					clk_scl when "11",
+						scl_clk_sig when "11",
 						'0' when "01",
 				 	 	'Z' 	when others;
 
