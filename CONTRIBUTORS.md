@@ -26,5 +26,6 @@ RISVC contributors (sorted alphabetically)
   ## 2019/2 
   
   * **[Diogo Tavares](https://github.com/diogo0001)**
+  * **[Nicolau Varela](https://github.com/NicoVarela)**
     
     * SPI integration
