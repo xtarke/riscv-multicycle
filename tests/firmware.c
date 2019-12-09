@@ -23,8 +23,8 @@ int main(){
 	while (1){
 		spi_write(data_out++);
 		// spi_write(INBUS); 
-		SEGMENTS = spi_read();
-		delay_(10000);
+		//SEGMENTS = spi_read();
+		delay_(100000);
 	}
 	return 0;
 }
