@@ -11,13 +11,11 @@
 #include "hardware.h"
 
 void spi_write(uint8_t data){
-	SPI_OUT = (0x01 << 8) | data;
+	SPI_TX = (0x01 << 8) | data;   // coloca o dado na memória e a flag para o tx_start
 	return;
 }
 
-uint8_t spi_read(void){
-	uint8_t byte;	
-	byte = SPI_IN;
-	return byte;
+uint8_t spi_read(void){  
+	return SPI_RX;               // retorna o que está na memória
 }
 

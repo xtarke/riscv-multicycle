@@ -47,8 +47,8 @@
 #define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 24))		/*!< Generic OUPUT BUS - 32-bit register */
 #define SEL_CH_ADC		(*(_IO32 *) (PERIPH_BASE + 28))	
 
-#define SPI_IN		(*(_IO32 *) (PERIPH_BASE + 32))	
-#define SPI_OUT		(*(_IO32 *) (PERIPH_BASE + 36))	
+#define SPI_TX		(*(_IO32 *) (PERIPH_BASE + 32))	
+#define SPI_RX		(*(_IO32 *) (PERIPH_BASE + 36))	
 
 
 #endif //HARDWARE_H

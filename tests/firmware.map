@@ -76,10 +76,10 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 syscalls.o
  .data          0x0000000000000000        0x0 start.o
  .bss           0x0000000000000000        0x0 start.o
- .text          0x0000000000000000       0x10 utils.o
  .data          0x0000000000000000        0x0 utils.o
  .bss           0x0000000000000000        0x0 utils.o
- .comment       0x0000000000000000       0x3a utils.o
+ .data          0x0000000000000000        0x0 spi.o
+ .bss           0x0000000000000000        0x0 spi.o
  .text          0x0000000000000000        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
  .data          0x0000000000000000        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
  .bss           0x0000000000000000        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
@@ -154,6 +154,7 @@ LOAD firmware.o
 LOAD syscalls.o
 LOAD start.o
 LOAD utils.o
+LOAD spi.o
 LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
 START GROUP
 LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
@@ -163,7 +164,7 @@ END GROUP
 LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
 LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x3e8
+.rom            0x0000000000000000      0x370
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -176,122 +177,124 @@ LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0xf0 firmware.o
+ .text          0x0000000000000144       0x48 firmware.o
                 0x0000000000000144                main
- .text          0x0000000000000234       0xd8 syscalls.o
-                0x0000000000000234                _getpid
-                0x0000000000000234                _utime
-                0x0000000000000234                _sysconf
-                0x0000000000000234                _ftime
-                0x0000000000000234                _isatty
-                0x0000000000000234                _open
-                0x0000000000000234                _times
-                0x0000000000000234                _stat
-                0x0000000000000234                _chdir
-                0x0000000000000234                _wait
-                0x0000000000000234                _lseek
-                0x0000000000000234                _fstatat
-                0x0000000000000234                _link
-                0x0000000000000234                _chown
-                0x0000000000000234                _access
-                0x0000000000000234                _openat
-                0x0000000000000234                _execve
-                0x0000000000000234                _chmod
-                0x0000000000000234                _lstat
-                0x0000000000000234                _unlink
-                0x0000000000000234                _fork
-                0x0000000000000234                _getcwd
-                0x0000000000000234                _kill
-                0x0000000000000234                _gettimeofday
-                0x0000000000000234                _faccessat
-                0x0000000000000238                unimplemented_syscall
-                0x000000000000025c                _read
-                0x0000000000000264                _write
-                0x0000000000000288                _close
-                0x0000000000000290                _fstat
-                0x00000000000002b4                _sbrk
-                0x00000000000002d8                _exit
-                0x00000000000002dc                init_data_section
- .text          0x000000000000030c       0xdc /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
-                0x000000000000030c                memset
+ .text          0x000000000000018c       0xd8 syscalls.o
+                0x000000000000018c                _getpid
+                0x000000000000018c                _utime
+                0x000000000000018c                _sysconf
+                0x000000000000018c                _ftime
+                0x000000000000018c                _isatty
+                0x000000000000018c                _open
+                0x000000000000018c                _times
+                0x000000000000018c                _stat
+                0x000000000000018c                _chdir
+                0x000000000000018c                _wait
+                0x000000000000018c                _lseek
+                0x000000000000018c                _fstatat
+                0x000000000000018c                _link
+                0x000000000000018c                _chown
+                0x000000000000018c                _access
+                0x000000000000018c                _openat
+                0x000000000000018c                _execve
+                0x000000000000018c                _chmod
+                0x000000000000018c                _lstat
+                0x000000000000018c                _unlink
+                0x000000000000018c                _fork
+                0x000000000000018c                _getcwd
+                0x000000000000018c                _kill
+                0x000000000000018c                _gettimeofday
+                0x000000000000018c                _faccessat
+                0x0000000000000190                unimplemented_syscall
+                0x00000000000001b4                _read
+                0x00000000000001bc                _write
+                0x00000000000001e0                _close
+                0x00000000000001e8                _fstat
+                0x000000000000020c                _sbrk
+                0x0000000000000230                _exit
+                0x0000000000000234                init_data_section
+ .text          0x0000000000000264       0x10 utils.o
+                0x0000000000000264                delay_
+ .text          0x0000000000000274       0x20 spi.o
+                0x0000000000000274                spi_write
+                0x0000000000000284                spi_read
+ .text          0x0000000000000294       0xdc /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                0x0000000000000294                memset
 
-.text.atexit    0x00000000000003e8       0x14
- .text.atexit   0x00000000000003e8       0x14 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
-                0x00000000000003e8                atexit
+.text.atexit    0x0000000000000370       0x14
+ .text.atexit   0x0000000000000370       0x14 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                0x0000000000000370                atexit
 
-.text.__errno   0x00000000000003fc        0xc
- .text.__errno  0x00000000000003fc        0xc /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
-                0x00000000000003fc                __errno
+.text.__errno   0x0000000000000384        0xc
+ .text.__errno  0x0000000000000384        0xc /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                0x0000000000000384                __errno
 
-.text.exit      0x0000000000000408       0x38
- .text.exit     0x0000000000000408       0x38 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
-                0x0000000000000408                exit
+.text.exit      0x0000000000000390       0x38
+ .text.exit     0x0000000000000390       0x38 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                0x0000000000000390                exit
 
 .text.__libc_fini_array
-                0x0000000000000440       0x60
+                0x00000000000003c8       0x60
  .text.__libc_fini_array
-                0x0000000000000440       0x60 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
-                0x0000000000000440                __libc_fini_array
+                0x00000000000003c8       0x60 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                0x00000000000003c8                __libc_fini_array
 
 .text.__libc_init_array
-                0x00000000000004a0       0x98
+                0x0000000000000428       0x98
  .text.__libc_init_array
-                0x00000000000004a0       0x98 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
-                0x00000000000004a0                __libc_init_array
+                0x0000000000000428       0x98 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                0x0000000000000428                __libc_init_array
 
-.text.memcpy    0x0000000000000538      0x11c
- .text.memcpy   0x0000000000000538      0x11c /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
-                0x0000000000000538                memcpy
+.text.memcpy    0x00000000000004c0      0x11c
+ .text.memcpy   0x00000000000004c0      0x11c /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                0x00000000000004c0                memcpy
 
 .text.__register_exitproc
-                0x0000000000000654       0xec
+                0x00000000000005dc       0xec
  .text.__register_exitproc
-                0x0000000000000654       0xec /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
-                0x0000000000000654                __register_exitproc
+                0x00000000000005dc       0xec /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                0x00000000000005dc                __register_exitproc
 
 .text.__call_exitprocs
-                0x0000000000000740      0x138
+                0x00000000000006c8      0x138
  .text.__call_exitprocs
-                0x0000000000000740      0x138 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
-                0x0000000000000740                __call_exitprocs
+                0x00000000000006c8      0x138 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x00000000000006c8                __call_exitprocs
 
 .text.__retarget_lock_acquire_recursive
-                0x0000000000000878        0x4
+                0x0000000000000800        0x4
  .text.__retarget_lock_acquire_recursive
-                0x0000000000000878        0x4 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
-                0x0000000000000878                __retarget_lock_acquire_recursive
+                0x0000000000000800        0x4 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000800                __retarget_lock_acquire_recursive
 
 .text.__retarget_lock_release_recursive
-                0x000000000000087c        0x4
+                0x0000000000000804        0x4
  .text.__retarget_lock_release_recursive
-                0x000000000000087c        0x4 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
-                0x000000000000087c                __retarget_lock_release_recursive
+                0x0000000000000804        0x4 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000804                __retarget_lock_release_recursive
 
-.rodata         0x0000000000000880       0x3c
- .rodata        0x0000000000000880       0x3c firmware.o
-
-.rodata.str1.4  0x00000000000008bc       0x24
+.rodata.str1.4  0x0000000000000808       0x24
  .rodata.str1.4
-                0x00000000000008bc       0x24 syscalls.o
+                0x0000000000000808       0x24 syscalls.o
                                          0x23 (size before relaxing)
 
 .sdata2._global_impure_ptr
-                0x00000000000008e0        0x4
+                0x000000000000082c        0x4
  .sdata2._global_impure_ptr
-                0x00000000000008e0        0x4 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
-                0x00000000000008e0                _global_impure_ptr
+                0x000000000000082c        0x4 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x000000000000082c                _global_impure_ptr
 
-.rela.dyn       0x00000000000008e4        0x0
- .rela.text     0x00000000000008e4        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+.rela.dyn       0x0000000000000830        0x0
+ .rela.text     0x0000000000000830        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__libc_fini_array
-                0x00000000000008e4        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000830        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__libc_init_array
-                0x00000000000008e4        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000830        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.sdata.__atexit_recursive_mutex
-                0x00000000000008e4        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000830        0x0 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
 
-.data           0x0000000002000000      0x430 load address 0x00000000000008e4
-                0x00000000000008e4                _data_lma = LOADADDR (.data)
+.data           0x0000000002000000      0x430 load address 0x0000000000000830
+                0x0000000000000830                _data_lma = LOADADDR (.data)
                 0x0000000002000000                _data = .
                 0x0000000002000000                __global_pointer$ = .
  *(.data .data.*)
@@ -307,7 +310,7 @@ LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content
                 0x0000000002000430                . = ALIGN (0x4)
                 0x0000000002000430                _edata = .
 
-.bss            0x0000000002000430       0x21 load address 0x0000000000000d14
+.bss            0x0000000002000430       0x21 load address 0x0000000000000c60
                 0x0000000002000430                _bss_start = .
  *(.bss .bss.*)
                 0x0000000002000430                . = ALIGN (0x4)
@@ -325,13 +328,15 @@ LOAD /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content
                 0x0000000002000450                __lock___sfp_recursive_mutex
 OUTPUT(firmware.elf elf32-littleriscv)
 
-.sbss           0x0000000002000454        0x4 load address 0x0000000000000d14
+.sbss           0x0000000002000454        0x4 load address 0x0000000000000c60
  .sbss          0x0000000002000454        0x4 syscalls.o
 
 .comment        0x0000000000000000       0x39
  .comment       0x0000000000000000       0x39 firmware.o
                                          0x3a (size before relaxing)
  .comment       0x0000000000000039       0x3a syscalls.o
+ .comment       0x0000000000000039       0x3a utils.o
+ .comment       0x0000000000000039       0x3a spi.o
 
 .debug_frame    0x0000000000000000      0x25c
  .debug_frame   0x0000000000000000       0x20 /home/diogo/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)

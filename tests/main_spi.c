@@ -17,14 +17,14 @@
 
 int main(){
 	
-	uint8_t data_out = 0x01;
-	uint8_t data_in = 0x00;
+	// uint8_t data_out = 0x01;
+	// uint8_t data_in = 0x00;
 	
-	while (1){
-		spi_write(data_out++);
-		data_in = spi_read();
-		SPI_IN = data_in;
-		delay_(2000);
-	}
+	// while (1){
+	// 	spi_write(data_out++);
+	// 	data_in = spi_read();
+	// 	SPI_IN = data_in;
+	// 	delay_(2000);
+	// }
 	return 0;
 }
