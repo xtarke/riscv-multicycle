@@ -10,7 +10,7 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 #CXXFLAGS = -MD -O1 -Wall -std=c++11
 #CCFLAGS = -MD -O1 -Wall 
 #LDFLAGS = -Wl,--gc-sections,--no-relax
-LDFLAGS = -Wl,--gc-sections
+LDFLAGS = -Wl
 LDLIBS =
 
 #test: testbench.vvp firmware32.hex
@@ -32,15 +32,15 @@ firmware32.hex: firmware.elf hex8tohex32.py
 start.o: start.S
 	$(CC) -c -nostdlib start.S $(LDLIBS)
 
-firmware.elf: firmware.o syscalls.o start.o utils.o
+firmware.elf: firmware.o syscalls.o start.o utils.o timer.o
 	$(CC) $(LDFLAGS),-Map=firmware.map -o $@ $^ -T sections.ld $(LDLIBS)
 	chmod -x firmware.elf
 
 sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../sint/de10_lite/de0_lite.cdf
+	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/timer/sint/de10_lite/de0_lite.cdf
 	
 fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../sint/de10_lite/de0_lite.sof"
+	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/timer/sint/de10_lite/de0_lite.sof"
 
 clean:
 	rm -f *.o *.d *.tmp start.elf

@@ -298,6 +298,8 @@ begin
 		else
 			internal_output_A := (others => '0');
 			internal_output_B := (others => '0');
+			output_A <= internal_output_A;
+			output_B <= internal_output_B;
 			counter_direction := '0';
 		end if;
 
