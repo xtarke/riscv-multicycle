@@ -64,7 +64,7 @@ BEGIN
 		byte_size => 8,
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "./tests/quartus.hex", 
+		init_file => "../../tests/quartus.hex", 
 		intended_device_family => "MAX 10",
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",
