@@ -25,6 +25,7 @@ entity core is
 		ddata_w   : out	std_logic_vector(31 downto 0);
 		d_we      : out std_logic;
 		d_rd	  : out std_logic;
+		d_sig     : out std_logic;						--! Signal extension
 		dcsel	  : out std_logic_vector(1 downto 0);	--! Chip select 
 		dmask     : out std_logic_vector(3 downto 0);	--! Byte enable mask
 		
@@ -259,9 +260,10 @@ begin
 		byteSel <= addr(1 downto 0);
 		daddress <= to_integer(unsigned(addr(31 downto 2)));
 		
-		ddata_w <= rs2_data;		--! Data to write
-		d_we <= dmemory.write;		--! Write signal
-		d_rd <= dmemory.read;		--! Read signal
+		ddata_w <= rs2_data;		 --! Data to write
+		d_we <= dmemory.write;		 --! Write signal
+		d_rd <= dmemory.read;		 --! Read signal
+		d_sig <= dmemory.signal_ext; --! for byte and halfword loads
 				
 		bus_lag <= not addr(25);	--! Stall another cycle when reading from imem
 				
@@ -271,7 +273,8 @@ begin
 		-- 0x0004000000 ->  0b100 0000 0000 0000 0000 0000 0000
 		-- 0x0006000000 ->  0b110 0000 0000 0000 0000 0000 0000		
 		dcsel <= addr(26 downto 25);
-						
+				
+		--! Byte sel mask generation		
 		dmaskGen: process(dmemory, byteSel)
 		begin
 			dmask <= "0000";
@@ -279,14 +282,15 @@ begin
 			case dmemory.word_size is 
 				when "00" =>
 					dmask <= "1111";
-					
---					if dmemory.write = '1' then
---						if byteSel /= "00" then								
---							report "Word Address not aligned!" severity Failure;
---						end if;
---					end if;
-				
-				when "01" =>					
+				when "01" =>
+					case byteSel is
+						when "00" => 
+							dmask <= "0011";	
+						when "10" =>
+							dmask <= "1100";
+						when others =>
+					end case;						
+				when "11" =>					
 					case byteSel is
 						when "00" => 
 							dmask <= "0001";				
@@ -302,25 +306,10 @@ begin
 				when others => 	
 					if dmemory.write = '1' then					
 						report "Not implemented" severity Failure;
-					end if;	
-									
+					end if;										
 			end case;
-		end process;
-		
-		debug: process(pc)
-		begin
-		
-			if pc = x"00000010" then
-			--	report "debug Abort" severity Failure;
-			end if;
-			
-		end process;
-		
-		
-		
+		end process;		
 	end block;
-		
-	
 
 end architecture RTL;
 

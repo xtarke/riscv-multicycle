@@ -106,6 +106,7 @@ architecture rtl of de0_lite is
 	
 	-- CPU state signals
 	signal state : cpu_state_t;
+	signal d_sig : std_logic;
 	
 begin
 	
@@ -159,6 +160,7 @@ begin
 			address => daddress,
 			we      => d_we,
 			csel    => dcsel(0),
+			signal_ext => d_sig,
 			dmask   => dmask,
 			q       => ddata_r_mem
 		);
@@ -179,7 +181,7 @@ begin
 			IMEMORY_WORDS => IMEMORY_WORDS,
 			DMEMORY_WORDS => DMEMORY_WORDS
 		)
-		port map(
+		port map(			
 			clk      => clk,
 			rst      => rst,
 			iaddress => iaddress,
@@ -190,6 +192,7 @@ begin
 			d_we     => d_we,
 			d_rd     => d_rd,
 			dcsel    => dcsel,
+			d_sig 	 => d_sig,
 			dmask    => dmask,
 			state    => state
 		);
@@ -218,8 +221,8 @@ begin
 						HEX1 <= ddata_w(15 downto 8);
 						HEX2 <= ddata_w(23 downto 16);
 						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
+						HEX4 <= (others => '1');
+						HEX5 <= (others => '1');
 					end if;				
 				end if;
 			end if;
@@ -234,8 +237,9 @@ begin
 			input_in <= (others => '0');
 		else
 			if rising_edge(clk) then		
+				input_in <= (others => '0');
 				if (d_rd = '1') and (dcsel = "10") then
-					input_in(4 downto 0) <= SW(4 downto 0);				
+					input_in(4 downto 0) <= SW(4 downto 0);
 				end if;
 			end if;
 		end if;		
