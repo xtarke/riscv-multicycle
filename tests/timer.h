@@ -30,7 +30,7 @@
 	_IO32 output_0B : 1;   // 0x20, bit 23
 	_IO32 output_1B : 1;   // 0x20, bit 24
 	_IO32 output_2B : 1;   // 0x20, bit 25
-    _IO32 unused : 6;      // 0x20, bit 26 to 31
+    _IO32           : 6;   // 0x20, bit 26 to 31
 
 	_IO32 compare_0A;      // 0x24
 	_IO32 compare_0B;      // 0x28
@@ -41,25 +41,25 @@
 } TIMER_TYPE;
 */
 typedef struct {
-    _IO32 timer_reset; // 0x20
-    _IO32 timer_mode;  // 0x24
-    _IO32 prescaler;  // 0x28
+    _IO32 timer_reset;      // 0x20
+    _IO32 timer_mode;       // 0x24
+    _IO32 prescaler;        // 0x28
 
-    _IO32 top_counter;     // 0x2C
-	_IO32 compare_0A;      // 0x30
-	_IO32 compare_0B;      // 0x34
-	_IO32 compare_1A;      // 0x38
-	_IO32 compare_1B;      // 0x3C
-	_IO32 compare_2A;      // 0x40
-	_IO32 compare_2B;      // 0x44
+    _IO32 top_counter;      // 0x2C
+	_IO32 compare_0A;       // 0x30
+	_IO32 compare_0B;       // 0x34
+	_IO32 compare_1A;       // 0x38
+	_IO32 compare_1B;       // 0x3C
+	_IO32 compare_2A;       // 0x40
+	_IO32 compare_2B;       // 0x44
 
-	_IO32 output_0A : 1;   // 0x48, bit 0
-	_IO32 output_1A : 1;   // 0x48, bit 1
-	_IO32 output_2A : 1;   // 0x48, bit 2
-	_IO32 output_0B : 1;   // 0x48, bit 3
-	_IO32 output_1B : 1;   // 0x48, bit 4
-	_IO32 output_2B : 1;   // 0x48, bit 5
-    _IO32 reserved : 26;
+	_IO32 output_0A : 1;    // 0x48, bit 0
+	_IO32 output_1A : 1;    // 0x48, bit 1
+	_IO32 output_2A : 1;    // 0x48, bit 2
+	_IO32 output_0B : 1;    // 0x48, bit 3
+	_IO32 output_1B : 1;    // 0x48, bit 4
+	_IO32 output_2B : 1;    // 0x48, bit 5
+    _IO32           : 26;
 } TIMER_TYPE;
 
 
