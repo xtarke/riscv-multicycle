@@ -12,29 +12,30 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl
 LDLIBS =
+MAIN = main_timer
 
-#test: testbench.vvp firmware32.hex
+#test: testbench.vvp $(MAIN)32.hex
 #	# vvp -l testbench.log -N testbench.vvp
 
-#testbench.vvp: testbench.v ../../picorv32.v firmware_dbg.v
+#testbench.vvp: testbench.v ../../picorv32.v $(MAIN)_dbg.v
 #	#iverilog -o testbench.vvp testbench.v ../../picorv32.v
 #	#chmod -x testbench.vvp
 
-firmware32.hex: firmware.elf hex8tohex32.py
-	$(RISCV_TOOLS_PREFIX)objcopy -O verilog firmware.elf firmware.tmp
-	$(RISCV_TOOLS_PREFIX)objdump -h -S firmware.elf > "firmware.lss"
-	python3 hex8tohex32.py firmware.tmp > firmware32.hex
-	python3 hex8tointel.py firmware.tmp > quartus.hex
+$(MAIN)32.hex: $(MAIN).elf hex8tohex32.py
+	$(RISCV_TOOLS_PREFIX)objcopy -O verilog $(MAIN).elf $(MAIN).tmp
+	$(RISCV_TOOLS_PREFIX)objdump -h -S $(MAIN).elf > "$(MAIN).lss"
+	python3 hex8tohex32.py $(MAIN).tmp > $(MAIN)32.hex
+	python3 hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex
 
-#firmware_dbg.v: firmware.map
+#$(MAIN)_dbg.v: $(MAIN).map
 #	python3 map2debug.py
 
 start.o: start.S
 	$(CC) -c -nostdlib start.S $(LDLIBS)
 
-firmware.elf: firmware.o syscalls.o start.o utils.o timer.o
-	$(CC) $(LDFLAGS),-Map=firmware.map -o $@ $^ -T sections.ld $(LDLIBS)
-	chmod -x firmware.elf
+$(MAIN).elf: $(MAIN).o syscalls.o start.o utils.o timer.o
+	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T sections.ld $(LDLIBS)
+	chmod -x $(MAIN).elf
 
 sint:
 	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/timer/sint/de10_lite/de0_lite.cdf
@@ -44,7 +45,7 @@ fpga:
 
 clean:
 	rm -f *.o *.d *.tmp start.elf
-	rm -f firmware.elf firmware.hex firmware32.hex
+	rm -f $(MAIN).elf $(MAIN).hex $(MAIN)32.hex
 	#rm -f testbench.vvp testbench.vcd
 
 -include *.d
