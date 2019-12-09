@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_115
-Mon Dec  2 11:10:25 2019
+Mon Dec  9 08:15:15 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -83,7 +83,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Dec  2 11:10:25 2019           ;
+; Analysis & Synthesis Status        ; Successful - Mon Dec  9 08:15:15 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
@@ -1959,7 +1959,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:14     ;
+; Top            ; 00:00:15     ;
 +----------------+--------------+
 
 
@@ -1969,7 +1969,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Mon Dec  2 11:09:49 2019
+    Info: Processing started: Mon Dec  9 08:14:37 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_115 -c DE2_115
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -2265,7 +2265,7 @@ Warning (10873): Using initial value X (don't care) for net "dmemory.bus_lag" at
 Info (12128): Elaborating entity "ULA" for hierarchy "core:myRisc|ULA:alu_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 225
 Info (12128): Elaborating entity "M" for hierarchy "core:myRisc|M:M_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 241
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2019.12.02.12:10:04 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2019.12.09.09:14:52 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2877,9 +2877,9 @@ Info (21057): Implemented 7382 device resources after synthesis - the final reso
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 462 warnings
-    Info: Peak virtual memory: 1221 megabytes
-    Info: Processing ended: Mon Dec  2 11:10:25 2019
-    Info: Elapsed time: 00:00:36
-    Info: Total CPU time (on all processors): 00:00:59
+    Info: Peak virtual memory: 1219 megabytes
+    Info: Processing ended: Mon Dec  9 08:15:15 2019
+    Info: Elapsed time: 00:00:38
+    Info: Total CPU time (on all processors): 00:00:57
 
 

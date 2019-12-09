@@ -1,5 +1,5 @@
 Flow report for DE2_115
-Mon Dec  2 11:11:07 2019
+Mon Dec  9 08:16:03 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Mon Dec  2 11:11:02 2019           ;
+; Flow Status                        ; Successful - Mon Dec  9 08:15:57 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/02/2019 11:09:50 ;
+; Start date & time ; 12/09/2019 08:14:38 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE2_115             ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 99312853569272.157529579032491         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 248726525416053.157589007815208        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; pll.ppf                                ; --            ; --          ; --         ;
@@ -93,11 +93,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:35     ; 1.0                     ; 1188 MB             ; 00:00:57                           ;
-; Fitter               ; 00:00:30     ; 1.1                     ; 1907 MB             ; 00:00:39                           ;
+; Analysis & Synthesis ; 00:00:36     ; 1.0                     ; 1186 MB             ; 00:00:56                           ;
+; Fitter               ; 00:00:33     ; 1.1                     ; 1909 MB             ; 00:00:40                           ;
 ; Assembler            ; 00:00:04     ; 1.0                     ; 974 MB              ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.3                     ; 1102 MB             ; 00:00:05                           ;
-; Total                ; 00:01:13     ; --                      ; --                  ; 00:01:45                           ;
+; Timing Analyzer      ; 00:00:04     ; 1.3                     ; 1101 MB             ; 00:00:05                           ;
+; Total                ; 00:01:17     ; --                      ; --                  ; 00:01:45                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

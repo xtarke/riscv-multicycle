@@ -46,6 +46,7 @@
 #define INDATA_ADC		(*(_IO32 *) (PERIPH_BASE + 20))		/*!< Generic INPUT BUS - 32-bit register */
 #define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 24))		/*!< Generic OUPUT BUS - 32-bit register */
 #define SEL_CH_ADC		(*(_IO32 *) (PERIPH_BASE + 28))	
+#define SRAM_CONTROLE	(*(_IO32 *) (PERIPH_BASE + 32))
 
 
 

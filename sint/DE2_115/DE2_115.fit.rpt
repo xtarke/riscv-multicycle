@@ -1,5 +1,5 @@
 Fitter report for DE2_115
-Mon Dec  2 11:10:56 2019
+Mon Dec  9 08:15:49 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -77,7 +77,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Fitter Status                      ; Successful - Mon Dec  2 11:10:56 2019           ;
+; Fitter Status                      ; Successful - Mon Dec  9 08:15:49 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
@@ -164,14 +164,14 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 4           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.06        ;
+; Average used               ; 1.05        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   2.0%      ;
-;     Processor 3            ;   1.9%      ;
-;     Processor 4            ;   1.9%      ;
+;     Processor 2            ;   1.8%      ;
+;     Processor 3            ;   1.8%      ;
+;     Processor 4            ;   1.8%      ;
 +----------------------------+-------------+
 
 
@@ -4013,7 +4013,7 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:03
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:04
 Warning (169177): 148 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone IV E Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
     Info (169178): Pin CLOCK2_50 uses I/O standard 3.3-V LVTTL at AG14 File: /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115/DE2_115.vhdl Line: 17
     Info (169178): Pin CLOCK3_50 uses I/O standard 3.3-V LVTTL at AG15 File: /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115/DE2_115.vhdl Line: 18
@@ -4269,9 +4269,9 @@ Warning (169064): Following 103 pins have no output enable or a GND or VCC outpu
     Info (169065): Pin SRAM_DQ[15] has a permanently enabled output enable File: /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115/DE2_115.vhdl Line: 128
 Info (144001): Generated suppressed messages file /run/user/1001/overlay/merged/riscv-multicycle/sint/DE2_115/DE2_115.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 14 warnings
-    Info: Peak virtual memory: 1907 megabytes
-    Info: Processing ended: Mon Dec  2 11:10:57 2019
-    Info: Elapsed time: 00:00:31
+    Info: Peak virtual memory: 1909 megabytes
+    Info: Processing ended: Mon Dec  9 08:15:51 2019
+    Info: Elapsed time: 00:00:35
     Info: Total CPU time (on all processors): 00:00:41
 
 
