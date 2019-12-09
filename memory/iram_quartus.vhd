@@ -64,7 +64,7 @@ BEGIN
 		byte_size => 8,
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "C:/_prj_final/tests/quartus.hex",  --"./tests/quartus.hex", --COLAR AQUI O CAMINHO COMPLETO  "C:/Users/dinho/workspaceSigasi/_prj_final/tests/quartus.hex",
+		init_file => "C:\riscv-multicycle-master\tests\quartus.hex",  --"./tests/quartus.hex", --COLAR AQUI O CAMINHO COMPLETO  "C:/Users/dinho/workspaceSigasi/_prj_final/tests/quartus.hex",
 		intended_device_family => "MAX 10",
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",

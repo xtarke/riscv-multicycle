@@ -15,7 +15,7 @@ CXXFLAGS = -MD -Os -Wall -std=c++11
 CCFLAGS = -MD -Os -Wall 
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl,--gc-sections
-LDLIBS =
+LDLIBS = 
 
 #test: testbench.vvp firmware32.hex
 #	# vvp -l testbench.log -N testbench.vvp
@@ -36,7 +36,7 @@ firmware32.hex: firmware.elf hex8tohex32.py
 start.o: start.S
 	$(CC) -c -nostdlib start.S $(LDLIBS)
 
-firmware.elf: firmware.o syscalls.o start.o utils.o
+firmware.elf: firmware.o syscalls.o start.o utils.o spi.o
 	$(CC) $(LDFLAGS),-Map=firmware.map -o $@ $^ -T sections.ld $(LDLIBS)
 	chmod -x firmware.elf
 

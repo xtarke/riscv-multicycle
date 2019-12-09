@@ -10,7 +10,7 @@ entity core is
 	generic (
 		--! Num of 32-bits memory words 
 		IMEMORY_WORDS : integer := 1024;
-		DMEMORY_WORDS : integer := 512
+		DMEMORY_WORDS : integer := 512    
 	);
 	port(
 		clk : in std_logic;
@@ -19,7 +19,7 @@ entity core is
 		iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
 		idata	  : in 	std_logic_vector(31 downto 0);
 		
-		daddress  : out  natural;
+		daddress  : out  natural;   
 		
 		ddata_r	  : in 	std_logic_vector(31 downto 0);
 		ddata_w   : out	std_logic_vector(31 downto 0);
