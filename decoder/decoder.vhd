@@ -141,7 +141,8 @@ begin
 		
 		-- !Memory interface default signal values
 		dmemory.read  <= '0';
-		dmemory.write <= '0';
+		dmemory.write  <= '0';
+		dmemory.signal_ext <= '0';
 		dmemory.word_size <= "00";	
 
 		cpu_state.halted <= '0';
@@ -278,15 +279,16 @@ begin
 				jumps.inc <= '1';
 				reg_write <= '1';				
 				
-				
+				--! "00": word, "01": half word, "11" byte
 			when ST_TYPE_S =>
 				
 				case opcodes.funct3 is
 					when TYPE_SB =>
 						dmemory.write <= '1';
-						dmemory.word_size <= "01";						
+						dmemory.word_size <= "11";					
 					when TYPE_SH =>
-						report "Not implemented" severity Failure;
+						dmemory.write <= '1';
+						dmemory.word_size <= "01";
 					when TYPE_SW =>
 						dmemory.write <= '1';
 						dmemory.word_size <= "00";	
@@ -300,7 +302,6 @@ begin
 				jumps.inc <= '1';
 				reg_write <= '1';	
 				
-				
 			when ST_BRANCH =>	
 				jumps.load <= '1';
 				jumps.load_from <= "01";			
@@ -308,17 +309,27 @@ begin
 			when ST_TYPE_JALR =>
 				jumps.load <= '1';
 				jumps.load_from <= "11";	
-				
 			when ST_TYPE_L =>
 				case opcodes.funct3 is
 					when TYPE_LB =>
-						report "Not implemented" severity Failure;	
+						dmemory.signal_ext <= '1';
+						dmemory.read <= '1';
+						dmemory.word_size <= "11";
 					when TYPE_LH =>
-						report "Not implemented" severity Failure;
+						dmemory.signal_ext <= '1';
+						dmemory.read <= '1';
+						dmemory.word_size <= "01";
 					when TYPE_LW =>
 						dmemory.read <= '1';
-						dmemory.word_size <= "00";	
+						dmemory.word_size <= "00";
+					when TYPE_LBU =>
+						dmemory.read <= '1';
+						dmemory.word_size <= "11";
+					when TYPE_LHU =>
+						dmemory.read <= '1';
+						dmemory.word_size <= "01";
 					when others =>	
+						report "Not implemented" severity Failure;
 				end case;
 				
 				jumps.inc <= '1';				
