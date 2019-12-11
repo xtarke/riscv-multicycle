@@ -61,7 +61,6 @@ add wave -radix bin  	-label mux_sel /tft_inst/mux_sel
 
 add wave -height 15 -divider "DATA_MEM"
 add wave -radix hex  -label data /tft_inst/data_mem_inst/ram_block
-#Como mostrar sinais internos do processo
 
 
 #Simula até um 60ns
