@@ -100,7 +100,7 @@ begin
 			read_en2 => rd_en_2
 		);
 
-	decoder_inst : entity work.decoder
+	decoder_inst : entity work.decoder_tft
 		port map(
 			clk      => clk,
 			mem_init => empty_1,
