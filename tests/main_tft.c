@@ -19,15 +19,18 @@ int main(){
 	
 	tft_init();
 	delay_(10000);
-	
-	while (1){
-		
-        //tft_clean(0xFFC0);
-		//delay_(10000);
-		
-		tft_clean(0x0000);
-		delay_(10000);
-	}
+    
+    while(1){
+        tft_clean(0xFC00);
+        delay_(100000);
+        
+        tft_clean(0x00BF);
+        delay_(100000);
+        
+        tft_sqrt(0x07C0, 0x000F, 0x0050, 0x00A0, 0x000F);
+        //tft_clean(0x07C0);
+        delay_(100000);
+    }
 
 	return 0;
 }
