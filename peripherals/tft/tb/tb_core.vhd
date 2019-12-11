@@ -76,6 +76,19 @@ architecture RTL of coretestbench is
 	signal dmemory_address : natural;
 	signal d_sig : std_logic;
 
+	
+	-- Display tft signals
+	signal input_a : unsigned(31 downto 0);
+	signal input_b : unsigned(31 downto 0);
+	signal input_c : unsigned(31 downto 0);
+
+	signal output : unsigned(7 downto 0);
+	signal cs     : std_logic := '0';
+	signal rs     : std_logic := '0';
+	signal wr     : std_logic := '0';
+	signal rst_pin : std_logic := '0';
+	
+
 
 begin
 
@@ -236,6 +249,22 @@ begin
 			end if;
 		end if;
 	end process;
+	
+	
+	
+	
+	tft_inst : entity work.tft
+		port map(
+			clk     => clk,
+			input_a => input_a,
+			input_b => input_b,
+			input_c => input_c,
+			output  => output,
+			cs      => cs,
+			rs      => rs,
+			wr      => wr,
+			rst     => rst_pin
+		);
 
 	-- Input register
 	process(clk, rst)
@@ -250,6 +279,9 @@ begin
 						input_in(4 downto 0) <= SW(4 downto 0);	
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
 						input_in(7 downto 0) <= data_out;
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
+						
+						
 					end if;
 				end if;
 			end if;
