@@ -47,6 +47,10 @@
 #define CH_ADC_FEED		(*(_IO32 *) (PERIPH_BASE + 24))		/*!< Generic OUPUT BUS - 32-bit register */
 #define SEL_CH_ADC		(*(_IO32 *) (PERIPH_BASE + 28))	
 
+#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
+#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
+#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
+#define TFT_RETURN		(*(_IO32 *) (PERIPH_BASE + 44))	
 
 
 #endif //HARDWARE_H
