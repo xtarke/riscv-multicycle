@@ -218,6 +218,19 @@ begin
 			state    => cpu_state
 		);
 
+tft_inst : entity work.tft
+		port map(
+			clk     => clk,
+			input_a => input_a,
+			input_b => input_b,
+			input_c => input_c,
+			output  => output,
+			cs      => cs,
+			rs      => rs,
+			wr      => wr,
+			rst     => rst
+		);
+
 	-- Output register (Dummy LED blinky)
 	process(clk, rst)
 	begin
@@ -244,6 +257,9 @@ begin
 						HEX3 <= ddata_w(31 downto 24);
 						-- HEX4 <= ddata_w(7 downto 0);
 						-- HEX5 <= ddata_w(7 downto 0);
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
+						input_a <= unsigned(ddata_w);
+						
 					end if;
 				end if;
 			end if;
@@ -253,18 +269,7 @@ begin
 	
 	
 	
-	tft_inst : entity work.tft
-		port map(
-			clk     => clk,
-			input_a => input_a,
-			input_b => input_b,
-			input_c => input_c,
-			output  => output,
-			cs      => cs,
-			rs      => rs,
-			wr      => wr,
-			rst     => rst_pin
-		);
+	
 
 	-- Input register
 	process(clk, rst)
@@ -278,9 +283,7 @@ begin
 					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then		
 						input_in(4 downto 0) <= SW(4 downto 0);	
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
-						input_in(7 downto 0) <= data_out;
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
-						
+						input_in(7 downto 0) <= data_out;						
 						
 					end if;
 				end if;
