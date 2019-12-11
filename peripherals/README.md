@@ -1,1 +1,0 @@
-﻿# Peripherals base folder
