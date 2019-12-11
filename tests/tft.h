@@ -21,7 +21,9 @@
 
 #include <stdint.h>
 
-void UART_write(int character);
-int UART_read(void);
+//void tft_write(uint32_t data1, uint32_t data2, uint32_t data3);
+//void tft_set(uint32_t data1, uint32_t data2, uint32_t data3);
+void tft_init();
+void tft_clean(uint16_t color);
 
 #endif // __UART_H
