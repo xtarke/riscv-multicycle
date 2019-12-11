@@ -327,6 +327,10 @@ begin
 						swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
 						writeline(my_output, my_line);
 						inst <= str_pad(typeRstring(data, "xor", pc, rd, rs1, rs2), ' ', 40);
+					when TYPE_OR =>
+						swrite(my_line, typeRstring(data, "or", pc, rd, rs1, rs2));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeRstring(data, "or", pc, rd, rs1, rs2), ' ', 40);			
 										
 					when others =>		
 						report "Not implemented" severity Failure;				
@@ -359,6 +363,10 @@ begin
 						swrite(my_line, typeSstring(data, "lbu", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);
 						inst <= str_pad(typeSstring(data, "lbu", pc, rd, rs1, imm_i), ' ', 40);
+					when TYPE_LHU =>
+						swrite(my_line, typeSstring(data, "lhu", pc, rd, rs1, imm_i));
+						writeline(my_output, my_line);
+						inst <= str_pad(typeSstring(data, "lhu", pc, rd, rs1, imm_i), ' ', 40);					
 					when TYPE_LH =>
 						swrite(my_line, typeSstring(data, "lh", pc, rd, rs1, imm_i));
 						writeline(my_output, my_line);

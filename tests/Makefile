@@ -1,5 +1,5 @@
 ifndef RISCV_TOOLS_PREFIX
-# RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
+RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
 # Para usar no LSC
 RISCV_TOOLS_PREFIX = /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
 endif
