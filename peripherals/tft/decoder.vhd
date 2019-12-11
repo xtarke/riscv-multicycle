@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity decoder is
+entity decoder_tft is
 	port(
 		clk      : in  std_logic;
 		mem_init : in  std_logic;
@@ -16,7 +16,7 @@ entity decoder is
 	);
 end entity;
 
-architecture rtl_decoder of decoder is
+architecture rtl_decoder_tft of decoder_tft is
 	
 	constant n_block : natural := 3;
 	type MUX is array (0 to n_block) of unsigned(output'range);
