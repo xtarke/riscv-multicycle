@@ -18,18 +18,19 @@
 #include <stdint.h>
 #include "tft.h"
 #include "hardware.h"
+#include "utils.h"
 
 void tft_write(uint32_t data1, uint32_t data2, uint32_t data3){
 
     TFT_DATA0 = data1 & (0x7FFFFFFF);
     TFT_DATA1 = data2 & (0x7FFFFFFF);
     TFT_DATA2 = data3 & (0x7FFFFFFF);
-    delay_(2);
+    delay_(10);
     
     TFT_DATA0 = data1;
     TFT_DATA1 = data2;
     TFT_DATA2 = data3;
-    delay_(2);
+    delay_(10);
     //while(TFT_RETURN != 0x00000001);
     
     TFT_DATA0 = data1 & (0x7FFFFFFF);
@@ -69,7 +70,8 @@ void tft_clean(uint16_t color){
     uint32_t color_ = color;
     
     tft_write(0x80010000 | color, 0x00000000, 0x00000000);
-    delay_(1000);
+    //delay_(1000);
+	//tft_write(0x00010000 | color, 0x00000000, 0x00000000);
     
 	return;
     

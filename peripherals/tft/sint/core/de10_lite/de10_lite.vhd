@@ -7,11 +7,11 @@
 -------------------------------------------------------------------
 LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
-use ieee.numeric_std.all;
+USE IEEE.NUMERIC_STD.ALL;
 
 use work.decoder_types.all;
 
-entity de0_lite is 
+entity de10_lite is 
 	generic (
 		--! Num of 32-bits memory words 
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
@@ -71,13 +71,19 @@ entity de0_lite is
 	
 		----------- Arduino ------------
 		ARDUINO_IO: inout std_logic_vector(15 downto 0);
-		ARDUINO_RESET_N: inout std_logic
+		ARDUINO_RESET_N: inout std_logic;
+		
+		GPIO: inout std_logic_vector(35 downto 0)
 	);
+
+	
+	
+	
 end entity;
 
 
-
-architecture rtl of de0_lite is
+architecture rtl of de10_lite is
+	
 		
 	signal clk : std_logic;
 	signal rst : std_logic;
@@ -106,23 +112,73 @@ architecture rtl of de0_lite is
 	
 	-- CPU state signals
 	signal state : cpu_state_t;
-	signal d_sig : std_logic;
+	signal d_sig : std_logic;	
+	
+	
+	-- TFT signals
+	signal clock_tft : std_logic;
+	
+	signal output 	: unsigned(7 downto 0);
+	signal cs     	: std_logic;
+	signal rs     	: std_logic;
+	signal wr     	: std_logic;
+	signal rst_pin	: std_logic;
+	
+	signal input_a 	: unsigned(31 downto 0);
+	signal input_b 	: unsigned(31 downto 0);
+	signal input_c 	: unsigned(31 downto 0);
+
 	
 begin
 	
-	pll_inst: entity work.pll
-		port map(
-			areset => '0',
-			inclk0 => MAX10_CLK1_50,
-			c0     => clk,
-			locked => locked_sig
-		);
+	 pll_inst: entity work.pll
+ 	port map(
+ 		areset => '0',
+ 		inclk0 => MAX10_CLK1_50,
+ 		c0     => clk,
+ 		c1     => clock_tft,
+ 		locked => locked_sig
+ 	);
+ 	
+ 	rst <= SW(9);
+ 
+
+ tft_controller_inst : entity work.tft
+ 	port map(
+ 		clk     => clock_tft,
+ 		input_a => input_a,
+ 		input_b => input_b,
+ 		input_c => input_c,
+ 		output  => output,
+ 		cs      => cs,
+ 		rs      => rs,
+ 		wr      => wr,
+ 		rst     => rst_pin
+ 	);
 	
-	rst <= SW(9);
+	ARDUINO_IO(8) <= std_logic(output(0));
+	ARDUINO_IO(9) <= std_logic(output(1));
+	ARDUINO_IO(2) <= std_logic(output(2));
+	ARDUINO_IO(3) <= std_logic(output(3));
+	ARDUINO_IO(4) <= std_logic(output(4));
+	ARDUINO_IO(5) <= std_logic(output(5));
+	ARDUINO_IO(6) <= std_logic(output(6));
+	ARDUINO_IO(7) <= std_logic(output(7)); 
 	
+	GPIO(35) <= cs;
+	GPIO(34) <= rs;
+	GPIO(33) <= wr;
+	
+	GPIO(32) <= SW(0);
+	GPIO(31) <= '1';
+	GPIO(30) <= not(SW(0));--rst_pin;
+	
+
+	--Softcore ------------------------------------------------------------------------
+
 	-- Dummy out signals
 	DRAM_DQ <= ddata_r(15 downto 0);
-	ARDUINO_IO <= ddata_r(31 downto 16);
+	--ARDUINO_IO <= ddata_r(31 downto 16);
 	LEDR(9) <= SW(9);
 	DRAM_ADDR(9 downto 0) <= address;
 		
@@ -223,6 +279,16 @@ begin
 						HEX3 <= ddata_w(31 downto 24);
 						HEX4 <= (others => '1');
 						HEX5 <= (others => '1');
+					
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
+						input_a <= unsigned(ddata_w);	
+						
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then
+						input_b <= unsigned(ddata_w);	
+						
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then
+						input_c <= unsigned(ddata_w);	
+					
 					end if;				
 				end if;
 			end if;
@@ -245,6 +311,5 @@ begin
 		end if;		
 	end process;
 	
-
 end;
 
