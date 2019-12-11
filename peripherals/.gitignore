@@ -13,6 +13,7 @@
 !*/sint/de10_lite_description.txt
 !*/sint/de10_lite_assignment_defaults.qdf
 !*/sint/*.md
+!*/sint/*.vhd
 
 # For Modelsim:
 *.ps
