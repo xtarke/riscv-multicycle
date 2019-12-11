@@ -106,4 +106,12 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
+add wave -radix binary /i2c_clk 
+add wave -radix binary /i2c_rst 
+add wave -radix binary /i2c_ena 
+add wave -radix binary /i2c_rw 
+add wave -radix binary /i2c_addr 
+add wave -radix binary /i2c_data_w 
+add wave -radix binary /i2c_ack_err 
+
 run 950000 ns

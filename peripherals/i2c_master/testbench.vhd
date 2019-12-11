@@ -289,9 +289,9 @@ begin
 -- configura IOS i2c
 						i2c_data_w <= ddata_w(7 downto 0);
 						i2c_addr <= ddata_w(14 downto 8);
-						i2c_rw <= ddata_w(29);
-						i2c_ena <= ddata_w(30);
-						i2c_rst <= ddata_w(31);						
+						i2c_rw <= ddata_w(28);
+						i2c_ena <= ddata_w(29);
+						i2c_rst <= ddata_w(30);						
 					end if;
 				end if;
 			end if;
@@ -312,7 +312,7 @@ begin
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
 						input_in(7 downto 0) <= data_out;
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then								
-						input_in(32) <= i2c_ack_err;
+						input_in(31) <= i2c_ack_err;
 					end if;
 				end if;
 			end if;
