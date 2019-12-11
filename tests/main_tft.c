@@ -17,10 +17,15 @@
 
 int main(){
 	
+	tft_init();
+	delay_(10000);
+	
 	while (1){
-		// Testing TFT
-		tft_init();
-        tft_clean(0xFFC0)
+		
+        //tft_clean(0xFFC0);
+		//delay_(10000);
+		
+		tft_clean(0x0000);
 		delay_(10000);
 	}
 

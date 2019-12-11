@@ -157,4 +157,4 @@ add wave -height 15 -divider "DATA_MEM"
 add wave -radix hex  -label data /tft_inst/data_mem_inst/ram_block
 
 
-run 950000 ns
+run 10 ms
