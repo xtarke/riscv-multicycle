@@ -161,7 +161,7 @@ END GROUP
 LOAD /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
 LOAD /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x368
+.rom            0x0000000000000000      0x71c
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -174,7 +174,7 @@ LOAD /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.con
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0x60 firmware.o
+ .text          0x0000000000000144       0x68 firmware.o
                 0x0000000000000144                main
  .text          0x00000000000001a4       0xd8 syscalls.o
                 0x00000000000001a4                _getpid
@@ -269,7 +269,7 @@ LOAD /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.con
 
 .rodata.str1.4  0x0000000000000800       0x24
  .rodata.str1.4
-                0x0000000000000800       0x24 syscalls.o
+                0x000000000000071c       0x24 syscalls.o
                                          0x23 (size before relaxing)
 
 .sdata2._global_impure_ptr
@@ -287,8 +287,8 @@ LOAD /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.con
  .rela.sdata.__atexit_recursive_mutex
                 0x0000000000000828        0x0 /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
 
-.data           0x0000000002000000      0x430 load address 0x0000000000000828
-                0x0000000000000828                _data_lma = LOADADDR (.data)
+.data           0x0000000002000000      0x42c load address 0x0000000000000744
+                0x0000000000000744                _data_lma = LOADADDR (.data)
                 0x0000000002000000                _data = .
                 0x0000000002000000                __global_pointer$ = .
  *(.data .data.*)
@@ -304,8 +304,8 @@ LOAD /home/fbroering/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.con
                 0x0000000002000430                . = ALIGN (0x4)
                 0x0000000002000430                _edata = .
 
-.bss            0x0000000002000430       0x21 load address 0x0000000000000c58
-                0x0000000002000430                _bss_start = .
+.bss            0x000000000200042c        0x0 load address 0x0000000000000b70
+                0x000000000200042c                _bss_start = .
  *(.bss .bss.*)
                 0x0000000002000430                . = ALIGN (0x4)
                 0x0000000002000430                _bss_end = .
