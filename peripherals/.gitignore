@@ -29,3 +29,5 @@
 # For Modelsim:
 *.ps
 tft/wlft*
+/.metadata/
+/.metadata/
