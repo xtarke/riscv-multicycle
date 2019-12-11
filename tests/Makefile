@@ -1,9 +1,9 @@
 ifndef RISCV_TOOLS_PREFIX
 RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
 # Para usar no LSC
-RISCV_TOOLS_PREFIX = /home/diesson/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = $(HOME)/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
 endif
-QUARTUS_DIR=/home/diesson/intelFPGA_lite/18.1/quartus/bin
+QUARTUS_DIR= $(HOME)/intelFPGA_lite/18.1/quartus/bin
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
