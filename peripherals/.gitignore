@@ -4,7 +4,7 @@
 .settings
 
 # For Quartus:
-#*/sint/*
+*/sint/db
 !*/sint/de10_lite.qpf
 !*/sint/de10_lite.qws
 !*/sint/de10_lite.qsf
