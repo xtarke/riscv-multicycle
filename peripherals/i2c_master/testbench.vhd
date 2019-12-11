@@ -234,9 +234,9 @@ begin
 
 	process
 		begin
-			wait for 10 ns;
+			wait for 10000 ns;
 			i2c_clk <= '1';
-			wait for 10 ns;
+			wait for 10000 ns;
 			i2c_clk <= '0';
 			
 		end process;
@@ -245,9 +245,9 @@ begin
 		begin
 			wait for 5 ns;
 			loop
-				wait for 10 ns;
+				wait for 10000 ns;
 				i2c_clk_scl <= '1';
-				wait for 10 ns;
+				wait for 10000 ns;
 				i2c_clk_scl <= '0';
 			end loop;
 			
