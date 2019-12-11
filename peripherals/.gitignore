@@ -15,15 +15,16 @@
 !*/sint/de10_lite/*.md
 !*/sint/de10_lite/*.vhd
 
-!*/sint/tft/de10_lite/de10_lite.qpf
-!*/sint/tft/de10_lite/de10_lite.qws
-!*/sint/tft/de10_lite/de10_lite.qsf
-!*/sint/tft/de10_lite/de10_lite.sdc
-!*/sint/tft/de10_lite/de10_lite.ipregen.rpt
-!*/sint/tft/de10_lite/de10_lite_description.txt
-!*/sint/tft/de10_lite/de10_lite_assignment_defaults.qdf
-!*/sint/tft/de10_lite/*.md
-!*/sint/tft/de10_lite/*.vhd
+*/sint/*/de10_lite/*
+!*/sint/*/de10_lite/de10_lite.qpf
+!*/sint/*/de10_lite/de10_lite.qws
+!*/sint/*/de10_lite/de10_lite.qsf
+!*/sint/*/de10_lite/de10_lite.sdc
+!*/sint/*/de10_lite/de10_lite.ipregen.rpt
+!*/sint/*/de10_lite/de10_lite_description.txt
+!*/sint/*/de10_lite/de10_lite_assignment_defaults.qdf
+!*/sint/*/de10_lite/*.md
+!*/sint/*/de10_lite/*.vhd
 
 # For Modelsim:
 *.ps
