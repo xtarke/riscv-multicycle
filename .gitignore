@@ -18,4 +18,3 @@ vsim.wlf
 *.lss
 *.map
 *.hex
-Makefile
