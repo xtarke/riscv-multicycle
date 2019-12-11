@@ -11,7 +11,7 @@
 vlib work
 
 #compila projeto: todos os aquivo. Ordem é importante
-vcom mux32.vhd boot_mem.vhd data_mem.vhd decoder/dec_clean.vhd decoder/dec_fsm.vhd decoder/dec_rect.vhd decoder/dec_reset.vhd decoder.vhd writer.vhd controller.vhd tft.vhd tb_tft.vhd
+vcom ../mux32.vhd ../boot_mem.vhd ../data_mem.vhd ../decoder/dec_clean.vhd ../decoder/dec_fsm.vhd ../decoder/dec_rect.vhd ../decoder/dec_reset.vhd ../decoder.vhd ../writer.vhd ../controller.vhd ../tft.vhd tb_tft.vhd
 
 #Simula (work é o diretorio, testbench é o nome da entity)
 vsim -t ns work.testbench_tft_controller
