@@ -95,11 +95,12 @@ architecture RTL of testbench_core_spi is
 
 begin
 	
+	-- SPI integration 
 	spi_t: entity work.SPI
 	generic map(
 	  n_bits      =>  n_bits	  )  
 	port map (
-	  i_clk        => clk,
+	  i_clk        => clk,			-- utiliza o clock de 1 MHz do sistema
 	  i_rst        => rst_n,
 	  i_tx_start   => i_tx_start,
 	  i_data       => data_in,

@@ -1,8 +1,8 @@
 /*
  * spi.h
  *
- *  Created on: July 1, 2019
- *      Author: 
+ *  Created on: Dez, 2019
+ *      Author: Diogo Tavares
  *      Instituto Federal de Santa Catarina
  */
 
