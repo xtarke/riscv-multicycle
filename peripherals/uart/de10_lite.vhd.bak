@@ -118,8 +118,6 @@ architecture rtl of de10_lite is
 	
 begin
 	
-	--Baseado em um clock de 50M dividido por 1302 para se adquirir 
-	
 	pll_inst: entity work.pll_quartus
 		port map(
 			areset => '0',
@@ -196,17 +194,38 @@ begin
 			config_all => config_all
 		);
 	
+	process(SW(2 downto 0))
+	begin
+		if SW(4) = '1' then
+			data_in <= "10101010";
+		else
+			data_in <= "01010101";
+		end if;
+		
+		if SW(5) = '1' then
+			config_all(1 downto 0) <= "11";
+		else
+			config_all(1 downto 0) <= "00";
+		end if;
+		
+		if SW(6) = '1' then
+			config_all(3 downto 2) <= "11";
+		else
+			config_all(3 downto 2) <= "00";
+		end if;
+
+	
+	end process;
+		
+		
+	LEDR(0) <= tx_cmp;
+	LEDR(1) <= rx_cmp;
+	
 	-- Dummy out signals
 	DRAM_DQ <= ddata_r(15 downto 0);
 	-- ARDUINO_IO <= ddata_r(31 downto 16);
 	LEDR(9) <= SW(9);
 	DRAM_ADDR(9 downto 0) <= address;
-	
-	--process (SW(8 downto 5))
-	--begin
-	--	config_all (3 downto 0) <= SW(8 downto 5);
-	--end process;
-	
 		
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -235,7 +254,7 @@ begin
 	process(clk, rst)
 	begin		
 		if rst = '1' then
-			LEDR(7 downto 0) <= (others => '0');			
+			LEDR(7 downto 2) <= (others => '0');			
 			HEX0 <= (others => '1');
 			HEX1 <= (others => '1');
 			HEX2 <= (others => '1');
@@ -262,8 +281,6 @@ begin
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"03" then
 					 	data_in <= ddata_w(7 downto 0);
 						csel_uart <= ddata_w(8);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
-					 	config_all(3 downto 0) <= ddata_w(3 downto 0);
 					end if;				
 				end if;
 			end if;
@@ -271,7 +288,7 @@ begin
 	end process;
 	
 	
-	-- Input register 
+	-- Input register
 	process(clk, rst)
 	begin		
 		if rst = '1' then
