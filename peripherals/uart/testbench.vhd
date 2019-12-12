@@ -66,6 +66,7 @@ architecture RTL of testbench is
 	signal data_out : std_logic_vector(SIZE-1 downto 0);
 	signal rx : std_logic;
 	signal rx_cmp : std_logic;
+	signal config_all : std_logic_vector (31 downto 0);
 	
 	signal csel_uart : std_logic;
 	
@@ -141,7 +142,8 @@ begin
 			tx_cmp    => tx_cmp,
 			data_out  => data_out,
 			rx        => ARDUINO_IO(0),
-			rx_cmp    => rx_cmp
+			rx_cmp    => rx_cmp,
+			config_all => config_all
 		);
 		
 	clk_baud <= clk;		-- Just for simulation
