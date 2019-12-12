@@ -161,7 +161,7 @@ END GROUP
 LOAD /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
 LOAD /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x368
+.rom            0x0000000000000000      0x360
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -174,121 +174,121 @@ LOAD /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/..
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0x60 firmware.o
+ .text          0x0000000000000144       0x58 firmware.o
                 0x0000000000000144                main
- .text          0x00000000000001a4       0xd8 syscalls.o
-                0x00000000000001a4                _getpid
-                0x00000000000001a4                _utime
-                0x00000000000001a4                _sysconf
-                0x00000000000001a4                _ftime
-                0x00000000000001a4                _isatty
-                0x00000000000001a4                _open
-                0x00000000000001a4                _times
-                0x00000000000001a4                _stat
-                0x00000000000001a4                _chdir
-                0x00000000000001a4                _wait
-                0x00000000000001a4                _lseek
-                0x00000000000001a4                _fstatat
-                0x00000000000001a4                _link
-                0x00000000000001a4                _chown
-                0x00000000000001a4                _access
-                0x00000000000001a4                _openat
-                0x00000000000001a4                _execve
-                0x00000000000001a4                _chmod
-                0x00000000000001a4                _lstat
-                0x00000000000001a4                _unlink
-                0x00000000000001a4                _fork
-                0x00000000000001a4                _getcwd
-                0x00000000000001a4                _kill
-                0x00000000000001a4                _gettimeofday
-                0x00000000000001a4                _faccessat
-                0x00000000000001a8                unimplemented_syscall
-                0x00000000000001cc                _read
-                0x00000000000001d4                _write
-                0x00000000000001f8                _close
-                0x0000000000000200                _fstat
-                0x0000000000000224                _sbrk
-                0x0000000000000248                _exit
-                0x000000000000024c                init_data_section
- .text          0x000000000000027c       0x10 utils.o
-                0x000000000000027c                delay_
- .text          0x000000000000028c       0xdc /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
-                0x000000000000028c                memset
+ .text          0x000000000000019c       0xd8 syscalls.o
+                0x000000000000019c                _getpid
+                0x000000000000019c                _utime
+                0x000000000000019c                _sysconf
+                0x000000000000019c                _ftime
+                0x000000000000019c                _isatty
+                0x000000000000019c                _open
+                0x000000000000019c                _times
+                0x000000000000019c                _stat
+                0x000000000000019c                _chdir
+                0x000000000000019c                _wait
+                0x000000000000019c                _lseek
+                0x000000000000019c                _fstatat
+                0x000000000000019c                _link
+                0x000000000000019c                _chown
+                0x000000000000019c                _access
+                0x000000000000019c                _openat
+                0x000000000000019c                _execve
+                0x000000000000019c                _chmod
+                0x000000000000019c                _lstat
+                0x000000000000019c                _unlink
+                0x000000000000019c                _fork
+                0x000000000000019c                _getcwd
+                0x000000000000019c                _kill
+                0x000000000000019c                _gettimeofday
+                0x000000000000019c                _faccessat
+                0x00000000000001a0                unimplemented_syscall
+                0x00000000000001c4                _read
+                0x00000000000001cc                _write
+                0x00000000000001f0                _close
+                0x00000000000001f8                _fstat
+                0x000000000000021c                _sbrk
+                0x0000000000000240                _exit
+                0x0000000000000244                init_data_section
+ .text          0x0000000000000274       0x10 utils.o
+                0x0000000000000274                delay_
+ .text          0x0000000000000284       0xdc /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                0x0000000000000284                memset
 
-.text.atexit    0x0000000000000368       0x14
- .text.atexit   0x0000000000000368       0x14 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
-                0x0000000000000368                atexit
+.text.atexit    0x0000000000000360       0x14
+ .text.atexit   0x0000000000000360       0x14 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                0x0000000000000360                atexit
 
-.text.__errno   0x000000000000037c        0xc
- .text.__errno  0x000000000000037c        0xc /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
-                0x000000000000037c                __errno
+.text.__errno   0x0000000000000374        0xc
+ .text.__errno  0x0000000000000374        0xc /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                0x0000000000000374                __errno
 
-.text.exit      0x0000000000000388       0x38
- .text.exit     0x0000000000000388       0x38 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
-                0x0000000000000388                exit
+.text.exit      0x0000000000000380       0x38
+ .text.exit     0x0000000000000380       0x38 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                0x0000000000000380                exit
 
 .text.__libc_fini_array
-                0x00000000000003c0       0x60
+                0x00000000000003b8       0x60
  .text.__libc_fini_array
-                0x00000000000003c0       0x60 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
-                0x00000000000003c0                __libc_fini_array
+                0x00000000000003b8       0x60 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                0x00000000000003b8                __libc_fini_array
 
 .text.__libc_init_array
-                0x0000000000000420       0x98
+                0x0000000000000418       0x98
  .text.__libc_init_array
-                0x0000000000000420       0x98 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
-                0x0000000000000420                __libc_init_array
+                0x0000000000000418       0x98 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                0x0000000000000418                __libc_init_array
 
-.text.memcpy    0x00000000000004b8      0x11c
- .text.memcpy   0x00000000000004b8      0x11c /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
-                0x00000000000004b8                memcpy
+.text.memcpy    0x00000000000004b0      0x11c
+ .text.memcpy   0x00000000000004b0      0x11c /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                0x00000000000004b0                memcpy
 
 .text.__register_exitproc
-                0x00000000000005d4       0xec
+                0x00000000000005cc       0xec
  .text.__register_exitproc
-                0x00000000000005d4       0xec /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
-                0x00000000000005d4                __register_exitproc
+                0x00000000000005cc       0xec /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                0x00000000000005cc                __register_exitproc
 
 .text.__call_exitprocs
-                0x00000000000006c0      0x138
+                0x00000000000006b8      0x138
  .text.__call_exitprocs
-                0x00000000000006c0      0x138 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
-                0x00000000000006c0                __call_exitprocs
+                0x00000000000006b8      0x138 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x00000000000006b8                __call_exitprocs
 
 .text.__retarget_lock_acquire_recursive
-                0x00000000000007f8        0x4
+                0x00000000000007f0        0x4
  .text.__retarget_lock_acquire_recursive
-                0x00000000000007f8        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
-                0x00000000000007f8                __retarget_lock_acquire_recursive
+                0x00000000000007f0        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x00000000000007f0                __retarget_lock_acquire_recursive
 
 .text.__retarget_lock_release_recursive
-                0x00000000000007fc        0x4
+                0x00000000000007f4        0x4
  .text.__retarget_lock_release_recursive
-                0x00000000000007fc        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
-                0x00000000000007fc                __retarget_lock_release_recursive
+                0x00000000000007f4        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x00000000000007f4                __retarget_lock_release_recursive
 
-.rodata.str1.4  0x0000000000000800       0x24
+.rodata.str1.4  0x00000000000007f8       0x24
  .rodata.str1.4
-                0x0000000000000800       0x24 syscalls.o
+                0x00000000000007f8       0x24 syscalls.o
                                          0x23 (size before relaxing)
 
 .sdata2._global_impure_ptr
-                0x0000000000000824        0x4
+                0x000000000000081c        0x4
  .sdata2._global_impure_ptr
-                0x0000000000000824        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
-                0x0000000000000824                _global_impure_ptr
+                0x000000000000081c        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x000000000000081c                _global_impure_ptr
 
-.rela.dyn       0x0000000000000828        0x0
- .rela.text     0x0000000000000828        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+.rela.dyn       0x0000000000000820        0x0
+ .rela.text     0x0000000000000820        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__libc_fini_array
-                0x0000000000000828        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000820        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__libc_init_array
-                0x0000000000000828        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000820        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.sdata.__atexit_recursive_mutex
-                0x0000000000000828        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000820        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
 
-.data           0x0000000002000000      0x430 load address 0x0000000000000828
-                0x0000000000000828                _data_lma = LOADADDR (.data)
+.data           0x0000000002000000      0x430 load address 0x0000000000000820
+                0x0000000000000820                _data_lma = LOADADDR (.data)
                 0x0000000002000000                _data = .
                 0x0000000002000000                __global_pointer$ = .
  *(.data .data.*)
@@ -304,7 +304,7 @@ LOAD /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/..
                 0x0000000002000430                . = ALIGN (0x4)
                 0x0000000002000430                _edata = .
 
-.bss            0x0000000002000430       0x21 load address 0x0000000000000c58
+.bss            0x0000000002000430       0x21 load address 0x0000000000000c50
                 0x0000000002000430                _bss_start = .
  *(.bss .bss.*)
                 0x0000000002000430                . = ALIGN (0x4)
@@ -322,7 +322,7 @@ LOAD /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/..
                 0x0000000002000450                __lock___sfp_recursive_mutex
 OUTPUT(firmware.elf elf32-littleriscv)
 
-.sbss           0x0000000002000454        0x4 load address 0x0000000000000c58
+.sbss           0x0000000002000454        0x4 load address 0x0000000000000c50
  .sbss          0x0000000002000454        0x4 syscalls.o
 
 .comment        0x0000000000000000       0x39

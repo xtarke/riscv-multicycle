@@ -1,15 +1,11 @@
 /*
- * firmware.c
+ * sram_controle.c
  *
- *  Created on: Jan 20, 2019
- *      Author: Renan Augusto Starke
+ *      Author: Bruna e Maria
  *      Instituto Federal de Santa Catarina
- * 
- * 
- * Simple LED blink example.
- * -----------------------------------------
+ *
+ *
  */
-
 
 
 #include "utils.h"
@@ -32,8 +28,8 @@ int main(){
 			delay_(5); //ToDo: SDRAM refresh and init are not working.
 		}
 
-		/* To test Data Bus 
-		x = INBUS;        
+		/* To test Data Bus
+		x = INBUS;
 		OUTBUS = x; */
 	}
 

@@ -161,6 +161,7 @@ architecture rtl of DE2_115 is
 	signal d_we     : std_logic := '0';
 	
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
+	signal d_sig           : std_logic;
 	signal d_rd : std_logic;			
 	
 	-- I/O signals
@@ -273,6 +274,7 @@ begin
 			data    => ddata_w,
 			address => daddress,
 			we      => d_we,
+			signal_ext => d_sig,
 			csel    => dcsel(0),
 			dmask   => dmask,
 			q       => ddata_r_mem
@@ -304,6 +306,7 @@ begin
 			ddata_w  => ddata_w,
 			d_we     => d_we,
 			d_rd     => d_rd,
+			d_sig    => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
 			state    => state
