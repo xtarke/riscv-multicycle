@@ -45,4 +45,18 @@ que são configurados para realizar o envio e o recebimento por alternância das
  
  Pode-s observar que os leds são respectivos aos botões ativados.
  
+ ### Testbench de integração 
+ 
+ Foi feito um contador como dado de envio e um jumper entre MISO e MOSI
+ 
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/core_tb_sim.PNG)
+ 
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/core_tb_sim_expand.PNG)
+ 
+ ### Resultados da síntese
+ 
+ Foi implementado o mesmo contador e jumper entre MISO e MOSI
+ 
+ ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/osc_spi_gifs.gif)
+ 
 
