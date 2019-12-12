@@ -75,9 +75,6 @@ entity de10_lite is
 		
 		GPIO: inout std_logic_vector(35 downto 0)
 	);
-
-	
-	
 	
 end entity;
 
@@ -173,7 +170,20 @@ begin
 	GPIO(31) <= '1';
 	GPIO(30) <= not(SW(0));--rst_pin;
 	
-
+	process(wr)
+	begin
+		
+		if(output = x"20") then
+			LEDR(0) <= '0';
+			LEDR(1) <= '1';
+		elsif(output = x"21") then
+			LEDR(0) <= '1';
+			LEDR(1) <= '0';
+		end if;
+	
+	end process;
+	
+	
 	--Softcore ------------------------------------------------------------------------
 
 	-- Dummy out signals
@@ -257,7 +267,7 @@ begin
 	process(clk, rst)
 	begin		
 		if rst = '1' then
-			LEDR(3 downto 0) <= (others => '0');			
+			--LEDR(3 downto 0) <= (others => '0');			
 			HEX0 <= (others => '1');
 			HEX1 <= (others => '1');
 			HEX2 <= (others => '1');
@@ -271,7 +281,7 @@ begin
 					-- ToDo: Maybe use byte addressing?  
 					--       x"01" (word addressing) is x"04" (byte addressing)
 					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(4 downto 0) <= ddata_w(4 downto 0);
+						--LEDR(4 downto 0) <= ddata_w(4 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
 					 	HEX0 <= ddata_w(7 downto 0);
 						HEX1 <= ddata_w(15 downto 8);
