@@ -229,9 +229,6 @@ begin
 	-- 0x40000    ->    Input/Output generic address space
 	-- 0x60000    ->    SDRAM address space	
 	with dcsel select ddata_r <=
-		idata when "00",
-		ddata_r_mem when "01",
-		input_in when "10",
 		data_out_SRAM when "11",(others => '0') when others;
 
 	-- Softcore instatiation

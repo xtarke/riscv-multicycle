@@ -27,8 +27,9 @@ int main(){
 		//for(x=0; x<16; x++){
 
 		sdram[0] = 255;
-		SEGMENTS =  255;
+		SEGMENTS =  sdram[0];
 		delay_(5);
+
 
 		//}
 

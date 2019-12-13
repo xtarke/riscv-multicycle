@@ -20,6 +20,7 @@ architecture RTL of tb_sram is
 			clk           : IN    STD_LOGIC;
 			chipselect    : IN    STD_LOGIC;
 			write         : IN    STD_LOGIC;
+			read		  : IN 	  STD_LOGIC;
 			data_in          : out  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			address       : in    std_logic_vector(19 downto 0);
 			--read_address  : IN    unsigned(15 downto 0);
@@ -41,6 +42,7 @@ architecture RTL of tb_sram is
 	signal clk           : STD_LOGIC;
 	signal chipselect    : STD_LOGIC;
 	signal write         : STD_LOGIC;
+	signal read			 : STD_LOGIC;
 	signal address       : std_logic_vector(19 downto 0);
 	signal data_in 		 : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	signal data_out 		 : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -61,6 +63,7 @@ begin
 		clk => clk,
 		chipselect => chipselect,
 		write => write,
+		read => read,
 		data_in => data_in,
 		data_out => data_out,
 		address => address
@@ -95,19 +98,14 @@ begin
 		
 		wait for 10 ns;
 		clk       <= '0';
-		write     <= '0';
+		read     <= '1';
 		wait for 10 ns;
 		clk       <= '1';
 		
 		wait for 10 ns;
 		clk       <= '0';
-		write     <= '0';
+		read     <= '1';
 		
-		wait for 10 ns;
-		clk       <= '1';
-		
-		wait for 10 ns;
-		clk       <= '0';
 		wait for 10 ns;
 		clk       <= '1';
 		
@@ -123,13 +121,18 @@ begin
 		
 		wait for 10 ns;
 		clk       <= '0';
-		write     <= '0';
 		wait for 10 ns;
 		clk       <= '1';
 		
 		wait for 10 ns;
 		clk       <= '0';
-		write     <= '0';
+		read     <= '1';
+		wait for 10 ns;
+		clk       <= '1';
+		
+		wait for 10 ns;
+		clk       <= '0';
+		read     <= '1';
 
 		wait;
 	end process;

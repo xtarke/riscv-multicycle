@@ -294,7 +294,7 @@ begin
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space		
 	with dcsel select ddata_r <=
-        data_out_SRAM when "11",(others => '0') when others;
+      data_out_SRAM when "11",(others => '0') when others;
 
 	-- Softcore instatiation
 	myRisc : entity work.core
