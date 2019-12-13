@@ -82,11 +82,12 @@ architecture RTL of coretestbench is
 	signal input_b : unsigned(31 downto 0);
 	signal input_c : unsigned(31 downto 0);
 
-	signal output : unsigned(7 downto 0);
-	signal cs     : std_logic := '0';
-	signal rs     : std_logic := '0';
-	signal wr     : std_logic := '0';
-	signal rst_pin : std_logic := '0';
+	signal pin_output : unsigned(7 downto 0);
+	signal pin_cs     : std_logic := '0';
+	signal pin_rs     : std_logic := '0';
+	signal pin_wr     : std_logic := '0';
+	signal pin_rst    : std_logic := '0';
+	signal ret    	  : unsigned(31 downto 0);
 	
 
 
@@ -219,17 +220,21 @@ begin
 		);
 
 tft_inst : entity work.tft
-		port map(
-			clk     => clk,
-			input_a => input_a,
-			input_b => input_b,
-			input_c => input_c,
-			output  => output,
-			cs      => cs,
-			rs      => rs,
-			wr      => wr,
-			rst     => rst
-		);
+	port map(
+		clk        => clk,
+		daddress   => daddress,
+		dcsel      => dcsel,
+		d_we       => d_we,
+		input_a    => input_a,
+		input_b    => input_b,
+		input_c    => input_c,
+		ret        => ret,
+		pin_output => pin_output,
+		pin_cs     => pin_cs,
+		pin_rs     => pin_rs,
+		pin_wr     => pin_wr,
+		pin_rst    => pin_rst
+	);
 
 	-- Output register (Dummy LED blinky)
 	process(clk, rst)
@@ -259,7 +264,10 @@ tft_inst : entity work.tft
 						-- HEX5 <= ddata_w(7 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
 						input_a <= unsigned(ddata_w);
-						
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then
+						input_b <= unsigned(ddata_w);
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then
+						input_c <= unsigned(ddata_w);
 					end if;
 				end if;
 			end if;

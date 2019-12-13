@@ -128,20 +128,20 @@ add wave -radix bin  	-label start /tft_inst/decoder_inst/controller_inst/start
 add wave -height 15 -divider "BOOT_MEM"
 add wave -radix binary  -label clk /clk
 add wave -radix binary  -label reset /tft_inst/reset
-add wave -radix binary  -label rd_en_1 /tft_inst/rd_en_1
-add wave -radix binary  -label empty_1 /tft_inst/empty_1
+add wave -radix binary  -label rd_en_1 /tft_inst/rd_en_boot_mem
+add wave -radix binary  -label empty_1 /tft_inst/empty_boot_mem
 add wave -radix dec 	-label tail_1 /tft_inst/boot_mem_inst/tail
 
 add wave -height 15 -divider "DATA_MEM"
-add wave -radix binary  -label wr_en /tft_inst/wr_en_2
-add wave -radix hex		-label input /tft_inst/wr_data_2
-add wave -radix binary  -label full /tft_inst/full_2
+add wave -radix binary  -label wr_en /tft_inst/wr_en_data_mem
+add wave -radix hex		-label input /tft_inst/wr_data_data_mem
+add wave -radix binary  -label full /tft_inst/full_data_mem
 
 add wave -height 15 -divider "WRITE_OUT"
 add wave -radix bin  	-label ready /tft_inst/write_cdmdata_inst/ready
 add wave -radix hex  	-label start /tft_inst/start
 add wave -radix hex  	-label state_write /tft_inst/write_cdmdata_inst/state
-add wave -radix hex  	-label output /output
+add wave -radix hex  	-label output /pin_output
 
 add wave -height 15 -divider "FSM_CTR"
 add wave -radix hex  	-label state_fsm /tft_inst/fsm_inst/state
@@ -149,7 +149,7 @@ add wave -radix hex  	-label read_en1 /tft_inst/fsm_inst/read_en1
 add wave -radix hex  	-label read_en2 /tft_inst/fsm_inst/read_en2
 
 add wave -height 15 -divider "MUX"
-add wave -radix hex  	-label rd_data_1 /tft_inst/rd_data_1
+add wave -radix hex  	-label rd_data_1 /tft_inst/rd_data_boot_mem
 add wave -radix hex  	-label mux_out /tft_inst/mux_out
 add wave -radix bin  	-label mux_sel /tft_inst/mux_sel
 

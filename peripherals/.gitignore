@@ -25,6 +25,7 @@
 !*/sint/*/de10_lite/de10_lite_assignment_defaults.qdf
 !*/sint/*/de10_lite/*.md
 !*/sint/*/de10_lite/*.vhd
+!*/sint/*/de10_lite/pll*
 
 # For Modelsim:
 *.ps

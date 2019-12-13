@@ -55,7 +55,12 @@ begin
 
 	len_x_cmp <= x + len_x;
 	len_y_cmp <= y + len_y_i;
-
+	
+	
+--	x <= pos_x;
+--	y <= pos_y;
+--	count_x <= len_x;
+--	count_y <= len_y;
 	limit_verify : process(pos_x, len_x, len_x_cmp, len_y, len_y_cmp, pos_y, x, y)
 	begin
 		if (pos_x > WIDTH) then
@@ -116,7 +121,7 @@ begin
 				when SET_ADDRESS_X =>
 					state      <= FULL_VERIFY;
 					next_state <= SET_ADDRESS_Y;
-
+				
 				when SET_ADDRESS_Y =>
 					state      <= FULL_VERIFY;
 					next_state <= SET_DIR_1;
@@ -172,7 +177,7 @@ begin
 
 				when WRITE_Y2 =>
 					count := count + 1;
-					if (count < count_y) then
+					if (count <= count_y) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_Y2;
 					else
@@ -207,12 +212,12 @@ begin
 				write_en <= '0';
 
 			when INIT =>
-				write_en <= '0';
+				output    <= x"00000000";
 
 			when SET_ADDRESS_X =>
 				output(31 downto 16) <= x"0020";
 				output(15 downto 0)  <= x;
-
+				
 			when SET_ADDRESS_Y =>
 				output(31 downto 16) <= x"0021";
 				output(15 downto 0)  <= y;
