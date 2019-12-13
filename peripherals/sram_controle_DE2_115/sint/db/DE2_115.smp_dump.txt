@@ -20,13 +20,15 @@ state.ERROR 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 state.HALT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - |DE2_115|dmemory:dmem|state
-Name state.BYTE3 state.BYTE2 state.BYTE1 state.BYTE0 state.WORD state.READ 
-state.READ 0 0 0 0 0 0 
-state.WORD 0 0 0 0 1 1 
-state.BYTE0 0 0 0 1 0 1 
-state.BYTE1 0 0 1 0 0 1 
-state.BYTE2 0 1 0 0 0 1 
-state.BYTE3 1 0 0 0 0 1 
+Name state.HALF_WORD_HIGH state.HALF_WORD_LOW state.BYTE3 state.BYTE2 state.BYTE1 state.BYTE0 state.WORD state.READ 
+state.READ 0 0 0 0 0 0 0 0 
+state.WORD 0 0 0 0 0 0 1 1 
+state.BYTE0 0 0 0 0 0 1 0 1 
+state.BYTE1 0 0 0 0 1 0 0 1 
+state.BYTE2 0 0 0 1 0 0 0 1 
+state.BYTE3 0 0 1 0 0 0 0 1 
+state.HALF_WORD_LOW 0 1 0 0 0 0 0 1 
+state.HALF_WORD_HIGH 1 0 0 0 0 0 0 1 
 
 State Machine - |DE2_115|sram:sram|mem_state
 Name mem_state.DONE mem_state.WRITE_M mem_state.READ_M mem_state.IDLE 

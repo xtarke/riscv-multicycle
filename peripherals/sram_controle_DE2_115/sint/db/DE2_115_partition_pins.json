@@ -4,26 +4,6 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "LEDR[0]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[1]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[2]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[6]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[11]",
-					"strict" : false
-				},
-				{
 					"name" : "HEX0[0]",
 					"strict" : false
 				},
@@ -176,6 +156,46 @@
 					"strict" : false
 				},
 				{
+					"name" : "SRAM_ADDR[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[7]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[8]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_ADDR[9]",
+					"strict" : false
+				},
+				{
 					"name" : "SRAM_CE_N",
 					"strict" : false
 				},
@@ -320,11 +340,67 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[5]",
+					"name" : "SRAM_DQ[0]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[17]",
+					"name" : "SRAM_DQ[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[7]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[8]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[9]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[10]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[11]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[12]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[13]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[14]",
+					"strict" : false
+				},
+				{
+					"name" : "SRAM_DQ[15]",
 					"strict" : false
 				},
 				{

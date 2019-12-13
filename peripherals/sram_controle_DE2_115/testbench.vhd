@@ -199,7 +199,7 @@ begin
 			SRAM_UB_N  => SRAM_UB_N,
 			SRAM_LB_N  => SRAM_LB_N,
 			clk        => clk,
-			chipselect => chipselect,
+			chipselect => dcsel(0),
 			write      => write,
 			data_out   => data_out_SRAM(15 downto 0),
 			address    => addressram,
@@ -210,18 +210,16 @@ begin
 	process(clk)
 	begin
 		if rising_edge(clk) then
-			if (dcsel = "11") then
-				chipselect <= '1';
-				if (teste = '1') then
-					write             <= '1';
-					data_out_SRAM     <= "00000000000000000000100001000111";
+
+				if (dcsel = "11") then
+				--chipselect <= '1';
+
+					write             <= d_we;
+					data_out_SRAM     <= ddata_w;
 					--LEDR(15 DOWNTO 0) <= data_out_SRAM(15 downto 0);
-					teste <= '0';
-				else
-					write             <= '0';
-					teste <= '1';
+	
+					--ddata_r(15 downto 0) <= data_in_SRAM;
 					--LEDR(15 DOWNTO 0) <= data_in_SRAM;
-				end if;
 			end if;
 		end if;
 	end process;

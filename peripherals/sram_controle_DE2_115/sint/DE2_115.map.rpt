@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_115
-Mon Dec  9 08:39:19 2019
+Fri Dec 13 11:39:47 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -27,7 +27,7 @@ Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
  19. Registers Added for RAM Pass-Through Logic
  20. Registers Packed Into Inferred Megafunctions
  21. Multiplexer Restructuring Statistics (Restructuring Performed)
- 22. Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|altsyncram_jju2:altsyncram1
+ 22. Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|altsyncram_n303:altsyncram1
  23. Source assignments for core:myRisc|register_file:registers|altsyncram:ram_rtl_0|altsyncram_nsl1:auto_generated
  24. Source assignments for core:myRisc|register_file:registers|altsyncram:ram_rtl_1|altsyncram_nsl1:auto_generated
  25. Source assignments for dmemory:dmem|altsyncram:ram_block_rtl_0|altsyncram_vh41:auto_generated
@@ -83,15 +83,15 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Dec  9 08:39:19 2019           ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec 13 11:39:47 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 6,800                                           ;
-;     Total combinational functions  ; 6,688                                           ;
-;     Dedicated logic registers      ; 393                                             ;
-; Total registers                    ; 393                                             ;
+; Total logic elements               ; 6,976                                           ;
+;     Total combinational functions  ; 6,833                                           ;
+;     Dedicated logic registers      ; 427                                             ;
+; Total registers                    ; 427                                             ;
 ; Total pins                         ; 400                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 67,584                                          ;
@@ -199,7 +199,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
+;     Processor 2            ;   0.2%      ;
 ;     Processor 3            ;   0.1%      ;
 ;     Processor 4            ;   0.1%      ;
 +----------------------------+-------------+
@@ -238,8 +238,9 @@ https://fpgasoftware.intel.com/eula.
 ; altrom.inc                                                         ; yes             ; Megafunction                                          ; /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altrom.inc                                                                                           ;             ;
 ; altram.inc                                                         ; yes             ; Megafunction                                          ; /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altram.inc                                                                                           ;             ;
 ; altdpram.inc                                                       ; yes             ; Megafunction                                          ; /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                         ;             ;
-; db/altsyncram_jo04.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jo04.tdf                                             ;             ;
-; db/altsyncram_jju2.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jju2.tdf                                             ;             ;
+; db/altsyncram_n824.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf                                             ;             ;
+; db/altsyncram_n303.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n303.tdf                                             ;             ;
+; /home/aluno/riscv-multicycle/tests/quartus.hex                     ; yes             ; Auto-Found Memory Initialization File                 ; /home/aluno/riscv-multicycle/tests/quartus.hex                                                                                                           ;             ;
 ; sld_mod_ram_rom.vhd                                                ; yes             ; Encrypted Megafunction                                ; /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd                                                                                  ;             ;
 ; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                                ; /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                        ;             ;
 ; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                                ; /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                    ;             ;
@@ -275,18 +276,6 @@ https://fpgasoftware.intel.com/eula.
 ; db/sign_div_unsign_9nh.tdf                                         ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/sign_div_unsign_9nh.tdf                                         ;             ;
 ; db/lpm_divide_cqo.tdf                                              ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/lpm_divide_cqo.tdf                                              ;             ;
 ; db/lpm_divide_hkm.tdf                                              ; yes             ; Auto-Generated Megafunction                           ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/lpm_divide_hkm.tdf                                              ;             ;
-; pll.vhd                                                            ; yes             ; User Wizard-Generated File                            ; /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/pll.vhd                                                            ;             ;
-; ../../alu/alu.vhd                                                  ; yes             ; User VHDL File                                        ; ../../alu/alu.vhd                                                                                                                                        ;             ;
-; ../../alu/alu_types.vhd                                            ; yes             ; User VHDL File                                        ; ../../alu/alu_types.vhd                                                                                                                                  ;             ;
-; ../../core/core.vhd                                                ; yes             ; User VHDL File                                        ; ../../core/core.vhd                                                                                                                                      ;             ;
-; ../../decoder/iregister.vhd                                        ; yes             ; User VHDL File                                        ; ../../decoder/iregister.vhd                                                                                                                              ;             ;
-; ../../decoder/decoder.vhd                                          ; yes             ; User VHDL File                                        ; ../../decoder/decoder.vhd                                                                                                                                ;             ;
-; ../../decoder/decoder_types.vhd                                    ; yes             ; User VHDL File                                        ; ../../decoder/decoder_types.vhd                                                                                                                          ;             ;
-; ../../memory/iram_quartus.vhd                                      ; yes             ; User Wizard-Generated File                            ; ../../memory/iram_quartus.vhd                                                                                                                            ;             ;
-; ../../memory/dmemory.vhd                                           ; yes             ; User VHDL File                                        ; ../../memory/dmemory.vhd                                                                                                                                 ;             ;
-; ../../registers/register_file.vhd                                  ; yes             ; User VHDL File                                        ; ../../registers/register_file.vhd                                                                                                                        ;             ;
-; ../../alu/m/M_types.vhd                                            ; yes             ; User VHDL File                                        ; ../../alu/m/M_types.vhd                                                                                                                                  ;             ;
-; ../../alu/m/M.vhd                                                  ; yes             ; User VHDL File                                        ; ../../alu/m/M.vhd                                                                                                                                        ;             ;
 +--------------------------------------------------------------------+-----------------+-------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
 
 
@@ -295,20 +284,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+---------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                           ;
 +---------------------------------------------+---------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 6,800                                                                           ;
+; Estimated Total logic elements              ; 6,976                                                                           ;
 ;                                             ;                                                                                 ;
-; Total combinational functions               ; 6688                                                                            ;
+; Total combinational functions               ; 6833                                                                            ;
 ; Logic element usage by number of LUT inputs ;                                                                                 ;
-;     -- 4 input functions                    ; 2831                                                                            ;
-;     -- 3 input functions                    ; 3431                                                                            ;
-;     -- <=2 input functions                  ; 426                                                                             ;
+;     -- 4 input functions                    ; 2894                                                                            ;
+;     -- 3 input functions                    ; 3487                                                                            ;
+;     -- <=2 input functions                  ; 452                                                                             ;
 ;                                             ;                                                                                 ;
 ; Logic elements by mode                      ;                                                                                 ;
-;     -- normal mode                          ; 3940                                                                            ;
+;     -- normal mode                          ; 4085                                                                            ;
 ;     -- arithmetic mode                      ; 2748                                                                            ;
 ;                                             ;                                                                                 ;
-; Total registers                             ; 393                                                                             ;
-;     -- Dedicated logic registers            ; 393                                                                             ;
+; Total registers                             ; 427                                                                             ;
+;     -- Dedicated logic registers            ; 427                                                                             ;
 ;     -- I/O registers                        ; 0                                                                               ;
 ;                                             ;                                                                                 ;
 ; I/O pins                                    ; 400                                                                             ;
@@ -320,8 +309,8 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                 ; 1                                                                               ;
 ;                                             ;                                                                                 ;
 ; Maximum fan-out node                        ; pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 360                                                                             ;
-; Total fan-out                               ; 26267                                                                           ;
+; Maximum fan-out                             ; 404                                                                             ;
+; Total fan-out                               ; 26869                                                                           ;
 ; Average fan-out                             ; 3.23                                                                            ;
 +---------------------------------------------+---------------------------------------------------------------------------------+
 
@@ -331,20 +320,20 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                 ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |DE2_115                                                                                                                                ; 6688 (91)           ; 393 (39)                  ; 67584       ; 16           ; 0       ; 8         ; 400  ; 0            ; |DE2_115                                                                                                                                                                                                                                                                                                                                            ; DE2_115                           ; work         ;
-;    |core:myRisc|                                                                                                                        ; 6308 (953)          ; 192 (32)                  ; 2048        ; 16           ; 0       ; 8         ; 0    ; 0            ; |DE2_115|core:myRisc                                                                                                                                                                                                                                                                                                                                ; core                              ; work         ;
-;       |M:M_0|                                                                                                                           ; 4874 (89)           ; 0 (0)                     ; 0           ; 16           ; 0       ; 8         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0                                                                                                                                                                                                                                                                                                                          ; M                                 ; work         ;
-;          |lpm_divide:Div0|                                                                                                              ; 1197 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0                                                                                                                                                                                                                                                                                                          ; lpm_divide                        ; work         ;
-;             |lpm_divide_92p:auto_generated|                                                                                             ; 1197 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated                                                                                                                                                                                                                                                                            ; lpm_divide_92p                    ; work         ;
-;                |abs_divider_4dg:divider|                                                                                                ; 1197 (63)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                                                    ; abs_divider_4dg                   ; work         ;
-;                   |alt_u_div_6af:divider|                                                                                               ; 1081 (1080)         ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider|alt_u_div_6af:divider                                                                                                                                                                                                                              ; alt_u_div_6af                     ; work         ;
+; |DE2_115                                                                                                                                ; 6833 (194)          ; 427 (66)                  ; 67584       ; 16           ; 0       ; 8         ; 400  ; 0            ; |DE2_115                                                                                                                                                                                                                                                                                                                                            ; DE2_115                           ; work         ;
+;    |core:myRisc|                                                                                                                        ; 6320 (961)          ; 192 (32)                  ; 2048        ; 16           ; 0       ; 8         ; 0    ; 0            ; |DE2_115|core:myRisc                                                                                                                                                                                                                                                                                                                                ; core                              ; work         ;
+;       |M:M_0|                                                                                                                           ; 4880 (89)           ; 0 (0)                     ; 0           ; 16           ; 0       ; 8         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0                                                                                                                                                                                                                                                                                                                          ; M                                 ; work         ;
+;          |lpm_divide:Div0|                                                                                                              ; 1202 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0                                                                                                                                                                                                                                                                                                          ; lpm_divide                        ; work         ;
+;             |lpm_divide_92p:auto_generated|                                                                                             ; 1202 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated                                                                                                                                                                                                                                                                            ; lpm_divide_92p                    ; work         ;
+;                |abs_divider_4dg:divider|                                                                                                ; 1202 (63)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                                                    ; abs_divider_4dg                   ; work         ;
+;                   |alt_u_div_6af:divider|                                                                                               ; 1080 (1079)         ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider|alt_u_div_6af:divider                                                                                                                                                                                                                              ; alt_u_div_6af                     ; work         ;
 ;                      |add_sub_7pc:add_sub_0|                                                                                            ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider|alt_u_div_6af:divider|add_sub_7pc:add_sub_0                                                                                                                                                                                                        ; add_sub_7pc                       ; work         ;
-;                   |lpm_abs_i0a:my_abs_den|                                                                                              ; 49 (49)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider|lpm_abs_i0a:my_abs_den                                                                                                                                                                                                                             ; lpm_abs_i0a                       ; work         ;
+;                   |lpm_abs_i0a:my_abs_den|                                                                                              ; 55 (55)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider|lpm_abs_i0a:my_abs_den                                                                                                                                                                                                                             ; lpm_abs_i0a                       ; work         ;
 ;                   |lpm_abs_i0a:my_abs_num|                                                                                              ; 4 (4)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0|lpm_divide_92p:auto_generated|abs_divider_4dg:divider|lpm_abs_i0a:my_abs_num                                                                                                                                                                                                                             ; lpm_abs_i0a                       ; work         ;
-;          |lpm_divide:Div1|                                                                                                              ; 1076 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1                                                                                                                                                                                                                                                                                                          ; lpm_divide                        ; work         ;
-;             |lpm_divide_hkm:auto_generated|                                                                                             ; 1076 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1|lpm_divide_hkm:auto_generated                                                                                                                                                                                                                                                                            ; lpm_divide_hkm                    ; work         ;
-;                |sign_div_unsign_9nh:divider|                                                                                            ; 1076 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1|lpm_divide_hkm:auto_generated|sign_div_unsign_9nh:divider                                                                                                                                                                                                                                                ; sign_div_unsign_9nh               ; work         ;
-;                   |alt_u_div_6af:divider|                                                                                               ; 1076 (1076)         ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1|lpm_divide_hkm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_6af:divider                                                                                                                                                                                                                          ; alt_u_div_6af                     ; work         ;
+;          |lpm_divide:Div1|                                                                                                              ; 1077 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1                                                                                                                                                                                                                                                                                                          ; lpm_divide                        ; work         ;
+;             |lpm_divide_hkm:auto_generated|                                                                                             ; 1077 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1|lpm_divide_hkm:auto_generated                                                                                                                                                                                                                                                                            ; lpm_divide_hkm                    ; work         ;
+;                |sign_div_unsign_9nh:divider|                                                                                            ; 1077 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1|lpm_divide_hkm:auto_generated|sign_div_unsign_9nh:divider                                                                                                                                                                                                                                                ; sign_div_unsign_9nh               ; work         ;
+;                   |alt_u_div_6af:divider|                                                                                               ; 1077 (1077)         ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div1|lpm_divide_hkm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_6af:divider                                                                                                                                                                                                                          ; alt_u_div_6af                     ; work         ;
 ;          |lpm_divide:Mod0|                                                                                                              ; 1226 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Mod0                                                                                                                                                                                                                                                                                                          ; lpm_divide                        ; work         ;
 ;             |lpm_divide_cqo:auto_generated|                                                                                             ; 1226 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Mod0|lpm_divide_cqo:auto_generated                                                                                                                                                                                                                                                                            ; lpm_divide_cqo                    ; work         ;
 ;                |abs_divider_4dg:divider|                                                                                                ; 1226 (64)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Mod0|lpm_divide_cqo:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                                                    ; abs_divider_4dg                   ; work         ;
@@ -361,7 +350,7 @@ https://fpgasoftware.intel.com/eula.
 ;             |mult_46t:auto_generated|                                                                                                   ; 92 (92)             ; 0 (0)                     ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_mult:Mult0|mult_46t:auto_generated                                                                                                                                                                                                                                                                                   ; mult_46t                          ; work         ;
 ;          |lpm_mult:Mult1|                                                                                                               ; 79 (0)              ; 0 (0)                     ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_mult:Mult1                                                                                                                                                                                                                                                                                                           ; lpm_mult                          ; work         ;
 ;             |mult_7dt:auto_generated|                                                                                                   ; 79 (79)             ; 0 (0)                     ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_mult:Mult1|mult_7dt:auto_generated                                                                                                                                                                                                                                                                                   ; mult_7dt                          ; work         ;
-;       |ULA:alu_0|                                                                                                                       ; 357 (357)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|ULA:alu_0                                                                                                                                                                                                                                                                                                                      ; ULA                               ; work         ;
+;       |ULA:alu_0|                                                                                                                       ; 355 (355)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|ULA:alu_0                                                                                                                                                                                                                                                                                                                      ; ULA                               ; work         ;
 ;       |decoder:decoder0|                                                                                                                ; 52 (52)             ; 17 (17)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|decoder:decoder0                                                                                                                                                                                                                                                                                                               ; decoder                           ; work         ;
 ;       |iregister:ins_register|                                                                                                          ; 0 (0)               ; 35 (35)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|iregister:ins_register                                                                                                                                                                                                                                                                                                         ; iregister                         ; work         ;
 ;       |register_file:registers|                                                                                                         ; 72 (72)             ; 108 (108)                 ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|register_file:registers                                                                                                                                                                                                                                                                                                        ; register_file                     ; work         ;
@@ -369,15 +358,15 @@ https://fpgasoftware.intel.com/eula.
 ;             |altsyncram_nsl1:auto_generated|                                                                                            ; 0 (0)               ; 0 (0)                     ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|register_file:registers|altsyncram:ram_rtl_0|altsyncram_nsl1:auto_generated                                                                                                                                                                                                                                                    ; altsyncram_nsl1                   ; work         ;
 ;          |altsyncram:ram_rtl_1|                                                                                                         ; 0 (0)               ; 0 (0)                     ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|register_file:registers|altsyncram:ram_rtl_1                                                                                                                                                                                                                                                                                   ; altsyncram                        ; work         ;
 ;             |altsyncram_nsl1:auto_generated|                                                                                            ; 0 (0)               ; 0 (0)                     ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|register_file:registers|altsyncram:ram_rtl_1|altsyncram_nsl1:auto_generated                                                                                                                                                                                                                                                    ; altsyncram_nsl1                   ; work         ;
-;    |dmemory:dmem|                                                                                                                       ; 69 (69)             ; 6 (6)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|dmemory:dmem                                                                                                                                                                                                                                                                                                                               ; dmemory                           ; work         ;
+;    |dmemory:dmem|                                                                                                                       ; 83 (83)             ; 13 (13)                   ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|dmemory:dmem                                                                                                                                                                                                                                                                                                                               ; dmemory                           ; work         ;
 ;       |altsyncram:ram_block_rtl_0|                                                                                                      ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|dmemory:dmem|altsyncram:ram_block_rtl_0                                                                                                                                                                                                                                                                                                    ; altsyncram                        ; work         ;
 ;          |altsyncram_vh41:auto_generated|                                                                                               ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|dmemory:dmem|altsyncram:ram_block_rtl_0|altsyncram_vh41:auto_generated                                                                                                                                                                                                                                                                     ; altsyncram_vh41                   ; work         ;
 ;    |iram_quartus:iram_quartus_inst|                                                                                                     ; 93 (0)              ; 66 (0)                    ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst                                                                                                                                                                                                                                                                                                             ; iram_quartus                      ; work         ;
 ;       |altsyncram:altsyncram_component|                                                                                                 ; 93 (0)              ; 66 (0)                    ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                             ; altsyncram                        ; work         ;
-;          |altsyncram_jo04:auto_generated|                                                                                               ; 93 (0)              ; 66 (0)                    ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated                                                                                                                                                                                                                                              ; altsyncram_jo04                   ; work         ;
-;             |altsyncram_jju2:altsyncram1|                                                                                               ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|altsyncram_jju2:altsyncram1                                                                                                                                                                                                                  ; altsyncram_jju2                   ; work         ;
-;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 93 (73)             ; 66 (57)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                    ; sld_mod_ram_rom                   ; work         ;
-;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 20 (20)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                                 ; sld_rom_sr                        ; work         ;
+;          |altsyncram_n824:auto_generated|                                                                                               ; 93 (0)              ; 66 (0)                    ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated                                                                                                                                                                                                                                              ; altsyncram_n824                   ; work         ;
+;             |altsyncram_n303:altsyncram1|                                                                                               ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|altsyncram_n303:altsyncram1                                                                                                                                                                                                                  ; altsyncram_n303                   ; work         ;
+;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 93 (73)             ; 66 (57)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                    ; sld_mod_ram_rom                   ; work         ;
+;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 20 (20)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                                 ; sld_rom_sr                        ; work         ;
 ;    |pll:pll_inst|                                                                                                                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|pll:pll_inst                                                                                                                                                                                                                                                                                                                               ; pll                               ; work         ;
 ;       |altpll:altpll_component|                                                                                                         ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|pll:pll_inst|altpll:altpll_component                                                                                                                                                                                                                                                                                                       ; altpll                            ; work         ;
 ;          |pll_altpll:auto_generated|                                                                                                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated                                                                                                                                                                                                                                                                             ; pll_altpll                        ; work         ;
@@ -389,7 +378,7 @@ https://fpgasoftware.intel.com/eula.
 ;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 118 (82)            ; 81 (53)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
 ;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 18 (18)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
 ;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 18 (18)             ; 19 (19)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
-;    |sram:sram|                                                                                                                          ; 7 (7)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sram:sram                                                                                                                                                                                                                                                                                                                                  ; sram                              ; work         ;
+;    |sram:sram|                                                                                                                          ; 23 (23)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sram:sram                                                                                                                                                                                                                                                                                                                                  ; sram                              ; work         ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -402,7 +391,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; core:myRisc|register_file:registers|altsyncram:ram_rtl_0|altsyncram_nsl1:auto_generated|ALTSYNCRAM                                   ; AUTO ; Simple Dual Port ; 32           ; 32           ; 32           ; 32           ; 1024  ; db/DE2_115.ram0_register_file_87c776fc.hdl.mif ;
 ; core:myRisc|register_file:registers|altsyncram:ram_rtl_1|altsyncram_nsl1:auto_generated|ALTSYNCRAM                                   ; AUTO ; Simple Dual Port ; 32           ; 32           ; 32           ; 32           ; 1024  ; db/DE2_115.ram0_register_file_87c776fc.hdl.mif ;
 ; dmemory:dmem|altsyncram:ram_block_rtl_0|altsyncram_vh41:auto_generated|ALTSYNCRAM                                                    ; AUTO ; Single Port      ; 1024         ; 32           ; --           ; --           ; 32768 ; None                                           ;
-; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|altsyncram_jju2:altsyncram1|ALTSYNCRAM ; AUTO ; True Dual Port   ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None                                           ;
+; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|altsyncram_n303:altsyncram1|ALTSYNCRAM ; AUTO ; True Dual Port   ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; /home/aluno/riscv-multicycle/tests/quartus.hex ;
 +--------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------------------------------------------------+
 
 
@@ -465,18 +454,20 @@ Encoding Type:  One-Hot
 
 
 Encoding Type:  One-Hot
-+-----------------------------------------------------------------------------------------------+
-; State Machine - |DE2_115|dmemory:dmem|state                                                   ;
-+-------------+-------------+-------------+-------------+-------------+------------+------------+
-; Name        ; state.BYTE3 ; state.BYTE2 ; state.BYTE1 ; state.BYTE0 ; state.WORD ; state.READ ;
-+-------------+-------------+-------------+-------------+-------------+------------+------------+
-; state.READ  ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ;
-; state.WORD  ; 0           ; 0           ; 0           ; 0           ; 1          ; 1          ;
-; state.BYTE0 ; 0           ; 0           ; 0           ; 1           ; 0          ; 1          ;
-; state.BYTE1 ; 0           ; 0           ; 1           ; 0           ; 0          ; 1          ;
-; state.BYTE2 ; 0           ; 1           ; 0           ; 0           ; 0          ; 1          ;
-; state.BYTE3 ; 1           ; 0           ; 0           ; 0           ; 0          ; 1          ;
-+-------------+-------------+-------------+-------------+-------------+------------+------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |DE2_115|dmemory:dmem|state                                                                                                         ;
++----------------------+----------------------+---------------------+-------------+-------------+-------------+-------------+------------+------------+
+; Name                 ; state.HALF_WORD_HIGH ; state.HALF_WORD_LOW ; state.BYTE3 ; state.BYTE2 ; state.BYTE1 ; state.BYTE0 ; state.WORD ; state.READ ;
++----------------------+----------------------+---------------------+-------------+-------------+-------------+-------------+------------+------------+
+; state.READ           ; 0                    ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ;
+; state.WORD           ; 0                    ; 0                   ; 0           ; 0           ; 0           ; 0           ; 1          ; 1          ;
+; state.BYTE0          ; 0                    ; 0                   ; 0           ; 0           ; 0           ; 1           ; 0          ; 1          ;
+; state.BYTE1          ; 0                    ; 0                   ; 0           ; 0           ; 1           ; 0           ; 0          ; 1          ;
+; state.BYTE2          ; 0                    ; 0                   ; 0           ; 1           ; 0           ; 0           ; 0          ; 1          ;
+; state.BYTE3          ; 0                    ; 0                   ; 1           ; 0           ; 0           ; 0           ; 0          ; 1          ;
+; state.HALF_WORD_LOW  ; 0                    ; 1                   ; 0           ; 0           ; 0           ; 0           ; 0          ; 1          ;
+; state.HALF_WORD_HIGH ; 1                    ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0          ; 1          ;
++----------------------+----------------------+---------------------+-------------+-------------+-------------+-------------+------------+------------+
 
 
 Encoding Type:  One-Hot
@@ -492,32 +483,32 @@ Encoding Type:  One-Hot
 +-------------------+----------------+-------------------+------------------+----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                       ;
-+-----------------------------------------------------+----------------------------+------------------------+
-; Latch Name                                          ; Latch Enable Signal        ; Free of Timing Hazards ;
-+-----------------------------------------------------+----------------------------+------------------------+
-; sram:sram|SRAM_OE_N                                 ; sram:sram|mem_state.DONE   ; yes                    ;
-; sram:sram|SRAM_UB_N                                 ; sram:sram|mem_state.DONE   ; yes                    ;
-; sram:sram|SRAM_WE_N                                 ; sram:sram|mem_state.DONE   ; yes                    ;
-; sram:sram|data_in[0]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[1]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[2]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[3]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[4]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[5]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[6]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[7]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[8]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[9]                                ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[10]                               ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[11]                               ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[12]                               ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[13]                               ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[14]                               ; sram:sram|mem_state.READ_M ; yes                    ;
-; sram:sram|data_in[15]                               ; sram:sram|mem_state.READ_M ; yes                    ;
-; Number of user-specified and inferred latches = 19  ;                            ;                        ;
-+-----------------------------------------------------+----------------------------+------------------------+
++------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                        ;
++-----------------------------------------------------+-----------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal         ; Free of Timing Hazards ;
++-----------------------------------------------------+-----------------------------+------------------------+
+; sram:sram|SRAM_OE_N                                 ; sram:sram|mem_state.DONE    ; yes                    ;
+; sram:sram|SRAM_UB_N                                 ; sram:sram|mem_state.DONE    ; yes                    ;
+; sram:sram|SRAM_WE_N                                 ; sram:sram|mem_state.DONE    ; yes                    ;
+; sram:sram|SRAM_DQ[0]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[1]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[2]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[3]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[4]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[5]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[6]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[7]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[8]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[9]$latch                          ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[10]$latch                         ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[11]$latch                         ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[12]$latch                         ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[13]$latch                         ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[14]$latch                         ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; sram:sram|SRAM_DQ[15]$latch                         ; sram:sram|mem_state.WRITE_M ; yes                    ;
+; Number of user-specified and inferred latches = 19  ;                             ;                        ;
++-----------------------------------------------------+-----------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
@@ -527,12 +518,6 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Register name                                    ; Reason for Removal                                               ;
 +--------------------------------------------------+------------------------------------------------------------------+
 ; input_in[5..31]                                  ; Stuck at GND due to stuck port data_in                           ;
-; data_out[0..2]                                   ; Stuck at VCC due to stuck port data_in                           ;
-; data_out[3..5]                                   ; Stuck at GND due to stuck port data_in                           ;
-; data_out[6]                                      ; Stuck at VCC due to stuck port data_in                           ;
-; data_out[7..10]                                  ; Stuck at GND due to stuck port data_in                           ;
-; data_out[11]                                     ; Stuck at VCC due to stuck port data_in                           ;
-; data_out[12..15]                                 ; Stuck at GND due to stuck port data_in                           ;
 ; core:myRisc|iregister:ins_register|imm_u[1..11]  ; Stuck at GND due to stuck port data_in                           ;
 ; HEX4[6]~reg0                                     ; Stuck at VCC due to stuck port data_in                           ;
 ; HEX4[5]~reg0                                     ; Stuck at VCC due to stuck port data_in                           ;
@@ -659,19 +644,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; core:myRisc|register_file:registers|ram~68       ; Stuck at GND due to stuck port clock_enable                      ;
 ; core:myRisc|register_file:registers|ram~67       ; Stuck at GND due to stuck port clock_enable                      ;
 ; core:myRisc|register_file:registers|ram~66       ; Stuck at GND due to stuck port clock_enable                      ;
-; LEDR[3]~reg0                                     ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[4]~reg0                                     ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[5]~reg0                                     ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[7]~reg0                                     ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[8]~reg0                                     ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[9]~reg0                                     ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[10]~reg0                                    ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[12]~reg0                                    ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[13]~reg0                                    ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[14]~reg0                                    ; Stuck at GND due to stuck port data_in                           ;
-; LEDR[15]~reg0                                    ; Stuck at GND due to stuck port data_in                           ;
 ; core:myRisc|iregister:ins_register|imm_b[0]      ; Stuck at GND due to stuck port data_in                           ;
-; Total Number of Removed Registers = 257          ;                                                                  ;
+; Total Number of Removed Registers = 230          ;                                                                  ;
 +--------------------------------------------------+------------------------------------------------------------------+
 
 
@@ -680,30 +654,9 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +---------------+---------------------------+-----------------------------------------------+
 ; Register name ; Reason for Removal        ; Registers Removed due to This Register        ;
 +---------------+---------------------------+-----------------------------------------------+
-; HEX4[6]~reg0  ; Stuck at VCC              ; core:myRisc|iregister:ins_register|imm_s[31], ;
-;               ; due to stuck port data_in ; core:myRisc|iregister:ins_register|imm_s[30], ;
-;               ;                           ; core:myRisc|iregister:ins_register|imm_s[29]  ;
-; data_out[3]   ; Stuck at GND              ; LEDR[3]~reg0                                  ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[4]   ; Stuck at GND              ; LEDR[4]~reg0                                  ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[5]   ; Stuck at GND              ; LEDR[5]~reg0                                  ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[7]   ; Stuck at GND              ; LEDR[7]~reg0                                  ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[8]   ; Stuck at GND              ; LEDR[8]~reg0                                  ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[9]   ; Stuck at GND              ; LEDR[9]~reg0                                  ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[10]  ; Stuck at GND              ; LEDR[10]~reg0                                 ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[12]  ; Stuck at GND              ; LEDR[12]~reg0                                 ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[13]  ; Stuck at GND              ; LEDR[13]~reg0                                 ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[14]  ; Stuck at GND              ; LEDR[14]~reg0                                 ;
-;               ; due to stuck port data_in ;                                               ;
-; data_out[15]  ; Stuck at GND              ; LEDR[15]~reg0                                 ;
+; HEX4[6]~reg0  ; Stuck at VCC              ; core:myRisc|iregister:ins_register|imm_s[30], ;
+;               ; due to stuck port data_in ; core:myRisc|iregister:ins_register|imm_s[29]  ;
+; input_in[31]  ; Stuck at GND              ; core:myRisc|iregister:ins_register|imm_s[31]  ;
 ;               ; due to stuck port data_in ;                                               ;
 +---------------+---------------------------+-----------------------------------------------+
 
@@ -713,12 +666,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 393   ;
+; Total registers                              ; 427   ;
 ; Number of registers using Synchronous Clear  ; 17    ;
 ; Number of registers using Synchronous Load   ; 20    ;
-; Number of registers using Asynchronous Clear ; 187   ;
+; Number of registers using Asynchronous Clear ; 189   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 208   ;
+; Number of registers using Clock Enable       ; 241   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -892,31 +845,35 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[5]                                     ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[10]                                               ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[4]                                                ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                     ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[17]                                               ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[3]                                                ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |DE2_115|core:myRisc|pc[1]                                                                                                                                                                          ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[4] ;
-; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |DE2_115|core:myRisc|pc[10]                                                                                                                                                                         ;
-; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[0]      ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[3] ;
+; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |DE2_115|core:myRisc|pc[20]                                                                                                                                                                         ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[0]      ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE2_115|sram:sram|mem_state                                                                                                                                                                        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE2_115|core:myRisc|Mux104                                                                                                                                                                         ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector23                                                                                                                                                                    ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector15                                                                                                                                                                    ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector1                                                                                                                                                                     ;
-; 5:1                ; 27 bits   ; 81 LEs        ; 54 LEs               ; 27 LEs                 ; No         ; |DE2_115|Mux21                                                                                                                                                                                      ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |DE2_115|Mux30                                                                                                                                                                                      ;
-; 18:1               ; 6 bits    ; 72 LEs        ; 24 LEs               ; 48 LEs                 ; No         ; |DE2_115|dmemory:dmem|state                                                                                                                                                                         ;
-; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux54                                                                                                                                                                          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector7                                                                                                                                                                     ;
+; 18:1               ; 8 bits    ; 96 LEs        ; 48 LEs               ; 48 LEs                 ; No         ; |DE2_115|dmemory:dmem|state                                                                                                                                                                         ;
+; 9:1                ; 16 bits   ; 96 LEs        ; 80 LEs               ; 16 LEs                 ; No         ; |DE2_115|Mux0                                                                                                                                                                                       ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 40 LEs               ; 24 LEs                 ; No         ; |DE2_115|Mux23                                                                                                                                                                                      ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; No         ; |DE2_115|Mux24                                                                                                                                                                                      ;
+; 13:1               ; 5 bits    ; 40 LEs        ; 30 LEs               ; 10 LEs                 ; No         ; |DE2_115|Mux31                                                                                                                                                                                      ;
+; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux55                                                                                                                                                                          ;
 ; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux50                                                                                                                                                                          ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 112 LEs              ; 56 LEs                 ; No         ; |DE2_115|core:myRisc|Mux41                                                                                                                                                                          ;
-; 33:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; No         ; |DE2_115|core:myRisc|Mux58                                                                                                                                                                          ;
-; 33:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux37                                                                                                                                                                          ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 112 LEs              ; 56 LEs                 ; No         ; |DE2_115|core:myRisc|Mux45                                                                                                                                                                          ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; No         ; |DE2_115|core:myRisc|Mux60                                                                                                                                                                          ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux38                                                                                                                                                                          ;
 ; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux61                                                                                                                                                                          ;
-; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux35                                                                                                                                                                          ;
+; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux36                                                                                                                                                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|altsyncram_jju2:altsyncram1 ;
+; Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|altsyncram_n303:altsyncram1 ;
 +---------------------------------+--------------------+------+------------------------------------------------------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                                                                 ;
 +---------------------------------+--------------------+------+------------------------------------------------------------------------------------+
@@ -1338,62 +1295,62 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +-------------------------------------------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component ;
-+------------------------------------+---------------------------------+--------------------------------------+
-; Parameter Name                     ; Value                           ; Type                                 ;
-+------------------------------------+---------------------------------+--------------------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                               ; Untyped                              ;
-; AUTO_CARRY_CHAINS                  ; ON                              ; AUTO_CARRY                           ;
-; IGNORE_CARRY_BUFFERS               ; OFF                             ; IGNORE_CARRY                         ;
-; AUTO_CASCADE_CHAINS                ; ON                              ; AUTO_CASCADE                         ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                             ; IGNORE_CASCADE                       ;
-; WIDTH_BYTEENA                      ; 1                               ; Untyped                              ;
-; OPERATION_MODE                     ; SINGLE_PORT                     ; Untyped                              ;
-; WIDTH_A                            ; 32                              ; Signed Integer                       ;
-; WIDTHAD_A                          ; 10                              ; Signed Integer                       ;
-; NUMWORDS_A                         ; 1024                            ; Signed Integer                       ;
-; OUTDATA_REG_A                      ; UNREGISTERED                    ; Untyped                              ;
-; ADDRESS_ACLR_A                     ; NONE                            ; Untyped                              ;
-; OUTDATA_ACLR_A                     ; NONE                            ; Untyped                              ;
-; WRCONTROL_ACLR_A                   ; NONE                            ; Untyped                              ;
-; INDATA_ACLR_A                      ; NONE                            ; Untyped                              ;
-; BYTEENA_ACLR_A                     ; NONE                            ; Untyped                              ;
-; WIDTH_B                            ; 1                               ; Signed Integer                       ;
-; WIDTHAD_B                          ; 1                               ; Signed Integer                       ;
-; NUMWORDS_B                         ; 0                               ; Signed Integer                       ;
-; INDATA_REG_B                       ; CLOCK1                          ; Untyped                              ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                          ; Untyped                              ;
-; RDCONTROL_REG_B                    ; CLOCK1                          ; Untyped                              ;
-; ADDRESS_REG_B                      ; CLOCK1                          ; Untyped                              ;
-; OUTDATA_REG_B                      ; UNREGISTERED                    ; Untyped                              ;
-; BYTEENA_REG_B                      ; CLOCK1                          ; Untyped                              ;
-; INDATA_ACLR_B                      ; NONE                            ; Untyped                              ;
-; WRCONTROL_ACLR_B                   ; NONE                            ; Untyped                              ;
-; ADDRESS_ACLR_B                     ; NONE                            ; Untyped                              ;
-; OUTDATA_ACLR_B                     ; NONE                            ; Untyped                              ;
-; RDCONTROL_ACLR_B                   ; NONE                            ; Untyped                              ;
-; BYTEENA_ACLR_B                     ; NONE                            ; Untyped                              ;
-; WIDTH_BYTEENA_A                    ; 4                               ; Signed Integer                       ;
-; WIDTH_BYTEENA_B                    ; 1                               ; Signed Integer                       ;
-; RAM_BLOCK_TYPE                     ; AUTO                            ; Untyped                              ;
-; BYTE_SIZE                          ; 8                               ; Signed Integer                       ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                       ; Untyped                              ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ            ; Untyped                              ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ            ; Untyped                              ;
-; INIT_FILE                          ; C:/_prj_final/tests/quartus.hex ; Untyped                              ;
-; INIT_FILE_LAYOUT                   ; PORT_A                          ; Untyped                              ;
-; MAXIMUM_DEPTH                      ; 0                               ; Signed Integer                       ;
-; CLOCK_ENABLE_INPUT_A               ; BYPASS                          ; Untyped                              ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL                          ; Untyped                              ;
-; CLOCK_ENABLE_OUTPUT_A              ; BYPASS                          ; Untyped                              ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                          ; Untyped                              ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                 ; Untyped                              ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                 ; Untyped                              ;
-; ENABLE_ECC                         ; FALSE                           ; Untyped                              ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                           ; Untyped                              ;
-; WIDTH_ECCSTATUS                    ; 3                               ; Signed Integer                       ;
-; DEVICE_FAMILY                      ; Cyclone IV E                    ; Untyped                              ;
-; CBXI_PARAMETER                     ; altsyncram_jo04                 ; Untyped                              ;
-+------------------------------------+---------------------------------+--------------------------------------+
++------------------------------------+------------------------------------------------+-----------------------+
+; Parameter Name                     ; Value                                          ; Type                  ;
++------------------------------------+------------------------------------------------+-----------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                              ; Untyped               ;
+; AUTO_CARRY_CHAINS                  ; ON                                             ; AUTO_CARRY            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                            ; IGNORE_CARRY          ;
+; AUTO_CASCADE_CHAINS                ; ON                                             ; AUTO_CASCADE          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                            ; IGNORE_CASCADE        ;
+; WIDTH_BYTEENA                      ; 1                                              ; Untyped               ;
+; OPERATION_MODE                     ; SINGLE_PORT                                    ; Untyped               ;
+; WIDTH_A                            ; 32                                             ; Signed Integer        ;
+; WIDTHAD_A                          ; 10                                             ; Signed Integer        ;
+; NUMWORDS_A                         ; 1024                                           ; Signed Integer        ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                   ; Untyped               ;
+; ADDRESS_ACLR_A                     ; NONE                                           ; Untyped               ;
+; OUTDATA_ACLR_A                     ; NONE                                           ; Untyped               ;
+; WRCONTROL_ACLR_A                   ; NONE                                           ; Untyped               ;
+; INDATA_ACLR_A                      ; NONE                                           ; Untyped               ;
+; BYTEENA_ACLR_A                     ; NONE                                           ; Untyped               ;
+; WIDTH_B                            ; 1                                              ; Signed Integer        ;
+; WIDTHAD_B                          ; 1                                              ; Signed Integer        ;
+; NUMWORDS_B                         ; 0                                              ; Signed Integer        ;
+; INDATA_REG_B                       ; CLOCK1                                         ; Untyped               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                         ; Untyped               ;
+; RDCONTROL_REG_B                    ; CLOCK1                                         ; Untyped               ;
+; ADDRESS_REG_B                      ; CLOCK1                                         ; Untyped               ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                   ; Untyped               ;
+; BYTEENA_REG_B                      ; CLOCK1                                         ; Untyped               ;
+; INDATA_ACLR_B                      ; NONE                                           ; Untyped               ;
+; WRCONTROL_ACLR_B                   ; NONE                                           ; Untyped               ;
+; ADDRESS_ACLR_B                     ; NONE                                           ; Untyped               ;
+; OUTDATA_ACLR_B                     ; NONE                                           ; Untyped               ;
+; RDCONTROL_ACLR_B                   ; NONE                                           ; Untyped               ;
+; BYTEENA_ACLR_B                     ; NONE                                           ; Untyped               ;
+; WIDTH_BYTEENA_A                    ; 4                                              ; Signed Integer        ;
+; WIDTH_BYTEENA_B                    ; 1                                              ; Signed Integer        ;
+; RAM_BLOCK_TYPE                     ; AUTO                                           ; Untyped               ;
+; BYTE_SIZE                          ; 8                                              ; Signed Integer        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ; Untyped               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                           ; Untyped               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                           ; Untyped               ;
+; INIT_FILE                          ; /home/aluno/riscv-multicycle/tests/quartus.hex ; Untyped               ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                         ; Untyped               ;
+; MAXIMUM_DEPTH                      ; 0                                              ; Signed Integer        ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS                                         ; Untyped               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                         ; Untyped               ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS                                         ; Untyped               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                         ; Untyped               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                ; Untyped               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                ; Untyped               ;
+; ENABLE_ECC                         ; FALSE                                          ; Untyped               ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                          ; Untyped               ;
+; WIDTH_ECCSTATUS                    ; 3                                              ; Signed Integer        ;
+; DEVICE_FAMILY                      ; Cyclone IV E                                   ; Untyped               ;
+; CBXI_PARAMETER                     ; altsyncram_n824                                ; Untyped               ;
++------------------------------------+------------------------------------------------+-----------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -1894,24 +1851,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------+-------+----------+-------------------------------+
 
 
-+---------------------------------------------------+
-; Port Connectivity Checks: "sram:sram"             ;
-+-----------------+-------+----------+--------------+
-; Port            ; Type  ; Severity ; Details      ;
-+-----------------+-------+----------+--------------+
-; chipselect      ; Input ; Info     ; Stuck at VCC ;
-; address[15..12] ; Input ; Info     ; Stuck at VCC ;
-; address[17..16] ; Input ; Info     ; Stuck at GND ;
-; address[11..10] ; Input ; Info     ; Stuck at GND ;
-; address[8..7]   ; Input ; Info     ; Stuck at GND ;
-; address[3..0]   ; Input ; Info     ; Stuck at GND ;
-; address[19]     ; Input ; Info     ; Stuck at GND ;
-; address[18]     ; Input ; Info     ; Stuck at VCC ;
-; address[9]      ; Input ; Info     ; Stuck at VCC ;
-; address[6]      ; Input ; Info     ; Stuck at VCC ;
-; address[5]      ; Input ; Info     ; Stuck at GND ;
-; address[4]      ; Input ; Info     ; Stuck at VCC ;
-+-----------------+-------+----------+--------------+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "sram:sram"                                                                                     ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; address[19..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_in         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------+
@@ -1929,7 +1876,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------------+-------+-------+------------+-----------------------------------------------------------------------------------------------+
 ; Instance Index ; Instance ID ; Width ; Depth ; Mode       ; Hierarchy Location                                                                            ;
 +----------------+-------------+-------+-------+------------+-----------------------------------------------------------------------------------------------+
-; 0              ; 1           ; 32    ; 1024  ; Read/Write ; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated ;
+; 0              ; 1           ; 32    ; 1024  ; Read/Write ; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated ;
 +----------------+-------------+-------+-------+------------+-----------------------------------------------------------------------------------------------+
 
 
@@ -1939,31 +1886,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 427                         ;
-; cycloneiii_ff         ; 307                         ;
-;     CLR               ; 77                          ;
-;     ENA               ; 68                          ;
+; cycloneiii_ff         ; 341                         ;
+;     CLR               ; 79                          ;
+;     ENA               ; 101                         ;
 ;     ENA CLR           ; 67                          ;
 ;     ENA CLR SLD       ; 10                          ;
 ;     ENA SCLR          ; 5                           ;
-;     plain             ; 80                          ;
+;     plain             ; 79                          ;
 ; cycloneiii_io_obuf    ; 103                         ;
-; cycloneiii_lcell_comb ; 6599                        ;
+; cycloneiii_lcell_comb ; 6744                        ;
 ;     arith             ; 2740                        ;
 ;         2 data inputs ; 86                          ;
 ;         3 data inputs ; 2654                        ;
-;     normal            ; 3859                        ;
+;     normal            ; 4004                        ;
 ;         0 data inputs ; 126                         ;
-;         1 data inputs ; 69                          ;
-;         2 data inputs ; 138                         ;
-;         3 data inputs ; 746                         ;
-;         4 data inputs ; 2780                        ;
+;         1 data inputs ; 63                          ;
+;         2 data inputs ; 172                         ;
+;         3 data inputs ; 803                         ;
+;         4 data inputs ; 2840                        ;
 ; cycloneiii_mac_mult   ; 8                           ;
 ; cycloneiii_mac_out    ; 8                           ;
 ; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 128                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 148.20                      ;
-; Average LUT depth     ; 97.51                       ;
+; Max LUT depth         ; 146.50                      ;
+; Average LUT depth     ; 95.27                       ;
 +-----------------------+-----------------------------+
 
 
@@ -1972,7 +1919,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:14     ;
+; Top            ; 00:00:15     ;
 +----------------+--------------+
 
 
@@ -1982,12 +1929,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Mon Dec  9 08:38:43 2019
+    Info: Processing started: Fri Dec 13 11:39:10 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_115 -c DE2_115
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file DE2_115.vhdl
-    Info (12022): Found design unit 1: DE2_115-rtl File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 145
+    Info (12022): Found design unit 1: DE2_115-rtl File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 144
     Info (12023): Found entity 1: DE2_115 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file sram.vhd
     Info (12022): Found design unit 1: sram-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 30
@@ -1996,7 +1943,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file /run/us
     Info (12022): Found design unit 1: register_file-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/registers/register_file.vhd Line: 24
     Info (12023): Found entity 1: register_file File: /run/user/1001/overlay/merged/riscv-multicycle/registers/register_file.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/memory/dmemory.vhd
-    Info (12022): Found design unit 1: dmemory-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/memory/dmemory.vhd Line: 39
+    Info (12022): Found design unit 1: dmemory-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/memory/dmemory.vhd Line: 40
     Info (12023): Found entity 1: dmemory File: /run/user/1001/overlay/merged/riscv-multicycle/memory/dmemory.vhd Line: 19
 Info (12021): Found 2 design units, including 1 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd
     Info (12022): Found design unit 1: iram_quartus-SYN File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 55
@@ -2006,12 +1953,12 @@ Info (12021): Found 2 design units, including 1 entities, in source file /run/us
     Info (12023): Found entity 1: iregister File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/iregister.vhd Line: 18
 Info (12021): Found 2 design units, including 0 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder_types.vhd
     Info (12022): Found design unit 1: decoder_types File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder_types.vhd Line: 4
-    Info (12022): Found design unit 2: decoder_types-body File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder_types.vhd Line: 135
+    Info (12022): Found design unit 2: decoder_types-body File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder_types.vhd Line: 136
 Info (12021): Found 2 design units, including 1 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder.vhd
     Info (12022): Found design unit 1: decoder-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder.vhd Line: 48
     Info (12023): Found entity 1: decoder File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd
-    Info (12022): Found design unit 1: core-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 35
+    Info (12022): Found design unit 1: core-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 36
     Info (12023): Found entity 1: core File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 9
 Info (12021): Found 2 design units, including 0 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/alu/m/M_types.vhd
     Info (12022): Found design unit 1: M_types File: /run/user/1001/overlay/merged/riscv-multicycle/alu/m/M_types.vhd Line: 5
@@ -2031,6 +1978,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file /run/us
 Info (12127): Elaborating entity "DE2_115" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(20): used implicit default value for signal "SMA_CLKOUT" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 20
 Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(21): used implicit default value for signal "LEDG" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 21
+Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(22): used implicit default value for signal "LEDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
 Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(32): used implicit default value for signal "HEX6" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
 Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(33): used implicit default value for signal "HEX7" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 33
 Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(34): used implicit default value for signal "LCD_BLON" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 34
@@ -2087,9 +2035,9 @@ Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(139): used impl
 Warning (10541): VHDL Signal Declaration warning at DE2_115.vhdl(140): used implicit default value for signal "FL_WP_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 140
 Warning (10036): Verilog HDL or VHDL warning at DE2_115.vhdl(170): object "locked_sig" assigned a value but never read File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 170
 Warning (10036): Verilog HDL or VHDL warning at DE2_115.vhdl(173): object "state" assigned a value but never read File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 173
-Warning (10873): Using initial value X (don't care) for net "LEDR[17..16]" at DE2_115.vhdl(22) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+Warning (10036): Verilog HDL or VHDL warning at DE2_115.vhdl(186): object "data_in_SRAM" assigned a value but never read File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 186
 Warning (10873): Using initial value X (don't care) for net "DRAM_ADDR[12..10]" at DE2_115.vhdl(116) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 116
-Info (12128): Elaborating entity "pll" for hierarchy "pll:pll_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 187
+Info (12128): Elaborating entity "pll" for hierarchy "pll:pll_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 191
 Info (12128): Elaborating entity "altpll" for hierarchy "pll:pll_inst|altpll:altpll_component" File: /run/user/1001/overlay/merged/riscv-multicycle/pll/pll.vhd Line: 140
 Info (12130): Elaborated megafunction instantiation "pll:pll_inst|altpll:altpll_component" File: /run/user/1001/overlay/merged/riscv-multicycle/pll/pll.vhd Line: 140
 Info (12133): Instantiated megafunction "pll:pll_inst|altpll:altpll_component" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/pll/pll.vhd Line: 140
@@ -2151,7 +2099,7 @@ Info (12133): Instantiated megafunction "pll:pll_inst|altpll:altpll_component" w
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_altpll.v
     Info (12023): Found entity 1: pll_altpll File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/pll_altpll.v Line: 31
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "sram" for hierarchy "sram:sram" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 219
+Info (12128): Elaborating entity "sram" for hierarchy "sram:sram" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 220
 Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_WE_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
 Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_OE_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
 Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_LB_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
@@ -2194,7 +2142,7 @@ Info (10041): Inferred latch for "SRAM_UB_N" at sram.vhd(70) File: /run/user/100
 Info (10041): Inferred latch for "SRAM_LB_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
 Info (10041): Inferred latch for "SRAM_OE_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
 Info (10041): Inferred latch for "SRAM_WE_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (12128): Elaborating entity "iram_quartus" for hierarchy "iram_quartus:iram_quartus_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 255
+Info (12128): Elaborating entity "iram_quartus" for hierarchy "iram_quartus:iram_quartus_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 257
 Info (12128): Elaborating entity "altsyncram" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component" File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
 Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component" File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
 Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
@@ -2218,7 +2166,7 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
     Info (12134): Parameter "indata_aclr_a" = "UNUSED"
     Info (12134): Parameter "indata_aclr_b" = "NONE"
     Info (12134): Parameter "indata_reg_b" = "CLOCK1"
-    Info (12134): Parameter "init_file" = "C:/_prj_final/tests/quartus.hex"
+    Info (12134): Parameter "init_file" = "/home/aluno/riscv-multicycle/tests/quartus.hex"
     Info (12134): Parameter "init_file_layout" = "PORT_A"
     Info (12134): Parameter "maximum_depth" = "0"
     Info (12134): Parameter "numwords_a" = "1024"
@@ -2248,16 +2196,16 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
     Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK1"
     Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1"
     Info (12134): Parameter "lpm_type" = "altsyncram"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jo04.tdf
-    Info (12023): Found entity 1: altsyncram_jo04 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jo04.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_jo04" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jju2.tdf
-    Info (12023): Found entity 1: altsyncram_jju2 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jju2.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_jju2" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|altsyncram_jju2:altsyncram1" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jo04.tdf Line: 38
-Critical Warning (127003): Can't find Memory Initialization File or Hexadecimal (Intel-Format) File C:/_prj_final/tests/quartus.hex -- setting all initial values to 0 File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
-Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jo04.tdf Line: 39
-Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jo04.tdf Line: 39
-Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_jo04.tdf Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_n824.tdf
+    Info (12023): Found entity 1: altsyncram_n824 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_n824" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_n303.tdf
+    Info (12023): Found entity 1: altsyncram_n303 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n303.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_n303" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|altsyncram_n303:altsyncram1" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 38
+Critical Warning (127005): Memory depth (1024) in the design file differs from memory depth (765) in the Memory Initialization File "/home/aluno/riscv-multicycle/tests/quartus.hex" -- setting initial value for remaining addresses to 0 File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
+Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 39
+Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 39
+Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 39
     Info (12134): Parameter "CVALUE" = "00000000000000000000000000000000"
     Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
     Info (12134): Parameter "IS_READABLE" = "1"
@@ -2266,19 +2214,19 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
     Info (12134): Parameter "SHIFT_COUNT_BITS" = "6"
     Info (12134): Parameter "WIDTH_WORD" = "32"
     Info (12134): Parameter "WIDTHAD" = "10"
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
-Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_jo04:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
-Info (12128): Elaborating entity "dmemory" for hierarchy "dmemory:dmem" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 266
-Info (12128): Elaborating entity "core" for hierarchy "core:myRisc" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 292
-Info (12128): Elaborating entity "iregister" for hierarchy "core:myRisc|iregister:ins_register" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 165
-Info (12128): Elaborating entity "register_file" for hierarchy "core:myRisc|register_file:registers" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 182
-Info (12128): Elaborating entity "decoder" for hierarchy "core:myRisc|decoder:decoder0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 208
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
+Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
+Info (12128): Elaborating entity "dmemory" for hierarchy "dmemory:dmem" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 268
+Info (12128): Elaborating entity "core" for hierarchy "core:myRisc" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 295
+Info (12128): Elaborating entity "iregister" for hierarchy "core:myRisc|iregister:ins_register" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 166
+Info (12128): Elaborating entity "register_file" for hierarchy "core:myRisc|register_file:registers" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 183
+Info (12128): Elaborating entity "decoder" for hierarchy "core:myRisc|decoder:decoder0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 209
 Warning (10873): Using initial value X (don't care) for net "dmemory.bus_lag" at decoder.vhd(15) File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/decoder.vhd Line: 15
-Info (12128): Elaborating entity "ULA" for hierarchy "core:myRisc|ULA:alu_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 225
-Info (12128): Elaborating entity "M" for hierarchy "core:myRisc|M:M_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 241
+Info (12128): Elaborating entity "ULA" for hierarchy "core:myRisc|ULA:alu_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 226
+Info (12128): Elaborating entity "M" for hierarchy "core:myRisc|M:M_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 242
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2019.12.09.09:38:57 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2019.12.13.12:39:25 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2495,6 +2443,22 @@ Warning (13034): The following nodes have both tri-state and non-tri-state drive
     Warning (13035): Inserted always-enabled tri-state buffer between "DRAM_DQ[29]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 122
     Warning (13035): Inserted always-enabled tri-state buffer between "DRAM_DQ[30]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 122
     Warning (13035): Inserted always-enabled tri-state buffer between "DRAM_DQ[31]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 122
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[0]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[1]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[2]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[3]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[4]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[5]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[6]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[7]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[8]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[9]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[10]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[11]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[12]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[13]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[14]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[15]" and its non-tri-state driver. File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
 Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "EX_IO[0]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 24
     Warning (13040): bidirectional pin "EX_IO[1]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 24
@@ -2551,42 +2515,7 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "FL_DQ[5]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 135
     Warning (13040): bidirectional pin "FL_DQ[6]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 135
     Warning (13040): bidirectional pin "FL_DQ[7]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 135
-Warning (13032): The following tri-state nodes are fed by constants
-    Warning (13033): The pin "SRAM_DQ[0]" is fed by VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[1]" is fed by VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[2]" is fed by VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[3]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[4]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[5]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[6]" is fed by VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[7]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[8]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[9]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[10]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[11]" is fed by VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[12]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[13]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[14]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Warning (13033): The pin "SRAM_DQ[15]" is fed by GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
-    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "SRAM_DQ[0]" is moved to its source File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "SRAM_DQ[1]" is moved to its source File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "SRAM_DQ[2]" is moved to its source File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "SRAM_DQ[6]" is moved to its source File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "SRAM_DQ[11]" is moved to its source File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-Info (13036): One or more bidirectional pins are fed by always-enabled (GND-fed) open-drain buffers
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[3]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[4]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[5]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[7]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[8]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[9]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[10]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[12]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[13]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[14]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-    Info (13037): Fan-out of permanently enabled (GND-fed) open-drain buffer feeding bidirectional pin "SRAM_DQ[15]" is set to GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
-Info (13000): Registers with preset signals will power-up high File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
+Info (13000): Registers with preset signals will power-up high File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "DRAM_DQ[0]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 122
@@ -2624,8 +2553,19 @@ Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "SRAM_DQ[0]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
     Warning (13010): Node "SRAM_DQ[1]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
     Warning (13010): Node "SRAM_DQ[2]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[3]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[4]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[5]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
     Warning (13010): Node "SRAM_DQ[6]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[7]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[8]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[9]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[10]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
     Warning (13010): Node "SRAM_DQ[11]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[12]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[13]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[14]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
+    Warning (13010): Node "SRAM_DQ[15]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 128
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "SMA_CLKOUT" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 20
     Warning (13410): Pin "LEDG[0]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 21
@@ -2637,33 +2577,38 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDG[6]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 21
     Warning (13410): Pin "LEDG[7]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 21
     Warning (13410): Pin "LEDG[8]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 21
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[10]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[12]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[13]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[14]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
-    Warning (13410): Pin "LEDR[15]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 238
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[10]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[11]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[12]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[13]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[14]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
+    Warning (13410): Pin "LEDR[15]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
     Warning (13410): Pin "LEDR[16]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
     Warning (13410): Pin "LEDR[17]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
-    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
-    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 324
+    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
     Warning (13410): Pin "HEX6[0]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
     Warning (13410): Pin "HEX6[1]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
     Warning (13410): Pin "HEX6[2]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
@@ -2759,25 +2704,15 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "DRAM_DQM[3]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 123
     Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 124
     Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 125
-    Warning (13410): Pin "SRAM_ADDR[0]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[1]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[2]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[3]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[5]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[7]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[8]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[9]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
     Warning (13410): Pin "SRAM_ADDR[10]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
     Warning (13410): Pin "SRAM_ADDR[11]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[12]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[13]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[14]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[15]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
+    Warning (13410): Pin "SRAM_ADDR[12]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
+    Warning (13410): Pin "SRAM_ADDR[13]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
+    Warning (13410): Pin "SRAM_ADDR[14]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
+    Warning (13410): Pin "SRAM_ADDR[15]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
     Warning (13410): Pin "SRAM_ADDR[16]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
     Warning (13410): Pin "SRAM_ADDR[17]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
-    Warning (13410): Pin "SRAM_ADDR[18]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
+    Warning (13410): Pin "SRAM_ADDR[18]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
     Warning (13410): Pin "SRAM_ADDR[19]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 126
     Warning (13410): Pin "SRAM_LB_N" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 129
     Warning (13410): Pin "FL_ADDR[0]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 133
@@ -2816,11 +2751,11 @@ Critical Warning (18061): Ignored Power-Up Level option on the following registe
     Critical Warning (18010): Register core:myRisc|iregister:ins_register|imm_i[31] will power up to Low File: /run/user/1001/overlay/merged/riscv-multicycle/decoder/iregister.vhd Line: 64
 Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (17016): Found the following redundant logic cells in design
-    Info (17048): Logic cell "core:myRisc|Add1~22" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 101
-    Info (17048): Logic cell "core:myRisc|jal_target[0]~22" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 72
+    Info (17048): Logic cell "core:myRisc|Add1~22" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 102
+    Info (17048): Logic cell "core:myRisc|jal_target[0]~22" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 73
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 60 input pin(s) that do not drive logic
+Warning (21074): Design contains 62 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "CLOCK2_50" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 17
     Warning (15610): No output dependent on input pin "CLOCK3_50" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 18
     Warning (15610): No output dependent on input pin "SMA_CLKIN" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 19
@@ -2828,6 +2763,7 @@ Warning (21074): Design contains 60 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 23
     Warning (15610): No output dependent on input pin "KEY[2]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 23
     Warning (15610): No output dependent on input pin "KEY[3]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 23
+    Warning (15610): No output dependent on input pin "SW[5]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
     Warning (15610): No output dependent on input pin "SW[6]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
     Warning (15610): No output dependent on input pin "SW[7]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
     Warning (15610): No output dependent on input pin "SW[8]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
@@ -2838,6 +2774,7 @@ Warning (21074): Design contains 60 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[14]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
     Warning (15610): No output dependent on input pin "SW[15]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
     Warning (15610): No output dependent on input pin "SW[16]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
+    Warning (15610): No output dependent on input pin "SW[17]" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 25
     Warning (15610): No output dependent on input pin "UART_CTS" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 40
     Warning (15610): No output dependent on input pin "UART_RXD" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 42
     Warning (15610): No output dependent on input pin "SD_WP_N" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 51
@@ -2881,18 +2818,18 @@ Warning (21074): Design contains 60 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "OTG_INT" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 111
     Warning (15610): No output dependent on input pin "IRDA_RXD" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 115
     Warning (15610): No output dependent on input pin "FL_RY" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 138
-Info (21057): Implemented 7390 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 7572 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 72 input pins
     Info (21059): Implemented 229 output pins
     Info (21060): Implemented 103 bidirectional pins
-    Info (21061): Implemented 6840 logic cells
+    Info (21061): Implemented 7022 logic cells
     Info (21064): Implemented 128 RAM segments
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 462 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 470 warnings
     Info: Peak virtual memory: 1219 megabytes
-    Info: Processing ended: Mon Dec  9 08:39:19 2019
-    Info: Elapsed time: 00:00:36
-    Info: Total CPU time (on all processors): 00:00:59
+    Info: Processing ended: Fri Dec 13 11:39:47 2019
+    Info: Elapsed time: 00:00:37
+    Info: Total CPU time (on all processors): 00:01:01
 
 

@@ -1,5 +1,5 @@
 Flow report for DE2_115
-Mon Dec  9 08:41:07 2019
+Fri Dec 13 11:41:32 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -41,17 +41,17 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Mon Dec  9 08:39:56 2019           ;
+; Flow Status                        ; Successful - Fri Dec 13 11:40:27 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE115F29C7                                   ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 6,782 / 114,480 ( 6 % )                         ;
-;     Total combinational functions  ; 6,721 / 114,480 ( 6 % )                         ;
-;     Dedicated logic registers      ; 393 / 114,480 ( < 1 % )                         ;
-; Total registers                    ; 393                                             ;
+; Total logic elements               ; 6,926 / 114,480 ( 6 % )                         ;
+;     Total combinational functions  ; 6,866 / 114,480 ( 6 % )                         ;
+;     Dedicated logic registers      ; 427 / 114,480 ( < 1 % )                         ;
+; Total registers                    ; 427                                             ;
 ; Total pins                         ; 400 / 529 ( 76 % )                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 67,584 / 3,981,312 ( 2 % )                      ;
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/09/2019 08:38:43 ;
+; Start date & time ; 12/13/2019 11:39:10 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE2_115             ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 248726525416053.157589152317057        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 68806342109969.157624795023554         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; ../../../pll/pll_inst.vhd              ; --            ; --          ; --         ;
@@ -95,11 +95,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:34     ; 1.0                     ; 1184 MB             ; 00:00:58                           ;
-; Fitter               ; 00:00:30     ; 1.1                     ; 1912 MB             ; 00:00:40                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 978 MB              ; 00:00:04                           ;
-; Timing Analyzer      ; 00:01:10     ; 1.7                     ; 1294 MB             ; 00:01:11                           ;
-; Total                ; 00:02:18     ; --                      ; --                  ; 00:02:53                           ;
+; Analysis & Synthesis ; 00:00:36     ; 1.0                     ; 1184 MB             ; 00:00:59                           ;
+; Fitter               ; 00:00:33     ; 1.1                     ; 1917 MB             ; 00:00:43                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 974 MB              ; 00:00:04                           ;
+; Timing Analyzer      ; 00:01:04     ; 1.6                     ; 1370 MB             ; 00:01:05                           ;
+; Total                ; 00:02:17     ; --                      ; --                  ; 00:02:51                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

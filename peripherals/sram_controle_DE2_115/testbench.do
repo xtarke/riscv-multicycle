@@ -108,6 +108,7 @@ add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
 add wave -label data_out_SRAM   /data_out_SRAM
+add wave -label data_in_SRAM   /data_in_SRAM
 add wave -label chipselect   /chipselect
 add wave -label write   /write
 
