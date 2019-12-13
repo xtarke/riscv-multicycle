@@ -168,7 +168,7 @@ begin
 	
 	GPIO(32) <= SW(0);
 	GPIO(31) <= '1';
-	GPIO(30) <= not(SW(0));--rst_pin;
+	GPIO(30) <= rst_pin;
 	
 	process(wr)
 	begin
