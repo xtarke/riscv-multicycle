@@ -6,12 +6,13 @@ entity dec_fsm is
 	port(
 		clk      : in  std_logic;
 		ready    : in  std_logic;
+		start    : in  std_logic;
 		input_a  : in  unsigned(31 downto 0);
 		input_b  : in  unsigned(31 downto 0);
 		input_c  : in  unsigned(31 downto 0);
 		color    : out unsigned(15 downto 0);
-		output_a : out unsigned(31 downto 0);
 		output_b : out unsigned(31 downto 0);
+		output_c : out unsigned(31 downto 0);
 		sel      : out unsigned(7 downto 0)
 	);
 end entity;
@@ -19,15 +20,15 @@ end entity;
 architecture rtl_dec_fsm of dec_fsm is
 	type state_type is (IDLE, RESET, CLEAN, SQR, RECT, FINISHED);
 	signal state   : state_type;
-	signal start   : std_logic;
+	--signal start   : std_logic;
 	signal start_i : std_logic;
-	signal cmd     : unsigned(15 downto 0);
+	--signal cmd     : unsigned(15 downto 0);
 
 	signal active : std_logic := '0';
 
 begin
-	start <= input_a(31);
-	cmd   <= '0' & input_a(30 downto 16);
+	--start <= input_a(31);
+	--cmd   <= '0' & input_a(30 downto 16);
 
 	start_detect : process(start, active) is
 	begin
@@ -44,8 +45,8 @@ begin
 		begin
 			if rising_edge(start_i) then
 				color    <= input_a(15 downto 0);
-				output_a <= input_b;
-				output_b <= input_c;
+				output_b <= input_b;
+				output_c <= input_c;
 			end if;
 		end process;
 
@@ -60,8 +61,8 @@ begin
 				when IDLE =>
 					if (start = '1') then
 						active <= '1';
-						case cmd is
-							when x"7FFF" => state <= RESET;
+						case input_a(31 downto 16) is
+							when x"FFFF" => state <= RESET;
 							when x"0001" => state <= CLEAN;
 							when x"0002" => state <= SQR;
 							when x"0003" => state <= RECT;

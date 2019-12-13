@@ -115,11 +115,13 @@ architecture rtl of de10_lite is
 	-- TFT signals
 	signal clock_tft : std_logic;
 	
-	signal output 	: unsigned(7 downto 0);
-	signal cs     	: std_logic;
-	signal rs     	: std_logic;
-	signal wr     	: std_logic;
-	signal rst_pin	: std_logic;
+	
+	signal pin_output : unsigned(7 downto 0);
+	signal pin_cs     : std_logic := '0';
+	signal pin_rs     : std_logic := '0';
+	signal pin_wr     : std_logic := '0';
+	signal pin_rst    : std_logic := '0';
+	signal ret    	  : unsigned(31 downto 0);
 	
 	signal input_a 	: unsigned(31 downto 0);
 	signal input_b 	: unsigned(31 downto 0);
@@ -140,46 +142,50 @@ begin
  	rst <= SW(9);
  
 
- tft_controller_inst : entity work.tft
- 	port map(
- 		clk     => clock_tft,
- 		input_a => input_a,
- 		input_b => input_b,
- 		input_c => input_c,
- 		output  => output,
- 		cs      => cs,
- 		rs      => rs,
- 		wr      => wr,
- 		rst     => rst_pin
- 	);
+ tft_inst : entity work.tft
+	port map(
+		clk        => clock_tft,
+		daddress   => daddress,
+		dcsel      => dcsel,
+		d_we       => d_we,
+		input_a    => input_a,
+		input_b    => input_b,
+		input_c    => input_c,
+		ret        => ret,
+		pin_output => pin_output,
+		pin_cs     => pin_cs,
+		pin_rs     => pin_rs,
+		pin_wr     => pin_wr,
+		pin_rst    => pin_rst
+	);
 	
-	ARDUINO_IO(8) <= std_logic(output(0));
-	ARDUINO_IO(9) <= std_logic(output(1));
-	ARDUINO_IO(2) <= std_logic(output(2));
-	ARDUINO_IO(3) <= std_logic(output(3));
-	ARDUINO_IO(4) <= std_logic(output(4));
-	ARDUINO_IO(5) <= std_logic(output(5));
-	ARDUINO_IO(6) <= std_logic(output(6));
-	ARDUINO_IO(7) <= std_logic(output(7)); 
+	ARDUINO_IO(8) <= std_logic(pin_output(0));
+	ARDUINO_IO(9) <= std_logic(pin_output(1));
+	ARDUINO_IO(2) <= std_logic(pin_output(2));
+	ARDUINO_IO(3) <= std_logic(pin_output(3));
+	ARDUINO_IO(4) <= std_logic(pin_output(4));
+	ARDUINO_IO(5) <= std_logic(pin_output(5));
+	ARDUINO_IO(6) <= std_logic(pin_output(6));
+	ARDUINO_IO(7) <= std_logic(pin_output(7)); 
 	
-	GPIO(35) <= cs;
-	GPIO(34) <= rs;
-	GPIO(33) <= wr;
+	GPIO(35) <= pin_cs;
+	GPIO(34) <= pin_rs;
+	GPIO(33) <= pin_wr;
 	
 	GPIO(32) <= SW(0);
 	GPIO(31) <= '1';
-	GPIO(30) <= not(SW(0));--rst_pin;
+	GPIO(30) <= not(SW(0));--pin_rst; --
 	
-	process(wr)
+	process(pin_wr)
 	begin
 		
-		if(output = x"20") then
-			LEDR(0) <= '0';
-			LEDR(1) <= '1';
-		elsif(output = x"21") then
-			LEDR(0) <= '1';
-			LEDR(1) <= '0';
-		end if;
+--		if(pin_output = x"20") then
+--			LEDR(0) <= '0';
+--			LEDR(1) <= '1';
+--		elsif(pin_output = x"21") then
+--			LEDR(0) <= '1';
+--			LEDR(1) <= '0';
+--		end if;
 	
 	end process;
 	
@@ -291,13 +297,11 @@ begin
 						HEX5 <= (others => '1');
 					
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
-						input_a <= unsigned(ddata_w);	
-						
+						input_a <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then
-						input_b <= unsigned(ddata_w);	
-						
+						input_b <= unsigned(ddata_w);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then
-						input_c <= unsigned(ddata_w);	
+						input_c <= unsigned(ddata_w);
 					
 					end if;				
 				end if;

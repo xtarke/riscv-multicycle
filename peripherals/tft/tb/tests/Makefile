@@ -39,10 +39,10 @@ $(MAIN).elf: $(MAIN).o syscalls.o start.o utils.o tft.o
 	chmod -x $(MAIN).elf
 
 sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/tft/sint/core/de10_lite/de0_lite.cdf
+	$(QUARTUS_DIR)quartus_sh --flow compile ../../sint/core/de10_lite/de0_lite.cdf
 	
 fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/tft/sint/core/de10_lite/de0_lite.sof"
+	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../../sint/core/de10_lite/de0_lite.sof"
 
 clean:
 	rm -f *.o *.d *.tmp start.elf
