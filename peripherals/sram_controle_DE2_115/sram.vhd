@@ -18,12 +18,13 @@ entity sram is
 		clk           : IN    STD_LOGIC;
 		chipselect    : IN    STD_LOGIC;
 		write         : IN    STD_LOGIC;
+		read		  : IN 	  STD_LOGIC;
 		data_out          : in  STD_LOGIC_VECTOR(15 DOWNTO 0);
 		address       : in    std_logic_vector(19 downto 0);
 		--read_address  : IN    unsigned(15 downto 0);
 		--write_address : IN    unsigned(15 downto 0);
 		--we            : IN  STD_LOGIC;
-		data_in             : OUT   STD_LOGIC_VECTOR(15 DOWNTO 0)
+		data_in             : out   STD_LOGIC_VECTOR(15 DOWNTO 0)
 	);
 end entity sram;
 
@@ -47,7 +48,8 @@ begin
 
 						if write = '1' then
 							mem_state <= WRITE_M;
-						else
+						end if;
+						if read = '1' then
 							mem_state <= READ_M;
 						end if;
 

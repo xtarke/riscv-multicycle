@@ -92,7 +92,8 @@ architecture RTL of coretestbench is
 	signal SRAM_LB_N     : std_logic;
 	signal data_out_SRAM : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	signal data_in_SRAM  : STD_LOGIC_VECTOR(15 DOWNTO 0);
-	signal teste : std_logic;
+	signal teste         : std_logic;
+	signal read : STD_LOGIC;
 
 begin
 
@@ -186,8 +187,8 @@ begin
 			dmask      => dmask,
 			q          => ddata_r_mem
 		);
-		
-	addressram <= std_logic_vector(to_unsigned(daddress, 32)(19 downto 0));
+
+	addressram <= std_logic_vector(to_unsigned(daddress, 21)(19 downto 0));
 
 	sram : entity work.sram
 		port map(
@@ -201,25 +202,23 @@ begin
 			clk        => clk,
 			chipselect => dcsel(0),
 			write      => write,
+			read	   => read,
 			data_out   => data_out_SRAM(15 downto 0),
 			address    => addressram,
 			data_in    => data_in_SRAM
 		);
-		
-	
+
 	process(clk)
 	begin
 		if rising_edge(clk) then
 
-				if (dcsel = "11") then
-				--chipselect <= '1';
-
-					write             <= d_we;
-					data_out_SRAM     <= ddata_w;
-					--LEDR(15 DOWNTO 0) <= data_out_SRAM(15 downto 0);
-	
-					--ddata_r(15 downto 0) <= data_in_SRAM;
-					--LEDR(15 DOWNTO 0) <= data_in_SRAM;
+			if (dcsel = "11") then
+				if(d_we = '1')then
+					data_out_SRAM <= ddata_w;
+				end if;
+				write <= d_we;
+				read <= d_rd;
+				
 			end if;
 		end if;
 	end process;

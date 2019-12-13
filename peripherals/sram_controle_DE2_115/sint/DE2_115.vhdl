@@ -185,6 +185,7 @@ architecture rtl of DE2_115 is
 	signal data_out_SRAM : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	signal data_in_SRAM  : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	signal teste         : std_logic;
+	signal read : std_logic;
 
 begin
 
@@ -215,7 +216,7 @@ begin
 		end if;
 	end process;
 	------------------------------------
-	addressram <= std_logic_vector(to_unsigned(daddress, 32)(19 downto 0));
+	addressram <= std_logic_vector(to_unsigned(daddress, 21)(19 downto 0));
 
 	sram : entity work.sram
 		port map(
@@ -229,6 +230,7 @@ begin
 			clk        => clk,
 			chipselect => dcsel(0),
 			write      => write,
+			read => read,
 			data_out   => data_out_SRAM(15 downto 0),
 			address    => addressram,
 			data_in    => data_in_SRAM(15 downto 0)
@@ -240,15 +242,21 @@ begin
 
 			if (dcsel = "11") then
 				--chipselect <= '1';
+				write <= d_we;
+				read <= d_rd;
+				if(d_we = '1')then
+					
+					data_out_SRAM <= ddata_w;
+					
+				end if;
 
-				write         <= d_we;
-				data_out_SRAM <= ddata_w;
+
 				--LEDR(15 DOWNTO 0) <= data_out_SRAM(15 downto 0);
 
 				--ddata_r <= data_in_SRAM;
 				--LEDR(15 DOWNTO 0) <= data_in_SRAM;
 			end if;
-		end if;
+		end if;	
 	end process;
 
 	------------------------------------
@@ -286,9 +294,6 @@ begin
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space		
 	with dcsel select ddata_r <=
-		idata when "00",
-		ddata_r_mem when "01",
-     	input_in when "10",
         data_out_SRAM when "11",(others => '0') when others;
 
 	-- Softcore instatiation

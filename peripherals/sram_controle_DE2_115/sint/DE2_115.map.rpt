@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_115
-Fri Dec 13 11:39:47 2019
+Fri Dec 13 18:06:56 2019
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -83,15 +83,15 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 13 11:39:47 2019           ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec 13 18:06:56 2019           ;
 ; Quartus Prime Version              ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name                      ; DE2_115                                         ;
 ; Top-level Entity Name              ; DE2_115                                         ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 6,976                                           ;
-;     Total combinational functions  ; 6,833                                           ;
-;     Dedicated logic registers      ; 427                                             ;
-; Total registers                    ; 427                                             ;
+; Total logic elements               ; 6,978                                           ;
+;     Total combinational functions  ; 6,835                                           ;
+;     Dedicated logic registers      ; 428                                             ;
+; Total registers                    ; 428                                             ;
 ; Total pins                         ; 400                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 67,584                                          ;
@@ -199,7 +199,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.2%      ;
+;     Processor 2            ;   0.1%      ;
 ;     Processor 3            ;   0.1%      ;
 ;     Processor 4            ;   0.1%      ;
 +----------------------------+-------------+
@@ -284,20 +284,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+---------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                           ;
 +---------------------------------------------+---------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 6,976                                                                           ;
+; Estimated Total logic elements              ; 6,978                                                                           ;
 ;                                             ;                                                                                 ;
-; Total combinational functions               ; 6833                                                                            ;
+; Total combinational functions               ; 6835                                                                            ;
 ; Logic element usage by number of LUT inputs ;                                                                                 ;
-;     -- 4 input functions                    ; 2894                                                                            ;
-;     -- 3 input functions                    ; 3487                                                                            ;
-;     -- <=2 input functions                  ; 452                                                                             ;
+;     -- 4 input functions                    ; 2839                                                                            ;
+;     -- 3 input functions                    ; 3543                                                                            ;
+;     -- <=2 input functions                  ; 453                                                                             ;
 ;                                             ;                                                                                 ;
 ; Logic elements by mode                      ;                                                                                 ;
-;     -- normal mode                          ; 4085                                                                            ;
+;     -- normal mode                          ; 4087                                                                            ;
 ;     -- arithmetic mode                      ; 2748                                                                            ;
 ;                                             ;                                                                                 ;
-; Total registers                             ; 427                                                                             ;
-;     -- Dedicated logic registers            ; 427                                                                             ;
+; Total registers                             ; 428                                                                             ;
+;     -- Dedicated logic registers            ; 428                                                                             ;
 ;     -- I/O registers                        ; 0                                                                               ;
 ;                                             ;                                                                                 ;
 ; I/O pins                                    ; 400                                                                             ;
@@ -309,9 +309,9 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                 ; 1                                                                               ;
 ;                                             ;                                                                                 ;
 ; Maximum fan-out node                        ; pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 404                                                                             ;
-; Total fan-out                               ; 26869                                                                           ;
-; Average fan-out                             ; 3.23                                                                            ;
+; Maximum fan-out                             ; 405                                                                             ;
+; Total fan-out                               ; 26822                                                                           ;
+; Average fan-out                             ; 3.22                                                                            ;
 +---------------------------------------------+---------------------------------------------------------------------------------+
 
 
@@ -320,7 +320,7 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                 ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |DE2_115                                                                                                                                ; 6833 (194)          ; 427 (66)                  ; 67584       ; 16           ; 0       ; 8         ; 400  ; 0            ; |DE2_115                                                                                                                                                                                                                                                                                                                                            ; DE2_115                           ; work         ;
+; |DE2_115                                                                                                                                ; 6835 (195)          ; 428 (67)                  ; 67584       ; 16           ; 0       ; 8         ; 400  ; 0            ; |DE2_115                                                                                                                                                                                                                                                                                                                                            ; DE2_115                           ; work         ;
 ;    |core:myRisc|                                                                                                                        ; 6320 (961)          ; 192 (32)                  ; 2048        ; 16           ; 0       ; 8         ; 0    ; 0            ; |DE2_115|core:myRisc                                                                                                                                                                                                                                                                                                                                ; core                              ; work         ;
 ;       |M:M_0|                                                                                                                           ; 4880 (89)           ; 0 (0)                     ; 0           ; 16           ; 0       ; 8         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0                                                                                                                                                                                                                                                                                                                          ; M                                 ; work         ;
 ;          |lpm_divide:Div0|                                                                                                              ; 1202 (0)            ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|core:myRisc|M:M_0|lpm_divide:Div0                                                                                                                                                                                                                                                                                                          ; lpm_divide                        ; work         ;
@@ -378,7 +378,7 @@ https://fpgasoftware.intel.com/eula.
 ;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 118 (82)            ; 81 (53)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
 ;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 18 (18)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
 ;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 18 (18)             ; 19 (19)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
-;    |sram:sram|                                                                                                                          ; 23 (23)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sram:sram                                                                                                                                                                                                                                                                                                                                  ; sram                              ; work         ;
+;    |sram:sram|                                                                                                                          ; 24 (24)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE2_115|sram:sram                                                                                                                                                                                                                                                                                                                                  ; sram                              ; work         ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -666,12 +666,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 427   ;
+; Total registers                              ; 428   ;
 ; Number of registers using Synchronous Clear  ; 17    ;
 ; Number of registers using Synchronous Load   ; 20    ;
 ; Number of registers using Asynchronous Clear ; 189   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 241   ;
+; Number of registers using Clock Enable       ; 242   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -847,24 +847,25 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                     ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[17]                                               ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[3]                                                ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |DE2_115|core:myRisc|pc[1]                                                                                                                                                                          ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[3] ;
-; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |DE2_115|core:myRisc|pc[20]                                                                                                                                                                         ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[2]                                                ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |DE2_115|core:myRisc|pc[0]                                                                                                                                                                          ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[0] ;
+; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |DE2_115|core:myRisc|pc[21]                                                                                                                                                                         ;
 ; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |DE2_115|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[0]      ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE2_115|sram:sram|mem_state                                                                                                                                                                        ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE2_115|core:myRisc|Mux104                                                                                                                                                                         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE2_115|core:myRisc|Mux101                                                                                                                                                                         ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector23                                                                                                                                                                    ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |DE2_115|sram:sram|mem_state                                                                                                                                                                        ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector15                                                                                                                                                                    ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector7                                                                                                                                                                     ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE2_115|dmemory:dmem|Selector1                                                                                                                                                                     ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |DE2_115|sram:sram|mem_state                                                                                                                                                                        ;
 ; 18:1               ; 8 bits    ; 96 LEs        ; 48 LEs               ; 48 LEs                 ; No         ; |DE2_115|dmemory:dmem|state                                                                                                                                                                         ;
 ; 9:1                ; 16 bits   ; 96 LEs        ; 80 LEs               ; 16 LEs                 ; No         ; |DE2_115|Mux0                                                                                                                                                                                       ;
-; 12:1               ; 8 bits    ; 64 LEs        ; 40 LEs               ; 24 LEs                 ; No         ; |DE2_115|Mux23                                                                                                                                                                                      ;
-; 13:1               ; 3 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; No         ; |DE2_115|Mux24                                                                                                                                                                                      ;
-; 13:1               ; 5 bits    ; 40 LEs        ; 30 LEs               ; 10 LEs                 ; No         ; |DE2_115|Mux31                                                                                                                                                                                      ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 40 LEs               ; 24 LEs                 ; No         ; |DE2_115|Mux22                                                                                                                                                                                      ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; No         ; |DE2_115|Mux25                                                                                                                                                                                      ;
+; 13:1               ; 5 bits    ; 40 LEs        ; 30 LEs               ; 10 LEs                 ; No         ; |DE2_115|Mux27                                                                                                                                                                                      ;
 ; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux55                                                                                                                                                                          ;
-; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux50                                                                                                                                                                          ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 112 LEs              ; 56 LEs                 ; No         ; |DE2_115|core:myRisc|Mux45                                                                                                                                                                          ;
+; 32:1               ; 4 bits    ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux51                                                                                                                                                                          ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 112 LEs              ; 56 LEs                 ; No         ; |DE2_115|core:myRisc|Mux46                                                                                                                                                                          ;
 ; 33:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; No         ; |DE2_115|core:myRisc|Mux60                                                                                                                                                                          ;
 ; 33:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; No         ; |DE2_115|core:myRisc|Mux38                                                                                                                                                                          ;
 ; 34:1               ; 2 bits    ; 44 LEs        ; 32 LEs               ; 12 LEs                 ; No         ; |DE2_115|core:myRisc|Mux61                                                                                                                                                                          ;
@@ -1886,31 +1887,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 427                         ;
-; cycloneiii_ff         ; 341                         ;
+; cycloneiii_ff         ; 342                         ;
 ;     CLR               ; 79                          ;
-;     ENA               ; 101                         ;
+;     ENA               ; 102                         ;
 ;     ENA CLR           ; 67                          ;
 ;     ENA CLR SLD       ; 10                          ;
 ;     ENA SCLR          ; 5                           ;
 ;     plain             ; 79                          ;
 ; cycloneiii_io_obuf    ; 103                         ;
-; cycloneiii_lcell_comb ; 6744                        ;
+; cycloneiii_lcell_comb ; 6746                        ;
 ;     arith             ; 2740                        ;
 ;         2 data inputs ; 86                          ;
 ;         3 data inputs ; 2654                        ;
-;     normal            ; 4004                        ;
+;     normal            ; 4006                        ;
 ;         0 data inputs ; 126                         ;
 ;         1 data inputs ; 63                          ;
-;         2 data inputs ; 172                         ;
-;         3 data inputs ; 803                         ;
-;         4 data inputs ; 2840                        ;
+;         2 data inputs ; 173                         ;
+;         3 data inputs ; 859                         ;
+;         4 data inputs ; 2785                        ;
 ; cycloneiii_mac_mult   ; 8                           ;
 ; cycloneiii_mac_out    ; 8                           ;
 ; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 128                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 146.50                      ;
-; Average LUT depth     ; 95.27                       ;
+; Average LUT depth     ; 95.56                       ;
 +-----------------------+-----------------------------+
 
 
@@ -1919,7 +1920,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:15     ;
+; Top            ; 00:00:14     ;
 +----------------+--------------+
 
 
@@ -1929,7 +1930,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Fri Dec 13 11:39:10 2019
+    Info: Processing started: Fri Dec 13 18:06:20 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_115 -c DE2_115
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1937,7 +1938,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file DE2_115
     Info (12022): Found design unit 1: DE2_115-rtl File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 144
     Info (12023): Found entity 1: DE2_115 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file sram.vhd
-    Info (12022): Found design unit 1: sram-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 30
+    Info (12022): Found design unit 1: sram-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 31
     Info (12023): Found entity 1: sram File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file /run/user/1001/overlay/merged/riscv-multicycle/registers/register_file.vhd
     Info (12022): Found design unit 1: register_file-RTL File: /run/user/1001/overlay/merged/riscv-multicycle/registers/register_file.vhd Line: 24
@@ -2037,7 +2038,7 @@ Warning (10036): Verilog HDL or VHDL warning at DE2_115.vhdl(170): object "locke
 Warning (10036): Verilog HDL or VHDL warning at DE2_115.vhdl(173): object "state" assigned a value but never read File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 173
 Warning (10036): Verilog HDL or VHDL warning at DE2_115.vhdl(186): object "data_in_SRAM" assigned a value but never read File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 186
 Warning (10873): Using initial value X (don't care) for net "DRAM_ADDR[12..10]" at DE2_115.vhdl(116) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 116
-Info (12128): Elaborating entity "pll" for hierarchy "pll:pll_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 191
+Info (12128): Elaborating entity "pll" for hierarchy "pll:pll_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 192
 Info (12128): Elaborating entity "altpll" for hierarchy "pll:pll_inst|altpll:altpll_component" File: /run/user/1001/overlay/merged/riscv-multicycle/pll/pll.vhd Line: 140
 Info (12130): Elaborated megafunction instantiation "pll:pll_inst|altpll:altpll_component" File: /run/user/1001/overlay/merged/riscv-multicycle/pll/pll.vhd Line: 140
 Info (12133): Instantiated megafunction "pll:pll_inst|altpll:altpll_component" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/pll/pll.vhd Line: 140
@@ -2099,50 +2100,50 @@ Info (12133): Instantiated megafunction "pll:pll_inst|altpll:altpll_component" w
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_altpll.v
     Info (12023): Found entity 1: pll_altpll File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/pll_altpll.v Line: 31
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "sram" for hierarchy "sram:sram" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 220
-Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_WE_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_OE_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_LB_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_UB_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "data_in", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Warning (10631): VHDL Process Statement warning at sram.vhd(70): inferring latch(es) for signal or variable "SRAM_DQ", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[0]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[1]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[2]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[3]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[4]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[5]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[6]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[7]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[8]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[9]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[10]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[11]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[12]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[13]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[14]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_DQ[15]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[0]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[1]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[2]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[3]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[4]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[5]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[6]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[7]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[8]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[9]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[10]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[11]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[12]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[13]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[14]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "data_in[15]" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_UB_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_LB_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_OE_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (10041): Inferred latch for "SRAM_WE_N" at sram.vhd(70) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 70
-Info (12128): Elaborating entity "iram_quartus" for hierarchy "iram_quartus:iram_quartus_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 257
+Info (12128): Elaborating entity "sram" for hierarchy "sram:sram" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 221
+Warning (10631): VHDL Process Statement warning at sram.vhd(72): inferring latch(es) for signal or variable "SRAM_WE_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Warning (10631): VHDL Process Statement warning at sram.vhd(72): inferring latch(es) for signal or variable "SRAM_OE_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Warning (10631): VHDL Process Statement warning at sram.vhd(72): inferring latch(es) for signal or variable "SRAM_LB_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Warning (10631): VHDL Process Statement warning at sram.vhd(72): inferring latch(es) for signal or variable "SRAM_UB_N", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Warning (10631): VHDL Process Statement warning at sram.vhd(72): inferring latch(es) for signal or variable "data_in", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Warning (10631): VHDL Process Statement warning at sram.vhd(72): inferring latch(es) for signal or variable "SRAM_DQ", which holds its previous value in one or more paths through the process File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[0]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[1]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[2]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[3]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[4]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[5]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[6]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[7]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[8]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[9]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[10]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[11]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[12]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[13]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[14]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_DQ[15]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[0]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[1]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[2]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[3]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[4]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[5]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[6]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[7]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[8]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[9]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[10]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[11]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[12]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[13]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[14]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "data_in[15]" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_UB_N" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_LB_N" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_OE_N" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (10041): Inferred latch for "SRAM_WE_N" at sram.vhd(72) File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/sram.vhd Line: 72
+Info (12128): Elaborating entity "iram_quartus" for hierarchy "iram_quartus:iram_quartus_inst" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 261
 Info (12128): Elaborating entity "altsyncram" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component" File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
 Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component" File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
 Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
@@ -2202,7 +2203,7 @@ Info (12128): Elaborating entity "altsyncram_n824" for hierarchy "iram_quartus:i
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_n303.tdf
     Info (12023): Found entity 1: altsyncram_n303 File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n303.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_n303" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|altsyncram_n303:altsyncram1" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 38
-Critical Warning (127005): Memory depth (1024) in the design file differs from memory depth (765) in the Memory Initialization File "/home/aluno/riscv-multicycle/tests/quartus.hex" -- setting initial value for remaining addresses to 0 File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
+Critical Warning (127005): Memory depth (1024) in the design file differs from memory depth (777) in the Memory Initialization File "/home/aluno/riscv-multicycle/tests/quartus.hex" -- setting initial value for remaining addresses to 0 File: /run/user/1001/overlay/merged/riscv-multicycle/memory/iram_quartus.vhd Line: 62
 Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 39
 Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 39
 Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/db/altsyncram_n824.tdf Line: 39
@@ -2217,8 +2218,8 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
 Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
 Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
 Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n824:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: /opt/intelFPGA/18.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
-Info (12128): Elaborating entity "dmemory" for hierarchy "dmemory:dmem" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 268
-Info (12128): Elaborating entity "core" for hierarchy "core:myRisc" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 295
+Info (12128): Elaborating entity "dmemory" for hierarchy "dmemory:dmem" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 272
+Info (12128): Elaborating entity "core" for hierarchy "core:myRisc" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 299
 Info (12128): Elaborating entity "iregister" for hierarchy "core:myRisc|iregister:ins_register" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 166
 Info (12128): Elaborating entity "register_file" for hierarchy "core:myRisc|register_file:registers" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 183
 Info (12128): Elaborating entity "decoder" for hierarchy "core:myRisc|decoder:decoder0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 209
@@ -2226,7 +2227,7 @@ Warning (10873): Using initial value X (don't care) for net "dmemory.bus_lag" at
 Info (12128): Elaborating entity "ULA" for hierarchy "core:myRisc|ULA:alu_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 226
 Info (12128): Elaborating entity "M" for hierarchy "core:myRisc|M:M_0" File: /run/user/1001/overlay/merged/riscv-multicycle/core/core.vhd Line: 242
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2019.12.13.12:39:25 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2019.12.13.19:06:35 Progress: Loading sld5d2bcf66/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2515,7 +2516,7 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "FL_DQ[5]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 135
     Warning (13040): bidirectional pin "FL_DQ[6]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 135
     Warning (13040): bidirectional pin "FL_DQ[7]" has no driver File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 135
-Info (13000): Registers with preset signals will power-up high File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+Info (13000): Registers with preset signals will power-up high File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "DRAM_DQ[0]~synth" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 122
@@ -2595,20 +2596,20 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[15]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
     Warning (13410): Pin "LEDR[16]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
     Warning (13410): Pin "LEDR[17]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 22
-    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
-    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 328
+    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[0]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[1]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[3]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[4]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[5]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 332
     Warning (13410): Pin "HEX6[0]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
     Warning (13410): Pin "HEX6[1]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
     Warning (13410): Pin "HEX6[2]" is stuck at GND File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 32
@@ -2818,18 +2819,18 @@ Warning (21074): Design contains 62 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "OTG_INT" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 111
     Warning (15610): No output dependent on input pin "IRDA_RXD" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 115
     Warning (15610): No output dependent on input pin "FL_RY" File: /run/user/1001/overlay/merged/riscv-multicycle/peripherals/sram_controle_DE2_115/sint/DE2_115.vhdl Line: 138
-Info (21057): Implemented 7572 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 7575 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 72 input pins
     Info (21059): Implemented 229 output pins
     Info (21060): Implemented 103 bidirectional pins
-    Info (21061): Implemented 7022 logic cells
+    Info (21061): Implemented 7025 logic cells
     Info (21064): Implemented 128 RAM segments
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 470 warnings
-    Info: Peak virtual memory: 1219 megabytes
-    Info: Processing ended: Fri Dec 13 11:39:47 2019
-    Info: Elapsed time: 00:00:37
-    Info: Total CPU time (on all processors): 00:01:01
+    Info: Peak virtual memory: 1222 megabytes
+    Info: Processing ended: Fri Dec 13 18:06:56 2019
+    Info: Elapsed time: 00:00:36
+    Info: Total CPU time (on all processors): 00:01:00
 
 

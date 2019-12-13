@@ -111,5 +111,6 @@ add wave -label data_out_SRAM   /data_out_SRAM
 add wave -label data_in_SRAM   /data_in_SRAM
 add wave -label chipselect   /chipselect
 add wave -label write   /write
+add wave -label read   /read
 
 run 950000 ns

@@ -1,0 +1,22 @@
+{
+	"system" : {
+		"platform" : "linux64",
+		"os_name" : "CentOS Linux",
+		"os_version" : ""
+	},
+	"error" : {
+		"executable" : "quartus_map",
+		"comment" : "not_applicable",
+		"error_message" : "Segment Violation at 0xffffffff",
+		"source_file" : "unknown",
+		"line" : "0",
+		"stack_trace" : "\t 0xffffffff:\n",
+		"subsystem" : "unknown"
+	},
+	"quartus" : {
+		"quartus_bits" : "64",
+		"version" : "18.1.1",
+		"build" : "646",
+		"edition" : "Standard Edition"
+	}
+}
