@@ -20,26 +20,24 @@ int I2C_write(uint8_t data, uint8_t addr){
 // verificar se tempos de delay atendem
 	int ack;
 
-	// [ 32  31  30 29   	17	16	15 	14-8 7-0 ]
-	// ack_err				rst ena rw  addr data			--futuro "1 bit busy"   --sda e scl?
+	// [ 31  	30   30  29 14-8 7-0 ]
+	// ack_err	rst  ena rw addr data	--  inplementar no futuro "1 bit busy"
 
 	//pulso no rst
-	I2C |= 0x40000000;
+	I2C = 0x40000000;  // limpa o ack_err, rst e os campos addr e data
 	delay_(20);
-	I2C &= 0xBFFF8000;  // limpa o rst e os campos addr e data
+	I2C = 0x00000000;
 
-	I2C |=  data;		// carrega dado
-	I2C |=  (addr << 8);// carrega endereço
+
+	I2C =  (addr * 256) + data;// carrega endereço
 
 	// pulso no enable
-	I2C |= 0x00008000;
-	delay_(20);
-	I2C &= 0xFFFF7FFF;
-
-	delay_(300);
+	I2C = I2C | 0x20000000;
+	delay_(2);
+	I2C &= 0xDFFFFFFF;
+	delay_(100);	// ##### CONFERIR SE ESSE TEMPO DE DELAY É SUFICIENTE ####
 	//le o ack
 	ack = (I2C >> 31);
 
+	return ack;
 }
-
-
