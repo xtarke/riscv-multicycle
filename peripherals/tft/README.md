@@ -13,7 +13,7 @@ Figura 1. Diagrama de blocos do controlador TFT.
 * **data_mem:** Memória responsável por armazenar a informação que será enviada ao display LCD;
 * **controller:** Bloco responsável pelo gerenciamento da leitura das memórias;
 * **mux:** Bloco de seleção da entrada do bloco *writer*;
-* **writer:** Bloco responsável pela conversão de 32 bits para 8 bits paralelos mais os pinos CS, RS e WR.
+* **writer:** Bloco responsável pela conversão dos 32 bits da memória para 8 bits de saída do LCD mais os pinos CS, RS e WR.
 
 ## Descrição dos blocos do decoder
 ![TFT_2](./images/figura2.png "Diagrama de blocos do decoder")
