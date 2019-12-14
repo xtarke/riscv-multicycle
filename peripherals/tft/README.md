@@ -8,7 +8,7 @@
 
 Figura 1. Diagrama de blocos do controlador TFT.
 
-* **decoder:** Bloco responsável pela decodificação dos dados de entrada, convertendo em informação para as memórias;
+* **decoder_tft:** Bloco responsável pela decodificação dos dados de entrada, convertendo em informação para as memórias;
 * **boot_mem:** Memória responsável pela inicialização do display LCD;
 * **data_mem:** Memória responsável por armazenar a informação que será enviada ao display LCD;
 * **controller:** Bloco responsável pelo gerenciamento da leitura das memórias;
