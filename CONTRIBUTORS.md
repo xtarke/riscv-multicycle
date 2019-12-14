@@ -21,3 +21,7 @@ RISVC contributors (sorted alphabetically)
 
   * 9600 baud rate UART.
   
+* **[Alexsandro Gehlen]
+* **[Jhontan de Freitas Lang](https://github.com/jhonatanlang)**
+
+	* I2C master (write mode)
