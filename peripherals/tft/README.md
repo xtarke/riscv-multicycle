@@ -29,7 +29,7 @@ Figura 2. Diagrama de blocos do decoder do controlador TFT LCD.
 
 ![TFT_3](./images/figura3.png "Sequência de bytes")
 
-Figura 2. Sequência de bytes enviados ao hardware.
+Figura 3. Sequência de bytes enviados ao hardware.
 
 ### Bibliografia
 [ILI9320 Datasheet](https://www.rockbox.org/wiki/pub/Main/GSoCSansaView/ILI9320DS_V0.55.pdf)
