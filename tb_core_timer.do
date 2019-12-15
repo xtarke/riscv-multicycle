@@ -124,7 +124,7 @@ add wave -label output_2A -radix binary /timer/output_A(2)
 add wave -label output_2B -radix binary /timer/output_B(2)
 add wave -label internal_clock -radix binary /timer/internal_clock
 
-run 1000000 ns
+run 2000000 ns
 
 wave zoomfull
 write wave peripherals/timer/testbench_core_timer_wave.ps
