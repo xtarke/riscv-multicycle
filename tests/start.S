@@ -50,6 +50,22 @@ addi sp, sp,%lo(33556480)
 lui gp, %hi(33554432)
 addi gp, gp, %lo(33554432)
 
+
+/* lui	a5,0x2000
+li	a4,0x123456F8
+sw a4, 0(a5)
+sb a4, 4(a5)
+sh a4, 6(a5)
+
+lhu	a6,0(a5)
+lh	a7,2(a5)
+
+lb s2, 0(a5)
+lb s3, 1(a5)
+lb s4, 2(a5)
+lb s5, 3(a5) */
+
+
 /* jal init_data_section */
 
 /* push zeros on the stack for argc and argv */

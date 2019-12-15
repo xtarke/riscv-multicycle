@@ -16,7 +16,8 @@ package decoder_types is
 	type mem_ctrl_t is record
 		read : std_logic;		--! Memory read signal
 		write: std_logic;		--! Memory write signal
-		bus_lag : std_logic; 	--! Active when another cycle is needle for bus transaction (reada DATA f
+		signal_ext : std_logic; --! Signal extension
+		bus_lag : std_logic; 	--! Active when another cycle is need for bus transaction (reada DATA f
 		word_size : std_logic_vector(1 downto 0);	--! "00": word, "01": half word, "11" byte
 	end record mem_ctrl_t;
 	

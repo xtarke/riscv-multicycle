@@ -106,6 +106,7 @@ architecture rtl of de0_lite is
 	
 	-- CPU state signals
 	signal state : cpu_state_t;
+	signal d_sig : std_logic;
 	
 begin
 	
@@ -159,6 +160,7 @@ begin
 			address => daddress,
 			we      => d_we,
 			csel    => dcsel(0),
+			signal_ext => d_sig,
 			dmask   => dmask,
 			q       => ddata_r_mem
 		);
@@ -179,7 +181,7 @@ begin
 			IMEMORY_WORDS => IMEMORY_WORDS,
 			DMEMORY_WORDS => DMEMORY_WORDS
 		)
-		port map(
+		port map(			
 			clk      => clk,
 			rst      => rst,
 			iaddress => iaddress,
@@ -190,6 +192,7 @@ begin
 			d_we     => d_we,
 			d_rd     => d_rd,
 			dcsel    => dcsel,
+			d_sig 	 => d_sig,
 			dmask    => dmask,
 			state    => state
 		);

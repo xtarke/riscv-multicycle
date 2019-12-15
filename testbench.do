@@ -50,10 +50,10 @@ add wave -label decoded -radix ASCII /debugString
 # add wave -radix hex /q
 
 add wave -height 15 -divider "PC and Ctrl Targers"
-# add wave -radix hex -label pc 			/myRiscv/pc
-# add wave -radix hex -label jal_target 	/myRiscv/jal_target
-# add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
-# add wave -label branch_cmp 				/myRiscv/branch_cmp
+add wave -radix hex -label pc 			/myRiscv/pc
+add wave -radix hex -label jal_target 	/myRiscv/jal_target
+add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
+add wave -label branch_cmp 				/myRiscv/branch_cmp
 
 add wave -height 15 -divider "Iregister debug"
 add wave -label opcode  /myRiscv/opcodes 
@@ -70,7 +70,7 @@ add wave -label imm_j /myRiscv/imm_j
 add wave -height 15 -divider "Register file debug"
  add wave -label registers -radix hex /myRiscv/registers/ram
  add wave -label w_ena 	/myRiscv/rf_w_ena
- add wave -label w_data 	/myRiscv/rw_data
+ add wave -label w_data -radix hex	/myRiscv/rw_data
  add wave -label r1_data -radix hex /myRiscv/rs1_data
  add wave -label r2_data -radix hex /myRiscv/rs2_data
 
@@ -87,6 +87,9 @@ add wave -label fsm_data -radix hex /dmem/fsm_data
 add wave -label ram_data -radix hex /dmem/ram_data
 add wave -label mState /dmem/state
 add wave -label fsm_we /dmem/fsm_we
+add wave -label ddata_r_mem -radix hex /dmem/q
+add wave -label datamemory -radix hex /dmem/ram_block
+
 
 add wave -height 15 -divider "Data bus"
 add wave -label daddress -radix hex /daddress
@@ -96,6 +99,7 @@ add wave -label dmask -radix bin /dmask
 add wave -label dcsel 	/dcsel
 add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
+add wave -label d_sig   /d_sig
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
