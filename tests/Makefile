@@ -1,5 +1,6 @@
 ifndef RISCV_TOOLS_PREFIX
 RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
+
 endif
 QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im

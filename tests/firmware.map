@@ -94,7 +94,9 @@ END GROUP
 LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a
 LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crtend.o
 
-.rom            0x0000000000000000      0x340
+
+.rom            0x0000000000000000      0x71c
+
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x2c start.o
@@ -107,121 +109,79 @@ LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crt
                 0x0000000000000100                _start
                 0x0000000000000140                _init
                 0x0000000000000140                _fini
- .text          0x0000000000000144       0x38 firmware.o
+
+ .text          0x0000000000000144       0x68 firmware.o
                 0x0000000000000144                main
- .text          0x000000000000017c       0xd8 syscalls.o
-                0x000000000000017c                _getpid
-                0x000000000000017c                _utime
-                0x000000000000017c                _sysconf
-                0x000000000000017c                _ftime
-                0x000000000000017c                _isatty
-                0x000000000000017c                _open
-                0x000000000000017c                _times
-                0x000000000000017c                _stat
-                0x000000000000017c                _chdir
-                0x000000000000017c                _wait
-                0x000000000000017c                _lseek
-                0x000000000000017c                _fstatat
-                0x000000000000017c                _link
-                0x000000000000017c                _chown
-                0x000000000000017c                _access
-                0x000000000000017c                _openat
-                0x000000000000017c                _execve
-                0x000000000000017c                _chmod
-                0x000000000000017c                _lstat
-                0x000000000000017c                _unlink
-                0x000000000000017c                _fork
-                0x000000000000017c                _getcwd
-                0x000000000000017c                _kill
-                0x000000000000017c                _gettimeofday
-                0x000000000000017c                _faccessat
-                0x0000000000000180                unimplemented_syscall
-                0x00000000000001a4                _read
-                0x00000000000001ac                _write
-                0x00000000000001d0                _close
-                0x00000000000001d8                _fstat
-                0x00000000000001fc                _sbrk
-                0x0000000000000220                _exit
-                0x0000000000000224                init_data_section
- .text          0x0000000000000254       0x10 utils.o
-                0x0000000000000254                delay_
- .text          0x0000000000000264       0xdc /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
-                0x0000000000000264                memset
+ .text          0x00000000000001ac       0xd4 syscalls.o
+                0x00000000000001ac                _getpid
+                0x00000000000001ac                _utime
+                0x00000000000001ac                _sysconf
+                0x00000000000001ac                _ftime
+                0x00000000000001ac                _isatty
+                0x00000000000001ac                _open
+                0x00000000000001ac                _times
+                0x00000000000001ac                _stat
+                0x00000000000001ac                _chdir
+                0x00000000000001ac                _wait
+                0x00000000000001ac                _lseek
+                0x00000000000001ac                _fstatat
+                0x00000000000001ac                _link
+                0x00000000000001ac                _chown
+                0x00000000000001ac                _access
+                0x00000000000001ac                _openat
+                0x00000000000001ac                _execve
+                0x00000000000001ac                _chmod
+                0x00000000000001ac                _lstat
+                0x00000000000001ac                _unlink
+                0x00000000000001ac                _fork
+                0x00000000000001ac                _getcwd
+                0x00000000000001ac                _kill
+                0x00000000000001ac                _gettimeofday
+                0x00000000000001ac                _faccessat
+                0x00000000000001b0                unimplemented_syscall
+                0x00000000000001d4                _read
+                0x00000000000001dc                _write
+                0x0000000000000200                _close
+                0x0000000000000208                _fstat
+                0x000000000000022c                _sbrk
+                0x0000000000000250                _exit
+                0x0000000000000254                init_data_section
+ .text          0x0000000000000280       0x10 utils.o
+                0x0000000000000280                delay_
+ .text          0x0000000000000290       0x14 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
+                0x0000000000000290                atexit
+ .text          0x00000000000002a4        0x8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
+                0x00000000000002a4                __errno
+ .text          0x00000000000002ac       0x30 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
+                0x00000000000002ac                exit
+ .text          0x00000000000002dc       0x5c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
+                0x00000000000002dc                __libc_fini_array
+ .text          0x0000000000000338       0xa8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
+                0x0000000000000338                __libc_init_array
+ .text          0x00000000000003e0       0xd8 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
+                0x00000000000003e0                memcpy
+ .text          0x00000000000004b8       0xdc /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memset.o)
+                0x00000000000004b8                memset
+ .text          0x0000000000000594       0x7c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
+                0x0000000000000594                __register_exitproc
+ .text          0x0000000000000610      0x10c /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
+                0x0000000000000610                __call_exitprocs
 
-.text.atexit    0x0000000000000340       0x14
- .text.atexit   0x0000000000000340       0x14 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
-                0x0000000000000340                atexit
-
-.text.__errno   0x0000000000000354        0xc
- .text.__errno  0x0000000000000354        0xc /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
-                0x0000000000000354                __errno
-
-.text.exit      0x0000000000000360       0x34
- .text.exit     0x0000000000000360       0x34 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
-                0x0000000000000360                exit
-
-.text.__libc_fini_array
-                0x0000000000000394       0x60
- .text.__libc_fini_array
-                0x0000000000000394       0x60 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
-                0x0000000000000394                __libc_fini_array
-
-.text.__libc_init_array
-                0x00000000000003f4       0x98
- .text.__libc_init_array
-                0x00000000000003f4       0x98 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
-                0x00000000000003f4                __libc_init_array
-
-.text.memcpy    0x000000000000048c      0x11c
- .text.memcpy   0x000000000000048c      0x11c /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
-                0x000000000000048c                memcpy
-
-.text.__register_exitproc
-                0x00000000000005a8       0xe8
- .text.__register_exitproc
-                0x00000000000005a8       0xe8 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
-                0x00000000000005a8                __register_exitproc
-
-.text.__call_exitprocs
-                0x0000000000000690      0x134
- .text.__call_exitprocs
-                0x0000000000000690      0x134 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
-                0x0000000000000690                __call_exitprocs
-
-.text.__retarget_lock_acquire_recursive
-                0x00000000000007c4        0x4
- .text.__retarget_lock_acquire_recursive
-                0x00000000000007c4        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
-                0x00000000000007c4                __retarget_lock_acquire_recursive
-
-.text.__retarget_lock_release_recursive
-                0x00000000000007c8        0x4
- .text.__retarget_lock_release_recursive
-                0x00000000000007c8        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
-                0x00000000000007c8                __retarget_lock_release_recursive
-
-.rodata.str1.4  0x00000000000007cc       0x24
+.rodata.str1.4  0x000000000000071c       0x24
  .rodata.str1.4
-                0x00000000000007cc       0x24 syscalls.o
+                0x000000000000071c       0x24 syscalls.o
                                          0x23 (size before relaxing)
 
-.sdata2._global_impure_ptr
-                0x00000000000007f0        0x4
- .sdata2._global_impure_ptr
-                0x00000000000007f0        0x4 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
-                0x00000000000007f0                _global_impure_ptr
+.srodata        0x0000000000000740        0x4
+ .srodata       0x0000000000000740        0x4 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
+                0x0000000000000740                _global_impure_ptr
 
-.rela.dyn       0x00000000000007f4        0x0
- .rela.text     0x00000000000007f4        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
- .rela.text.__libc_fini_array
-                0x00000000000007f4        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
- .rela.text.__libc_init_array
-                0x00000000000007f4        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
- .rela.sdata.__atexit_recursive_mutex
-                0x00000000000007f4        0x0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+.rela.dyn       0x0000000000000744        0x0
+ .rela.text     0x0000000000000744        0x0 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/crt0.o
 
-.data           0x0000000002000000      0x430 load address 0x00000000000007f4
-                0x00000000000007f4                _data_lma = LOADADDR (.data)
+.data           0x0000000002000000      0x42c load address 0x0000000000000744
+                0x0000000000000744                _data_lma = LOADADDR (.data)
+
                 0x0000000002000000                _data = .
                 0x0000000002000000                __global_pointer$ = .
  *(.data .data.*)
@@ -232,30 +192,32 @@ LOAD /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/crt
                 0x000000000200042c                . = ALIGN (0x4)
                 0x000000000200042c                _edata = .
 
-.bss            0x0000000002000430       0x21 load address 0x0000000000000c24
-                0x0000000002000430                _bss_start = .
+
+.bss            0x000000000200042c        0x0 load address 0x0000000000000b70
+                0x000000000200042c                _bss_start = .
+
  *(.bss .bss.*)
                 0x000000000200042c                . = ALIGN (0x4)
                 0x000000000200042c                _bss_end = .
                 0x000000000200042c                _end = .
 OUTPUT(firmware.elf elf32-littleriscv)
 
-.sbss           0x0000000002000454        0x4 load address 0x0000000000000c24
- .sbss          0x0000000002000454        0x4 syscalls.o
 
-.comment        0x0000000000000000       0x39
- .comment       0x0000000000000000       0x39 firmware.o
-                                         0x3a (size before relaxing)
- .comment       0x0000000000000039       0x3a syscalls.o
- .comment       0x0000000000000039       0x3a utils.o
+.sbss           0x000000000200042c        0x4 load address 0x0000000000000b70
+ .sbss          0x000000000200042c        0x4 syscalls.o
 
-.debug_frame    0x0000000000000000      0x25c
- .debug_frame   0x0000000000000000       0x20 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
- .debug_frame   0x0000000000000020       0x20 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
- .debug_frame   0x0000000000000040       0x28 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
- .debug_frame   0x0000000000000068       0x34 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
- .debug_frame   0x000000000000009c       0x3c /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
- .debug_frame   0x00000000000000d8       0x20 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
- .debug_frame   0x00000000000000f8       0x48 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
- .debug_frame   0x0000000000000140       0x6c /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
- .debug_frame   0x00000000000001ac       0xb0 /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+.comment        0x0000000000000000       0x11
+ .comment       0x0000000000000000       0x11 firmware.o
+                                         0x12 (size before relaxing)
+ .comment       0x0000000000000011       0x12 syscalls.o
+ .comment       0x0000000000000011       0x12 utils.o
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-atexit.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-errno.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-exit.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-fini.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-impure.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-init.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-memcpy.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__atexit.o)
+ .comment       0x0000000000000011       0x12 /home/xtarke/Data/Apps/riscv/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/../../../../riscv32-unknown-elf/lib/libc.a(lib_a-__call_atexit.o)
+

@@ -21,17 +21,26 @@ int main(){
 	int i = 0;
 	volatile uint32_t *sdram = &SDRAM;
 
+	SEGMENTS = 0xFFFFFFF0;
+
+	uint8_t i = 0;
+	
 	while (1){
-<<<<<<< HEAD
-=======
+
 		/* To blink */
 		OUTBUS = 0x03;
 		SEGMENTS = 0xFFFFFFC0;
+
+		
+		/* To blink */
+		OUTBUS = 0x07;
+		//SEGMENTS = 0xFFFFFFC0;
+		
+		SEGMENTS = SEGMENTS & 0xFFFFFFF0;
+		SEGMENTS |= (i & 0x0F);
+		
 		delay_(10000);
->>>>>>> 8a40a36
 
-
-		//for(x=0; x<16; x++){
 
 		sdram[0] = 255;
 		SEGMENTS =  sdram[0];
@@ -41,18 +50,12 @@ int main(){
 		//}
 
 
-//		for(x=0; x<16; x++){
-//			if(sdram[16 + x] != 0){
-//				SEGMENTS =  sdram[x];
-//			}
-//
-//				INBUS = sdram[x];
-//
-//				//delay_(10); //ToDo: SDRAM refresh and init are not working.
-//		}
+		OUTBUS = 0;
+        //SEGMENTS = 0xFFFFFFF0;
+		delay_(10000); 
 
-		/* To test Data Bus
-		x = INBUS;
+		/* To test Data Bus 
+		x = INBUS;        
 		OUTBUS = x; */
 	}
 
