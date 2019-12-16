@@ -3,7 +3,6 @@
  *
  *  Created on: Jan 20, 2019
  *      Author: Renan Augusto Starke
- 		Modifyed by : Diogo Tavares - Dez 09, 2019
  *      Instituto Federal de Santa Catarina
  * 
  * 
@@ -11,24 +10,38 @@
  * -----------------------------------------
  */
 
+
 #include "utils.h"
-#include "spi.h"
+#include "uart.h"
 #include "hardware.h"
-#include <limits.h>
+
+
 
 int main(){
-	// 
-	uint8_t data_out = 0xa2;
-	// uint8_t data_in = 0x00;
+
+	SEGMENTS = 0xFFFFFFF0;
+
+	uint8_t i = 0;
 	
 	while (1){
-		spi_write(data_out++);
-		// spi_write(INBUS); 
-		//SEGMENTS = spi_read();
+		
+		/* To blink */
+		OUTBUS = 0x07;
+		//SEGMENTS = 0xFFFFFFC0;
+		
+		SEGMENTS = SEGMENTS & 0xFFFFFFF0;
+		SEGMENTS |= (i & 0x0F);
+		
 		delay_(10000);
+
+		OUTBUS = 0;
+        //SEGMENTS = 0xFFFFFFF0;
+		delay_(10000); 
+
+		/* To test Data Bus 
+		x = INBUS;        
+		OUTBUS = x; */
 	}
+
 	return 0;
 }
-
-
-
