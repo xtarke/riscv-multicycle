@@ -7,8 +7,7 @@ Em relação aos dois canais de comunicação, temos: o canal de dados seriais, 
 Os dois canais de comunicação são bidirecionais. O mestre é responsável por coordenar a comunicação (gerar clock e iniciar a comunicação).
  
 
-
-![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/i2c_barramento.png)
+![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/i2c_barramento.PNG)
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/protocol.png)
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/protocol_diagram.png)
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/state_machine.png)
