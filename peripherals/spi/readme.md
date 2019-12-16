@@ -10,11 +10,23 @@ que são configurados para realizar o envio e o recebimento por alternância das
 
 ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/spi_edges.PNG)
 
+(Fonte: https://www.analog.com/en/analog-dialogue/articles/introduction-to-spi-interface.html)
+
 
 ### A seguir, a máquina de estados do sistema:
 
 ![](https://github.com/diogo0001/riscv-multicycle/blob/master/peripherals/spi/images/FSM.jpeg)
 
+## Biblioteca e uso
+
+A bibioteca escrita em C oferece 2 funções:
+
+ - void spi_write(uint8_t data)
+ - uint8_t spi_read(void);
+ 
+ Para compilar é necessário editar o Makefile para adicionar o arquivo spi.o e configurar para o main_spi.c (Para testar pode-se escrever no arquivo firmware.c que já está configurado)
+
+## Resultados
 
  ### A seguir, resultados do testbench do módulo:
  
