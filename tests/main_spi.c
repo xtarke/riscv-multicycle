@@ -2,7 +2,7 @@
  * main_spi.c
  *
  *  Created on: Dez, 2019
- *      Author: Diogo Tavares
+ *      Author: Diogo Tavares, José Nicolau Varela
  *      Instituto Federal de Santa Catarina
  * 
  * -----------------------------------------
