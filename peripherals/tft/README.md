@@ -43,10 +43,11 @@ Figura 3. Diagrama de blocos do decoder do controlador TFT LCD.
 
 Figura 4. Sequência de bytes enviados ao hardware.  
 Funções tft.h  
+```c
 void tft_init();  
 void tft_clean(uint16_t color);  
 void tft_sqrt(uint16_t color, uint16_t x, uint16_t y, uint16_t h);  
 void tft_rect(uint16_t color, uint16_t x, uint16_t y, uint16_t h, uint16_t w);  
-
+```
 ### Bibliografia
 [ILI9320 Datasheet](https://www.rockbox.org/wiki/pub/Main/GSoCSansaView/ILI9320DS_V0.55.pdf)
