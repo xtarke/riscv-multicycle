@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+--  Dispositivo responsavel pelo controle das memorias
 entity controller is
 	port(
 		clk      : in  std_logic;
@@ -17,6 +18,9 @@ entity controller is
 end entity;
 
 architecture rtl_controller of controller is
+--  IDLE:  Estado para espera de uma nova informacao nas memorias
+--  READ:  Estado para a leitura da memoria (Incremento na fila circular)
+--  WRITE: Estado para o inicio do envio da informcao pelo writer
 	type state_type is (IDLE, READ, WRITE);
 	signal state : state_type;
 begin
@@ -24,14 +28,13 @@ begin
 	begin
 		if (reset = '1') then
 			state <= WRITE;
-
 		elsif rising_edge(clk) then
 			case state is
 				when IDLE =>
 					if (ready = '1') then
 						state <= READ;
 					end if;
-				when READ =>
+				when READ => --
 					if (empty_1 = '0') then
 						state <= WRITE;
 					elsif (empty_2 = '0') then
@@ -39,7 +42,7 @@ begin
 					else
 						state <= IDLE;
 					end if;
-				when WRITE =>
+				when WRITE => --
 					state <= IDLE;
 			end case;
 		end if;
@@ -50,13 +53,11 @@ begin
 		start    <= '0';
 		read_en1 <= '0';
 		read_en2 <= '0';
-		
-		mux_sel  <= '1';--
-		
+
+		mux_sel  <= '1';
+
 		if (empty_1 = '0') then
 			mux_sel  <= '0';
-		--elsif (empty_2 = '0') then
-			--mux_sel  <= '1';
 		end if;
 
 		case state is

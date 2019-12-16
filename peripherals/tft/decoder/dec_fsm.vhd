@@ -20,15 +20,11 @@ end entity;
 architecture rtl_dec_fsm of dec_fsm is
 	type state_type is (IDLE, RESET, CLEAN, SQR, RECT, FINISHED);
 	signal state   : state_type;
-	--signal start   : std_logic;
 	signal start_i : std_logic;
-	--signal cmd     : unsigned(15 downto 0);
 
 	signal active : std_logic := '0';
 
 begin
-	--start <= input_a(31);
-	--cmd   <= '0' & input_a(30 downto 16);
 
 	start_detect : process(start, active) is
 	begin

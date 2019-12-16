@@ -28,7 +28,7 @@ architecture RTL_writer of writer is
 	
 	-- Define the adjust of delay_ms, based on clock
 	-- ADJ must be clk/1000
-	constant ADJ : natural := 1000;
+	constant ADJ : natural := 1;
 	
 begin
 

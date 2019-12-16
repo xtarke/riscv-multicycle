@@ -18,9 +18,9 @@
 int main(){
 	
 	TFT_DATA0 = 0xFFFFFFFF;
-	delay_(10000);
+	delay_(200);
 	TFT_DATA0 = 0x00010000;
-	delay_(11000);
+	delay_(100);
 	
 	//TFT_DATA2 = 0x000A000A;
 	//TFT_DATA1 = 0x000F000F;

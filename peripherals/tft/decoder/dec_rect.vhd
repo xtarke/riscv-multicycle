@@ -56,11 +56,6 @@ begin
 	len_x_cmp <= x + len_x;
 	len_y_cmp <= y + len_y_i;
 	
-	
---	x <= pos_x;
---	y <= pos_y;
---	count_x <= len_x;
---	count_y <= len_y;
 	limit_verify : process(pos_x, len_x, len_x_cmp, len_y, len_y_cmp, pos_y, x, y)
 	begin
 		if (pos_x > WIDTH) then
@@ -106,8 +101,6 @@ begin
 	begin
 		if start_i = '1' then
 			state <= INIT;
-		--		if rising_edge(start) then
-		--			state <= INIT;
 		elsif rising_edge(clk) then
 			case state is
 				when IDLE =>
@@ -222,7 +215,10 @@ begin
 				output(31 downto 16) <= x"0021";
 				output(15 downto 0)  <= y;
 
-			when SET_DIR_1 =>
+			when SET_DIR_1 => 
+				--Os comandos 0x0003 são retirados do datasheet (p56)
+				--Esses comandos alteram o sentido de incremento automatico do display
+				--Deixando como necessário apenas enviar a cor que deseja ser impressa
 				output <= x"00031030";
 
 			when WRITE_X1 =>
