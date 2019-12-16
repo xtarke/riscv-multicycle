@@ -35,16 +35,14 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  15 .sbss         00000004  02000454  00000c24  00002454  2**2
                   ALLOC
- 16 .comment      00000039  00000000  00000000  00002430  2**0
+  6 .comment      00000011  00000000  00000000  0000242c  2**0
                   CONTENTS, READONLY
- 17 .debug_frame  0000025c  00000000  00000000  0000246c  2**2
-                  CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .rom:
 
 00000000 <_pvstart>:
    0:	02001137          	lui	sp,0x2001
-   4:	80010113          	addi	sp,sp,-2048 # 2000800 <heap_end.2546+0x3ac>
+   4:	80010113          	addi	sp,sp,-2048 # 2000800 <_edata+0x3d4>
    8:	020001b7          	lui	gp,0x2000
    c:	00018193          	mv	gp,gp
   10:	ff010113          	addi	sp,sp,-16
@@ -59,8 +57,8 @@ Disassembly of section .rom:
 00000100 <_start>:
  100:	02000197          	auipc	gp,0x2000
  104:	f0018193          	addi	gp,gp,-256 # 2000000 <__global_pointer$>
- 108:	43018513          	addi	a0,gp,1072 # 2000430 <_edata>
- 10c:	43018613          	addi	a2,gp,1072 # 2000430 <_edata>
+ 108:	42c18513          	addi	a0,gp,1068 # 200042c <_edata>
+ 10c:	42c18613          	addi	a2,gp,1068 # 200042c <_edata>
  110:	40a60633          	sub	a2,a2,a0
  114:	00000593          	li	a1,0
  118:	14c000ef          	jal	ra,264 <memset>

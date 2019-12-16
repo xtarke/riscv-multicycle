@@ -22,6 +22,13 @@ int main(){
 	volatile uint32_t *sdram = &SDRAM;
 
 	while (1){
+<<<<<<< HEAD
+=======
+		/* To blink */
+		OUTBUS = 0x03;
+		SEGMENTS = 0xFFFFFFC0;
+		delay_(10000);
+>>>>>>> 8a40a36
 
 
 		//for(x=0; x<16; x++){

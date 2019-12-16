@@ -1,7 +1,5 @@
 ifndef RISCV_TOOLS_PREFIX
-# RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
-# Para usar no LSC
-RISCV_TOOLS_PREFIX = /app/eclipse/tools/ToolchainRISCVEmbeddedGCC/8.2.0-2.2-20190521-0004/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
 endif
 QUARTUS_DIR=~/Data/Apps/intelFPGA/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
