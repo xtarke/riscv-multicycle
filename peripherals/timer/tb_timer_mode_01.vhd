@@ -97,12 +97,12 @@ begin
 		timer_mode <= "01";
 		prescaler  <= x"0001";
 		top_counter <= x"A";
-		compare_0A <= x"1";
-		compare_0B <= x"5";
-		compare_1A <= x"6";
-		compare_1B <= x"A";
-		compare_2A <= x"B";
-		compare_2B <= x"F";
+		compare_0A <= x"2";
+		compare_0B <= x"3";
+		compare_1A <= x"4";
+		compare_1B <= x"5";
+		compare_2A <= x"6";
+		compare_2B <= x"7";
 		wait for 1 * clock_period;
 
 		-- run timer:

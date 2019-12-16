@@ -72,6 +72,7 @@ architecture RTL of tb_core_timer is
 	signal csel_uart : std_logic;
 
 	signal dmemory_address : natural;
+    signal d_sig : std_logic;
 
 	-- TIMER Signals
 	signal timer_reset : std_logic;
@@ -197,6 +198,7 @@ begin
 			data    => ddata_w,
 			address => dmemory_address,
 			we      => d_we,
+            signal_ext => d_sig,
 			csel    => dcsel(0),
 			dmask   => dmask,
 			q       => ddata_r_mem
@@ -228,6 +230,7 @@ begin
 			ddata_w  => ddata_w,
 			d_we     => d_we,
 			d_rd     => d_rd,
+            d_sig    => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
 			state    => cpu_state

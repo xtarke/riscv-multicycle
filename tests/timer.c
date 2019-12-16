@@ -1,4 +1,4 @@
-include "timer.h"
+#include "timer.h"
 
 void timer_config(uint32_t mode, uint32_t prescaler, uint32_t top_counter) {
 	TIMER_0->timer_mode = mode;
