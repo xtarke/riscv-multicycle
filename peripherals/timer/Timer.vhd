@@ -109,7 +109,7 @@ begin
 								counter              <= counter + 1;
 							end if;
 
-						when "01" =>    -- clear on compare mode, counter is as sawtooth wave
+						when "11" =>    -- clear on compare mode, counter is as sawtooth wave
 
 							-- the counter resets if reaches B comparator.
 							-- the output has a rectangular waveform like a simple PWM, but active when between A and B comparators
@@ -239,7 +239,7 @@ begin
 
 							internal_counter_direction <= counter_direction;
 
-						when "11" =>    -- clear on top mode, counter is as sawtooth wave
+						when "01" =>    -- clear on top mode, counter is as sawtooth wave
 
 							-- the counter resets if reaches its maximum possible value
 							-- the output has a rectangular waveform like a simple PWM
