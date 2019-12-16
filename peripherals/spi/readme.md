@@ -1,4 +1,4 @@
-# SPI básico
+# SPI
 
 Este módulo consiste em uma SPI-master com modo de operação em borda de subida e frequência de 500 khz.
 
