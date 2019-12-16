@@ -42,7 +42,7 @@ Neste modo o contador interno do timer conta até valor máximo dele (o valor de
 
 Simulação:
 <p align="center">
-    <img width="100%" height="50%" src="testbench_timer_mode_03_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_01_wave.jpg">
 </p>
 
 
@@ -67,7 +67,13 @@ Neste modo o contador interno do timer conta até valor máximo dele (o valor de
 
 Simulação:
 <p align="center">
-    <img width="100%" height="50%" src="testbench_timer_mode_01_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_03_wave.jpg">
+</p>
+
+## Integração com o núcleo
+Simulação:
+<p align="center">
+    <img width="100%" height="50%" src="testbench_core_timer_wave.jpg">
 </p>
 
 ## Biblioteca
