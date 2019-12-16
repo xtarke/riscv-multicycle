@@ -11,17 +11,36 @@ Os dois canais de comunicação são bidirecionais. O mestre é responsável por
 ## I2C_Master(hardware):
 
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/i2c_barramento.PNG)
+
+
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/protocol.png)
+
+
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/protocol_diagram.png)
+
+
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/rtl_block.png)
 
 ### I2C_Write_Machine
+
+
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/state_machine.png)
+
+Simulação do periférico:
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/periferic_simulation.png)
+
+Simulação do periférico integrado ao softcore:
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/simulation.png)
+
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/osciloscope.png)
 
 
 ## Getting Started (software):
 
-int write_i2c( addr, data)
+Biblioteca
+	i2c_master.h		
+	i2c_master.c
+		int I2C_write(uint8_t data, uint8_t addr); -- função de escrita
+	
+Arquivo exemplo	
+	main_i2c_master.c   
