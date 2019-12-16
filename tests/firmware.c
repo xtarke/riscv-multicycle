@@ -21,8 +21,8 @@ int main(){
 
 	while (1){
 		/* To blink */
-		OUTBUS = 0x07;
-		SEGMENTS = 0xFFFFFFC5;
+		OUTBUS = 0x03;
+		SEGMENTS = 0xFFFFFFC0;
 		delay_(10000);
 
 		OUTBUS = 0;
