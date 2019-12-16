@@ -36,7 +36,7 @@ Neste modo o contador interno do timer conta até valor máximo dele (o valor de
 
 Simulação:
 <p align="center">
-    <img width="510" height="660" src="testbench_timer_mode_01_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_01_wave.jpg">
 </p>
 
 ### UpDown mode (`0b10`)
@@ -48,7 +48,7 @@ Neste modo o contador interno do timer conta progressivamente até valor máximo
 
 Simulação:
 <p align="center">
-    <img width="510" height="660" src="testbench_timer_mode_02_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_02_wave.jpg">
 </p>
 
 ### ClearOnTop mode (`0b11`)
@@ -60,5 +60,5 @@ Neste modo o contador interno do timer conta até valor máximo dele (o valor de
 
 Simulação:
 <p align="center">
-    <img width="510" height="660" src="testbench_timer_mode_03_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_03_wave.jpg">
 </p>
