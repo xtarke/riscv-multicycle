@@ -1,9 +1,9 @@
 work/
-sint/de10_lite/output_files
-sint/de10_lite/incremental_db
-sint/de10_lite/greybox_tmp
-sint/de10_lite/db
-sint/de10_lite/.qsys_edit
+sint/output_files
+sint/incremental_db
+sint/greybox_tmp
+sint/db
+sint/.qsys_edit
 *.bak
 
 *.elf
@@ -13,3 +13,8 @@ firmware32.hex
 
 sim.s
 vsim.wlf
+*.directory
+
+*.lss
+*.map
+*.hex
