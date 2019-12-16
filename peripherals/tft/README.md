@@ -27,6 +27,8 @@ Figura 2. Diagrama de blocos do controlador TFT LCD.
 * **mux:** Bloco de seleção da entrada do bloco *writer*;
 * **writer:** Bloco responsável pela conversão dos 32 bits da memória para 8 bits de saída do LCD mais os pinos CS, RS e WR.
 
+(Ambas as memórias tem comportamento de uma fila circular, porém a memória de boot possui os pinos de escrita desativados)
+
 ## Descrição dos blocos do decoder
 ![TFT_3](./images/figura3.png "Diagrama de blocos do decoder")
 
