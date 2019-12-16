@@ -166,7 +166,7 @@ begin
 			data    => ddata_w,
 			address => dmemory_address,
 			we      => d_we,
-			-- signal_ext => d_sig,
+			signal_ext => d_sig,
 			csel    => dcsel(0),
 			dmask   => dmask,
 			q       => ddata_r_mem
@@ -199,7 +199,7 @@ begin
 			ddata_w  => ddata_w,
 			d_we     => d_we,
 			d_rd     => d_rd,
-			-- d_sig	 => d_sig,
+			d_sig	 => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
 			state    => cpu_state
@@ -231,7 +231,6 @@ begin
 						HEX3 <= ddata_w(31 downto 24);
 						-- HEX4 <= ddata_w(7 downto 0);
 						-- HEX5 <= ddata_w(7 downto 0);
-					
 					end if;
 				end if;
 			end if;
