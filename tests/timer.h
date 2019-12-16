@@ -65,34 +65,21 @@ typedef struct {
 
 #define TIMER_0 ((TIMER_TYPE *) &TIMER_ADDRESS)
 
-void timerOneShot1(uint8_t prescaler, uint32_t compare, uint8_t output_sel);
-void timerClearOnCompare1(uint8_t prescaler, uint32_t compare, uint8_t output_sel);
-void timerUpDown1(uint8_t prescaler, uint32_t compare, uint8_t output_sel);
-void timerClearOnTop1(uint8_t prescaler, uint32_t compare, uint8_t output_sel);
+void timer_config(uint32_t mode, uint32_t prescaler, uint32_t top_counter);
+void timer_reset(void);
 
-void timerOneShot6(
-        uint8_t prescaler, 
-        uint32_t compare_0A, uint32_t compare_0B, 
-        uint32_t compare_1A, uint32_t compare_1B,
-		uint32_t compare_2A, uint32_t compare_2B
-);
-void timerClearOnCompare6(
-        uint8_t prescaler, 
-        uint32_t compare_0A, uint32_t compare_0B, 
-        uint32_t compare_1A, uint32_t compare_1B,
-		uint32_t compare_2A, uint32_t compare_2B
-);
-void timerUpDown6(
-        uint8_t prescaler, 
-        uint32_t compare_0A, uint32_t compare_0B, 
-        uint32_t compare_1A, uint32_t compare_1B,
-	    uint32_t compare_2A, uint32_t compare_2B
-);
-void timerClearOnTop6(
-        uint8_t prescaler, 
-        uint32_t compare_0A, uint32_t compare_0B, 
-        uint32_t compare_1A, uint32_t compare_1B,
-		uint32_t compare_2A, uint32_t compare_2B
-);
+void timer_set_compare0A(uint32_t comp_value);
+void timer_set_compare0B(uint32_t comp_value);
+void timer_set_compare1A(uint32_t comp_value);
+void timer_set_compare1B(uint32_t comp_value);
+void timer_set_compare2A(uint32_t comp_value);
+void timer_set_compare2B(uint32_t comp_value);
+
+uint32_t timer_get_output0A(void);
+uint32_t timer_get_output0B(void);
+uint32_t timer_get_output1A(void);
+uint32_t timer_get_output1B(void);
+uint32_t timer_get_output2A(void);
+uint32_t timer_get_output2B(void);
 
 #endif // __TIMER_H
