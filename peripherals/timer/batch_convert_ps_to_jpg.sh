@@ -4,8 +4,6 @@ PATH=${1:-.}
 
 for image in ${PATH}/*.ps; do
     echo ${image}
-    /usr/bin/gs -dSAFER -dBATCH -dNOPAUSE -dAutoRotatePages=/None \
-        -c "<</Orientation 3>> setpagedevice" \
-        -sDEVICE=jpeg -sPAPERSIZE=a4 -r300 \
+    /usr/bin/gs -sDEVICE=jpeg -r300 -sPAPERSIZE=a4 -dBATCH -dNOPAUSE \
         "-sOutputFile=${image%.ps}.jpg" "$image"
 done
