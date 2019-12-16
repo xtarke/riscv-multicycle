@@ -2,6 +2,12 @@
 
 Esta é uma implementação para um periférico de _timer_ de 32 bits em VHDL com 6 níveis de comparação / saídas.
 
+`/tests/hardware.h` - Definição do espaço de memória.  
+`/tests/timer.h` - Definição dos registradores e protótipo das funções.  
+`/tests/timer.c` - Implementação das funções.  
+`/tests/main_timer.c` - Código de exemplo.  
+`/peripherals/timer/sint/de10_lite/de0_lite.vhd` - Integração do core com o periférico.  
+
 ## Descrição dos pinos
 - `clock`: sinal de entrada de clock. O contador interno do timer funciona na borda de subida do clock.  
 - `reset`: sinal de reset do periférico, deve ser conectado ao barramento do `reset` do _core_.  
@@ -63,3 +69,19 @@ Simulação:
 <p align="center">
     <img width="100%" height="50%" src="testbench_timer_mode_01_wave.jpg">
 </p>
+
+## Biblioteca
+- `void timer_config(...);` - Mode, prescaler, top_counter  
+- `void timer_reset(void);`  
+- `void timer_set_compare0A(...);`  
+- `void timer_set_compare0B(...);`  
+- `void timer_set_compare1A(...);`  
+- `void timer_set_compare1B(...);`  
+- `void timer_set_compare2A(...);`  
+- `void timer_set_compare2B(...);`  
+- `uint32_t timer_get_output0A(void);`  
+- `uint32_t timer_get_output0B(void);`  
+- `uint32_t timer_get_output1A(void);`  
+- `uint32_t timer_get_output1B(void);`  
+- `uint32_t timer_get_output2A(void);`  
+- `uint32_t timer_get_output2B(void);`  
