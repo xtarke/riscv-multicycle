@@ -80,3 +80,4 @@ Após a compilação, mova, copie ou faça um _link_ simbólico de ./tests/quart
 ## Simulador Assembly:
 
 RISV baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
+
