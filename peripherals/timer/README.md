@@ -27,17 +27,18 @@ Simulação:
     <img width="100%" height="50%" src="testbench_timer_mode_00_wave.jpg">
 </p>
 
-### ClearOnCompare mode (`0b01`)
-Neste modo o contador interno do timer conta até valor máximo dele (o valor decimal 2^{32}-1) e é zerado automaticamente, definindo uma frequência de operação. Seus sinais de saída `output` ficam em níve alto sempre quando o contador estiver com seu valor entre os valores definidos para os `compare` **A** e **B**, criando pulsos de fase e largura definida.
+### ClearOnTop mode (`0b01`)
+Neste modo o contador interno do timer conta até valor máximo dele (o valor decimal 2^{32}-1) e é zerado automaticamente, definindo uma frequência de operação. Seus sinais de saída `output` ficam em níve alto sempre quando o contador for maior ou igual ao valor do sinal de comparação `compare`.  
 - `output = 0` enquanto o contador interno for menor que `compare`.  
 - `output = 1` se contagem for maior que `compare`.  
 - A frequência de reciclo pode ser calculado como `F = F_CLOCK / (prescaler * (timer_top - 1))`.  
-- Os ciclos-tarefa podem ser calculados como `D = (compare_B - compare_A) / timer_top`.  
+- Os ciclos-tarefa podem ser calculados como `D = compare / timer_top`.  
 
 Simulação:
 <p align="center">
-    <img width="100%" height="50%" src="testbench_timer_mode_01_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_03_wave.jpg">
 </p>
+
 
 ### UpDown mode (`0b10`)
 Neste modo o contador interno do timer conta progressivamente até valor máximo dele (o valor decimal 2^{32}-1), passa a contar regressivamente, até que chega em zero e passa a contar progressivamente novamente e assim segue ciclicamente. Seu sinal de saída `output` fica em níve alto sempre quando o contador for maior ou igual ao valor do sinal de comparação `compare`.  
@@ -51,14 +52,14 @@ Simulação:
     <img width="100%" height="50%" src="testbench_timer_mode_02_wave.jpg">
 </p>
 
-### ClearOnTop mode (`0b11`)
-Neste modo o contador interno do timer conta até valor máximo dele (o valor decimal 2^{32}-1) e é zerado automaticamente, definindo uma frequência de operação. Seus sinais de saída `output` ficam em níve alto sempre quando o contador for maior ou igual ao valor do sinal de comparação `compare`.  
+### ClearOnCompare mode (`0b11`)
+Neste modo o contador interno do timer conta até valor máximo dele (o valor decimal 2^{32}-1) e é zerado automaticamente, definindo uma frequência de operação. Seus sinais de saída `output` ficam em níve alto sempre quando o contador estiver com seu valor entre os valores definidos para os `compare` **A** e **B**, criando pulsos de fase e largura definida.
 - `output = 0` enquanto o contador interno for menor que `compare`.  
 - `output = 1` se contagem for maior que `compare`.  
 - A frequência de reciclo pode ser calculado como `F = F_CLOCK / (prescaler * (timer_top - 1))`.  
-- Os ciclos-tarefa podem ser calculados como `D = compare / timer_top`.  
+- Os ciclos-tarefa podem ser calculados como `D = (compare_B - compare_A) / timer_top`.  
 
 Simulação:
 <p align="center">
-    <img width="100%" height="50%" src="testbench_timer_mode_03_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_01_wave.jpg">
 </p>
