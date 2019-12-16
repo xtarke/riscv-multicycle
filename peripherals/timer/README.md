@@ -24,7 +24,7 @@ Neste modo o contador interno do timer conta até os valores de comparação (co
 
 Simulação:
 <p align="center">
-    <img width="510" height="660" src="testbench_timer_mode_00_wave.jpg">
+    <img width="100%" height="50%" src="testbench_timer_mode_00_wave.jpg">
 </p>
 
 ### ClearOnCompare mode (`0b01`)
