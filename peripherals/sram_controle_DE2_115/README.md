@@ -19,11 +19,19 @@ Implementou-se o controle da SRAM externa, IS61WV102416BLL-10TLI, do módulo DE2
 
 ## Tabela da verdade da SRAM:
 
+![Alt text](https://github.com/marianegri/riscv-multicycle/peripherals/sram_controle_DE2_115/tabela_verdade.jpg "Tabela Verdade")
+
 **Ciclo de Leitura**
+![Alt text](https://github.com/marianegri/riscv-multicycle/peripherals/sram_controle_DE2_115/leitura.jpg "Leitura")
 
 **Ciclo de Escrita**
+![Alt text](https://github.com/marianegri/riscv-multicycle/peripherals/sram_controle_DE2_115/escrita.jpg "Escrita")
+
 
 ## Resultados:
+**Modelsim Simulação**
+![Alt text](https://github.com/marianegri/riscv-multicycle/peripherals/sram_controle_DE2_115/modelsim.png "Simulação Softcore")
+
 * Simulação com funcionamento adequado.
 * Ao colocar no kit de desenvolvimento da altera percebe-se que a leitura não ocorre como o esperado. Possíveis causas:
   * Sincronismo.
