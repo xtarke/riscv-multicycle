@@ -180,13 +180,6 @@ begin
 	process(pin_wr)
 	begin
 		
---		if(pin_output = x"20") then
---			LEDR(0) <= '0';
---			LEDR(1) <= '1';
---		elsif(pin_output = x"21") then
---			LEDR(0) <= '1';
---			LEDR(1) <= '0';
---		end if;
 	
 	end process;
 	

@@ -14,6 +14,10 @@
 #  Revision 0.1.0    08/01/2018 - Initial Revision                            *
 #******************************************************************************
 
+# No código de inicialização do display há delays de inicialização em milisegundos, 
+# para conseguir aferir o funcionamento na simulação, é recomendado que altere o
+# valor da constante ADJ presente no arquivo "writer.vhd" para o valor 1.
+
 vlib work
 # vcom ../../../memory/imemory.vhd
 # vcom ../../../memory/imemory_load.vhd
