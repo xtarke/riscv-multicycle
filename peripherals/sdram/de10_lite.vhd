@@ -113,6 +113,7 @@ architecture rtl of de10_lite is
 	signal waitrequest       : std_logic;
 	signal DRAM_DQM          : std_logic_vector(1 downto 0);
 	signal burst             : std_logic;
+	signal byteenable		 : std_logic_vector(1 downto 0);
 
 	-- VGA signals
 	signal vga_addr             : std_logic_vector(31 downto 0);
@@ -184,6 +185,7 @@ begin
 			we      => d_we,
 			csel    => dcsel(0),
 			dmask   => dmask,
+			signal_ext => '0',
 			q       => ddata_r_mem
 		);
 
@@ -226,7 +228,7 @@ begin
 	process(clk, rst)
 	begin
 		if rst = '1' then
-			LEDR(3 downto 0) <= (others => '0');
+			LEDR(4 downto 0) <= (others => '0');
 			HEX0             <= (others => '1');
 			HEX1             <= (others => '1');
 			HEX2             <= (others => '1');
@@ -240,12 +242,12 @@ begin
 					-- ToDo: Maybe use byte addressing?  
 					--       x"01" (word addressing) is x"04" (byte addressing)
 					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then
-						LEDR(4 downto 0) <= ddata_w(4 downto 0);
+						LEDR(4 downto 0) <= sdram_read(4 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-						HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
+						HEX0 <= sdram_read(7 downto 0);
+						HEX1 <= sdram_read(15 downto 8);
+						--HEX2 <= ddata_w(23 downto 16);
+						--HEX3 <= ddata_w(31 downto 24);
 						-- HEX4 <= ddata_w(7 downto 0);
 						-- HEX5 <= ddata_w(7 downto 0);
 					end if;
@@ -289,10 +291,10 @@ begin
 	sdram_controller : entity work.sdram_controller
 		port map(
 			address     => sdram_addr,
-			byteenable  => "11",
+			byteenable  => byteenable,
 			chipselect  => chipselect_sdram,
 			clk         => clk_sdram_ctrl,
-			clken       => '1',
+			clken       => byteenable(0),
 			reset       => rst,
 			reset_req   => rst,
 			write       => d_we,
@@ -321,6 +323,7 @@ begin
 	DRAM_LDQM         <= DRAM_DQM(0);
 	--chipselect_sdram  <= dcsel(0) and dcsel(1);
 	chipselect_core  <= dcsel(0) and dcsel(1);
+	byteenable <= SW(6 downto 5);
 
 --	vga_controller : entity work.vga_controller
 --		port map(
