@@ -15,8 +15,6 @@
 #******************************************************************************
 
 vlib work
-# vcom ./memory/imemory.vhd
-# vcom ./memory/imemory_load.vhd
 vcom ./memory/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
@@ -30,10 +28,6 @@ vcom ./registers/register_file.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
 vcom ./core/trace_debug.vhd
-
-# vcom ./uart/uart.vhd
-# vcom ./vga/vga_controller.vhd ./vga/vga_buffer.vhd
-# vcom ./sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
 vcom ./core/testbench.vhd
 
 vsim -t ns work.coretestbench
@@ -100,6 +94,7 @@ add wave -label dcsel 	/dcsel
 add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
 add wave -label d_sig   /d_sig
+
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
