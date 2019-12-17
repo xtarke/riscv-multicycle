@@ -60,5 +60,11 @@
 #define SPI_TX		(*(_IO32 *) (PERIPH_BASE + 32))	
 #define SPI_RX		(*(_IO32 *) (PERIPH_BASE + 36))	
 
+#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
+#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
+#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
+#define TFT_RETURN		(*(_IO32 *) (PERIPH_BASE + 44))	
+
+
 
 #endif //HARDWARE_H
