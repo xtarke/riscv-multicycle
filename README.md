@@ -26,7 +26,7 @@ Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv
 
 ## Getting Started (software):
 
-A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ suportando o subconjunto RV32I. Em ./tests/ há um exemplo bem simples de Makefile. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). libc ainda não foi testado/suportado.
+A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ (ou __riscv-none-embed__) suportando o subconjunto __RV32I__, __sem ABI__. Em ./tests/ há um exemplo bem simples de Makefile. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). _libc_ ainda não foi testado/suportado.
 
 ### Instalação do compilador no Linux
 
@@ -34,11 +34,29 @@ Guia para instalação no [gnu-mcu-eclipse.github.io](https://gnu-mcu-eclipse.gi
 
 Toolchain Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-gcc/releases).
 
+Na utilização do xPacks talvez seja necessário exportar o `XPACKS_REPO_FOLDER`:
+
+```export XPACKS_REPO_FOLDER=~/opt/xPacks/```
+
+Instruções para Arch Linux (adaptar para outras distribuições):
+```
+sudo pacman -Syyu npm
+sudo npm install --global xpm@latest
+export XPACKS_REPO_FOLDER=~/opt/xPacks/
+mkdir -p $XPACKS_REPO_FOLDER
+xpm install --global @xpack-dev-tools/riscv-none-embed-gcc@latest
+export MY_PLD_WORKSPACE=~/workspace_vhdl
+mkdir -p $MY_PLD_WORKSPACE
+cd $MY_PLD_WORKSPACE
+git clone https://github.com/xtarke/riscv-multicycle
+cd $MY_PLD_WORKSPACE/riscv-multicycle/tests
+```
+
 1. Atualizar Makefile com o diretório da toolchain. 
 
 Exemplo:
 
-```RISCV_TOOLS_PREFIX = /home/lucas/ssd2/vhdl/softcore/gnu-mcu-riscv/gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2-20190521-0004/bin/riscv32-unknown-elf-```
+```RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-```
 
 2. Para compilar, _make_.
 
