@@ -2,7 +2,7 @@
  * uart.h
  *
  *  Created on: July 1, 2019
- *      Author: Marcos VinÃ­cius Leal da Silva
+ *      Author: Marcos VinÃ­cius Leal da Silva e Daniel Pereira
  *      Instituto Federal de Santa Catarina
  * 
  * UART functions
