@@ -15,26 +15,26 @@
 #******************************************************************************
 
 vlib work
-# vcom ./memory/imemory.vhd
-# vcom ./memory/imemory_load.vhd
-vcom ./memory/iram_quartus.vhd
-vcom ./memory/dmemory.vhd
-vcom ./alu/alu_types.vhd
-vcom ./alu/alu.vhd
-vcom ./alu/m/M_types.vhd
-vcom ./alu/m/M.vhd
-vcom ./decoder/decoder_types.vhd
-vcom ./decoder/iregister.vhd
-vcom ./decoder/decoder.vhd
-vcom ./registers/register_file.vhd
-vcom ./core/core.vhd
-vcom ./core/txt_util.vhdl
-vcom ./core/trace_debug.vhd
+# vcom ../../memory/imemory.vhd
+# vcom ../../memory/imemory_load.vhd
+vcom ../../memory/iram_quartus.vhd
+vcom ../../memory/dmemory.vhd
+vcom ../../alu/alu_types.vhd
+vcom ../../alu/alu.vhd
+vcom ../../alu/m/M_types.vhd
+vcom ../../alu/m/M.vhd
+vcom ../../decoder/decoder_types.vhd
+vcom ../../decoder/iregister.vhd
+vcom ../../decoder/decoder.vhd
+vcom ../../registers/register_file.vhd
+vcom ../../core/core.vhd
+vcom ../../core/txt_util.vhdl
+vcom ../../core/trace_debug.vhd
 
-# vcom ./uart/uart.vhd
-# vcom ./vga/vga_controller.vhd ./vga/vga_buffer.vhd
-# vcom ./sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
-vcom ./core/testbench.vhd
+ vcom uart.vhd
+# vcom ../vga/vga_controller.vhd ./vga/vga_buffer.vhd
+# vcom ../sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
+vcom coretestbench.vhd
 
 vsim -t ns work.coretestbench
 
@@ -50,10 +50,10 @@ add wave -label decoded -radix ASCII /debugString
 # add wave -radix hex /q
 
 add wave -height 15 -divider "PC and Ctrl Targers"
-add wave -radix hex -label pc 			/myRiscv/pc
-add wave -radix hex -label jal_target 	/myRiscv/jal_target
-add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
-add wave -label branch_cmp 				/myRiscv/branch_cmp
+# add wave -radix hex -label pc 			/myRiscv/pc
+# add wave -radix hex -label jal_target 	/myRiscv/jal_target
+# add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
+# add wave -label branch_cmp 				/myRiscv/branch_cmp
 
 add wave -height 15 -divider "Iregister debug"
 add wave -label opcode  /myRiscv/opcodes 
@@ -70,7 +70,7 @@ add wave -label imm_j /myRiscv/imm_j
 add wave -height 15 -divider "Register file debug"
  add wave -label registers -radix hex /myRiscv/registers/ram
  add wave -label w_ena 	/myRiscv/rf_w_ena
- add wave -label w_data -radix hex	/myRiscv/rw_data
+ add wave -label w_data 	/myRiscv/rw_data
  add wave -label r1_data -radix hex /myRiscv/rs1_data
  add wave -label r2_data -radix hex /myRiscv/rs2_data
 
@@ -87,9 +87,6 @@ add wave -label fsm_data -radix hex /dmem/fsm_data
 add wave -label ram_data -radix hex /dmem/ram_data
 add wave -label mState /dmem/state
 add wave -label fsm_we /dmem/fsm_we
-add wave -label ddata_r_mem -radix hex /dmem/q
-add wave -label datamemory -radix hex /dmem/ram_block
-
 
 add wave -height 15 -divider "Data bus"
 add wave -label daddress -radix hex /daddress
@@ -99,10 +96,28 @@ add wave -label dmask -radix bin /dmask
 add wave -label dcsel 	/dcsel
 add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
-add wave -label d_sig   /d_sig
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
-run 950000 ns
+add wave -label dcsel 	/dcsel
+add wave -label d_we 	/d_we
+add wave -label d_rd 	/d_rd
+
+add wave -radix binary -label clk_in_1M /clk
+add wave -radix binary -label clk_baudState /clk_baud
+add wave -radix binary -label csel /start
+
+add wave -height 15 -divider "TX"
+add wave -radix hex -label data_in /data_in
+add wave -radix hex -label tx /tx
+
+add wave -height 15 -divider "RX"
+add wave -radix hex -label data_out /data_out
+add wave -radix hex -label rx /rx
+
+add wave -radix hex -label config_all /config_all
+
+
+run 350000 ns
