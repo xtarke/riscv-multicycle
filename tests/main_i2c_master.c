@@ -4,8 +4,8 @@
  *  Created on: December 6, 2019
  *      Author: Alexsandro Gehlen; Jhonatan Lang
  *      Instituto Federal de Santa Catarina
- * 
- * 
+ *
+ *
  * Simple LED blink example.
  * -----------------------------------------
  */
