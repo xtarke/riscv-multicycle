@@ -2,7 +2,7 @@
 -- Name        : de0_lite.vhd
 -- Author      : 
 -- Version     : 0.1
--- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
+-- Copyright   : Departamento de EletrÃ´nica, FlorianÃ³polis, IFSC
 -- Description : Projeto base DE10-Lite
 -------------------------------------------------------------------
 LIBRARY ieee;
@@ -107,43 +107,30 @@ architecture rtl of de10_lite is
 	
 	-- UART signals
 	-- signal clk_in_1M : std_logic;
-	signal clk_baud9600 : std_logic;
+	signal clk_baud38400 : std_logic;
 	signal data_in : std_logic_vector(7 downto 0);
 	signal tx_cmp : std_logic;
 	signal data_out : std_logic_vector(7 downto 0);
 	signal rx_cmp : std_logic;
+	signal config_all : std_logic_vector (31 downto 0);
 	
 	signal csel_uart : std_logic;
 	
 begin
+	
+	--Baseado em um clock de 50M dividido por 1302 para se adquirir 
 	
 	pll_inst: entity work.pll_quartus
 		port map(
 			areset => '0',
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
-			c1	   => clk_baud9600,
+			c1	   => clk_baud38400,
 			locked => locked_sig
 		);
 	
 	rst <= SW(9);
 	
-	-- Dummy out signals
-	DRAM_DQ <= ddata_r(15 downto 0);
-	-- ARDUINO_IO <= ddata_r(31 downto 16);
-	LEDR(9) <= SW(9);
-	DRAM_ADDR(9 downto 0) <= address;
-		
-	-- IMem shoud be read from instruction and data buses
-	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	process(d_rd, dcsel, daddress, iaddress)
-	begin
-		if (d_rd = '1') and (dcsel = "00") then
-			address <= std_logic_vector(to_unsigned(daddress,10));
-		else
-			address <= std_logic_vector(to_unsigned(iaddress,10));
-		end if;		
-	end process;
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst: entity work.iram_quartus
@@ -172,30 +159,6 @@ begin
 			q       => ddata_r_mem
 		);
 	
-	-- UART instatiation
-	uart_inst: entity work.uart
-		port map(
-			clk_in_1M => clk,
-			clk_baud  => clk_baud9600,
-			csel	  => csel_uart,
-			data_in   => data_in,
-			tx        => ARDUINO_IO(1),
-			tx_cmp    => tx_cmp,
-			data_out  => data_out,
-			rx        => ARDUINO_IO(0),
-			rx_cmp    => rx_cmp
-		);
-	
-	-- Adress space mux ((check sections.ld) -> Data chip select:
-	-- 0x00000    ->    Instruction memory
-	-- 0x20000    ->    Data memory
-	-- 0x40000    ->    Input/Output generic address space		
-	with dcsel select 
-		ddata_r <= idata when "00",
-		           ddata_r_mem when "01",
-		           input_in when "10",
-		           (others => '0') when others;
-	
 	-- Softcore instatiation
 	myRisc: entity work.core
 		generic map(
@@ -216,6 +179,57 @@ begin
 			dmask    => dmask,
 			state    => state
 		);
+	
+	
+		-- UART instatiation
+	uart_inst: entity work.uart
+		port map(
+			clk_in_1M => clk,
+			clk_baud  => clk_baud38400,
+			csel	  => csel_uart,
+			data_in   => data_in,
+			tx        => ARDUINO_IO(1),
+			tx_cmp    => tx_cmp,
+			data_out  => data_out,
+			rx        => ARDUINO_IO(0),
+			rx_cmp    => rx_cmp,
+			config_all => config_all
+		);
+	
+	-- Dummy out signals
+	DRAM_DQ <= ddata_r(15 downto 0);
+	-- ARDUINO_IO <= ddata_r(31 downto 16);
+	LEDR(9) <= SW(9);
+	DRAM_ADDR(9 downto 0) <= address;
+	
+	--process (SW(8 downto 5))
+	--begin
+	--	config_all (3 downto 0) <= SW(8 downto 5);
+	--end process;
+	
+		
+	-- IMem shoud be read from instruction and data buses
+	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
+	process(d_rd, dcsel, daddress, iaddress)
+	begin
+		if (d_rd = '1') and (dcsel = "00") then
+			address <= std_logic_vector(to_unsigned(daddress,10));
+		else
+			address <= std_logic_vector(to_unsigned(iaddress,10));
+		end if;		
+	end process;
+	
+	
+	-- Adress space mux ((check sections.ld) -> Data chip select:
+	-- 0x00000    ->    Instruction memory
+	-- 0x20000    ->    Data memory
+	-- 0x40000    ->    Input/Output generic address space		
+	with dcsel select 
+		ddata_r <= idata when "00",
+		           ddata_r_mem when "01",
+		           input_in when "10",
+		           (others => '0') when others;
+
 	
 	-- Output register (Dummy LED blinky)
 	process(clk, rst)
@@ -248,6 +262,8 @@ begin
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"03" then
 					 	data_in <= ddata_w(7 downto 0);
 						csel_uart <= ddata_w(8);
+					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
+					 	config_all(3 downto 0) <= ddata_w(3 downto 0);
 					end if;				
 				end if;
 			end if;
@@ -255,7 +271,7 @@ begin
 	end process;
 	
 	
-	-- Input register
+	-- Input register 
 	process(clk, rst)
 	begin		
 		if rst = '1' then
@@ -275,4 +291,3 @@ begin
 	
 
 end;
-
