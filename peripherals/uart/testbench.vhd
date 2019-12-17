@@ -1,264 +1,123 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+#******************************************************************************
+#                                                                             *
+#                  Copyright (C) 2019 IFSC                                    *
+#                                                                             *
+#                                                                             *
+# All information provided herein is provided on an "as is" basis,            *
+# without warranty of any kind.                                               *
+#                                                                             *
+# File Name: testbench.do          						    				  *
+#                                                                             *
+# Function: riscv muticycle simulation script		  	                 	  *
+#                                                                             *
+# REVISION HISTORY:                                                           *
+#  Revision 0.1.0    08/01/2018 - Initial Revision                            *
+#******************************************************************************
 
-use work.decoder_types.all;
+vlib work
+# vcom ../../memory/imemory.vhd
+# vcom ../../memory/imemory_load.vhd
+vcom ../../memory/iram_quartus.vhd
+vcom ../../memory/dmemory.vhd
+vcom ../../alu/alu_types.vhd
+vcom ../../alu/alu.vhd
+vcom ../../alu/m/M_types.vhd
+vcom ../../alu/m/M.vhd
+vcom ../../decoder/decoder_types.vhd
+vcom ../../decoder/iregister.vhd
+vcom ../../decoder/decoder.vhd
+vcom ../../registers/register_file.vhd
+vcom ../../core/core.vhd
+vcom ../../core/txt_util.vhdl
+vcom ../../core/trace_debug.vhd
 
-entity testbench is
-	generic (
-		--! Num of 32-bits memory words 
-		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
-		DMEMORY_WORDS : integer := 1024;  	--!= 2k (512 * 2) bytes
-		constant SIZE : integer := 8		-- 8 bytes UART package
-	);
-	port(
-		----------- SEG7 ------------
-		HEX0: out std_logic_vector(7 downto 0);
-		HEX1: out std_logic_vector(7 downto 0);
-		HEX2: out std_logic_vector(7 downto 0);
-		HEX3: out std_logic_vector(7 downto 0);
-		HEX4: out std_logic_vector(7 downto 0);
-		HEX5: out std_logic_vector(7 downto 0);
-		
-		----------- SW ------------
-		SW: in std_logic_vector(9 downto 0);
-		
-		
-		LEDR: out std_logic_vector(9 downto 0);
-		
-		---------- ARDUINO IO -----
-		ARDUINO_IO: inout std_logic_vector(15 downto 0)
-	);	
-	
-	
-end entity testbench;
+ vcom uart.vhd
+# vcom ../vga/vga_controller.vhd ./vga/vga_buffer.vhd
+# vcom ../sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
+vcom coretestbench.vhd
 
-architecture RTL of testbench is
-	signal clk : std_logic;
-	signal rst : std_logic;
-	
-	signal idata    : std_logic_vector(31 downto 0);
-	
-	signal daddress :  integer range 0 to DMEMORY_WORDS-1;
-	signal ddata_r	:  	std_logic_vector(31 downto 0);
-	signal ddata_w  :	std_logic_vector(31 downto 0);
-	signal dmask         : std_logic_vector(3 downto 0);
-	signal dcsel : std_logic_vector(1 downto 0);
-	signal d_we            : std_logic := '0';	
-		
-	signal iaddress  : integer range 0 to IMEMORY_WORDS-1 := 0;	
-	
-	signal address : std_logic_vector(9 downto 0);
-	signal ddata_r_mem : std_logic_vector(31 downto 0);
-	signal d_rd : std_logic;
-		
-	signal input_in	: std_logic_vector(31 downto 0);
-	signal cpu_state    : cpu_state_t;
-	
-	signal debugString  : string(64 downto 1);
-	
-	-- UART Signals
-	signal clk_baud : std_logic;
-	signal data_in : std_logic_vector(7 downto 0);
-	signal tx : std_logic;
-	signal start : std_logic;
-	signal tx_cmp : std_logic;
-	signal data_out : std_logic_vector(SIZE-1 downto 0);
-	signal rx : std_logic;
-	signal rx_cmp : std_logic;
-	
-	signal csel_uart : std_logic;
-	
-begin
-	
-	clock_driver : process
-		constant period : time := 10 ns;
-	begin
-		clk <= '0';
-		wait for period / 2;
-		clk <= '1';
-		wait for period / 2;
-	end process clock_driver;
-	
-	reset : process is
-	begin
-		rst <= '1';
-		wait for 5 ns;
-		rst <= '0';
-		wait;
-	end process reset;
-	
-	-- Dummy out signals
-	-- ARDUINO_IO <= ddata_r(31 downto 16);
-	
---	imem: component imemory
---		generic map(
---			MEMORY_WORDS => IMEMORY_WORDS
---		)
---		port map(
---			clk           => clk,
---			data          => idata,
---			write_address => 0,
---			read_address  => iaddress,
---			we            => '0',
---			q             => idata 
---	);
+vsim -t ns work.coretestbench
 
-	-- IMem shoud be read from instruction and data buses
-	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	-- with dcsel select 
-	-- address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
-	--			   std_logic_vector(to_unsigned(iaddress,10)) when others;				   
-	process(d_rd, dcsel, daddress, iaddress)
-	begin
-		if (d_rd = '1') and (dcsel = "00") then
-			address <= std_logic_vector(to_unsigned(daddress,10));
-		else
-			address <= std_logic_vector(to_unsigned(iaddress,10));
-		end if;		
-	end process;
+view wave
+add wave -radix binary 	/clk
+add wave -radix binary 	/rst
+add wave -height 15 -divider "Instruction Memory"
+add wave -label iAddr -radix hex /address
+add wave -label iWord -radix hex idata
+add wave -label decoded -radix ASCII /debugString
+# add wave /debugString
+# add wave -radix hex /imem/RAM
+# add wave -radix hex /q
 
-	
-	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
-	iram_quartus_inst: entity work.iram_quartus
-		port map(
-			address => address,
-			byteena => "1111",
-			clock   => clk,
-			data    => (others => '0'),
-			wren    => '0',
-			q       => idata
-		);
-	
-	-- UART instatiation
-	uart_inst: entity work.uart
-		port map(
-			clk_in_1M => clk,
-			clk_baud  => clk_baud,
-			csel	  => csel_uart,
-			data_in   => data_in,
-			tx        => ARDUINO_IO(1),
-			tx_cmp    => tx_cmp,
-			data_out  => data_out,
-			rx        => ARDUINO_IO(0),
-			rx_cmp    => rx_cmp
-		);
-		
-	clk_baud <= clk;		-- Just for simulation
+add wave -height 15 -divider "PC and Ctrl Targers"
+# add wave -radix hex -label pc 			/myRiscv/pc
+# add wave -radix hex -label jal_target 	/myRiscv/jal_target
+# add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
+# add wave -label branch_cmp 				/myRiscv/branch_cmp
 
-	-- Data Memory RAM
-	dmem: entity work.dmemory
-		generic map(
-			MEMORY_WORDS => DMEMORY_WORDS
-		)
-		port map(
-			rst     => rst,
-			clk     => clk,
-			data    => ddata_w,
-			address => daddress,
-			we      => d_we,
-			csel    => dcsel(0),
-			dmask   => dmask,
-			q       => ddata_r_mem
-		);
-	
-	-- Adress space mux ((check sections.ld) -> Data chip select:
-	-- 0x00000    ->    Instruction memory
-	-- 0x20000    ->    Data memory
-	-- 0x40000    ->    Input/Output generic address space		
-	with dcsel select 
-		ddata_r <= idata when "00",
-		           ddata_r_mem when "01",
-		           input_in when "10",
-		           (others => '0') when others;
+add wave -height 15 -divider "Iregister debug"
+add wave -label opcode  /myRiscv/opcodes 
+add wave -label rd /myRiscv/rd   
+add wave -label rs1 /myRiscv/rs1
+add wave -label rs2 /myRiscv/rs2
+add wave -label imm_i /myRiscv/imm_i
+add wave -label imm_s /myRiscv/imm_s 
+add wave -label imm_b /myRiscv/imm_b
+add wave -label imm_u /myRiscv/imm_u
+add wave -label imm_j /myRiscv/imm_j
 
-	-- Softcore instatiation
-	myRiscv: entity work.core
-		generic map(
-			IMEMORY_WORDS => IMEMORY_WORDS,
-			DMEMORY_WORDS => DMEMORY_WORDS
-		)
-		port map(
-			clk      => clk,
-			rst      => rst,
-			iaddress => iaddress,
-			idata    => idata,
-			daddress => daddress,
-			ddata_r  => ddata_r,
-			ddata_w  => ddata_w,
-			d_we     => d_we,
-			d_rd     => d_rd,
-			dcsel    => dcsel,
-			dmask    => dmask,
-			state    => cpu_state
-		);
-	
-	
-	-- Output register (Dummy LED blinky)
-	process(clk, rst)
-	begin		
-		if rst = '1' then
-			LEDR(7 downto 0) <= (others => '0');			
-			HEX0 <= (others => '1');
-			HEX1 <= (others => '1');
-			HEX2 <= (others => '1');
-			HEX3 <= (others => '1');
-			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');
-			csel_uart <= '0';			
-		else
-			if rising_edge(clk) then
-				csel_uart <= '0';		
-				if (d_we = '1') and (dcsel = "10") then					
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(7 downto 0) <= ddata_w(7 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-					 	HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"03" then
-					 	data_in <= ddata_w(7 downto 0);
-						csel_uart <= ddata_w(8);
-					end if;				
-				end if;
-			end if;
-		end if;		
-	end process;
-	
-	-- Input register
-	process(clk, rst)
-	begin		
-		if rst = '1' then
-			input_in <= (others => '0');
-		else
-			if rising_edge(clk) then		
-				if (d_rd = '1') and (dcsel = "10") then
-					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then		
-						input_in(4 downto 0) <= SW(4 downto 0);	
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
-						input_in(7 downto 0) <= data_out;
-					end if;
-				end if;
-			end if;
-		end if;	
-	end process;
-	
-	
-	-- FileOutput DEBUG	
-	debug: entity work.trace_debug
-		generic map(
-			MEMORY_WORDS => IMEMORY_WORDS
-		)
-		port map(
-			pc   => iaddress,
-			data => idata,
-			inst => debugString
-		);	
 
-end architecture RTL;
+add wave -height 15 -divider "Register file debug"
+ add wave -label registers -radix hex /myRiscv/registers/ram
+ add wave -label w_ena 	/myRiscv/rf_w_ena
+ add wave -label w_data 	/myRiscv/rw_data
+ add wave -label r1_data -radix hex /myRiscv/rs1_data
+ add wave -label r2_data -radix hex /myRiscv/rs2_data
+
+# decoder debug
+add wave -label states /myRiscv/decoder0/state
+
+# add wave -height 15 -divider "Alu debug"
+# add wave -label aluData /myRiscv/alu_data
+#add wave -label aluOut 	/myRiscv/alu_out
+
+add wave -height 15 -divider "Data memory debug"
+add wave -label daddr -radix hex /myRiscv/memAddrTypeSBlock/addr
+add wave -label fsm_data -radix hex /dmem/fsm_data
+add wave -label ram_data -radix hex /dmem/ram_data
+add wave -label mState /dmem/state
+add wave -label fsm_we /dmem/fsm_we
+
+add wave -height 15 -divider "Data bus"
+add wave -label daddress -radix hex /daddress
+add wave -label ddata_r -radix hex 	/ddata_r
+add wave -label ddata_w -radix hex 	/ddata_w
+add wave -label dmask -radix bin /dmask
+add wave -label dcsel 	/dcsel
+add wave -label d_we 	/d_we
+add wave -label d_rd 	/d_rd
+
+add wave -height 15 -divider "Input/Output SIM"
+add wave -label LEDR -radix hex /LEDR
+add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
+
+add wave -label dcsel 	/dcsel
+add wave -label d_we 	/d_we
+add wave -label d_rd 	/d_rd
+
+add wave -radix binary -label clk_in_1M /clk
+add wave -radix binary -label clk_baudState /clk_baud
+add wave -radix binary -label csel /start
+
+add wave -height 15 -divider "TX"
+add wave -radix hex -label data_in /data_in
+add wave -radix hex -label tx /tx
+
+add wave -height 15 -divider "RX"
+add wave -radix hex -label data_out /data_out
+add wave -radix hex -label rx /rx
+
+add wave -radix hex -label config_all /config_all
+
+
+run 350000 ns
