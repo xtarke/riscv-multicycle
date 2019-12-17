@@ -2,7 +2,7 @@
  * uart.h
  *
  *  Created on: July 1, 2019
- *      Author: Marcos Vinícius Leal da Silva
+ *      Author: Marcos VinÃ­cius Leal da Silva
  *      Instituto Federal de Santa Catarina
  * 
  * UART functions
@@ -20,6 +20,7 @@
 #include <stdint.h>
 
 void UART_write(int character);
+void UART_setup(int baud, int parity);
 int UART_read(void);
 
 #endif // __UART_H
