@@ -2,12 +2,13 @@
  * uart.h
  *
  *  Created on: July 1, 2019
- *      Author: Marcos VinÃ­cius Leal da Silva
+ *      Author: Marcos Vinícius Leal da Silva
+ *      Modified: Daniel Pereira
  *      Instituto Federal de Santa Catarina
  * 
  * UART functions
  *  - write
- *  - send
+ *  - setup
  *	- read
  *	- (...)
  * 
