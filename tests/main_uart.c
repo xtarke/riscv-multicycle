@@ -2,7 +2,7 @@
  * firmware.c
  *
  *  Created on: Jan 20, 2019
- *      Author: Marcos Vinicius Leal Da Silva
+ *      Author: Marcos Vinicius Leal Da Silva e Daniel Pereira
  *      Instituto Federal de Santa Catarina
  * 
  * 

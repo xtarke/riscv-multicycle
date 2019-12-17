@@ -2,7 +2,7 @@
 -- Name        : de0_lite.vhd
 -- Author      : 
 -- Version     : 0.1
--- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
+-- Copyright   : Departamento de EletrÃ´nica, FlorianÃ³polis, IFSC
 -- Description : Projeto base DE10-Lite
 -------------------------------------------------------------------
 LIBRARY ieee;
@@ -288,6 +288,4 @@ begin
 			end if;
 		end if;		
 	end process;
-	
-
 end;
