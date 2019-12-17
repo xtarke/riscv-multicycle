@@ -1,8 +1,8 @@
 /*
  * firmware.c
  *
- *  Created on: December 6, 2019
- *      Author: Alexsandro Gehlen; Jhonatan Lang
+ *  Created on: Jan 20, 2019
+ *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  * 
  * 
@@ -12,21 +12,35 @@
 
 
 #include "utils.h"
-#include "i2c_master.h"
+#include "uart.h"
 #include "hardware.h"
+
 
 
 int main(){
 
-	int ack;
+	SEGMENTS = 0xFFFFFFF0;
 
-	while(1)
-	{
-	//	Exemplo "pisca LED" com back ligth do display I2C
-		ack = I2C_write( 0x01, 0b00100111);//0b00100111);
+	uint8_t i = 0;
+	
+	while (1){
+		
+		/* To blink */
+		OUTBUS = 0x07;
+		//SEGMENTS = 0xFFFFFFC0;
+		
+		SEGMENTS = SEGMENTS & 0xFFFFFFF0;
+		SEGMENTS |= (i & 0x0F);
+		
 		delay_(10000);
-		ack = I2C_write( 0xFF, 0b00100111);//0b00100111);
-		delay_(10000);
+
+		OUTBUS = 0;
+		//SEGMENTS = 0xFFFFFFF0;
+		delay_(10000); 
+
+		/* To test Data Bus 
+		x = INBUS;        
+		OUTBUS = x; */
 	}
 
 	return 0;
