@@ -28,6 +28,10 @@ Para recepçao de um carácter utilize a função UART_read().
 ```OUTBUS = x;```
 ```delay_(1000); // Necessário para não perder sincronia.```
 
+O controle do baud rate é feito atravez de multiplas divisões do maior baud rate possivel.
+
+O bit de paridade é criado, quando requisitado, na maquina de estados atravez da adição de um bit extra a palavra enviada. O numero de 1's é contado atravez de uma função separada e de acorod com as configurações se define paridade par ou impar.
+
 Para configurar baudrate e bit de paridade
 ```//UART_setup(X, Y);
 Onde	X = 0 baud rate = 38400
