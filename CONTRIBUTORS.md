@@ -1,27 +1,37 @@
 RISVC contributors (sorted alphabetically)
 ============================================
 
-* **[Cleisson Fernandes Da Silva](https://github.com/cleissom)**
+## 2019/1
 
-  * SDRAM integration (first attempt)
-  
-* **[Ian Schmiegelow Dannapel](https://github.com/Eximmius)**
+   * **[Cleisson Fernandes Da Silva](https://github.com/cleissom)**
 
-  * VGA integration (internal SRAM)
+     * SDRAM integration (first attempt)
 
-* **[Jeferson Cansi Pedroso](https://github.com/jefersonpedroso)**
+   * **[Ian Schmiegelow Dannapel](https://github.com/Eximmius)**
 
-  * MAX10 ADC integration
+     * VGA integration (internal SRAM)
 
-* **[Lucas Seara Manoel](https://github.com/lsmanoel)**
+   * **[Jeferson Cansi Pedroso](https://github.com/jefersonpedroso)**
 
-  * [M] Instructions extension.
+     * MAX10 ADC integration
 
-* **[Marcos Vinicius Leal Da Silva](https://github.com/marcosleal)**
+   * **[Lucas Seara Manoel](https://github.com/lsmanoel)**
 
-  * 9600 baud rate UART.
-  
+     * [M] Instructions extension.
+
+   * **[Marcos Vinicius Leal Da Silva](https://github.com/marcosleal)**
+
+     * 9600 baud rate UART.
+
+  ## 2019/2 
+
 * **[Alexsandro Gehlen]
 * **[Jhontan de Freitas Lang](https://github.com/jhonatanlang)**
 
 	* I2C master (write mode)
+
+  * **[Diogo Tavares](https://github.com/diogo0001)**
+  * **[Nicolau Varela](https://github.com/NicoVarela)**
+    
+    * SPI integration
+
