@@ -57,6 +57,8 @@
 #define TIMER_ADDRESS			(*(_IO32 *) (PERIPH_BASE + 32))		/*!< Generic INPUT BUS - 32-bit register */
 //#define TIMER_RESERVED	(TIMER + 32)
 
+#define SPI_TX		(*(_IO32 *) (PERIPH_BASE + 32))	
+#define SPI_RX		(*(_IO32 *) (PERIPH_BASE + 36))	
 
 
 #endif //HARDWARE_H
