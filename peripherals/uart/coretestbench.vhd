@@ -33,6 +33,17 @@ entity coretestbench is
 end entity coretestbench;
 
 architecture RTL of coretestbench is
+	
+	    component ula is
+        port (	clk         : in  std_logic;
+				command     : in  unsigned (2 downto 0);
+				data_a      : in  std_logic_vector   (31 downto 0);
+				data_b      : in  std_logic_vector   (31 downto 0);
+				saida_low   : out  std_logic_vector  (31 downto 0);
+				saida_high  : out  std_logic_vector  (31 downto 0));
+    end component ula;
+	
+	
 	signal clk       : std_logic;
 	signal clk_sdram : std_logic;
 	signal clk_vga   : std_logic;
@@ -70,11 +81,11 @@ architecture RTL of coretestbench is
 	signal data_out : std_logic_vector(SIZE-1 downto 0);
 	signal rx : std_logic;
 	signal rx_cmp : std_logic;
+	signal config_all : std_logic_vector (31 downto 0);
 	
 	signal csel_uart : std_logic;
 
 	signal dmemory_address : natural;
-	signal d_sig : std_logic;
 
 
 begin
@@ -83,9 +94,11 @@ begin
 		constant period : time := 1000 ns;
 	begin
 		clk <= '0';
-		wait for period / 2;
+		--wait for period / 2;
+		wait for 1 ns;
 		clk <= '1';
-		wait for period / 2;
+		wait for 1 ns;
+		--wait for period / 2;
 	end process clock_driver;
 
 	reset : process is
@@ -95,6 +108,17 @@ begin
 		rst <= '0';
 		wait;
 	end process reset;
+	
+	clock_baud : process
+		constant period : time := 26041 ns;
+	begin
+		clk_baud <= '0';
+		wait for 2 ns;
+		--wait for period / 2;
+		clk_baud <= '1';
+		wait for 2 ns;
+		--wait for period / 2;
+	end process clock_baud;
 
 	
 	-- Dummy out signals
@@ -166,7 +190,6 @@ begin
 			data    => ddata_w,
 			address => dmemory_address,
 			we      => d_we,
-			signal_ext => d_sig,
 			csel    => dcsel(0),
 			dmask   => dmask,
 			q       => ddata_r_mem
@@ -199,73 +222,54 @@ begin
 			ddata_w  => ddata_w,
 			d_we     => d_we,
 			d_rd     => d_rd,
-			d_sig	 => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
 			state    => cpu_state
 		);
-
-	-- Output register (Dummy LED blinky)
-	process(clk, rst)
+		
+		uart_plus : entity work.uart
+			port map(
+				clk_in_1M  => clk,
+				clk_baud   => clk_baud,
+				csel       => csel_uart,
+				data_in    => data_in,
+				tx         => tx,
+				tx_cmp     => tx_cmp,
+				data_out   => data_out,
+				rx         => rx,
+				rx_cmp     => rx_cmp,
+				config_all => config_all
+			);
+		
+	
+	
+	transmitt: process
 	begin
-		if rst = '1' then
-			LEDR(7 downto 0) <= (others => '0');			
-			HEX0 <= (others => '1');
-			HEX1 <= (others => '1');
-			HEX2 <= (others => '1');
-			HEX3 <= (others => '1');
-			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');		
-		else
-			if rising_edge(clk) then
-				if (d_we = '1') and (dcsel = "10") then
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(7 downto 0) <= ddata_w(7 downto 0);				
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-						HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
-					end if;
-				end if;
-			end if;
-		end if;
+		data_in <= x"61";
+		csel_uart <= '1';
+		wait;
 	end process;
-
-	-- Input register
-	process(clk, rst)
+	
+	receive: process
 	begin
-		if rst = '1' then
-			input_in <= (others => '0');
-		else
-
-			if rising_edge(clk) then		
-				if (d_rd = '1') and (dcsel = "10") then
-					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then		
-						input_in(4 downto 0) <= SW(4 downto 0);	
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
-						input_in(7 downto 0) <= data_out;
-					end if;
-				end if;
-			end if;
-		end if;	
-
+		data_in <= x"61";
+		rx <= '1';
+		wait for 50 ns;
+		rx <= '0'; -- Start bit
+		wait for 50 ns;
+		rx <= '1'; -- Start bit
+		wait for 50 ns;
+		rx <= '0'; -- Start bit
+		--wait;
 	end process;
-
-	-- FileOutput DEBUG	
-	debug : entity work.trace_debug
-		generic map(
-			MEMORY_WORDS => IMEMORY_WORDS
-		)
-		port map(
-			pc   => iaddress,
-			data => idata,
-			inst => debugString
-		);
+	
+	config: process
+	begin
+		config_all (3 downto 0) <= "0000";
+		config_all (31 downto 4) <= x"0000000";
+		wait for 10 ns;
+		config_all (3 downto 0) <= "0010";
+		wait;
+	end process;
 
 end architecture RTL;

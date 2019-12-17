@@ -2,7 +2,9 @@
  * uart.h
  *
  *  Created on: July 1, 2019
- *      Author: Marcos VinÃ­cius Leal da Silva e Daniel Pereira
+ *      Author: Marcos Vinícius Leal da Silva e 
+ *      Modified: Daniel Pereira
+ *
  *      Instituto Federal de Santa Catarina
  * 
  * UART functions
@@ -52,4 +54,3 @@ int UART_read(void){
 	byte = UART_RX;
 	return byte;
 }
-
