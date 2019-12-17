@@ -1,37 +1,41 @@
 /*
- * uart.h
+ * firmware.c
  *
- *  Created on: July 1, 2019
- *      Author: Marcos Vinícius Leal da Silva
+ *  Created on: Jan 20, 2019
+ *      Author: Marcos Vinicius Leal Da Silva
  *      Instituto Federal de Santa Catarina
  * 
- * UART functions
- *  - write
- *  - send
- *	- read
- *	- (...)
  * 
+ * Simple LED blink example.
+ * -----------------------------------------
  */
 
-#include <stdint.h>
+
+#include "utils.h"
 #include "uart.h"
 #include "hardware.h"
+#include <limits.h>
 
-void UART_write(int character){
-	/* To do:
-		- Change variable "character" to uint8_t
-	*/
-	UART_TX = (0x01 << 8) | character;
-	return;
-}
 
-int UART_read(void){
-	/* To do:
-		- Change variable "byte" to uint8_t
-	*/
-	int byte;
+int main(){
 	
-	byte = UART_RX;
-	return byte;
-}
+	int x;
+	
+	UART_setup(3, 1);
+	
+	while (1){
+		// Testing UART - Adjusts
+		//delay_(10000);
+	
+		// Testing UART - Transmission
+		UART_write('c');
+		delay_(10000);
+		
+		// Testint UART - Reception
+		x = UART_read();
+		OUTBUS = x;
+		delay_(10000);
+	}
 
+	return 0;
+}
