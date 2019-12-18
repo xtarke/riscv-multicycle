@@ -3,35 +3,41 @@ RISVC contributors (sorted alphabetically)
 
 ## 2019/1
 
-   * **[Cleisson Fernandes Da Silva](https://github.com/cleissom)**
+* **[Cleisson Fernandes Da Silva](https://github.com/cleissom)**
+  * SDRAM integration (first attempt)
 
-     * SDRAM integration (first attempt)
+* **[Ian Schmiegelow Dannapel](https://github.com/Eximmius)**
+  * VGA integration (internal SRAM)
 
-   * **[Ian Schmiegelow Dannapel](https://github.com/Eximmius)**
+* **[Jeferson Cansi Pedroso](https://github.com/jefersonpedroso)**
+  * MAX10 ADC integration
 
-     * VGA integration (internal SRAM)
+* **[Lucas Seara Manoel](https://github.com/lsmanoel)**
+  * [M] Instructions extension.
 
-   * **[Jeferson Cansi Pedroso](https://github.com/jefersonpedroso)**
+* **[Marcos Vinicius Leal Da Silva](https://github.com/marcosleal)**
 
-     * MAX10 ADC integration
+  * 9600 baudrate UART.
 
-   * **[Lucas Seara Manoel](https://github.com/lsmanoel)**
+## 2019/2 
 
-     * [M] Instructions extension.
+* **[Diesson Stefano Allebrandt](https://github.com/diesson)** e **[Felipe Rodrigues Broering](https://github.com/BroeringFelipe)**
+  * TFT diplay controller
 
-   * **[Marcos Vinicius Leal Da Silva](https://github.com/marcosleal)**
+* **[Jhontan de Freitas Lang](https://github.com/jhonatanlang)** e **Alexsandro Gehlen**
+  * I2C master (write mode)
 
-     * 9600 baud rate UART.
+* **[Diogo Tavares](https://github.com/diogo0001)** e **[Nicolau Varela](https://github.com/NicoVarela)**
+  * SPI module
 
-  ## 2019/2 
+* **[Joao Antonio Cardoso](https://github.com/joaoantoniocardoso/)** e **[Rafael Fernando Reis](https://github.com/ReisRafaelFernando)**
+  * 32-bit with 6 channels timer
 
-* **[Alexsandro Gehlen]
-* **[Jhontan de Freitas Lang](https://github.com/jhonatanlang)**
+* **[Ricardo Schons Cirio](https://github.com/ricardocirio)** e **Joao Vitor Bassani**
+  * SDRAM integration (second attempt)
 
-	* I2C master (write mode)
+* **[Daniel Pereira](https://github.com/Adjucaris)**
+  * UART with variable baudrate and parity bits
 
-  * **[Diogo Tavares](https://github.com/diogo0001)**
-  * **[Nicolau Varela](https://github.com/NicoVarela)**
-    
-    * SPI integration
-
+* **[Bruna Martini](https://github.com/abrunamartini)** e **[Maria Claudia Rosa Negri](https://github.com/marianegri)**
+  * SRAM integration (first attempt)
