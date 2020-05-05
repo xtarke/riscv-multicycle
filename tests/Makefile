@@ -1,7 +1,7 @@
 ifndef RISCV_TOOLS_PREFIX
-#RISCV_TOOLS_PREFIX = riscv32-unknown-elf-
+RISCV_TOOLS_PREFIX = riscv-none-embed-
 # Para usar no LSC
-RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
+#RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
 endif
 QUARTUS_DIR=/opt/altera/18.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im

@@ -5,6 +5,8 @@ RISC SoftCore é uma implementação em VHDL com fins diádicos do conjunto de i
 
 Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv.org/software-status/).
 
+Animação do funcionamento da arquitetura em [Virgularor: minimum RISV-V](http://tice.sea.eseo.fr/riscv/)
+
 ## Getting Started (hardware):
 
 - Simulação:
@@ -52,7 +54,7 @@ git clone https://github.com/xtarke/riscv-multicycle
 cd $MY_PLD_WORKSPACE/riscv-multicycle/tests
 ```
 
-1. Atualizar Makefile com o diretório da toolchain. 
+1. Atualizar Makefile com o diretório da toolchain.
 
 Exemplo:
 
