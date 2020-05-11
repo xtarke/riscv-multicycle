@@ -3,7 +3,7 @@
 
 RISC SoftCore é uma implementação em VHDL com fins diádicos do conjunto de instruções RISCV RV32I. Essa versão particular não implementa um pipeline. A ideia é criar um microcontrolador com periféricos comuns como I2C, USART, SPI e GPIOs inicialmente utilizado para disciplina de Dispositivos Lógicos Programáveis.
 
-Ferramentas de programação podem ser obtidas no [RISC-V Website](https://riscv.org/software-status/).
+Ferramentas de programação podem ser obtidas no [Compliler](https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases).
 
 Animação do funcionamento da arquitetura em [Virgularor: minimum RISC-V](http://tice.sea.eseo.fr/riscv/)
 
