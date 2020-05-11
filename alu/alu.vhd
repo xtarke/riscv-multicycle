@@ -27,7 +27,7 @@ begin
 	comp_l <= x"00000001" when alu_data.a < alu_data.b else (others => '0');
 	--comp_lu <= "1" when (to_unsigned(alu_data.a,32)) < (to_unsigned(alu_data.a,32)) else
 	--	      "0";
-	comp_lu <= x"00000001" when (unsigned(alu_data.a) < unsigned(alu_data.a)) else (others => '0');
+	comp_lu <= x"00000001" when (unsigned(alu_data.a) < unsigned(alu_data.b)) else (others => '0');
 	
 	--or_vector <= std_logic_vector(to_signed(alu_data.a,32)) or std_logic_vector(to_signed(alu_data.b,32));
 	or_vector <= std_logic_vector(alu_data.a or alu_data.b);
