@@ -17,7 +17,7 @@ Esse diretório contém exemplos de softwares.
 
 Em hardware.h e sections.ld são definidos os endeços de cada periférico. Conforme a figura:
 
-![TFT_2](../readme_img/memory_map.png "Mapa de memória")
+![Memory Map](../readme_img/memory_map.png "Mapa de memória")
 
 O funcionamento do exemplo de software depende da síntese do periférico, exemplo:
 
