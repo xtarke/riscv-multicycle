@@ -174,10 +174,12 @@ begin
 						ulaCod <= ALU_ADD;
 										
 					when TYPE_SLTI =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_SLT;
 
 					when TYPE_SLTIU =>
-						report "Not implemented" severity Failure;
+						ulaMuxData <= "01";	
+						ulaCod <= ALU_SLTU;
 
 					when TYPE_XORI =>
 						ulaMuxData <= "01";	
