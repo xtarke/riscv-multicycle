@@ -34,7 +34,7 @@ A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ (ou
 
 Guia para instalação no [gnu-mcu-eclipse.github.io](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/#gnulinux)
 
-Toolchain Release: riscv-none-gcc [Github](https://github.com/gnu-mcu-eclipse/riscv-none-gcc/releases).
+Toolchain Release: riscv-none-gcc [Github](https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases).
 
 Na utilização do xPacks talvez seja necessário exportar o `XPACKS_REPO_FOLDER`:
 
