@@ -43,6 +43,9 @@ sint:
 fpga:
 	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof"
 
+flash:
+	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
+
 clean:
 	rm -f *.o *.d *.tmp start.elf
 	rm -f $(MAIN).elf $(MAIN).hex $(MAIN)32.hex quartus_$(MAIN).hex
