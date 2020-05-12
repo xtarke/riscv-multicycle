@@ -6,9 +6,9 @@
 # All information provided herein is provided on an "as is" basis,            *
 # without warranty of any kind.                                               *
 #                                                                             *
-# File Name: testbench.do          						    				  *
+# File Name: testbench.do                                                     *
 #                                                                             *
-# Function: riscv muticycle simulation script		  	                 	  *
+# Function: riscv muticycle simulation script                                 *
 #                                                                             *
 # REVISION HISTORY:                                                           *
 #  Revision 0.1.0    08/01/2018 - Initial Revision                            *
