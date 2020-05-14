@@ -12,7 +12,8 @@
  */
 
 #include <stdint.h>
-#include "i2c_mastert.h"
+#include "i2c_master.h"
+#include "utils.h"
 #include "hardware.h"
 
 int I2C_write(uint8_t data, uint8_t addr){
@@ -29,13 +30,13 @@ int I2C_write(uint8_t data, uint8_t addr){
 	I2C = 0x00000000;
 
 
-	I2C =  (addr * 256) + data;// carrega endereço
+	I2C =  (addr * 256) + data;// carrega endereï¿½o
 
 	// pulso no enable
 	I2C = I2C | 0x20000000;
 	delay_(2);
 	I2C &= 0xDFFFFFFF;
-	delay_(100);	// ##### CONFERIR SE ESSE TEMPO DE DELAY É SUFICIENTE ####
+	delay_(100);	// ##### CONFERIR SE ESSE TEMPO DE DELAY ï¿½ SUFICIENTE ####
 	//le o ack
 	ack = (I2C >> 31);
 

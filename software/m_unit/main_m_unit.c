@@ -4,15 +4,14 @@
  *  Created on: Jul 08, 2019
  *      Author: Lucas Seara Manoel
  *      Instituto Federal de Santa Catarina
- * 
- * 
+ *
+ *
  * Mul/Div unit tests
  * -----------------------------------------
  */
 
 
 #include "utils.h"
-#include "uart.h"
 #include "hardware.h"
 #include <limits.h>
 
