@@ -47,7 +47,7 @@ flash:
 	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
 
 clean:
-	rm -f *.o *.d *.tmp start.elf
+	rm -f *.o *.d *.tmp start.elf *.lss *.map
 	rm -f $(MAIN).elf $(MAIN).hex $(MAIN)32.hex quartus_$(MAIN).hex
 
 -include *.d
