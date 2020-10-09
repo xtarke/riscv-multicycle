@@ -24,9 +24,9 @@ architecture RTL of lcd is
 	SIGNAL lcd_state : lcd_state_type;
 	
 	SIGNAL serial_clk_en : std_logic;
-	SIGNAL clk_count : integer range 0 to 100;
+	SIGNAL clk_count : integer range 0 to 101;
 	SIGNAL i : integer range 0 to 8;
-	SIGNAL byte : integer range 0 to 504;
+	SIGNAL byte : integer range 0 to 505;
 	SIGNAL data : std_logic_vector(0 to 7);
 	SIGNAL data_LCD : std_logic_vector(0 to 4031);
 begin
