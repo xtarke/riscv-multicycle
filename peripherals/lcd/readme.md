@@ -45,3 +45,6 @@ Sequência de inicialização:
 <p align="left">
     <img width="100%" height="50%" src="inic.png">
 </p>
+
+# Referências
+https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf
