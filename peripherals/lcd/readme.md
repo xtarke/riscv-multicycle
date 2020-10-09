@@ -40,3 +40,8 @@ Sequência de inicialização:
 - `AB` = 00: modo normal
 - `AB` = 01: modo inverso
 8. __Clear Display__
+
+# Simulação da inicialização do display
+<p align="left">
+    <img width="100%" height="50%" src="inic.png">
+</p>
