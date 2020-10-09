@@ -21,11 +21,22 @@ Saídas:
 
 # Funcionamento
 Sequência de inicialização:
-1. Reset
-2. Set Command Type
-3. Set Constrast
-4. Set Temperature Coefficient
-5. Set Bias Mode
-6. Send 0x20
-7. Set Control Mode
-8. Clear Display
+1. __Reset__
+2. __Set Command Type__ : din = 00100PVH  
+- `P = 0`: Chipe ativo 
+- `P = 1`: Modo power-down  
+- `V = 0`: Endereçamento horizontal
+- `V = 1`: Endereçamento Vertical 
+- `H = 0`: Set de instruções básico
+- `H = 1`: Set de instruções estendido
+3. __Set Constrast__ : din = 1011ABCD
+- `ABCD` = 0000 até 1111 (mais claro até o mais escuro)
+4. __Set Temperature Coefficient__ : din = 000001AB
+- `AB` = 00 até 11
+5. __Set Bias Mode__ : din = 00010ABC
+- `ABC` = 000 até FFF
+6. __Send 0x20__ : Necessário enviar 0x20 antes de alterar o control mode.
+7. __Set Control Mode__ : din = 000011AB
+- `AB` = 00: modo normal
+- `AB` = 01: modo inverso
+8. __Clear Display__
