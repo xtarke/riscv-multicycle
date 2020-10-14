@@ -13,28 +13,59 @@
 
 #include "utils.h"
 #include "hardware.h"
+	
 
+int test_memory();
+void test_memory_2();
 
 int main(){
 	int x = 0;
-	int i = 0;
-	volatile uint32_t *sdram = &SDRAM;
-   
+
 	while (1){
-
-		for(x=0; x<16; x++){
-				 sdram[x] = 1; 
-		}
-
-		for(x=0; x<16; x++){
-			OUTBUS =  sdram[x];
-			delay_(5); //ToDo: SDRAM refresh and init are not working.
-		}
-		
-		/* To test Data Bus 
-		x = INBUS;        
-		OUTBUS = x; */
+		OUTBUS = test_memory();
+		delay_(10000);
+		test_memory_2();
+		delay_(10000);
 	}
-
 	return 0;
+}
+
+
+void test_memory_2(){
+	int x = 0;
+   volatile uint32_t *sdram = &SDRAM;
+	for(x=0; x<64; x++){
+		sdram[x] = x; 
+	}
+	delay_(100000); 
+
+	for(x=0; x<64; x++){
+		OUTBUS =  sdram[x];
+		delay_(10000); 
+	}
+	for(x=0; x<64; x++){
+		OUTBUS =  sdram[63-x];
+		delay_(10000); 
+	}
+	
+}
+
+
+int test_memory(){
+	int x = 0;
+   volatile uint32_t *sdram = &SDRAM;
+	volatile uint32_t vector[64];
+	for(x=0; x<64; x++){
+		vector[x] = x; 
+	}
+	for(x=0; x<64; x++){
+		sdram[x] = vector[x]; 
+	}
+	delay_(10000);
+	for(x=0; x<64; x++){
+		if(sdram[x]!=vector[x]){
+			return 0;
+		}
+	}
+	return 1;
 }
