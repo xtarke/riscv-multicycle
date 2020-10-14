@@ -60,10 +60,13 @@ Assim como as etapas de leitura:
 <img src="./img/read_diagram.png" height="400">
 </p>
 
-## Problemas
+## TODO:
+* Verificar o offset do endereço da SDRAM em relação ao Core.
+* Implemententar o suporte a 32bits, atualmente só palavras de 16bits são escritas.
 
-* Este controlador consegue ler e escrever na memória SDRAM porém o valor escrita fica na memória por apenas um pequeno período de tempo.
-
+## Funcionamento do [teste em Software](https://github.com/xtarke/riscv-multicycle/tree/master/software/sdram)
+A main.c de Grava e verifica o conteudo da SDRAM, acendendo o LEDR0 caso o conteudo lido seja igual ao escrito na SDRAM. Em seguida grava novamente a memoria, lendo ela de forma crescente e decrescente, conforme o Gif abaixo.
+<img src="./img/funcionamento.gif?raw=true" width="400px">
 ## Referências
 
 * ISSI - Integrated Sillicon Solution Inc., IS42/45R86400D/16320D/32160D IS42/45S86400D/16320D/32160D Datasheet, disponível em: <http://www.issi.com/WW/pdf/42-45R-S_86400D-16320D-32160D.pdf>.
