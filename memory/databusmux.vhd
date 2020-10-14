@@ -17,6 +17,8 @@ entity databusmux is
 		idata 		: in 	std_logic_vector(31 downto 0);
 		ddata_r_mem : in std_logic_vector(31 downto 0);
 		ddata_r_gpio: in std_logic_vector(31 downto 0);
+		ddata_r_sdram: in std_logic_vector(31 downto 0);
+		
 		
 		-- Mux 
 		ddata_r		: out 	std_logic_vector(31 downto 0)
@@ -30,10 +32,13 @@ begin
 	-- 0x00000    ->    Instruction memory
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space	
+	-- 0x60000    ->    SDRAM	
+	
 	with dcsel select 
 		ddata_r <= idata when "00",
 		           ddata_r_mem when "01",
 		           ddata_r_gpio when "10",
+		           ddata_r_sdram when "11",
 		           (others => '0') when others;
 
 end architecture RTL;
