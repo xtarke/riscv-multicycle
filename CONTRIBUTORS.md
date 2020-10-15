@@ -1,4 +1,4 @@
-RISVC contributors (sorted alphabetically)
+RISVC contributors
 ============================================
 
 ## 2020/1
