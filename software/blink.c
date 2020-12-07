@@ -16,7 +16,7 @@
 
 int main(){
 	uint32_t data = 0;
-
+   
 	while (1){
 
 		/* Read input bus */
@@ -26,7 +26,7 @@ int main(){
 
 		/* Counter blink */
 		OUTBUS = data;
-		delay_(10000);
+		//delay_(10000);
 
 		data++;
 	}

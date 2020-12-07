@@ -25,7 +25,7 @@ entity gpio is
 		
 		-- Core data bus signals
 		-- ToDo: daddress shoud be unsgined
-		daddress  : in  natural;		
+		daddress  : in  natural;
 		ddata_w	  : in 	std_logic_vector(31 downto 0);
 		ddata_r   : out	std_logic_vector(31 downto 0);
 		d_we      : in std_logic;
