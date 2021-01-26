@@ -7,8 +7,9 @@ package decoder_types is
 	--! Record for instruction decoding
 	type opcodes_t is record
 		opcode : std_logic_vector(6 downto 0);	--! Instruction opcode
-		funct3 : std_logic_vector(2 downto 0);	--! Instruction function: 7 bits
-		funct7 : std_logic_vector(6 downto 0);	--! Instruction function: 3 bits
+		funct3 : std_logic_vector(2 downto 0);	--! Instruction function: 3 bits
+		funct7 : std_logic_vector(6 downto 0);	--! Instruction function: 7 bits
+		funct12 : std_logic_vector(11 downto 0);  --! Instruction function: 12 bits
 	end record opcodes_t;
 	
 	-------------------------------------------------------------------
@@ -124,12 +125,22 @@ package decoder_types is
 	
 	-------------------------------------------------------------------
 	--!  Environment Call and Breakpoints
-	constant TYPE_ENV_BREAK :  std_logic_vector(6 downto 0) := "1110011";
+	constant TYPE_ENV_BREAK_CSR :  std_logic_vector(6 downto 0) := "1110011";
 		--! Func3 opcodes
 		constant TYPE_EBREAK_ECALL	: std_logic_vector(2 downto 0) := "000";
+		constant TYPE_CSRRW         : std_logic_vector(2 downto 0) := "001";
+		constant TYPE_CSRRS         : std_logic_vector(2 downto 0) := "010";
+	    constant TYPE_CSRRC         : std_logic_vector(2 downto 0) := "011";
+	    constant TYPE_CSRRWI        : std_logic_vector(2 downto 0) := "101";
+	    constant TYPE_CSRRSI        : std_logic_vector(2 downto 0) := "110";
+	    constant TYPE_CSRRCI        : std_logic_vector(2 downto 0) := "111";
+	
 			--! Func7 opcodes
 			constant TYPE_EBREAK	: std_logic_vector(6 downto 0) := "0000001";
-	
+		--! Func12 opcodes	
+		constant TYPE_MRET    : std_logic_vector(11 downto 0) := "001100000010";
+			 
+				
 		
 end package decoder_types;
 

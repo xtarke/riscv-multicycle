@@ -34,21 +34,25 @@ entity decoder is
 		writeBackMux: out std_logic_vector(2 downto 0);
 		reg_write	: out std_logic;
 		
-		cpu_state	  : out cpu_state_t 
+		cpu_state	  : out cpu_state_t; 
 		
 		-- Comparator signals
 --		compResult	: in std_logic;
 --		compMux		: out std_logic
-				
-
-
+	    
+	    -- CSR signals
+	    csr_write : out std_logic;
+	    csr_load_imm: out std_logic;
+        mret        :out std_logic;
+        pending_inst: out std_logic
+        
 	);
 end entity decoder;
 
 architecture RTL of decoder is
 	type state_type is (READ, FETCH, DECODE, EXE_ALU, EXE_M, ST_TYPE_JAL, 
 		ST_TYPE_AUIPC, ST_TYPE_I, ST_TYPE_U, ST_TYPE_S, ST_BRANCH, ST_TYPE_JALR, ST_TYPE_L,
-		WRITEBACK, WRITEBACK_MEM, ERROR, HALT
+		WRITEBACK, WRITEBACK_MEM, ERROR,ST_TYPE_ENV_BREAK_CSR
 	);
 	signal state : state_type := READ;
 
@@ -82,7 +86,7 @@ begin
 						when TYPE_JAL => state <= ST_TYPE_JAL;
 						when TYPE_JALR => state <= ST_TYPE_JALR;
 						when TYPE_BRANCH => state <= ST_BRANCH;
-						when TYPE_ENV_BREAK => state <= HALT;						
+						when TYPE_ENV_BREAK_CSR => state <= ST_TYPE_ENV_BREAK_CSR;						
 						when others => state <= ERROR;
 					end case;
 			
@@ -110,15 +114,15 @@ begin
 					state <= ERROR;
 				when WRITEBACK => 
 					state <= FETCH;
+				when ST_TYPE_ENV_BREAK_CSR =>
+                    state <= WRITEBACK;
 				when WRITEBACK_MEM =>
 					
 					if (bus_lag = '0') then
 						state <= FETCH;
 					else
 						state <= READ;
-					end if;
-				when HALT =>
-				
+					end if; 
 			end case;
 		end if;
 	end process;
@@ -148,13 +152,19 @@ begin
 		cpu_state.halted <= '0';
 		cpu_state.error  <= '0';
 		
+		--! CSR Interface default signal values
+		csr_write <= '0';           
+	    csr_load_imm <='0';  
+		pending_inst<= '0';
+		mret<= '0';
+		
 		case state is 
 			when READ =>
 				
 			when FETCH=>
-				
+			    pending_inst<= '1';  	
 			when DECODE =>
-			
+			    pending_inst<= '1'; 
 			when ST_TYPE_JAL =>
 				jumps.load <= '1';
 				jumps.load_from <= "00";
@@ -309,6 +319,8 @@ begin
 				jumps.load_from <= "01";			
 			
 			when ST_TYPE_JALR =>
+			    writeBackMux <= "011";
+			    reg_write <= '1';    
 				jumps.load <= '1';
 				jumps.load_from <= "11";	
 			when ST_TYPE_L =>
@@ -332,22 +344,50 @@ begin
 						dmemory.word_size <= "01";
 					when others =>	
 						report "Not implemented" severity Failure;
-				end case;
-				
-				jumps.inc <= '1';				
-				
-			when ERROR =>
-				cpu_state.error  <= '0';
-				report "Not implemented" severity Failure;
-			
-			when HALT =>
-				cpu_state.halted <= '0';
-				report "Simulation success!" severity Failure;
-				
-			when WRITEBACK => 
-				
-			when WRITEBACK_MEM =>
-				writeBackMux <= "100";
+                end case;
+
+                jumps.inc <= '1';
+
+            when ERROR =>
+                cpu_state.error <= '0';
+                report "Not implemented" severity Failure;
+
+            when ST_TYPE_ENV_BREAK_CSR =>
+                 case opcodes.funct12 is
+                    when TYPE_MRET =>
+                        mret<= '1';
+                    when others =>
+                            reg_write <= '1';
+                            csr_write <= '1';
+                            jumps.inc <= '1';
+                            writeBackMux <= "111";
+                            
+                            case opcodes.funct3 is
+                                when TYPE_EBREAK_ECALL =>
+
+                                when TYPE_CSRRW =>
+
+                                when TYPE_CSRRS =>
+
+                                when TYPE_CSRRC =>
+
+                                when TYPE_CSRRWI =>
+                                    csr_load_imm <='1';
+                                when TYPE_CSRRSI =>
+                                    csr_load_imm <='1';
+                                when TYPE_CSRRCI =>
+                                    csr_load_imm <='1';
+
+                                when others =>
+                                    report "Not implemented" severity Failure;
+                            end case;
+                    end case;
+                
+            when WRITEBACK =>
+                pending_inst<= '1'; 
+            when WRITEBACK_MEM =>
+                pending_inst<= '1'; 
+                writeBackMux <= "100";
 				reg_write <= '1';
 				dmemory.read <= '1';					
 		end case;
