@@ -25,10 +25,13 @@ vcom ./decoder/decoder_types.vhd
 vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
+vcom ./peripherals/gpio/gpio.vhd
+vcom ./core/csr.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
 vcom ./core/trace_debug.vhd
 vcom ./core/testbench.vhd
+
 
 vsim -t ns work.coretestbench
 
@@ -48,6 +51,8 @@ add wave -radix hex -label pc 			/myRiscv/pc
 add wave -radix hex -label jal_target 	/myRiscv/jal_target
 add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
 add wave -label branch_cmp 				/myRiscv/branch_cmp
+add wave -radix hex -label jumps 	/myRiscv/jumps
+
 
 add wave -height 15 -divider "Iregister debug"
 add wave -label opcode  /myRiscv/opcodes 
@@ -70,6 +75,29 @@ add wave -height 15 -divider "Register file debug"
 
 # decoder debug
 add wave -label states /myRiscv/decoder0/state
+
+add wave -height 15 -divider "GPIO"
+add wave -label enable_exti_mask -radix hex /generic_gpio/enable_exti_mask
+add wave -label edge_exti_mask -radix hex /generic_gpio/edge_exti_mask
+
+add wave -height 15 -divider "CSR"
+ add wave -label interrupts -radix hex /myRiscv/interrupts
+ add wave -label mySignal_re -radix hex /mySignal_re
+ add wave -label pending_interrupts -radix hex /myRiscv/ins_csr/pending_interrupts
+ add wave -label mret -radix hex /myRiscv/ins_csr/mret
+ add wave -label pending /myRiscv/pending
+ add wave -label csr_write /myRiscv/csr_write
+ add wave -label csr_addr /myRiscv/imm_i
+ add wave -label csr_value -radix hex /myRiscv/csr_value
+ add wave -label load_mepc -radix hex /myRiscv/load_mepc
+ #add wave -label load_mepc_holder -radix hex /myRiscv/ins_csr/load_mepc_holder
+ add wave -label mepc -radix hex /myRiscv/mepc
+ add wave -label mretpc -radix hex /myRiscv/mretpc
+ add wave -label csr_new -radix hex /myRiscv/rs1_data
+ add wave -label mreg -radix hex /myRiscv/ins_csr/mreg
+ 
+
+
 
 # add wave -height 15 -divider "Alu debug"
 # add wave -label aluData /myRiscv/alu_data
@@ -100,4 +128,5 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
-run 950000 ns
+run 2000 us
+wave zoomfull

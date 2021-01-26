@@ -1,3 +1,251 @@
+#include "csr_encoding.h"
+#define LOG_REGBYTES 2
+#define REGBYTES (1 << LOG_REGBYTES)
+###############################################
+###############################################
+# Disable Interrupt
+#
+.macro DISABLE_MIE
+  csrc CSR_MSTATUS, MSTATUS_MIE  
+.endm
+
+
+###############################################
+###############################################
+#Save caller registers
+.macro SAVE_CONTEXT
+
+  sw x1, 0*REGBYTES(sp)
+	sw x4, 1*REGBYTES(sp)
+	sw x5, 2*REGBYTES(sp)
+	sw x6, 3*REGBYTES(sp)
+	sw x7, 4*REGBYTES(sp)
+	sw x10, 5*REGBYTES(sp)
+	sw x11, 6*REGBYTES(sp)
+	sw x12, 7*REGBYTES(sp)
+	sw x13, 8*REGBYTES(sp)
+	sw x14, 9*REGBYTES(sp)
+	sw x15, 10*REGBYTES(sp)
+  sw x16, 11*REGBYTES(sp)
+	sw x17, 12*REGBYTES(sp)
+	sw x28, 13*REGBYTES(sp)
+	sw x29, 14*REGBYTES(sp)
+	sw x30, 15*REGBYTES(sp)
+	sw x31, 16*REGBYTES(sp)
+
+
+.endm
+
+
+###############################################
+###############################################
+#restore caller registers
+.macro RESTORE_CONTEXT
+    lw x1, 0*REGBYTES(sp)
+	lw x4, 1*REGBYTES(sp)
+	lw x5, 2*REGBYTES(sp)
+	lw x6, 3*REGBYTES(sp)
+	lw x7, 4*REGBYTES(sp)
+	lw x10, 5*REGBYTES(sp)
+	lw x11, 6*REGBYTES(sp)
+	lw x12, 7*REGBYTES(sp)
+	lw x13, 8*REGBYTES(sp)
+	lw x14, 9*REGBYTES(sp)
+	lw x15, 10*REGBYTES(sp)
+  lw x16, 11*REGBYTES(sp)
+	lw x17, 12*REGBYTES(sp)
+	lw x28, 13*REGBYTES(sp)
+	lw x29, 14*REGBYTES(sp)
+	lw x30, 15*REGBYTES(sp)
+
+
+
+// De-allocate the stack space
+ addi sp, sp, 20*REGBYTES
+.endm
+
+###############################################
+###############################################
+#restore caller registers
+.macro RESTORE_CONTEXT_EXCPT_X5
+  lw x1,  0*REGBYTES(sp)
+  lw x6,  2*REGBYTES(sp)
+  lw x7,  3*REGBYTES(sp)
+  lw x10, 4*REGBYTES(sp)
+  lw x11, 5*REGBYTES(sp)
+  lw x12, 6*REGBYTES(sp)
+  lw x13, 7*REGBYTES(sp)
+  lw x14, 8*REGBYTES(sp)
+  lw x15, 9*REGBYTES(sp)
+  lw x16, 10*REGBYTES(sp)
+  lw x17, 11*REGBYTES(sp)
+  lw x28, 12*REGBYTES(sp)
+  lw x29, 13*REGBYTES(sp)
+  lw x30, 14*REGBYTES(sp)
+  lw x31, 15*REGBYTES(sp)
+.endm
+
+###############################################
+###############################################
+#restore caller registers
+.macro RESTORE_CONTEXT_ONLY_X5
+  lw x5,  1*REGBYTES(sp)
+.endm
+
+###############################################
+###############################################
+# Save the mepc and mstatus
+#
+.macro SAVE_EPC_STATUS
+  csrr x5, CSR_MEPC  
+  sw x5,  16*REGBYTES(sp)
+  csrr x5, CSR_MSTATUS  
+  sw x5,  17*REGBYTES(sp)
+  csrr x5, CSR_MSUBM  
+  sw x5,  18*REGBYTES(sp)
+.endm
+
+###############################################
+###############################################
+# Restore the mepc and mstatus
+#
+.macro RESTORE_EPC_STATUS
+  lw x5,  16*REGBYTES(sp)
+  csrw CSR_MEPC, x5  
+  lw x5,  17*REGBYTES(sp)
+  csrw CSR_MSTATUS, x5  
+  lw x5,  18*REGBYTES(sp)
+  csrw CSR_MSUBM, x5  
+.endm
+
+
+
+###############################################
+###############################################
+// Trap entry point
+//
+  .section      .text.trap	
+  .align 2
+  .global trap_entry
+.weak trap_entry
+trap_entry:
+ // Allocate the stack space
+ // addi sp, sp, -19*REGBYTES
+
+  // Save the caller saving registers (context)
+  SAVE_CONTEXT
+  // Save the MEPC/Mstatus/Msubm reg
+  SAVE_EPC_STATUS
+
+     // Set the function argument
+  csrr a0, mcause
+  mv a1, sp
+     // Call the function
+  //call handle_trap
+
+  // Restore the MEPC/Mstatus/Msubm reg
+  RESTORE_EPC_STATUS
+  // Restore the caller saving registers (context)
+  RESTORE_CONTEXT
+
+  // De-allocate the stack space
+ // addi sp, sp, 19*REGBYTES
+  // Return to regular code
+  mret
+
+
+###############################################
+###############################################
+// IRQ entry point
+//
+  .section      .text.irq	
+  .align 2
+  .global irq_entry
+.weak irq_entry
+irq_entry: // -------------> This label will be set to MTVT2 register
+  // Allocate the stack space
+  
+
+  SAVE_CONTEXT// Save 16 regs
+
+  csrr	a2,CSR_MCAUSE // Machine trap cause.
+  csrr	a4,CSR_MTVT // Machine irq-handler base address
+
+  slli a2,a2,0x2
+  add a4,a4,a2
+  lw a4,0(a4)
+  jalr x1,0(a4)
+
+  //RESTORE_CONTEXT_EXCPT_X5
+
+  #---- Critical section with interrupts disabled -----------------------
+  //DISABLE_MIE # Disable interrupts 
+
+
+  RESTORE_CONTEXT
+
+  
+  // Return to regular code
+  mret
+
+
+
+
+
+.section .init
+	
+    .weak  eclic_msip_handler         
+    .weak  eclic_mtip_handler
+    .weak  eclic_bwei_handler
+    .weak  eclic_pmovi_handler
+    .weak  EXTI0_IRQHandler
+    .weak  EXTI1_IRQHandler
+    .weak  EXTI2_IRQHandler
+    .weak  EXTI3_IRQHandler
+    .weak  EXTI4_IRQHandler
+    .weak  EXTI5_9_IRQHandler
+    .weak  TIMER0_BRK_IRQHandler
+    .weak  TIMER0_UP_IRQHandler
+    .weak  TIMER0_TRG_CMT_IRQHandler
+    .weak  TIMER0_Channel_IRQHandler
+    .weak  EXTI10_15_IRQHandler
+    
+
+vector_base:
+    j _start
+    .align    2
+    .word     0
+    .word     0
+    .word     eclic_msip_handler
+    .word     0
+    .word     0
+    .word  	  0
+    .word  	  eclic_mtip_handler
+    .word  	  0
+    .word  	  0
+    .word  	  0
+    .word  	  0
+    .word  	  0
+    .word  	  0
+    .word  	  0
+    .word 	  0
+    .word  	  0
+    .word  	  eclic_bwei_handler        // 17
+    .word  	  eclic_pmovi_handler       // 18
+	  .word     EXTI0_IRQHandler          // 19
+	  .word     EXTI1_IRQHandler          // 20
+	  .word     EXTI2_IRQHandler          // 21
+	  .word     EXTI3_IRQHandler          // 22
+	  .word     EXTI4_IRQHandler          // 23
+	  .word     EXTI5_9_IRQHandler        // 24
+	  .word     TIMER0_BRK_IRQHandler     // 25
+	  .word     TIMER0_UP_IRQHandler      // 26
+	  .word     TIMER0_TRG_CMT_IRQHandler // 27
+	  .word     TIMER0_Channel_IRQHandler // 28
+	  .word     EXTI10_15_IRQHandler      // 29
+
+
+
 .section .text
 .global _start
 .global _start
@@ -42,14 +290,30 @@ addi x31, zero, 0 */
 /* lui sp, %hi(4*1024*1024) */
 /* addi sp, sp, %lo(4*1024*1024) */
 
+/* Disable Interrupts*/
+csrc 0x300, 0x00000008
+
+/* Intial the mtvt*/
+la t0, vector_base
+csrw CSR_MTVT, t0
+
+/* Intial the mtvt2 and enable it*/
+la t0, irq_entry
+csrw CSR_MTVT2, t0
+csrs CSR_MTVT2, 0x1
+
+/* Intial the CSR MTVEC for the Trap ane NMI base addr*/
+la t0, trap_entry
+csrw CSR_MTVEC, t0
+
+
 /* set stack pointer: ram(rwx) : ORIGIN = 0x0002000000, LENGTH = 2k = 0x2000800  = 33556480*/
-lui sp, %hi(33556480)         
+lui sp, %hi(33556480)
 addi sp, sp,%lo(33556480)
 
 /* Set Global pointer: RAM init @  ORIGIN = 0x0002000000,*/
 lui gp, %hi(33554432)
 addi gp, gp, %lo(33554432)
-
 
 /* lui	a5,0x2000
 li	a4,0x123456F8

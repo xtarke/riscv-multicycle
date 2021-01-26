@@ -28,8 +28,11 @@ entity core is
 		d_sig     : out std_logic;						--! Signal extension
 		dcsel	  : out std_logic_vector(1 downto 0);	--! Chip select 
 		dmask     : out std_logic_vector(3 downto 0);	--! Byte enable mask
+	    
+		interrupts:std_logic_vector(31 downto 0);
 		
 		state	  : out cpu_state_t 
+	    
 	);
 end entity core;
 
@@ -76,46 +79,65 @@ architecture RTL of core is
 
 	signal branch_cmp : std_logic;
 	signal bus_lag : std_logic;
-		
+	
+	signal pending : std_logic;
+	signal csr_write : std_logic;
+	signal csr_load_imm: std_logic;
+	signal csr_value : std_logic_vector(31 downto 0);
+	signal mepc : std_logic_vector(31 downto 0);
+	signal csr_new : std_logic_vector(31 downto 0);
+	signal load_mepc: std_logic;
+    signal mretpc : std_logic_vector(31 downto 0);
+    signal mret : std_logic;
+    
 begin
 	
 	pc_blk: block
-	begin		
-		
-		next_pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + 4,32));
-		
-		pc_proc: process (clk, rst)
-		begin			
-			if rst = '1' then 
-				pc <= (others => '0');
-			else
-				if rising_edge(clk) then
-					if jumps.inc = '1' then
-						pc <= next_pc;
-					 elsif jumps.load = '1' then						
-						case jumps.load_from is 
-							when "00" =>
-								pc <= std_logic_vector(to_unsigned(jal_target,32));
-							
-							when "01" =>
-								if branch_cmp = '1' then
-									pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + imm_b,32));						
-								else
-									pc <= next_pc;
-								end if;	
-								
-							when "11" =>
-								pc <= std_logic_vector(to_unsigned(jalr_target,32));							
-							
-							when others =>
-								report "Not implemented" severity Failure;
-						end case;						
-					
-					end if;
-				end if;
-			end if;			
-		end process;
-		
+    begin
+
+        next_pc <= std_logic_vector(to_unsigned(to_integer(signed(pc)) + 4,32));
+
+        pc_proc: process (clk, rst)
+            variable pc_holder : std_logic_vector(31 downto 0);
+        begin
+            if rst = '1' then
+                pc_holder := (others => '0');
+                mretpc <= (others => '0');
+            else
+                if rising_edge(clk) then
+
+                    if jumps.inc = '1' then         -- Calculate next pc
+                        pc_holder := next_pc;
+                    elsif jumps.load = '1' then
+                        case jumps.load_from is
+                            when "00" =>
+                                pc_holder := std_logic_vector(to_unsigned(jal_target,32));
+                            when "01" =>
+                                if branch_cmp = '1' then
+                                    pc_holder := std_logic_vector(to_unsigned(to_integer(signed(pc)) + imm_b,32));
+                                else
+                                    pc_holder := next_pc;
+                                end if;
+                                            
+                            when "11" =>
+                                pc_holder := std_logic_vector(to_unsigned(jalr_target,32));
+                            when others =>
+                                report "Not implemented" severity Failure;
+                        end case;
+                    
+                    end if;
+                    
+                    mretpc<=pc_holder;      -- mretpc recieve the next calculated pc
+                    
+                    if (load_mepc = '1')then
+                        pc_holder:= mepc;   
+                    end if;
+                    pc <=pc_holder;         -- pc recieve the next calculated pc or index of iqr handler
+                end if;
+            end if;
+        end process;
+
+
 		jal_target <= to_integer(signed(pc)) + imm_j;
 		auipc_offtet <= to_integer(signed(pc)) + imm_u;
 		jalr_target <= to_integer(signed(rs1_data)) + imm_i;
@@ -162,6 +184,29 @@ begin
 		end process;		
 	end block;
 		
+	with csr_load_imm select               -- Select between rs1 value and immediate 
+	       csr_new <=  rs1_data when '0',
+	                   Std_logic_vector(to_unsigned(rs1,32))  when '1',
+	                   (others => '0') when others;
+	
+	
+    ins_csr: entity work.csr
+        port map(
+            clk        => clk,
+            rst        => rst,
+            pending_inst    => pending,
+            write      => csr_write,
+            pc         => mretpc,
+            csr_addr   => imm_i,
+            csr_new    => csr_new,
+            opcodes    => opcodes,
+            mret       => mret,
+            interrupts => interrupts,
+            csr_value  => csr_value,
+            load_mepc  => load_mepc,
+            mepc_out   => mepc
+        );
+		
 		
 	ins_register: entity work.iregister
 		port map(
@@ -202,6 +247,7 @@ begin
 			           next_pc 									    when "011",
 			           ddata_r 									    when "100",
 			           M_out				 			       		when "101",
+			           csr_value                                    when "111",
 			           std_logic_vector(to_signed(imm_i,32))   		when others;
 		
 	end block;			
@@ -219,7 +265,11 @@ begin
 			M_Cod        => M_data.code,
 			writeBackMux => writeBackMux,
 			reg_write    => rf_w_ena,
-			cpu_state    => state
+			cpu_state    => state,
+			csr_write    => csr_write,
+			csr_load_imm => csr_load_imm,
+			mret         => mret,
+			pending_inst => pending
 		);
 
 
