@@ -73,23 +73,14 @@ architecture RTL of tb_core_timer is
 
 	signal dmemory_address : natural;
     signal d_sig : std_logic;
-
-	-- TIMER Signals
-	signal timer_reset : std_logic;
-	signal timer_mode  : unsigned(1 downto 0);
-	signal prescaler   : unsigned(15 downto 0);
-	signal top_counter : unsigned(31 downto 0);
-	signal compare_0A  : unsigned(31 downto 0);
-	signal compare_1A  : unsigned(31 downto 0);
-	signal compare_2A  : unsigned(31 downto 0);
-	signal compare_0B  : unsigned(31 downto 0);
-	signal compare_1B  : unsigned(31 downto 0);
-	signal compare_2B  : unsigned(31 downto 0);
-	signal output_A    : std_logic_vector(2 downto 0);
-	signal output_B    : std_logic_vector(2 downto 0);
+    signal ddata_r_gpio: std_logic_vector(31 downto 0);
+    signal interrupts: std_logic_vector(31 downto 0);
+    signal timer_interrupt : std_logic_vector(5 downto 0);
 
 begin
 
+    interrupts <= "0" & timer_interrupt & "0" & x"000000";
+   
 	-- timer instantiation
 	timer : entity work.Timer
 		generic map(
@@ -99,18 +90,14 @@ begin
 		port map(
 			clock       => clk,
 			reset       => rst,
-			timer_reset => timer_reset,
-			timer_mode  => timer_mode,
-			prescaler   => prescaler,
-            top_counter => top_counter,
-			compare_0A  => compare_0A,
-			compare_0B  => compare_0B,
-			compare_1A  => compare_1A,
-			compare_1B  => compare_1B,
-			compare_2A  => compare_2A,
-			compare_2B  => compare_2B,
-			output_A    => output_A,
-			output_B    => output_B
+			daddress => daddress,
+            ddata_w  => ddata_w,
+            ddata_r  => ddata_r_gpio,
+            d_we     => d_we,
+            d_rd     => d_rd,
+            dcsel    => dcsel,
+            dmask    => dmask,
+            timer_interrupt=>timer_interrupt
 		);
 
 	clock_driver : process
@@ -214,102 +201,31 @@ begin
 		ddata_r_mem when "01",
 		input_in when "10",(others => '0') when others;
 
-	-- Softcore instatiation
-	myRiscv : entity work.core
-		generic map(
-			IMEMORY_WORDS => IMEMORY_WORDS,
-			DMEMORY_WORDS => DMEMORY_WORDS
-		)
-		port map(
-			clk      => clk,
-			rst      => rst,
-			iaddress => iaddress,
-			idata    => idata,
-			daddress => daddress,
-			ddata_r  => ddata_r,
-			ddata_w  => ddata_w,
-			d_we     => d_we,
-			d_rd     => d_rd,
+    -- Softcore instatiation
+    myRiscv : entity work.core
+        generic map(
+            IMEMORY_WORDS => IMEMORY_WORDS,
+            DMEMORY_WORDS => DMEMORY_WORDS
+        )
+        port map(
+            clk      => clk,
+            rst      => rst,
+            iaddress => iaddress,
+            idata    => idata,
+            daddress => daddress,
+            ddata_r  => ddata_r,
+            ddata_w  => ddata_w,
+            d_we     => d_we,
+            d_rd     => d_rd,
             d_sig    => d_sig,
-			dcsel    => dcsel,
-			dmask    => dmask,
-			state    => cpu_state
-		);
+            dcsel    => dcsel,
+            dmask    => dmask,
+            interrupts=>interrupts,
+            state    => cpu_state
+        );
 
-	-- Output register (Dummy LED blinky)
-	process(clk, rst)
-	begin
-		if rst = '1' then
-			LEDR(7 downto 0) <= (others => '0');
-			HEX0             <= (others => '1');
-			HEX1             <= (others => '1');
-			HEX2             <= (others => '1');
-			HEX3             <= (others => '1');
-			HEX4             <= (others => '1');
-			HEX5             <= (others => '1');
-		else
-			if rising_edge(clk) then
-				if (d_we = '1') and (dcsel = "10") then
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then
-						LEDR(7 downto 0) <= ddata_w(7 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-						HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
-					-- HEX4 <= ddata_w(7 downto 0);
-					-- HEX5 <= ddata_w(7 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then -- TIMER_ADDRESS
-						timer_reset <= ddata_w(0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then -- TIMER_ADDRESS
-						timer_mode <= unsigned(ddata_w(1 downto 0));
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then -- TIMER_ADDRESS
-						prescaler <= unsigned(ddata_w(15 downto 0));
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0B" then -- TIMER_ADDRESS
-						top_counter <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0C" then -- TIMER_ADDRESS
-						compare_0A <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0D" then -- TIMER_ADDRESS
-						compare_0B <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0E" then -- TIMER_ADDRESS
-						compare_1A <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0F" then -- TIMER_ADDRESS
-						compare_1B <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"10" then -- TIMER_ADDRESS
-						compare_2A <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"11" then -- TIMER_ADDRESS
-						compare_2B <= unsigned(ddata_w);
-					end if;
-				end if;
-			end if;
-		end if;
-	end process;
 
-	-- Input register
-	process(clk, rst)
-	begin
-		if rst = '1' then
-			input_in <= (others => '0');
-		else
-
-			if rising_edge(clk) then
-				if (d_rd = '1') and (dcsel = "10") then
-					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then
-						input_in(4 downto 0) <= SW(4 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then
-						input_in(7 downto 0) <= data_out;
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"12" then
-					    input_in(2 downto 0) <= output_A(2 downto 0);
-					    input_in(5 downto 3) <= output_B(2 downto 0);
-					end if;
-				end if;
-			end if;
-		end if;
-
-	end process;
+	
 
 	-- FileOutput DEBUG	
 	debug : entity work.trace_debug

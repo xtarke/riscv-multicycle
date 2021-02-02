@@ -27,7 +27,7 @@ architecture RTL of csr is
     signal mstatus_mask : std_logic_vector(31 downto 0);        -- Used to modify CSR MSTATUS between process
     signal pending_interrupts : std_logic_vector(31 downto 0);  -- Register of pending interrupts 
     signal mip_in: std_logic_vector(31 downto 0);               -- Signal to store on CSR MIP 
-    signal mcause_in: std_logic_vector(31 downto 0);            -- Signal to store on CSR MCAUSE
+    signal mcause_in: unsigned(31 downto 0);            -- Signal to store on CSR MCAUSE
     signal load_mepc_reg:std_logic;                             -- Signal to register load_mepc
     
     type machine_reg is array (7 downto 0) of std_logic_vector(31 downto 0);  
@@ -60,12 +60,16 @@ architecture RTL of csr is
     constant EXTI2_IRQ          : integer := 20; 
     constant EXTI3_IRQ          : integer := 21; 
     constant EXTI4_IRQ          : integer := 22; 
-    constant EXTI5_9_IRQ        : integer := 23; 
-    constant TIMER0_BRK_IRQ     : integer := 24; 
-    constant TIMER0_UP_IRQ      : integer := 25; 
-    constant TIMER0_TRG_CMT_IRQ : integer := 26; 
-    constant TIMER0_Channel_IRQ : integer := 27; 
-    constant EXTI10_15_IRQ      : integer := 28; 
+    constant EXTI5_9_IRQ        : integer := 23;
+    constant EXTI10_15_IRQ      : integer := 24;  
+    constant TIMER0_0A_IRQHandler     : integer := 25; 
+    constant TIMER0_0B_IRQHandler     : integer := 26; 
+    constant TIMER0_1A_IRQHandler     : integer := 27; 
+    constant TIMER0_1B_IRQHandler     : integer := 28; 
+    constant TIMER0_2A_IRQHandler     : integer := 29; 
+    constant TIMER0_2B_IRQHandler     : integer := 30; 
+    -- TODO: Add more IRQ Handlers 
+    
     
 begin
 
@@ -86,37 +90,41 @@ begin
             if((mreg(To_integer(MSTATUS   (15 downto 12))) AND MSTATUS_MIE)/=x"00000000")then -- Check if Global Interrupts are Enabled 
                 
                 if((mreg(To_integer(MIE   (15 downto 12))) and MIP_MTIP ) /=x"0000_0000" and                        -- Check if Timer Interrupts are Enabled 
-                   (pending_interrupts(TIMER0_Channel_IRQ downto TIMER0_BRK_IRQ))/="0000" -- Check if Timer IRQs are Pending
+                   (pending_interrupts(TIMER0_2B_IRQHandler downto TIMER0_0A_IRQHandler))/="000000" -- Check if Timer IRQs are Pending
                     )then
                     mip_in<=MIP_MTIP;   --   Set Timer interrupt Pending
-                    if(pending_interrupts(TIMER0_BRK_IRQ)/='0')then 
-                        mcause_in <= x"0000_0019";  -- Set mcause to TIMER0_BRK_IRQ vector_base address 
-                    elsif(pending_interrupts(TIMER0_UP_IRQ)/='0')then
-                        mcause_in <= x"0000_001a";
-                    elsif(pending_interrupts(TIMER0_TRG_CMT_IRQ)/='0')then
-                        mcause_in <= x"0000_001b";
-                    elsif(pending_interrupts(TIMER0_Channel_IRQ)/='0')then
-                        mcause_in <= x"0000_001c";
+                    if(pending_interrupts(TIMER0_0A_IRQHandler)/='0')then 
+                        mcause_in <= to_unsigned(TIMER0_0A_IRQHandler + 1,32);  -- Set mcause to TIMER0_0A_IRQHandler vector_base address 
+                    elsif(pending_interrupts(TIMER0_0B_IRQHandler)/='0')then
+                        mcause_in <= to_unsigned(TIMER0_0B_IRQHandler + 1,32);
+                    elsif(pending_interrupts(TIMER0_1A_IRQHandler)/='0')then
+                        mcause_in <= to_unsigned(TIMER0_1A_IRQHandler + 1,32);
+                    elsif(pending_interrupts(TIMER0_1B_IRQHandler)/='0')then
+                        mcause_in <= to_unsigned(TIMER0_1B_IRQHandler + 1,32);
+                    elsif(pending_interrupts(TIMER0_2A_IRQHandler)/='0')then
+                        mcause_in <= to_unsigned(TIMER0_2A_IRQHandler + 1,32);
+                    elsif(pending_interrupts(TIMER0_2B_IRQHandler)/='0')then
+                        mcause_in <= to_unsigned(TIMER0_2B_IRQHandler + 1,32);
                     end if;
 
                 elsif((mreg(To_integer(MIE   (15 downto 12))) and MIP_MEIP ) /=x"0000_0000" and                     -- Check if External Interrupts are Enabled 
-                      (pending_interrupts(EXTI5_9_IRQ downto EXTI0_IRQ) & pending_interrupts(EXTI10_15_IRQ))/="0000000" -- Check if External IRQs are Pending
+                      (pending_interrupts(EXTI10_15_IRQ downto EXTI0_IRQ))/="0000000" -- Check if External IRQs are Pending
                     )then
                     mip_in<=MIP_MEIP;   --   Set External interrupt Pending
                     if(pending_interrupts(EXTI0_IRQ)/='0')then
-                        mcause_in <= x"0000_0013"; -- Set mcause to EXTI0_IRQ vector_base address
+                        mcause_in <= to_unsigned(EXTI0_IRQ + 1,32); -- Set mcause to EXTI0_IRQ vector_base address
                     elsif(pending_interrupts(EXTI1_IRQ)/='0')then
-                        mcause_in <= x"0000_0014";
+                        mcause_in <= to_unsigned(EXTI1_IRQ + 1,32);
                     elsif(pending_interrupts(EXTI2_IRQ)/='0')then
-                        mcause_in <= x"0000_0015";
+                        mcause_in <= to_unsigned(EXTI2_IRQ + 1,32);
                     elsif(pending_interrupts(EXTI3_IRQ)/='0')then
-                        mcause_in <= x"0000_0016";
+                        mcause_in <= to_unsigned(EXTI3_IRQ + 1,32);
                     elsif(pending_interrupts(EXTI4_IRQ)/='0')then
-                        mcause_in <= x"0000_0017";
+                        mcause_in <= to_unsigned(EXTI4_IRQ + 1,32);
                     elsif(pending_interrupts(EXTI5_9_IRQ)/='0')then
-                        mcause_in <= x"0000_0018";
+                        mcause_in <= to_unsigned(EXTI5_9_IRQ + 1,32);
                     elsif(pending_interrupts(EXTI10_15_IRQ)/='0')then
-                        mcause_in <= x"0000_001D";
+                        mcause_in <= to_unsigned(EXTI10_15_IRQ + 1,32);
                     end if;
                 end if;
             end if;
@@ -227,7 +235,7 @@ begin
             csr_value <= mreg(mrindex); -- Read value from CSR of csr_addr
              
             mreg(To_integer(MIP    (15 downto 12))) <= mip_in;    -- Update MIP
-            mreg(To_integer(MCAUSE (15 downto 12))) <= mcause_in; -- Update MCAUSE  
+            mreg(To_integer(MCAUSE (15 downto 12))) <= std_logic_vector(mcause_in); -- Update MCAUSE  
             
             
             if(mrindex /= To_integer(MSTATUS(15 downto 12)))then  

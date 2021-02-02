@@ -4,9 +4,17 @@
 #include "hardware.h"
 
 #define INBUS               *(&IONBUS_BASE_ADDRESS)
-#define OUTBUS              *(&IONBUS_BASE_ADDRESS + 4)
-#define EXTIx_IRQ_ENABLE    *(&IONBUS_BASE_ADDRESS + 8)
-#define EXTIx_EDGE          *(&IONBUS_BASE_ADDRESS + 12)
+#define OUTBUS              *(&IONBUS_BASE_ADDRESS + 1)
+#define EXTIx_IRQ_ENABLE    *(&IONBUS_BASE_ADDRESS + 2)
+#define EXTIx_EDGE          *(&IONBUS_BASE_ADDRESS + 3)
+
+
+#define HEX0    *(&SEGMENTS_BASE_ADDRESS)
+#define HEX1    *(&SEGMENTS_BASE_ADDRESS + 1)
+#define HEX2    *(&SEGMENTS_BASE_ADDRESS + 2)
+#define HEX3    *(&SEGMENTS_BASE_ADDRESS + 3)
+#define HEX4    *(&SEGMENTS_BASE_ADDRESS + 4)
+#define HEX5    *(&SEGMENTS_BASE_ADDRESS + 5)
 
 typedef enum EDGE
 {

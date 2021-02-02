@@ -44,7 +44,7 @@
 
 #define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
 
-// Each peripheral 16 has reserved memory addresses
+// Each peripheral has 16 reserved memory addresses
 // In that .h only the base address must be defined
 // The specific addresses must be defined in the respective .h of the periphery
 // Take gpio.h as an example
