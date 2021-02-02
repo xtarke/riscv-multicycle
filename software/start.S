@@ -194,21 +194,24 @@ irq_entry: // -------------> This label will be set to MTVT2 register
 
 .section .init
 	
-    .weak  eclic_msip_handler         
-    .weak  eclic_mtip_handler
-    .weak  eclic_bwei_handler
-    .weak  eclic_pmovi_handler
     .weak  EXTI0_IRQHandler
     .weak  EXTI1_IRQHandler
     .weak  EXTI2_IRQHandler
     .weak  EXTI3_IRQHandler
     .weak  EXTI4_IRQHandler
     .weak  EXTI5_9_IRQHandler
-    .weak  TIMER0_BRK_IRQHandler
-    .weak  TIMER0_UP_IRQHandler
-    .weak  TIMER0_TRG_CMT_IRQHandler
-    .weak  TIMER0_Channel_IRQHandler
     .weak  EXTI10_15_IRQHandler
+    .weak  TIMER0_0A_IRQHandler
+    .weak  TIMER0_0B_IRQHandler
+    .weak  TIMER0_1A_IRQHandler
+    .weak  TIMER0_1B_IRQHandler
+    .weak  TIMER0_2A_IRQHandler
+    .weak  TIMER0_2B_IRQHandler
+// TODO: Add more IRQ Handlers 
+//    .weak  UART0_IRQHandler           
+//    .weak  SPI0_IRQHandler           
+//    .weak  I2C0_IRQHandler           
+//    .weak  ADC0_IRQHandler           
     
 
 vector_base:
@@ -216,11 +219,11 @@ vector_base:
     .align    2
     .word     0
     .word     0
-    .word     eclic_msip_handler
+    .word     0
     .word     0
     .word     0
     .word  	  0
-    .word  	  eclic_mtip_handler
+    .word  	  0
     .word  	  0
     .word  	  0
     .word  	  0
@@ -230,20 +233,27 @@ vector_base:
     .word  	  0
     .word 	  0
     .word  	  0
-    .word  	  eclic_bwei_handler        // 17
-    .word  	  eclic_pmovi_handler       // 18
-	  .word     EXTI0_IRQHandler          // 19
-	  .word     EXTI1_IRQHandler          // 20
-	  .word     EXTI2_IRQHandler          // 21
-	  .word     EXTI3_IRQHandler          // 22
-	  .word     EXTI4_IRQHandler          // 23
-	  .word     EXTI5_9_IRQHandler        // 24
-	  .word     TIMER0_BRK_IRQHandler     // 25
-	  .word     TIMER0_UP_IRQHandler      // 26
-	  .word     TIMER0_TRG_CMT_IRQHandler // 27
-	  .word     TIMER0_Channel_IRQHandler // 28
-	  .word     EXTI10_15_IRQHandler      // 29
-
+    .word  	  0        
+    .word  	  0       
+	  .word     EXTI0_IRQHandler          // 18
+	  .word     EXTI1_IRQHandler          // 19
+	  .word     EXTI2_IRQHandler          // 20
+	  .word     EXTI3_IRQHandler          // 21
+	  .word     EXTI4_IRQHandler          // 22
+	  .word     EXTI5_9_IRQHandler        // 23
+    .word     EXTI10_15_IRQHandler      // 24
+	  .word     TIMER0_0A_IRQHandler      // 25
+	  .word     TIMER0_0B_IRQHandler      // 26
+	  .word     TIMER0_1A_IRQHandler      // 27
+	  .word     TIMER0_1B_IRQHandler      // 28
+	  .word     TIMER0_2A_IRQHandler      // 29
+	  .word     TIMER0_2B_IRQHandler      // 30
+// TODO: Add more IRQ Handlers 
+//    .word     UART0_IRQHandler          // 32    
+//    .word     SPI0_IRQHandler           // 33
+//    .word     I2C0_IRQHandler           // 34
+//    .word     ADC0_IRQHandler           // 35
+                                        // ...
 
 
 .section .text

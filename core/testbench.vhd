@@ -81,8 +81,11 @@ architecture RTL of coretestbench is
     
     signal interrupts : std_logic_vector(31 downto 0);
     
-    signal mySignal_d : std_logic_vector(31 downto 0); 
-    signal mySignal_re : std_logic_vector(31 downto 0);
+    signal ddata_r_timer : std_logic_vector(31 downto 0);
+    signal timer_interrupt : std_logic_vector(5 downto 0);
+    signal ddata_r_periph : std_logic_vector(31 downto 0);
+    
+    signal interrupts_combo : std_logic_vector(31 downto 0);
     
 
 begin
@@ -96,17 +99,10 @@ begin
 		wait for period / 2;
 	end process clock_driver;
 
-	interrupt_edge : process (clk, rst) is
-	begin
-	    if rst = '1' then
-	        
-	    elsif rising_edge(clk) then
-	           
-            mySignal_d <= interrupts; 
-            mySignal_re <= not mySignal_d and interrupts;
-    
-	    end if;
-	end process interrupt_edge;
+
+
+    interrupts_combo<= interrupts or ('0' & timer_interrupt & '0' & x"000000");
+
 
 	interrupt_generate : process is
 	begin
@@ -240,8 +236,23 @@ begin
 	with dcsel select ddata_r <=
 		idata when "00",
 		ddata_r_mem when "01",
-		ddata_r_gpio when "10",
+		ddata_r_periph when "10",
 		(others => '0') when others;
+
+
+
+        with to_unsigned(daddress,16)(15 downto 4) select 
+        ddata_r_periph <= ddata_r_gpio when x"000",
+--                          ddata_r_segments when x"001",
+--                          ddata_r_uart when x"002",
+--                          ddata_r_adc when x"003",
+--                          ddata_r_i2c when x"004",
+                          ddata_r_timer when x"005",
+                          (others => '0')when others;
+              
+        
+
+
 
 	-- Softcore instatiation
 	myRiscv : entity work.core
@@ -262,7 +273,7 @@ begin
 			d_sig	 => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
-			interrupts=>interrupts,
+			interrupts=>interrupts_combo,
 			state    => cpu_state
 		);
 
@@ -284,6 +295,28 @@ begin
 			input    => gpio_input,
 			output   => gpio_output
 		);
+		
+		
+		   
+    -- timer instantiation
+    timer : entity work.Timer
+        generic map(
+            prescaler_size => 16,
+            compare_size   => 32
+        )
+        port map(
+            clock       => clk,
+            reset       => rst,
+            daddress => daddress,
+            ddata_w  => ddata_w,
+            ddata_r  => ddata_r_timer,
+            d_we     => d_we,
+            d_rd     => d_rd,
+            dcsel    => dcsel,
+            dmask    => dmask,
+            timer_interrupt=>timer_interrupt
+        );
+		
 	
 	-- Connect gpio data to output hardware
 	LEDR  <= gpio_output(9 downto 0);

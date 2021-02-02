@@ -79,10 +79,11 @@ add wave -label states /myRiscv/decoder0/state
 add wave -height 15 -divider "GPIO"
 add wave -label enable_exti_mask -radix hex /generic_gpio/enable_exti_mask
 add wave -label edge_exti_mask -radix hex /generic_gpio/edge_exti_mask
+add wave -label output_reg -radix hex /generic_gpio/output_reg
 
 add wave -height 15 -divider "CSR"
  add wave -label interrupts -radix hex /myRiscv/interrupts
- add wave -label mySignal_re -radix hex /mySignal_re
+ #add wave -label mySignal_re -radix hex /mySignal_re
  add wave -label pending_interrupts -radix hex /myRiscv/ins_csr/pending_interrupts
  add wave -label mret -radix hex /myRiscv/ins_csr/mret
  add wave -label pending /myRiscv/pending
@@ -122,6 +123,32 @@ add wave -label dcsel 	/dcsel
 add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
 add wave -label d_sig   /d_sig
+
+add wave -height 15 -divider "Peripheral Data bus"
+add wave -label daddress -radix hex /daddress
+add wave -label ddata_r_periph -radix hex 	/ddata_r_periph
+add wave -label ddata_r_gpio -radix hex 	/ddata_r_gpio
+
+add wave -height 15 -divider "Timer"
+add wave -label enable_timer_irq_mask -radix hex /timer/enable_timer_irq_mask
+add wave -label timer_interrupt -radix hex /timer/timer_interrupt
+add wave -label timer_reset -radix binary /timer/timer_reset
+add wave -label timer_mode -radix unsigned /timer/timer_mode
+add wave -label prescaler -radix unsigned /timer/prescaler
+add wave -label top_counter -radix unsigned /timer/top_counter
+add wave -label compare_0A -radix unsigned /timer/compare_0A
+add wave -label compare_0B -radix unsigned /timer/compare_0B
+add wave -label compare_1A -radix unsigned /timer/compare_1A
+add wave -label compare_1B -radix unsigned /timer/compare_1B
+add wave -label compare_2A -radix unsigned /timer/compare_2A
+add wave -label compare_2B -radix unsigned /timer/compare_2B
+add wave -label output_0A -radix binary /timer/output_A(0)
+add wave -label output_0B -radix binary /timer/output_B(0)
+add wave -label output_1A -radix binary /timer/output_A(1)
+add wave -label output_1B -radix binary /timer/output_B(1)
+add wave -label output_2A -radix binary /timer/output_A(2)
+add wave -label output_2B -radix binary /timer/output_B(2)
+add wave -label internal_clock -radix binary /timer/internal_clock
 
 
 add wave -height 15 -divider "Input/Output SIM"

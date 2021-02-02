@@ -15,27 +15,46 @@
 #include "hardware.h"
 #include "gpio.h"
 #include "interrupt.h"
-
+#include "timer/timer.h"
 
 void EXTI0_IRQHandler(void)
 {
-	OUTBUS = 0xAB;
+	OUTBUS = 0x52;
 }
 
 void EXTI1_IRQHandler(void)
 {
-	OUTBUS = 0x53;
+	OUTBUS = 0xf4;
 }
 
-void TIMER0_TRG_CMT_IRQHandler(void)
+void TIMER0_0A_IRQHandler(void)
 {
-	int i = 0x53;
-	OUTBUS = i;
+	OUTBUS = OUTBUS  + 1;
 }
-void TIMER0_UP_IRQHandler(void)
+void TIMER0_0B_IRQHandler(void)
 {
-	int i = 15;
-	OUTBUS = i;
+	OUTBUS = OUTBUS + 1;
+}
+
+void init_timer0(void)
+{
+    uint32_t events;
+
+    TIMER_0->timer_reset = 1;
+
+    TIMER_0->timer_mode = 1;
+    TIMER_0->prescaler = 100;
+    TIMER_0->top_counter = 999;
+
+    TIMER_0->compare_0A = 100;
+    TIMER_0->compare_0B = 600;
+    TIMER_0->compare_1A = 10;
+    TIMER_0->compare_1B = 10;
+    TIMER_0->compare_2A = 10;
+    TIMER_0->compare_2B = 10;
+    TIMER_0->enable_irq = 3;
+    TIMER_0->timer_reset = 0;
+
 }
 
 int main(){
@@ -43,25 +62,17 @@ int main(){
 	
 	input_interrupt_enable(GPIO0,FALLING_EDGE);
     input_interrupt_enable(GPIO1,RISING_EDGE);
+	init_timer0();
 
 	extern_interrupt_enable(true);
 	timer_interrupt_enable(true);
 	global_interrupt_enable(true);
-
+	
 	while (1){
-
-		/* Read input bus */
-		//if (INBUS_BASE_ADDRESS)
-			/* Resets data when any input is high */
-			//data = 0;
-
-		/* Counter blink */
-		OUTBUS = data;
-		delay_(500000);
-
-		data++;
+        HEX0 = ~timer_get_output0A();
+		HEX1 = ~timer_get_output0B();
 	}
-
 
 	return 0;
 }
+

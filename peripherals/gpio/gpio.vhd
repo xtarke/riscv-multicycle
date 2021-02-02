@@ -52,7 +52,7 @@ architecture RTL of gpio is
     
     signal EXTI5_9  : std_logic;
     signal EXTI10_15: std_logic;
-    
+    signal output_reg:std_logic_vector(31 downto 0);    
     
 begin
     
@@ -77,7 +77,8 @@ begin
     interrupt_edge : process (clk, rst) is
     begin
         if rst = '1' then
-            
+            myInterrupts_d<=(others => '0');
+            gpio_interrupts<=(others => '0');
         elsif rising_edge(clk) then
                
             myInterrupts_d <= interrupts; 
@@ -98,10 +99,12 @@ begin
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
 
                     if to_unsigned(daddress, 32)(15 downto 0) = x"0000" then
-                        ddata_r <= input;                
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0008" then
+                        ddata_r <= input;  
+                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0001" then
+                        ddata_r<=output_reg;              
+                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0002" then
                         ddata_r<=enable_exti_mask;
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"00012" then
+                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0003" then
                         ddata_r<=edge_exti_mask;
                     end if;
 
@@ -115,6 +118,7 @@ begin
 	begin		
 		if rst = '1' then
 			output <= (others => '0');
+			output_reg<=(others => '0');
 			enable_exti_mask<= (others => '0');
 			edge_exti_mask<= (others => '0');
 		else
@@ -127,11 +131,12 @@ begin
 					--if to_unsigned(daddress, 32)(8 downto 0) = MY_WORD_ADDRESS then
 					--end if;
 					
-					if to_unsigned(daddress, 32)(15 downto 0) = x"0004" then
-					output <= ddata_w;    
-					elsif to_unsigned(daddress, 32)(15 downto 0) = x"0008" then
+					if to_unsigned(daddress, 32)(15 downto 0) = x"0001" then
+					output <= ddata_w;
+					output_reg <= ddata_w;
+					elsif to_unsigned(daddress, 32)(15 downto 0) = x"0002" then
                     enable_exti_mask <= ddata_w;
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0000C" then
+                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"00003" then
                     edge_exti_mask <= ddata_w;     
 					end if;
 					
