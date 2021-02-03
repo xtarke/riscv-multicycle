@@ -121,6 +121,7 @@ begin
 		opcodes.opcode := data (6 downto 0);				
 		opcodes.funct3 := data(14 downto 12);
 		opcodes.funct7 := data(31 downto 25);
+	    opcodes.funct12 := data(31 downto 20);
 	
 		rd  := to_integer(unsigned(data(11 downto 7)));
 		rs1 := to_integer(unsigned(data(19 downto 15)));
@@ -425,17 +426,73 @@ begin
 						writeline(my_output, my_line);
 						inst <= str_pad(typeBRstring(data, "bltu", pc, rs1, rs2, imm_b), ' ', 40);					
 					when TYPE_BGEU =>						
-						swrite(my_line, typeBRstring(data, "bgeu", pc, rs1, rs2, imm_b));
-						writeline(my_output, my_line);
-						swrite(my_line, "");
-						writeline(my_output, my_line);
-						inst <= str_pad(typeBRstring(data, "bgeu", pc, rs1, rs2, imm_b), ' ', 40);		
+
 					when others =>
 				end case;		
 				
-			when TYPE_ENV_BREAK =>
-				swrite(my_line, "halt!");
-				writeline(my_output, my_line);
+			when TYPE_ENV_BREAK_CSR =>
+                case opcodes.funct12 is
+                    when TYPE_MRET =>
+                        swrite(my_line, "mret");
+                        writeline(my_output, my_line);
+                        swrite(my_line, "");
+                        writeline(my_output, my_line);
+                        inst <= str_pad("teste: mret", ' ', 40);
+                    when others =>
+                        case opcodes.funct3 is
+                            when TYPE_EBREAK_ECALL =>
+                                swrite(my_line, typeBRstring(data, "ebrake", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "ebrake", pc, rs1, rs2, imm_i), ' ', 40);
+                            when TYPE_CSRRW =>
+                                swrite(my_line, typeBRstring(data, "csrrw", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "csrrw", pc, rs1, rs2, imm_i), ' ', 40);
+                            when TYPE_CSRRS =>
+                                swrite(my_line, typeBRstring(data, "csrrs", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "csrrs", pc, rs1, rs2, imm_i), ' ', 40);
+                            when TYPE_CSRRC =>
+                                swrite(my_line, typeBRstring(data, "csrrc", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "csrrc", pc, rs1, rs2, imm_i), ' ', 40);
+                            when TYPE_CSRRWI =>
+                                swrite(my_line, typeBRstring(data, "csrrwi", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "csrrwi", pc, rs1, rs2, imm_i), ' ', 40);
+                            when TYPE_CSRRSI =>
+                                swrite(my_line, typeBRstring(data, "csrrsi", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "csrrsi", pc, rs1, rs2, imm_i), ' ', 40);
+                            when TYPE_CSRRCI =>
+                                swrite(my_line, typeBRstring(data, "csrrci", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "csrrci", pc, rs1, rs2, imm_i), ' ', 40);
+                            when others =>
+                                swrite(my_line, typeBRstring(data, "TYPE_ENV_BREAK_CSR not reconized", pc, rs1, rs2, imm_i));
+                                writeline(my_output, my_line);
+                                swrite(my_line, "");
+                                writeline(my_output, my_line);
+                                inst <= str_pad(typeBRstring(data, "TYPE_ENV_BREAK_CSR not reconized", pc, rs1, rs2, imm_i), ' ', 40);
+                        end case;
+                end case;
+		
+		          
+				
 							
 			when others => 
 		end case;

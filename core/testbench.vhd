@@ -9,7 +9,8 @@ entity coretestbench is
 		--! Num of 32-bits memory words 
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
 		DMEMORY_WORDS : integer := 1024;  	--!= 2k (512 * 2) bytes
-		constant SIZE : integer := 8		-- 8 bytes UART package
+		constant SIZE : integer := 8        -- 8 bytes UART package
+		
 	);
 
 	port(
@@ -34,11 +35,7 @@ end entity coretestbench;
 
 architecture RTL of coretestbench is
 	signal clk       : std_logic;
-	signal clk_sdram : std_logic;
-	signal clk_vga   : std_logic;
 	signal rst       : std_logic;
-	signal rst_n     : std_logic;
-
 	signal idata : std_logic_vector(31 downto 0);
 
 	signal daddress : natural;
@@ -75,7 +72,21 @@ architecture RTL of coretestbench is
 
 	signal dmemory_address : natural;
 	signal d_sig : std_logic;
+	
+	-- I/O signals
+	signal ddata_r_gpio : std_logic_vector(31 downto 0);
+	signal gpio_input : std_logic_vector(31 downto 0);
+	signal gpio_output : std_logic_vector(31 downto 0);
 
+    
+    signal interrupts : std_logic_vector(31 downto 0);
+    
+    signal ddata_r_timer : std_logic_vector(31 downto 0);
+    signal timer_interrupt : std_logic_vector(5 downto 0);
+    signal ddata_r_periph : std_logic_vector(31 downto 0);
+    
+    signal interrupts_combo : std_logic_vector(31 downto 0);
+    
 
 begin
 
@@ -88,14 +99,46 @@ begin
 		wait for period / 2;
 	end process clock_driver;
 
-	reset : process is
-	begin
-		rst <= '1';
-		wait for 5 ns;
-		rst <= '0';
-		wait;
-	end process reset;
 
+
+    interrupts_combo<= interrupts or ('0' & timer_interrupt & '0' & x"000000");
+
+
+	interrupt_generate : process is
+	begin
+		interrupts <=x"0000_0000";
+		wait for 200 us;
+		interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+        wait for 200 us;
+        interrupts <=x"0008_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+		wait for 40 us;
+		interrupts <=x"0400_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+		wait for 327 us;
+        interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+        wait for 12 us;
+        interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+		
+		wait;
+	end process interrupt_generate;
+    
+    
+    reset : process is
+    begin
+        rst <= '1';
+        wait for 5 ns;
+        rst <= '0';
+        wait;
+    end process reset;
 	
 	-- Dummy out signals
 	-- ARDUINO_IO <= ddata_r(31 downto 16);
@@ -114,7 +157,7 @@ begin
 --	);
 
 
-	rst_n <= not rst;
+	-- rst_n <= not rst;
 
 	--	imem: component imemory
 	--		generic map(
@@ -142,6 +185,19 @@ begin
 			address <= std_logic_vector(to_unsigned(iaddress, 32));
 		end if;
 	end process;
+--	instr_mux: entity work.instructionbusmux
+--		generic map(
+--			IMEMORY_WORDS => IMEMORY_WORDS,			
+--			DMEMORY_WORDS => DMEMORY_WORDS
+--		)
+--		port map(
+--			d_rd     => d_rd,
+--			dcsel    => dcsel,
+--			daddress => daddress,
+--			iaddress => iaddress,
+--			address  => address
+--		);
+	
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst : entity work.iram_quartus
@@ -180,8 +236,23 @@ begin
 	with dcsel select ddata_r <=
 		idata when "00",
 		ddata_r_mem when "01",
-		input_in when "10",
+		ddata_r_periph when "10",
 		(others => '0') when others;
+
+
+
+        with to_unsigned(daddress,16)(15 downto 4) select 
+        ddata_r_periph <= ddata_r_gpio when x"000",
+--                          ddata_r_segments when x"001",
+--                          ddata_r_uart when x"002",
+--                          ddata_r_adc when x"003",
+--                          ddata_r_i2c when x"004",
+                          ddata_r_timer when x"005",
+                          (others => '0')when others;
+              
+        
+
+
 
 	-- Softcore instatiation
 	myRiscv : entity work.core
@@ -202,61 +273,65 @@ begin
 			d_sig	 => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
+			interrupts=>interrupts_combo,
 			state    => cpu_state
 		);
 
-	-- Output register (Dummy LED blinky)
-	process(clk, rst)
-	begin
-		if rst = '1' then
-			LEDR(7 downto 0) <= (others => '0');			
-			HEX0 <= (others => '1');
-			HEX1 <= (others => '1');
-			HEX2 <= (others => '1');
-			HEX3 <= (others => '1');
-			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');		
-		else
-			if rising_edge(clk) then
-				if (d_we = '1') and (dcsel = "10") then
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(7 downto 0) <= ddata_w(7 downto 0);				
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
-						HEX0 <= ddata_w(7 downto 0);
-						HEX1 <= ddata_w(15 downto 8);
-						HEX2 <= ddata_w(23 downto 16);
-						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
-					end if;
-				end if;
-			end if;
-		end if;
-	end process;
+	generic_gpio: entity work.gpio
+		generic map(
+			MY_CHIPSELECT   => "10",
+			MY_WORD_ADDRESS => x"10"
+		)
+		port map(
+			clk      => clk,
+			rst      => rst,
+			daddress => daddress,
+			ddata_w  => ddata_w,
+			ddata_r  => ddata_r_gpio,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			input    => gpio_input,
+			output   => gpio_output
+		);
+		
+		
+		   
+    -- timer instantiation
+    timer : entity work.Timer
+        generic map(
+            prescaler_size => 16,
+            compare_size   => 32
+        )
+        port map(
+            clock       => clk,
+            reset       => rst,
+            daddress => daddress,
+            ddata_w  => ddata_w,
+            ddata_r  => ddata_r_timer,
+            d_we     => d_we,
+            d_rd     => d_rd,
+            dcsel    => dcsel,
+            dmask    => dmask,
+            timer_interrupt=>timer_interrupt
+        );
+		
+	
+	-- Connect gpio data to output hardware
+	LEDR  <= gpio_output(9 downto 0);
+	
+	-- Turn off all HEX displays
+	HEX0 <= (others => '1');
+	HEX1 <= (others => '1');	
+	HEX2 <= (others => '1');
+	HEX3 <= (others => '1');
+	HEX4 <= (others => '1');
+	HEX5 <= (others => '1');
 
-	-- Input register
-	process(clk, rst)
-	begin
-		if rst = '1' then
-			input_in <= (others => '0');
-		else
-
-			if rising_edge(clk) then		
-				if (d_rd = '1') and (dcsel = "10") then
-					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then		
-						input_in(4 downto 0) <= SW(4 downto 0);	
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
-						input_in(7 downto 0) <= data_out;
-					end if;
-				end if;
-			end if;
-		end if;	
-
-	end process;
-
+	-- Connect input hardware to gpio data
+	gpio_input <= (others => '0'), x"00000010" after 600000 ns;
+	
 	-- FileOutput DEBUG	
 	debug : entity work.trace_debug
 		generic map(

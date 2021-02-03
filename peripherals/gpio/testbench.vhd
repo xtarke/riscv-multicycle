@@ -45,14 +45,29 @@ architecture RTL of coretestbench is
 
 	signal iaddress : integer range 0 to IMEMORY_WORDS - 1 := 0;
 
-	signal address     : std_logic_vector(9 downto 0);
+	signal address     : std_logic_vector(31 downto 0);
 
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd : std_logic;
-			
-	signal cpu_state    : cpu_state_t;	
+		
+	signal input_in	: std_logic_vector(31 downto 0);
+	signal cpu_state    : cpu_state_t;
+	
 	signal debugString  : string(1 to 40) := (others => '0');
 	
+
+	-- UART Signals
+	signal clk_baud : std_logic;
+	signal data_in : std_logic_vector(7 downto 0);
+	signal tx : std_logic;
+	signal start : std_logic;
+	signal tx_cmp : std_logic;
+	signal data_out : std_logic_vector(SIZE-1 downto 0);
+	signal rx : std_logic;
+	signal rx_cmp : std_logic;
+	
+	signal csel_uart : std_logic;
+
 	signal dmemory_address : natural;
 	signal d_sig : std_logic;
 	
@@ -60,6 +75,13 @@ architecture RTL of coretestbench is
 	signal ddata_r_gpio : std_logic_vector(31 downto 0);
 	signal gpio_input : std_logic_vector(31 downto 0);
 	signal gpio_output : std_logic_vector(31 downto 0);
+
+    
+    signal interrupts : std_logic_vector(31 downto 0);
+    
+    signal mySignal_d : std_logic_vector(31 downto 0); 
+    signal mySignal_re : std_logic_vector(31 downto 0);
+    
 
 begin
 
@@ -72,13 +94,85 @@ begin
 		wait for period / 2;
 	end process clock_driver;
 
-	reset : process is
+	interrupt_edge : process (clk, rst) is
 	begin
-		rst <= '1';
-		wait for 5 ns;
-		rst <= '0';
+	    if rst = '1' then
+	        
+	    elsif rising_edge(clk) then
+	           
+            mySignal_d <= interrupts; 
+            mySignal_re <= not mySignal_d and interrupts;
+    
+	    end if;
+	end process interrupt_edge;
+
+	interrupt_generate : process is
+	begin
+		interrupts <=x"0000_0000";
+		wait for 186 us;
+		interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+        wait for 200 us;
+        interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+		wait for 40 us;
+		interrupts <=x"0400_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+		wait for 327 us;
+        interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+        wait for 12 us;
+        interrupts <=x"0004_0000";
+        wait for 1 us;
+        interrupts <=x"0000_0000";
+		
 		wait;
-	end process reset;
+	end process interrupt_generate;
+    
+    
+    reset : process is
+    begin
+        rst <= '1';
+        wait for 5 ns;
+        rst <= '0';
+        wait;
+    end process reset;
+	
+	-- Dummy out signals
+	-- ARDUINO_IO <= ddata_r(31 downto 16);
+	
+--	imem: component imemory
+--		generic map(
+--			MEMORY_WORDS => IMEMORY_WORDS
+--		)
+--		port map(
+--			clk           => clk,
+--			data          => idata,
+--			write_address => 0,
+--			read_address  => iaddress,
+--			we            => '0',
+--			q             => idata 
+--	);
+
+
+	-- rst_n <= not rst;
+
+	--	imem: component imemory
+	--		generic map(
+	--			MEMORY_WORDS => IMEMORY_WORDS
+	--		)
+	--		port map(
+	--			clk           => clk,
+	--			data          => idata,
+	--			write_address => 0,
+	--			read_address  => iaddress,
+	--			we            => '0',
+	--			q             => idata 
+	--	);
 
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -88,9 +182,9 @@ begin
 	process(d_rd, dcsel, daddress, iaddress)
 	begin
 		if (d_rd = '1') and (dcsel = "00") then
-			address <= std_logic_vector(to_unsigned(daddress, 10));
+			address <= std_logic_vector(to_unsigned(daddress, 32));
 		else
-			address <= std_logic_vector(to_unsigned(iaddress, 10));
+			address <= std_logic_vector(to_unsigned(iaddress, 32));
 		end if;
 	end process;
 --	instr_mux: entity work.instructionbusmux
@@ -125,30 +219,27 @@ begin
 			MEMORY_WORDS => DMEMORY_WORDS
 		)
 		port map(
-			rst 	=> rst,
-			clk 	=> clk,
-			data 	=> ddata_w,
+			rst     => rst,
+			clk     => clk,
+			data    => ddata_w,
 			address => dmemory_address,
-			we 		=> d_we,
-			csel 	=> dcsel(0),
-			dmask 	=> dmask,
+			we      => d_we,
 			signal_ext => d_sig,
-			q 		=> ddata_r_mem
+			csel    => dcsel(0),
+			dmask   => dmask,
+			q       => ddata_r_mem
 		);
 
 	-- Adress space mux ((check sections.ld) -> Data chip select:
 	-- 0x00000    ->    Instruction memory
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space
-	-- ( ... )    ->    ( ... )
-	datamux: entity work.databusmux
-		port map(
-			dcsel        => dcsel,
-			idata        => idata,
-			ddata_r_mem  => ddata_r_mem,
-			ddata_r_gpio => ddata_r_gpio,
-			ddata_r      => ddata_r
-		);
+	-- 0x60000    ->    SDRAM address space	
+	with dcsel select ddata_r <=
+		idata when "00",
+		ddata_r_mem when "01",
+		input_in when "10",
+		(others => '0') when others;
 
 	-- Softcore instatiation
 	myRiscv : entity work.core
@@ -169,6 +260,9 @@ begin
 			d_sig	 => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
+			interrupts=>interrupts,
+			--mip      => mip,
+			--mcause   => mcause,
 			state    => cpu_state
 		);
 
