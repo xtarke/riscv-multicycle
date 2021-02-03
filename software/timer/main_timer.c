@@ -8,9 +8,8 @@
  * Simple Timer tests and examples
  * -----------------------------------------
  */
-#include "utils.h"
-#include "uart.h"
-#include "hardware.h"
+#include "../utils.h"
+#include "../hardware.h"
 #include "timer.h"
 
 void test_mode_0(void);

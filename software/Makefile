@@ -3,6 +3,7 @@ RISCV_TOOLS_PREFIX = riscv-none-embed-
 # Para usar no LSC
 #RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
 endif
+
 QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
@@ -33,7 +34,7 @@ $(MAIN)32.hex: $(MAIN).elf hex8tohex32.py
 start.o: start.S
 	$(CC) -c -nostdlib start.S $(LDLIBS)
 
-$(MAIN).elf: $(MAIN).o syscalls.o start.o utils.o
+$(MAIN).elf: $(MAIN).o syscalls.o start.o utils.o gpio.o interrupt.o timer/timer.o
 	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T sections.ld $(LDLIBS)
 	chmod -x $(MAIN).elf
 

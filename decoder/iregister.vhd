@@ -51,6 +51,7 @@ begin
 			opcodes.opcode <= (others => '0');
 			opcodes.funct3 <= (others => '0');
 			opcodes.funct7 <= (others => '0');
+			opcodes.funct12 <= (others => '0');
 			rd <= 0;
 			rs1 <= 0;
 			rs2 <= 0;
@@ -65,6 +66,7 @@ begin
 				opcodes.opcode <= data (6 downto 0);				
 				opcodes.funct3 <= data(14 downto 12);
 				opcodes.funct7 <= data(31 downto 25);
+				opcodes.funct12 <= data(31 downto 20);
 				
 				rd  <= to_integer(unsigned(data(11 downto 7)));
 				rs1 <= to_integer(unsigned(data(19 downto 15)));

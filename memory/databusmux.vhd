@@ -16,7 +16,7 @@ entity databusmux is
 		-- Adjust inputs accordingly peripherals 
 		idata 		: in 	std_logic_vector(31 downto 0);
 		ddata_r_mem : in std_logic_vector(31 downto 0);
-		ddata_r_gpio: in std_logic_vector(31 downto 0);
+		ddata_r_periph: in std_logic_vector(31 downto 0);
 		ddata_r_sdram: in std_logic_vector(31 downto 0);
 		
 		
@@ -37,7 +37,7 @@ begin
 	with dcsel select 
 		ddata_r <= idata when "00",
 		           ddata_r_mem when "01",
-		           ddata_r_gpio when "10",
+		           ddata_r_periph when "10",
 		           ddata_r_sdram when "11",
 		           (others => '0') when others;
 

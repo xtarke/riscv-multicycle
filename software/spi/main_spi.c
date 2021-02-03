@@ -20,7 +20,7 @@ int main(){
 	
 	while (1){
 		spi_write(data_out++);
-		// spi_write(INBUS); 
+		// spi_write(INBUS_BASE_ADDRESS); 
 		//SEGMENTS = spi_read();
 		delay_(10000);
 	}

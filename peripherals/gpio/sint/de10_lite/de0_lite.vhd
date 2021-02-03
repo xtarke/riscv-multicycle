@@ -96,8 +96,13 @@ architecture rtl of de0_lite is
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd : std_logic;			
 	
+	
 	-- I/O signals
-	signal ddata_r_gpio : std_logic_vector(31 downto 0);
+	signal input_in	: std_logic_vector(31 downto 0);
+	
+	-- SDRAM signals
+	signal ddata_r_sdram : std_logic_vector(31 downto 0);
+	
 	
 	-- PLL signals
 	signal locked_sig : std_logic;
@@ -105,9 +110,17 @@ architecture rtl of de0_lite is
 	-- CPU state signals
 	signal state : cpu_state_t;
 	signal d_sig : std_logic;
+	
+	-- I/O signals
+	signal ddata_r_gpio : std_logic_vector(31 downto 0);
 	signal gpio_input : std_logic_vector(31 downto 0);
 	signal gpio_output : std_logic_vector(31 downto 0);
-	
+
+    
+   signal interrupts : std_logic_vector(31 downto 0);
+   signal gpio_interrupts : std_logic_vector(6 downto 0);   
+
+
 begin
 	
 	pll_inst: entity work.pll
@@ -176,29 +189,35 @@ begin
 			idata        => idata,
 			ddata_r_mem  => ddata_r_mem,
 			ddata_r_gpio => ddata_r_gpio,
+			ddata_r_sdram =>ddata_r_sdram,
 			ddata_r      => ddata_r
 		);
-	
+		
+		
+		interrupts(23 downto 18)<=gpio_interrupts(5 downto 0);
+		interrupts(28) <= gpio_interrupts(6);
+		
 	-- Softcore instatiation
-	myRisc: entity work.core
+	myRiscv : entity work.core
 		generic map(
 			IMEMORY_WORDS => IMEMORY_WORDS,
 			DMEMORY_WORDS => DMEMORY_WORDS
 		)
-		port map(			
-			clk 		=> clk,
-			rst 		=> rst,
-			iaddress 	=> iaddress,
-			idata 		=> idata,
-			daddress 	=> daddress,
-			ddata_r 	=> ddata_r,
-			ddata_w 	=> ddata_w,
-			d_we  => d_we,
-			d_rd  => d_rd,
-			d_sig => d_sig,
-			dcsel => dcsel,
-			dmask => dmask,
-			state => state
+		port map(
+			clk      => clk,
+			rst      => rst,
+			iaddress => iaddress,
+			idata    => idata,
+			daddress => daddress,
+			ddata_r  => ddata_r,
+			ddata_w  => ddata_w,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			d_sig	 => d_sig,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			interrupts=>interrupts,
+			state    => state
 		);
 	
 	generic_gpio: entity work.gpio
@@ -217,7 +236,8 @@ begin
 			dcsel    => dcsel,
 			dmask    => dmask,
 			input    => gpio_input,
-			output   => gpio_output
+			output   => gpio_output,
+			gpio_interrupts => gpio_interrupts
 		);
 	
 	-- Connect gpio data to output hardware
