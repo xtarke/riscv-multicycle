@@ -31,11 +31,11 @@ $(MAIN)32.hex: $(MAIN).elf ../hex8tohex32.py
 	$(RISCV_TOOLS_PREFIX)objdump -h -S $(MAIN).elf > "$(MAIN).lss"
 	python3 ../hex8tohex32.py $(MAIN).tmp > $(MAIN)32.hex
 
-start.o: start.S
-	$(CC) -c -nostdlib start.S $(LDLIBS)
+start.o: ../_core/start.S
+	$(CC) -c -nostdlib ../_core/start.S $(LDLIBS)
 
-$(MAIN).elf: $(MAIN).o ../syscalls.o ../start.o ../utils.o ../gpio.o ../interrupt.o
-	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T ../sections.ld $(LDLIBS)
+$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o timer.o
+	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T ../_core/sections.ld $(LDLIBS)
 	chmod -x $(MAIN).elf
 
 sint:
@@ -48,7 +48,7 @@ flash:
 	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
 
 clean:
-	rm -f *.o *.d *.tmp start.elf *.lss *.map
+	rm -f ../*/*.o *.o *.d *.tmp start.elf *.lss *.map
 	rm -f $(MAIN).elf $(MAIN).hex $(MAIN)32.hex quartus_$(MAIN).hex
 
 -include *.d

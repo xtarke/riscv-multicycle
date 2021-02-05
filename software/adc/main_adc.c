@@ -12,8 +12,8 @@
  */
 
 
-#include "utils.h"
-#include "hardware.h"
+#include "../_core/utils.h"
+#include "../_core/hardware.h"
 #include "adc.h"
 
 int main(){	

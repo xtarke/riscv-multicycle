@@ -15,7 +15,11 @@
 #define __HARDWARE_ADC_7SEG_H
 
 #include <stdint.h>
+#include "../_core/hardware.h"
 
+#define INDATA_ADC	*(&I2C_BASE_ADDRESS)
+#define CH_ADC_FEED *(&I2C_BASE_ADDRESS + 1)
+#define SEL_CH_ADC  *(&I2C_BASE_ADDRESS + 2)
 //estrutura de dados para armazenar o valor e canal lidos.
 struct adc_read
 {

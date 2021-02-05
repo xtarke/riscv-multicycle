@@ -28,4 +28,10 @@ void tft_clean(uint16_t color);
 void tft_sqrt(uint16_t color, uint16_t x, uint16_t y, uint16_t h);
 void tft_rect(uint16_t color, uint16_t x, uint16_t y, uint16_t h, uint16_t w);
 
+
+#define TFT_DATA0	  *(&TFT_BASE_ADDRESS)
+#define TFT_DATA1	  *(&TFT_BASE_ADDRESS + 1)
+#define TFT_DATA2	  *(&TFT_BASE_ADDRESS + 2)
+#define TFT_RETURN    *(&TFT_BASE_ADDRESS + 3)
+
 #endif // __UART_H

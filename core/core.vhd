@@ -195,7 +195,7 @@ begin
             rst        => rst,
             pending_inst    => pending,
             write      => csr_write,
-            pc         => mretpc,
+            next_pc    => mretpc,
             csr_addr   => imm_i,
             csr_new    => csr_new,
             opcodes    => opcodes,

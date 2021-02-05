@@ -9,9 +9,9 @@
  */
 
 
-#include "utils.h"
+#include "../_core/utils.h"
 #include "tft.h"
-#include "hardware.h"
+#include "../_core/hardware.h"
 #include <limits.h>
 
 

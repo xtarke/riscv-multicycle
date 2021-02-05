@@ -1,14 +1,14 @@
 #ifndef __GPIO_H
 #define __GPIO_H
 
-#include "hardware.h"
+#include "../_core/hardware.h"
 
 #define INBUS               *(&IONBUS_BASE_ADDRESS)
 #define OUTBUS              *(&IONBUS_BASE_ADDRESS + 1)
 #define EXTIx_IRQ_ENABLE    *(&IONBUS_BASE_ADDRESS + 2)
 #define EXTIx_EDGE          *(&IONBUS_BASE_ADDRESS + 3)
 
-
+#define SEGMENTS *(&SEGMENTS_BASE_ADDRESS)
 #define HEX0    *(&SEGMENTS_BASE_ADDRESS)
 #define HEX1    *(&SEGMENTS_BASE_ADDRESS + 1)
 #define HEX2    *(&SEGMENTS_BASE_ADDRESS + 2)

@@ -9,7 +9,7 @@ entity csr is
         rst     : in std_logic;
         pending_inst : in std_logic;                    --! Pending Instruction
         write   : in std_logic;                         --! Write CSR
-        pc          :in std_logic_vector(31 downto 0);  --! Next pc generate by current Inst
+        next_pc     :in std_logic_vector(31 downto 0);  --! Next pc generate by current Inst
         csr_addr    :in integer;                        --! CSR address from imm_i
         csr_new     :in std_logic_vector(31 downto 0);  --! New value from rs1_data or imm from rs1
         opcodes     :in opcodes_t;                      --! Instruction decoding information. See decoder_types.vhd     
@@ -181,10 +181,15 @@ begin
         if rst = '1' then
             csr_value <= (others=>'0');
             -- Clear all CSR cells
-            for i in machine_reg'range loop
-                mreg(i) <=  (others => '0');     
-            end loop;
-            
+            mreg(0) <=  (others => '0');   
+            mreg(1) <=  (others => '0');   
+            mreg(2) <=  (others => '0');   
+            mreg(3) <=  (others => '0');   
+            mreg(4) <=  (others => '0');   
+            mreg(5) <=  (others => '0');
+            mreg(6) <=  (others => '0');   
+            mreg(7) <=  (others => '0');   
+               
         elsif rising_edge(clk) then
             -- Get index and protect_mask from CSR of csr_addr
             case (to_unsigned(csr_addr,12)) is
@@ -243,7 +248,7 @@ begin
             end if;
             
             if(load_mepc_reg='1')then
-                mreg(To_integer(MEPC   (15 downto 12)))<=pc;    -- Save MEPC when get in a interrupt
+                mreg(To_integer(MEPC   (15 downto 12)))<=next_pc;    -- Save MEPC when get in a interrupt
             end if;
               
         end if;
