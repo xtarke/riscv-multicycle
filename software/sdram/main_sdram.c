@@ -11,9 +11,10 @@
  */
 
 
-#include "utils.h"
-#include "hardware.h"
-	
+#include "../_core/utils.h"
+#include "../_core/hardware.h"
+#include "../gpio/gpio.h"
+
 
 int test_memory();
 void test_memory_2();

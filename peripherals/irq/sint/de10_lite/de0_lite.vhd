@@ -115,15 +115,14 @@ architecture rtl of de0_lite is
 	signal gpio_input : std_logic_vector(31 downto 0);
 	signal gpio_output : std_logic_vector(31 downto 0);
 
-	-- Peripheral data signals
-   signal ddata_r_gpio : std_logic_vector(31 downto 0);
-   signal ddata_r_timer : std_logic_vector(31 downto 0);    
-   signal ddata_r_periph : std_logic_vector(31 downto 0);
+    signal ddata_r_gpio : std_logic_vector(31 downto 0);
+    signal ddata_r_timer : std_logic_vector(31 downto 0);    
+    signal timer_interrupt : std_logic_vector(5 downto 0);
+    signal ddata_r_periph : std_logic_vector(31 downto 0);
     
-   -- Interrupt Signals
+    
    signal interrupts : std_logic_vector(31 downto 0);
    signal gpio_interrupts : std_logic_vector(6 downto 0);   
-   --signal timer_interrupt : std_logic_vector(5 downto 0);
 
 
 begin
@@ -206,15 +205,16 @@ begin
 --                          ddata_r_uart when x"002",
 --                          ddata_r_adc when x"003",
 --                          ddata_r_i2c when x"004",
---                          ddata_r_timer when x"005",
+                          ddata_r_timer when x"005",
                           (others => '0')when others;
               
         
 		
 		
+		interrupts(17 downto 0)<= (others => '0');
 		interrupts(24 downto 18)<=gpio_interrupts(6 downto 0);
---		interrupts(30 downto 25) <= timer_interrupt;
-		
+		interrupts(30 downto 25) <= timer_interrupt;
+		interrupts(31)<='0';
 	-- Softcore instatiation
 	myRiscv : entity work.core
 		generic map(
@@ -259,24 +259,24 @@ begin
 		);
 	
 	    -- timer instantiation
---    timer : entity work.Timer
---        generic map(
---            prescaler_size => 16,
---            compare_size   => 32
---        )
---        port map(
---            clock       => clk,
---            reset       => rst,
---            daddress => daddress,
---            ddata_w  => ddata_w,
---            ddata_r  => ddata_r_timer,
---            d_we     => d_we,
---            d_rd     => d_rd,
---            dcsel    => dcsel,
---            dmask    => dmask,
---            timer_interrupt=>timer_interrupt
---        );
---        
+    timer : entity work.Timer
+        generic map(
+            prescaler_size => 16,
+            compare_size   => 32
+        )
+        port map(
+            clock       => clk,
+            reset       => rst,
+            daddress => daddress,
+            ddata_w  => ddata_w,
+            ddata_r  => ddata_r_timer,
+            d_we     => d_we,
+            d_rd     => d_rd,
+            dcsel    => dcsel,
+            dmask    => dmask,
+            timer_interrupt=>timer_interrupt
+        );
+        
 	
 	
 	-- Connect gpio data to output hardware
@@ -324,6 +324,7 @@ begin
 	
 
 	-- Connect input hardware to gpio data
+	gpio_input(31 downto 4)<=(others => '0');
 	gpio_input(3 downto 0) <= SW(3 downto 0);
 
 end;

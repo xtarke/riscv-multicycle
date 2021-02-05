@@ -17,7 +17,7 @@
 
 #include <stdint.h>
 #include "uart.h"
-#include "hardware.h"
+#include "../_core/hardware.h"
 
 void UART_write(int character){
 	/* To do:

@@ -11,9 +11,9 @@
  */
 
 
-#include "utils.h"
+#include "../_core/utils.h"
 #include "i2c_master.h"
-#include "hardware.h"
+#include "../_core/hardware.h"
 
 
 int main(){

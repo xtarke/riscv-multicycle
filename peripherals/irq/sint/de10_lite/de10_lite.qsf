@@ -214,10 +214,10 @@ set_location_assignment PIN_AA20 -to ARDUINO_IO[15]
 set_location_assignment PIN_F16 -to ARDUINO_RESET_N
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
+set_global_assignment -name VHDL_FILE ../../../gpio/gpio.vhd
 set_global_assignment -name VHDL_FILE ../../../../memory/periphdatabusmux.vhd
 set_global_assignment -name VHDL_FILE ../../../timer/Timer.vhd
 set_global_assignment -name VHDL_FILE ../../../../core/csr.vhd
-set_global_assignment -name VHDL_FILE ../../gpio.vhd
 set_global_assignment -name VHDL_FILE ../../../../registers/register_file.vhd
 set_global_assignment -name VHDL_FILE ../../../../memory/instructionbusmux.vhd
 set_global_assignment -name VHDL_FILE ../../../../memory/databusmux.vhd

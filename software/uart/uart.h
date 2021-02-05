@@ -25,4 +25,9 @@ void UART_write(int character);
 void UART_setup(int baud, int parity);
 int UART_read(void);
 
+#define UART_TX              *(&UART_BASE_ADDRESS)
+#define UART_RX              *(&UART_BASE_ADDRESS + 1)
+#define UART_SETUP           *(&UART_BASE_ADDRESS + 2)
+
+
 #endif // __UART_H

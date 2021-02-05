@@ -11,7 +11,9 @@
  * -----------------------------------------
  */
 
-#include "hardware.h"
+#include "../_core/hardware.h"
+#include "adc.h"
+#include "../gpio/gpio.h"
 
 //Função para leitura do ADC. Recebe o canal a ser lido, bem como os ponteiros para gravar o valor e canal lidos.
 void ADC_READ (int channel_sel, int *channel_read, int *value_read)
