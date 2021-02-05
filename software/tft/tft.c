@@ -17,8 +17,8 @@
 
 #include <stdint.h>
 #include "tft.h"
-#include "hardware.h"
-#include "utils.h"
+#include "../_core/hardware.h"
+#include "../_core/utils.h"
 
 void tft_write(uint32_t data1, uint32_t data2, uint32_t data3){
 

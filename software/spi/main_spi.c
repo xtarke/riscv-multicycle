@@ -8,9 +8,9 @@
  * -----------------------------------------
  */
 
-#include "utils.h"
+#include "../_core/utils.h"
 #include "spi.h"
-#include "hardware.h"
+#include "../_core/hardware.h"
 #include <limits.h>
 
 int main(){

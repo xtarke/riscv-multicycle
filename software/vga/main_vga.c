@@ -11,8 +11,8 @@
  */
 
 
-#include "utils.h"
-#include "hardware.h"
+#include "../_core/utils.h"
+#include "../_core/hardware.h"
 
 #define VGA_RAM_SIZE 8192
 

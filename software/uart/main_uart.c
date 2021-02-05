@@ -11,11 +11,11 @@
  */
 
 
-#include "utils.h"
+#include "../_core/utils.h"
 #include "uart.h"
-#include "hardware.h"
+#include "../_core/hardware.h"
 #include <limits.h>
-
+#include "../gpio/gpio.h"
 
 int main(){
 	

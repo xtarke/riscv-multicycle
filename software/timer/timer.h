@@ -11,7 +11,7 @@
 #define __TIMER_H
 
 #include <stdint.h>
-#include "../hardware.h"
+#include "../_core/hardware.h"
 
 typedef struct {
     _IO32 timer_reset;      // 0x00 + TIMER_BASE_ADDRESS
