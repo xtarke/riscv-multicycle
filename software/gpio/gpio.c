@@ -1,6 +1,6 @@
 
-#include "utils.h"
-#include "gpio.h"
+#include "../_core/utils.h"
+#include "../gpio/gpio.h"
 #include <stdint.h>
 
 void input_interrupt_enable(GPIOx_Type irq,EDGE_Type edge){

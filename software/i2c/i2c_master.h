@@ -16,6 +16,9 @@
 #define __I2C_H
 
 #include <stdint.h>
+#include "../_core/hardware.h"
+
+#define I2C I2C_BASE_ADDRESS
 
 int I2C_write(uint8_t data, uint8_t addr);
 
