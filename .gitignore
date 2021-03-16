@@ -1,0 +1,17 @@
+
+# Quartus files
+**/db
+**/incremental_db
+**/output_files
+**/simulation
+
+# Machine Objects
+*.o
+*.elf
+*.hex
+*.map
+*.tmp
+
+# Personal user files
+*.qws
+*.qdf

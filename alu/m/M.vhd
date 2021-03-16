@@ -6,23 +6,32 @@ use work.M_types.all;
 
 entity M is
 	port(
-		M_data : in M_data_t;		
-		dataOut  : out std_logic_vector(31 downto 0)
+		clk 		:	in 	std_logic;
+		rst 		: in 	std_logic;
+		M_data 	: in 	M_data_t;
+		dataOut : out std_logic_vector(31 downto 0)
 	);
 end entity;
 
 architecture RTL of M is
-	-------------------------------------------------------------------	
+	-------------------------------------------------------------------
 
 
 	signal mul_signed: Signed(63 downto 0);
 	signal mulu_unsigned: Unsigned(63 downto 0);
-	
+
 	signal div_signed: Signed(31 downto 0);
 	signal divu_unsigned: Unsigned(31 downto 0);
-	
+
 	signal rem_signed: Signed(31 downto 0);
 	signal remu_unsigned: Unsigned(31 downto 0);
+
+	signal remainder_sig 	 : Signed(31 downto 0);
+	signal quotient_sig	 	 : Signed(31 downto 0);
+	signal remainder_unsig : Unsigned(31 downto 0);
+	signal quotient_unsig	 : Unsigned(31 downto 0);
+	signal divid_signed		 : Unsigned(31 downto 0);
+	signal divis_signed		 : Unsigned(31 downto 0);
 
 begin
 	--===============================================================--
@@ -30,11 +39,60 @@ begin
 	mul_signed <= M_data.a*M_data.b;
 	mulu_unsigned <= Unsigned(M_data.a)*Unsigned(M_data.b);
 
-	div_signed <= M_data.a/M_data.b;
-	divu_unsigned <= Unsigned(M_data.a)/Unsigned(M_data.b);
-	
-	rem_signed <= M_data.a mod M_data.b;  
-	remu_unsigned <= Unsigned(M_data.a) mod Unsigned(M_data.b);
+	quick_div_signed : entity work.quick_naive
+	port map (
+		clk => clk, rst => rst,
+		dividend => divid_signed, divisor => divis_signed, ready => open,
+		Signed(remainder) => remainder_sig, Signed(quotient) => quotient_sig
+	);
+
+	quick_div_unsigned : entity work.quick_naive
+	port map (
+		clk => clk, rst => rst,
+		dividend => Unsigned(M_data.a), divisor => Unsigned(M_data.b), ready => open,
+		remainder => remainder_unsig, quotient => quotient_unsig
+	);
+
+	process(M_data)
+	begin
+		divid_signed <= Unsigned(M_data.a);
+		divis_signed <= Unsigned(M_data.b);
+		if (M_data.b = x"00000000") then
+			div_signed <= (others => '1');
+			divu_unsigned <= (others => '1');
+			rem_signed <= M_data.a;
+			remu_unsigned <= Unsigned(M_data.a);
+		elsif ((M_data.a = x"80000000") and (M_data.b = x"FFFFFFFF")) then
+			div_signed <= M_data.a;
+			divu_unsigned <= quotient_unsig;
+			rem_signed <= (others => '0');
+			remu_unsigned <= remainder_unsig;
+		else
+			divu_unsigned <= quotient_unsig;
+			remu_unsigned <= remainder_unsig;
+			if ((M_data.a(M_data.a'left) = '1') and (M_data.b(M_data.b'left) = '1')) then
+				div_signed <= quotient_sig;
+				rem_signed <= (not remainder_sig) + 1;
+				divid_signed <= Unsigned((not M_data.a) + 1);
+				divis_signed <= Unsigned((not M_data.b) + 1);
+			elsif ((M_data.a(M_data.a'left) = '1') and (M_data.b(M_data.b'left) = '0')) then
+				div_signed <= (not quotient_sig) + 1;
+				rem_signed <= (not remainder_sig) + 1;
+				divid_signed <= Unsigned((not M_data.a) + 1);
+				divis_signed <= Unsigned(M_data.b);
+			elsif ((M_data.a(M_data.a'left) = '0') and (M_data.b(M_data.b'left) = '1')) then
+				div_signed <= (not quotient_sig) + 1;
+				rem_signed <= remainder_sig;
+				divid_signed <= Unsigned(M_data.a);
+				divis_signed <= Unsigned((not M_data.b) + 1);
+			else
+				div_signed <= quotient_sig;
+				rem_signed <= remainder_sig;
+				divid_signed <= Unsigned(M_data.a);
+				divis_signed <= Unsigned(M_data.b);
+			end if;
+		end if;
+	end process;
 
 	ula_op : with M_data.code select
 		dataOut <=	Std_logic_vector(mul_signed(31 downto 0)) when M_MUL,
