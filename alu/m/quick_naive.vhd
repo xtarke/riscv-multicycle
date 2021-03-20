@@ -1,12 +1,22 @@
+------------------------------------------------------------------------
+--! @file
+--! @brief variable latency divider
+------------------------------------------------------------------------
+
+--! Use standard library
 library ieee;
+--! Use aritimetic operations
 use ieee.numeric_std.all;
+--! Use logic elements
 use ieee.std_logic_1164.all;
 
+--! Useful functions to find the most significant bit
+--! or the number of leading zeros
 use work.division_functions.all;
 
 entity quick_naive is
   generic (
-    N : natural := 32
+    N : natural := 32 --! Divider of N bits
   );
   port (
     clk      : in  std_logic;
@@ -19,18 +29,23 @@ entity quick_naive is
   );
 end entity;
 
-architecture RTL of quick_naive is
+architecture behave of quick_naive is
 
+  --! Internal sign to start the division procedure
   signal start : std_logic;
+  --! Start only when new values arrive
   signal new_dividend, new_divisor  : unsigned(N-1 downto 0);
 
 begin
 
-  quick_naive_load : process(clk, dividend, divisor)
+  quick_naive_load : process(clk, rst, dividend, divisor)
   begin
 
     if rising_edge(clk) then
-      if (divisor /= new_divisor) or (dividend /= new_dividend) then
+      if (rst = '1') then
+        new_divisor <= (others => '0');
+        new_dividend <= (others => '0');
+      elsif (divisor /= new_divisor) or (dividend /= new_dividend) then
         start <= '1';
         new_divisor <= divisor;
         new_dividend <= dividend;
@@ -43,7 +58,7 @@ begin
 
   quick_naive_process : process(clk, rst, start)
 
-    variable msb_d                     : integer range 0 to 31;
+    variable msb_d                     : integer range 0 to N-1;
     variable div_est, div_safe         : unsigned(N-1 downto 0);
     variable sub_result                : unsigned(N-1 downto 0);
     variable sub_overflow              : unsigned(N downto 0);

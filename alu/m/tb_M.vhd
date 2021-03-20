@@ -10,24 +10,32 @@ end entity;
 architecture waveform of tb_M is
 	-------------------------------------------------------------------
 	-- CLOCK
-	signal clock_50_0_logic, clock_50_PI_logic: std_logic;
+	signal clock : std_logic;
+	-- Período
+	constant T : time := 10 ns;
+
+	-------------------------------------------------------------------
+	-- RESET
+	signal reset : std_logic;
 
 	-------------------------------------------------------------------
 	-- M
 	component M is
 		port(
-			M_DATA : in M_data_t;		
-			DATAOUT  : out std_logic_vector(31 downto 0)
+			clk 		: in std_logic;
+			rst 		: in std_logic;
+			M_DATA 	: in M_data_t;
+			DATAOUT : out std_logic_vector(31 downto 0)
 		);
 	end component;
 
 	--------------------------------------------------------------------
 	-- A and B
-	signal a_integer: integer; 
+	signal a_integer: integer;
 	signal a_signed: signed (31 downto 0);
 	signal a_logic_vector: std_logic_vector (31 downto 0);
 
-	signal b_integer: integer; 
+	signal b_integer: integer;
 	signal b_signed: signed (31 downto 0);
 	signal b_logic_vector: std_logic_vector (31 downto 0);
 
@@ -47,9 +55,21 @@ architecture waveform of tb_M is
 
 begin
 	--===============================================================--
+	-- Gerando clock
+	clock_process : process
+	begin
+		clock <= '0';
+		wait for T/2;
+		clock <= '1';
+		wait for T/2;
+	end process clock_process;
+
+	--===============================================================--
 	-- M
 	M_vhd: M
 		port map(
+			clk 	=> clock,
+			rst 	=> reset,
 			M_DATA => M_data_record,
 			DATAOUT => M_data_out_logic_vector
 		);
@@ -62,31 +82,35 @@ begin
 	b_signed <= To_signed(b_integer, 32);
 	b_logic_vector <= Std_logic_vector(b_signed);
 
-	a_integer <= 7;
-	b_integer <= 3;
+	a_integer <= 1000;
+	b_integer <= 10;
 
 	--===============================================================--
-	-- code 
+	-- code
 	SET_CODE: process -- 50 MHz phase pi
 	begin
+		reset <= '1';
 		code_logic_vector <= "000";
-		wait for 10 ns;
+		wait for 2*T;
+		reset <= '0';
+		wait for T;
 		code_logic_vector <= "001";
-		wait for 10 ns;
+		wait for T;
 		code_logic_vector <= "010";
-		wait for 10 ns;
+		wait for T;
 		code_logic_vector <= "011";
-		wait for 10 ns;
+		wait for 5*T;
 		code_logic_vector <= "100";
-		wait for 10 ns;
+		wait for 5*T;
 		code_logic_vector <= "101";
-		wait for 10 ns;
+		wait for 5*T;
 		code_logic_vector <= "110";
-		wait for 10 ns;
+		wait for 5*T;
 		code_logic_vector <= "111";
-		wait for 10 ns;
-	end process;	
-	
+		wait for 5*T;
+		wait;
+	end process;
+
 
 	--===============================================================--
 	-- M_data
@@ -101,6 +125,6 @@ begin
 
 	--&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&--
 	-- Code
-	M_data_record.code <= code_logic_vector;	
+	M_data_record.code <= code_logic_vector;
 
 end architecture;
