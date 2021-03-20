@@ -1,7 +1,16 @@
+------------------------------------------------------------------------
+--! @file
+--! @brief Functions used on the divider block
+------------------------------------------------------------------------
+
+--! Use standard library
 library ieee;
+--! Use aritimetic operations
 use ieee.numeric_std.all;
+--! Use logic elements
 use ieee.std_logic_1164.all;
 
+--! @brief Count Leading Zeros and Position of the must significant bit
 package division_functions is
   function clz (bits : in std_logic_vector) return integer;
   function msb (bits : in std_logic_vector) return integer;

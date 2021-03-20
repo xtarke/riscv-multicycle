@@ -4,6 +4,7 @@
 **/incremental_db
 **/output_files
 **/simulation
+**/work
 
 # Machine Objects
 *.o
@@ -15,3 +16,8 @@
 # Personal user files
 *.qws
 *.qdf
+*.bak
+
+# ModelSim files
+*.wlf
+*.pss
