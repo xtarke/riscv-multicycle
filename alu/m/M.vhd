@@ -56,14 +56,28 @@ begin
 	mul_signed <= M_data.a*M_data.b;
 	mulu_unsigned <= Unsigned(M_data.a)*Unsigned(M_data.b);
 
-	quick_div_signed : entity work.quick_naive
+	--quick_div_signed : entity work.quick_naive
+	--port map (
+	--	clk => clk, rst => rst,
+	--	dividend => divid_signed, divisor => divis_signed, ready => open,
+	--	Signed(remainder) => remainder_sig, Signed(quotient) => quotient_sig
+	--);
+
+	--quick_div_unsigned : entity work.quick_naive
+	--port map (
+	--	clk => clk, rst => rst,
+	--	dividend => Unsigned(M_data.a), divisor => Unsigned(M_data.b), ready => open,
+	--	remainder => remainder_unsig, quotient => quotient_unsig
+	--);
+
+	quick_clz_signed : entity work.quick_clz
 	port map (
 		clk => clk, rst => rst,
 		dividend => divid_signed, divisor => divis_signed, ready => open,
 		Signed(remainder) => remainder_sig, Signed(quotient) => quotient_sig
 	);
 
-	quick_div_unsigned : entity work.quick_naive
+	quick_clz_unsigned : entity work.quick_clz
 	port map (
 		clk => clk, rst => rst,
 		dividend => Unsigned(M_data.a), divisor => Unsigned(M_data.b), ready => open,

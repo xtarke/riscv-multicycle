@@ -47,11 +47,12 @@ The division can take up to 32 clock cicles to complete the division, so, so as 
 
 ## FPGA Resources with the new divider
 
-Comparing the use of resources in a same project, the only difference between the two projects is the divider block.
+Comparing the use of resources in a same project, the only difference between the three projects is the divider block.
 
 |Implementation|Total logic elements|Total registers|Total pins|Total memory bits|Embedded Multiplier 9-bit elements|Total PLLs|
-|------|--------------------|---------------|----------|------------------|-----------------|----------------------------------|----------|
+|--------------|--------------------|---------------|----------|-----------------|----------------------------------|----------|
 |Old one|7,773/49,760 (16%)|864|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
+|quick-clz|5,135/49,760 (10%)|1250|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
 |quick-naive|4,621/49,760 (9%)|1250|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
 
 ## Files to use M unit:

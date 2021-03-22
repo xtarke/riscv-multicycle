@@ -34,29 +34,13 @@ package body division_functions is
         vector_2d(7-index)(0) := (not (bits(4*index+3)) and bits(4*index+2)) or (not(bits(4*index+3) or bits(4*index+1)));
       end loop;
 
-      if sub_vector(0) = '1' then
-        mux_2d(1 downto 0) := vector_2d(1);
-      else
-        mux_2d(1 downto 0) := vector_2d(0);
-      end if;
-
-      if sub_vector(2) = '1' then
-        mux_2d(3 downto 2) := vector_2d(3);
-      else
-        mux_2d(3 downto 2) := vector_2d(2);
-      end if;
-
-      if sub_vector(4) = '1' then
-        mux_2d(5 downto 4) := vector_2d(5);
-      else
-        mux_2d(5 downto 4) := vector_2d(4);
-      end if;
-
-      if sub_vector(6) = '1' then
-        mux_2d(7 downto 6) := vector_2d(7);
-      else
-        mux_2d(7 downto 6) := vector_2d(6);
-      end if;
+      for i in 0 to 3 loop
+        if sub_vector(2*i) = '1' then
+          mux_2d(2*i+1 downto 2*i) := vector_2d(2*i+1);
+        else
+          mux_2d(2*i+1 downto 2*i) := vector_2d(2*i);
+        end if;
+      end loop;
 
       expo(0) := sub_vector(0) and sub_vector(1);
       expo(1) := expo(0) and sub_vector(2) and sub_vector(3);
