@@ -16,7 +16,7 @@ use work.division_functions.all;
 
 entity quick_naive is
   generic (
-    N : natural := 32 --! Divider of N bits
+    N : natural := 32 --! N bits divider
   );
   port (
     clk      : in  std_logic;
