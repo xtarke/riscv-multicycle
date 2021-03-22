@@ -82,8 +82,8 @@ begin
 	b_signed <= To_signed(b_integer, 32);
 	b_logic_vector <= Std_logic_vector(b_signed);
 
-	a_integer <= 1000;
-	b_integer <= 10;
+	a_integer <= 65535;
+	b_integer <= 25;
 
 	--===============================================================--
 	-- code
