@@ -26,6 +26,7 @@ vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
 vcom ./peripherals/gpio/gpio.vhd
+vcom ./peripherals/timer/Timer.vhd
 vcom ./core/csr.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
