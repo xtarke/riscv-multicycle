@@ -79,7 +79,7 @@ architecture rtl of de0_lite is
 
 	signal clk : std_logic;
 	signal rst : std_logic;
-	signal clk_32MHz : std_logic;
+	signal clk_50MHz : std_logic;
 
 	-- Instruction bus signals
 	signal idata     : std_logic_vector(31 downto 0);
@@ -134,7 +134,7 @@ begin
 			areset	=> '0',
 			inclk0 	=> MAX10_CLK1_50,
 			c0		 	=> clk,
-			c1	 		=> clk_32MHz,
+			c1	 		=> clk_50MHz,
 			locked	=> locked_sig
 		);
 
@@ -227,7 +227,7 @@ begin
 		port map(
 			clk      => clk,
 			rst      => rst,
-			clk_32x  => clk_32MHz,
+			clk_32x  => clk_50MHz,
 			iaddress => iaddress,
 			idata    => idata,
 			daddress => daddress,
