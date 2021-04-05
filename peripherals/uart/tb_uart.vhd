@@ -27,8 +27,11 @@ architecture RTL of tb_uart is
 	signal rx_cmp : std_logic;
 	signal to_rx : std_logic_vector(7 downto 0);
 	signal cnt_rx : integer := 0;
+	signal config_all  : std_logic_vector (31 downto 0);
 	
 begin
+
+	config_all <= (others => '0');
 	
 	dut: entity work.uart
 		generic map(
@@ -43,7 +46,8 @@ begin
 			tx_cmp    => tx_cmp,
 			data_out  => data_out,
 			rx        => rx,
-			rx_cmp    => rx_cmp
+			rx_cmp    => rx_cmp,
+			config_all => config_all
 		);
 
 	clock_1M: process
@@ -76,7 +80,7 @@ begin
 	
 	transmitt: process
 	begin
-		data_in <= x"61";
+		data_in <= x"aa";
 		csel <= '1';
 		wait until clk_1M_state;
 		wait;
