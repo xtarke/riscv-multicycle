@@ -19,6 +19,8 @@ vcom ./memory/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
+vcom ./alu/m/division_functions.vhd
+vcom ./alu/m/quick_naive.vhd
 vcom ./alu/m/M_types.vhd
 vcom ./alu/m/M.vhd
 vcom ./decoder/decoder_types.vhd
@@ -26,6 +28,7 @@ vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
 vcom ./peripherals/gpio/gpio.vhd
+vcom ./peripherals/timer/Timer.vhd
 vcom ./core/csr.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
@@ -55,12 +58,12 @@ add wave -radix hex -label jumps 	/myRiscv/jumps
 
 
 add wave -height 15 -divider "Iregister debug"
-add wave -label opcode  /myRiscv/opcodes 
-add wave -label rd /myRiscv/rd   
+add wave -label opcode  /myRiscv/opcodes
+add wave -label rd /myRiscv/rd
 add wave -label rs1 /myRiscv/rs1
 add wave -label rs2 /myRiscv/rs2
 add wave -label imm_i /myRiscv/imm_i
-add wave -label imm_s /myRiscv/imm_s 
+add wave -label imm_s /myRiscv/imm_s
 add wave -label imm_b /myRiscv/imm_b
 add wave -label imm_u /myRiscv/imm_u
 add wave -label imm_j /myRiscv/imm_j
@@ -96,13 +99,20 @@ add wave -height 15 -divider "CSR"
  add wave -label mretpc -radix hex /myRiscv/mretpc
  add wave -label csr_new -radix hex /myRiscv/rs1_data
  add wave -label mreg -radix hex /myRiscv/ins_csr/mreg
- 
 
 
 
-# add wave -height 15 -divider "Alu debug"
-# add wave -label aluData /myRiscv/alu_data
-#add wave -label aluOut 	/myRiscv/alu_out
+
+add wave -height 15 -divider "Alu debug"
+add wave -radix dec -label aluData /myRiscv/alu_data
+add wave -radix dec -label aluOut 	/myRiscv/alu_out
+
+add wave -height 15 -divider "M Extension debug"
+add wave -label clock_32x /myRiscv/clk_32x
+add wave -label code_operator /myRiscv/M_data.code
+add wave -radix dec -label a_integer 	/myRiscv/M_data.a
+add wave -radix dec -label b_integer 	/myRiscv/M_data.b
+add wave -radix dec -label M_out   	  /myRiscv/M_out
 
 add wave -height 15 -divider "Data memory debug"
 add wave -label daddr -radix hex /myRiscv/memAddrTypeSBlock/addr

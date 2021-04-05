@@ -4,6 +4,7 @@ vlib work
 #Compila Projeto
 vcom division_functions.vhd
 vcom quick_naive.vhd
+vcom quick_clz.vhd
 vcom M_types.vhd
 vcom M.vhd
 vcom tb_M.vhd

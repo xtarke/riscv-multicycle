@@ -16,7 +16,7 @@ use work.M_types.all;
 entity M is
 	port(
 		clk 		:	in 	std_logic; --! Divider clock
-		rst 		: in 	std_logic; --! Divider rest
+		rst 		: in 	std_logic; --! Divider reset
 		M_data 	: in 	M_data_t;  --! Dividend, divisor and operation
 		dataOut : out std_logic_vector(31 downto 0) --! Operation result
 	);
@@ -56,33 +56,33 @@ begin
 	mul_signed <= M_data.a*M_data.b;
 	mulu_unsigned <= Unsigned(M_data.a)*Unsigned(M_data.b);
 
-	--quick_div_signed : entity work.quick_naive
-	--port map (
-	--	clk => clk, rst => rst,
-	--	dividend => divid_signed, divisor => divis_signed, ready => open,
-	--	Signed(remainder) => remainder_sig, Signed(quotient) => quotient_sig
-	--);
-
-	--quick_div_unsigned : entity work.quick_naive
-	--port map (
-	--	clk => clk, rst => rst,
-	--	dividend => Unsigned(M_data.a), divisor => Unsigned(M_data.b), ready => open,
-	--	remainder => remainder_unsig, quotient => quotient_unsig
-	--);
-
-	quick_clz_signed : entity work.quick_clz
+	quick_div_signed : entity work.quick_naive
 	port map (
 		clk => clk, rst => rst,
 		dividend => divid_signed, divisor => divis_signed, ready => open,
 		Signed(remainder) => remainder_sig, Signed(quotient) => quotient_sig
 	);
 
-	quick_clz_unsigned : entity work.quick_clz
+	quick_div_unsigned : entity work.quick_naive
 	port map (
 		clk => clk, rst => rst,
 		dividend => Unsigned(M_data.a), divisor => Unsigned(M_data.b), ready => open,
 		remainder => remainder_unsig, quotient => quotient_unsig
 	);
+
+--	quick_clz_signed : entity work.quick_clz
+--	port map (
+--		clk => clk, rst => rst,
+--		dividend => divid_signed, divisor => divis_signed, ready => open,
+--		Signed(remainder) => remainder_sig, Signed(quotient) => quotient_sig
+--	);
+--
+--	quick_clz_unsigned : entity work.quick_clz
+--	port map (
+--		clk => clk, rst => rst,
+--		dividend => Unsigned(M_data.a), divisor => Unsigned(M_data.b), ready => open,
+--		remainder => remainder_unsig, quotient => quotient_unsig
+--	);
 
 	process(M_data, quotient_unsig, quotient_sig, remainder_sig, remainder_unsig)
 	begin

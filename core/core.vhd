@@ -15,6 +15,7 @@ entity core is
 	port(
 		clk : in std_logic;
 		rst : in std_logic;
+		--! Division unit clock
 		clk_32x : in std_logic;
 
 		iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
