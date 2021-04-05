@@ -6,17 +6,15 @@
 # All information provided herein is provided on an "as is" basis,            *
 # without warranty of any kind.                                               *
 #                                                                             *
-# File Name: testbench.do          						    				  *
+# File Name: testbench.do          	      				        *
 #                                                                             *
-# Function: riscv muticycle simulation script		  	                 	  *
+# Function: riscv muticycle simulation script		  	               *
 #                                                                             *
 # REVISION HISTORY:                                                           *
 #  Revision 0.1.0    08/01/2018 - Initial Revision                            *
 #******************************************************************************
 
 vlib work
-# vcom ../../memory/imemory.vhd
-# vcom ../../memory/imemory_load.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../alu/alu_types.vhd
@@ -31,9 +29,7 @@ vcom ../../core/core.vhd
 vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
 
- vcom uart.vhd
-# vcom ../vga/vga_controller.vhd ./vga/vga_buffer.vhd
-# vcom ../sdram/sim/mti_pkg.vhd ./sdram/sim/mt48lc8m16a2.vhd ./sdram/sdram_controller.vhd 
+vcom uart.vhd
 vcom coretestbench.vhd
 
 vsim -t ns work.coretestbench
@@ -110,8 +106,10 @@ add wave -radix binary -label clk_baudState /clk_baud
 add wave -radix binary -label csel /start
 
 add wave -height 15 -divider "TX"
-add wave -radix hex -label data_in /data_in
-add wave -radix hex -label tx /tx
+add wave -radix hex -label data_in /uart_plus/data_in
+add wave -radix hex -label to_tx /uart_plus/to_tx
+add wave -radix hex -label tx /uart_plus/tx
+add wave /uart_plus/state_tx
 
 add wave -height 15 -divider "RX"
 add wave -radix hex -label data_out /data_out
@@ -120,4 +118,4 @@ add wave -radix hex -label rx /rx
 add wave -radix hex -label config_all /config_all
 
 
-run 350000 ns
+run 35000 ns
