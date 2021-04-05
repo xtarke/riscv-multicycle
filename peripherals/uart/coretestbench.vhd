@@ -33,17 +33,7 @@ entity coretestbench is
 end entity coretestbench;
 
 architecture RTL of coretestbench is
-	
-	    component ula is
-        port (	clk         : in  std_logic;
-				command     : in  unsigned (2 downto 0);
-				data_a      : in  std_logic_vector   (31 downto 0);
-				data_b      : in  std_logic_vector   (31 downto 0);
-				saida_low   : out  std_logic_vector  (31 downto 0);
-				saida_high  : out  std_logic_vector  (31 downto 0));
-    end component ula;
-	
-	
+		
 	signal clk       : std_logic;
 	signal clk_sdram : std_logic;
 	signal clk_vga   : std_logic;
@@ -71,6 +61,7 @@ architecture RTL of coretestbench is
 	
 	signal debugString  : string(1 to 40) := (others => '0');
 	
+	signal d_sig : std_logic;
 
 	-- UART Signals
 	signal clk_baud : std_logic;
@@ -86,6 +77,8 @@ architecture RTL of coretestbench is
 	signal csel_uart : std_logic;
 
 	signal dmemory_address : natural;
+	
+	signal interrupts_combo : std_logic_vector(31 downto 0);
 
 
 begin
@@ -119,24 +112,6 @@ begin
 		wait for 2 ns;
 		--wait for period / 2;
 	end process clock_baud;
-
-	
-	-- Dummy out signals
-	-- ARDUINO_IO <= ddata_r(31 downto 16);
-	
---	imem: component imemory
---		generic map(
---			MEMORY_WORDS => IMEMORY_WORDS
---		)
---		port map(
---			clk           => clk,
---			data          => idata,
---			write_address => 0,
---			read_address  => iaddress,
---			we            => '0',
---			q             => idata 
---	);
-
 
 	rst_n <= not rst;
 
@@ -191,6 +166,7 @@ begin
 			address => dmemory_address,
 			we      => d_we,
 			csel    => dcsel(0),
+			signal_ext => d_sig,
 			dmask   => dmask,
 			q       => ddata_r_mem
 		);
@@ -208,48 +184,68 @@ begin
 
 	-- Softcore instatiation
 	myRiscv : entity work.core
-		generic map(
-			IMEMORY_WORDS => IMEMORY_WORDS,
-			DMEMORY_WORDS => DMEMORY_WORDS
-		)
-		port map(
-			clk      => clk,
-			rst      => rst,
-			iaddress => iaddress,
-			idata    => idata,
-			daddress => daddress,
-			ddata_r  => ddata_r,
-			ddata_w  => ddata_w,
-			d_we     => d_we,
-			d_rd     => d_rd,
-			dcsel    => dcsel,
-			dmask    => dmask,
-			state    => cpu_state
-		);
-		
-		uart_plus : entity work.uart
-			port map(
-				clk_in_1M  => clk,
-				clk_baud   => clk_baud,
-				csel       => csel_uart,
-				data_in    => data_in,
-				tx         => tx,
-				tx_cmp     => tx_cmp,
-				data_out   => data_out,
-				rx         => rx,
-				rx_cmp     => rx_cmp,
-				config_all => config_all
-			);
-		
+	generic map(
+		IMEMORY_WORDS => IMEMORY_WORDS,
+		DMEMORY_WORDS => DMEMORY_WORDS
+	)
+	port map(
+		clk      => clk,
+		rst      => rst,
+		iaddress => iaddress,
+		idata    => idata,
+		daddress => daddress,
+		ddata_r  => ddata_r,
+		ddata_w  => ddata_w,
+		d_we     => d_we,
+		d_rd     => d_rd,
+		dcsel    => dcsel,
+		dmask    => dmask,
+		interrupts=>interrupts_combo,
+		state    => cpu_state
+	);
 	
+	-- FileOutput DEBUG	
+	debug : entity work.trace_debug
+	generic map(
+		MEMORY_WORDS => 1024
+	)
+	port map(
+		pc   => iaddress,
+		data => idata,
+		inst => debugString
+	);
+
 	
-	transmitt: process
+
+	uart_plus : entity work.uart
+	port map(
+		clk_in_1M  => clk,
+		clk_baud   => clk_baud,
+		csel       => csel_uart,
+		data_in    => ddata_w(7 downto 0),
+		tx         => tx,
+		tx_cmp     => tx_cmp,
+		data_out   => data_out,
+		rx         => rx,
+		rx_cmp     => rx_cmp,
+		config_all => config_all
+	);
+	
+	-- ToDo: Colocar dentro do módulo. 
+	-- ToDo: Uart deve estar em formato do barramento (ver barramento base em gpio.h)
+	uart_dcsel: process(dcsel, daddress)
 	begin
-		data_in <= x"61";
-		csel_uart <= '1';
-		wait;
+		csel_uart <= '0';
+		if dcsel = "10" then			
+			if (to_unsigned(daddress, 32)(15 downto 0) = x"0020") then  -- 0x0020 = (PERIPH_BASE + 2*16*4)) / 4 = 2*16 = 32 = 0x0020
+				csel_uart <= '1';
+			end if;			
+		end if;	
 	end process;
 	
+	
+	config_all <= (others => '0');
+		
 	receive: process
 	begin
 		data_in <= x"61";
@@ -263,13 +259,6 @@ begin
 		--wait;
 	end process;
 	
-	config: process
-	begin
-		config_all (3 downto 0) <= "0000";
-		config_all (31 downto 4) <= x"0000000";
-		wait for 10 ns;
-		config_all (3 downto 0) <= "0010";
-		wait;
-	end process;
+	
 
 end architecture RTL;
