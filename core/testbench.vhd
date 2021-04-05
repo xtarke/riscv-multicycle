@@ -79,15 +79,15 @@ architecture RTL of coretestbench is
 	signal gpio_input : std_logic_vector(31 downto 0);
 	signal gpio_output : std_logic_vector(31 downto 0);
 
+    
+	signal interrupts : std_logic_vector(31 downto 0);
 
-    signal interrupts : std_logic_vector(31 downto 0);
+	signal ddata_r_timer : std_logic_vector(31 downto 0);
+	signal timer_interrupt : std_logic_vector(5 downto 0);
+	signal ddata_r_periph : std_logic_vector(31 downto 0);
 
-    signal ddata_r_timer : std_logic_vector(31 downto 0);
-    signal timer_interrupt : std_logic_vector(5 downto 0);
-    signal ddata_r_periph : std_logic_vector(31 downto 0);
-
-    signal interrupts_combo : std_logic_vector(31 downto 0);
-
+	signal interrupts_combo : std_logic_vector(31 downto 0);
+    
 
 begin
 
@@ -120,68 +120,37 @@ begin
 		interrupts <=x"0000_0000";
 		wait for 200 us;
 		interrupts <=x"0004_0000";
-        wait for 1 us;
-        interrupts <=x"0000_0000";
-        wait for 200 us;
-        interrupts <=x"0008_0000";
-        wait for 1 us;
-        interrupts <=x"0000_0000";
+		wait for 1 us;
+		interrupts <=x"0000_0000";
+		wait for 200 us;
+		interrupts <=x"0008_0000";
+		wait for 1 us;
+		interrupts <=x"0000_0000";
 		wait for 40 us;
 		interrupts <=x"0400_0000";
-        wait for 1 us;
-        interrupts <=x"0000_0000";
+		wait for 1 us;
+		interrupts <=x"0000_0000";
 		wait for 327 us;
-        interrupts <=x"0004_0000";
-        wait for 1 us;
-        interrupts <=x"0000_0000";
-        wait for 12 us;
-        interrupts <=x"0004_0000";
-        wait for 1 us;
-        interrupts <=x"0000_0000";
+		interrupts <=x"0004_0000";
+		wait for 1 us;
+		interrupts <=x"0000_0000";
+		wait for 12 us;
+		interrupts <=x"0004_0000";
+		wait for 1 us;
+		interrupts <=x"0000_0000";
 
 		wait;
 	end process interrupt_generate;
+    
+    
+	reset : process is
+	begin
+		rst <= '1';
+		wait for 5 ns;
+		rst <= '0';
+		wait;
+	end process reset;
 
-
-    reset : process is
-    begin
-        rst <= '1';
-        wait for 5 ns;
-        rst <= '0';
-        wait;
-    end process reset;
-
-	-- Dummy out signals
-	-- ARDUINO_IO <= ddata_r(31 downto 16);
-
---	imem: component imemory
---		generic map(
---			MEMORY_WORDS => IMEMORY_WORDS
---		)
---		port map(
---			clk           => clk,
---			data          => idata,
---			write_address => 0,
---			read_address  => iaddress,
---			we            => '0',
---			q             => idata
---	);
-
-
-	-- rst_n <= not rst;
-
-	--	imem: component imemory
-	--		generic map(
-	--			MEMORY_WORDS => IMEMORY_WORDS
-	--		)
-	--		port map(
-	--			clk           => clk,
-	--			data          => idata,
-	--			write_address => 0,
-	--			read_address  => iaddress,
-	--			we            => '0',
-	--			q             => idata
-	--	);
 
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -290,45 +259,44 @@ begin
 		);
 
 	generic_gpio: entity work.gpio
-		generic map(
-			MY_CHIPSELECT   => "10",
-			MY_WORD_ADDRESS => x"10"
-		)
-		port map(
-			clk      => clk,
-			rst      => rst,
-			daddress => daddress,
-			ddata_w  => ddata_w,
-			ddata_r  => ddata_r_gpio,
-			d_we     => d_we,
-			d_rd     => d_rd,
-			dcsel    => dcsel,
-			dmask    => dmask,
-			input    => gpio_input,
-			output   => gpio_output
-		);
+	generic map(
+		MY_CHIPSELECT   => "10",
+		MY_WORD_ADDRESS => x"10"
+	)
+	port map(
+		clk      => clk,
+		rst      => rst,
+		daddress => daddress,
+		ddata_w  => ddata_w,
+		ddata_r  => ddata_r_gpio,
+		d_we     => d_we,
+		d_rd     => d_rd,
+		dcsel    => dcsel,
+		dmask    => dmask,
+		input    => gpio_input,
+		output   => gpio_output
+	);
 
-
-
-    -- timer instantiation
-    timer : entity work.Timer
-        generic map(
-            prescaler_size => 16,
-            compare_size   => 32
-        )
-        port map(
-            clock       => clk,
-            reset       => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_timer,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            timer_interrupt=>timer_interrupt
-        );
-
+				   
+	-- timer instantiation
+	timer : entity work.Timer
+	generic map(
+	    prescaler_size => 16,
+	    compare_size   => 32
+	)
+	port map(
+	    clock       => clk,
+	    reset       => rst,
+	    daddress => daddress,
+	    ddata_w  => ddata_w,
+	    ddata_r  => ddata_r_timer,
+	    d_we     => d_we,
+	    d_rd     => d_rd,
+	    dcsel    => dcsel,
+	    dmask    => dmask,
+	    timer_interrupt=>timer_interrupt
+	);
+		
 
 	-- Connect gpio data to output hardware
 	LEDR  <= gpio_output(9 downto 0);
@@ -344,15 +312,15 @@ begin
 	-- Connect input hardware to gpio data
 	gpio_input <= (others => '0'), x"00000010" after 600000 ns;
 
-	-- FileOutput DEBUG
+	-- FileOutput DEBUG	
 	debug : entity work.trace_debug
-		generic map(
-			MEMORY_WORDS => IMEMORY_WORDS
-		)
-		port map(
-			pc   => iaddress,
-			data => idata,
-			inst => debugString
-		);
+	generic map(
+		EMORY_WORDS => IMEMORY_WORDS
+	)
+	port map(
+		pc   => iaddress,
+		data => idata,
+		inst => debugString
+	);
 
 end architecture RTL;

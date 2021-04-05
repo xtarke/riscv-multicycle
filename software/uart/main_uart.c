@@ -28,13 +28,13 @@ int main(){
 		//delay_(10000);
 	
 		// Testing UART - Transmission
-		UART_write('c');
-		delay_(10000);
+		UART_write(0xaa);
+		delay_(100);
 		
 		// Testint UART - Reception
-		x = UART_read();
-		OUTBUS = x;
-		delay_(10000);
+		//x = UART_read();
+		//OUTBUS = x;
+		//delay_(10000);
 	}
 
 	return 0;
