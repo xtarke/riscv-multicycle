@@ -13,6 +13,7 @@
 
 #include "../_core/utils.h"
 #include "../_core/hardware.h"
+#include "../gpio/gpio.h"
 #include <limits.h>
 
 
@@ -43,12 +44,20 @@ int main(){
 		mulh_result = a_int64*b_int64;
 
 		div_result = a_int32/b_int32;
+		OUTBUS = div_result;
+		delay_(1000000);
 
 		divu_result = a_uint32/b_uint32;
+		OUTBUS = divu_result;
+		delay_(1000000);
 
 		div_result = a_int32%b_int32;
+		OUTBUS = div_result;
+		delay_(1000000);
 
 		divu_result = a_uint32%b_uint32;
+		OUTBUS = divu_result;
+		delay_(1000000);
 
 	}
 

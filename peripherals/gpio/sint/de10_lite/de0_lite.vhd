@@ -115,6 +115,7 @@ architecture rtl of de0_lite is
 	-- I/O signals
 	signal gpio_input : std_logic_vector(31 downto 0);
 	signal gpio_output : std_logic_vector(31 downto 0);
+	signal div_result : std_logic_vector(31 downto 0);
 
 	-- Peripheral data signals
    signal ddata_r_gpio : std_logic_vector(31 downto 0);
@@ -137,6 +138,11 @@ begin
 			c1	 		=> clk_50MHz,
 			locked	=> locked_sig
 		);
+		
+	probe : entity work.probe
+	port map (
+		probe => div_result
+	);
 
 
 	-- Dummy out signals
@@ -285,7 +291,7 @@ begin
 
 	-- Connect gpio data to output hardware
 	LEDR(7 downto 0) <= gpio_output(7 downto 0);
-
+	div_result <= gpio_output;
 
 	-- Output register
 	process(clk, rst)
