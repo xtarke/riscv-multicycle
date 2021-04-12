@@ -43,7 +43,7 @@ Since this divider is unsigned, it was necessary to do sign conversion when deal
 
 ## Performing the division in one clock cicle
 
-The division can take up to 32 clock cicles to complete the division, so, so as not to slow down the processor while doing division, we feed a clock signal that is thirty-two times the core clock, in doing so the core can get the result in what seems a single clock instruction to him. This technique is called multi-pump.
+The division can take up to 33 clock cicles to complete the division, but it also needs one clock cicle to load the new values, so as not to slow down the processor while doing division, we feed a clock signal that is at lest thirty-four times the core clock, in doing so the core can get the result in what seems a single clock instruction to him. This technique is called multi-pump.
 
 ## FPGA Resources with the new divider
 
@@ -51,14 +51,21 @@ Comparing the use of resources in a same project, the only difference between th
 
 |Implementation|Total logic elements|Total registers|Total pins|Total memory bits|Embedded Multiplier 9-bit elements|Total PLLs|
 |--------------|--------------------|---------------|----------|-----------------|----------------------------------|----------|
-|Old one|7,773/49,760 (16%)|864|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
+|Old Division|7,773/49,760 (16%)|864|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
 |quick-clz|5,135/49,760 (10%)|1250|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
 |quick-naive|4,621/49,760 (9%)|1250|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
+
+And the difference is even more striking when the resources are compared in the chip planner.
+
+|Old Division|Quick Naive|
+|------------|--------------|
+|![Chip Planner Old Division](./img/chip_planner-old_division.png)|![Chip Planner Quick Division](./img/chip_planner-quick-div.png)|
+
 
 ## Files to use M unit:
 
 * division_functions.vhd - Functions used in the divider block
-* quick_naive.vhd - Divider block
+* quick_naive.vhd or quick_clz.vhd - Divider block
 * M_types.vhd
 * M.vhd
 

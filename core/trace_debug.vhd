@@ -304,39 +304,6 @@ begin
 					end case;
 				end if;
 
-		--		case opcodes.funct3 is
-		--			when TYPE_ADD_SUB =>
-		--				if opcodes.funct7 = TYPE_ADD then
-		--					swrite(my_line, typeRstring(data, "add", pc, rd, rs1, rs2));
-		--					writeline(my_output, my_line);
-		--					inst <= str_pad(typeRstring(data, "add", pc, rd, rs1, rs2), ' ', 40);
-		--				else
-		--					swrite(my_line, typeRstring(data, "sub", pc, rd, rs1, rs2));
-		--					writeline(my_output, my_line);
-		--					inst <= str_pad(typeRstring(data, "sub", pc, rd, rs1, rs2), ' ', 40);
-		--				end if;
-
-		--			when TYPE_AND =>
-		--				swrite(my_line, typeRstring(data, "and", pc, rd, rs1, rs2));
-		--				writeline(my_output, my_line);
-		--				inst <= str_pad(typeRstring(data, "and", pc, rd, rs1, rs2), ' ', 40);
-		--			when TYPE_SLL =>
-		--				swrite(my_line, typeRstring(data, "sll", pc, rd, rs1, rs2));
-		--				writeline(my_output, my_line);
-		--				inst <= str_pad(typeRstring(data, "sll", pc, rd, rs1, rs2), ' ', 40);
-		--			when TYPE_XOR =>
-		--				swrite(my_line, typeRstring(data, "xor", pc, rd, rs1, rs2));
-		--				writeline(my_output, my_line);
-		--				inst <= str_pad(typeRstring(data, "xor", pc, rd, rs1, rs2), ' ', 40);
-		--			when TYPE_OR =>
-		--				swrite(my_line, typeRstring(data, "or", pc, rd, rs1, rs2));
-		--				writeline(my_output, my_line);
-		--				inst <= str_pad(typeRstring(data, "or", pc, rd, rs1, rs2), ' ', 40);
-
-		--			when others =>
-		--				report "Not implemented" severity Failure;
-		--		end case;
-
 			when TYPE_S =>
 				case opcodes.funct3 is
 					when TYPE_SB =>

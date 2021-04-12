@@ -216,8 +216,6 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS 2
-set_global_assignment -name QIP_FILE probe/probe.qip
-set_global_assignment -name VHDL_FILE probe/probe.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_clz.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/division_functions.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_naive.vhd
