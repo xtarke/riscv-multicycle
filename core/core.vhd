@@ -15,6 +15,8 @@ entity core is
 	port(
 		clk : in std_logic;
 		rst : in std_logic;
+		--! Division unit clock
+		clk_32x : in std_logic;
 
 		iaddress  : out  integer range 0 to IMEMORY_WORDS-1;
 		idata	  : in 	std_logic_vector(31 downto 0);
@@ -28,10 +30,10 @@ entity core is
 		d_sig     : out std_logic;						--! Signal extension
 		dcsel	  : out std_logic_vector(1 downto 0);	--! Chip select
 		dmask     : out std_logic_vector(3 downto 0);	--! Byte enable mask
-	    
+
 		interrupts:std_logic_vector(31 downto 0);
-		
-		state	  : out cpu_state_t    
+
+		state	  : out cpu_state_t
 
 	);
 end entity core;
@@ -79,7 +81,7 @@ architecture RTL of core is
 
 	signal branch_cmp : std_logic;
 	signal bus_lag : std_logic;
-	
+
 	signal pending : std_logic;
 	signal csr_write : std_logic;
 	signal csr_load_imm: std_logic;
@@ -88,7 +90,7 @@ architecture RTL of core is
 	signal csr_new : std_logic_vector(31 downto 0);
 	signal load_mepc: std_logic;
   signal mretpc : std_logic_vector(31 downto 0);
-  signal mret : std_logic;    
+  signal mret : std_logic;
 
 begin
 
@@ -118,19 +120,19 @@ begin
                                 else
                                     pc_holder := next_pc;
                                 end if;
-                                            
+
                             when "11" =>
                                 pc_holder := std_logic_vector(to_unsigned(jalr_target,32));
                             when others =>
                                 report "Not implemented" severity Failure;
                         end case;
-                    
+
                     end if;
-                    
+
                     mretpc<=pc_holder;      -- mretpc recieve the next calculated pc
-                    
+
                     if (load_mepc = '1')then
-                        pc_holder:= mepc;   
+                        pc_holder:= mepc;
                     end if;
                     pc <=pc_holder;         -- pc recieve the next calculated pc or index of iqr handler
                 end if;
@@ -182,13 +184,13 @@ begin
 				end case;
 		end process;
 	end block;
-		
-	with csr_load_imm select               -- Select between rs1 value and immediate 
+
+	with csr_load_imm select               -- Select between rs1 value and immediate
 	       csr_new <=  rs1_data when '0',
 	                   Std_logic_vector(to_unsigned(rs1,32))  when '1',
 	                   (others => '0') when others;
-	
-	
+
+
     ins_csr: entity work.csr
         port map(
             clk        => clk,
@@ -205,7 +207,7 @@ begin
             load_mepc  => load_mepc,
             mepc_out   => mepc
         );
-		
+
 	ins_register: entity work.iregister
 		port map(
 			clk     => clk,
@@ -289,8 +291,10 @@ begin
 
 	M_0: entity work.M
 		port map(
-			M_data   => M_data,
-			dataOut  => M_out
+			clk 		=> clk_32x,
+			rst 		=> rst,
+			M_data  => M_data,
+			dataOut => M_out
 		);
 
 	M_data.a <= (signed(rs1_data));
