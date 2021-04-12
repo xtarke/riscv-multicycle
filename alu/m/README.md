@@ -17,17 +17,64 @@
 
 ![RV32M Standard Extension](./img/M_unit.png)
 
-##Files to use M unit:
+# RISC-V Division Exceptions
 
+Some situations may occur where is no possible to return a correct result as when happens in a division by zero or a sign overflow, the risc standard stipulate the behavior of these two in the following table.
+
+![Zero Division and Division Overflow](./img/division_exceptions.png)
+
+# Divider block
+
+The design of this block came from the article [Rethinking Integer Divider Design for FPGA-based Soft-Processors](http://www.sfu.ca/~zhenman/files/C17-FCCM2019-Divider.pdf), and of the two designs presented there we sticked with the one that uses less resource from the FPGA, that is, the quick-naive implementation. The algorithm is sumarized as:
+
+```python
+Remainder = Dividend, Quotient = 0
+while(Remainder > Divisor) {
+	msb_d = [log_2(Remainder)] - [log_2(Divisor)]
+	EstimatedDivisor = (2**msb_d)*Divisor
+	A = Remainder - EstimatedDivisor
+	B = Remainder - EstimatedDivisor/2
+	Quotient[(A < 0) ? msb_d-1:msb_d] = 1
+	Remainder = (A < 0) ? B:A
+}
+```
+
+Since this divider is unsigned, it was necessary to do sign conversion when dealing with negative numbers in sign division.
+
+## Performing the division in one clock cicle
+
+The division can take up to 33 clock cicles to complete the division, but it also needs one clock cicle to load the new values, so as not to slow down the processor while doing division, we feed a clock signal that is at lest thirty-four times the core clock, in doing so the core can get the result in what seems a single clock instruction to him. This technique is called multi-pump.
+
+## FPGA Resources with the new divider
+
+Comparing the use of resources in a same project, the only difference between the three projects is the divider block.
+
+|Implementation|Total logic elements|Total registers|Total pins|Total memory bits|Embedded Multiplier 9-bit elements|Total PLLs|
+|--------------|--------------------|---------------|----------|-----------------|----------------------------------|----------|
+|Old Division|7,773/49,760 (16%)|864|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
+|quick-clz|5,135/49,760 (10%)|1250|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
+|quick-naive|4,621/49,760 (9%)|1250|149/360 (41%)|67,584/1,677,312 (4%)|16/288 (6%)|1/4 (25%)|
+
+And the difference is even more striking when the resources are compared in the chip planner.
+
+|Old Division|Quick Naive|
+|------------|--------------|
+|![Chip Planner Old Division](./img/chip_planner-old_division.png)|![Chip Planner Quick Division](./img/chip_planner-quick-div.png)|
+
+
+## Files to use M unit:
+
+* division_functions.vhd - Functions used in the divider block
+* quick_naive.vhd or quick_clz.vhd - Divider block
 * M_types.vhd
 * M.vhd
 
-##Testbench:
+## Testbench:
 
 * tb_M.do - Modelsim
 * tb_M.vhd
 
-##Code to Teste:
+## Code to Teste:
 ```C
 #include "utils.h"
 #include "hardware.h"
@@ -41,13 +88,13 @@ int main(){
 	volatile uint64_t a_uint64=INT_MAX, b_uint64=2;
 
 	volatile uint64_t mul_result;
-   	volatile uint32_t mulh_result;
-   	volatile uint32_t mulhsu_result;
-   	volatile uint32_t mulhu_result;
-   	volatile int div_result;
-   	volatile uint32_t divu_result;
-   	volatile int rem_result;
-   	volatile uint32_t remu_result;
+ 	volatile uint32_t mulh_result;
+ 	volatile uint32_t mulhsu_result;
+ 	volatile uint32_t mulhu_result;
+ 	volatile int div_result;
+ 	volatile uint32_t divu_result;
+ 	volatile int rem_result;
+ 	volatile uint32_t remu_result;
 
 	while (1){
 

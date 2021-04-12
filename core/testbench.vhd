@@ -6,11 +6,11 @@ use work.decoder_types.all;
 
 entity coretestbench is
 	generic(
-		--! Num of 32-bits memory words 
+		--! Num of 32-bits memory words
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
 		DMEMORY_WORDS : integer := 1024;  	--!= 2k (512 * 2) bytes
 		constant SIZE : integer := 8        -- 8 bytes UART package
-		
+
 	);
 
 	port(
@@ -23,18 +23,19 @@ entity coretestbench is
 		HEX5 : out std_logic_vector(7 downto 0);
 		----------- SW ------------
 
-		SW: in std_logic_vector(9 downto 0);		
+		SW: in std_logic_vector(9 downto 0);
 		LEDR: out std_logic_vector(9 downto 0);
-		
+
 		---------- ARDUINO IO -----
 		ARDUINO_IO: inout std_logic_vector(15 downto 0)
-	);	
-	
-	
+	);
+
+
 end entity coretestbench;
 
 architecture RTL of coretestbench is
 	signal clk       : std_logic;
+	signal clk_32x   : std_logic;
 	signal rst       : std_logic;
 	signal idata : std_logic_vector(31 downto 0);
 
@@ -51,12 +52,12 @@ architecture RTL of coretestbench is
 
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd : std_logic;
-		
+
 	signal input_in	: std_logic_vector(31 downto 0);
 	signal cpu_state    : cpu_state_t;
-	
+
 	signal debugString  : string(1 to 40) := (others => '0');
-	
+
 
 	-- UART Signals
 	signal clk_baud : std_logic;
@@ -67,12 +68,12 @@ architecture RTL of coretestbench is
 	signal data_out : std_logic_vector(SIZE-1 downto 0);
 	signal rx : std_logic;
 	signal rx_cmp : std_logic;
-	
+
 	signal csel_uart : std_logic;
 
 	signal dmemory_address : natural;
 	signal d_sig : std_logic;
-	
+
 	-- I/O signals
 	signal ddata_r_gpio : std_logic_vector(31 downto 0);
 	signal gpio_input : std_logic_vector(31 downto 0);
@@ -99,7 +100,19 @@ begin
 		wait for period / 2;
 	end process clock_driver;
 
-	interrupts_combo<= interrupts or ('0' & timer_interrupt & '0' & x"000000");
+	--! Division unit clock
+	clock_driver_32x : process
+		constant period : time := 20 ns;
+	begin
+		clk_32x <= '0';
+		wait for period / 2;
+		clk_32x <= '1';
+		wait for period / 2;
+	end process clock_driver_32x;
+
+
+
+    interrupts_combo<= interrupts or ('0' & timer_interrupt & '0' & x"000000");
 
 
 	interrupt_generate : process is
@@ -141,9 +154,9 @@ begin
 
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	-- with dcsel select 
+	-- with dcsel select
 	-- address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
-	--			   std_logic_vector(to_unsigned(iaddress,10)) when others;				   
+	--			   std_logic_vector(to_unsigned(iaddress,10)) when others;
 	process(d_rd, dcsel, daddress, iaddress)
 	begin
 		if (d_rd = '1') and (dcsel = "00") then
@@ -154,7 +167,7 @@ begin
 	end process;
 --	instr_mux: entity work.instructionbusmux
 --		generic map(
---			IMEMORY_WORDS => IMEMORY_WORDS,			
+--			IMEMORY_WORDS => IMEMORY_WORDS,
 --			DMEMORY_WORDS => DMEMORY_WORDS
 --		)
 --		port map(
@@ -164,7 +177,7 @@ begin
 --			iaddress => iaddress,
 --			address  => address
 --		);
-	
+
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst : entity work.iram_quartus
@@ -199,7 +212,7 @@ begin
 	-- 0x00000    ->    Instruction memory
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space
-	-- 0x60000    ->    SDRAM address space	
+	-- 0x60000    ->    SDRAM address space
 	with dcsel select ddata_r <=
 		idata when "00",
 		ddata_r_mem when "01",
@@ -208,7 +221,7 @@ begin
 
 
 
-        with to_unsigned(daddress,16)(15 downto 4) select 
+        with to_unsigned(daddress,16)(15 downto 4) select
         ddata_r_periph <= ddata_r_gpio when x"000",
 --                          ddata_r_segments when x"001",
 --                          ddata_r_uart when x"002",
@@ -216,8 +229,8 @@ begin
 --                          ddata_r_i2c when x"004",
                           ddata_r_timer when x"005",
                           (others => '0')when others;
-              
-        
+
+
 
 
 
@@ -230,6 +243,7 @@ begin
 		port map(
 			clk      => clk,
 			rst      => rst,
+			clk_32x  => clk_32x,
 			iaddress => iaddress,
 			idata    => idata,
 			daddress => daddress,
@@ -289,7 +303,7 @@ begin
 
 	-- Turn off all HEX displays
 	HEX0 <= (others => '1');
-	HEX1 <= (others => '1');	
+	HEX1 <= (others => '1');
 	HEX2 <= (others => '1');
 	HEX3 <= (others => '1');
 	HEX4 <= (others => '1');
