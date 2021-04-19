@@ -3,6 +3,8 @@
  *
  *  Created on: Jul 1, 2019
  *      Author: Jeferson Pedroso
+ *              Leticia Nunes
+ *              Marieli Matos
  *      Modified: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  * 
@@ -11,24 +13,23 @@
  * -----------------------------------------
  */
 
-#ifndef __HARDWARE_ADC_7SEG_H
-#define __HARDWARE_ADC_7SEG_H
+#ifndef __ADC_H
+#define __ADC_H
 
 #include <stdint.h>
 #include "../_core/hardware.h"
 
-#define INDATA_ADC	*(&I2C_BASE_ADDRESS)
-#define CH_ADC_FEED *(&I2C_BASE_ADDRESS + 1)
-#define SEL_CH_ADC  *(&I2C_BASE_ADDRESS + 2)
 //estrutura de dados para armazenar o valor e canal lidos.
-struct adc_read
+typedef struct 
 {
-	int channel;
-	int value;
-};
+	uint32_t indata_adc;        //lido
+	uint32_t ch_adc_feed;       //só mexe no sel_ch
+	uint32_t sel_ch_adc;        
+		
+}ADC_TYPE;
 
-void ADC_READ (int channel_sel, int *channel_read, int *value_read);
+#define ADC ((ADC_TYPE *) &ADC_BASE_ADDRESS)
 
-void SEGS7_WRITE (int disp5, int disp4, int disp3, int disp2, int disp1, int disp0);
+uint32_t adc_read (uint32_t channel_sel);
 
-#endif //HARDWARE_ADC_7SEG_H
+#endif //__ADC_H
