@@ -26,7 +26,7 @@ int main(){
 
 		/* Counter blink */
 		OUTBUS = data;
-		delay_(10000);
+		delay_(1000);
 
 		data++;
 	}
