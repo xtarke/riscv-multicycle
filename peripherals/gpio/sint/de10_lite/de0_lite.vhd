@@ -324,8 +324,6 @@ begin
     end process;
 
 
-
-
 	-- Connect input hardware to gpio data
 	gpio_input(3 downto 0) <= SW(3 downto 0);
 

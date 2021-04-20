@@ -10,4 +10,6 @@
 #define CSR_MTVT               0x307
 #define CSR_MTVT2             0x7EC
 
+#define CSR_MSUBM          0x7c4
+
 #endif
