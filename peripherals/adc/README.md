@@ -1,41 +1,86 @@
 
+# DOCUMENTAÇÃO ADC E DISPLAY 7 SEGMENTOS DE-10LITE
 
-DOCUMENTAÇÃO ADC E DISPLAY 7 SEGMENTOS DE-10LITE
+## ADC
 
+A implementação do ADC trata-se de um bloco IP da Altera, foi configurado pelo arquivo 'adc_qsys.qsys' utilizando-se a ferramenta própria da Altera. Nesta implementação, o ADC conta com 16 canais de 12 bits.
 
-1- O HARDWARE
+Para a aquisição ser feita, a resposta precisa ser validade pelo próprio bloco de IP, por isso o processo abaixo foi criado.
 
+![read_process](../adc/img/read_process.png)
 
-A implementação do ADC trata-se de um bloco IP da Altera, é configurado pelo arquivo "adc_qsys.qsys" utilizando-se a ferramenta própria da Altera.
-Maiores informações em https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/max-10/archives/ug-m10-adc-16.1.pdf
+## Simulação
 
-No arquivo "Top-level Hierarchy", "de0_lite.vhd", pode-se observar a Instancia do Componente ADC bem como o Port Map e Sinais necessários para o seu funcionamento.
+Como blocos de IP's não são simulaveis foi criado o arquivo 'adc_bus.vhd' que simula o funcionamento do ADC  este ainda utiliza o 'adc_qsysbus.vhd' (simula a ferramenta da Altera), onde foi inserido valores fixos de samples para verificar a integração com o softcore. Os arquivos 'tb_adc.vhd' e 'tb_adc.do' implementam a simulação, mostrado abaixo.
 
-No process "-- Output register" o softcore envia ao hardware o número do canal que deve ser lido o ADC e também o registrador com os dígitos separados em hexadecimal que devem ser enviados aos displays de 7 segmentos do kit.
+![sim_modelsim](../adc/img/sim_modelsim.png)
 
-No process "-- Input register" envia-se o valor do ADC para o registrador de I/O do softcore, onde os 12 bits menos significativos do registrador de I/O recebe o valor bruto do ADC e os bits 12 a 15 recebem o número do canal cujo valor foi lido, conforme ilustrado abaixo:
+## Implementação
 
-					input_in(11 downto 0) <= adc_sample_data;
-					input_in(15 downto 12) <= cur_adc_ch(3 downto 0);
-					
-
-Também neste mesmo arquivo foi declarado os componentes "displays()" que são responsáveis por receber um dígito hexadecimal e codifiar para os respectivos displays de 7 segmentos presentes no Kit DE-10LITE.
-
-
-2- SOFTWARE
-
-No arquivo "hardware.h" estão definidos os nomes e endereços dos registradores de I/O:
-
-INDATA_ADC -> recebe o valor do ADC e respectivo canal.
-SEL_CH_ADC -> envia ao hardware o número do canal ADC a ser lido
-OUT_SEGS -> envia os dvalores em hexadecimal aos displays de 7 segmentos. São 6 displays ordenados nos 24bits mais significativos.
-
-
+Na implementação foi necessário outro componente em que fosse possível realizar a síntese, o 'adc_core.vhd'. Para a seleção do canal, um valor é lido no endereço "0x30" do barramento de dados, enquanto para obter o valor lido pelo ADC é escrito no endereço "0x31".
 No arquivo "hardware_ADC_7SEG.h" estão definidos uma estrutura de dados para armazenar o valor lido do ADC e seu respectivo canal, bem como a declaração das funções para ler o ADC e escrever nos displays de 7 segmentos.
 
+![implementacao](../adc/img/implementacao.png)
 
-3- Valor ADC.
+## Software
 
-O valor lido do ADC é bruto, devendo-se fazer as devidas conversões de acordo com a conveniencia pretendida.
-No exemplo do arquivo "firmware.c" o valor foi convertido em mV.
- 
+Em `hardware.h` foi definido o endereço de cada periférico.
+
+```c
+#define IONBUS_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE))			    
+#define SEGMENTS_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 1*16*4))		
+#define UART_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 2*16*4))	
+#define ADC_BASE_ADDRESS 		    (*(_IO32 *) (PERIPH_BASE + 3*16*4))		
+#define I2C_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 4*16*4))	
+#define TIMER_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 5*16*4))		
+#define SPI_BASE_ADDRESS 		    (*(_IO32 *) (PERIPH_BASE + 6*16*4))	
+```
+
+No arquivo `adc.h` foi estabelecido a estrutura de dados para a leitura e escrita no barramento de dados, além dos escopos das funçoes.
+
+```c
+typedef struct 
+{
+	uint32_t sel_channel;   
+	uint32_t indata_adc;
+}ADC_TYPE;
+
+#define OUTBUS  *(&IONBUS_BASE_ADDRESS + 1)
+#define ADC ((ADC_TYPE *) &ADC_BASE_ADDRESS)
+
+uint32_t adc_read (uint32_t channel_sel);
+```
+
+Em `adc.c` foi criado a função que envia qual o canal a ser lido e recebe a resposta com o valor do sample.
+
+```c
+#include "adc.h"
+
+uint32_t adc_read (uint32_t channel_sel)
+{
+	ADC -> sel_channel = channel_sel;
+    return ADC -> indata_adc;
+}
+```
+
+No arquivo `main_adc.c` mostra um exemplo de funcionamento.
+
+```c
+	int main(){	
+
+		uint32_t adc_value;
+		uint32_t adc_ch = 1;
+		
+		//x faz a varredura dos canais para teste!
+		while (1){
+			if (adc_ch == 17)
+				adc_ch = 1;
+			
+			adc_value = adc_read(adc_ch);
+			delay_(100000);
+			adc_ch++;
+			OUTBUS = adc_value;
+		}
+		return 0;
+	}
+```
