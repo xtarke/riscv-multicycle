@@ -149,7 +149,7 @@ architecture behavior of accelerometer_adxl345 is
               if (spi_busy = '0') then --transaction not started
                 -- continuos yes, ss_n continuos
                 -- continuos not, ss_n pulse
-                spi_cont    <= '0'; --set SPI continuous mode 
+                spi_cont    <= '1'; --set SPI continuous mode 
                 spi_ena     <= '1'; --enable SPI transaction
                 spi_tx_data <= "11110010"; --first information to send
               else --transaction has started

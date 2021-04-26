@@ -60,6 +60,7 @@
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
 //#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
 //#define TFT_RETURN    (*(_IO32 *) (PERIPH_BASE + 44))
+#define ACCELEROMETER_BASE_ADDRESS     (*(_IO32 *) (PERIPH_BASE + 8*16*4))
 #define WTD_BASE_ADDRESS            	(*(_IO32 *) (PERIPH_BASE + 9*16*4))
 
 
