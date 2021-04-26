@@ -50,17 +50,17 @@
 // Take gpio.h as an example
 #define IONBUS_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE))			    
 #define SEGMENTS_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 1*16*4))		
-#define UART_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 2*16*4))	
-#define ADC_BASE_ADDRESS 		    (*(_IO32 *) (PERIPH_BASE + 3*16*4))		
-#define I2C_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 4*16*4))	
-#define TIMER_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 5*16*4))		
-#define SPI_BASE_ADDRESS 		    (*(_IO32 *) (PERIPH_BASE + 6*16*4))	
-
-#define TFT_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 7*16*4))	
+#define UART_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 2*16*4))	
+#define ADC_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 3*16*4))		
+#define I2C_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 4*16*4))	
+#define TIMER_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 5*16*4))		
+#define SPI_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE + 6*16*4))	
+#define TFT_BASE_ADDRESS            	(*(_IO32 *) (PERIPH_BASE + 7*16*4))	
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
 //#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
-//#define TFT_RETURN    (*(_IO32 *) (PERIPH_BASE + 44))	
+//#define TFT_RETURN    (*(_IO32 *) (PERIPH_BASE + 44))
+#define WTD_BASE_ADDRESS            	(*(_IO32 *) (PERIPH_BASE + 9*16*4))
 
 
 
