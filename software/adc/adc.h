@@ -22,12 +22,11 @@
 //estrutura de dados para armazenar o valor e canal lidos.
 typedef struct 
 {
-	uint32_t indata_adc;        //lido
-	uint32_t ch_adc_feed;       //só mexe no sel_ch
-	uint32_t sel_ch_adc;        
-		
+	uint32_t sel_channel; 		// 0x0030       
+	uint32_t indata_adc;        // 0x0031		
 }ADC_TYPE;
 
+#define OUTBUS  *(&IONBUS_BASE_ADDRESS + 1)
 #define ADC ((ADC_TYPE *) &ADC_BASE_ADDRESS)
 
 uint32_t adc_read (uint32_t channel_sel);
