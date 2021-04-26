@@ -1,17 +1,17 @@
 
-# DOCUMENTAÇÃO ADC E DISPLAY 7 SEGMENTOS DE-10LITE
+# DOCUMENTAÇÃO ADC
 
 ## ADC
 
 A implementação do ADC trata-se de um bloco IP da Altera, foi configurado pelo arquivo 'adc_qsys.qsys' utilizando-se a ferramenta própria da Altera. Nesta implementação, o ADC conta com 16 canais de 12 bits.
 
-Para a aquisição ser feita, a resposta precisa ser validade pelo próprio bloco de IP, por isso o processo abaixo foi criado.
+Para a aquisição ser feita, a resposta precisa ser validadaa pelo próprio bloco de IP, por isso o processo abaixo foi criado.
 
 ![read_process](../adc/img/read_process.png)
 
 ## Simulação
 
-Como blocos de IP's não são simulaveis foi criado o arquivo 'adc_bus.vhd' que simula o funcionamento do ADC  este ainda utiliza o 'adc_qsysbus.vhd' (simula a ferramenta da Altera), onde foi inserido valores fixos de samples para verificar a integração com o softcore. Os arquivos 'tb_adc.vhd' e 'tb_adc.do' implementam a simulação, mostrado abaixo.
+Como blocos de IP's não são simuláveis foi criado o arquivo 'adc_bus.vhd' que simula o funcionamento do ADC  este ainda utiliza o 'adc_qsysbus.vhd' (simula a ferramenta da Altera), onde foi inserido valores fixos de samples para verificar a integração com o softcore. Os arquivos 'tb_adc.vhd' e 'tb_adc.do' implementam a simulação, mostrado abaixo.
 
 ![sim_modelsim](../adc/img/sim_modelsim.png)
 
@@ -24,7 +24,7 @@ No arquivo "hardware_ADC_7SEG.h" estão definidos uma estrutura de dados para ar
 
 ## Software
 
-Em `hardware.h` foi definido o endereço de cada periférico.
+Em 'hardware.h' foi definido o endereço de cada periférico.
 
 ```c
 #define IONBUS_BASE_ADDRESS 		(*(_IO32 *) (PERIPH_BASE))			    
@@ -36,7 +36,7 @@ Em `hardware.h` foi definido o endereço de cada periférico.
 #define SPI_BASE_ADDRESS 		    (*(_IO32 *) (PERIPH_BASE + 6*16*4))	
 ```
 
-No arquivo `adc.h` foi estabelecido a estrutura de dados para a leitura e escrita no barramento de dados, além dos escopos das funçoes.
+No arquivo 'adc.h' foi estabelecido a estrutura de dados para a leitura e escrita no barramento de dados, além dos escopos das funçoes.
 
 ```c
 typedef struct 
@@ -51,7 +51,7 @@ typedef struct
 uint32_t adc_read (uint32_t channel_sel);
 ```
 
-Em `adc.c` foi criado a função que envia qual o canal a ser lido e recebe a resposta com o valor do sample.
+Em 'adc.c' foi criado a função que envia qual o canal a ser lido e recebe a resposta com o valor do sample.
 
 ```c
 #include "adc.h"
