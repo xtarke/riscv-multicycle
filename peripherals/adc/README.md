@@ -18,7 +18,7 @@ Como blocos de IP's não são simuláveis foi criado o arquivo 'adc_bus.vhd' que
 ## Implementação
 
 Na implementação foi necessário outro componente em que fosse possível realizar a síntese, o 'adc_core.vhd'. Para a seleção do canal, um valor é lido no endereço "0x30" do barramento de dados, enquanto para obter o valor lido pelo ADC é escrito no endereço "0x31".
-No arquivo "hardware_ADC_7SEG.h" estão definidos uma estrutura de dados para armazenar o valor lido do ADC e seu respectivo canal, bem como a declaração das funções para ler o ADC e escrever nos displays de 7 segmentos.
+No arquivo "hardware_ADC_7SEG.h" está definida uma estrutura de dados para armazenar o valor lido do ADC e seu respectivo canal, que será utilizadp pelo 'de10lite.vhd', bem como a declaração das funções para ler o ADC e escrever nos displays de 7 segmentos.
 
 ![implementacao](../adc/img/implementacao.png)
 
