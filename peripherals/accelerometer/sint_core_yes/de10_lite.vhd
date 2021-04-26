@@ -38,7 +38,7 @@ end de10_lite;
 architecture rtl of de10_lite is
 
   -- chip select
-  constant MY_CHIPSELECT   : std_logic_vector(1 downto 0) :=  "10";
+  constant MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10";
   constant MY_WORD_ADDRESS : std_logic_vector(7 downto 0) := x"10";
 
   -- basic required
@@ -101,17 +101,20 @@ architecture rtl of de10_lite is
 
   -- switch between data sent or not by the core bus
 	signal sw_debug : std_logic;
+	
+	signal clk_50MHz : std_logic;
 
 begin
   
   -- instatiation: pll
-  e_pll: entity work.pll
-    port map(
-      areset => '0',
-      inclk0 => MAX10_CLK1_50,
-      c0     => clk,
-      locked => locked_sig
-    );
+pll_inst : entity work.pll
+		port map(
+			areset	=> '0',
+			inclk0 	=> MAX10_CLK1_50,
+			c0		 	=> clk,
+			c1	 		=> clk_50MHz,
+			locked	=> locked_sig
+		);
   
   -- instatiation: instruction MUX
   e_mux: entity work.instructionbusmux
@@ -181,6 +184,7 @@ begin
     )
     port map(
       clk        => clk,
+		clk_32x  => clk_50MHz,
       rst        => rst,
       iaddress   => iaddress,
       idata      => idata,
@@ -198,8 +202,8 @@ begin
 	-- instatiation: GPIO 
 	e_gpio: entity work.gpio
 		generic map(
-			MY_CHIPSELECT   => MY_CHIPSELECT,
-			MY_WORD_ADDRESS => MY_WORD_ADDRESS
+			MY_CHIPSELECT   => "10",
+			MY_WORD_ADDRESS => x"10"
 		)
 		port map(
 			clk      => clk,

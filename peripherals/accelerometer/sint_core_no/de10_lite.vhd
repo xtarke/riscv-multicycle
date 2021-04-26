@@ -44,11 +44,11 @@ architecture rtl of de10_lite is
 begin
 
    -- -- -- instanciar componente -- -- --
-   sp_external : component source_and_probe
-   port map(
-      source => source, --sources.source
-      probe  => probe   --probes.probe
-   );
+   --sp_external : component source_and_probe
+   --port map(
+   --   source => source, --sources.source
+   --   probe  => probe   --probes.probe
+   --);
 
   -- instatiation: accelerometer
   e_accelerometer : entity work.accelerometer_adxl345

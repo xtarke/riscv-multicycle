@@ -6,37 +6,12 @@ set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY de10_lite
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.0.0
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:49:34  JUNE 20, 2019"
 
 
 # VHDL-Files
 #============================================================
-set_global_assignment -name VHDL_FILE ../../gpio/gpio.vhd
-set_global_assignment -name VHDL_FILE ../disp_data.vhd
-set_global_assignment -name VHDL_FILE de10_lite.vhd
-set_global_assignment -name QSYS_FILE source_and_probe.qsys
-set_global_assignment -name VHDL_FILE ../spi_master.vhd
-set_global_assignment -name VHDL_FILE ../bin_to_bcd.vhd
-set_global_assignment -name VHDL_FILE ../bcd_to_7seg.vhd
-set_global_assignment -name VHDL_FILE ../accelerometer_adxl345.vhd
-set_global_assignment -name VHDL_FILE ../accel_bus.vhd
-set_global_assignment -name VHDL_FILE ../../../memory/periphdatabusmux.vhd
-set_global_assignment -name VHDL_FILE ../../../timer/Timer.vhd
-set_global_assignment -name VHDL_FILE ../../../core/csr.vhd
-set_global_assignment -name VHDL_FILE ../../../registers/register_file.vhd
-set_global_assignment -name VHDL_FILE ../../../memory/instructionbusmux.vhd
-set_global_assignment -name VHDL_FILE ../../../memory/databusmux.vhd
-set_global_assignment -name QIP_FILE ../../../memory/iram_quartus.qip
-set_global_assignment -name VHDL_FILE ../../../memory/dmemory.vhd
-set_global_assignment -name VHDL_FILE ../../../decoder/iregister.vhd
-set_global_assignment -name VHDL_FILE ../../../decoder/decoder_types.vhd
-set_global_assignment -name VHDL_FILE ../../../decoder/decoder.vhd
-set_global_assignment -name VHDL_FILE ../../../core/core.vhd
-set_global_assignment -name VHDL_FILE ../../../alu/m/M_types.vhd
-set_global_assignment -name VHDL_FILE ../../../alu/m/M.vhd
-set_global_assignment -name VHDL_FILE ../../../alu/alu_types.vhd
-set_global_assignment -name VHDL_FILE ../../../alu/alu.vhd
 
 
 # advanced
@@ -251,5 +226,33 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE ../../gpio/gpio.vhd
+set_global_assignment -name VHDL_FILE ../disp_data.vhd
+set_global_assignment -name VHDL_FILE de10_lite.vhd
+set_global_assignment -name QSYS_FILE source_and_probe.qsys
+set_global_assignment -name VHDL_FILE ../spi_master.vhd
+set_global_assignment -name VHDL_FILE ../bin_to_bcd.vhd
+set_global_assignment -name VHDL_FILE ../bcd_to_7seg.vhd
+set_global_assignment -name VHDL_FILE ../accelerometer_adxl345.vhd
+set_global_assignment -name VHDL_FILE ../accel_bus.vhd
+set_global_assignment -name VHDL_FILE ../../../memory/periphdatabusmux.vhd
+set_global_assignment -name VHDL_FILE ../../../timer/Timer.vhd
+set_global_assignment -name VHDL_FILE ../../../core/csr.vhd
+set_global_assignment -name VHDL_FILE ../../../registers/register_file.vhd
+set_global_assignment -name VHDL_FILE ../../../memory/instructionbusmux.vhd
+set_global_assignment -name VHDL_FILE ../../../memory/databusmux.vhd
+set_global_assignment -name QIP_FILE ../../../memory/iram_quartus.qip
+set_global_assignment -name VHDL_FILE ../../../memory/dmemory.vhd
+set_global_assignment -name VHDL_FILE ../../../decoder/iregister.vhd
+set_global_assignment -name VHDL_FILE ../../../decoder/decoder_types.vhd
+set_global_assignment -name VHDL_FILE ../../../decoder/decoder.vhd
+set_global_assignment -name VHDL_FILE ../../../core/core.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/M_types.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/division_functions.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/quick_clz.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/quick_naive.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/M.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/alu_types.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/alu.vhd
 set_global_assignment -name QIP_FILE pll.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

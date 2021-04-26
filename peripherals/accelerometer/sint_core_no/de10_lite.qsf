@@ -6,17 +6,12 @@ set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY de10_lite
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:41:06  APRIL 06, 2020"
 
 
 # VHDL-Files
 #============================================================
-set_global_assignment -name VHDL_FILE ../bin_to_bcd.vhd
-set_global_assignment -name VHDL_FILE ../bcd_to_7seg.vhd
-set_global_assignment -name VHDL_FILE ../spi_master.vhd
-set_global_assignment -name VHDL_FILE ../accelerometer_adxl345.vhd
-set_global_assignment -name VHDL_FILE de10_lite.vhd
 
 
 # advanced
@@ -373,10 +368,11 @@ set_location_assignment PIN_F16 -to ARDUINO_RESET_N -disable
 
 # OTHERS
 #============================================================
-set_global_assignment -name SDC_FILE de10_lite.sdc
-set_global_assignment -name QSYS_FILE source_and_probe.qsys
-set_global_assignment -name SOURCE_FILE output_files/Spf1.spf
-set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name QIP_FILE pll2.qip
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name TIMING_ANALYZER_REPORT_SCRIPT output_files/my_tcl.tcl
+set_global_assignment -name VHDL_FILE ../bin_to_bcd.vhd
+set_global_assignment -name VHDL_FILE ../bcd_to_7seg.vhd
+set_global_assignment -name VHDL_FILE ../spi_master.vhd
+set_global_assignment -name VHDL_FILE ../accelerometer_adxl345.vhd
+set_global_assignment -name VHDL_FILE de10_lite.vhd
+set_global_assignment -name SDC_FILE de10_lite.sdc
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
