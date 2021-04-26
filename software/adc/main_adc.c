@@ -24,9 +24,9 @@ int main(){
 	
 	//x faz a varredura dos canais para teste!
 	while (1){
-		if (adc_ch == 17)
+		//if (adc_ch == 17)
 			adc_ch = 1;
-		//função para ler o adc do kit DE10_LITE
+		//funÃ§Ã£o para ler o adc do kit DE10_LITE
 		adc_value = adc_read(adc_ch);
 		delay_(10000);
 		adc_ch++;
