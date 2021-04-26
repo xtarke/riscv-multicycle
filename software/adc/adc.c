@@ -13,15 +13,13 @@
  * -----------------------------------------
  */
 
-#include "../_core/hardware.h"
 #include "adc.h"
-#include "../gpio/gpio.h"
 
-//FunÃ§Ã£o para leitura do ADC. Recebe o canal a ser lido, bem como os ponteiros para gravar o valor e canal lidos.
+//Função para leitura do ADC. Recebe o canal a ser lido para gravar o canal lido.
 
 uint32_t adc_read (uint32_t channel_sel)
 {
-	ADC -> sel_ch_adc = channel_sel;
-    
+	ADC -> sel_channel = channel_sel;
+	
     return ADC -> indata_adc;
 }
