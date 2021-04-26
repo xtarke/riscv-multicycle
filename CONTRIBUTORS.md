@@ -1,6 +1,23 @@
 RISVC contributors
 ============================================
 
+## 2020/2
+
+* **[Mikael Ferraz Aldebrand](https://github.com/miklz)**
+  * Implemented new pipelined division unit.
+  
+* **[Jonas Vieira De Souza](https://github.com/jvsouza)**
+  * Integration of DE-10 Lite accelerometer unit 
+  
+* **[Vitor Faccio](https://github.com/vitorfaccio) and Heloiza Martins Schaberle**
+  * Watchdog Timer implementation
+  
+* **[Leticia De Oliveira Nunes](https://github.com/lele1991) and Marieli Fernandes Matos**
+  * New implementation of MAX10 ADC. Software and hardware.
+  
+* **[Rafael Hiller](https://github.com/Hillerr)**
+  * UART with reception ISR
+
 ## 2020/1
 
 * **[Lucas Odair Silva](https://github.com/luscasos)**
@@ -20,25 +37,25 @@ RISVC contributors
 
 ## 2019/2 
 
-* **[Diesson Stefano Allebrandt](https://github.com/diesson)** e **[Felipe Rodrigues Broering](https://github.com/BroeringFelipe)**
+* **[Diesson Stefano Allebrandt](https://github.com/diesson)** and **[Felipe Rodrigues Broering](https://github.com/BroeringFelipe)**
   * TFT diplay controller
 
-* **[Jhontan de Freitas Lang](https://github.com/jhonatanlang)** e **Alexsandro Gehlen**
+* **[Jhontan de Freitas Lang](https://github.com/jhonatanlang)** and **Alexsandro Gehlen**
   * I2C master (write mode)
 
-* **[Diogo Tavares](https://github.com/diogo0001)** e **[Nicolau Varela](https://github.com/NicoVarela)**
+* **[Diogo Tavares](https://github.com/diogo0001)** and **[Nicolau Varela](https://github.com/NicoVarela)**
   * SPI module
 
-* **[Joao Antonio Cardoso](https://github.com/joaoantoniocardoso/)** e **[Rafael Fernando Reis](https://github.com/ReisRafaelFernando)**
+* **[Joao Antonio Cardoso](https://github.com/joaoantoniocardoso/)** and **[Rafael Fernando Reis](https://github.com/ReisRafaelFernando)**
   * 32-bit with 6 channels timer
 
-* **[Ricardo Schons Cirio](https://github.com/ricardocirio)** e **Joao Vitor Bassani**
+* **[Ricardo Schons Cirio](https://github.com/ricardocirio)** and **Joao Vitor Bassani**
   * SDRAM integration (second attempt)
 
 * **[Daniel Pereira](https://github.com/Adjucaris)**
   * UART with variable baudrate and parity bits
 
-* **[Bruna Martini](https://github.com/abrunamartini)** e **[Maria Claudia Rosa Negri](https://github.com/marianegri)**
+* **[Bruna Martini](https://github.com/abrunamartini)** and **[Maria Claudia Rosa Negri](https://github.com/marianegri)**
   * SRAM integration (first attempt)
 
 ## 2019/1
