@@ -71,7 +71,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="adc_max.qpf" />
+ <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -95,7 +95,7 @@
    type="avalon_streaming"
    dir="start" />
  <interface name="reset" internal="clk_50.clk_in_reset" type="reset" dir="end" />
- <module name="adc_0" kind="altera_modular_adc" version="18.1" enabled="1">
+ <module name="adc_0" kind="altera_modular_adc" version="19.1" enabled="1">
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
   <parameter name="CLOCK_FREQ" value="50000000" />
   <parameter name="CORE_VAR" value="3" />
@@ -286,7 +286,7 @@
   <parameter name="use_ch9" value="true" />
   <parameter name="use_tsd" value="true" />
  </module>
- <module name="altpll_sys" kind="altpll" version="18.1" enabled="1">
+ <module name="altpll_sys" kind="altpll" version="19.1" enabled="1">
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
   <parameter name="AUTO_INCLK_INTERFACE_CLOCK_RATE" value="50000000" />
   <parameter name="AVALON_USE_SEPARATE_SYSCLK" value="NO" />
@@ -453,7 +453,7 @@
   <parameter name="WIDTH_CLOCK" value="5" />
   <parameter name="WIDTH_PHASECOUNTERSELECT" value="" />
  </module>
- <module name="clk_50" kind="clock_source" version="18.1" enabled="1">
+ <module name="clk_50" kind="clock_source" version="19.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
@@ -462,31 +462,31 @@
  <module
    name="clock_bridge_sys"
    kind="altera_clock_bridge"
-   version="18.1"
+   version="19.1"
    enabled="1">
   <parameter name="DERIVED_CLOCK_RATE" value="50000000" />
   <parameter name="EXPLICIT_CLOCK_RATE" value="0" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
- <connection kind="clock" version="18.1" start="altpll_sys.c0" end="adc_0.clock" />
+ <connection kind="clock" version="19.1" start="altpll_sys.c0" end="adc_0.clock" />
  <connection
    kind="clock"
-   version="18.1"
+   version="19.1"
    start="altpll_sys.c0"
    end="clock_bridge_sys.in_clk" />
  <connection
    kind="clock"
-   version="18.1"
+   version="19.1"
    start="altpll_sys.c1"
    end="adc_0.adc_pll_clock" />
  <connection
    kind="clock"
-   version="18.1"
+   version="19.1"
    start="clk_50.clk"
    end="altpll_sys.inclk_interface" />
  <connection
    kind="conduit"
-   version="18.1"
+   version="19.1"
    start="altpll_sys.locked_conduit"
    end="adc_0.adc_pll_locked">
   <parameter name="endPort" value="" />
@@ -497,12 +497,12 @@
  </connection>
  <connection
    kind="reset"
-   version="18.1"
+   version="19.1"
    start="clk_50.clk_reset"
    end="altpll_sys.inclk_interface_reset" />
  <connection
    kind="reset"
-   version="18.1"
+   version="19.1"
    start="clk_50.clk_reset"
    end="adc_0.reset_sink" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />

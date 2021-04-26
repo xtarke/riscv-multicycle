@@ -3,7 +3,7 @@
 -- Author      : Renan Augusto Starke
 -- Modified    : Jeferson Pedroso, Leticia de Oliveira Nunes, Marieli Matos
 -- Version     : 0.2
--- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
+-- Copyright   : Departamento de Eletrï¿½nica, Florianï¿½polis, IFSC
 -- Description : riscV ADC example
 -------------------------------------------------------------------
 LIBRARY ieee;
@@ -133,17 +133,19 @@ architecture RTL of de10_lite is
 
     signal displays         : displays_type;
     signal displays_out     : displays_out_type;   
+	 
+	 signal clk_50MHz     : std_logic;   
 
 begin
 
-    pll_inst: entity work.pll_quartus
-        port map(
-            areset => '0',
-            inclk0 => MAX10_CLK1_50,
-            c0     => clk,
-            locked => locked_sig
-        );
-
+	pll_inst : entity work.pll
+		port map(
+			areset	=> '0',
+			inclk0 	=> MAX10_CLK1_50,
+			c0		 	=> clk,
+			c1	 		=> clk_50MHz,
+			locked	=> locked_sig
+		);
     -- Dummy out signals    
     rst <= SW(9);
     LEDR(9) <= SW(9);
@@ -223,7 +225,8 @@ begin
         )
         port map(
             clk      => clk,
-            rst      => rst,
+            clk_32x  => clk_50MHz,
+				rst      => rst,				
             iaddress => iaddress,
             idata    => idata,
             daddress => daddress,
