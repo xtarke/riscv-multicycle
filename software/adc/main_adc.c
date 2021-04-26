@@ -24,12 +24,15 @@ int main(){
 	
 	//x faz a varredura dos canais para teste!
 	while (1){
-		//if (adc_ch == 17)
-			adc_ch = 1;
+		/* Pino A0 do KIT é canal 1 *
+		 * Pino A1 do KIT é canal 2 */
+		adc_ch = 1;
+		
 		//função para ler o adc do kit DE10_LITE
 		adc_value = adc_read(adc_ch);
-		delay_(10000);
-		adc_ch++;
+		delay_(100000);
+		//adc_ch++;
+		/* Copia dados para o GPIO */
 		OUTBUS = adc_value;
 	}
 	return 0;

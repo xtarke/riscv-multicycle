@@ -152,7 +152,7 @@ begin
 	end process reset;
 
 
-	-- IMem shoud be read from instruction and data buses
+	-- IM shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
 	-- with dcsel select
 	-- address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
@@ -315,7 +315,7 @@ begin
 	-- FileOutput DEBUG	
 	debug : entity work.trace_debug
 	generic map(
-		EMORY_WORDS => IMEMORY_WORDS
+		MEMORY_WORDS => IMEMORY_WORDS
 	)
 	port map(
 		pc   => iaddress,

@@ -1,7 +1,7 @@
 ifndef RISCV_TOOLS_PREFIX
-#RISCV_TOOLS_PREFIX = riscv-none-embed-
+RISCV_TOOLS_PREFIX = riscv-none-embed-
 # Para usar no LSC
-RISCV_TOOLS_PREFIX = /root/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin/riscv-none-embed-
+#RISCV_TOOLS_PREFIX = /root/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin/riscv-none-embed-
 endif
 
 QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
@@ -42,7 +42,7 @@ sint:
 	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/gpio/sint/de10_lite/de10_lite.cdf
 
 fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof"
+	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/adc/sint/de10_lite/output_files/de10_lite.sof"
 
 flash:
 	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
