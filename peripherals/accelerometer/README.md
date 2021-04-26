@@ -7,7 +7,17 @@ O ADXL345 tanto pode se comunicar por I2C ou SPI. Foi implementado esse perifér
 ![enter image description here](https://i.imgur.com/dhzW9L0.png)
 
 ## Periférico isolado
-Antes de integrar o periférico ao softcore, o acelerômetro foi testado isoladamente
+Antes de integrar o periférico ao softcore, o acelerômetro foi testado isoladamente.
+
+Obs: para rodar o projeto SEM o core, na configuração do acelerometro o spi_cont fica em 0. Para rodar o projeto COM o core, na configuração do acelerometro o spi_cont fica em 1. Linha 152, do arquivo accelerometer_adxl345.vhd
+
+```vhdl 
+	if (spi_busy = '0') then --transaction not started
+                -- continuos yes, ss_n continuos
+                -- continuos not, ss_n pulse
+                spi_cont    <= '1'; --set SPI continuous mode 
+
+```
 
 ### Máquina de estados
 Foi utilizado o driver do ADXL345 fornecido pela [digikey](https://www.digikey.com/eewiki/download/attachments/90243412/pmod_accelerometer_adxl345.vhd?version=1&modificationDate=1568909638756&api=v2).
