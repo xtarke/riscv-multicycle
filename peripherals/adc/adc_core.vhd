@@ -3,7 +3,7 @@
 -- Author      : Renan Augusto Starke
 -- Modified    : Leticia de Oliveira Nunes e Marieli Matos
 -- Version     : 0.1
--- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
+-- Copyright   : Departamento de EletrÃ´nica, FlorianÃ³polis, IFSC
 -- Description : riscV ADC example
 -------------------------------------------------------------------
 
@@ -139,7 +139,7 @@ begin
                     --if to_unsigned(daddress, 32)(8 downto 0) = MY_WORD_ADDRESS then
                     --end if;
                     
-                    if to_unsigned(daddress, 32)(15 downto 0) = (x"31") then
+                    if to_unsigned(daddress, 32)(15 downto 0) = (x"30") then
                         channel_adc <= ddata_w;
                     end if;
                 end if;
