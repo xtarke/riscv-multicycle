@@ -1,3 +1,12 @@
+-------------------------------------------------------------------
+-- Name        : de0_lite.vhd
+-- Author      : Renan Augusto Starke
+-- Modified    : Leticia de Oliveira Nunes e Marieli Matos
+-- Version     : 0.1
+-- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
+-- Description : riscV ADC example
+-------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
