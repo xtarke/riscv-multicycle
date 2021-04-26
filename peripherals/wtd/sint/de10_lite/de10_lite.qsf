@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY de0_lite
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:49:34  JUNE 20, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -214,6 +214,9 @@ set_location_assignment PIN_AA20 -to ARDUINO_IO[15]
 set_location_assignment PIN_F16 -to ARDUINO_RESET_N
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
+set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_naive.vhd
+set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_clz.vhd
+set_global_assignment -name VHDL_FILE ../../../../alu/m/division_functions.vhd
 set_global_assignment -name VHDL_FILE ../../watchdog.vhd
 set_global_assignment -name VHDL_FILE ../../../../memory/periphdatabusmux.vhd
 set_global_assignment -name VHDL_FILE ../../../timer/Timer.vhd

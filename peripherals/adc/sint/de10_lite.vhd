@@ -3,7 +3,7 @@
 -- Author      : Renan Augusto Starke
 -- Modified    : Jeferson Pedroso, Leticia de Oliveira Nunes, Marieli Matos
 -- Version     : 0.2
--- Copyright   : Departamento de Eletr�nica, Florian�polis, IFSC
+-- Copyright   : Departamento de Eletronica, Florianopolis, IFSC
 -- Description : riscV ADC example
 -------------------------------------------------------------------
 LIBRARY ieee;

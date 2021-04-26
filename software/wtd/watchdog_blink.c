@@ -26,12 +26,12 @@
  * blink simples com uso de timer ao invés de delay_()
  */
 
-#include "_core/utils.h"
-#include "_core/hardware.h"
-#include "gpio/gpio.h"
-#include "irq/interrupt.h"
-#include "timer/timer.h"
-#include "wtd/watchdog.h"
+#include "../_core/utils.h"
+#include "../_core/hardware.h"
+#include "../gpio/gpio.h"
+#include "../irq/interrupt.h"
+#include "../timer/timer.h"
+#include "watchdog.h"
 
 void EXTI0_IRQHandler(void);
 void EXTI1_IRQHandler(void);
