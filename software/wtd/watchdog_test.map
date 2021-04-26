@@ -1,0 +1,436 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (atexit)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                              ../_core/syscalls.o (__errno)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (exit)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (__libc_fini_array)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o) (_global_impure_ptr)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (__libc_init_array)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                              ../_core/syscalls.o (memcpy)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (memset)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o) (__register_exitproc)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o) (__call_exitprocs)
+/home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                              /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o) (__retarget_lock_acquire_recursive)
+
+Allocating common symbols
+Common symbol       size              file
+
+__lock___atexit_recursive_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___arc4random_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___env_recursive_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___sinit_recursive_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___malloc_recursive_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___at_quick_exit_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___dd_hash_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___tz_mutex   0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+__lock___sfp_recursive_mutex
+                    0x1               /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000000000000 0x000000000000fc00 xrw
+ram              0x0000000002000000 0x0000000000000800 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+LOAD watchdog_test.o
+LOAD start.o
+LOAD ../_core/syscalls.o
+LOAD ../_core/utils.o
+LOAD watchdog.o
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
+START GROUP
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libc.a
+END GROUP
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/libgcc.a
+LOAD /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
+
+.rom            0x0000000000000000      0x408
+ _pvstart*(.text)
+ start*(.text)
+ .text          0x0000000000000000       0x58 start.o
+                0x0000000000000000                _pvstart
+                0x0000000000000100                . = 0x100
+ *fill*         0x0000000000000058       0xa8 
+                0x0000000000000100                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000000000100       0x44 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000100                _start
+                0x0000000000000140                _init
+                0x0000000000000140                _fini
+ .text          0x0000000000000144        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+ .text          0x0000000000000144       0x98 watchdog_test.o
+                0x0000000000000144                main
+ .text          0x00000000000001dc       0xd8 ../_core/syscalls.o
+                0x00000000000001dc                _getpid
+                0x00000000000001dc                _utime
+                0x00000000000001dc                _sysconf
+                0x00000000000001dc                _ftime
+                0x00000000000001dc                _isatty
+                0x00000000000001dc                _open
+                0x00000000000001dc                _times
+                0x00000000000001dc                _stat
+                0x00000000000001dc                _chdir
+                0x00000000000001dc                _wait
+                0x00000000000001dc                _lseek
+                0x00000000000001dc                _fstatat
+                0x00000000000001dc                _link
+                0x00000000000001dc                _chown
+                0x00000000000001dc                _access
+                0x00000000000001dc                _openat
+                0x00000000000001dc                _execve
+                0x00000000000001dc                _chmod
+                0x00000000000001dc                _lstat
+                0x00000000000001dc                _unlink
+                0x00000000000001dc                _fork
+                0x00000000000001dc                _getcwd
+                0x00000000000001dc                _kill
+                0x00000000000001dc                _gettimeofday
+                0x00000000000001dc                _faccessat
+                0x00000000000001e0                unimplemented_syscall
+                0x0000000000000204                _read
+                0x000000000000020c                _write
+                0x0000000000000230                _close
+                0x0000000000000238                _fstat
+                0x000000000000025c                _sbrk
+                0x0000000000000280                _exit
+                0x0000000000000284                init_data_section
+ .text          0x00000000000002b4       0x10 ../_core/utils.o
+                0x00000000000002b4                delay_
+ .text          0x00000000000002c4       0x68 watchdog.o
+                0x00000000000002c4                wtd_config
+                0x00000000000002e0                wtd_enable
+                0x00000000000002ec                wtd_disable
+                0x00000000000002fc                wtd_hold
+                0x0000000000000308                wtd_interrupt_read
+                0x0000000000000318                wtd_clearoutputs
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .text          0x000000000000032c        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .text          0x000000000000032c       0xdc /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                0x000000000000032c                memset
+ .text          0x0000000000000408        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .text          0x0000000000000408        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .text          0x0000000000000408        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+ .text          0x0000000000000408        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
+
+.text.deregister_tm_clones
+                0x0000000000000408       0x20
+ .text.deregister_tm_clones
+                0x0000000000000408       0x20 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.text.register_tm_clones
+                0x0000000000000428       0x34
+ .text.register_tm_clones
+                0x0000000000000428       0x34 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.text.__do_global_dtors_aux
+                0x000000000000045c       0x48
+ .text.__do_global_dtors_aux
+                0x000000000000045c       0x48 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.text.frame_dummy
+                0x00000000000004a4       0x38
+ .text.frame_dummy
+                0x00000000000004a4       0x38 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.text.trap      0x00000000000004dc       0xc4
+ .text.trap     0x00000000000004dc       0xc4 start.o
+                0x00000000000004dc                trap_entry
+
+.text.irq       0x00000000000005a0       0xa4
+ .text.irq      0x00000000000005a0       0xa4 start.o
+                0x00000000000005a0                irq_entry
+
+.init           0x0000000000000644       0x80
+ .init          0x0000000000000644       0x80 start.o
+
+.text.atexit    0x00000000000006c4       0x14
+ .text.atexit   0x00000000000006c4       0x14 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                0x00000000000006c4                atexit
+
+.text.__errno   0x00000000000006d8        0xc
+ .text.__errno  0x00000000000006d8        0xc /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                0x00000000000006d8                __errno
+
+.text.exit      0x00000000000006e4       0x38
+ .text.exit     0x00000000000006e4       0x38 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                0x00000000000006e4                exit
+
+.text.__libc_fini_array
+                0x000000000000071c       0x60
+ .text.__libc_fini_array
+                0x000000000000071c       0x60 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                0x000000000000071c                __libc_fini_array
+
+.text.__libc_init_array
+                0x000000000000077c       0x98
+ .text.__libc_init_array
+                0x000000000000077c       0x98 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                0x000000000000077c                __libc_init_array
+
+.text.memcpy    0x0000000000000814      0x11c
+ .text.memcpy   0x0000000000000814      0x11c /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                0x0000000000000814                memcpy
+
+.text.__register_exitproc
+                0x0000000000000930       0xec
+ .text.__register_exitproc
+                0x0000000000000930       0xec /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                0x0000000000000930                __register_exitproc
+
+.text.startup.register_fini
+                0x0000000000000a1c       0x1c
+ .text.startup.register_fini
+                0x0000000000000a1c       0x1c /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+
+.text.__call_exitprocs
+                0x0000000000000a38      0x138
+ .text.__call_exitprocs
+                0x0000000000000a38      0x138 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x0000000000000a38                __call_exitprocs
+
+.text.__retarget_lock_init
+                0x0000000000000b70        0x4
+ .text.__retarget_lock_init
+                0x0000000000000b70        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b70                __retarget_lock_init
+
+.text.__retarget_lock_init_recursive
+                0x0000000000000b74        0x4
+ .text.__retarget_lock_init_recursive
+                0x0000000000000b74        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b74                __retarget_lock_init_recursive
+
+.text.__retarget_lock_close
+                0x0000000000000b78        0x4
+ .text.__retarget_lock_close
+                0x0000000000000b78        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b78                __retarget_lock_close
+
+.text.__retarget_lock_close_recursive
+                0x0000000000000b7c        0x4
+ .text.__retarget_lock_close_recursive
+                0x0000000000000b7c        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b7c                __retarget_lock_close_recursive
+
+.text.__retarget_lock_acquire
+                0x0000000000000b80        0x4
+ .text.__retarget_lock_acquire
+                0x0000000000000b80        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b80                __retarget_lock_acquire
+
+.text.__retarget_lock_acquire_recursive
+                0x0000000000000b84        0x4
+ .text.__retarget_lock_acquire_recursive
+                0x0000000000000b84        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b84                __retarget_lock_acquire_recursive
+
+.text.__retarget_lock_try_acquire
+                0x0000000000000b88        0x8
+ .text.__retarget_lock_try_acquire
+                0x0000000000000b88        0x8 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b88                __retarget_lock_try_acquire
+
+.text.__retarget_lock_try_acquire_recursive
+                0x0000000000000b90        0x8
+ .text.__retarget_lock_try_acquire_recursive
+                0x0000000000000b90        0x8 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b90                __retarget_lock_try_acquire_recursive
+
+.text.__retarget_lock_release
+                0x0000000000000b98        0x4
+ .text.__retarget_lock_release
+                0x0000000000000b98        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b98                __retarget_lock_release
+
+.text.__retarget_lock_release_recursive
+                0x0000000000000b9c        0x4
+ .text.__retarget_lock_release_recursive
+                0x0000000000000b9c        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000000000b9c                __retarget_lock_release_recursive
+
+.eh_frame       0x0000000000000ba0        0x4
+ .eh_frame      0x0000000000000ba0        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+ .eh_frame      0x0000000000000ba0        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
+
+.rodata.str1.4  0x0000000000000ba4       0x24
+ .rodata.str1.4
+                0x0000000000000ba4       0x24 ../_core/syscalls.o
+                                         0x23 (size before relaxing)
+
+.sdata2._global_impure_ptr
+                0x0000000000000bc8        0x4
+ .sdata2._global_impure_ptr
+                0x0000000000000bc8        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x0000000000000bc8                _global_impure_ptr
+
+.rela.dyn       0x0000000000000bcc        0x0
+ .rela.text     0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.deregister_tm_clones
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.register_tm_clones
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.__do_global_dtors_aux
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.frame_dummy
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.init     0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.__libc_fini_array
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.__libc_init_array
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.startup.register_fini
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.sdata.__atexit_recursive_mutex
+                0x0000000000000bcc        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+
+.data           0x0000000002000000      0x434 load address 0x0000000000000bcc
+                0x0000000000000bcc                _data_lma = LOADADDR (.data)
+                0x0000000002000000                _data = .
+                0x0000000002000000                __global_pointer$ = .
+ *(.data .data.*)
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+ .data          0x0000000002000000        0x0 watchdog_test.o
+ .data          0x0000000002000000        0x0 start.o
+ .data          0x0000000002000000        0x0 ../_core/syscalls.o
+ .data          0x0000000002000000        0x0 ../_core/utils.o
+ .data          0x0000000002000000        0x0 watchdog.o
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .data          0x0000000002000000        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .data.impure_data
+                0x0000000002000000      0x428 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+ .data          0x0000000002000428        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
+ *(.sdata .sdata.*)
+ .sdata.__dso_handle
+                0x0000000002000428        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+                0x0000000002000428                __dso_handle
+ .sdata._impure_ptr
+                0x000000000200042c        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x000000000200042c                _impure_ptr
+ .sdata.__atexit_recursive_mutex
+                0x0000000002000430        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x0000000002000430                __atexit_recursive_mutex
+                0x0000000002000434                . = ALIGN (0x4)
+                0x0000000002000434                _edata = .
+
+.tm_clone_table
+                0x0000000002000434        0x0 load address 0x0000000000001000
+ .tm_clone_table
+                0x0000000002000434        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+ .tm_clone_table
+                0x0000000002000434        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
+
+.fini_array     0x0000000002000434        0x4 load address 0x0000000000001000
+ .fini_array    0x0000000002000434        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.init_array     0x0000000002000438        0x4 load address 0x0000000000001004
+ .init_array    0x0000000002000438        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.init_array.00000
+                0x000000000200043c        0x4 load address 0x0000000000001008
+ .init_array.00000
+                0x000000000200043c        0x4 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+
+.bss            0x0000000002000440       0x39 load address 0x000000000000100c
+                0x0000000002000440                _bss_start = .
+ *(.bss .bss.*)
+ .bss           0x0000000002000440        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .bss           0x0000000002000440        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+ .bss.object.3277
+                0x0000000002000440       0x18 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+ .bss           0x0000000002000458        0x0 watchdog_test.o
+ .bss           0x0000000002000458        0x0 start.o
+ .bss           0x0000000002000458        0x0 ../_core/syscalls.o
+ .bss           0x0000000002000458        0x0 ../_core/utils.o
+ .bss           0x0000000002000458        0x0 watchdog.o
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+ .bss           0x0000000002000458        0x0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtend.o
+                0x0000000002000458                . = ALIGN (0x4)
+                0x0000000002000458                _bss_end = .
+                0x0000000002000458                _end = .
+ COMMON         0x0000000002000458       0x21 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
+                0x0000000002000458                __lock___atexit_recursive_mutex
+                0x000000000200045c                __lock___arc4random_mutex
+                0x0000000002000460                __lock___env_recursive_mutex
+                0x0000000002000464                __lock___sinit_recursive_mutex
+                0x0000000002000468                __lock___malloc_recursive_mutex
+                0x000000000200046c                __lock___at_quick_exit_mutex
+                0x0000000002000470                __lock___dd_hash_mutex
+                0x0000000002000474                __lock___tz_mutex
+                0x0000000002000478                __lock___sfp_recursive_mutex
+OUTPUT(watchdog_test.elf elf32-littleriscv)
+
+.sbss.completed.3272
+                0x0000000002000479        0x1 load address 0x000000000000100c
+ .sbss.completed.3272
+                0x0000000002000479        0x1 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/crtbegin.o
+
+.sbss           0x000000000200047c        0x4 load address 0x000000000000100c
+ .sbss          0x000000000200047c        0x4 ../_core/syscalls.o
+
+.comment        0x0000000000000000       0x39
+ .comment       0x0000000000000000       0x39 watchdog_test.o
+                                         0x3a (size before relaxing)
+ .comment       0x0000000000000039       0x3a ../_core/syscalls.o
+ .comment       0x0000000000000039       0x3a ../_core/utils.o
+ .comment       0x0000000000000039       0x3a watchdog.o
+
+.debug_frame    0x0000000000000000      0x25c
+ .debug_frame   0x0000000000000000       0x20 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .debug_frame   0x0000000000000020       0x20 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .debug_frame   0x0000000000000040       0x28 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .debug_frame   0x0000000000000068       0x34 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .debug_frame   0x000000000000009c       0x3c /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .debug_frame   0x00000000000000d8       0x20 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .debug_frame   0x00000000000000f8       0x48 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .debug_frame   0x0000000000000140       0x6c /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .debug_frame   0x00000000000001ac       0xb0 /home/wsl/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-lock.o)
