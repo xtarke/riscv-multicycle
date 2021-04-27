@@ -6,7 +6,7 @@
 # Disable Interrupt
 #
 .macro DISABLE_MIE
-  csrc CSR_MSTATUS, MSTATUS_MIE  
+  csrc CSR_MSTATUS, MSTATUS_MIE
 .endm
 
 
@@ -97,11 +97,11 @@
 # Save the mepc and mstatus
 #
 .macro SAVE_EPC_STATUS
-  csrr x5, CSR_MEPC  
+  csrr x5, CSR_MEPC
   sw x5,  16*REGBYTES(sp)
-  csrr x5, CSR_MSTATUS  
+  csrr x5, CSR_MSTATUS
   sw x5,  17*REGBYTES(sp)
-  csrr x5, CSR_MSUBM  
+  csrr x5, CSR_MSUBM
   sw x5,  18*REGBYTES(sp)
 .endm
 
@@ -111,11 +111,11 @@
 #
 .macro RESTORE_EPC_STATUS
   lw x5,  16*REGBYTES(sp)
-  csrw CSR_MEPC, x5  
+  csrw CSR_MEPC, x5
   lw x5,  17*REGBYTES(sp)
-  csrw CSR_MSTATUS, x5  
+  csrw CSR_MSTATUS, x5
   lw x5,  18*REGBYTES(sp)
-  csrw CSR_MSUBM, x5  
+  csrw CSR_MSUBM, x5
 .endm
 
 
@@ -124,7 +124,7 @@
 ###############################################
 // Trap entry point
 //
-  .section      .text.trap	
+  .section      .text.trap
   .align 2
   .global trap_entry
 .weak trap_entry
@@ -158,13 +158,13 @@ trap_entry:
 ###############################################
 // IRQ entry point
 //
-  .section      .text.irq	
+  .section      .text.irq
   .align 2
   .global irq_entry
 .weak irq_entry
 irq_entry: // -------------> This label will be set to MTVT2 register
   // Allocate the stack space
-  
+
 
   SAVE_CONTEXT// Save 16 regs
 
@@ -179,12 +179,12 @@ irq_entry: // -------------> This label will be set to MTVT2 register
   //RESTORE_CONTEXT_EXCPT_X5
 
   #---- Critical section with interrupts disabled -----------------------
-  //DISABLE_MIE # Disable interrupts 
+  //DISABLE_MIE # Disable interrupts
 
 
   RESTORE_CONTEXT
 
-  
+
   // Return to regular code
   mret
 
@@ -193,7 +193,7 @@ irq_entry: // -------------> This label will be set to MTVT2 register
 
 
 .section .init
-	
+
     .weak  EXTI0_IRQHandler
     .weak  EXTI1_IRQHandler
     .weak  EXTI2_IRQHandler
@@ -207,12 +207,12 @@ irq_entry: // -------------> This label will be set to MTVT2 register
     .weak  TIMER0_1B_IRQHandler
     .weak  TIMER0_2A_IRQHandler
     .weak  TIMER0_2B_IRQHandler
-// TODO: Add more IRQ Handlers 
-//    .weak  UART0_IRQHandler           
-//    .weak  SPI0_IRQHandler           
-//    .weak  I2C0_IRQHandler           
-//    .weak  ADC0_IRQHandler           
-    
+    .weak  UART_IRQHandler
+// TODO: Add more IRQ Handlers
+//    .weak  SPI0_IRQHandler
+//    .weak  I2C0_IRQHandler
+//    .weak  ADC0_IRQHandler
+
 
 vector_base:
     j _start
@@ -233,8 +233,8 @@ vector_base:
     .word  	  0
     .word 	  0
     .word  	  0
-    .word  	  0        
-    .word  	  0       
+    .word  	  0
+    .word  	  0
 	  .word     EXTI0_IRQHandler          // 18
 	  .word     EXTI1_IRQHandler          // 19
 	  .word     EXTI2_IRQHandler          // 20
@@ -248,8 +248,9 @@ vector_base:
 	  .word     TIMER0_1B_IRQHandler      // 28
 	  .word     TIMER0_2A_IRQHandler      // 29
 	  .word     TIMER0_2B_IRQHandler      // 30
-// TODO: Add more IRQ Handlers 
-//    .word     UART0_IRQHandler          // 32    
+    .word     UART_IRQHandler           // 31
+// TODO: Add more IRQ Handlers
+//    .word     UART0_IRQHandler          // 32
 //    .word     SPI0_IRQHandler           // 33
 //    .word     I2C0_IRQHandler           // 34
 //    .word     ADC0_IRQHandler           // 35
@@ -353,6 +354,3 @@ sw zero,12(sp)
 /* j _start */
 jal main
 ebreak
- 
-
- 
