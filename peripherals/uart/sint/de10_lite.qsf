@@ -306,14 +306,14 @@ set_global_assignment -name VHDL_FILE ../../../../decoder/iregister.vhd
 set_global_assignment -name VHDL_FILE ../../../../decoder/decoder_types.vhd
 set_global_assignment -name VHDL_FILE ../../../../decoder/decoder.vhd
 set_global_assignment -name VHDL_FILE ../../../../core/core.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/division_functions.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/quick_naive.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/quick_clz.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/M_types.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/M.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/alu_types.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/alu.vhd
 set_global_assignment -name VHDL_FILE de0_lite.vhd
 set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name SOURCE_FILE db/de10_lite.cmp.rdb
-set_global_assignment -name QIP_FILE tb_ram.qip
-set_global_assignment -name SIGNALTAP_FILE ../../../../software/uart/stp1.stp
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

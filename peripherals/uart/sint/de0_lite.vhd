@@ -240,6 +240,7 @@ begin
 		)
 		port map(
 			clk      => clk,
+			clk_32x  => MAX10_CLK1_50,
 			rst      => rst,
 			iaddress => iaddress,
 			idata    => idata,
