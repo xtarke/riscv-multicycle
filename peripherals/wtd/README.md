@@ -59,11 +59,11 @@ A simulação vista a seguir apresenta diferentes comportamentos possíveis para
 
 O processo é iniciado pela configuração do _watchdog_ com a função `wtd_config`, que se traduz no nível alto do sinal `wtd_reset` e mudança de valores de `wtd_mode`, `prescaler` e `top_counter` na marca de 130us. É esperado que se mantenha o `wtd_reset` alto, visto que a mudança destes valores pode acarretar em um `reset` acidental se o contador estiver ativo.
 
->wtd_config(wtd_mode, prescaler, top_counter);
+	wtd_config(wtd_mode, prescaler, top_counter);
 
 Em seguida é realizado o teste de uso do _watchdog_ com evento esperado.
 
->	wtd_enable();
+	wtd_enable();
 	delay_(10);
 	wtd_disable();
 	delay_(10);
@@ -71,19 +71,21 @@ Em seguida é realizado o teste de uso do _watchdog_ com evento esperado.
 É feita a ativação do componente com a função `wtd_enable`, espera com `delay_(10)` e desativação com `wtd_disable`. Observa-se no período de 150us a 275us a contagem (vista como um a faixa sólida, devido à resolução do simulador) e retorno de `counter`a zero, sem haver mudança nos sinais de saída `wtd_interrupt` e `wtd_out` - pois o arquivo utilizou a função de desativação dentro do prazo.
 
 O conjunto de funções seguinte executa dois testes, da função `wtd_hold` e do estouro do _watchdog_. O início, dado pela habilitação ocorrida no tempo 396us, é seguido pela sequência de funções de _hold_ com argumentos `1` e `0` com seus devidos _delays_ para teste. Observa-se o congelamento do instante 463us ao 532us, onde o sinal `counter` se mantém em `69`. 
->	wtd_enable();
+
+	wtd_enable();
 	delay_(3);
 	wtd_hold(1);
 	delay_(3);
 	wtd_hold(0);
 
 Após o descongelamento a contagem segue a partir do mesmo valor, até que atinge o valor `249`, igual a `top_counter - 1`, em 721us. Neste momento verifica-se que os sinais de saída são levantados e mantidos. 
->	delay_(40);
+
+	delay_(40);
 	wtd_disable();
 
 Por fim busca-se a leitura do endereço de memória em que é escrito o sinal `wtd_interrupt`, para verificação do funcionamento por _software_, referente ao tempo de execução 1015us. Entra-se em um laço `while` até que o retorno da função `wtd_interrupt_read` seja `1`, acompanhado da ativação do primeiro pino de GPIO do sistema - ligado à barra de LEDs. Observa-se no último sinal da simulação que o valor de `LEDR` se torna `001` em 1306us, cerca de 40us após o estouro do _watchdog_.
 
->	delay_(10);
+	delay_(10);
 	wtd_enable();
 	while(!wtd_interrupt_read());
 	OUTBUS = 1;
