@@ -3,6 +3,9 @@ RISVC contributors
 
 ## 2020/2
 
+* **[Lucas Odair Silva](https://github.com/luscasos)**
+  * Implemented Local Interrupt Controller.
+
 * **[Mikael Ferraz Aldebrand](https://github.com/miklz)**
   * Implemented new pipelined division unit.
   
