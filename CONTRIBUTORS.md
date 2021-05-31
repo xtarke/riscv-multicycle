@@ -3,6 +3,9 @@ RISVC contributors
 
 ## 2020/2
 
+* **[Lucas Odair Silva](https://github.com/luscasos)**
+  * Implemented Local Interrupt Controller.
+
 * **[Mikael Ferraz Aldebrand](https://github.com/miklz)**
   * Implemented new pipelined division unit.
   
@@ -16,7 +19,7 @@ RISVC contributors
   * New implementation of MAX10 ADC. Software and hardware.
   
 * **[Rafael Hiller](https://github.com/Hillerr)**
-  * UART with reception ISR
+  * UART with reception ISR. ToDo: bus integration.
 
 ## 2020/1
 
