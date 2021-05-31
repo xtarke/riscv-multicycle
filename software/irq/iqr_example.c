@@ -43,8 +43,8 @@ void init_timer0(void)
     TIMER_0->timer_reset = 1;
 
     TIMER_0->timer_mode = 1;
-    TIMER_0->prescaler = 100;
-    TIMER_0->top_counter = 999;
+    TIMER_0->prescaler = 1000;
+    TIMER_0->top_counter = 150;
 
     TIMER_0->compare_0A = 100;
     TIMER_0->compare_0B = 600;
