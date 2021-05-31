@@ -10,13 +10,13 @@ entity register_file is
 		
 		w_ena 		: in std_logic;
 		
-		w_address	: in integer range 0 to 31;	
+		w_address	: in unsigned(4 downto 0);
 		w_data		: in std_logic_vector(31 downto 0);
 		
-		r1_address	: in integer range 0 to 31;	
+		r1_address	: in unsigned(4 downto 0);	
 		r1_data		: out std_logic_vector(31 downto 0);
 		 
-		r2_address	: in integer range 0 to 31;
+		r2_address	: in unsigned(4 downto 0);
 		r2_data		: out std_logic_vector(31 downto 0)		
 	);
 end entity register_file;
@@ -51,10 +51,10 @@ begin
 			if(rising_edge(clk)) then 
 				-- Write port
 				if(w_ena_prot = '1') then
-					ram(w_address) <= w_data;					
+					ram(to_integer(w_address)) <= w_data;					
 				else
 					-- Read port A
-					r1_data <= ram(r1_address);
+					r1_data <= ram(to_integer(r1_address));
 				end if;
 			end if;
 		end process;
@@ -63,7 +63,7 @@ begin
 		begin
 			if(rising_edge(clk)) then 		
 				-- Read port B
-				r2_data <= ram(r2_address);
+				r2_data <= ram(to_integer(r2_address));
 			end if;
 		end process;
 		

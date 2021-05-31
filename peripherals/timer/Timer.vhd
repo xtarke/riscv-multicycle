@@ -4,13 +4,14 @@ use ieee.numeric_std.all;
 
 entity Timer is
 	generic(
+	    DADDRESS_BUS_SIZE : integer := 32;
 		prescaler_size : integer := 16;
 		compare_size   : integer := 32
 	);
 	port(
 		clock       : in  std_logic;
 		reset       : in  std_logic;
-        daddress    : in natural;
+        daddress    : in unsigned(DADDRESS_BUS_SIZE-1 downto 0);
         ddata_w     : in std_logic_vector(31 downto 0);
         ddata_r     : out std_logic_vector(31 downto 0);
         d_we        : in  std_logic;
@@ -51,10 +52,9 @@ architecture RTL of Timer is
     constant TIMER_BASE_ADDRESS : unsigned(15 downto 0):=x"0050";
 begin
 
-    
-    
     interrupts_holder<=output_B(2) & output_A(2) & output_B(1) & output_A(1) & output_B(0) & output_A(0) ;
     interrupts <= interrupts_holder and enable_timer_irq_mask(5 downto 0);
+    
     interrupt_edge : process (clock, reset) is
     begin
         if reset = '1' then
@@ -67,9 +67,6 @@ begin
     
         end if;
     end process interrupt_edge;
-
-
-
 
     -- Output register
     process(clock, reset)
@@ -93,27 +90,27 @@ begin
                     -- ToDo: Maybe use byte addressing?  
                     --       x"01" (word addressing) is x"04" (byte addressing)
                     
-                    if to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0000") then -- TIMER_ADDRESS
+                    if daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0000") then -- TIMER_ADDRESS
                         timer_reset <= ddata_w(0);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0001") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0001") then -- TIMER_ADDRESS
                         timer_mode <= unsigned(ddata_w(1 downto 0));
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0002") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0002") then -- TIMER_ADDRESS
                         prescaler <= unsigned(ddata_w(15 downto 0));
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0003") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0003") then -- TIMER_ADDRESS
                         top_counter <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0004") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0004") then -- TIMER_ADDRESS
                         compare_0A <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0005") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0005") then -- TIMER_ADDRESS
                         compare_0B <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0006") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0006") then -- TIMER_ADDRESS
                         compare_1A <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0007") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0007") then -- TIMER_ADDRESS
                         compare_1B <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0008") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0008") then -- TIMER_ADDRESS
                         compare_2A <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0009") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0009") then -- TIMER_ADDRESS
                         compare_2B <= unsigned(ddata_w);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"000b") then -- TIMER_ADDRESS
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"000b") then -- TIMER_ADDRESS
                         enable_timer_irq_mask <= ddata_w;
                     end if;
                 end if;
@@ -127,15 +124,14 @@ begin
         if reset = '1' then
             ddata_r <= (others => '0');
         else
-
             if rising_edge(clock) then
-				         ddata_r <= (others => '0');
+			    ddata_r <= (others => '0');
                 if (d_rd = '1') and (dcsel = "10") then
-                    if to_unsigned(daddress, 32)(15 downto 0) = (TIMER_BASE_ADDRESS +x"0000") then
+                    if daddress(15 downto 0) = (TIMER_BASE_ADDRESS +x"0000") then
                         --ddata_r(4 downto 0) <= SW(4 downto 0);
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"0004")then
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0004")then
                         --ddata_r(7 downto 0) <= data_out;
-                    elsif to_unsigned(daddress, 32)(15 downto 0) =(TIMER_BASE_ADDRESS + x"000a") then
+                    elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"000a") then
                         ddata_r(2 downto 0) <= output_A(2 downto 0);
                         ddata_r(5 downto 3) <= output_B(2 downto 0);
                     end if;

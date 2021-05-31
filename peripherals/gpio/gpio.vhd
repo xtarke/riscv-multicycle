@@ -4,7 +4,7 @@
 --         RAM mapped general purpose I/O
 
 --! @Todo: Module should mask bytes (Word, half word and byte access)
---         Daddress shoud be unsgined
+--         
 --        
 -------------------------------------------------------
 
@@ -16,7 +16,8 @@ entity gpio is
 	generic (
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
-		MY_WORD_ADDRESS : unsigned(7 downto 0) := x"10"	
+		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000";	
+		DADDRESS_BUS_SIZE : integer := 32
 	);
 	
 	port(
@@ -25,7 +26,7 @@ entity gpio is
 		
 		-- Core data bus signals
 		-- ToDo: daddress shoud be unsgined
-		daddress  : in  natural;
+		daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
 		ddata_w	  : in 	std_logic_vector(31 downto 0);
 		ddata_r   : out	std_logic_vector(31 downto 0);
 		d_we      : in std_logic;
@@ -71,16 +72,15 @@ begin
                 EXTIx(14) or 
                 EXTIx(15);
     
-    interrupts<= EXTI10_15 & EXTI5_9 & EXTIx(4) & EXTIx(3) & EXTIx(2) & EXTIx(1) & EXTIx(0);
+    interrupts <= EXTI10_15 & EXTI5_9 & EXTIx(4) & EXTIx(3) & EXTIx(2) & EXTIx(1) & EXTIx(0);
 	 
 	 
     interrupt_edge : process (clk, rst) is
     begin
         if rst = '1' then
-            myInterrupts_d<=(others => '0');
-            gpio_interrupts<=(others => '0');
-        elsif rising_edge(clk) then
-               
+            myInterrupts_d <=(others => '0');
+            gpio_interrupts <=(others => '0');
+        elsif rising_edge(clk) then               
             myInterrupts_d <= interrupts; 
             gpio_interrupts <= not myInterrupts_d and interrupts;
     
@@ -95,19 +95,16 @@ begin
             ddata_r <= (others => '0');
         else
             if rising_edge(clk) then
-
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
-
-                    if to_unsigned(daddress, 32)(15 downto 0) = x"0000" then
+                    if daddress(15 downto 0) = MY_WORD_ADDRESS then
                         ddata_r <= input;  
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0001" then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
                         ddata_r<=output_reg;              
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0002" then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
                         ddata_r<=enable_exti_mask;
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"0003" then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
                         ddata_r<=edge_exti_mask;
                     end if;
-
                 end if;
             end if;
         end if;
@@ -123,21 +120,14 @@ begin
 			edge_exti_mask<= (others => '0');
 		else
 			if rising_edge(clk) then		
-				if (d_we = '1') and (dcsel = MY_CHIPSELECT)then					
-					-- ToDo: Simplify comparators
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					-- Address comparator when more than one word is mapped here
-					--if to_unsigned(daddress, 32)(8 downto 0) = MY_WORD_ADDRESS then
-					--end if;
-					
-					if to_unsigned(daddress, 32)(15 downto 0) = x"0001" then
-					output <= ddata_w;
-					output_reg <= ddata_w;
-					elsif to_unsigned(daddress, 32)(15 downto 0) = x"0002" then
-                    enable_exti_mask <= ddata_w;
-                    elsif to_unsigned(daddress, 32)(15 downto 0) = x"00003" then
-                    edge_exti_mask <= ddata_w;     
+				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then				
+					if daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
+					   output <= ddata_w;
+					   output_reg <= ddata_w;
+					elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
+                        enable_exti_mask <= ddata_w;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
+                        edge_exti_mask <= ddata_w;     
 					end if;
 					
 				end if;

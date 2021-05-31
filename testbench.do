@@ -12,11 +12,15 @@
 #                                                                             *
 # REVISION HISTORY:                                                           *
 #  Revision 0.1.0    08/01/2018 - Initial Revision                            *
+#  Revision 0.2.0    31/05/2021 - Change path and added some peripherals      *
 #******************************************************************************
 
 vlib work
 vcom ./memory/iram_quartus.vhd
 vcom ./memory/dmemory.vhd
+vcom ./memory/instructionbusmux.vhd
+vcom ./memory/databusmux.vhd
+vcom ./memory/iodatabusmux.vhd
 vcom ./alu/alu_types.vhd
 vcom ./alu/alu.vhd
 vcom ./alu/m/division_functions.vhd
@@ -28,13 +32,13 @@ vcom ./decoder/iregister.vhd
 vcom ./decoder/decoder.vhd
 vcom ./registers/register_file.vhd
 vcom ./peripherals/gpio/gpio.vhd
+vcom ./peripherals/gpio/led_displays.vhd
 vcom ./peripherals/timer/Timer.vhd
 vcom ./core/csr.vhd
 vcom ./core/core.vhd
 vcom ./core/txt_util.vhdl
 vcom ./core/trace_debug.vhd
-vcom ./core/testbench.vhd
-
+vcom testbench.vhd
 
 vsim -t ns work.coretestbench
 
@@ -85,22 +89,19 @@ add wave -label edge_exti_mask -radix hex /generic_gpio/edge_exti_mask
 add wave -label output_reg -radix hex /generic_gpio/output_reg
 
 add wave -height 15 -divider "CSR"
- add wave -label interrupts -radix hex /myRiscv/interrupts
- #add wave -label mySignal_re -radix hex /mySignal_re
- add wave -label pending_interrupts -radix hex /myRiscv/ins_csr/pending_interrupts
- add wave -label mret -radix hex /myRiscv/ins_csr/mret
- add wave -label pending /myRiscv/pending
- add wave -label csr_write /myRiscv/csr_write
- add wave -label csr_addr /myRiscv/imm_i
- add wave -label csr_value -radix hex /myRiscv/csr_value
- add wave -label load_mepc -radix hex /myRiscv/load_mepc
- #add wave -label load_mepc_holder -radix hex /myRiscv/ins_csr/load_mepc_holder
- add wave -label mepc -radix hex /myRiscv/mepc
- add wave -label mretpc -radix hex /myRiscv/mretpc
- add wave -label csr_new -radix hex /myRiscv/rs1_data
- add wave -label mreg -radix hex /myRiscv/ins_csr/mreg
-
-
+add wave -label interrupts -radix hex /myRiscv/interrupts
+add wave -label pending_interrupts -radix hex /myRiscv/ins_csr/pending_interrupts
+add wave -label mret -radix hex /myRiscv/ins_csr/mret
+add wave -label pending /myRiscv/pending
+add wave -label csr_write /myRiscv/csr_write
+add wave -label csr_addr /myRiscv/imm_i
+add wave -label csr_value -radix hex /myRiscv/csr_value
+add wave -label load_mepc -radix hex /myRiscv/load_mepc
+# add wave -label load_mepc_holder -radix hex /myRiscv/ins_csr/load_mepc_holder
+add wave -label mepc -radix hex /myRiscv/mepc
+add wave -label mretpc -radix hex /myRiscv/mretpc
+add wave -label csr_new -radix hex /myRiscv/rs1_data
+# add wave -label mreg -radix hex /myRiscv/ins_csr/mreg
 
 
 add wave -height 15 -divider "Alu debug"
@@ -139,6 +140,9 @@ add wave -label daddress -radix hex /daddress
 add wave -label ddata_r_periph -radix hex 	/ddata_r_periph
 add wave -label ddata_r_gpio -radix hex 	/ddata_r_gpio
 
+add wave -label gpio_interrupts -radix hex /gpio_interrupts
+add wave -label gpio_input -radix hex /gpio_input
+
 add wave -height 15 -divider "Timer"
 add wave -label enable_timer_irq_mask -radix hex /timer/enable_timer_irq_mask
 add wave -label timer_interrupt -radix hex /timer/timer_interrupt
@@ -146,6 +150,7 @@ add wave -label timer_reset -radix binary /timer/timer_reset
 add wave -label timer_mode -radix unsigned /timer/timer_mode
 add wave -label prescaler -radix unsigned /timer/prescaler
 add wave -label top_counter -radix unsigned /timer/top_counter
+add wave -label counter -radix unsigned /timer/counter
 add wave -label compare_0A -radix unsigned /timer/compare_0A
 add wave -label compare_0B -radix unsigned /timer/compare_0B
 add wave -label compare_1A -radix unsigned /timer/compare_1A
@@ -163,6 +168,7 @@ add wave -label internal_clock -radix binary /timer/internal_clock
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
+add wave -label HEX0 -radix hex /HEX0
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
 run 2000 us

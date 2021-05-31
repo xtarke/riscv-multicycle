@@ -10,7 +10,7 @@ entity csr is
         pending_inst : in std_logic;                    --! Pending Instruction
         write   : in std_logic;                         --! Write CSR
         next_pc     :in std_logic_vector(31 downto 0);  --! Next pc generate by current Inst
-        csr_addr    :in integer;                        --! CSR address from imm_i
+        csr_addr    :in signed(31 downto 0);                        --! CSR address from imm_i
         csr_new     :in std_logic_vector(31 downto 0);  --! New value from rs1_data or imm from rs1
         opcodes     :in opcodes_t;                      --! Instruction decoding information. See decoder_types.vhd     
         mret        :in  std_logic;                     --! Machine trap return
@@ -82,7 +82,7 @@ begin
             mcause_in<=x"0000_0000";
 
         elsif rising_edge(clk) then
-            pending_interrupts<=interrupts or pending_interrupts; -- Register interrupts
+            pending_interrupts<= interrupts or pending_interrupts; -- Register interrupts
             if(mret = '1')then  -- when mret, the previous pending interrupt is cleared
                 pending_interrupts <= pending_interrupts and not std_logic_vector(to_unsigned(1,32) sll to_integer(unsigned(mcause_in)-1));
             end if;
@@ -131,16 +131,11 @@ begin
 
             
             if (load_mepc_reg='1' or mret ='1' OR (pending_inst='0' and  ((mreg(To_integer(MIP   (15 downto 12))) and mreg(To_integer(MIE   (15 downto 12)))) /=x"00000000"))) then
-                mip_in<=x"0000_0000"; -- Clearing MIP when get in the interrupt
+                mip_in <= x"0000_0000"; -- Clearing MIP when get in the interrupt
             end if;
             
         end if;
     end process interrupt_pending_control;
-    
-    
-    
-    
-    
     
     mstatus_control : process (clk, rst) is
     begin
@@ -192,7 +187,7 @@ begin
                
         elsif rising_edge(clk) then
             -- Get index and protect_mask from CSR of csr_addr
-            case (to_unsigned(csr_addr,12)) is
+            case unsigned(csr_addr(11 downto 0)) is
                     when MSTATUS (11 downto 0) =>
                         mrindex:=To_integer(MSTATUS(15 downto 12));
                         protect_mask:="01111111100000000001111011000100";

@@ -14,7 +14,7 @@
 ###############################################
 #Save caller registers
 .macro SAVE_CONTEXT
-
+  addi sp, sp, -20*REGBYTES
   sw x1, 0*REGBYTES(sp)
 	sw x4, 1*REGBYTES(sp)
 	sw x5, 2*REGBYTES(sp)
@@ -57,8 +57,6 @@
 	lw x28, 13*REGBYTES(sp)
 	lw x29, 14*REGBYTES(sp)
 	lw x30, 15*REGBYTES(sp)
-
-
 
 // De-allocate the stack space
  addi sp, sp, 20*REGBYTES
