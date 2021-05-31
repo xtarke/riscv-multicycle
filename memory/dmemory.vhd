@@ -19,13 +19,14 @@ library ieee;
 entity dmemory is
 	generic (
 		--! Num of 32-bits memory words 
-		MEMORY_WORDS : integer := 256 
+		MEMORY_WORDS : integer := 1024;
+		DADDRESS_BUS_SIZE : integer := 32
 	);
 	port(
 		rst : in std_logic;
 		clk : in std_logic;								--! Clock input
 		data: in std_logic_vector (31 downto 0);		--! Write data input
-		address:  in integer range 0 to MEMORY_WORDS-1;	--! Address to be read
+		address:  in unsigned(DADDRESS_BUS_SIZE-1 downto 0);	--! Address to be read
     	we: in std_logic;								--! Write Enable
     	csel : in std_logic;							--! Chip select
     	dmask     : in std_logic_vector(3 downto 0);	--! Byte enable mask 
@@ -53,7 +54,7 @@ architecture RTL of dmemory is
     
     
     signal ram_block: mem; -- := InitRam;	--! RAM Block instance
-    signal read_address_reg: integer range 0 to MEMORY_WORDS-1;	--! Read address register
+    signal read_address_reg : unsigned(DADDRESS_BUS_SIZE-1 downto 0);	--! Read address register
 	signal dmask_reg : std_logic_vector(3 downto 0); --! Syncronization of dmaks. Necessary for Read transations.
 	signal signal_ext_reg : std_logic;
 
@@ -71,7 +72,7 @@ begin
 	begin
 		if rising_edge(clk) then
 	        if (fsm_we = '1') then
-	            ram_block(address) <= fsm_data;
+	            ram_block(to_integer(address(9 downto 0))) <= fsm_data;
 	        end if;
 	        
 	        signal_ext_reg <= signal_ext;
@@ -160,7 +161,7 @@ begin
 		end case;						
 	end process;
 
-    ram_data <= ram_block(read_address_reg);    
+    ram_data <= ram_block(to_integer(read_address_reg(9 downto 0)));    
     
     -- Mask for byte, halfword and work read
     read_process: process (csel, ram_data, signal_ext_reg, dmask_reg)

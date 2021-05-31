@@ -6,7 +6,6 @@ Esta é uma implementação para um periférico de _timer_ de 32 bits em VHDL co
 `/tests/timer.h` - Definição dos registradores e protótipo das funções.  
 `/tests/timer.c` - Implementação das funções.  
 `/tests/main_timer.c` - Código de exemplo.  
-`/peripherals/timer/sint/de10_lite/de0_lite.vhd` - Integração do core com o periférico.  
 
 ## Descrição dos pinos
 - `clock`: sinal de entrada de clock. O contador interno do timer funciona na borda de subida do clock.  

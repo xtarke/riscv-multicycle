@@ -19,7 +19,7 @@
 
 void EXTI0_IRQHandler(void)
 {
-	OUTBUS = 0x52;
+	OUTBUS = 0x52;	
 }
 
 void EXTI1_IRQHandler(void)
@@ -29,11 +29,11 @@ void EXTI1_IRQHandler(void)
 
 void TIMER0_0A_IRQHandler(void)
 {
-	OUTBUS = OUTBUS  + 1;
+	SEGMENTS_BASE_ADDRESS = SEGMENTS_BASE_ADDRESS + 1;
 }
 void TIMER0_0B_IRQHandler(void)
 {
-	OUTBUS = OUTBUS + 1;
+	//SEGMENTS_BASE_ADDRESS = SEGMENTS_BASE_ADDRESS  + 1;
 }
 
 void init_timer0(void)
@@ -52,16 +52,16 @@ void init_timer0(void)
     TIMER_0->compare_1B = 10;
     TIMER_0->compare_2A = 10;
     TIMER_0->compare_2B = 10;
-    TIMER_0->enable_irq = 3;
+    TIMER_0->enable_irq = 1;
     TIMER_0->timer_reset = 0;
 
 }
 
 int main(){
-	uint32_t data = 0;
+	volatile uint32_t data = 0;
 	
-	input_interrupt_enable(GPIO0,FALLING_EDGE);
-    input_interrupt_enable(GPIO1,RISING_EDGE);
+	input_interrupt_enable(GPIO0,RISING_EDGE);
+    	input_interrupt_enable(GPIO1,RISING_EDGE);
 	init_timer0();
 
 	extern_interrupt_enable(true);
@@ -69,9 +69,8 @@ int main(){
 	global_interrupt_enable(true);
 	
 	while (1){
-        HEX0 = ~timer_get_output0A();
-		HEX1 = ~timer_get_output0B();
-	}
+        	data++;
+        }
 
 	return 0;
 }
