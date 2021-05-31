@@ -142,10 +142,13 @@ begin
     end process;
 
 
-	p1 : process(clock, reset) is       -- @suppress "Incomplete sensitivity list. Missing signals: internal_clock, prescaler"
+	p1 : process(clock, reset, prescaler) is
 		variable temp_counter : unsigned(prescaler_size - 1 downto 0) := (others => '0');
 	begin
-		if reset = '0' then
+	    if reset = '1' then
+	       temp_counter := (others => '0');
+	       internal_clock <= '0';  
+		else
 			if prescaler = x"0001" then
 				internal_clock <= clock;
 			elsif rising_edge(clock) then
@@ -155,8 +158,6 @@ begin
 					temp_counter   := (others => '0');
 				end if;
 			end if;
-		else
-			temp_counter := (others => '0');
 		end if;
 	end process p1;
 
@@ -165,7 +166,13 @@ begin
 		variable internal_output_B : std_logic_vector(2 downto 0) := (others => '0');
 		variable counter_direction : std_logic                    := '0';
 	begin
-		if reset = '0' then
+		if reset = '1' then
+            internal_output_A := (others => '0');
+            internal_output_B := (others => '0');
+            output_A <= internal_output_A;
+            output_B <= internal_output_B;
+            counter_direction := '0';		    
+		else
 			if rising_edge(internal_clock) then
 				if timer_reset = '1' then
 					internal_output_A := (others => '0');
@@ -404,12 +411,7 @@ begin
 
 			output_A <= internal_output_A;
 			output_B <= internal_output_B;
-		else
-			internal_output_A := (others => '0');
-			internal_output_B := (others => '0');
-			output_A <= internal_output_A;
-			output_B <= internal_output_B;
-			counter_direction := '0';
+
 		end if;
 
 	end process p2;

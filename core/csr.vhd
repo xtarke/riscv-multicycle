@@ -169,10 +169,7 @@ begin
         end if;
     end process mstatus_control;
     
- 
- 
- 
- 
+
     registers_control : process(clk, rst) is
         variable mrindex: integer range 0 to 31;
         variable protect_mask:std_logic_vector(31 downto 0);    -- Protect read-only bits on registers
