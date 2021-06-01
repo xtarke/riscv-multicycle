@@ -42,13 +42,20 @@
      inkscape:window-height="1000"
      id="namedview2114"
      showgrid="false"
-     inkscape:zoom="0.94608696"
-     inkscape:cx="819.76034"
-     inkscape:cy="974.85795"
+     inkscape:zoom="0.47304348"
+     inkscape:cx="1318.127"
+     inkscape:cy="644.04675"
      inkscape:window-x="8"
      inkscape:window-y="35"
      inkscape:window-maximized="0"
      inkscape:current-layer="sprotty_testbench" />
+  <rect
+     style="fill:#ffffff;stroke:#f9f9f9;stroke-width:0.8347261;stroke-opacity:1"
+     id="rect2400"
+     width="1506.9266"
+     height="1725.1678"
+     x="3.9277587"
+     y="3.9251759" />
   <g
      id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$clock"
      class="sprotty-edge edge"
