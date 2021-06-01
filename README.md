@@ -7,12 +7,15 @@ Ferramentas de programação podem ser obtidas no [Compliler](https://github.com
 
 Animação do funcionamento da arquitetura em [Virgularor: minimum RISC-V](http://tice.sea.eseo.fr/riscv/)
 
+![Diagrama Núcleo](./readme_img/core.svg)
+
 ## Getting Started (hardware):
 
 - Simulação:
     - Execute o script script [testbench.do](./testbench.do) no Modelsim (Altera Edition).
     - Testbench principal: [testbench.vhd](./testbench.vhd). Simula o núcleo, um timer e pinos de propósito geral (gpio e display de 7 segmentos).
     - Verifique se o arquivo de programa está apontado corretamente (i.e.: __./software/quartus_blink.hex__) no módulo [iram_quartus.vhdl](./memory/iram_quartus.vhd).
+    - Veja esse [diagrama completo do testbench](./readme_img/testbench.svg)
 
 - Síntese: Quartus 19.1 ou superior (testado no Kit de desenvolvimento DE10-Lite)
     - Abra o projeto genérico em [./peripherals/gpio/sint/de10_lite/](./peripherals/gpio/sint/de10_lite/)
