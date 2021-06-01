@@ -10,25 +10,18 @@ Animação do funcionamento da arquitetura em [Virgularor: minimum RISC-V](http:
 ## Getting Started (hardware):
 
 - Simulação:
-    - ModelSim: execução do script testbench.do
-    - testbench: ./core/testbench.vhd
-    - Utilizar uma memória SRAM IP (32-bits x 1024 words):
-        - Quartus RAM: catálogo de IPS, RAM 1-port
-        - Na aba de confguração  __Regs/Clken/Byte Enable/AClrs__, desabilite __'q' output port__ e habilite __Create byte enable for port A__
-        - Na aba de configuração __Mem Init__, habilite e configure o arquivo de inicialização da memória de instruções para __quartus.hex__
-        - Na aba de configuração __Mem Init__, habilite Allow In-System Memory Content Editor.
-    - Se necessário, altere o caminho do arquivo de inicialização de memória (__quartus.hex__) no arquivo iram_quartus.vhdl
+    - Execute o script script [testbench.do](./testbench.do) no Modelsim (Altera Edition).
+    - Testbench principal: [testbench.vhd](./testbench.vhd). Simula o núcleo, um timer e pinos de propósito geral (gpio e display de 7 segmentos).
+    - Verifique se o arquivo de programa está apontado corretamente (i.e.: __./software/quartus_blink.hex__) no módulo [iram_quartus.vhdl](./memory/iram_quartus.vhd).
 
-- Síntese: Quartus 15 ou superior (testado no Kit de desenvolvimento DE10-Lite)
-    - Projeto: utilize ./sint/de10_lite
+- Síntese: Quartus 19.1 ou superior (testado no Kit de desenvolvimento DE10-Lite)
+    - Abra o projeto genérico em [./peripherals/gpio/sint/de10_lite/](./peripherals/gpio/sint/de10_lite/)
     - Para gravação do programa pós síntese:
-        - Utilizar uma memória SRAM IP (32-bits x 1024 words Quartus RAM
-        - Gravação pelo Tools -> In-System Memory Editor
-    - Utilize uma PLL para ajuste do clock
+        - Menu principal do Quartus: Tools -> In-System Memory Editor
 
 ## Getting Started (software):
 
-A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ (ou __riscv-none-embed__) suportando o subconjunto __RV32I__, __sem ABI__. Em ./tests/ há um exemplo bem simples de Makefile. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). _libc_ ainda não foi testado/suportado.
+A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ (ou __riscv-none-embed__) suportando o subconjunto __RV32IM__, __sem ABI__. Em ./software/ há vários exemplos. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). _libc_ ainda não foi testado/suportado.
 
 ### Instalação do compilador no Linux
 
