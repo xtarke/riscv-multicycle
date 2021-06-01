@@ -149,14 +149,16 @@ begin
 	       temp_counter := (others => '0');
 	       internal_clock <= '0';  
 		else
-			if prescaler = x"0001" then
-				internal_clock <= clock;
-			elsif rising_edge(clock) then
-				temp_counter := temp_counter + 1;
-				if temp_counter >= prescaler - 1 then
-					internal_clock <= not (internal_clock);
-					temp_counter   := (others => '0');
-				end if;
+            if prescaler /= x"0001" then
+                if rising_edge(clock) then
+                    temp_counter := temp_counter + 1;
+                    if temp_counter >= prescaler - 1 then
+                        internal_clock <= not (internal_clock);
+                        temp_counter   := (others => '0');
+                    end if;
+                end if;
+			else
+			     internal_clock <= clock;
 			end if;
 		end if;
 	end process p1;
