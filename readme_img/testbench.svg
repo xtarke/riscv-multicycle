@@ -1,0 +1,3794 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="sprotty_testbench"
+   class="sprotty-graph sprotty-block-diagram blockdiagram"
+   style="border-bottom-color:rgb(48, 48, 48);border-left-color:rgb(48, 48, 48);border-right-color:rgb(48, 48, 48);border-top-color:rgb(48, 48, 48);color:rgb(48, 48, 48);font-family:&quot;Noto Sans&quot;, Helvetica, Arial, sans-serif;outline-color:rgb(48, 48, 48);text-decoration:none solid rgb(48, 48, 48);text-decoration-color:rgb(48, 48, 48);column-rule-color:rgb(48, 48, 48);perspective-origin:0px 0px;-webkit-text-emphasis-color:rgb(48, 48, 48);-webkit-text-fill-color:rgb(48, 48, 48);-webkit-text-stroke-color:rgb(48, 48, 48);transform-origin:0px 0px;caret-color:rgb(48, 48, 48);"
+   version="1.1"
+   viewBox="7 7 1503.6875 1725"
+   width="1503.6875"
+   height="1725"
+   sodipodi:docname="testbench.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata2118">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2116" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1904"
+     inkscape:window-height="1000"
+     id="namedview2114"
+     showgrid="false"
+     inkscape:zoom="0.94608696"
+     inkscape:cx="819.76034"
+     inkscape:cy="974.85795"
+     inkscape:window-x="8"
+     inkscape:window-y="35"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="sprotty_testbench" />
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$clock"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1104">
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,-1 2,-2 V 365 c 0,-1 1,-2 2,-2 h 573.61719"
+         id="path1100"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,-1 2,-2 V 365 c 0,-1 1,-2 2,-2 h 573.61719"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1102"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$clock/junction0"
+       transform="translate(288.23437,827)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$clk"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1112">
+      <path
+         d="m 258.23437,827 h 221.6875 c 1,0 2,-1 2,-2 V 585 c 0,-1 1,-2 2,-2 h 79.54688"
+         id="path1108"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,827 h 221.6875 c 1,0 2,-1 2,-2 V 585 c 0,-1 1,-2 2,-2 h 79.54688"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1110"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$clk/junction0"
+       transform="translate(481.92187,827)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1120">
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,1 2,2 v 74 c 0,1 1,2 2,2 h 38"
+         id="path1116"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,1 2,2 v 74 c 0,1 1,2 2,2 h 38"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1118"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk/junction0"
+       transform="translate(288.23437,905)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$clock"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1128">
+      <path
+         d="M 258.23437,827 H 564.90625"
+         id="path1124"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 258.23437,827 H 564.90625"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1126"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$clk"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1135">
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,1 2,2 v 627 c 0,1 1,2 2,2 h 277.95704"
+         id="path1131"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,1 2,2 v 627 c 0,1 1,2 2,2 h 277.95704"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1133"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$clk"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1142">
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,1 2,2 v 327 c 0,1 1,2 2,2 h 261.6875"
+         id="path1138"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,827 h 28 c 1,0 2,1 2,2 v 327 c 0,1 1,2 2,2 h 261.6875"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1140"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$clk/junction0"
+       transform="translate(288.23437,1158)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver_32x/GPortImpl$clk_32x_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk_32x"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1150">
+      <path
+         d="m 258.23437,1003.8 h 48 c 1,0 2,-1 2,-2 v -5.2 c 0,-1 1,-2 2,-2 h 18"
+         id="path1146"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,1003.8 h 48 c 1,0 2,-1 2,-2 v -5.2 c 0,-1 1,-2 2,-2 h 18"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1148"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$rst"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1157">
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,-1 2,-2 V 557 c 0,-1 1,-2 2,-2 h 243.23438"
+         id="path1153"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,-1 2,-2 V 557 c 0,-1 1,-2 2,-2 h 243.23438"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1155"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$rst/junction0"
+       transform="translate(318.23437,949.8)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$rst"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1165">
+      <path
+         d="m 258.23437,949.8 h 70"
+         id="path1161"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,949.8 h 70"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1163"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$reset"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1172">
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,-1 2,-2 V 857 c 0,-1 1,-2 2,-2 h 244.67188"
+         id="path1168"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,-1 2,-2 V 857 c 0,-1 1,-2 2,-2 h 244.67188"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1170"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$reset/junction0"
+       transform="translate(318.23437,855)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$rst"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1180">
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,1 2,2 V 1484 c 0,1 1,2 2,2 h 247.95704"
+         id="path1176"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,1 2,2 V 1484 c 0,1 1,2 2,2 h 247.95704"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1178"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$rst"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1187">
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,1 2,2 V 1188 c 0,1 1,2 2,2 h 231.6875"
+         id="path1183"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 258.23437,949.8 h 58 c 1,0 2,1 2,2 V 1188 c 0,1 1,2 2,2 h 231.6875"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1185"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$rst/junction0"
+       transform="translate(318.23437,1190)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/AssignmentBlockImpl$null21/GPortImpl$LEDR_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$LEDR"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1195">
+      <path
+         d="m 1010.5078,1570 h 483.1797"
+         id="path1191"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 1010.5078,1570 h 483.1797"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1193"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$gpio_test/GPortImpl$gpio_input_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$input"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1202">
+      <path
+         d="M 451.92187,1682 H 568.19141"
+         id="path1198"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 451.92187,1682 H 568.19141"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1200"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$address_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$address"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1209">
+      <path
+         d="m 802.4375,186 h 9.1875 c 1,0 2,1 2,2 v 117 c 0,1 1,2 2,2 h 48.22656"
+         id="path1205"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 802.4375,186 h 9.1875 c 1,0 2,1 2,2 v 117 c 0,1 1,2 2,2 h 48.22656"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1207"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$idata"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1216">
+      <path
+         d="m 1136.9922,363 h 8.6797 c 1,0 2,-1 2,-2 v -74 c 0,-1 1,-2 2,-2 h 38"
+         id="path1212"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 1136.9922,363 h 8.6797 c 1,0 2,-1 2,-2 v -74 c 0,-1 1,-2 2,-2 h 38"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1214"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$idata/junction0"
+       transform="translate(1147.6719,363)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$idata/junction1"
+       transform="translate(1147.6719,285)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$idata"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1225">
+      <path
+         d="m 1136.9922,363 h 8.6797 c 1,0 2,1 2,2 v 80 c 0,1 -1,2 -2,2 H 300.23437 c -1,0 -2,1 -2,2 v 588.4 c 0,1 1,2 2,2 h 28"
+         id="path1221"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 1136.9922,363 h 8.6797 c 1,0 2,1 2,2 v 80 c 0,1 -1,2 -2,2 H 300.23437 c -1,0 -2,1 -2,2 v 588.4 c 0,1 1,2 2,2 h 28"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1223"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$data"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1232">
+      <path
+         d="m 1136.9922,363 h 8.6797 c 1,0 2,-1 2,-2 V 114 c 0,-1 1,-2 2,-2 h 38"
+         id="path1228"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 1136.9922,363 h 8.6797 c 1,0 2,-1 2,-2 V 114 c 0,-1 1,-2 2,-2 h 38"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1230"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$q_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_mem"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1239">
+      <path
+         d="m 711.25,653 h 100.375 c 1,0 2,-1 2,-2 V 457 c 0,-1 1,-2 2,-2 h 340.0469 c 1,0 2,-1 2,-2 V 315 c 0,-1 1,-2 2,-2 h 28"
+         id="path1235"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 711.25,653 h 100.375 c 1,0 2,-1 2,-2 V 457 c 0,-1 1,-2 2,-2 h 340.0469 c 1,0 2,-1 2,-2 V 315 c 0,-1 1,-2 2,-2 h 28"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1237"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_r"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1246">
+      <path
+         d="m 1422.875,313 h 8 c 1,0 2,-1 2,-2 V 38 c 0,-1 -1,-2 -2,-2 H 280.23437 c -1,0 -2,1 -2,2 v 1044.2 c 0,1 1,2 2,2 h 48"
+         id="path1242"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 1422.875,313 h 8 c 1,0 2,-1 2,-2 V 38 c 0,-1 -1,-2 -2,-2 H 280.23437 c -1,0 -2,1 -2,2 v 1044.2 c 0,1 1,2 2,2 h 48"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1244"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_periph_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_periph"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1253">
+      <path
+         d="m 1137.6719,589 h 28 c 1,0 2,-1 2,-2 V 343 c 0,-1 1,-2 2,-2 h 18"
+         id="path1249"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 1137.6719,589 h 28 c 1,0 2,-1 2,-2 V 343 c 0,-1 1,-2 2,-2 h 18"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1251"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$iaddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$iaddress"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1260">
+      <path
+         d="m 451.92187,905 h 8 c 1,0 2,-1 2,-2 V 230 c 0,-1 1,-2 2,-2 h 88.29688"
+         id="path1256"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,905 h 8 c 1,0 2,-1 2,-2 V 230 c 0,-1 1,-2 2,-2 h 88.29688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1258"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$iaddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$iaddress/junction0"
+       transform="translate(461.92187,228)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$iaddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$pc"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1268">
+      <path
+         d="m 451.92187,905 h 8 c 1,0 2,-1 2,-2 V 86 c 0,-1 1,-2 2,-2 h 723.75003"
+         id="path1264"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,905 h 8 c 1,0 2,-1 2,-2 V 86 c 0,-1 1,-2 2,-2 h 723.75003"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1266"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$daddress"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1275">
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 V 202 c 0,-1 1,-2 2,-2 h 8.29688"
+         id="path1271"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 V 202 c 0,-1 1,-2 2,-2 h 8.29688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1273"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$daddress/junction0"
+       transform="translate(541.92187,933)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$address"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1283">
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 V 641 c 0,-1 1,-2 2,-2 h 19.54688"
+         id="path1279"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 V 641 c 0,-1 1,-2 2,-2 h 19.54688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1281"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$address/junction0"
+       transform="translate(541.92187,639)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$daddress"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1291">
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 V 507 c 0,-1 1,-2 2,-2 H 863.625"
+         id="path1287"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 V 507 c 0,-1 1,-2 2,-2 H 863.625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1289"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$daddress/junction0"
+       transform="translate(541.92187,505)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$daddress"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1299">
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 20.98438"
+         id="path1295"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 20.98438"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1297"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$daddress/junction0"
+       transform="translate(541.92187,883)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$daddress"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1307">
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 24.26954"
+         id="path1303"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 24.26954"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1305"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$daddress"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1314">
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,1 2,2 v 285 c 0,1 1,2 2,2 h 8"
+         id="path1310"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,933 h 88 c 1,0 2,1 2,2 v 285 c 0,1 1,2 2,2 h 8"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1312"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$daddress/junction0"
+       transform="translate(541.92187,1222)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$data"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1322">
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,-1 2,-2 V 613 c 0,-1 1,-2 2,-2 h 49.54688"
+         id="path1318"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,-1 2,-2 V 613 c 0,-1 1,-2 2,-2 h 49.54688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1320"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$data/junction0"
+       transform="translate(511.92187,961)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_w"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1330">
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 50.98438"
+         id="path1326"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 50.98438"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1328"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_w/junction0"
+       transform="translate(511.92187,911)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$ddata_w"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1338">
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 54.26954"
+         id="path1334"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 54.26954"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1336"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_w"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1345">
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,1 2,2 v 289 c 0,1 1,2 2,2 h 38"
+         id="path1341"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,961 h 58 c 1,0 2,1 2,2 v 289 c 0,1 1,2 2,2 h 38"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1343"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_w/junction0"
+       transform="translate(511.92187,1254)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$we"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1353">
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,-1 2,-2 V 669 c 0,-1 1,-2 2,-2 h 29.54688"
+         id="path1349"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,-1 2,-2 V 669 c 0,-1 1,-2 2,-2 h 29.54688"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1351"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$we/junction0"
+       transform="translate(531.92187,989)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_we"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1361">
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 30.98438"
+         id="path1357"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 30.98438"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1359"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_we/junction0"
+       transform="translate(531.92187,939)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$d_we"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1369">
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 34.26954"
+         id="path1365"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 34.26954"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1367"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_we"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1376">
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,1 2,2 v 293 c 0,1 1,2 2,2 h 18"
+         id="path1372"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,989 h 78 c 1,0 2,1 2,2 v 293 c 0,1 1,2 2,2 h 18"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1374"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_we/junction0"
+       transform="translate(531.92187,1286)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$d_rd"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1384">
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,-1 2,-2 V 146 c 0,-1 1,-2 2,-2 h 78.29688"
+         id="path1380"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,-1 2,-2 V 146 c 0,-1 1,-2 2,-2 h 78.29688"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1382"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$d_rd/junction0"
+       transform="translate(471.92187,1017)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_rd"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1392">
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 90.98438"
+         id="path1388"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,-1 2,-2 v -46 c 0,-1 1,-2 2,-2 h 90.98438"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1390"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_rd/junction0"
+       transform="translate(471.92187,967)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$d_rd"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1400">
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 94.26954"
+         id="path1396"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,1 2,2 v 577 c 0,1 1,2 2,2 h 94.26954"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1398"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_rd"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1407">
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,1 2,2 v 297 c 0,1 1,2 2,2 h 78"
+         id="path1403"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1017 h 18 c 1,0 2,1 2,2 v 297 c 0,1 1,2 2,2 h 78"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1405"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="2"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_rd/junction0"
+       transform="translate(471.92187,1318)"
+       class="sprotty-junction junction"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_sig_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$signal_ext"
+     class="sprotty-edge edge"
+     style="fill:none;stroke:#707070;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1415">
+      <path
+         d="m 451.92187,1045 h 38 c 1,0 2,-1 2,-2 V 753 c 0,-1 1,-2 2,-2 h 69.54688"
+         id="path1411"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1045 h 38 c 1,0 2,-1 2,-2 V 753 c 0,-1 1,-2 2,-2 h 69.54688"
+         class="clickable"
+         style="stroke-width:5px;stroke-opacity:0"
+         id="path1413"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$dcsel"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1422">
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 V 174 c 0,-1 1,-2 2,-2 h 48.29688"
+         id="path1418"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 V 174 c 0,-1 1,-2 2,-2 h 48.29688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1420"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$dcsel/junction0"
+       transform="translate(501.92187,1073)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$csel"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1430">
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 V 697 c 0,-1 1,-2 2,-2 h 59.54688"
+         id="path1426"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 V 697 c 0,-1 1,-2 2,-2 h 59.54688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1428"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$csel/junction0"
+       transform="translate(501.92187,695)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$dcsel"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1438">
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 V 259 c 0,-1 1,-2 2,-2 h 683.75003"
+         id="path1434"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 V 259 c 0,-1 1,-2 2,-2 h 683.75003"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1436"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$dcsel/junction0"
+       transform="translate(501.92187,257)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dcsel"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1446">
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 v -74 c 0,-1 1,-2 2,-2 h 60.98438"
+         id="path1442"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,-1 2,-2 v -74 c 0,-1 1,-2 2,-2 h 60.98438"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1444"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dcsel/junction0"
+       transform="translate(501.92187,995)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$dcsel"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1454">
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,1 2,2 v 549 c 0,1 1,2 2,2 h 64.26954"
+         id="path1450"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,1 2,2 v 549 c 0,1 1,2 2,2 h 64.26954"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1452"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dcsel"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1461">
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,1 2,2 v 273 c 0,1 1,2 2,2 h 48"
+         id="path1457"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1073 h 48 c 1,0 2,1 2,2 v 273 c 0,1 1,2 2,2 h 48"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1459"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dcsel/junction0"
+       transform="translate(501.92187,1350)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$dmask"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1469">
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,-1 2,-2 V 725 c 0,-1 1,-2 2,-2 h 39.54688"
+         id="path1465"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,-1 2,-2 V 725 c 0,-1 1,-2 2,-2 h 39.54688"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1467"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$dmask/junction0"
+       transform="translate(521.92187,1101)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dmask"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1477">
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,-1 2,-2 v -74 c 0,-1 1,-2 2,-2 h 40.98438"
+         id="path1473"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,-1 2,-2 v -74 c 0,-1 1,-2 2,-2 h 40.98438"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1475"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dmask/junction0"
+       transform="translate(521.92187,1023)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$dmask"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1485">
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,1 2,2 v 549 c 0,1 1,2 2,2 h 44.26954"
+         id="path1481"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,1 2,2 v 549 c 0,1 1,2 2,2 h 44.26954"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1483"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dmask"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1492">
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,1 2,2 v 277 c 0,1 1,2 2,2 h 28"
+         id="path1488"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 451.92187,1101 h 68 c 1,0 2,1 2,2 v 277 c 0,1 1,2 2,2 h 28"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1490"
+         inkscape:connector-curvature="0" />
+    </g>
+    <circle
+       r="3"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dmask/junction0"
+       transform="translate(521.92187,1382)"
+       class="sprotty-junction thick"
+       style="fill:#707070;stroke:none"
+       cx="0"
+       cy="0" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/GPortImpl$interrupts_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$interrupts"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1500">
+      <path
+         d="m 959.76562,1028.6667 h 215.90628 c 1,0 2,-1 2,-2 V 96 c 0,-1 -1,-2 -2,-2 H 270.23437 c -1,0 -2,1 -2,2 v 1031 c 0,1 1,2 2,2 h 58"
+         id="path1496"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 959.76562,1028.6667 h 215.90628 c 1,0 2,-1 2,-2 V 96 c 0,-1 -1,-2 -2,-2 H 270.23437 c -1,0 -2,1 -2,2 v 1031 c 0,1 1,2 2,2 h 58"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1498"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_r_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_timer"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1507">
+      <path
+         d="m 751.6875,827 h 89.9375 c 1,0 2,-1 2,-2 V 675 c 0,-1 1,-2 2,-2 h 18"
+         id="path1503"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 751.6875,827 h 89.9375 c 1,0 2,-1 2,-2 V 675 c 0,-1 1,-2 2,-2 h 18"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1505"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$timer_interrupt_to_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/GPortImpl$timer_interrupt"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1514">
+      <path
+         d="M 751.6875,1023 H 863.625"
+         id="path1510"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 751.6875,1023 H 863.625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1512"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$ddata_r_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_gpio"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1521">
+      <path
+         d="M 754.81641,1458 H 821.625 c 1,0 2,-1 2,-2 V 535 c 0,-1 1,-2 2,-2 h 38"
+         id="path1517"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 754.81641,1458 H 821.625 c 1,0 2,-1 2,-2 V 535 c 0,-1 1,-2 2,-2 h 38"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1519"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$output_to_ArchitectureBlockImpl$work.coretestbench(RTL)/AssignmentBlockImpl$null21/GPortImpl$gpio_output"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1528">
+      <path
+         d="M 754.81641,1570 H 990.78906"
+         id="path1524"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 754.81641,1570 H 990.78906"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1526"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$gpio_interrupts_to_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/GPortImpl$gpio_interrupts"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1535">
+      <path
+         d="M 754.81641,1682 H 841.625 c 1,0 2,-1 2,-2 v -643.6667 c 0,-1 1,-2 2,-2 h 18"
+         id="path1531"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 754.81641,1682 H 841.625 c 1,0 2,-1 2,-2 v -643.6667 c 0,-1 1,-2 2,-2 h 18"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1533"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_r_to_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_segments"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1542">
+      <path
+         d="m 803.625,1158 h 28 c 1,0 2,-1 2,-2 V 563 c 0,-1 1,-2 2,-2 h 28"
+         id="path1538"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1158 h 28 c 1,0 2,-1 2,-2 V 563 c 0,-1 1,-2 2,-2 h 28"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1540"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex0_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX0"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1549">
+      <path
+         d="m 803.625,1186 h 48 c 1,0 2,-1 2,-2 v -8 c 0,-1 1,-2 2,-2 h 638.0625"
+         id="path1545"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1186 h 48 c 1,0 2,-1 2,-2 v -8 c 0,-1 1,-2 2,-2 h 638.0625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1547"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex1_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX1"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1556">
+      <path
+         d="m 803.625,1214 h 48 c 1,0 2,-1 2,-2 v -2 c 0,-1 1,-2 2,-2 h 638.0625"
+         id="path1552"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1214 h 48 c 1,0 2,-1 2,-2 v -2 c 0,-1 1,-2 2,-2 h 638.0625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1554"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex2_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX2"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1563">
+      <path
+         d="m 803.625,1242 h 690.0625"
+         id="path1559"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1242 h 690.0625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1561"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex3_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX3"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1570">
+      <path
+         d="m 803.625,1270 h 48 c 1,0 2,1 2,2 v 2 c 0,1 1,2 2,2 h 638.0625"
+         id="path1566"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1270 h 48 c 1,0 2,1 2,2 v 2 c 0,1 1,2 2,2 h 638.0625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1568"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex4_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX4"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1577">
+      <path
+         d="m 803.625,1298 h 48 c 1,0 2,1 2,2 v 8 c 0,1 1,2 2,2 h 638.0625"
+         id="path1573"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1298 h 48 c 1,0 2,1 2,2 v 8 c 0,1 1,2 2,2 h 638.0625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1575"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex5_to_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX5"
+     class="sprotty-edge thick edge"
+     style="fill:none;stroke:#707070;stroke-width:3px;stroke-linejoin:round"
+     transform="translate(12,12)">
+    <g
+       id="g1584">
+      <path
+         d="m 803.625,1326 h 48 c 1,0 2,1 2,2 v 14 c 0,1 1,2 2,2 h 638.0625"
+         id="path1580"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 803.625,1326 h 48 c 1,0 2,1 2,2 v 14 c 0,1 1,2 2,2 h 638.0625"
+         class="clickable"
+         style="stroke-width:7px;stroke-opacity:0"
+         id="path1582"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug"
+     transform="translate(1199.6719,58)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1593">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="169.20312"
+         height="84"
+         id="rect1587" />
+      <text
+         x="84.601562"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1589">debug : trace_debug</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="169.20312"
+         y2="20"
+         id="line1591" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$data"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1595"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$data/label"
+         transform="translate(18.53125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">data</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$pc"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1599"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$pc/label"
+         transform="translate(12.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">pc</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$inst"
+       transform="translate(169.20312,52)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1603"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$debug/BPortImpl$inst/label"
+         transform="translate(-16.734375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">inst</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays"
+     transform="translate(563.92187,1132)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1614">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="251.70312"
+         height="280"
+         id="rect1608" />
+      <text
+         x="125.85156"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1610">generic_displays : led_displays</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="251.70312"
+         y2="20"
+         id="line1612" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dmask"
+       transform="translate(0,262)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1616"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dmask/label"
+         transform="translate(24.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dmask</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dcsel"
+       transform="translate(0,230)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1620"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$dcsel/label"
+         transform="translate(20.625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dcsel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_rd"
+       transform="translate(0,198)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1624"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_rd/label"
+         transform="translate(19.0625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_rd</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_we"
+       transform="translate(0,166)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1628"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$d_we/label"
+         transform="translate(21.1875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_we</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_w"
+       transform="translate(0,134)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1632"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_w/label"
+         transform="translate(30.40625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_w</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$daddress"
+       transform="translate(0,102)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1636"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$daddress/label"
+         transform="translate(31.75,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">daddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$rst"
+       transform="translate(0,70)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1640"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$rst/label"
+         transform="translate(13.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">rst</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$clk"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1644"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$clk/label"
+         transform="translate(14.078125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clk</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_r"
+       transform="translate(251.70312,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1648"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$ddata_r/label"
+         transform="translate(-28.265625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex0"
+       transform="translate(251.70312,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1652"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex0/label"
+         transform="translate(-19.578125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex0</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex1"
+       transform="translate(251.70312,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1656"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex1/label"
+         transform="translate(-19.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex1</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex2"
+       transform="translate(251.70312,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1660"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex2/label"
+         transform="translate(-19.578125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex2</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex3"
+       transform="translate(251.70312,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1664"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex3/label"
+         transform="translate(-19.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex3</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex4"
+       transform="translate(251.70312,178)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1668"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex4/label"
+         transform="translate(-19.578125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex4</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex5"
+       transform="translate(251.70312,206)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1672"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex5/label"
+         transform="translate(-19.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex5</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex6"
+       transform="translate(251.70312,234)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1676"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex6/label"
+         transform="translate(-19.578125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex6</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex7"
+       transform="translate(251.70312,262)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1680"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_displays/BPortImpl$hex7/label"
+         transform="translate(-19.578125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">hex7</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio"
+     transform="translate(580.19141,1432)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1691">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="186.625"
+         height="280"
+         id="rect1685" />
+      <text
+         x="93.3125"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1687">generic_gpio : gpio</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="186.625"
+         y2="20"
+         id="line1689" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$input"
+       transform="translate(0,262)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1693"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$input/label"
+         transform="translate(20.953125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">input</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$dmask"
+       transform="translate(0,234)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1697"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$dmask/label"
+         transform="translate(24.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dmask</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$dcsel"
+       transform="translate(0,206)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1701"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$dcsel/label"
+         transform="translate(20.625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dcsel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$d_rd"
+       transform="translate(0,178)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1705"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$d_rd/label"
+         transform="translate(19.0625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_rd</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$d_we"
+       transform="translate(0,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1709"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$d_we/label"
+         transform="translate(21.1875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_we</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$ddata_w"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1713"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$ddata_w/label"
+         transform="translate(30.40625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_w</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$daddress"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1717"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$daddress/label"
+         transform="translate(31.75,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">daddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$rst"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1721"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$rst/label"
+         transform="translate(13.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">rst</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$clk"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1725"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$clk/label"
+         transform="translate(14.078125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clk</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$ddata_r"
+       transform="translate(186.625,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1729"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$ddata_r/label"
+         transform="translate(-28.265625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$output"
+       transform="translate(186.625,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1733"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$output/label"
+         transform="translate(-25.640625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">output</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$gpio_interrupts"
+       transform="translate(186.625,262)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1737"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$generic_gpio/BPortImpl$gpio_interrupts/label"
+         transform="translate(-49.84375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">gpio_interrupts</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer"
+     transform="translate(576.90625,801)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1748">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="186.78125"
+         height="252"
+         id="rect1742" />
+      <text
+         x="93.390625"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1744">timer : Timer</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="186.78125"
+         y2="20"
+         id="line1746" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dmask"
+       transform="translate(0,234)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1750"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dmask/label"
+         transform="translate(24.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dmask</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dcsel"
+       transform="translate(0,206)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1754"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$dcsel/label"
+         transform="translate(20.625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dcsel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_rd"
+       transform="translate(0,178)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1758"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_rd/label"
+         transform="translate(19.0625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_rd</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_we"
+       transform="translate(0,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1762"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$d_we/label"
+         transform="translate(21.1875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_we</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_w"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1766"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_w/label"
+         transform="translate(30.40625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_w</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$daddress"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1770"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$daddress/label"
+         transform="translate(31.75,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">daddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$reset"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1774"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$reset/label"
+         transform="translate(19.921875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">reset</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$clock"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1778"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$clock/label"
+         transform="translate(20.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clock</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_r"
+       transform="translate(186.78125,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1782"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$ddata_r/label"
+         transform="translate(-28.265625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$timer_interrupt"
+       transform="translate(186.78125,234)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1786"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$timer/BPortImpl$timer_interrupt/label"
+         transform="translate(-49.9375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">timer_interrupt</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals"
+     transform="translate(875.625,1023.6667)"
+     class="statement">
+    <rect
+       x="0"
+       y="0"
+       rx="10"
+       ry="5"
+       width="96.140625"
+       height="34"
+       class="sprotty-node"
+       style="fill:#eeeeee;stroke:#707070"
+       id="rect1791" />
+    <text
+       class="clickable sprotty-label statementtext"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/labeltext"
+       transform="translate(48.03125,24)"
+       style="font-weight:700;text-anchor:middle;fill:#707070">irq_signals</text>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/GPortImpl$gpio_interrupts"
+       transform="translate(0,22.666667)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/GPortImpl$timer_interrupt"
+       transform="translate(0,11.333333)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$irq_signals/GPortImpl$interrupts"
+       transform="translate(96.140625,17)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv"
+     transform="translate(340.23437,879)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1804">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="123.6875"
+         height="280"
+         id="rect1798" />
+      <text
+         x="61.84375"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1800">myRiscv : core</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="123.6875"
+         y2="20"
+         id="line1802" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$interrupts"
+       transform="translate(0,262)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1806"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$interrupts/label"
+         transform="translate(33.734375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">interrupts</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_r"
+       transform="translate(0,217.2)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1810"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_r/label"
+         transform="translate(27.921875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$idata"
+       transform="translate(0,172.4)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1814"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$idata/label"
+         transform="translate(20.171875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">idata</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk_32x"
+       transform="translate(0,127.6)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1818"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk_32x/label"
+         transform="translate(27.09375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clk_32x</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$rst"
+       transform="translate(0,82.8)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1822"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$rst/label"
+         transform="translate(13.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">rst</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1826"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$clk/label"
+         transform="translate(14.078125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clk</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$iaddress"
+       transform="translate(123.6875,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1830"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$iaddress/label"
+         transform="translate(-30.0625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">iaddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress"
+       transform="translate(123.6875,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1834"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$daddress/label"
+         transform="translate(-32.140625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">daddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w"
+       transform="translate(123.6875,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1838"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$ddata_w/label"
+         transform="translate(-30.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_w</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we"
+       transform="translate(123.6875,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1842"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_we/label"
+         transform="translate(-21.546875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_we</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd"
+       transform="translate(123.6875,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1846"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_rd/label"
+         transform="translate(-19.0625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_rd</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_sig"
+       transform="translate(123.6875,178)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1850"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$d_sig/label"
+         transform="translate(-21.15625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_sig</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel"
+       transform="translate(123.6875,206)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1854"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dcsel/label"
+         transform="translate(-20.625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dcsel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask"
+       transform="translate(123.6875,234)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1858"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$dmask/label"
+         transform="translate(-25.15625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dmask</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$state"
+       transform="translate(123.6875,262)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1862"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$myRiscv/BPortImpl$state/label"
+         transform="translate(-19.9375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">state</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux"
+     transform="translate(875.625,479)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1873">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="274.04688"
+         height="224"
+         id="rect1867" />
+      <text
+         x="137.02344"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1869">io_data_bus_mux : iodatabusmux</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="274.04688"
+         y2="20"
+         id="line1871" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_timer"
+       transform="translate(0,206)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1875"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_timer/label"
+         transform="translate(46.40625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_timer</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_i2c"
+       transform="translate(0,178)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1879"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_i2c/label"
+         transform="translate(39.3125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_i2c</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_adc"
+       transform="translate(0,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1883"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_adc/label"
+         transform="translate(41.4375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_adc</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_uart"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1887"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_uart/label"
+         transform="translate(42.890625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_uart</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_segments"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1891"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_segments/label"
+         transform="translate(58.28125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_segments</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_gpio"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1895"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_gpio/label"
+         transform="translate(43.671875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_gpio</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$daddress"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1899"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$daddress/label"
+         transform="translate(31.75,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">daddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_periph"
+       transform="translate(274.04687,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1903"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$io_data_bus_mux/BPortImpl$ddata_r_periph/label"
+         transform="translate(-49.671875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_periph</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux"
+     transform="translate(1199.6719,231)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1914">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="235.20312"
+         height="168"
+         id="rect1908" />
+      <text
+         x="117.60156"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1910">data_bus_mux : databusmux</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="235.20312"
+         y2="20"
+         id="line1912" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_sdram"
+       transform="translate(0,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1916"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_sdram/label"
+         transform="translate(48.921875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_sdram</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_periph"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1920"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_periph/label"
+         transform="translate(49.671875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_periph</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_mem"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1924"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r_mem/label"
+         transform="translate(45.71875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r_mem</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$idata"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1928"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$idata/label"
+         transform="translate(20.171875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">idata</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$dcsel"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1932"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$dcsel/label"
+         transform="translate(20.625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dcsel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r"
+       transform="translate(235.20312,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1936"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$data_bus_mux/BPortImpl$ddata_r/label"
+         transform="translate(-28.265625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">ddata_r</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem"
+     transform="translate(575.46875,529)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1947">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="147.78125"
+         height="252"
+         id="rect1941" />
+      <text
+         x="73.890625"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1943">dmem : dmemory</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="147.78125"
+         y2="20"
+         id="line1945" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$signal_ext"
+       transform="translate(0,234)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1949"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$signal_ext/label"
+         transform="translate(34.328125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">signal_ext</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$dmask"
+       transform="translate(0,206)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1953"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$dmask/label"
+         transform="translate(24.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dmask</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$csel"
+       transform="translate(0,178)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1957"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$csel/label"
+         transform="translate(16.90625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">csel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$we"
+       transform="translate(0,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1961"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$we/label"
+         transform="translate(14.125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">we</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$address"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1965"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$address/label"
+         transform="translate(28.03125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">address</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$data"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1969"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$data/label"
+         transform="translate(18.53125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">data</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$clk"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1973"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$clk/label"
+         transform="translate(14.078125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clk</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$rst"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1977"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$rst/label"
+         transform="translate(13.25,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">rst</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$q"
+       transform="translate(147.78125,136)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1981"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$dmem/BPortImpl$q/label"
+         transform="translate(-9.734375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">q</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst"
+     transform="translate(875.85156,281)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g1992">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="273.14062"
+         height="168"
+         id="rect1986" />
+      <text
+         x="136.57031"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text1988">iram_quartus_inst : iram_quartus</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="273.14062"
+         y2="20"
+         id="line1990" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$wren"
+       transform="translate(0,150)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1994"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$wren/label"
+         transform="translate(20.078125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">wren</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$data"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path1998"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$data/label"
+         transform="translate(18.53125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">data</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$clock"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2002"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$clock/label"
+         transform="translate(20.78125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">clock</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$byteena"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2006"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$byteena/label"
+         transform="translate(28.6875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">byteena</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$address"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2010"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$address/label"
+         transform="translate(28.03125,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">address</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q"
+       transform="translate(273.14062,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2014"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$iram_quartus_inst/BPortImpl$q/label"
+         transform="translate(-9.734375,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">q</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux"
+     transform="translate(564.21875,118)"
+     class="instantiation">
+    <g
+       class="sprotty-block"
+       style="fill:#f5f5f5;stroke:#303030;stroke-dasharray:none"
+       id="g2025">
+      <rect
+         x="0"
+         y="0"
+         rx="1"
+         ry="1"
+         width="250.21875"
+         height="140"
+         id="rect2019" />
+      <text
+         x="125.10938"
+         y="12"
+         class="sprotty-block-name"
+         style="font-weight:700;dominant-baseline:middle;text-anchor:middle;fill:#303030"
+         id="text2021">instr_mux : instructionbusmux</text>
+      <line
+         x1="0"
+         y1="20"
+         x2="250.21875"
+         y2="20"
+         id="line2023" />
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$iaddress"
+       transform="translate(0,122)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2027"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$iaddress/label"
+         transform="translate(29.6875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">iaddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$daddress"
+       transform="translate(0,94)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2031"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$daddress/label"
+         transform="translate(31.75,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">daddress</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$dcsel"
+       transform="translate(0,66)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2035"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$dcsel/label"
+         transform="translate(20.625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">dcsel</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$d_rd"
+       transform="translate(0,38)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2039"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$d_rd/label"
+         transform="translate(19.0625,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">d_rd</text>
+    </g>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$address"
+       transform="translate(250.21875,80)"
+       class="triangle">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         transform="translate(-1.67,-2.5)"
+         class="sprotty-port"
+         style="fill:#303030;stroke:#303030"
+         id="path2043"
+         inkscape:connector-curvature="0" />
+      <text
+         class="clickable sprotty-label port"
+         id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/InstantiationBlockImpl$instr_mux/BPortImpl$address/label"
+         transform="translate(-28.421875,5)"
+         style="font-size:12px;text-anchor:middle;fill:#303030">address</text>
+    </g>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$gpio_test"
+     transform="translate(379.82812,1677)"
+     class="statement">
+    <rect
+       x="0"
+       y="0"
+       rx="10"
+       ry="5"
+       width="84.09375"
+       height="34"
+       class="sprotty-node"
+       style="fill:#eeeeee;stroke:#707070"
+       id="rect2048" />
+    <text
+       class="clickable sprotty-label statementtext"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$gpio_test/labeltext"
+       transform="translate(41.90625,24)"
+       style="font-weight:700;text-anchor:middle;fill:#707070">gpio_test</text>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$gpio_test/GPortImpl$gpio_input"
+       transform="translate(84.09375,17)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/AssignmentBlockImpl$null21"
+     transform="translate(1002.7891,1571)"
+     class="statement">
+    <rect
+       x="0"
+       y="0"
+       rx="10"
+       ry="5"
+       width="19.71875"
+       height="22"
+       class="sprotty-node"
+       style="fill:#eeeeee;stroke:#707070"
+       id="rect2053" />
+    <text
+       class="clickable sprotty-label statementtype"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/AssignmentBlockImpl$null21/labeltype"
+       transform="translate(9.71875,14)"
+       style="font-weight:700;font-size:8px;text-anchor:middle;fill:#707070">&lt;=</text>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/AssignmentBlockImpl$null21/GPortImpl$gpio_output"
+       transform="translate(0,11)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/AssignmentBlockImpl$null21/GPortImpl$LEDR"
+       transform="translate(19.71875,11)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset"
+     transform="translate(220.10937,944.8)"
+     class="statement">
+    <rect
+       x="0"
+       y="0"
+       rx="10"
+       ry="5"
+       width="50.125"
+       height="34"
+       class="sprotty-node"
+       style="fill:#eeeeee;stroke:#707070"
+       id="rect2059" />
+    <text
+       class="clickable sprotty-label statementtext"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/labeltext"
+       transform="translate(24.921875,24)"
+       style="font-weight:700;text-anchor:middle;fill:#707070">reset</text>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$reset/GPortImpl$rst"
+       transform="translate(50.125,17)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver_32x"
+     transform="translate(125.125,998.8)"
+     class="statement">
+    <rect
+       x="0"
+       y="0"
+       rx="10"
+       ry="5"
+       width="145.10938"
+       height="34"
+       class="sprotty-node"
+       style="fill:#eeeeee;stroke:#707070"
+       id="rect2064" />
+    <text
+       class="clickable sprotty-label statementtext"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver_32x/labeltext"
+       transform="translate(72.546875,24)"
+       style="font-weight:700;text-anchor:middle;fill:#707070">clock_driver_32x</text>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver_32x/GPortImpl$clk_32x"
+       transform="translate(145.10937,17)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver"
+     transform="translate(162.01562,822)"
+     class="statement">
+    <rect
+       x="0"
+       y="0"
+       rx="10"
+       ry="5"
+       width="108.21875"
+       height="34"
+       class="sprotty-node"
+       style="fill:#eeeeee;stroke:#707070"
+       id="rect2069" />
+    <text
+       class="clickable sprotty-label statementtext"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/labeltext"
+       transform="translate(54.09375,24)"
+       style="font-weight:700;text-anchor:middle;fill:#707070">clock_driver</text>
+    <g
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/ProcessBlockImpl$clock_driver/GPortImpl$clk"
+       transform="translate(108.21875,17)"
+       class="sprotty-hidden hidden"
+       style="display:block" />
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$ARDUINO_IO"
+     transform="translate(12,47)"
+     class="square">
+    <path
+       d="M 0,0 H 5 V 5 H 0 Z"
+       transform="translate(-2.5,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2074"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$ARDUINO_IO/label"
+       style="font-size:12px;text-anchor:middle;fill:#303030"
+       x="14.534007"
+       y="13.129596">_IO</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$SW"
+     transform="translate(12,91)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2078"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$SW/label"
+       transform="translate(14.859375,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">SW</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX0"
+     transform="translate(1505.6875,1186)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2082"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX0/label"
+       transform="translate(-21.015625,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">HEX0</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX1"
+     transform="translate(1505.6875,1220)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2086"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX1/label"
+       transform="translate(-20.671875,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">HEX1</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX2"
+     transform="translate(1505.6875,1254)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2090"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX2/label"
+       transform="translate(-21.015625,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">HEX2</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX3"
+     transform="translate(1505.6875,1288)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2094"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX3/label"
+       transform="translate(-20.671875,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">HEX3</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX4"
+     transform="translate(1505.6875,1322)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2098"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX4/label"
+       transform="translate(-21.015625,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">HEX4</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX5"
+     transform="translate(1505.6875,1356)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2102"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$HEX5/label"
+       transform="translate(-20.671875,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">HEX5</text>
+  </g>
+  <g
+     id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$LEDR"
+     transform="translate(1505.6875,1582)"
+     class="triangle">
+    <path
+       d="M 0,0 5,2.5 0,5 Z"
+       transform="translate(-1.67,-2.5)"
+       class="sprotty-port"
+       style="fill:#303030;stroke:#303030"
+       id="path2106"
+       inkscape:connector-curvature="0" />
+    <text
+       class="clickable sprotty-label port"
+       id="sprotty_ArchitectureBlockImpl$work.coretestbench(RTL)/GPortImpl$LEDR/label"
+       transform="translate(-21.09375,20)"
+       style="font-size:12px;text-anchor:middle;fill:#303030">LEDR</text>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="1003.7124"
+     y="349.99173"
+     id="text5989"><tspan
+       sodipodi:role="line"
+       id="tspan5987"
+       x="1006.2554"
+       y="349.99173"
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000">Memória </tspan><tspan
+       sodipodi:role="line"
+       x="1003.7124"
+       y="399.99173"
+       id="tspan5991"
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000">de instruções</tspan></text>
+  <text
+     xml:space="preserve"
+     style="color:#303030;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#303030;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="663.9151"
+     y="587.76367"
+     id="text5989-3"><tspan
+       sodipodi:role="line"
+       id="tspan5987-6"
+       x="666.45807"
+       y="587.76367"
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000">Memória </tspan><tspan
+       sodipodi:role="line"
+       x="663.9151"
+       y="637.76367"
+       id="tspan5991-7"
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000">de dados</tspan></text>
+  <text
+     xml:space="preserve"
+     style="color:#303030;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#303030;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="680.35797"
+     y="955.42004"
+     id="text5989-3-5"><tspan
+       sodipodi:role="line"
+       x="680.35797"
+       y="955.42004"
+       id="tspan5991-7-5"
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000">Temporizador</tspan></text>
+  <text
+     xml:space="preserve"
+     style="color:#303030;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#303030;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="692.39056"
+     y="1200.5272"
+     id="text5989-3-5-9"><tspan
+       sodipodi:role="line"
+       x="692.39056"
+       y="1200.5272"
+       id="tspan5991-7-5-1"
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000">Display 7 segmentos</tspan></text>
+  <text
+     id="text6075"
+     y="1513.6885"
+     x="680.43213"
+     style="color:#303030;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#303030;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"><tspan
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000"
+       id="tspan6073"
+       y="1513.6885"
+       x="682.9751"
+       sodipodi:role="line">Pinos de </tspan><tspan
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000"
+       y="1563.6885"
+       x="680.43213"
+       sodipodi:role="line"
+       id="tspan6083">propósito</tspan><tspan
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000"
+       y="1613.6885"
+       x="680.43213"
+       sodipodi:role="line"
+       id="tspan6081">geral</tspan><tspan
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000"
+       y="1663.6885"
+       x="680.43213"
+       sodipodi:role="line"
+       id="tspan6077" /><tspan
+       style="font-size:16px;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000"
+       y="1713.6885"
+       x="680.43213"
+       sodipodi:role="line"
+       id="tspan6079" /></text>
+</svg>
