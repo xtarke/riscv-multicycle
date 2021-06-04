@@ -3,41 +3,61 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity uart is
-
-	port(
-		clk_in_1M	: in std_logic;
-		clk_baud	: in std_logic;
-		csel		: in std_logic;
-
-		data_in		: in std_logic_vector(7 downto 0);
-		tx 			: out std_logic;
-		tx_cmp		: out std_logic;
-
-		data_out	: out std_logic_vector(7 downto 0);
-		rx			: in std_logic;
-		rx_cmp		: out std_logic;
-
-		interrupt : out std_logic;
-
-		config_all  : in std_logic_vector (31 downto 0)
-	);
+    generic (
+            --! Chip selec
+        MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
+        MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0020"; 
+        DADDRESS_BUS_SIZE : integer := 32
+    );
+    
+    port(
+        clk : in std_logic;
+        rst : in std_logic;
+        
+        clk_baud    : in std_logic;
+        
+        -- Core data bus signals
+        daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
+        ddata_w   : in  std_logic_vector(31 downto 0);
+        ddata_r   : out std_logic_vector(31 downto 0);
+        d_we      : in std_logic;
+        d_rd      : in std_logic;
+        dcsel     : in std_logic_vector(1 downto 0);    --! Chip select 
+        -- ToDo: Module should mask bytes (Word, half word and byte access)
+        dmask     : in std_logic_vector(3 downto 0);    --! Byte enable mask
+        
+        -- hardware input/output signals
+        tx_out  : out std_logic;
+        rx_out  : in std_logic;
+        interrupts : out std_logic_vector(1 downto 0)
+    );
 end entity uart;
 
 architecture RTL of uart is
 	-- Signals for TX
 	type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY);
-	signal state_tx    :  state_tx_type := IDLE;
-	signal cnt_tx	   :  integer       := 0;
-	signal to_tx 	   :  std_logic_vector(10 downto 0) := (others => '1');
-	signal to_tx_p 	   :  std_logic_vector(11 downto 0) := (others => '1');
-	signal send_byte   : boolean        := FALSE;
-	signal send_byte_p : boolean        := FALSE;
+	signal state_tx    : state_tx_type := IDLE;
+	signal cnt_tx	   : integer       := 0;
+	signal to_tx 	   : std_logic_vector(10 downto 0) := (others => '1');
+	signal to_tx_p 	   : std_logic_vector(11 downto 0) := (others => '1');
+	signal send_byte   : std_logic;
+	signal send_byte_p : std_logic;
 
+    -- Interal registers
+    signal config_all : std_logic_vector (31 downto 0);
+    signal data_out : std_logic_vector(7 downto 0);
+    signal data_in : std_logic_vector(7 downto 0);
+    
+    signal tx : std_logic;
+       
+    signal tx_done : std_logic;
+    signal rx_done : std_logic;
+    
 	-- Signals for RX
 	type state_rx_type is (IDLE, READ_BYTE);
 	signal state_rx      : state_rx_type := IDLE;
 	signal cnt_rx	     : integer       := 0;
-	signal byte_received : boolean       := FALSE;
+	signal byte_received : std_logic;
 
 	-- Signals for baud rates
 	signal baud_19200 : std_logic := '0';
@@ -81,7 +101,6 @@ architecture RTL of uart is
 		return temp;
 	end function parity_val;
 
-
 begin	--Baud Entrada = 38400
 
 	------------- Baud Rate 19200 --------------
@@ -105,7 +124,7 @@ begin	--Baud Entrada = 38400
 	end process;
 
 	-------------- Baud Rate 4800 --------------
-		baud4800: process(baud_09600, baud_04800) is
+	baud4800: process(baud_09600, baud_04800) is
 	begin
 		if rising_edge(baud_09600) and (baud_04800='0') then
 			baud_04800 <= '1';
@@ -115,7 +134,7 @@ begin	--Baud Entrada = 38400
 	end process;
 
 	-------------- Baud Rate Select -------------
-		baudselect: process(config_all(1 downto 0), baud_04800, baud_09600, baud_19200, clk_baud) is
+	baudselect: process(config_all(1 downto 0), baud_04800, baud_09600, baud_19200, clk_baud) is
 	begin
 		case config_all(1 downto 0) is
 			when "00" =>
@@ -131,8 +150,49 @@ begin	--Baud Entrada = 38400
 		end case;
 	end process;
 
+
+    -- Input register
+    process(clk, rst)
+    begin
+        if rst = '1' then
+            ddata_r <= (others => '0');
+        else
+            if rising_edge(clk) then
+                if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
+                        ddata_r(7 downto 0) <= data_out;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then 
+                        ddata_r(0) <= tx_done;
+                        ddata_r(1) <= rx_done;                        
+                    end if;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -- Output register
+    process(clk, rst)     
+    begin
+        if rst = '1' then
+            data_in <= (others => '0');
+            config_all <= (others => '0');
+        elsif rising_edge(clk) then        
+            -- csel_uart <= '0';        
+            if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
+                if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
+                    data_in <= ddata_w(7 downto 0);
+                    -- csel_uart <= '1';
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then
+                    config_all <= ddata_w(31 downto 0);
+                end if;
+            end if;
+            
+        end if;
+    end process;
+
+
 	---------------- Parity Setup ---------------
-		parity_set: process(config_all(3 downto 2), number, data_in) is
+	parity_set: process(config_all(3 downto 2), number, data_in) is
 	begin
 		if config_all(3) = '1' then
 			number <= count_ones(data_in);
@@ -143,14 +203,14 @@ begin	--Baud Entrada = 38400
 	-------------------- TX --------------------
 
 	-- Maquina de estado TX: Moore
-	estado_tx: process(clk_in_1M) is
+	estado_tx: process(clk) is
 	begin
-		if rising_edge(clk_in_1M) then
+		if rising_edge(clk) then
 			case state_tx is
 				when IDLE =>
-					if csel = '1' and config_all(3) = '1' then
+					if config_all(3) = '1' then
 						state_tx <= MOUNT_BYTE_PARITY;
-					elsif csel = '1' and config_all(3) = '0' then
+					elsif config_all(3) = '0' then
 						state_tx <= MOUNT_BYTE;
 					else
 						state_tx <= IDLE;
@@ -179,31 +239,32 @@ begin	--Baud Entrada = 38400
 	tx_proc: process(state_tx, data_in, parity)
 	begin
 
-		tx_cmp <= '0';
-		send_byte <= FALSE;
+		tx_done <= '0';
+		send_byte <= '0';
+		send_byte_p <= '0';
 
 		case state_tx is
 			when IDLE =>
-				tx_cmp 		<= '1';
+				tx_done 		<= '1';
 				to_tx 		<= (others => '1');
-				send_byte 	<= FALSE;
+				send_byte 	<= '0';
 
 			when MOUNT_BYTE =>
 				to_tx 		<= "11" & data_in & '0';
-				tx_cmp 		<= '0';
-				send_byte 	<= FALSE;
+				tx_done 		<= '0';
+				send_byte 	<= '0';
 
 			when MOUNT_BYTE_PARITY =>
 				to_tx_p 		<= "11" & data_in & parity & '0';
-				tx_cmp 		<= '0';
-				send_byte_p <= FALSE;
+				tx_done 		<= '0';
+				send_byte_p <= '0';
 
 			when TRANSMIT =>
-				send_byte 	<= TRUE;
+				send_byte 	<= '1';
 				to_tx 		<= "11" & data_in & '0';
 
 			when TRANSMIT_PARITY =>
-				send_byte_p <= TRUE;
+				send_byte_p <= '1';
 				to_tx_p 	<= "11" & data_in & parity & '0';
 		end case;
 
@@ -212,10 +273,10 @@ begin	--Baud Entrada = 38400
 	tx_send: process(baud_ready)
 	begin
 		if rising_edge(baud_ready) then
-			if send_byte = TRUE then
+			if send_byte = '1' then
 				tx 		<= to_tx(cnt_tx);
 				cnt_tx 	<= cnt_tx + 1;
-			elsif send_byte_p = TRUE then
+			elsif send_byte_p = '1' then
 				tx 		<= to_tx_p(cnt_tx);
 				cnt_tx 	<= cnt_tx + 1;
 			else
@@ -228,12 +289,12 @@ begin	--Baud Entrada = 38400
 
 	-------------------- RX --------------------
 	-- Maquina de estado RX: Moore
-	estado_rx: process(clk_in_1M) is
+	estado_rx: process(clk) is
 	begin
-		if rising_edge(clk_in_1M) then
+		if rising_edge(clk) then
 			case state_rx is
 				when IDLE =>
-					if rx = '0' then
+					if rx_out = '0' then
 						state_rx <= READ_BYTE;
 					else
 						state_rx <= IDLE;
@@ -251,17 +312,17 @@ begin	--Baud Entrada = 38400
 	-- Maquina MEALY: transmission
 	rx_proc: process(state_rx)
 	begin
-
+        byte_received <= '0';
 		case state_rx is
 			when IDLE =>
-				rx_cmp 		<= '1';
+				rx_done 		<= '1';
 				rx_cmp_zeca <= '1';
-				byte_received <= FALSE;
+				byte_received <= '0';
 
 			when READ_BYTE =>
-				rx_cmp 		<= '0';
+                rx_done 		<= '0';
 				rx_cmp_zeca <= '0';
-				byte_received 	<= TRUE;
+				byte_received 	<= '1';
 
 		end case;
 
@@ -270,9 +331,9 @@ begin	--Baud Entrada = 38400
 	rx_receive: process(baud_ready, byte_received)
 		variable from_rx 	: std_logic_vector(9 downto 0);
 	begin
-		if byte_received = TRUE then
+		if byte_received = '1' then
 			if rising_edge(baud_ready) then
-				from_rx(cnt_rx)	:= rx;
+				from_rx(cnt_rx)	:= rx_out;
 				cnt_rx 	<= cnt_rx + 1;
 				if cnt_rx = 8 then
 					data_out <= from_rx(8 downto 1);
@@ -283,16 +344,20 @@ begin	--Baud Entrada = 38400
 		end if;
 	end process;
 
-	interrupt_proc: process(clk_in_1M)
+	interrupt_proc: process(clk, rst)
 	begin
-		if rising_edge(clk_in_1M) then
+	    if rst = '1' then 
+	       interrupts <= (others => '0');	    
+		elsif rising_edge(clk) then
 			if input_data = '0' and rx_cmp_zeca = '1' and config_all(4) = '1' then
-				interrupt <= '1';
+				interrupts(0) <= '1';
 			else
-				interrupt <= '0';
+				interrupts(0) <= '0';
 			end if;
 			input_data <= rx_cmp_zeca;
 		end if;
 	end process;
+	
+	tx_out <= tx;
 
 end architecture RTL;
