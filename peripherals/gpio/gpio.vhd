@@ -25,7 +25,6 @@ entity gpio is
 		rst : in std_logic;
 		
 		-- Core data bus signals
-		-- ToDo: daddress shoud be unsgined
 		daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
 		ddata_w	  : in 	std_logic_vector(31 downto 0);
 		ddata_r   : out	std_logic_vector(31 downto 0);
@@ -73,8 +72,7 @@ begin
                 EXTIx(15);
     
     interrupts <= EXTI10_15 & EXTI5_9 & EXTIx(4) & EXTIx(3) & EXTIx(2) & EXTIx(1) & EXTIx(0);
-	 
-	 
+	
     interrupt_edge : process (clk, rst) is
     begin
         if rst = '1' then

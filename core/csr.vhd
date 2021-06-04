@@ -263,5 +263,16 @@ begin
         mepc_out <= mreg(To_integer(unsigned(MTVT2   (15 downto 12)))) and x"fffffffC" when '0',
                     mreg(To_integer(unsigned(MEPC   (15 downto 12)))) when '1',
                     x"00000000" when others;
+                    
+                    
+--  # ** Warning: ../../core/csr.vhd(193): (vcom-1014) Array type case expression must be of a locally static subtype.
+--# ** Warning: ../../core/csr.vhd(194): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(197): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(200): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(202): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(204): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(206): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(209): (vcom-1937) Choice in CASE statement alternative must be locally static.
+--# ** Warning: ../../core/csr.vhd(212): (vcom-1937) Choice in CASE statement alternative must be locally static.
 
 end architecture RTL;

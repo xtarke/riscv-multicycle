@@ -8,6 +8,8 @@ Ferramentas de programação podem ser obtidas no [Compliler](https://github.com
 
 Animação do funcionamento da arquitetura em [Virgularor: minimum RISC-V](http://tice.sea.eseo.fr/riscv/)
 
+Simulador assembly baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
+
 ![Diagrama Núcleo](./readme_img/core.svg)
 
 ## Getting Started (hardware):
@@ -93,7 +95,3 @@ sudo npm --global install xpm
 8. Para compilar, _make_.
 
 Após a compilação, mova, copie ou faça um _link_ simbólico de ./tests/quartus.hex para a raiz do projeto.
-
-## Simulador Assembly:
-
-RISV baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
