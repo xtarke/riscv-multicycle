@@ -29,7 +29,7 @@ Check [here](https://github.com/TheThirdOne/rars) a assembly simulator based on 
 
 Compilation of programs requires the _toolchain_ __riscv32-unknown-elf__ (or __riscv-none-embed__) supporting the subset __RV32IM__, __without ABI__. At ./software/ folder, there are several examples. Note that in the current phase of the project we use a custom _linker_ _script_ (sections.ld). _libc_ has not yet been tested/supported.
 
-### Instalação do compilador no Linux
+### For Linux
 
 Install tutorial [here](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/#gnulinux)
 
@@ -60,9 +60,9 @@ cd $MY_PLD_WORKSPACE/riscv-multicycle/tests
 RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
 ```
 
-2. Para compilar, _make_.
+2. Type _make_ to compile.
 
-### Fro Windows Subsystem for Linux:
+### For Windows Subsystem (WSL):
 
 1. Install WSL: [Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 

@@ -2,9 +2,10 @@
 -- Name        : de0_lite.vhd
 -- Author      : Renan Augusto Starke
 -- Modified    : Leticia de Oliveira Nunes e Marieli Matos
--- Version     : 0.1
+--             : Renan Augusto Starke
+-- Version     : 0.2
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
--- Description : riscV ADC example
+-- Description : riscV ADC 
 -------------------------------------------------------------------
 
 library ieee;
@@ -13,17 +14,18 @@ use ieee.numeric_std.all;
 
 entity adc_bus is
     generic(
-        --! Chip selec
         MY_CHIPSELECT : std_logic_vector(1 downto 0)    := "10";
-        MY_WORD_ADDRESS : unsigned(7 downto 0)          := x"10"
+        MY_WORD_ADDRESS : unsigned(15 downto 0)          := x"0030";
+        DADDRESS_BUS_SIZE : integer := 32
     );
     port(
         clk         : in std_logic;
         rst         : in std_logic;
         clk_adc     : in std_logic;
+        
         -- Core data bus signals
-        -- ToDo: daddress shoud be unsgined
-        daddress    : in  natural;
+            -- Core data bus signals
+        daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
         ddata_w     : in  std_logic_vector(31 downto 0);
         ddata_r     : out std_logic_vector(31 downto 0);
         d_we        : in std_logic;
@@ -32,9 +34,7 @@ entity adc_bus is
         -- ToDo: Module should mask bytes (Word, half word and byte access)
         dmask       : in std_logic_vector(3 downto 0)    --! Byte enable mask
     
-        -- hardware input/output signals
---        data_adc  : in std_logic_vector(31 downto 0);
---        output : out std_logic_vector(31 downto 0)
+        -- hardware input/output signals: ADC module uses hardwire pin (see DE10-LITE Manual)
     );
 end entity adc_bus;
 
@@ -52,8 +52,6 @@ architecture rtl of adc_bus is
     signal response_startofpacket    : std_logic;
     signal response_endofpacket      : std_logic;   
     signal reset_n                   : std_logic;
-
-    constant ADC_BASE_ADDRESS        : unsigned(15 downto 0) := x"0030";
    
 begin
     qsys : entity work.adc_qsysbus
@@ -72,7 +70,8 @@ begin
             modular_adc_0_response_startofpacket => response_startofpacket,     -- startofpacket
             modular_adc_0_response_endofpacket   => response_endofpacket        -- endofpacket
         );   
-    reset_n         <= not rst;                
+    
+    reset_n <= not rst;                
           
     -- Read ADC
     read_adc: process(clk_adc, reset_n) --adc_out_clk
@@ -97,7 +96,7 @@ begin
             if rising_edge(clk) then
 
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
-                    if to_unsigned(daddress, 32)(15 downto 0) = (x"31") then
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
                         ddata_r <= adc_sample_data ;
                     end if;
                 end if;
@@ -113,14 +112,7 @@ begin
         else
             if rising_edge(clk) then        
                 if (d_we = '1') and (dcsel = MY_CHIPSELECT)then                 
-                    -- ToDo: Simplify comparators
-                    -- ToDo: Maybe use byte addressing?  
-                    --       x"01" (word addressing) is x"04" (byte addressing)
-                    -- Address comparator when more than one word is mapped here
-                    --if to_unsigned(daddress, 32)(8 downto 0) = MY_WORD_ADDRESS then
-                    --end if;
-                    
-                    if to_unsigned(daddress, 32)(15 downto 0) = (ADC_BASE_ADDRESS + x"0000") then
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
                         channel_adc <= ddata_w;
                     end if;
                 end if;

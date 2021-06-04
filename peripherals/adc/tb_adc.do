@@ -6,9 +6,9 @@
 # All information provided herein is provided on an "as is" basis,            *
 # without warranty of any kind.                                               *
 #                                                                             *
-# File Name: testbench.do          						    				  *
+# File Name: testbench.do          						*
 #                                                                             *
-# Function: riscv muticycle simulation script		  	                 	  *
+# Function: riscv muticycle simulation script		  	     		*
 #                                                                             *
 # REVISION HISTORY:                                                           *
 #  Revision 0.1.0    08/01/2018 - Initial Revision                            *
@@ -17,13 +17,19 @@
 vlib work
 vcom adc_qsysbus.vhd
 vcom adc_bus.vhd
+vcom ../gpio/gpio.vhd
+vcom ../gpio/led_displays.vhd
+vcom ../timer/Timer.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../memory/databusmux.vhd
 vcom ../../memory/instructionbusmux.vhd
+vcom ../../memory/iodatabusmux.vhd
 vcom ../../alu/alu_types.vhd
 vcom ../../alu/alu.vhd
 vcom ../../alu/m/M_types.vhd
+vcom ../../alu/m/division_functions.vhd
+vcom ../../alu/m/quick_naive.vhd
 vcom ../../alu/m/M.vhd
 vcom ../../decoder/decoder_types.vhd
 vcom ../../decoder/iregister.vhd
@@ -108,12 +114,10 @@ add wave -label response_channel -radix hex /adc_bus/response_channel
 add wave -label sample           -radix dec /adc_bus/adc_sample_data
 
 add wave -height 15             -divider "GPIO"
-add wave -label gpio_output     -radix hex /gpio_output
-
-#add wave -height 15            -divider "Input/Output SIM"
-#add wave -label LEDR           -radix hex /LEDR
-#add wave -label 7seg           -radix hex /disp7_output
-#add wave -label ARDUINO        -radix hex /ARDUINO_IO
+add wave -label HEX0		 -radix hex /HEX0
+add wave -label HEX1		 -radix hex /HEX1
+add wave -label HEX2		 -radix hex /HEX2
+add wave -label HEX3		 -radix hex /HEX3
 
 run 1000000 ns
 wave zoomfull
