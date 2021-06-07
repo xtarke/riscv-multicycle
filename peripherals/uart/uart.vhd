@@ -35,7 +35,7 @@ end entity uart;
 
 architecture RTL of uart is
 	-- Signals for TX
-	type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY);
+	type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY, DONE);
 	signal state_tx    : state_tx_type := IDLE;
 	signal cnt_tx	   : integer       := 0;
 	signal to_tx 	   : std_logic_vector(10 downto 0) := (others => '1');
@@ -46,7 +46,8 @@ architecture RTL of uart is
     -- Interal registers
     signal config_all : std_logic_vector (31 downto 0);
     signal data_out : std_logic_vector(7 downto 0);
-    signal data_in : std_logic_vector(7 downto 0);
+    signal tx_register : std_logic_vector(31 downto 0);
+    signal start_tx : std_logic;
     
     signal tx : std_logic;
        
@@ -159,7 +160,28 @@ begin	--Baud Entrada = 38400
         else
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
-                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
+                      --! Tx register: Supports byte write
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
+                        ddata_r <= (others => '0');
+                        case dmask is
+                          when "1111" =>
+                            ddata_r <= tx_register;
+                        when "0011" =>
+                            ddata_r(15 downto 0) <= tx_register(15 downto 0);
+                        when "1100" =>
+                            ddata_r(15 downto 0) <= tx_register(31 downto 16);
+                        when "0001" => 
+                            ddata_r(7 downto 0) <= tx_register(7 downto 0);
+                        when "0010" => 
+                            ddata_r(7 downto 0) <= tx_register(15 downto 8);
+                        when "0100" => 
+                            ddata_r(7 downto 0) <= tx_register(23 downto 16);
+                        when "1000" => 
+                            ddata_r(7 downto 0) <= tx_register(31 downto 24);
+                            when others =>                            
+                        end case;                   
+                    
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
                         ddata_r(7 downto 0) <= data_out;
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then 
                         ddata_r(0) <= tx_done;
@@ -174,14 +196,30 @@ begin	--Baud Entrada = 38400
     process(clk, rst)     
     begin
         if rst = '1' then
-            data_in <= (others => '0');
+            tx_register <= (others => '0');
             config_all <= (others => '0');
-        elsif rising_edge(clk) then        
-            -- csel_uart <= '0';        
+        elsif rising_edge(clk) then            
+            tx_register(8) <= not tx_done;  
             if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
+                --! Tx register: Supports byte write
                 if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
-                    data_in <= ddata_w(7 downto 0);
-                    -- csel_uart <= '1';
+                    case dmask is
+                      when "1111" =>
+                            tx_register <= ddata_w(31 downto 0);
+                        when "0011" =>
+                            tx_register(15 downto 0) <= ddata_w(15 downto 0);
+                        when "1100" =>
+                            tx_register(31 downto 16) <= ddata_w(15 downto 0);
+                        when "0001" => 
+                            tx_register(7 downto 0) <= ddata_w(7 downto 0);
+                        when "0010" => 
+                            tx_register(15 downto 8) <= ddata_w(7 downto 0);
+                        when "0100" => 
+                            tx_register(23 downto 16) <= ddata_w(7 downto 0);
+                        when "1000" => 
+                            tx_register(31 downto 24) <= ddata_w(7 downto 0);
+                        when others =>                            
+                    end case;
                 elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then
                     config_all <= ddata_w(31 downto 0);
                 end if;
@@ -192,10 +230,10 @@ begin	--Baud Entrada = 38400
 
 
 	---------------- Parity Setup ---------------
-	parity_set: process(config_all(3 downto 2), number, data_in) is
+	parity_set: process(config_all(3 downto 2), number, tx_register) is
 	begin
 		if config_all(3) = '1' then
-			number <= count_ones(data_in);
+			number <= count_ones(tx_register(7 downto 0));
 			parity <= parity_val(number, config_all(2));
 		end if;
 	end process;
@@ -203,18 +241,23 @@ begin	--Baud Entrada = 38400
 	-------------------- TX --------------------
 
 	-- Maquina de estado TX: Moore
-	estado_tx: process(clk) is
+	estado_tx: process(clk,rst) is
 	begin
-		if rising_edge(clk) then
+	    if rst = '1' then
+	       state_tx <= IDLE;
+		elsif rising_edge(clk) then
 			case state_tx is
-				when IDLE =>
-					if config_all(3) = '1' then
-						state_tx <= MOUNT_BYTE_PARITY;
-					elsif config_all(3) = '0' then
-						state_tx <= MOUNT_BYTE;
-					else
-						state_tx <= IDLE;
-					end if;
+                when IDLE =>
+			        -- Start transmission bit
+                    if tx_register(8) = '1' then			    
+    					if config_all(3) = '1' then
+    						state_tx <= MOUNT_BYTE_PARITY;
+    					elsif config_all(3) = '0' then
+    						state_tx <= MOUNT_BYTE;
+    					else
+    						state_tx <= IDLE;
+    					end if;
+    				end if;
 				when MOUNT_BYTE =>
 					state_tx <= TRANSMIT;
 				when MOUNT_BYTE_PARITY =>
@@ -223,20 +266,23 @@ begin	--Baud Entrada = 38400
 					if (cnt_tx < 10) then
 						state_tx <= TRANSMIT;
 					else
-						state_tx <= IDLE;
+						state_tx <= DONE;
 					end if;
 				when TRANSMIT_PARITY =>
 					if (cnt_tx < 11) then
 						state_tx <= TRANSMIT_PARITY;
 					else
-						state_tx <= IDLE;
+						state_tx <= DONE;
 					end if;
+					
+				when DONE => 
+				    state_tx <= IDLE;
 			end case;
 		end if;
 	end process;
 
-	-- Maquina MEALY: transmission
-	tx_proc: process(state_tx, data_in, parity)
+	-- MEALY: transmission
+	tx_proc: process(state_tx, tx_register, parity)
 	begin
 
 		tx_done <= '0';
@@ -244,28 +290,31 @@ begin	--Baud Entrada = 38400
 		send_byte_p <= '0';
 
 		case state_tx is
-			when IDLE =>
-				tx_done 		<= '1';
+			when IDLE =>				
 				to_tx 		<= (others => '1');
 				send_byte 	<= '0';
-
+				tx_done <= '1';
 			when MOUNT_BYTE =>
-				to_tx 		<= "11" & data_in & '0';
+				to_tx 		<= "11" & tx_register(7 downto 0) & '0';
 				tx_done 		<= '0';
 				send_byte 	<= '0';
 
 			when MOUNT_BYTE_PARITY =>
-				to_tx_p 		<= "11" & data_in & parity & '0';
+				to_tx_p 		<= "11" & tx_register(7 downto 0) & parity & '0';
 				tx_done 		<= '0';
 				send_byte_p <= '0';
 
 			when TRANSMIT =>
 				send_byte 	<= '1';
-				to_tx 		<= "11" & data_in & '0';
+				to_tx 		<= "11" & tx_register(7 downto 0) & '0';
 
 			when TRANSMIT_PARITY =>
 				send_byte_p <= '1';
-				to_tx_p 	<= "11" & data_in & parity & '0';
+				to_tx_p 	<= "11" & tx_register(7 downto 0) & parity & '0';
+				
+			when DONE =>
+			    tx_done      <= '1';
+			    
 		end case;
 
 	end process;

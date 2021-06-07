@@ -44,8 +44,8 @@ vcom coretestbench.vhd
 vsim -t ns work.uart_coretestbench
 
 view wave
-add wave -radix binary  /clk
-add wave -radix binary  /rst
+add wave -radix binary -label clk /clk
+add wave -radix binary  -label rst /rst
 add wave -height 15 -divider "Instruction Memory"
 add wave -label iAddr -radix hex /address
 add wave -label iWord -radix hex idata
@@ -145,8 +145,13 @@ add wave -label gpio_interrupts -radix hex /gpio_interrupts
 add wave -label gpio_input -radix hex /gpio_input
 
 add wave -height 15 -divider "UART"
+add wave -label clk /generic_uart/clk
+add wave -label clk_baud /generic_uart/clk_baud
+add wave -label config /generic_uart/config_all
+add wave -label tx_register -radix hex /generic_uart/tx_register
+add wave -label tx_done /generic_uart/tx_done
 add wave -label TX -radix hex /TX
-add wave -label TX -radix hex /RX
+add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_uart/state_rx
 add wave -label tx_state /generic_uart/state_tx
 

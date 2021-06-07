@@ -277,7 +277,7 @@ begin
             clk_baud   => clk_baud,
             daddress   => daddress,
             ddata_w    => ddata_w,
-            ddata_r    => ddata_r,
+            ddata_r    => ddata_r_uart,
             d_we       => d_we,
             d_rd       => d_rd,
             dcsel      => dcsel,

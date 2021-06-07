@@ -19,12 +19,16 @@
 #include "uart.h"
 #include "../_core/hardware.h"
 
-void UART_write(int character){
-	/* To do:
-		- Change variable "character" to uint8_t
-	*/
-	UART_TX = (0x01 << 8) | character;
-	return;
+void UART_write(uint8_t data){
+
+	/* Slow assembly */
+	/* UART_TX_REG->byte = data;
+	UART_TX_REG->tx_start = 1; */
+
+	/* Fast assembly: one instruction */
+	*((_IO32 *)UART_TX_REG) = (1 << 8) | data;
+
+
 }
 
 void UART_setup(int baud, int parity){

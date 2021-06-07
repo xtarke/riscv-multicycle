@@ -14,7 +14,7 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl
 LDLIBS =
-MAIN = main_uart
+MAIN = main
 
 #test: testbench.vvp $(MAIN)32.hex
 #	# vvp -l testbench.log -N testbench.vvp
