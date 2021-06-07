@@ -65,7 +65,7 @@ BEGIN
 		byte_size => 8,
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "../../software/adc/quartus_main_adc.hex",
+		init_file => "../../software/uart/quartus_main.hex",
 		intended_device_family => "MAX 10",
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",

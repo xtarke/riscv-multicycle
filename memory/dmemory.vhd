@@ -213,11 +213,5 @@ begin
     end process;
     
     
---    with csel select
---			q <= ram_data when '1',
---			      (others => '0') when others;		
-    
-    
-
 end architecture RTL;
  
