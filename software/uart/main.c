@@ -19,24 +19,25 @@
 
 int main(){
 
-	int x;
+	uint8_t data = 0;
 
 	UART_setup(0, 0);
 
-	UART_write('j');
+	//UART_write('j');
 
 	while (1){
 		// Testing UART - Adjusts
 		//delay_(10000);
 
 		// Testing UART - Transmission
-		//UART_write('c');
-		delay_(10);
+		UART_write(data);
+		//delay_(10);
 
 		// Testint UART - Reception
 		//x = UART_read();
 		//OUTBUS = x;
 		//delay_(10000);
+    data++;
 	}
 
 	return 0;

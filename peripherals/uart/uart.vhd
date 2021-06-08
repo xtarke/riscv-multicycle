@@ -34,6 +34,11 @@ entity uart is
 end entity uart;
 
 architecture RTL of uart is
+    
+    constant TX_START_BIT : integer := 8; 
+    constant TX_DONE_BIT : integer := 9;    
+    
+    
 	-- Signals for TX
 	type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY, DONE);
 	signal state_tx    : state_tx_type := IDLE;
@@ -45,7 +50,7 @@ architecture RTL of uart is
 
     -- Interal registers
     signal config_all : std_logic_vector (31 downto 0);
-    signal data_out : std_logic_vector(7 downto 0);
+    signal rx_register : std_logic_vector(7 downto 0);
     signal tx_register : std_logic_vector(31 downto 0);
     signal start_tx : std_logic;
     
@@ -90,7 +95,7 @@ architecture RTL of uart is
 	function parity_val(s : integer; setup : std_logic) return std_logic is
   		variable temp : std_logic := '0';
 	begin
-		if    ((s mod 2) = 0) and (setup = '0') then --Paridade ativada impar
+		if ((s mod 2) = 0) and (setup = '0') then --Paridade ativada impar
 			temp := '0';
 		elsif ((s mod 2) = 0) and (setup = '1') then --Paridade ativada par
 			temp := '1';
@@ -179,10 +184,10 @@ begin	--Baud Entrada = 38400
                         when "1000" => 
                             ddata_r(7 downto 0) <= tx_register(31 downto 24);
                             when others =>                            
-                        end case;                   
+                        end case;
                     
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
-                        ddata_r(7 downto 0) <= data_out;
+                        ddata_r(7 downto 0) <= rx_register;
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then 
                         ddata_r(0) <= tx_done;
                         ddata_r(1) <= rx_done;                        
@@ -199,9 +204,13 @@ begin	--Baud Entrada = 38400
             tx_register <= (others => '0');
             config_all <= (others => '0');
         elsif rising_edge(clk) then            
-            tx_register(8) <= not tx_done;  
+            
+            -- Set/Reset register to detect writes in TX_START_BIT
+            tx_register(TX_START_BIT) <= not tx_done;
+              
             if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
-                --! Tx register: Supports byte write
+                
+                --! Tx register supports byte write
                 if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
                     case dmask is
                       when "1111" =>
@@ -225,6 +234,8 @@ begin	--Baud Entrada = 38400
                 end if;
             end if;
             
+            -- Keep Done flag
+            tx_register(TX_DONE_BIT) <= tx_done;            
         end if;
     end process;
 
@@ -249,7 +260,8 @@ begin	--Baud Entrada = 38400
 			case state_tx is
                 when IDLE =>
 			        -- Start transmission bit
-                    if tx_register(8) = '1' then			    
+                    if tx_register(TX_START_BIT) = '1' then			    
+    					
     					if config_all(3) = '1' then
     						state_tx <= MOUNT_BYTE_PARITY;
     					elsif config_all(3) = '0' then
@@ -338,9 +350,11 @@ begin	--Baud Entrada = 38400
 
 	-------------------- RX --------------------
 	-- Maquina de estado RX: Moore
-	estado_rx: process(clk) is
+	estado_rx: process(clk,rst) is
 	begin
-		if rising_edge(clk) then
+	    if rst = '1' then
+	       state_rx <= IDLE;	    
+		elsif rising_edge(clk) then
 			case state_rx is
 				when IDLE =>
 					if rx_out = '0' then
@@ -367,29 +381,31 @@ begin	--Baud Entrada = 38400
 				rx_done 		<= '1';
 				rx_cmp_zeca <= '1';
 				byte_received <= '0';
-
 			when READ_BYTE =>
                 rx_done 		<= '0';
 				rx_cmp_zeca <= '0';
 				byte_received 	<= '1';
-
 		end case;
-
 	end process;
 
 	rx_receive: process(baud_ready, byte_received)
 		variable from_rx 	: std_logic_vector(9 downto 0);
 	begin
-		if byte_received = '1' then
-			if rising_edge(baud_ready) then
-				from_rx(cnt_rx)	:= rx_out;
-				cnt_rx 	<= cnt_rx + 1;
-				if cnt_rx = 8 then
-					data_out <= from_rx(8 downto 1);
-				end if;
-			end if;
+		if rst = '1' then
+		    rx_register <= (others => '0');
+		    cnt_rx <= 0;
 		else
-			cnt_rx 	<= 0;
+    		if byte_received = '1' then
+    			if rising_edge(baud_ready) then
+    				from_rx(cnt_rx)	:= rx_out;
+    				cnt_rx 	<= cnt_rx + 1;
+    				if cnt_rx = 8 then
+    					rx_register <= from_rx(8 downto 1);
+    				end if;
+    			end if;
+    		else
+    			cnt_rx 	<= 0;
+    		end if;
 		end if;
 	end process;
 

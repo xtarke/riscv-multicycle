@@ -72,6 +72,12 @@ architecture RTL of uart_coretestbench is
     signal TX : std_logic;
     signal RX : std_logic;
     signal uart_interrupts : std_logic_vector(1 downto 0);
+    
+    -- UART testbench
+    signal transmit_byte: std_logic_vector(7 downto 0) := x"23";
+    signal transmit_frame: std_logic_vector(9 downto 0) := (others => '1');
+    signal clk_state: boolean := FALSE;
+    signal cnt_rx : integer := 0;
         
 begin
 
@@ -94,14 +100,27 @@ begin
         wait for period / 2;
     end process clock_driver_32x;
     
-    clock_driver_baud : process
+--    clock_driver_baud : process
+--        constant period : time := 2000 ns;
+--    begin
+--        clk_baud <= '0';
+--        wait for period / 2;
+--        clk_baud <= '1';
+--        wait for period / 2;
+--    end process clock_driver_baud;
+    
+    clock_baud : process
         constant period : time := 2000 ns;
     begin
         clk_baud <= '0';
+        clk_state <= FALSE;
+        --wait for 2 ns;
         wait for period / 2;
         clk_baud <= '1';
+        clk_state <= TRUE;
+        --wait for 2 ns;
         wait for period / 2;
-    end process clock_driver_baud;
+    end process clock_baud;
     
  
     reset : process is
@@ -286,7 +305,27 @@ begin
             rx_out      => RX,
             interrupts => uart_interrupts
         );
-
+        
+    data_transmit_proc: process
+    begin
+        RX <= '1';
+        wait for 2 us;
+        wait until clk_state;
+        RX <= '0';
+            for i in 0 to 8 loop
+                RX <= (transmit_frame(cnt_rx));
+                cnt_rx <= cnt_rx + 1;
+                wait until clk_state;
+            end loop;
+        cnt_rx <= 0;
+        RX <= '1';
+        wait for 50 us;
+    end process;
+    
+    transmit_byte <= x"89", x"A5" after 50 us;
+    transmit_frame <= '1' & transmit_byte & '0';
+        
+      
     -- FileOutput DEBUG 
     debug : entity work.trace_debug
     generic map(
@@ -297,28 +336,6 @@ begin
         data => idata,
         inst => debugString
     );
-	
-
-	
-
---data_transmit_proc: process
---  begin
---    wait for 2 us;
---    wait until clk_state;
---    rx <= '0';
---    for i in 0 to 8 loop
---			rx <= (transmit_frame(cnt_rx));
---			cnt_rx <= cnt_rx + 1;
---			wait until clk_state;
---		end loop;
---    cnt_rx <= 0;
---    rx <= '1';
---    wait for 2 us;
---  end process;
---
---	transmit_byte <= x"89" after 1 us, x"A5" after 4 us;
---  transmit_frame <= '1' & transmit_byte & '0';
-
-
+	 
 
 end architecture RTL;
