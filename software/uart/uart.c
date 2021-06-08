@@ -20,14 +20,14 @@
 #include "../_core/hardware.h"
 
 void UART_write(uint8_t data){
-
 	/* Slow assembly */
 	/* UART_TX_REG->byte = data;
 	UART_TX_REG->tx_start = 1; */
 
+	while (!UART_TX_REG->tx_done);
+
 	/* Fast assembly: one instruction */
 	*((_IO32 *)UART_TX_REG) = (1 << 8) | data;
-
 
 }
 

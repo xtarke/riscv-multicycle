@@ -147,13 +147,19 @@ add wave -label gpio_input -radix hex /gpio_input
 add wave -height 15 -divider "UART"
 add wave -label clk /generic_uart/clk
 add wave -label clk_baud /generic_uart/clk_baud
+add wave -label transmit_byte -radix hex /transmit_byte
+add wave -label transmit_frame /transmit_frame    
 add wave -label config /generic_uart/config_all
 add wave -label tx_register -radix hex /generic_uart/tx_register
+add wave -label rx_register -radix hex /generic_uart/rx_register
+add wave -label from_rx -radix bin /generic_uart/rx_receive/from_rx
+
 add wave -label tx_done /generic_uart/tx_done
 add wave -label TX -radix hex /TX
 add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_uart/state_rx
 add wave -label tx_state /generic_uart/state_tx
+
 
 
 add wave -height 15 -divider "Input/Output SIM"
