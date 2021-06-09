@@ -21,7 +21,8 @@ int main(){
 
 	uint8_t data = 0;
 
-	UART_setup(0, 0);
+	UART_setup(_9600, NO_PARITY);
+  //UART_reception_enable();
 
 	//UART_write('j');
 

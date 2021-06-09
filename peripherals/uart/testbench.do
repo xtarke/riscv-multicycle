@@ -149,7 +149,7 @@ add wave -label clk /generic_uart/clk
 add wave -label clk_baud /generic_uart/clk_baud
 add wave -label transmit_byte -radix hex /transmit_byte
 add wave -label transmit_frame /transmit_frame    
-add wave -label config /generic_uart/config_all
+add wave -label config /generic_uart/config_register
 add wave -label tx_register -radix hex /generic_uart/tx_register
 add wave -label rx_register -radix hex /generic_uart/rx_register
 add wave -label from_rx -radix bin /generic_uart/rx_receive/from_rx
