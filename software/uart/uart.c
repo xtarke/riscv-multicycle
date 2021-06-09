@@ -31,26 +31,21 @@ void UART_write(uint8_t data){
 
 }
 
-void UART_setup(int baud, int parity){
-	/* To do:
-		baud = 0 => baud_rate = 38400
-		baud = 1 => baud_rate = 19200
-		baud = 2 => baud_rate = 09600
-		baud = 3 => baud_rate = 04800
+void UART_setup(baud_rate_t baud, parity_t parity){
+	/* Slow assembly
+	UART_SETUP_REG->baud_rate = baud;
+	UART_SETUP_REG->parity = parity; */
 
-		parity = 0 => parity_off
-		parity = 1 => parity_off
-		parity = 2 => parity_on odd
-		parity = 3 => parity_on even
-	*/
+	/* Fast assembly: one instruction */
+	*((_IO32 *)UART_SETUP_REG) = (baud & 0x03) | ((0x03 & parity) << 2);
+}
 
-
-	UART_SETUP = (baud & 0x03) | ((0x3 & parity) << 2);
-	return;
+void UART_reception_enable(void){
+	UART_SETUP_REG->rx_enable = 1;
 }
 
 void UART_interrupt_enable(void){
-	UART_SETUP = UART_SETUP | (0x01 << 4);
+	UART_SETUP_REG->rx_irq_enable = 1;
 }
 
 uint8_t UART_read(void){
