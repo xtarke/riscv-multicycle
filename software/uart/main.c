@@ -36,7 +36,7 @@ int main(){
 		// Testint UART - Reception
 		//x = UART_read();
 		//OUTBUS = x;
-		//delay_(10000);
+		delay_(100);
     data++;
 	}
 

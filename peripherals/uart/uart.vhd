@@ -243,6 +243,9 @@ begin	--Baud Entrada = 38400
 	---------------- Parity Setup ---------------
 	parity_set: process(config_all(3 downto 2), number, tx_register) is
 	begin
+	    number <= 0;
+	    parity <= '0';
+	    
 		if config_all(3) = '1' then
 			number <= count_ones(tx_register(7 downto 0));
 			parity <= parity_val(number, config_all(2));
@@ -300,7 +303,10 @@ begin	--Baud Entrada = 38400
 		tx_done <= '0';
 		send_byte <= '0';
 		send_byte_p <= '0';
-
+		
+		to_tx         <= (others => '1');
+		to_tx_p       <= (others => '1');
+		
 		case state_tx is
 			when IDLE =>				
 				to_tx 		<= (others => '1');
@@ -388,7 +394,7 @@ begin	--Baud Entrada = 38400
 		end case;
 	end process;
 
-	rx_receive: process(baud_ready, byte_received)
+	rx_receive: process(rst, baud_ready, byte_received)
 		variable from_rx 	: std_logic_vector(9 downto 0);
 	begin
 		if rst = '1' then
@@ -414,6 +420,8 @@ begin	--Baud Entrada = 38400
 	    if rst = '1' then 
 	       interrupts <= (others => '0');	    
 		elsif rising_edge(clk) then
+		    interrupts(1) <= '0'; 
+		    
 			if input_data = '0' and rx_cmp_zeca = '1' and config_all(4) = '1' then
 				interrupts(0) <= '1';
 			else
