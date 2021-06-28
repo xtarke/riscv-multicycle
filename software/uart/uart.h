@@ -36,36 +36,23 @@ typedef enum parity_config {
 
 void UART_write(uint8_t data);
 void UART_setup(baud_rate_t baud, parity_t parity);
-
 void UART_interrupt_enable(void);
 void UART_reception_enable(void);
-
 uint8_t UART_read(void);
 
-#define UART_TX              *(&UART_BASE_ADDRESS)
-#define UART_RX              *(&UART_BASE_ADDRESS + 1)
-#define UART_SETUP           *(&UART_BASE_ADDRESS + 2)
-
 typedef struct {
-    _IO8 byte;          /*!< Data to transfer. */
-    _IO32 tx_start : 1;  /*!< Start Transmission */
-    _IO32 tx_done  : 1;  /*!< Transmission done flag. */
-} UART_TX_TYPE;
+  _IO8 tx_byte;           /*!< Data to transfer. */
+  _IO8 rx_byte;           /*!< Data received. */
+  _IO32 tx_start : 1;     /*!< Start Transmission. Bit 16. */
+  _IO32 tx_done  : 1;     /*!< Transmission done flag. Bit 17. */
+  _IO32 rx_done  : 1;     /*!< Reception done flag. Bit 18 */
+  _IO32 baud_rate  : 2;   /*!< Baud rate config. Bits 19 e 20. */
+  _IO32 parity     : 2;   /*!< Parity config. Bit 21 and 22. */
+  _IO32 rx_enable  : 1;     /*!< Reception transceiver enable. Bit 23. */
+  _IO32 rx_irq_enable : 1;  /*!< Reception interrupt enable. Bit 24. */
+  _IO32 tx_irq_enable : 1;  /*!< Transmission done interrupt enable. Bit 25 */
+} UART_REG_TYPE;
 
-typedef struct {
-    _IO8 byte;          /*!< Data to transfer. */
-    _IO32 rx_done  : 1;  /*!< Reception done flag. */
-} UART_RX_TYPE;
-
-typedef struct {
-    _IO32 baud_rate  : 2;      /*!< Baud rate config. */
-    _IO32 parity     : 2;      /*!< Parity config. */
-    _IO32 rx_enable  : 1;      /*!< Reception transceiver enable. */
-    _IO32 rx_irq_enable : 1;  /*!< Reception interrupt enable */
-} UART_SETUP_TYPE;
-
-#define UART_TX_REG ((UART_TX_TYPE *) &UART_TX)
-#define UART_RX_REG ((UART_RX_TYPE *) &UART_RX)
-#define UART_SETUP_REG ((UART_SETUP_TYPE *) &UART_SETUP)
+#define UART_REGISTER ((UART_REG_TYPE *) &UART_BASE_ADDRESS)
 
 #endif // __UART_H

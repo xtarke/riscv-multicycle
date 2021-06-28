@@ -20,15 +20,15 @@
 #include "../_core/hardware.h"
 
 void UART_write(uint8_t data){
-	/* Slow assembly */
-	/* UART_TX_REG->byte = data;
-	UART_TX_REG->tx_start = 1; */
+	/* Slow assembly
+	while (!UART_REGISTER->tx_done);
+	UART_REGISTER->tx_byte = data;
+	UART_REGISTER->tx_start = 1; */
 
-	while (!UART_TX_REG->tx_done);
+	while (!UART_REGISTER->tx_done);
 
 	/* Fast assembly: one instruction */
-	*((_IO32 *)UART_TX_REG) = (1 << 8) | data;
-
+	*((_IO32 *)UART_REGISTER) = (1 << 16) | data;
 }
 
 void UART_setup(baud_rate_t baud, parity_t parity){
@@ -37,24 +37,28 @@ void UART_setup(baud_rate_t baud, parity_t parity){
 	UART_SETUP_REG->parity = parity; */
 
 	/* Fast assembly: one instruction */
-	*((_IO32 *)UART_SETUP_REG) = (baud & 0x03) | ((0x03 & parity) << 2);
+	//*((_IO32 *)UART_SETUP_REG) = (baud & 0x03) | ((0x03 & parity) << 2);
 }
 
 void UART_reception_enable(void){
-	UART_SETUP_REG->rx_enable = 1;
+	UART_REGISTER->rx_enable = 1;
 }
 
 void UART_interrupt_enable(void){
-	UART_SETUP_REG->rx_irq_enable = 1;
+	//UART_SETUP_REG->rx_irq_enable = 1;
 }
 
 uint8_t UART_read(void){
-	/* To do:
-		- Change variable "byte" to uint8_t
-	*/
 	uint8_t byte;
 
-	byte = UART_RX;
+	/*Wait for a new byte */
+	while (!UART_REGISTER->rx_done);
+
+	/* Read byte */
+	byte = UART_REGISTER->rx_byte;
+
+	/* Reenable receiver */
+	UART_REGISTER->rx_enable = 1;
 
 	return byte;
 }
