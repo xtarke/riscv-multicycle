@@ -36,15 +36,15 @@ end entity uart;
 architecture RTL of uart is
     
     --! UART TX TYPE bit maps (See uart.h)
-    constant TX_START_BIT : integer := 8;
-    constant TX_DONE_BIT : integer := 9;
+    constant TX_START_BIT : integer := 16;
+    constant TX_DONE_BIT : integer := 17;
     
     --! UART RX TYPE bit maps (See uart.h)
-    constant RX_DONE_BIT : integer := 8;
+    constant RX_DONE_BIT : integer := 18;
     
     --! UART CONFIG TYPE bit maps (See uart.h)
-    constant RX_ENABLE_BIT : integer := 4;
-    constant IRQ_RX_ENABLE_BIT : integer := 5;
+    constant RX_ENABLE_BIT : integer := 23;
+    constant IRQ_RX_ENABLE_BIT : integer := 24;
         
 	-- Signals for TX
 	type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY, DONE);
@@ -58,7 +58,9 @@ architecture RTL of uart is
     -- Interal registers
     signal config_register : std_logic_vector (31 downto 0);
     signal rx_register : std_logic_vector(7 downto 0);
-    signal tx_register : std_logic_vector(31 downto 0);
+    signal tx_register : std_logic_vector(7 downto 0);
+    
+    signal uart_register : std_logic_vector(31 downto 0);
     
     signal tx : std_logic;
        
@@ -66,7 +68,7 @@ architecture RTL of uart is
     signal rx_done : std_logic;
     
 	-- Signals for RX
-	type state_rx_type is (IDLE, READ_BYTE);
+	type state_rx_type is (IDLE, READ_BYTE, DONE);
 	signal state_rx      : state_rx_type := IDLE;
 	signal cnt_rx	     : integer       := 0;
 	signal byte_received : std_logic;
@@ -175,30 +177,16 @@ begin	--Baud Entrada = 38400
                     if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
                         ddata_r <= (others => '0');
                         case dmask is
-                            when "1111" => ddata_r <= tx_register;
-                            when "0011" => ddata_r(15 downto 0) <= tx_register(15 downto 0);
-                            when "1100" => ddata_r(15 downto 0) <= tx_register(31 downto 16);
-                            when "0001" => ddata_r(7 downto 0) <= tx_register(7 downto 0);
-                            when "0010" => ddata_r(7 downto 0) <= tx_register(15 downto 8);
-                            when "0100" => ddata_r(7 downto 0) <= tx_register(23 downto 16);
-                            when "1000" => ddata_r(7 downto 0) <= tx_register(31 downto 24);
+                            when "1111" => ddata_r <= uart_register;
+                            when "0011" => ddata_r(15 downto 0) <= uart_register(15 downto 0);
+                            when "1100" => ddata_r(15 downto 0) <= uart_register(31 downto 16);
+                            when "0001" => ddata_r(7 downto 0) <= uart_register(7 downto 0);
+                            when "0010" => ddata_r(7 downto 0) <= uart_register(15 downto 8);
+                            when "0100" => ddata_r(7 downto 0) <= uart_register(23 downto 16);
+                            when "1000" => ddata_r(7 downto 0) <= uart_register(31 downto 24);
                             when others =>                            
                         end case;
-                        
-                    --! Config register: supports byte read                    
-                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then 
-                        ddata_r <= (others => '0');
-                        case dmask is
-                            when "1111" => ddata_r <= config_register;
-                            when "0011" => ddata_r(15 downto 0) <= config_register(15 downto 0);
-                            when "1100" => ddata_r(15 downto 0) <= config_register(31 downto 16);
-                            when "0001" => ddata_r(7 downto 0) <= config_register(7 downto 0);
-                            when "0010" => ddata_r(7 downto 0) <= config_register(15 downto 8);
-                            when "0100" => ddata_r(7 downto 0) <= config_register(23 downto 16);
-                            when "1000" => ddata_r(7 downto 0) <= config_register(31 downto 24);
-                            when others =>                            
-                        end case;                   
-                    
+                                            
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
                         ddata_r(7 downto 0) <= rx_register;
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then 
@@ -210,16 +198,27 @@ begin	--Baud Entrada = 38400
         end if;
     end process;
 
+
+    -- UART register byte mapping, See uart.h
+    config_register(1 downto 0) <= uart_register(20 downto 19);  --! Baudrate
+    config_register(3 downto 2) <= uart_register(22 downto 21);  --! Baudrate
+    config_register(31 downto 4) <= (others => '0');    --! Unused    
+
+    tx_register(7 downto 0) <= uart_register(7 downto 0);   --! Byte to transmit
+
     -- Output register
     process(clk, rst)     
     begin
         if rst = '1' then
-            tx_register <= (others => '0');
-            config_register <= (others => '0');
+            -- tx_register <= (others => '0');
+            uart_register <= (others => '0');
         elsif rising_edge(clk) then            
             
             -- Set/Reset register to detect writes in TX_START_BIT
-            tx_register(TX_START_BIT) <= not tx_done;
+            uart_register(TX_START_BIT) <= not tx_done;
+            uart_register(15 downto 8) <= rx_register;
+            uart_register(RX_DONE_BIT) <= rx_done;
+            uart_register(RX_ENABLE_BIT) <= not rx_done;   
               
             if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
                 
@@ -227,45 +226,27 @@ begin	--Baud Entrada = 38400
                 if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
                     case dmask is
                       when "1111" =>
-                            tx_register <= ddata_w(31 downto 0);
+                            uart_register <= ddata_w(31 downto 0);
                         when "0011" =>
-                            tx_register(15 downto 0) <= ddata_w(15 downto 0);
+                            uart_register(15 downto 0) <= ddata_w(15 downto 0);
                         when "1100" =>
-                            tx_register(31 downto 16) <= ddata_w(15 downto 0);
+                            uart_register(31 downto 16) <= ddata_w(15 downto 0);
                         when "0001" => 
-                            tx_register(7 downto 0) <= ddata_w(7 downto 0);
+                            uart_register(7 downto 0) <= ddata_w(7 downto 0);
                         when "0010" => 
-                            tx_register(15 downto 8) <= ddata_w(7 downto 0);
+                            uart_register(15 downto 8) <= ddata_w(7 downto 0);
                         when "0100" => 
-                            tx_register(23 downto 16) <= ddata_w(7 downto 0);
+                            uart_register(23 downto 16) <= ddata_w(7 downto 0);
                         when "1000" => 
-                            tx_register(31 downto 24) <= ddata_w(7 downto 0);
+                            uart_register(31 downto 24) <= ddata_w(7 downto 0);
                         when others =>                            
                     end case;
-                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then
-                    case dmask is
-                      when "1111" =>
-                            config_register <= ddata_w(31 downto 0);
-                        when "0011" =>
-                            config_register(15 downto 0) <= ddata_w(15 downto 0);
-                        when "1100" =>
-                            config_register(31 downto 16) <= ddata_w(15 downto 0);
-                        when "0001" => 
-                            config_register(7 downto 0) <= ddata_w(7 downto 0);
-                        when "0010" => 
-                            config_register(15 downto 8) <= ddata_w(7 downto 0);
-                        when "0100" => 
-                            config_register(23 downto 16) <= ddata_w(7 downto 0);
-                        when "1000" => 
-                            config_register(31 downto 24) <= ddata_w(7 downto 0);
-                        when others =>                            
-                    end case;                    
-                    -- config_all <= ddata_w(31 downto 0);
                 end if;
             end if;
             
             -- Keep Done flag
-            tx_register(TX_DONE_BIT) <= tx_done;            
+            uart_register(TX_DONE_BIT) <= tx_done;    
+            
         end if;
     end process;
 
@@ -293,7 +274,7 @@ begin	--Baud Entrada = 38400
 			case state_tx is
                 when IDLE =>
 			        -- Start transmission bit
-                    if tx_register(TX_START_BIT) = '1' then			    
+                    if uart_register(TX_START_BIT) = '1' then			    
     					
     					if config_register(3) = '1' then
     						state_tx <= MOUNT_BYTE_PARITY;
@@ -393,36 +374,43 @@ begin	--Baud Entrada = 38400
         elsif rising_edge(clk) then
             case state_rx is
                 when IDLE =>
-                    if config_register(RX_ENABLE_BIT) = '1' then
+                    if uart_register(RX_ENABLE_BIT) = '1' then
                         if rx_out = '0' then
-                        state_rx <= READ_BYTE;
+                            state_rx <= READ_BYTE;
                         else
-                        state_rx <= IDLE;
+                            state_rx <= IDLE;
                         end if;
                     end if;                
                 when READ_BYTE =>
                     if (cnt_rx < 10) then
                         state_rx <= READ_BYTE;
                     else
-                        state_rx <= IDLE;
+                        state_rx <= DONE;
                     end if;
+               when DONE => 
+                    state_rx <= IDLE; 
+                
             end case;
         end if;
 	end process;
 
 	-- Maquina MEALY: transmission
-	rx_proc: process(state_rx)
+	rx_proc: process(state_rx, uart_register(RX_ENABLE_BIT))
 	begin
-        byte_received <= '0';
+	    byte_received <= '0';
+	    rx_done        <= '0';
+	    rx_cmp_zeca <= '0';
 		case state_rx is
 			when IDLE =>
-				rx_done 		<= '1';
+				rx_done 		<= not uart_register(RX_ENABLE_BIT);
 				rx_cmp_zeca <= '1';
 				byte_received <= '0';
 			when READ_BYTE =>
                 rx_done 		<= '0';
 				rx_cmp_zeca <= '0';
 				byte_received 	<= '1';
+			when DONE => 
+			 	rx_done <= '1';			
 		end case;
 	end process;
 
@@ -432,6 +420,7 @@ begin	--Baud Entrada = 38400
 		if rst = '1' then
 		    rx_register <= (others => '0');
 		    cnt_rx <= 0;
+		    from_rx := (others => '0');
 		else
     		if byte_received = '1' then
     			if rising_edge(baud_ready) then

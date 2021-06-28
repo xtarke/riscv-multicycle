@@ -19,10 +19,11 @@
 
 int main(){
 
-	uint8_t data = 0;
+	uint8_t data = 10;
+  uint8_t x;
 
-	UART_setup(_9600, NO_PARITY);
-  //UART_reception_enable();
+	//UART_setup(_9600, NO_PARITY);
+  UART_reception_enable();
 
 	//UART_write('j');
 
@@ -31,13 +32,13 @@ int main(){
 		//delay_(10000);
 
 		// Testing UART - Transmission
-		UART_write(data);
+		//UART_write(data);
 		//delay_(10);
 
 		// Testint UART - Reception
-		//x = UART_read();
+		x = UART_read();
 		//OUTBUS = x;
-		delay_(100);
+		delay_(50);
     data++;
 	}
 

@@ -12,7 +12,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
---! iregister decodes (bit slicing) an instruction word into
+--! Iregister decodes (bit slicing) an instruction word into
 --! several parameters (register addresses, call addresses,
 --! immediates). See RV32I instruction format
 entity iregister is
@@ -20,7 +20,7 @@ entity iregister is
 		clk : in std_logic;	--! Clock input
 		rst : in std_logic;	--! Asynchronous reset
 		
-		data : in std_logic_vector(31 downto 0);
+		data : in std_logic_vector(31 downto 0);  --! Data to be decoded
 				
 		opcodes : out opcodes_t;	--! Instruction decoding information. See decoder_types.vhd		
 		

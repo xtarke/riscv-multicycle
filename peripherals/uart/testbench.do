@@ -150,11 +150,14 @@ add wave -label clk_baud /generic_uart/clk_baud
 add wave -label transmit_byte -radix hex /transmit_byte
 add wave -label transmit_frame /transmit_frame    
 add wave -label config /generic_uart/config_register
+add wave -label uart_register -radix hex /generic_uart/uart_register
+add wave -label ddata_w -radix hex /generic_uart/ddata_w
 add wave -label tx_register -radix hex /generic_uart/tx_register
 add wave -label rx_register -radix hex /generic_uart/rx_register
 add wave -label from_rx -radix bin /generic_uart/rx_receive/from_rx
 
 add wave -label tx_done /generic_uart/tx_done
+add wave -label rx_done /generic_uart/rx_done
 add wave -label TX -radix hex /TX
 add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_uart/state_rx
