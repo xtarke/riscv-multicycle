@@ -45,6 +45,9 @@ architecture RTL of uart is
     --! UART CONFIG TYPE bit maps (See uart.h)
     constant RX_ENABLE_BIT : integer := 23;
     constant IRQ_RX_ENABLE_BIT : integer := 24;
+    
+    constant BAUD_RATE_BIT : integer := 19;  --! Bits 19 and 20
+    constant PARITY_BIT :    integer := 21;  --! Bits 21 and 22
         
 	-- Signals for TX
 	type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY, DONE);
@@ -148,9 +151,9 @@ begin	--Baud Entrada = 38400
 	end process;
 
 	-------------- Baud Rate Select -------------
-	baudselect: process(config_register(1 downto 0), baud_04800, baud_09600, baud_19200, clk_baud) is
+	baudselect: process(uart_register(BAUD_RATE_BIT+1 downto BAUD_RATE_BIT), baud_04800, baud_09600, baud_19200, clk_baud) is
 	begin
-		case config_register(1 downto 0) is
+		case uart_register(BAUD_RATE_BIT+1 downto BAUD_RATE_BIT) is
 			when "00" =>
 				baud_ready <= clk_baud;
 			when "01" =>
@@ -197,12 +200,6 @@ begin	--Baud Entrada = 38400
             end if;
         end if;
     end process;
-
-
-    -- UART register byte mapping, See uart.h
-    config_register(1 downto 0) <= uart_register(20 downto 19);  --! Baudrate
-    config_register(3 downto 2) <= uart_register(22 downto 21);  --! Baudrate
-    config_register(31 downto 4) <= (others => '0');    --! Unused    
 
     tx_register(7 downto 0) <= uart_register(7 downto 0);   --! Byte to transmit
 
@@ -252,14 +249,14 @@ begin	--Baud Entrada = 38400
 
 
 	---------------- Parity Setup ---------------
-	parity_set: process(config_register(3 downto 2), number, tx_register) is
+	parity_set: process(uart_register(PARITY_BIT+1 downto PARITY_BIT), number, tx_register) is
 	begin
 	    number <= 0;
 	    parity <= '0';
 	    
-		if config_register(3) = '1' then
+		if uart_register(PARITY_BIT + 1) = '1' then
 			number <= count_ones(tx_register(7 downto 0));
-			parity <= parity_val(number, config_register(2));
+			parity <= parity_val(number, uart_register(PARITY_BIT));
 		end if;
 	end process;
 
@@ -276,9 +273,9 @@ begin	--Baud Entrada = 38400
 			        -- Start transmission bit
                     if uart_register(TX_START_BIT) = '1' then			    
     					
-    					if config_register(3) = '1' then
+    					if uart_register(PARITY_BIT + 1) = '1' then
     						state_tx <= MOUNT_BYTE_PARITY;
-    					elsif config_register(3) = '0' then
+    					elsif uart_register(PARITY_BIT + 1) = '0' then
     						state_tx <= MOUNT_BYTE;
     					else
     						state_tx <= IDLE;

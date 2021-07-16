@@ -312,6 +312,6 @@ begin
         
 	-- Connect input hardware to gpio data
 	gpio_input(3 downto 0) <= SW(3 downto 0);
-    LEDR(7 downto 0) <= gpio_output(7 downto 0);
+   LEDR(7 downto 0) <= gpio_output(7 downto 0);
 
 end;
