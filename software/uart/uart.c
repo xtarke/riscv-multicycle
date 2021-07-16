@@ -27,8 +27,9 @@ void UART_write(uint8_t data){
 
 	while (!UART_REGISTER->tx_done);
 
-	/* Fast assembly: one instruction */
-	*((_IO32 *)UART_REGISTER) = (1 << 16) | data;
+	/* Fast assembly: less instructions */
+	UART_REGISTER->tx_byte = 0;
+	*((_IO32 *)UART_REGISTER) |= (1 << 16) | data;
 }
 
 void UART_setup(baud_rate_t baud, parity_t parity){
@@ -36,8 +37,9 @@ void UART_setup(baud_rate_t baud, parity_t parity){
 	UART_SETUP_REG->baud_rate = baud;
 	UART_SETUP_REG->parity = parity; */
 
-	/* Fast assembly: one instruction */
-	//*((_IO32 *)UART_SETUP_REG) = (baud & 0x03) | ((0x03 & parity) << 2);
+	/* Fast assembly: less instructions */
+	*((_IO32 *)UART_REGISTER) &= (~0x0f) << 19; 
+	*((_IO32 *)UART_REGISTER) |= ((baud & 0x03) << 19) | ((0x03 & parity) << 21);
 }
 
 void UART_reception_enable(void){
