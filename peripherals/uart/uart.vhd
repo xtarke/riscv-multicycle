@@ -88,7 +88,7 @@ architecture RTL of uart is
 
 	-- Interrupt signal
 	signal input_data : std_logic;
-	signal rx_cmp_zeca : std_logic;
+	signal rx_cmp_irq : std_logic;
 	signal interrupt_en : std_logic := '0';
 
 	------------ Function Count Ones -----------
@@ -396,15 +396,15 @@ begin	--Baud Entrada = 38400
 	begin
 	    byte_received <= '0';
 	    rx_done        <= '0';
-	    rx_cmp_zeca <= '0';
+	    rx_cmp_irq <= '0';
 		case state_rx is
 			when IDLE =>
 				rx_done 		<= not uart_register(RX_ENABLE_BIT);
-				rx_cmp_zeca <= '1';
+				rx_cmp_irq <= '1';
 				byte_received <= '0';
 			when READ_BYTE =>
                 rx_done 		<= '0';
-				rx_cmp_zeca <= '0';
+				rx_cmp_irq <= '0';
 				byte_received 	<= '1';
 			when DONE => 
 			 	rx_done <= '1';			
@@ -440,12 +440,12 @@ begin	--Baud Entrada = 38400
 		elsif rising_edge(clk) then
 		    interrupts(1) <= '0'; 
 		    
-			if input_data = '0' and rx_cmp_zeca = '1' and config_register(4) = '1' then
+			if input_data = '0' and rx_cmp_irq = '1' and uart_register(IRQ_RX_ENABLE_BIT) = '1' then
 				interrupts(0) <= '1';
 			else
 				interrupts(0) <= '0';
 			end if;
-			input_data <= rx_cmp_zeca;
+			input_data <= rx_cmp_irq;
 		end if;
 	end process;
 	

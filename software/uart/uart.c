@@ -43,12 +43,12 @@ void UART_setup(baud_rate_t baud, parity_t parity){
 	*((_IO32 *)UART_REGISTER) |= ((baud & 0x03) << 19) | ((0x03 & parity) << 21);
 }
 
-void UART_reception_enable(void){
+inline void UART_reception_enable(void){
 	UART_REGISTER->rx_enable = 1;
 }
 
-void UART_interrupt_enable(void){
-	//UART_SETUP_REG->rx_irq_enable = 1;
+inline void UART_interrupt_enable(void){
+	UART_REGISTER->rx_irq_enable = 1;
 }
 
 uint8_t UART_read(void){
@@ -64,4 +64,8 @@ uint8_t UART_read(void){
 	UART_REGISTER->rx_enable = 1;
 
 	return byte;
+}
+
+inline uint8_t UART_unblocked_read(void){
+	return UART_REGISTER->rx_byte;
 }

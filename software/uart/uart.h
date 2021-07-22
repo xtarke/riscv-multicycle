@@ -39,6 +39,7 @@ void UART_setup(baud_rate_t baud, parity_t parity);
 void UART_interrupt_enable(void);
 void UART_reception_enable(void);
 uint8_t UART_read(void);
+uint8_t UART_unblocked_read(void);
 
 typedef struct {
   _IO8 tx_byte;           /*!< Data to transfer. */

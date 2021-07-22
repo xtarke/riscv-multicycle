@@ -247,7 +247,7 @@ begin
        interrupts <= (others => '0');
        interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
        interrupts(30 downto 25) <= timer_interrupt;
-       interrupts(31) <= timer_interrupt(0);
+       interrupts(31) <= uart_interrupts(0);
     end process;
 
     -- Generic GPIO module instantiation

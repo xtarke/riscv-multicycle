@@ -20,17 +20,19 @@
 
 void UART_IRQHandler(void){
 	uint8_t data;
-	data = UART_read();
-	OUTBUS = data;
-	HEX0 = data;
-	HEX1 = data >> 4;
+	data = UART_unblocked_read();
+
+	SEGMENTS_BASE_ADDRESS = data;
+
+	UART_reception_enable();
 }
 
 
 int main(){
 
-	uint8_t data = 0x0F;
-	UART_setup(0, 0);
+	UART_setup(_38400, NO_PARITY);
+
+	UART_reception_enable();
 	UART_interrupt_enable();
 
 	extern_interrupt_enable(true);
@@ -38,7 +40,6 @@ int main(){
 
 	while (1){
 
-		delay_(100);
 	}
 
 	return 0;
