@@ -319,7 +319,7 @@ begin
             end loop;
         cnt_rx <= 0;
         RX <= '1';
-        wait for 50 us;
+        wait for 750 us;
     end process;
     
     transmit_byte <= x"89", x"A5" after 50 us;
