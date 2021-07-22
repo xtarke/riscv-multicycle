@@ -1,12 +1,13 @@
 /*
- * firmware.c
+ * main.c
  *
  *  Created on: Jan 20, 2019
  *      Author: Marcos Vinicius Leal Da Silva e Daniel Pereira
  *      Instituto Federal de Santa Catarina
  *
+ *   Modified: Renan Augusto Starke
  *
- * Simple UART TX example.
+ * Simple pooling UART TX example.
  * -----------------------------------------
  */
 
@@ -20,26 +21,21 @@
 int main(){
 
 	uint8_t data = 10;
-  uint8_t x;
+  volatile uint8_t x;
 
-	UART_setup(_9600, NO_PARITY);
-  //UART_reception_enable();
-
-	//UART_write('j');
+	UART_setup(_38400, NO_PARITY);
+  UART_reception_enable();
 
 	while (1){
-		// Testing UART - Adjusts
-		//delay_(10000);
+
+    // Testint UART - Reception
+    x = UART_read();
 
 		// Testing UART - Transmission
-		UART_write(data);
-		delay_(100000);
+		UART_write(x);
 
-		// Testint UART - Reception
-		//x = UART_read();
-		//OUTBUS = x;
-		//delay_(50);
-    data++;
+    // Display data in IO bus
+    SEGMENTS_BASE_ADDRESS = x;
 	}
 
 	return 0;

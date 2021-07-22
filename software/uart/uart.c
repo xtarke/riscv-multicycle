@@ -4,6 +4,7 @@
  *  Created on: July 1, 2019
  *      Author: Marcos Vinícius Leal da Silva e
  *      Modified: Daniel Pereira
+*       Modified: Renan Augusto Starke
  *
  *      Instituto Federal de Santa Catarina
  *
@@ -38,7 +39,7 @@ void UART_setup(baud_rate_t baud, parity_t parity){
 	UART_SETUP_REG->parity = parity; */
 
 	/* Fast assembly: less instructions */
-	*((_IO32 *)UART_REGISTER) &= (~0x0f) << 19; 
+	*((_IO32 *)UART_REGISTER) &= (~0x0f) << 19;
 	*((_IO32 *)UART_REGISTER) |= ((baud & 0x03) << 19) | ((0x03 & parity) << 21);
 }
 
