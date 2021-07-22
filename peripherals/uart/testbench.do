@@ -162,6 +162,7 @@ add wave -label TX -radix hex /TX
 add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_uart/state_rx
 add wave -label tx_state /generic_uart/state_tx
+add wave -label interrupts /generic_uart/interrupts
 
 
 

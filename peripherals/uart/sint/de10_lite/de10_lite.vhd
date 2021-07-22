@@ -224,6 +224,7 @@ begin
 	-- IRQ lines
 	interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
     interrupts(30 downto 25) <= timer_interrupt;
+    interrupts(31) <= uart_interrupts(0);
     
     io_data_bus_mux: entity work.iodatabusmux
         port map(
@@ -311,7 +312,7 @@ begin
         );
         
 	-- Connect input hardware to gpio data
-	gpio_input(3 downto 0) <= SW(3 downto 0);
-   LEDR(7 downto 0) <= gpio_output(7 downto 0);
+    gpio_input(3 downto 0) <= SW(3 downto 0);
+    LEDR(7 downto 0) <= gpio_output(7 downto 0);
 
 end;
