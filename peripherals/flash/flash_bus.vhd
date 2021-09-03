@@ -27,6 +27,26 @@ end flash_bus;
 
 architecture rtl of flash_bus is
 	 
+    component flash is
+      port (
+        clock                   : in  std_logic                     := 'X';             -- clk
+        avmm_csr_addr           : in  std_logic                     := 'X';             -- address
+        avmm_csr_read           : in  std_logic                     := 'X';             -- read
+        avmm_csr_writedata      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+        avmm_csr_write          : in  std_logic                     := 'X';             -- write
+        avmm_csr_readdata       : out std_logic_vector(31 downto 0);                    -- readdata
+        avmm_data_addr          : in  std_logic_vector(18 downto 0) := (others => 'X'); -- address
+        avmm_data_read          : in  std_logic                     := 'X';             -- read
+        avmm_data_writedata     : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+        avmm_data_write         : in  std_logic                     := 'X';             -- write
+        avmm_data_readdata      : out std_logic_vector(31 downto 0);                    -- readdata
+        avmm_data_waitrequest   : out std_logic;                                        -- waitrequest
+        avmm_data_readdatavalid : out std_logic;                                        -- readdatavalid
+        avmm_data_burstcount    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- burstcount
+        reset_n                 : in  std_logic                     := 'X'              -- reset_n
+      );
+    end component flash;
+
     -- the end addresses of flash sectors. 32-bit based.
 	  constant SECTOR_1_ADDR_END	: natural := 16#01FFF#;
 	  constant SECTOR_2_ADDR_END	: natural := 16#03FFF#;
@@ -64,7 +84,7 @@ architecture rtl of flash_bus is
     avmm_data_burstcount <= "01";
     ddata_r <= avmm_data_readdata;
 
-    internalFlash : entity work.flash
+    internalFlash : component flash
         port map (
             clock                   => clk,                   --    clk.clk
             reset_n                 => rst,                 -- nreset.reset_n
