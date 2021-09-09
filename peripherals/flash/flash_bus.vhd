@@ -105,8 +105,8 @@ architecture rtl of flash_bus is
             avmm_csr_readdata       => avmm_csr_readdata        --       .readdata
         );
 
-  -- state transition
-  process (clk, rst)
+  -- state transition (moore)
+  process (clk, rst, dcsel)
   begin
     if rst = '1' OR dcsel /= MY_CHIPSELECT then
       state <= IDLE;
@@ -164,22 +164,23 @@ architecture rtl of flash_bus is
     end if;
   end process;
 
-  -- moore
-  process (state)
+  -- mealy
+  process (state, avmm_data_addr)
   begin
+
+    -- ddata_r <= (others => '0');
+    -- avmm_data_addr <= (others => '0');
+    avmm_data_read <= '0';
+    -- avmm_data_writedata <= (others => '0');
+    avmm_data_write <= '0';
+    -- avmm_data_burstcount <= x"1";
+    avmm_csr_addr <= '1'; -- control register
+    avmm_csr_read <= '0';
+    avmm_csr_writedata <= (others => '1');
+    avmm_csr_write <= '0';
+    
     case state is
       when IDLE =>
-
-        -- ddata_r <= (others => '0');
-        -- avmm_data_addr <= (others => '0');
-        avmm_data_read <= '0';
-        avmm_data_writedata <= (others => '0');
-        avmm_data_write <= '0';
-        -- avmm_data_burstcount <= x"1";
-        avmm_csr_addr <= '1';
-        avmm_csr_read <= '0';
-        avmm_csr_writedata <= (others => '1');
-        avmm_csr_write <= '0';
 
       when RREQUEST =>
 
@@ -187,15 +188,15 @@ architecture rtl of flash_bus is
 
       when READING =>
 
-        avmm_data_read <= '0';
+        -- avmm_data_read <= '0';
 
       when RDONE =>
 
       when WREQUEST =>
 
         avmm_data_write <= '1';
-        avmm_csr_addr <= '1'; -- control register
-        avmm_csr_read <= '0';
+        -- avmm_csr_addr <= '1'; -- control register
+        -- avmm_csr_read <= '0';
         avmm_csr_write <= '1';
         
         -- set write protection to '0' regarding the sector we want to write
@@ -210,8 +211,6 @@ architecture rtl of flash_bus is
         elsif unsigned(avmm_data_addr) <= SECTOR_5_ADDR_END then
           avmm_csr_writedata(27) <= '0';
         end if;
-
-        -- avmm_csr_writedata <= (others => '1'); 
       
       when WRITING =>
       when WDONE =>

@@ -1,7 +1,7 @@
 vlib work
 
 if ![info exists QUARTUS_INSTALL_DIR] { 
-  set QUARTUS_INSTALL_DIR "/home/rgnagel/intelFPGA_lite/20.1/quartus/"
+  set QUARTUS_INSTALL_DIR "~/intelFPGA_lite/20.1/quartus/"
 }
 
 # entities/libs required for altera onchip flash below
@@ -37,13 +37,14 @@ vlog "$QUARTUS_INSTALL_DIR/eda/sim_lib/mentor/fiftyfivenm_atoms_ncrypt.v" -work 
 vcom "$QUARTUS_INSTALL_DIR/eda/sim_lib/fiftyfivenm_atoms.vhd"             -work fiftyfivenm     
 vcom "$QUARTUS_INSTALL_DIR/eda/sim_lib/fiftyfivenm_components.vhd"        -work fiftyfivenm     
 
+set FLASH_SIMULATION_DIR "./sint_only_flash/de10_lite/flash/simulation"
 
-vlog sint/flash/simulation/submodules/altera_onchip_flash_util.v
-vlog sint/flash/simulation/submodules/altera_onchip_flash_avmm_data_controller.v
-vlog sint/flash/simulation/submodules/altera_onchip_flash_avmm_csr_controller.v
-vlog sint/flash/simulation/submodules/altera_onchip_flash.v
+vlog $FLASH_SIMULATION_DIR/submodules/altera_onchip_flash_util.v
+vlog $FLASH_SIMULATION_DIR/submodules/altera_onchip_flash_avmm_data_controller.v
+vlog $FLASH_SIMULATION_DIR/submodules/altera_onchip_flash_avmm_csr_controller.v
+vlog $FLASH_SIMULATION_DIR/submodules/altera_onchip_flash.v
 
-vcom sint/flash/simulation/flash.vhd
+vcom $FLASH_SIMULATION_DIR/flash.vhd
 vcom flash_bus.vhd 
 vcom testbench_flash.vhd
 

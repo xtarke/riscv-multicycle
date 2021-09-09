@@ -16,7 +16,7 @@ do IP Parameter Editor do Quartus:
 | 2         | R/W         | 0x08000 - 0x00ffff           | 0x02000 - 0x003fff           |  UFM |
 | 3         | R/W         | 0x10000 - 0x06ffff           | 0x04000 - 0x01bfff           |  CFM |
 | 4         | R/W         | 0x70000 - 0x0b7fff           | 0x1c000 - 0x02dfff           |  CFM |
-| 5         | R/W         | 0xb8000 - 0x15ffff           | 0x2e000 - 0x057fff            |  CFM |
+| 5         | R/W         | 0xb8000 - 0x15ffff           | 0x2e000 - 0x057fff           |  CFM |
 
 Observação: o endereço do IP Parameter Editor é byte based, enquanto que o
 endereço no barramento avalon-mm é 32-bit based, então é necessário considerar
@@ -46,7 +46,8 @@ TODO...
 
 ## Operação de leitura de 32 bits em modo paralelo
 
-Para a fazer a leitura da UFM comunica-se apenas com a unidade de dados (Data), isto é, não precisa fazer a comunicação com a unidade de controle (Control).
+Para a fazer a leitura da UFM comunica-se apenas com a unidade de dados (Data),
+isto é, não precisa fazer a comunicação com a unidade de controle (Control).
 
 Passo-a-passo para fazer a leitura de uma palavra de 32 bits em modo paralelo:
 
@@ -66,8 +67,8 @@ ilustra o processo (considerando que a flash não estava ocupada):
 ## Simulação
 
 Os arquivos de simulação foram gerados no IP Parameter Editor e estão na pasta
-`./sint/flash/simulation`. Há scripts para diferentes vendors (aldec, cadence,
-mentor, synopsys) entre outros arquivos .vhd e .v.
+`./sint_only_flash/de10_lite/flash/simulation`. Há scripts para diferentes vendors (aldec,
+cadence, mentor, synopsys) entre outros arquivos .vhd e .v.
 
 ### build "manual", isto é, sem usar scripts de vendors
 
@@ -76,6 +77,9 @@ Executar no terminal do ModelSim:
 ```
 do testbench_flash.do
 ```
+
+obs.: Talvez faça-se necessário ajustar a variável `QUARTUS_INSTALL_DIR` no
+arquivo `testbench_flash.do`.
 
 A flash simulada neste testbench responde a alguns estimulos mas fica com o
 sinal `waitrequest` sempre em '1' após reset. Isso não é esperado. Um possível
@@ -96,7 +100,7 @@ Build para o vendor `mentor`, no terminal do ModelSim ("Compile all the design
 files and elaborate the top level design"):
 
 ```
-cd sint/flash/simulation/mentor
+cd ./sint/de10_lite/flash/simulation/mentor
 do msim_setup.tcl
 ld
 ```
