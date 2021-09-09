@@ -99,8 +99,8 @@ begin
 
 	onchip_flash_0 : component altera_onchip_flash
 		generic map (
-			INIT_FILENAME                       => "",
-			INIT_FILENAME_SIM                   => "",
+			INIT_FILENAME                       => "flash_onchip_flash_0.hex",
+			INIT_FILENAME_SIM                   => "flash_onchip_flash_0.dat",
 			DEVICE_FAMILY                       => "MAX 10",
 			PART_NAME                           => "10M50DAF484C7G",
 			DEVICE_ID                           => "50",

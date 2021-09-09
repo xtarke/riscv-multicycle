@@ -58,30 +58,30 @@ module  altera_onchip_flash (
 	avmm_csr_readdata
 );
 	parameter DEVICE_FAMILY = "MAX 10";
-	parameter PART_NAME = "10M50DAF484C7G";
+	parameter PART_NAME = "Unknown";
 	parameter IS_DUAL_BOOT = "False";
 	parameter IS_ERAM_SKIP = "False";
 	parameter IS_COMPRESSED_IMAGE = "False";
 	parameter INIT_FILENAME = "";
 
 	// simulation only start
-	parameter DEVICE_ID = "50";
+	parameter DEVICE_ID = "08";
 	parameter INIT_FILENAME_SIM = "";
 	// simulation only end
 
-	parameter PARALLEL_MODE = 1;
-	parameter READ_AND_WRITE_MODE = 1;
+	parameter PARALLEL_MODE = 0;
+	parameter READ_AND_WRITE_MODE = 0;
 	parameter WRAPPING_BURST_MODE = 0;
 	
 	parameter AVMM_CSR_DATA_WIDTH = 32;
 	parameter AVMM_DATA_DATA_WIDTH = 32;
-	parameter AVMM_DATA_ADDR_WIDTH = 19;
-	parameter AVMM_DATA_BURSTCOUNT_WIDTH = 2;
+	parameter AVMM_DATA_ADDR_WIDTH = 20;
+	parameter AVMM_DATA_BURSTCOUNT_WIDTH = 13;
 	parameter FLASH_DATA_WIDTH = 32;
 	parameter FLASH_ADDR_WIDTH = 23;
 	parameter FLASH_SEQ_READ_DATA_COUNT = 2;	//number of 32-bit data per sequential read. only need in parallel mode.
-	parameter FLASH_READ_CYCLE_MAX_INDEX = 5;	//period to for each sequential read. only need in parallel mode.
-	parameter FLASH_ADDR_ALIGNMENT_BITS = 2; 	//number of last addr bits for alignment. only need in parallel mode.
+	parameter FLASH_READ_CYCLE_MAX_INDEX = 3;	//period to for each sequential read. only need in parallel mode.
+	parameter FLASH_ADDR_ALIGNMENT_BITS = 1; 	//number of last addr bits for alignment. only need in parallel mode.
 	parameter FLASH_RESET_CYCLE_MAX_INDEX = 28;	//period that required by flash before back to idle for erase and program operation
 	parameter FLASH_BUSY_TIMEOUT_CYCLE_MAX_INDEX = 112; //flash busy timeout period (960ns)
 	parameter FLASH_ERASE_TIMEOUT_CYCLE_MAX_INDEX = 40603248; //erase timeout period (350ms)
@@ -169,10 +169,9 @@ module  altera_onchip_flash (
 
 	generate
 		if (DEVICE_ID == "02" || DEVICE_ID == "01") begin
-			// Set all to 0 for simulation model
-			assign flash_par_en = 1'b0;
-			assign flash_xe_ye = 1'b0;
-			assign flash_se = 1'b0;
+			assign flash_par_en = 1'b1;
+			assign flash_xe_ye = 1'b1;
+			assign flash_se = 1'b1;
 		end
 		else begin
 			assign flash_par_en = PARALLEL_MODE[0];
@@ -285,20 +284,28 @@ module  altera_onchip_flash (
 	// -------------------------------------------------------------------
 	// Instantiate wysiwyg for onchip flash block
 	// -------------------------------------------------------------------
-	fiftyfivenm_unvm # (
-
+	altera_onchip_flash_block # (
+	
+		.DEVICE_FAMILY (DEVICE_FAMILY),
+		.PART_NAME (PART_NAME),
+		.IS_DUAL_BOOT (IS_DUAL_BOOT),
+		.IS_ERAM_SKIP (IS_ERAM_SKIP),
+		.IS_COMPRESSED_IMAGE (IS_COMPRESSED_IMAGE),
+		.INIT_FILENAME (INIT_FILENAME),
+		.MIN_VALID_ADDR (MIN_VALID_ADDR),
+		.MAX_VALID_ADDR (MAX_VALID_ADDR),
+		.MIN_UFM_VALID_ADDR (MIN_UFM_VALID_ADDR),
+		.MAX_UFM_VALID_ADDR (MAX_UFM_VALID_ADDR),
+		.ADDR_RANGE1_END_ADDR (ADDR_RANGE1_END_ADDR),
+        .ADDR_RANGE2_END_ADDR (ADDR_RANGE2_END_ADDR),
+		.ADDR_RANGE1_OFFSET (ADDR_RANGE1_OFFSET),
+		.ADDR_RANGE2_OFFSET (ADDR_RANGE2_OFFSET),
+		.ADDR_RANGE3_OFFSET (ADDR_RANGE3_OFFSET),
 		// simulation only start
-		.device_id (DEVICE_ID),
-		.init_filename_sim (INIT_FILENAME_SIM),
-		.min_ufm_valid_addr (MIN_UFM_VALID_ADDR),
-		.max_ufm_valid_addr (MAX_UFM_VALID_ADDR),
-		.addr_range1_end_addr (ADDR_RANGE1_END_ADDR),
-        .addr_range2_end_addr (ADDR_RANGE2_END_ADDR),
-		.addr_range1_offset (ADDR_RANGE1_OFFSET),
-		.addr_range2_offset (ADDR_RANGE2_OFFSET),
-        .addr_range3_offset (ADDR_RANGE3_OFFSET)
+		.DEVICE_ID (DEVICE_ID),
+		.INIT_FILENAME_SIM (INIT_FILENAME_SIM)
 		// simulation only end
-
+		
 	) altera_onchip_flash_block (
 		.xe_ye(flash_xe_ye),
 		.se(flash_se),
