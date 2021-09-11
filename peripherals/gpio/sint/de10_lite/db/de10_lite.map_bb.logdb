@@ -1,0 +1,9 @@
+v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult0|mult_qgs:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult1|mult_tns:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult0|mult_qgs:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult1|mult_tns:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult1|mult_tns:auto_generated|mac_out8,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult0|mult_qgs:auto_generated|mac_out8,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult0|mult_qgs:auto_generated|mac_out6,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,core:myRiscv|M:M_0|lpm_mult:Mult1|mult_tns:auto_generated|mac_out6,
