@@ -26,7 +26,6 @@ begin
             reverse   => reverse,
             rst       => rst,
             stop      => stop,
-            ena       => ena,
             half_full => half_full,
             in1       => in1,
             in2       => in2,
@@ -42,14 +41,6 @@ begin
         clk <= '1';
         wait for 1 ms;
     end process clk0;
-
-    en0: process is
-    begin
-        ena <= '0';
-        wait for 6 ms;
-        ena <= '1';
-        wait;
-    end process en0;
 
     speed0: process is
     begin
