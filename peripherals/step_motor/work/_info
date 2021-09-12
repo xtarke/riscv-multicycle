@@ -1,0 +1,94 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/rayan/Documents/GitHub/riscv-multicycle/peripherals/step_motor
+Estepmotor
+Z1 w1631411376
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 6
+R0
+Z5 8stepmotor.vhd
+Z6 Fstepmotor.vhd
+l0
+L10 1
+VRGa4cnclWom;dB=?6`1_[2
+!s100 FEW6>`>5==XejOdSi0F:e3
+Z7 OV;C;2021.1;73
+32
+Z8 !s110 1631411930
+!i10b 1
+Z9 !s108 1631411930.000000
+Z10 !s90 -reportprogress|300|stepmotor.vhd|tb_stepmotor.vhd|
+Z11 !s107 tb_stepmotor.vhd|stepmotor.vhd|
+!i113 1
+Z12 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+Z13 DEx4 work 9 stepmotor 0 22 RGa4cnclWom;dB=?6`1_[2
+!i122 6
+l30
+Z14 L24 127
+Z15 VBl?O0?m]IWiU;Qai@;FXf2
+Z16 !s100 >Ak`S;8YIlFC]QOIH_1WS2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+Etb_stepmotor
+Z17 w1631411894
+R2
+R3
+R4
+!i122 6
+R0
+Z18 8tb_stepmotor.vhd
+Z19 Ftb_stepmotor.vhd
+l0
+L6 1
+VKFJBX=L65oZ:V>6naD>?m3
+!s100 PgVCU]oKP[5AgP=`B0g6T0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+Artl
+R13
+R2
+R3
+R4
+Z20 DEx4 work 12 tb_stepmotor 0 22 KFJBX=L65oZ:V>6naD>?m3
+!i122 6
+l19
+L10 84
+VbDU5X>4bPnn2oH6:SI>m[1
+!s100 l9FUkimFLh^z2]fP[QNb]2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
