@@ -1,11 +1,11 @@
 -------------------------------------------------------------------
--- Name        : stepmotor.vhd
--- Author      : Rayan Martins Steinbach
--- Description : Step motor controller 
+-- Name        : stepmotor.vhd                                   --
+-- Author      : Rayan Martins Steinbach                         --
+-- Description : Step motor controller                           --
 -------------------------------------------------------------------
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+library ieee;                                           -- Biblioteca padrão
+use ieee.std_logic_1164.all;                            -- Elementos lógicos
+use ieee.numeric_std.all;                               -- Conversões entre tipos
 
 entity stepmotor is
     port(
@@ -24,15 +24,16 @@ end entity stepmotor;
 architecture rtl of stepmotor is
     TYPE state_t is (A, AB, B, BC, C, CD, D, DA);
     signal state : state_t;
-    signal rot, cntr : std_logic;
+    signal rot: std_logic;
     signal outs  : std_logic_vector(3 downto 0);
+    signal cntr : unsigned(7 downto 0);
 begin
     in1 <= outs(0);
     in2 <= outs(1);
     in3 <= outs(2);
     in4 <= outs(3);
-    rot <= cntr(to_integer(speed));
-    
+
+
     rotate: process(clk, rst)
     begin
         if rst = '1' then
@@ -43,14 +44,15 @@ begin
             cntr <= cntr + 1;
         end if;
     end process rotate;
+    rot <= cntr(to_integer(speed));
 
     mealy : process(rot, rst)
     begin
         if rst = '1' then
             state <= A;
         end if;
-        if rising_edge(clk_s) then
-            if en = '1' then
+        if rising_edge(rot) then
+            if ena = '1' then
                 if stop = '0' then
                     case state is
                         when A =>
@@ -125,23 +127,25 @@ begin
 
     moore : process(clk)
     begin
-        case state is
-            when A =>
-                outs <= "1000";
-            when AB =>
-                outs <= "1100";
-            when B =>
-                outs <= "0100";
-            when BC =>
-                outs <= "0110";
-            when C =>
-                outs <= "0010";
-            when CD =>
-                outs <= "0011";
-            when D =>
-                outs <= "0001";
-            when DA =>
-                outs <= "1001";
-        end case;
-    end process mealy;
+        if rising_edge(clk) then
+            case state is
+                when A =>
+                    outs <= "1000";
+                when AB =>
+                    outs <= "1100";
+                when B =>
+                    outs <= "0100";
+                when BC =>
+                    outs <= "0110";
+                when C =>
+                    outs <= "0010";
+                when CD =>
+                    outs <= "0011";
+                when D =>
+                    outs <= "0001";
+                when DA =>
+                    outs <= "1001";
+            end case;
+        end if;
+    end process moore;
 end architecture;
