@@ -55,14 +55,12 @@
 #define I2C_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 4*16*4))	
 #define TIMER_BASE_ADDRESS 			(*(_IO32 *) (PERIPH_BASE + 5*16*4))		
 #define SPI_BASE_ADDRESS 		    (*(_IO32 *) (PERIPH_BASE + 6*16*4))	
-#define STEP_M_BASE_ADDRESS         (*(_IO32 *) (PERIPH_BASE + 9*16*4))
-
 #define TFT_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 7*16*4))	
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
 //#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
 //#define TFT_RETURN    (*(_IO32 *) (PERIPH_BASE + 44))	
-
+#define STEP_M_BASE_ADDRESS         (*(_IO32 *) (PERIPH_BASE + 9*16*4))
 
 
 #endif //HARDWARE_H
