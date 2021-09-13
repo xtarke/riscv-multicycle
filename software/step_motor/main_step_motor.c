@@ -3,6 +3,8 @@
 #include "../gpio/gpio.h"
 
 int main() {
+    uint8_t spd = 0;
+    
     while(1) {
         if (INBUS & MSK_RST == 1)
             reset_motor(1);
@@ -14,10 +16,22 @@ int main() {
         else
             stop_motor(0);
 
-        if (INBUS & MSK_ROT == 4)
+        if (INBUS & MSK_REV == 4)
             reverse_rotation(1);
         else
-            reverse_rotation(0);        
+            reverse_rotation(0);
+
+        if (INBUS & MSK_HF == 8)
+            change_step(1);
+        else
+            change_step(0);
+
+        if(spd > 7){
+            spd = 0;
+        }
+
+        change_speed(7);
+        
         delay_(100000);
     }
     return 0;
