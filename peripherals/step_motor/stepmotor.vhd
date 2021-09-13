@@ -11,42 +11,43 @@ entity stepmotor is
     generic(
         --! Chip selec
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS   : unsigned(15 downto 0)         := x"0090";
+        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0090";
         DADDRESS_BUS_SIZE : integer                      := 32
     );
 
     port(
-        clk                : in  std_logic; -- Clock input
-        rst                : in  std_logic; -- Reset flag: Changes the step motor to it's initial state
+        clk      : in  std_logic;       -- Clock input
+        rst      : in  std_logic;       -- Reset flag: Changes the step motor to it's initial state
 
         -- Core data bus signals
-        daddress           : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
-        ddata_w            : in  std_logic_vector(31 downto 0);
-        ddata_r            : out std_logic_vector(31 downto 0);
-        d_we               : in  std_logic;
-        d_rd               : in  std_logic;
-        dcsel              : in  std_logic_vector(1 downto 0); --! Chip select 
+        daddress : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
+        ddata_w  : in  std_logic_vector(31 downto 0);
+        ddata_r  : out std_logic_vector(31 downto 0);
+        d_we     : in  std_logic;
+        d_rd     : in  std_logic;
+        dcsel    : in  std_logic_vector(1 downto 0); --! Chip select 
         -- ToDo: Module should mask bytes (Word, half word and byte access)
-        dmask              : in  std_logic_vector(3 downto 0); --! Byte enable mask
+        dmask    : in  std_logic_vector(3 downto 0); --! Byte enable mask
 
         -- hardware input/output signals        
-        reverse            : in  std_logic; -- Reverse flag: Changes the rotation direction
-        stop               : in  std_logic; -- Stop flag: Stops the motor in it's actual position
-        half_full          : in  std_logic; -- Half or full step flag: Alternate the steps size
-        speed              : in  unsigned(2 downto 0); -- Defines the motor speed, in a range from 1 to 8
-        outs               : out std_logic_vector(3 downto 0) -- Motor H-bridge control inputs
+
+        outs     : out std_logic_vector(3 downto 0) -- Motor H-bridge control inputs
     );
 
 end entity stepmotor;
 
 architecture rtl of stepmotor is
     TYPE state_t is (A, AB, B, BC, C, CD, D, DA);
-    signal state : state_t;
-    signal rot   : std_logic;
-    signal reset,dstop,drev : std_logic;
-    signal cntr  : unsigned(7 downto 0);
+    signal state              : state_t;
+    signal rot                : std_logic;            -- Rotation flag: Trigger the rotation of motor
+    signal reset              : std_logic;            -- Reset flag: Returns motor to A state
+    signal reverse            : std_logic;            -- Reverse flag: Changes the rotation direction
+    signal stop               : std_logic;            -- Stop flag: Stops the motor in it's actual position
+    signal half_full          : std_logic;            -- Half or full step flag: Alternate the steps size
+    signal speed              : unsigned(2 downto 0); -- Defines the motor speed, in a range from 0 to 7
+    signal cntr               : unsigned(7 downto 0); -- Counter signal that controls speed
 begin
-    -- Process give input value -- processo leitura barramento Barramento
+    -- Process give input value -- processo leitura do Barramento
     process(clk, rst)
     begin
         if rst = '1' then
@@ -56,8 +57,14 @@ begin
                 if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
                     if daddress(15 downto 0) = (MY_WORD_ADDRESS) then
                         reset   <= ddata_w(0);
-                        dstop <= ddata_w(1);
-                        drev <= ddata_w(2);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+1) then
+                        stop <= ddata_w(0);
+                    elsif ddaddress(15 downto 0) = (MY_WORD_ADDRESS+2) then
+                        reverse <= ddata_w(0);
+                    elsif ddaddress(15 downto 0) = (MY_WORD_ADDRESS+3) then
+                        half_full <= ddata_w(0);
+                    elsif ddaddress(15 downto 0) = (MY_WORD_ADDRESS+4) then
+                        speed <= ddata_w(2 downto 0);
                     end if;
                 end if;
             end if;
@@ -82,68 +89,68 @@ begin
             state <= A;
         end if;
         if rising_edge(rot) then
-            if stop = '0' and dstop = '0' then
+            if stop = '0' then
                 case state is
                     when A =>
-                        if (reverse = '1' or drev = '1') and half_full = '0' then
+                        if (reverse = '1') and half_full = '0' then
                             state <= DA;
-                        elsif (reverse = '0' and drev = '0') and half_full = '0' then
+                        elsif (reverse = '0') and half_full = '0' then
                             state <= AB;
-                        elsif (reverse = '1' or drev = '1') and half_full = '1' then
+                        elsif (reverse = '1') and half_full = '1' then
                             state <= D;
                         else
                             state <= B;
                         end if;
                     when AB =>
-                        if reverse = '1' or drev = '1' then
+                        if reverse = '1' then
                             state <= A;
                         else
                             state <= B;
                         end if;
                     when B =>
-                        if (reverse = '1' or drev = '1') and half_full = '0' then
+                        if (reverse = '1') and half_full = '0' then
                             state <= AB;
-                        elsif (reverse = '0' and drev = '0') and half_full = '0' then
+                        elsif (reverse = '0') and half_full = '0' then
                             state <= BC;
-                        elsif (reverse = '1' or drev = '1') and half_full = '1' then
+                        elsif (reverse = '1') and half_full = '1' then
                             state <= A;
                         else
                             state <= C;
                         end if;
                     when BC =>
-                        if reverse = '1' or drev = '1' then
+                        if reverse = '1' then
                             state <= B;
                         else
                             state <= C;
                         end if;
                     when C =>
-                        if (reverse = '1' or drev = '1') and half_full = '0' then
+                        if (reverse = '1') and half_full = '0' then
                             state <= BC;
-                        elsif (reverse = '0' and drev = '0') and half_full = '0' then
+                        elsif (reverse = '0') and half_full = '0' then
                             state <= CD;
-                        elsif (reverse = '1' or drev = '1') and half_full = '1' then
+                        elsif (reverse = '1') and half_full = '1' then
                             state <= B;
                         else
                             state <= D;
                         end if;
                     when CD =>
-                        if reverse = '1' or drev = '1' then
+                        if reverse = '1' then
                             state <= C;
                         else
                             state <= D;
                         end if;
                     when D =>
-                        if (reverse = '1' or drev = '1') and half_full = '0' then
+                        if (reverse = '1') and half_full = '0' then
                             state <= C;
-                        elsif (reverse = '0' and drev = '0') and half_full = '0' then
+                        elsif (reverse = '0') and half_full = '0' then
                             state <= DA;
-                        elsif (reverse = '1' or drev = '1') and half_full = '1' then
+                        elsif (reverse = '1') and half_full = '1' then
                             state <= C;
                         else
                             state <= A;
                         end if;
                     when DA =>
-                        if reverse = '1' or drev = '1' then
+                        if reverse = '1' then
                             state <= D;
                         else
                             state <= A;
