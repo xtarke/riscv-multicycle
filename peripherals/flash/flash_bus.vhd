@@ -21,7 +21,11 @@ entity flash_bus is
     d_we      : in   std_logic;                                 --! Write Enable
     d_rd	  : in   std_logic;                                 --! Read enable
     dcsel	  : in   std_logic_vector(1 downto 0);	            --! Chip select
-    dmask     : in   std_logic_vector(3 downto 0)	            --! Byte enable mask
+    dmask     : in   std_logic_vector(3 downto 0);	            --! Byte enable mask
+
+    -- testing
+    waitrequest : out std_logic;
+    csr_readdata : out std_logic_vector(31 downto 0)
   );
 end flash_bus;
 
@@ -73,7 +77,7 @@ architecture rtl of flash_bus is
 
     -- R: READ, W: WRITE, E: ERASE
 
-    type FSM is (IDLE, RREQUEST, READING, RDONE, WREQUEST, WRITING, WDONE);
+    type FSM is (IDLE, RREQUEST, READING, RDONE, WREQUEST, WRITING, WDONE, READ_CSR);
     signal state : FSM;
 
     -- variable offset : std_logic_vector
@@ -83,6 +87,10 @@ architecture rtl of flash_bus is
     avmm_data_addr <= std_logic_vector(daddress(18 downto 0));
     avmm_data_burstcount <= "01";
     ddata_r <= avmm_data_readdata;
+
+    -- testing
+    waitrequest <= avmm_data_waitrequest;
+    csr_readdata <= avmm_csr_readdata;
 
     internalFlash : component flash
         port map (
@@ -123,8 +131,14 @@ architecture rtl of flash_bus is
             -- write mode
             elsif d_we = '1' and d_rd = '0' then
               state <= WREQUEST;
+            elsif d_we = '1' and d_rd = '1' then
+              state <= READ_CSR;
             end if;
           end if;
+
+        when READ_CSR =>
+
+          state <= IDLE;
 
         when RREQUEST =>
         
@@ -181,6 +195,11 @@ architecture rtl of flash_bus is
     
     case state is
       when IDLE =>
+
+      when READ_CSR =>
+
+        avmm_csr_read <= '1';
+        avmm_csr_addr <= '0';
 
       when RREQUEST =>
 
