@@ -173,13 +173,13 @@ add wave -label HEX0 -radix hex /HEX0
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
 add wave -height 15 -divider "Step Motor"
-add wave -radix binary   -label reverse /reverse
-add wave -radix binary   -label restart /rst
-add wave -radix binary   -label stop /stop
-add wave -radix binary   -label half_full /half_full
-add wave -radix unsigned -label speed /speed 
-add wave -radix binary   -label outputs /outputs
-add wave                 -label state /motor0/state
+add wave -radix binary   -label reverse /step0/reverse
+add wave -radix binary   -label reset /step0/reset
+add wave -radix binary   -label stop /step0/stop
+add wave -radix binary   -label half_full /step0/half_full
+add wave -radix unsigned -label speed /step0/speed 
+add wave -radix binary   -label outputs /outs
+add wave                 -label state /step0/state
 
 
 run 2000 us

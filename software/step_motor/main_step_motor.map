@@ -46,7 +46,7 @@ END GROUP
 LOAD /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/libgcc.a
 LOAD /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtend.o
 
-.rom            0x0000000000000000      0x3f4
+.rom            0x0000000000000000      0x3d0
  _pvstart*(.text)
  start*(.text)
  .text          0x0000000000000000       0x58 start.o
@@ -58,157 +58,159 @@ LOAD /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.
  .text          0x0000000000000100       0x4c /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
                 0x0000000000000100                _start
  .text          0x000000000000014c        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
- .text          0x000000000000014c       0x88 main_step_motor.o
+ .text          0x000000000000014c       0x84 main_step_motor.o
                 0x000000000000014c                main
- .text          0x00000000000001d4       0xd8 ../_core/syscalls.o
-                0x00000000000001d4                _getpid
-                0x00000000000001d4                _utime
-                0x00000000000001d4                _sysconf
-                0x00000000000001d4                _ftime
-                0x00000000000001d4                _isatty
-                0x00000000000001d4                _open
-                0x00000000000001d4                _times
-                0x00000000000001d4                _stat
-                0x00000000000001d4                _chdir
-                0x00000000000001d4                _wait
-                0x00000000000001d4                _lseek
-                0x00000000000001d4                _fstatat
-                0x00000000000001d4                _link
-                0x00000000000001d4                _chown
-                0x00000000000001d4                _access
-                0x00000000000001d4                _openat
-                0x00000000000001d4                _execve
-                0x00000000000001d4                _chmod
-                0x00000000000001d4                _lstat
-                0x00000000000001d4                _unlink
-                0x00000000000001d4                _fork
-                0x00000000000001d4                _getcwd
-                0x00000000000001d4                _kill
-                0x00000000000001d4                _gettimeofday
-                0x00000000000001d4                _faccessat
-                0x00000000000001d8                unimplemented_syscall
-                0x00000000000001fc                _read
-                0x0000000000000204                _write
-                0x0000000000000228                _close
-                0x0000000000000230                _fstat
-                0x0000000000000254                _sbrk
-                0x0000000000000278                _exit
-                0x000000000000027c                init_data_section
- .text          0x00000000000002ac       0x10 ../_core/utils.o
-                0x00000000000002ac                delay_
- .text          0x00000000000002bc       0x5c step_motor.o
-                0x00000000000002bc                reset_motor
-                0x00000000000002d8                stop_motor
-                0x00000000000002f8                reverse_rotation
- .text          0x0000000000000318        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
- .text          0x0000000000000318        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
- .text          0x0000000000000318        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
- .text          0x0000000000000318        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
- .text          0x0000000000000318        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
- .text          0x0000000000000318       0xdc /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
-                0x0000000000000318                memset
- .text          0x00000000000003f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
- .text          0x00000000000003f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
- .text          0x00000000000003f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
- .text          0x00000000000003f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
- .text          0x00000000000003f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtend.o
+ .text          0x00000000000001d0       0xd8 ../_core/syscalls.o
+                0x00000000000001d0                _getpid
+                0x00000000000001d0                _utime
+                0x00000000000001d0                _sysconf
+                0x00000000000001d0                _ftime
+                0x00000000000001d0                _isatty
+                0x00000000000001d0                _open
+                0x00000000000001d0                _times
+                0x00000000000001d0                _stat
+                0x00000000000001d0                _chdir
+                0x00000000000001d0                _wait
+                0x00000000000001d0                _lseek
+                0x00000000000001d0                _fstatat
+                0x00000000000001d0                _link
+                0x00000000000001d0                _chown
+                0x00000000000001d0                _access
+                0x00000000000001d0                _openat
+                0x00000000000001d0                _execve
+                0x00000000000001d0                _chmod
+                0x00000000000001d0                _lstat
+                0x00000000000001d0                _unlink
+                0x00000000000001d0                _fork
+                0x00000000000001d0                _getcwd
+                0x00000000000001d0                _kill
+                0x00000000000001d0                _gettimeofday
+                0x00000000000001d0                _faccessat
+                0x00000000000001d4                unimplemented_syscall
+                0x00000000000001f8                _read
+                0x0000000000000200                _write
+                0x0000000000000224                _close
+                0x000000000000022c                _fstat
+                0x0000000000000250                _sbrk
+                0x0000000000000274                _exit
+                0x0000000000000278                init_data_section
+ .text          0x00000000000002a8       0x10 ../_core/utils.o
+                0x00000000000002a8                delay_
+ .text          0x00000000000002b8       0x3c step_motor.o
+                0x00000000000002b8                reset_motor
+                0x00000000000002c4                stop_motor
+                0x00000000000002d0                reverse_rotation
+                0x00000000000002dc                change_step
+                0x00000000000002e8                change_speed
+ .text          0x00000000000002f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .text          0x00000000000002f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .text          0x00000000000002f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .text          0x00000000000002f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .text          0x00000000000002f4        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .text          0x00000000000002f4       0xdc /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                0x00000000000002f4                memset
+ .text          0x00000000000003d0        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .text          0x00000000000003d0        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .text          0x00000000000003d0        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .text          0x00000000000003d0        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .text          0x00000000000003d0        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtend.o
 
 .text.__do_global_dtors_aux
-                0x00000000000003f4       0x48
+                0x00000000000003d0       0x48
  .text.__do_global_dtors_aux
-                0x00000000000003f4       0x48 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
+                0x00000000000003d0       0x48 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
 
 .text.frame_dummy
-                0x000000000000043c       0x20
+                0x0000000000000418       0x20
  .text.frame_dummy
-                0x000000000000043c       0x20 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
+                0x0000000000000418       0x20 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
 
-.text.trap      0x000000000000045c       0xc8
- .text.trap     0x000000000000045c       0xc8 start.o
-                0x000000000000045c                trap_entry
+.text.trap      0x0000000000000438       0xc8
+ .text.trap     0x0000000000000438       0xc8 start.o
+                0x0000000000000438                trap_entry
 
-.text.irq       0x0000000000000524       0xa8
- .text.irq      0x0000000000000524       0xa8 start.o
-                0x0000000000000524                irq_entry
+.text.irq       0x0000000000000500       0xa8
+ .text.irq      0x0000000000000500       0xa8 start.o
+                0x0000000000000500                irq_entry
 
-.init           0x00000000000005cc       0x84
- .init          0x00000000000005cc       0x84 start.o
+.init           0x00000000000005a8       0x84
+ .init          0x00000000000005a8       0x84 start.o
 
-.text.__errno   0x0000000000000650        0x8
- .text.__errno  0x0000000000000650        0x8 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
-                0x0000000000000650                __errno
+.text.__errno   0x000000000000062c        0x8
+ .text.__errno  0x000000000000062c        0x8 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                0x000000000000062c                __errno
 
-.text.exit      0x0000000000000658       0x34
- .text.exit     0x0000000000000658       0x34 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
-                0x0000000000000658                exit
+.text.exit      0x0000000000000634       0x34
+ .text.exit     0x0000000000000634       0x34 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                0x0000000000000634                exit
 
 .text.__libc_init_array
-                0x000000000000068c       0x84
+                0x0000000000000668       0x84
  .text.__libc_init_array
-                0x000000000000068c       0x84 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
-                0x000000000000068c                __libc_init_array
+                0x0000000000000668       0x84 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                0x0000000000000668                __libc_init_array
 
-.text.memcpy    0x0000000000000710      0x11c
- .text.memcpy   0x0000000000000710      0x11c /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
-                0x0000000000000710                memcpy
+.text.memcpy    0x00000000000006ec      0x11c
+ .text.memcpy   0x00000000000006ec      0x11c /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                0x00000000000006ec                memcpy
 
 .text.startup.register_fini
-                0x000000000000082c       0x18
+                0x0000000000000808       0x18
  .text.startup.register_fini
-                0x000000000000082c       0x18 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x0000000000000808       0x18 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
 
 .text.__call_exitprocs
-                0x0000000000000844      0x124
+                0x0000000000000820      0x124
  .text.__call_exitprocs
-                0x0000000000000844      0x124 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
-                0x0000000000000844                __call_exitprocs
+                0x0000000000000820      0x124 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x0000000000000820                __call_exitprocs
 
 .text.__libc_fini_array
-                0x0000000000000968       0x54
+                0x0000000000000944       0x54
  .text.__libc_fini_array
-                0x0000000000000968       0x54 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
-                0x0000000000000968                __libc_fini_array
+                0x0000000000000944       0x54 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                0x0000000000000944                __libc_fini_array
 
-.text.atexit    0x00000000000009bc       0x14
- .text.atexit   0x00000000000009bc       0x14 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
-                0x00000000000009bc                atexit
+.text.atexit    0x0000000000000998       0x14
+ .text.atexit   0x0000000000000998       0x14 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                0x0000000000000998                atexit
 
 .text.__register_exitproc
-                0x00000000000009d0       0x9c
+                0x00000000000009ac       0x9c
  .text.__register_exitproc
-                0x00000000000009d0       0x9c /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
-                0x00000000000009d0                __register_exitproc
+                0x00000000000009ac       0x9c /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                0x00000000000009ac                __register_exitproc
 
-.eh_frame       0x0000000000000a6c        0x4
- .eh_frame      0x0000000000000a6c        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
- .eh_frame      0x0000000000000a6c        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtend.o
+.eh_frame       0x0000000000000a48        0x4
+ .eh_frame      0x0000000000000a48        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
+ .eh_frame      0x0000000000000a48        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtend.o
 
-.rodata.str1.4  0x0000000000000a70       0x23
+.rodata.str1.4  0x0000000000000a4c       0x23
  .rodata.str1.4
-                0x0000000000000a70       0x23 ../_core/syscalls.o
+                0x0000000000000a4c       0x23 ../_core/syscalls.o
 
 .srodata._global_impure_ptr
-                0x0000000000000a94        0x4
+                0x0000000000000a70        0x4
  .srodata._global_impure_ptr
-                0x0000000000000a94        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
-                0x0000000000000a94                _global_impure_ptr
+                0x0000000000000a70        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x0000000000000a70                _global_impure_ptr
 
-.rela.dyn       0x0000000000000a98        0x0
- .rela.text     0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+.rela.dyn       0x0000000000000a74        0x0
+ .rela.text     0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__do_global_dtors_aux
-                0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.frame_dummy
-                0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
- .rela.init     0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.init     0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__libc_init_array
-                0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.startup.register_fini
-                0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
  .rela.text.__libc_fini_array
-                0x0000000000000a98        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000a74        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
 
-.data           0x0000000002000000      0x42c load address 0x0000000000000a98
-                0x0000000000000a98                _data_lma = LOADADDR (.data)
+.data           0x0000000002000000      0x42c load address 0x0000000000000a74
+                0x0000000000000a74                _data_lma = LOADADDR (.data)
                 0x0000000002000000                _data = .
                 0x0000000002000000                __global_pointer$ = .
  *(.data .data.*)
@@ -239,18 +241,18 @@ LOAD /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.
                 0x000000000200042c                . = ALIGN (0x4)
                 0x000000000200042c                _edata = .
 
-.fini_array     0x000000000200042c        0x4 load address 0x0000000000000ec4
+.fini_array     0x000000000200042c        0x4 load address 0x0000000000000ea0
  .fini_array    0x000000000200042c        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
 
-.init_array     0x0000000002000430        0x4 load address 0x0000000000000ec8
+.init_array     0x0000000002000430        0x4 load address 0x0000000000000ea4
  .init_array    0x0000000002000430        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
 
 .init_array.00000
-                0x0000000002000434        0x4 load address 0x0000000000000ecc
+                0x0000000002000434        0x4 load address 0x0000000000000ea8
  .init_array.00000
                 0x0000000002000434        0x4 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
 
-.bss            0x0000000002000438       0x18 load address 0x0000000000000ed0
+.bss            0x0000000002000438       0x18 load address 0x0000000000000eac
                 0x0000000002000438                _bss_start = .
  *(.bss .bss.*)
  .bss           0x0000000002000438        0x0 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
@@ -278,11 +280,11 @@ LOAD /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.
 OUTPUT(main_step_motor.elf elf32-littleriscv)
 
 .sbss.completed.1
-                0x0000000002000450        0x1 load address 0x0000000000000ed0
+                0x0000000002000450        0x1 load address 0x0000000000000eac
  .sbss.completed.1
                 0x0000000002000450        0x1 /home/rayanst/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/../lib/gcc/riscv-none-embed/10.1.0/rv32im/ilp32/crtbegin.o
 
-.sbss           0x0000000002000454        0x4 load address 0x0000000000000ed0
+.sbss           0x0000000002000454        0x4 load address 0x0000000000000eac
  .sbss          0x0000000002000454        0x4 ../_core/syscalls.o
 
 .comment        0x0000000000000000       0x34

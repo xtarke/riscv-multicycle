@@ -75,7 +75,7 @@ architecture RTL of coretestbench is
 	signal ddata_r_timer : std_logic_vector(31 downto 0);
 	signal timer_interrupt : std_logic_vector(5 downto 0);
 	signal ddata_r_periph : std_logic_vector(31 downto 0);
-    signal ddata_r_sdram : std_logic_vector(31 downto 0);
+    	signal ddata_r_sdram : std_logic_vector(31 downto 0);
 
 	signal gpio_interrupts : std_logic_vector(6 downto 0);
 	signal ddata_r_segments : std_logic_vector(31 downto 0);
@@ -85,14 +85,7 @@ architecture RTL of coretestbench is
 	
 	-- StepMotor signals
 	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
-	signal reverse, stop : std_logic;
-    signal half_full : std_logic;
-    signal in1: std_logic;
-    signal in2: std_logic;
-    signal in3: std_logic;
-    signal in4: std_logic;
-    signal speed : unsigned(2 downto 0);
-    signal outputs : std_logic_vector(3 downto 0);
+    	signal outs : std_logic_vector(3 downto 0);
 	
 begin
 
@@ -121,40 +114,7 @@ begin
 		wait for 150 ns;
 		rst <= '0';
 		wait;
-	end process reset;
-	
-	step_test: process
-	begin
-	    outputs(0) <= in1; outputs(1) <= in2; outputs(2) <= in3; outputs(3) <= in4;
-	    stop <= '0';
-	    speed <= to_unsigned(0,speed'length);
-	    half_full <= '0';
-	    reverse <= '0';
-	    wait for 14000 ns;
-	    
-	    stop <= '1';
-	    wait for 2000 ns;
-	    
-	    stop <= '0';
-	    half_full <= '1';
-	    wait for 14000 ns;
-	    
-	    reverse <= '1';
-	    wait for 2000 ns;
-	    
-	    reverse <= '0';
-	    half_full <= '0';
-	    for i in 0 to 7 loop
-            speed <= to_unsigned(i, speed'length);
-            wait for 20 ms;
-        end loop;
-        
-        speed <= to_unsigned(0, speed'length);
-        
-        wait;
-	    
-	end process step_test;
-	
+	end process reset;		
 	
 	-- Connect gpio data to output hardware
     LEDR  <= gpio_output(9 downto 0);
@@ -334,25 +294,19 @@ begin
         );
         
     -- Stepmotor instantiation
-    motor0: entity work.stepmotor
+    step0: entity work.stepmotor
         port map(
-            clk       => clk,
-            rst       => rst,
-            daddress  => daddress,
-            ddata_w   => ddata_w,
-            ddata_r   => ddata_r,
-            d_we      => d_we,
-            d_rd      => d_rd,
-            dcsel     => dcsel,
-            dmask     => dmask,
-            reverse   => reverse,
-            stop      => stop,
-            half_full => half_full,
-            speed     => speed,
-            in1       => in1,
-            in2       => in2,
-            in3       => in3,
-            in4       => in4
+            clk => clk,
+            rst => rst,
+            daddress => daddress,
+            ddata_w => ddata_w,
+            ddata_r => ddata_r_stepmot,
+            d_we => d_we,
+            d_rd => d_rd,
+            dcsel => dcsel,
+            dmask => dmask,
+            outs => outs
+
         );
 
 	-- FileOutput DEBUG	

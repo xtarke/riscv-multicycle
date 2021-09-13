@@ -59,12 +59,12 @@ begin
                         reset   <= ddata_w(0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+1) then
                         stop <= ddata_w(0);
-                    elsif ddaddress(15 downto 0) = (MY_WORD_ADDRESS+2) then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+2) then
                         reverse <= ddata_w(0);
-                    elsif ddaddress(15 downto 0) = (MY_WORD_ADDRESS+3) then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+3) then
                         half_full <= ddata_w(0);
-                    elsif ddaddress(15 downto 0) = (MY_WORD_ADDRESS+4) then
-                        speed <= ddata_w(2 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+4) then
+                        speed <= unsigned(ddata_w(2 downto 0));
                     end if;
                 end if;
             end if;
