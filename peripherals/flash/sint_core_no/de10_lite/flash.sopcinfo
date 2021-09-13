@@ -1,150 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<EnsembleReport name="flash" kind="system" version="20.1" fabric="QSYS">
+<EnsembleReport name="flash" kind="flash" version="1.0" fabric="QSYS">
  <!-- Format version 20.1 720 (Future versions may contain additional information.) -->
- <!-- 2021.09.06.08:59:21 -->
+ <!-- 2021.09.10.13:16:14 -->
  <!-- A collection of modules and connections -->
- <parameter name="clockCrossingAdapter">
-  <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
-  <value>HANDSHAKE</value>
+ <parameter name="AUTO_GENERATION_ID">
+  <type>java.lang.Integer</type>
+  <value>1631290574</value>
   <derived>false</derived>
   <enabled>true</enabled>
-  <visible>true</visible>
+  <visible>false</visible>
   <valid>true</valid>
+  <sysinfo_type>GENERATION_ID</sysinfo_type>
  </parameter>
- <parameter name="device">
+ <parameter name="AUTO_UNIQUE_ID">
   <type>java.lang.String</type>
-  <value>10M50DAF484C7G</value>
+  <value></value>
   <derived>false</derived>
   <enabled>true</enabled>
-  <visible>true</visible>
+  <visible>false</visible>
   <valid>true</valid>
+  <sysinfo_type>UNIQUE_ID</sysinfo_type>
  </parameter>
- <parameter name="deviceFamily">
+ <parameter name="AUTO_DEVICE_FAMILY">
   <type>java.lang.String</type>
   <value>MAX10FPGA</value>
   <derived>false</derived>
   <enabled>true</enabled>
-  <visible>true</visible>
+  <visible>false</visible>
   <valid>true</valid>
+  <sysinfo_type>DEVICE_FAMILY</sysinfo_type>
  </parameter>
- <parameter name="deviceSpeedGrade">
+ <parameter name="AUTO_DEVICE">
+  <type>java.lang.String</type>
+  <value>10M50DAF484C7G</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>DEVICE</sysinfo_type>
+ </parameter>
+ <parameter name="AUTO_DEVICE_SPEEDGRADE">
   <type>java.lang.String</type>
   <value>7</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
   <valid>true</valid>
+  <sysinfo_type>DEVICE_SPEEDGRADE</sysinfo_type>
  </parameter>
- <parameter name="fabricMode">
-  <type>com.altera.sopcmodel.ensemble.Ensemble$EFabricMode</type>
-  <value>QSYS</value>
+ <parameter name="AUTO_CLK_CLOCK_RATE">
+  <type>java.lang.Long</type>
+  <value>-1</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
   <valid>true</valid>
+  <sysinfo_type>CLOCK_RATE</sysinfo_type>
+  <sysinfo_arg>clk</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_CLK_CLOCK_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
+  <sysinfo_arg>clk</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_CLK_RESET_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>RESET_DOMAIN</sysinfo_type>
+  <sysinfo_arg>clk</sysinfo_arg>
+ </parameter>
+ <parameter name="deviceFamily">
+  <type>java.lang.String</type>
+  <value>MAX 10</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>DEVICE_FAMILY</sysinfo_type>
  </parameter>
  <parameter name="generateLegacySim">
   <type>boolean</type>
   <value>false</value>
   <derived>false</derived>
   <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="generationId">
-  <type>int</type>
-  <value>1630929560</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
   <visible>true</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="globalResetBus">
-  <type>boolean</type>
-  <value>false</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="hdlLanguage">
-  <type>com.altera.entityinterfaces.moduleext.IModuleGenerateHDL$HDLLanguage</type>
-  <value>VERILOG</value>
-  <derived>false</derived>
-  <enabled>false</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="hideFromIPCatalog">
-  <type>boolean</type>
-  <value>true</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>true</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="lockedInterfaceDefinition">
-  <type>com.altera.sopcmodel.definition.BoundaryDefinition</type>
-  <value></value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="maxAdditionalLatency">
-  <type>int</type>
-  <value>1</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>true</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="projectName">
-  <type>java.lang.String</type>
-  <value>de10_lite.qpf</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="sopcBorderPoints">
-  <type>boolean</type>
-  <value>false</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="systemHash">
-  <type>long</type>
-  <value>0</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="testBenchDutName">
-  <type>java.lang.String</type>
-  <value></value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="timeStamp">
-  <type>long</type>
-  <value>0</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
- </parameter>
- <parameter name="useTestBenchNamingPattern">
-  <type>boolean</type>
-  <value>false</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
   <valid>true</valid>
  </parameter>
  <module
@@ -260,7 +208,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.memoryInfo.MEM_INIT_FILENAME</name>
-   <value>flash_onchip_flash_0</value>
+   <value>altera_onchip_flash</value>
   </assignment>
   <assignment>
    <name>embeddedsw.memoryInfo.USE_BYTE_ADDRESSING_FOR_HEX</name>
@@ -300,7 +248,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="CLOCK_FREQUENCY">
    <type>double</type>
-   <value>116.0</value>
+   <value>10.0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -316,7 +264,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="CONFIGURATION_MODE">
    <type>java.lang.String</type>
-   <value>Single Uncompressed Image</value>
+   <value>Single Uncompressed Image with Memory Initialization</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -348,7 +296,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_STORAGE_TYPE">
    <type>[Ljava.lang.String;</type>
-   <value>UFM,UFM,UFM,CFM,CFM</value>
+   <value>UFM,UFM,CFM,CFM,CFM</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>true</visible>
@@ -364,7 +312,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="useNonDefaultInitFile">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -374,7 +322,7 @@ the requested settings for a module instance. -->
    <type>java.lang.String</type>
    <value>altera_onchip_flash.hex</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
@@ -382,7 +330,7 @@ the requested settings for a module instance. -->
    <type>java.lang.String</type>
    <value>altera_onchip_flash.dat</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
@@ -397,7 +345,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME">
    <type>java.lang.String</type>
-   <value>flash_onchip_flash_0.hex</value>
+   <value>altera_onchip_flash.hex</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -405,7 +353,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME_SIM">
    <type>java.lang.String</type>
-   <value>flash_onchip_flash_0.dat</value>
+   <value>altera_onchip_flash.dat</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -553,7 +501,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="MAX_UFM_VALID_ADDR">
    <type>int</type>
-   <value>114687</value>
+   <value>16383</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -697,7 +645,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_RESET_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>29</value>
+   <value>2</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -705,7 +653,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_BUSY_TIMEOUT_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>139</value>
+   <value>12</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -713,7 +661,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_ERASE_TIMEOUT_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>40600000</value>
+   <value>3500000</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -721,7 +669,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="FLASH_WRITE_TIMEOUT_CYCLE_MAX_INDEX">
    <type>int</type>
-   <value>35380</value>
+   <value>3050</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -761,7 +709,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="IS_ERAM_SKIP">
    <type>java.lang.String</type>
-   <value>True</value>
+   <value>False</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -922,7 +870,7 @@ parameters are a RESULT of the module parameters. -->
     <value>DYNAMIC</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="addressGroup">
@@ -970,7 +918,7 @@ parameters are a RESULT of the module parameters. -->
     <value>nreset</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>false</visible>
+    <visible>true</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="bitsPerSymbol">
@@ -978,7 +926,7 @@ parameters are a RESULT of the module parameters. -->
     <value>8</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>false</visible>
+    <visible>true</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="bridgedAddressOffset">
@@ -1010,7 +958,7 @@ parameters are a RESULT of the module parameters. -->
     <value>WORDS</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>false</visible>
+    <visible>true</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="constantBurstBehavior">
@@ -1033,7 +981,7 @@ parameters are a RESULT of the module parameters. -->
     <type>int</type>
     <value>0</value>
     <derived>false</derived>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1066,7 +1014,7 @@ parameters are a RESULT of the module parameters. -->
     <value>true</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="isNonVolatileStorage">
@@ -1074,7 +1022,7 @@ parameters are a RESULT of the module parameters. -->
     <value>true</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="linewrapBursts">
@@ -1089,7 +1037,7 @@ parameters are a RESULT of the module parameters. -->
     <type>int</type>
     <value>1</value>
     <derived>false</derived>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1114,14 +1062,14 @@ parameters are a RESULT of the module parameters. -->
     <value>false</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="readLatency">
     <type>int</type>
     <value>0</value>
     <derived>false</derived>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1137,7 +1085,7 @@ parameters are a RESULT of the module parameters. -->
     <type>int</type>
     <value>0</value>
     <derived>false</derived>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1161,7 +1109,7 @@ parameters are a RESULT of the module parameters. -->
     <type>int</type>
     <value>0</value>
     <derived>false</derived>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1169,7 +1117,7 @@ parameters are a RESULT of the module parameters. -->
     <type>com.altera.sopcmodel.avalon.TimingUnits</type>
     <value>Cycles</value>
     <derived>false</derived>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1209,7 +1157,7 @@ parameters are a RESULT of the module parameters. -->
     <type>int</type>
     <value>0</value>
     <derived>false</derived>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
@@ -1305,7 +1253,7 @@ parameters are a RESULT of the module parameters. -->
     <value>DYNAMIC</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="addressGroup">
@@ -1353,7 +1301,7 @@ parameters are a RESULT of the module parameters. -->
     <value>nreset</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>false</visible>
+    <visible>true</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="bitsPerSymbol">
@@ -1361,7 +1309,7 @@ parameters are a RESULT of the module parameters. -->
     <value>8</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>false</visible>
+    <visible>true</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="bridgedAddressOffset">
@@ -1393,7 +1341,7 @@ parameters are a RESULT of the module parameters. -->
     <value>WORDS</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>false</visible>
+    <visible>true</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="constantBurstBehavior">
@@ -1449,7 +1397,7 @@ parameters are a RESULT of the module parameters. -->
     <value>false</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="isNonVolatileStorage">
@@ -1457,7 +1405,7 @@ parameters are a RESULT of the module parameters. -->
     <value>false</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="linewrapBursts">
@@ -1497,7 +1445,7 @@ parameters are a RESULT of the module parameters. -->
     <value>false</value>
     <derived>false</derived>
     <enabled>true</enabled>
-    <visible>true</visible>
+    <visible>false</visible>
     <valid>true</valid>
    </parameter>
    <parameter name="readLatency">
@@ -1679,5 +1627,5 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <reportVersion>20.1 720</reportVersion>
- <uniqueIdentifier>0242EAA030470000017BBAFA25A6</uniqueIdentifier>
+ <uniqueIdentifier></uniqueIdentifier>
 </EnsembleReport>

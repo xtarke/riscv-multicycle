@@ -37,7 +37,7 @@ vlog "$QUARTUS_INSTALL_DIR/eda/sim_lib/mentor/fiftyfivenm_atoms_ncrypt.v" -work 
 vcom "$QUARTUS_INSTALL_DIR/eda/sim_lib/fiftyfivenm_atoms.vhd"             -work fiftyfivenm     
 vcom "$QUARTUS_INSTALL_DIR/eda/sim_lib/fiftyfivenm_components.vhd"        -work fiftyfivenm     
 
-set FLASH_SIMULATION_DIR "./sint_only_flash/de10_lite/flash/simulation"
+set FLASH_SIMULATION_DIR "./sint_core_no/de10_lite/flash/simulation"
 
 vlog $FLASH_SIMULATION_DIR/submodules/altera_onchip_flash_util.v
 vlog $FLASH_SIMULATION_DIR/submodules/altera_onchip_flash_avmm_data_controller.v
@@ -49,7 +49,7 @@ vcom flash_bus.vhd
 vcom testbench_flash.vhd
 
 #Simula (work é o diretorio, testbench é o nome da entity)
-vsim -t us work.testbench
+vsim -t ns work.testbench
 
 view wave
 
@@ -81,7 +81,7 @@ add wave -label csr_writedata /dut/avmm_csr_writedata
 add wave -label csr_write /dut/avmm_csr_write
 add wave -radix hex -label csr_readdata /dut/avmm_csr_readdata
 
-run 500ms
+run 1000us
 
 wave zoomfull
 write wave wave.ps

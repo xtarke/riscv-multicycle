@@ -68,8 +68,8 @@
    enabled="1"
    autoexport="1">
   <parameter name="AUTO_CLOCK_RATE" value="0" />
-  <parameter name="CLOCK_FREQUENCY" value="116.0" />
-  <parameter name="CONFIGURATION_MODE">Single Uncompressed Image</parameter>
+  <parameter name="CLOCK_FREQUENCY" value="10.0" />
+  <parameter name="CONFIGURATION_MODE">Single Uncompressed Image with Memory Initialization</parameter>
   <parameter name="CONFIGURATION_SCHEME">Internal Configuration</parameter>
   <parameter name="DATA_INTERFACE" value="Parallel" />
   <parameter name="DEVICE_FAMILY" value="MAX 10" />
@@ -81,7 +81,7 @@
   <parameter name="initFlashContent" value="true" />
   <parameter name="initializationFileName">altera_onchip_flash.hex</parameter>
   <parameter name="initializationFileNameForSim">altera_onchip_flash.dat</parameter>
-  <parameter name="useNonDefaultInitFile" value="false" />
+  <parameter name="useNonDefaultInitFile" value="true" />
  </module>
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />

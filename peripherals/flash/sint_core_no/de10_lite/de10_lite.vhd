@@ -82,6 +82,10 @@ architecture rtl of de10_lite is
     signal dcsel	 : std_logic_vector(1 downto 0) := (others => '0');
     signal dmask     : std_logic_vector(3 downto 0) := (others => '0');	
 
+	-- testing
+	signal waitrequest : std_logic;
+	signal csr_readdata : std_logic_vector(31 downto 0);
+
 begin
 
 	u0 : component source_and_probe
@@ -93,7 +97,7 @@ begin
 	rst_deb: entity work.debouncer
 	generic map (
 		SYS_FREQ => 10,
-		COUNT => 1000000
+		COUNT => 100000
 	)
 	port map (
 		clk => ADC_CLK_10,
@@ -102,22 +106,28 @@ begin
 		output => rst
 	);
 
-	clk_deb: entity work.debouncer
-	generic map (
-		SYS_FREQ => 10,
-		COUNT => 1000000
-	)
-	port map (
-		clk => ADC_CLK_10,
-		rst => '0',
-		input => SW(0),
-		output => clk
-	);
+	LEDR(9) <= rst;
+
+--	clk <= ADC_CLK_10;
+	clk <= MAX10_CLK1_50;
+	-- clk_deb: entity work.debouncer
+	-- generic map (
+	-- 	SYS_FREQ => 10,
+	-- 	COUNT => 100000
+	-- )
+	-- port map (
+	-- 	clk => ADC_CLK_10,
+	-- 	rst => '0',
+	-- 	input => SW(0),
+	-- 	output => clk
+	-- );
+
+	LEDR(0) <= clk;
 
 	d_we_deb: entity work.debouncer
 	generic map (
 		SYS_FREQ => 10,
-		COUNT => 1000000
+		COUNT => 100000
 	)
 	port map (
 		clk => ADC_CLK_10,
@@ -126,10 +136,12 @@ begin
 		output => d_we
 	);
 
+	LEDR(1) <= d_we;
+
 	d_rd_deb: entity work.debouncer
 	generic map (
 		SYS_FREQ => 10,
-		COUNT => 1000000
+		COUNT => 100000
 	)
 	port map (
 		clk => ADC_CLK_10,
@@ -137,6 +149,8 @@ begin
 		input => SW(2),
 		output => d_rd
 	);
+
+	LEDR(2) <= d_rd;
 
 	flash_bus: entity work.flash_bus
 		generic map (
@@ -158,12 +172,17 @@ begin
 			d_rd	 => d_rd,
 			
 			dcsel	 => dcsel,
-			dmask    => dmask
+			dmask    => dmask,
+
+			waitrequest => waitrequest,
+			csr_readdata => csr_readdata
 		);
 
 	daddress <= unsigned(source(31 downto 0));
 	ddata_w <= source(63 downto 32);
 	probe(31 downto 0) <= ddata_r;
+	probe(32) <= waitrequest;
+	probe(64 downto 33) <= csr_readdata;
 end;
 
  
