@@ -1,8 +1,5 @@
 # User Flash Memory (UFM)
 
-Referência:
-https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/max-10/ug_m10_ufm.pdf
-
 A flash interna do Quartus (UFM) utiliza a interface Avalon-MM para se comunicar
 com o mundo externo.
 
@@ -29,22 +26,40 @@ configuração enquanto a user flash memory (UFM) é usada para armazenar imagen
 (aplicações) e dados do usuário. 
 
 A UFM opera em dois modos de escrita/leitura: paralelo e serial. Por hora
-somente o modo paralelo é suportado neste periférico em questão. Uma sugestão de
-trabalho futuro é suportar o modo serial.
+somente o modo paralelo é suportado nesta implementação aqui em questão. Uma
+sugestão de trabalho futuro é suportar o modo serial.
 
-[](./flash_avalon_interface_diagram.png)
+A figura seguinte mostra a interface da Flash On-Chip fornecida pelo Quartus.
 
-## Operação de escrita de 32 bits
+![](.images/flash_avalon_interface_diagram.png)
+
+## periférico flash bus: camada de abstração entre barramento avalon e core
+
+Este periférico em questão se responsabiliza por fornecer uma interface (de
+abstração) para o core através da qual é possível realizar operações na Flash. O
+arquivo responsável por essa ponte entre os dois barramentos é o
+`flash_bus.vhd`.
+
+Internamente o `flash_bus.vhd` utiliza o IP da Flash fornecido/gerado pelo
+Quartus (tanto para simulação quanto para o hardware).
+
+As duas seções seguintes explicam as operações de escrita e leitura possíveis
+sobre a interface de dados da Flash (Data). Para mais detalhes ou informações
+sobre essas e outras operações, veja a referência.
+
+## Operação de escrita (write) de 32 bits
 
 1 - Setar o bit 'write protection mode' para '0' referente ao sector da flash
 que será escrito. Existe um bit para cada 1 dos 5 sectors no registrador Core
 Control. Escreve-se neste registrador através da unidade de controle (Control).
 
-TODO...
+Depois disso, o processo de escrita é explicado pela figura seguinte.
 
 ![](.images/2021-08-28-08-58-34.png)
 
-## Operação de leitura de 32 bits em modo paralelo
+'address' recebe o endereço no qual será escrito o valor de 'writedata', e o sinal 'write' e 'burstcount' devem ser setados para 1. O sinal 'waitrequest' é setado pela flash enquanto a operação de escrita estiver em andamento. Após a operação de escrita concluida, o bit 'write protection mode' deve ser setado de volta para '1'. O sucesso (ou insucesso) da operação de escrita é informado no registrador de status (bloco Control).
+
+## Operação de leitura (read) de 32 bits em modo paralelo
 
 Para a fazer a leitura da UFM comunica-se apenas com a unidade de dados (Data),
 isto é, não precisa fazer a comunicação com a unidade de controle (Control).
@@ -62,12 +77,37 @@ ilustra o processo (considerando que a flash não estava ocupada):
 
 ![](.images/2021-08-28-09-02-32.png)
 
+O sucesso (ou insucesso) da operação de leitura é informado no registrador de
+status (bloco Control).
 
+## Execução do periférico flash bus
+
+Atualmente o IP da Flash não funcionou na simulação nem na placa. O que acontece é que o sinal 'waitrequest' da flash fica sempre em '1' após o término da aplicação do sinal de reset (inicialização do IP). Esse comportamento não esperado pode ser visto ao simular o testbench `testbench_flash.vhd` (Veja a seção `Simulação` para mais detalhes).
+
+O comportamento também pode ser visto ao executar na placa. O projeto do quartus está localizado na pasta `./sint_core_no/de10_lite`. O arquivo `de10_lite.vhd` faz as seguintes associações no hardware:
+
+| pino           | sinal        |
+|------          |-------       |
+| SW9            | rst          |
+| SW0            | clk          |
+| SW1            | d_we         |
+| SW2            | d_rd         |
+| probe(31..0)   | ddata_r      |
+| probe(32)      | waitrequest  |
+| probe(64..33)  | csr_readdata |
+| source(63..32) | ddata_w      |
+| source(31..0)  | daddress     |
+
+Assim, utilizando o probe & request é possível  controlar as entradas e
+visualizar algumas saídas. 
+
+Obs.: os sinais 'csr_readata' e 'waitrequest' não são necessários e foram
+adicionados meramente por questões de debug. 
 
 ## Simulação
 
 Os arquivos de simulação foram gerados no IP Parameter Editor e estão na pasta
-`./sint_only_flash/de10_lite/flash/simulation`. Há scripts para diferentes vendors (aldec,
+`./sint_core_no/de10_lite/flash/simulation`. Há scripts para diferentes vendors (aldec,
 cadence, mentor, synopsys) entre outros arquivos .vhd e .v.
 
 ### build "manual", isto é, sem usar scripts de vendors
@@ -126,6 +166,10 @@ Alguns erros/warnings aparecem, também:
 
 
 
+# Referências
 
+- As figuras e explicações do IP da Flash on-chip, na sua maioria, foram extraídos do
+  seguinte link:
+  https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/max-10/ug_m10_ufm.pdf
 
 
