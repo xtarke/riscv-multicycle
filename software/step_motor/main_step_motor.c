@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "step_motor.h"
 #include "../gpio/gpio.h"
 

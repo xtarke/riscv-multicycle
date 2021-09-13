@@ -34,7 +34,7 @@ $(MAIN)32.hex: $(MAIN).elf ../hex8tohex32.py
 start.o: ../_core/start.S
 	$(CC) -c -nostdlib ../_core/start.S $(LDLIBS)
 
-$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o 
+$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o step_motor.o 
 	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T ../_core/sections.ld $(LDLIBS)
 	chmod -x $(MAIN).elf
 

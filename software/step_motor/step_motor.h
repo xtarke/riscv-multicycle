@@ -5,7 +5,8 @@
  * Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina *
  *************************************************************************/
 
-#ifndef _STEP_MOTOR
+#ifndef _STEP_MOTOR_H
+#define _STEO_MOTOR_H
 
 
 
