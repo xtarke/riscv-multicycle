@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2021.09.08.18:59:04"
+ outputDirectory="/home/rgnagel/riscv-multicycle/peripherals/flash/sint/de10_lite/source_and_probe/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="MAX 10"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="10M50DAF484C7G"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="7"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="probes" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="probe" direction="input" role="probe" width="256" />
+  </interface>
+  <interface name="sources" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="source" direction="output" role="source" width="256" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="source_and_probe:1.0:AUTO_DEVICE=10M50DAF484C7G,AUTO_DEVICE_FAMILY=MAX 10,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1631138344,AUTO_UNIQUE_ID=(altera_in_system_sources_probes:20.1:create_source_clock=false,create_source_clock_enable=false,device_family=MAX 10,enable_metastability=NO,gui_use_auto_index=true,instance_id=NONE,probe_width=256,sld_auto_instance_index=YES,sld_instance_index=0,source_initial_value=0,source_width=256)"
+   instancePathKey="source_and_probe"
+   kind="source_and_probe"
+   version="1.0"
+   name="source_and_probe">
+  <parameter name="AUTO_GENERATION_ID" value="1631138344" />
+  <parameter name="AUTO_DEVICE" value="10M50DAF484C7G" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <generatedFiles>
+   <file
+       path="/home/rgnagel/riscv-multicycle/peripherals/flash/sint/de10_lite/source_and_probe/synthesis/source_and_probe.vhd"
+       type="VHDL" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/rgnagel/riscv-multicycle/peripherals/flash/sint/de10_lite/source_and_probe/synthesis/submodules/altsource_probe_top.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/rgnagel/riscv-multicycle/peripherals/flash/sint/de10_lite/source_and_probe.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/rgnagel/intelFPGA_lite/20.1/ip/altera/sld/jtag/altera_in_system_sources_probes/altera_in_system_sources_probes_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="source_and_probe">queue size: 0 starting:source_and_probe "source_and_probe"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>1</b> modules, <b>0</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Debug" culprit="source_and_probe"><![CDATA["<b>source_and_probe</b>" reuses <b>altera_in_system_sources_probes</b> "<b>submodules/altsource_probe_top</b>"]]></message>
+   <message level="Debug" culprit="source_and_probe">queue size: 0 starting:altera_in_system_sources_probes "submodules/altsource_probe_top"</message>
+   <message level="Info" culprit="in_system_sources_probes_0"><![CDATA["<b>source_and_probe</b>" instantiated <b>altera_in_system_sources_probes</b> "<b>in_system_sources_probes_0</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_in_system_sources_probes:20.1:create_source_clock=false,create_source_clock_enable=false,device_family=MAX 10,enable_metastability=NO,gui_use_auto_index=true,instance_id=NONE,probe_width=256,sld_auto_instance_index=YES,sld_instance_index=0,source_initial_value=0,source_width=256"
+   instancePathKey="source_and_probe:.:in_system_sources_probes_0"
+   kind="altera_in_system_sources_probes"
+   version="20.1"
+   name="altsource_probe_top">
+  <parameter name="create_source_clock" value="false" />
+  <parameter name="instance_id" value="NONE" />
+  <parameter name="source_initial_value" value="0" />
+  <parameter name="sld_auto_instance_index" value="YES" />
+  <parameter name="sld_instance_index" value="0" />
+  <parameter name="probe_width" value="256" />
+  <parameter name="source_width" value="256" />
+  <parameter name="create_source_clock_enable" value="false" />
+  <parameter name="device_family" value="MAX 10" />
+  <parameter name="enable_metastability" value="NO" />
+  <parameter name="gui_use_auto_index" value="true" />
+  <generatedFiles>
+   <file
+       path="/home/rgnagel/riscv-multicycle/peripherals/flash/sint/de10_lite/source_and_probe/synthesis/submodules/altsource_probe_top.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="/home/rgnagel/intelFPGA_lite/20.1/ip/altera/sld/jtag/altera_in_system_sources_probes/altera_in_system_sources_probes_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="source_and_probe" as="in_system_sources_probes_0" />
+  <messages>
+   <message level="Debug" culprit="source_and_probe">queue size: 0 starting:altera_in_system_sources_probes "submodules/altsource_probe_top"</message>
+   <message level="Info" culprit="in_system_sources_probes_0"><![CDATA["<b>source_and_probe</b>" instantiated <b>altera_in_system_sources_probes</b> "<b>in_system_sources_probes_0</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

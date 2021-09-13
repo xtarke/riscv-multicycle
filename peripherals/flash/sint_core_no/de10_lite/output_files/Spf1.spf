@@ -3,21 +3,21 @@
   <instance enable_logging="true" entity_name="" is_auto_node="true" name="">
     <node_ip_info instance_id="0" mfg_id="110" node_id="9" version="0"/>
     <sources>
-      <source name="source[0]" value="false"/>
+      <source name="source[0]" value="true"/>
       <source name="source[1]" value="false"/>
       <source name="source[2]" value="false"/>
-      <source name="source[3]" value="false"/>
+      <source name="source[3]" value="true"/>
       <source name="source[4]" value="false"/>
       <source name="source[5]" value="false"/>
-      <source name="source[6]" value="false"/>
+      <source name="source[6]" value="true"/>
       <source name="source[7]" value="false"/>
-      <source name="source[8]" value="false"/>
-      <source name="source[9]" value="false"/>
+      <source name="source[8]" value="true"/>
+      <source name="source[9]" value="true"/>
       <source name="source[10]" value="false"/>
       <source name="source[11]" value="false"/>
-      <source name="source[12]" value="false"/>
+      <source name="source[12]" value="true"/>
       <source name="source[13]" value="false"/>
-      <source name="source[14]" value="false"/>
+      <source name="source[14]" value="true"/>
       <source name="source[15]" value="false"/>
       <source name="source[16]" value="false"/>
       <source name="source[17]" value="false"/>
@@ -35,8 +35,8 @@
       <source name="source[29]" value="false"/>
       <source name="source[30]" value="false"/>
       <source name="source[31]" value="false"/>
-      <source name="source[32]" value="true"/>
-      <source name="source[33]" value="true"/>
+      <source name="source[32]" value="false"/>
+      <source name="source[33]" value="false"/>
       <source name="source[34]" value="false"/>
       <source name="source[35]" value="false"/>
       <source name="source[36]" value="false"/>
@@ -293,7 +293,7 @@
       <probe name="probe[29]"/>
       <probe name="probe[30]"/>
       <probe name="probe[31]"/>
-      <probe name="probe[32]"/>
+      <probe name="waitrequest"/>
       <probe name="probe[33]"/>
       <probe name="probe[34]"/>
       <probe name="probe[35]"/>
@@ -519,7 +519,7 @@
       <probe name="probe[255]"/>
     </probes>
     <view>
-      <view_node expanded="false" group_name="probe[255..64]" index="0" lsb_to_msb="false" node_type="probe" view_type="group_header"/>
+      <view_node expanded="false" group_name="probe[255..65]" index="0" lsb_to_msb="false" node_type="probe" view_type="group_header"/>
       <view_node expanded="true" index="255" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="254" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="253" node_type="probe" view_type="group_member"/>
@@ -711,8 +711,8 @@
       <view_node expanded="true" index="67" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="66" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="65" node_type="probe" view_type="group_member"/>
+      <view_node expanded="false" group_name="csr_readdata" index="0" lsb_to_msb="false" node_type="probe" view_type="group_header"/>
       <view_node expanded="true" index="64" node_type="probe" view_type="group_member"/>
-      <view_node expanded="false" group_name="probe[63..32]" index="0" lsb_to_msb="false" node_type="probe" view_type="group_header"/>
       <view_node expanded="true" index="63" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="62" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="61" node_type="probe" view_type="group_member"/>
@@ -744,7 +744,7 @@
       <view_node expanded="true" index="35" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="34" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="33" node_type="probe" view_type="group_member"/>
-      <view_node expanded="true" index="32" node_type="probe" view_type="group_member"/>
+      <view_node expanded="true" index="32" node_type="probe" view_type="independent"/>
       <view_node expanded="false" group_name="ddata_r" index="0" lsb_to_msb="false" node_type="probe" view_type="group_header"/>
       <view_node expanded="true" index="31" node_type="probe" view_type="group_member"/>
       <view_node expanded="true" index="30" node_type="probe" view_type="group_member"/>
@@ -1038,6 +1038,6 @@
       <view_node expanded="true" index="1" node_type="source" view_type="group_member"/>
       <view_node expanded="true" index="0" node_type="source" view_type="group_member"/>
     </view>
-    <log data="0000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000" max_size="8" size="8" time="4EA59316000000004EA59316000000004EA59316000000004EA59316000000004EA59316000000005EA59316000000005EA59316000000005EA5931600000000" width="512"/>
+    <log data="9435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF1000000000000000000000000000000000000000000000009435000000000000000000000000000000000000000000000000000000000000FFFFFFFF108FFFFF100000000000000000000000000000000000000000000000" max_size="8" size="8" time="1B48B316000000001B48B316000000001B48B316000000001B48B316000000001B48B316000000002B48B316000000002B48B316000000002B48B31600000000" width="512"/>
   </instance>
 </session>

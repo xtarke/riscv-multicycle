@@ -99,8 +99,8 @@ begin
 
 	onchip_flash_0 : component altera_onchip_flash
 		generic map (
-			INIT_FILENAME                       => "flash_onchip_flash_0.hex",
-			INIT_FILENAME_SIM                   => "flash_onchip_flash_0.dat",
+			INIT_FILENAME                       => "altera_onchip_flash.hex",
+			INIT_FILENAME_SIM                   => "altera_onchip_flash.dat",
 			DEVICE_FAMILY                       => "MAX 10",
 			PART_NAME                           => "10M50DAF484C7G",
 			DEVICE_ID                           => "50",
@@ -117,7 +117,7 @@ begin
 			MIN_VALID_ADDR                      => 0,
 			MAX_VALID_ADDR                      => 360447,
 			MIN_UFM_VALID_ADDR                  => 0,
-			MAX_UFM_VALID_ADDR                  => 114687,
+			MAX_UFM_VALID_ADDR                  => 16383,
 			SECTOR1_MAP                         => 1,
 			SECTOR2_MAP                         => 2,
 			SECTOR3_MAP                         => 3,
@@ -135,15 +135,15 @@ begin
 			FLASH_SEQ_READ_DATA_COUNT           => 4,
 			FLASH_ADDR_ALIGNMENT_BITS           => 2,
 			FLASH_READ_CYCLE_MAX_INDEX          => 5,
-			FLASH_RESET_CYCLE_MAX_INDEX         => 29,
-			FLASH_BUSY_TIMEOUT_CYCLE_MAX_INDEX  => 139,
-			FLASH_ERASE_TIMEOUT_CYCLE_MAX_INDEX => 40600000,
-			FLASH_WRITE_TIMEOUT_CYCLE_MAX_INDEX => 35380,
+			FLASH_RESET_CYCLE_MAX_INDEX         => 2,
+			FLASH_BUSY_TIMEOUT_CYCLE_MAX_INDEX  => 12,
+			FLASH_ERASE_TIMEOUT_CYCLE_MAX_INDEX => 3500000,
+			FLASH_WRITE_TIMEOUT_CYCLE_MAX_INDEX => 3050,
 			PARALLEL_MODE                       => true,
 			READ_AND_WRITE_MODE                 => true,
 			WRAPPING_BURST_MODE                 => false,
 			IS_DUAL_BOOT                        => "False",
-			IS_ERAM_SKIP                        => "True",
+			IS_ERAM_SKIP                        => "False",
 			IS_COMPRESSED_IMAGE                 => "False"
 		)
 		port map (
