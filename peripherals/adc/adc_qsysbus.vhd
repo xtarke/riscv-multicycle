@@ -25,8 +25,8 @@ entity adc_qsysbus is
         modular_adc_0_response_channel       : out std_logic_vector(4 downto 0);                     -- channel
         modular_adc_0_response_data          : out std_logic_vector(11 downto 0);                    -- data
         modular_adc_0_response_startofpacket : out std_logic;                                        -- startofpacket
-        modular_adc_0_response_endofpacket   : out std_logic                                         -- endofpacket  
-    );
+        modular_adc_0_response_endofpacket   : out std_logic                                        -- endofpacket  
+        );
     
 end entity adc_qsysbus;
 
@@ -34,7 +34,7 @@ architecture RTL of adc_qsysbus is
     signal clk_qsys             :std_logic;
     signal response_channel     :std_logic_vector(4 downto 0);
     signal response_data        :std_logic_vector(11 downto 0);
-    
+    constant ADC_BASE_ADDRESS        : unsigned(15 downto 0) := x"0030";
 begin  
 
     clock_driver : process
@@ -44,15 +44,24 @@ begin
         wait for period / 2;
         clk_qsys <= '1';
         wait for period / 2;
-    end process clock_driver;    
-    
-    clock_bridge_sys_out_clk_clk          <= clk_qsys; 
-    modular_adc_0_response_valid          <= '1';
-    modular_adc_0_response_startofpacket  <= '1';    
-    modular_adc_0_response_endofpacket    <= '1';
+    end process clock_driver;  
+
+    clock_bridge_sys_out_clk_clk          <= clk_qsys;
     modular_adc_0_response_channel        <= response_channel;
     modular_adc_0_response_data           <= response_data;
     
+    test: process
+    begin 
+    modular_adc_0_response_valid          <= '1';
+    modular_adc_0_response_startofpacket  <= '1';    
+    modular_adc_0_response_endofpacket    <= '1';
+    wait for 100000 ns;
+    modular_adc_0_response_valid          <= '0';
+    modular_adc_0_response_startofpacket  <= '0';    
+    modular_adc_0_response_endofpacket    <= '0';
+    wait for 100000 ns;
+    end process test;
+
     add_data: process (clk_clk, reset_reset_n)
         variable count_var : unsigned(4 downto 0) := (others => '0');
     begin
