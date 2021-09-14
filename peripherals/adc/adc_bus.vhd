@@ -14,8 +14,8 @@ use ieee.numeric_std.all;
 
 entity adc_bus is
     generic(
-        MY_CHIPSELECT : std_logic_vector(1 downto 0)    := "10";
-        MY_WORD_ADDRESS : unsigned(15 downto 0)          := x"0030";
+        MY_CHIPSELECT : std_logic_vector(1 downto 0)    := "10"; --  ddata_r_periph when "10" -- ver databusmux
+        MY_WORD_ADDRESS : unsigned(15 downto 0)          := x"0030"; 
         DADDRESS_BUS_SIZE : integer := 32
     );
     port(
@@ -24,17 +24,20 @@ entity adc_bus is
         clk_adc     : in std_logic;
         
         -- Core data bus signals
-            -- Core data bus signals
         daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
-        ddata_w     : in  std_logic_vector(31 downto 0);
-        ddata_r     : out std_logic_vector(31 downto 0);
-        d_we        : in std_logic;
-        d_rd        : in std_logic;
+        ddata_w     : in  std_logic_vector(31 downto 0);  --! Data to write
+        ddata_r     : out std_logic_vector(31 downto 0); --! Data from memory bus
+        d_we        : in std_logic; --! Write signal
+        d_rd        : in std_logic;--! Read signal
         dcsel       : in std_logic_vector(1 downto 0);    --! Chip select 
         -- ToDo: Module should mask bytes (Word, half word and byte access)
-        dmask       : in std_logic_vector(3 downto 0)    --! Byte enable mask
+        dmask       : in std_logic_vector(3 downto 0);   --! Byte enable mask
     
         -- hardware input/output signals: ADC module uses hardwire pin (see DE10-LITE Manual)
+
+        --interrupts
+        adc_interrupt : out std_logic_vector(1 downto 0)
+
     );
 end entity adc_bus;
 
@@ -52,7 +55,12 @@ architecture rtl of adc_bus is
     signal response_startofpacket    : std_logic;
     signal response_endofpacket      : std_logic;   
     signal reset_n                   : std_logic;
-   
+
+    -- Interrupt signal
+	signal flag_irq_en : std_logic := '0';
+    signal flag_irq_dis: std_logic := '0';
+    signal irq_adc : std_logic := '0';
+
 begin
     qsys : entity work.adc_qsysbus
         port map(
@@ -69,7 +77,7 @@ begin
             modular_adc_0_response_data          => response_data,              -- data
             modular_adc_0_response_startofpacket => response_startofpacket,     -- startofpacket
             modular_adc_0_response_endofpacket   => response_endofpacket        -- endofpacket
-        );   
+            );   
     
     reset_n <= not rst;                
           
@@ -80,7 +88,7 @@ begin
             adc_sample_data <= (others => '0');
             cur_adc_ch      <= (others => '0');
         else
-            if (rising_edge(clk_adc) and response_valid = '1') then --adc_out_clk
+            if (rising_edge(clk_adc) and response_valid = '1') then
                 adc_sample_data <= "00000000000000000000" & response_data;
                 cur_adc_ch      <= response_channel;
             end if;
@@ -94,10 +102,9 @@ begin
             ddata_r <= (others => '0');
         else
             if rising_edge(clk) then
-
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
                     if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
-                        ddata_r <= adc_sample_data ;
+                        ddata_r <= adc_sample_data;
                     end if;
                 end if;
             end if;
@@ -105,18 +112,45 @@ begin
     end process;
     
     -- Output register
-    process(clk, rst)
+    process(clk, rst, flag_irq_en)
     begin       
         if rst = '1' then
             channel_adc<=(others => '0');
+            flag_irq_en <= '0';
+            flag_irq_dis <= '0';
         else
             if rising_edge(clk) then        
-                if (d_we = '1') and (dcsel = MY_CHIPSELECT)then                 
-                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
+                if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
+                    -- ativa a interrupção
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then
+                        flag_irq_en <= ddata_w(0);
+
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000")then
                         channel_adc <= ddata_w;
+                        flag_irq_dis <= '1';
+
+                    -- desabilita a interrupção
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then
+                        flag_irq_dis <= '0'; 
                     end if;
                 end if;
             end if;
         end if;     
     end process;
+
+
+    interrupt_proc: process(clk, rst)
+	begin
+	    if rst = '1' then 
+            adc_interrupt <= (others => '0');	    
+		elsif rising_edge(clk) then
+		    adc_interrupt(1) <= '0'; 
+			if flag_irq_en = '1' and flag_irq_dis = '1' and irq_adc = '0' then
+				adc_interrupt(0) <= '1';
+			else
+                adc_interrupt(0) <= '0'; 
+			end if;
+            irq_adc <= flag_irq_dis;
+		end if;
+	end process;
 end architecture rtl;
