@@ -225,7 +225,7 @@ begin
     generic_gpio: entity work.gpio
     generic map(
         MY_CHIPSELECT   => "10",
-        MY_WORD_ADDRESS => x"10"
+        MY_WORD_ADDRESS => x"0010"
     )
     port map(
         clk      => clk,

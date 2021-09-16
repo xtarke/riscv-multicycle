@@ -1,6 +1,6 @@
 #******************************************************************************
 #                                                                             *
-#                  Copyright (C) 2019 IFSC                                    *
+#                  Copyright (C) 2019 IFSC *
 #                                                                             *
 #                                                                             *
 # All information provided herein is provided on an "as is" basis,            *
