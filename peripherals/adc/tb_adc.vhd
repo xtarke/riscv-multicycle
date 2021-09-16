@@ -82,6 +82,8 @@ architecture rtl of tb_adc is
     signal ddata_r_uart : std_logic_vector(31 downto 0);
     signal ddata_r_adc : std_logic_vector(31 downto 0);
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
+
+    signal adc_interrupt : std_logic_vector(1 downto 0);
     
 begin
 
@@ -124,6 +126,25 @@ begin
     -- Connect gpio data to output hardware
     LEDR  <= gpio_output(9 downto 0);
 
+    -- Connect input hardware to gpio data
+    gpio_test: process
+    begin
+        gpio_input <= (others => '0');
+        wait for 500 us;
+                
+        -- Generate a input pulse (External IRQ 0 or pooling)
+        gpio_input(0) <= '1';
+        wait for 1 us;
+        gpio_input(0) <= '0';
+        
+        -- Generate a input pulse (External IRQ 1 or pooling)
+        wait for 200 us;
+        gpio_input(1) <= '1';
+        wait for 1 us;
+        gpio_input(1) <= '0';
+        
+        wait;
+    end process;  
     -- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
     instr_mux: entity work.instructionbusmux
@@ -212,11 +233,12 @@ begin
         );
     
     -- Group IRQ signals.
-    irq_signals: process(timer_interrupt,gpio_interrupts)
+    irq_signals: process(timer_interrupt,gpio_interrupts, adc_interrupt)
     begin
        interrupts <= (others => '0');
        interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
        interrupts(30 downto 25) <= timer_interrupt;
+       interrupts(17) <= adc_interrupt(0);
     end process;
 
     
@@ -277,7 +299,7 @@ begin
             hex7     => open
         );
         
-    adc_bus: entity work.adc_bus     
+    adc_bus: entity work.adc_bus 
         port map(
             clk      => clk,
             rst      => rst,
@@ -288,7 +310,8 @@ begin
             d_we     => d_we,
             d_rd     => d_rd,
             dcsel    => dcsel,
-            dmask    => dmask
+            dmask    => dmask,
+            adc_interrupt => adc_interrupt
         );
 
     -- FileOutput DEBUG 
