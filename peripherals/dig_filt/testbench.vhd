@@ -229,13 +229,10 @@ begin
             ddata_r_adc      => ddata_r_adc,
             ddata_r_i2c      => ddata_r_i2c,
             ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph,
-            ddata_r_dif_fil  => ddata_r_dig_fil
+            ddata_r_dif_fil  => ddata_r_dig_fil,
+            ddata_r_periph   => ddata_r_periph            
         );
 
-
-    
-   
 	-- Softcore instatiation
 	myRiscv : entity work.core
 		port map(
