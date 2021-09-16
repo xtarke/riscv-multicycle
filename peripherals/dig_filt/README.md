@@ -11,30 +11,32 @@ O funcionamento deste periférico é receber dados de forma contínua e retornar
 ## Funcionamento do periférico
 
 A constante de entrada "G_AVG_LEN_LOG : integer := 2" definirá quantos registrados será ultilizado para média móvel.
-Exemplo 1) Média móvel de 4 valores 		
-		   "G_AVG_LEN_LOG : integer := 2", ou seja 2^2 = 4.
 
-Exemplo 2) Média móvel de 32 valores 		
-		   "G_AVG_LEN_LOG : integer := 5", ou seja 2^5 = 32.
+- Exemplo 1) Média móvel de 4 valores: "G_AVG_LEN_LOG : integer := 2", ou seja 2^2 = 4.
+
+- Exemplo 2) Média móvel de 32 valores "G_AVG_LEN_LOG : integer := 5", ou seja 2^5 = 32.
 		  
 Quando o hardware estiver em reset, ou reset via software pela função, a saída e os registradores serão zerados.
 
 A entrada de dados é cascateada conforme abaixo:
-registers   <= signed(data_in)& registers(0 to registers'length-2);  
+
+```vhdl
+registers   <= signed(data_in) & registers(0 to registers'length-2);  
+```
 
 O acumulador = acumulador - último registrador, conforme abaixo.
+
+```vhdl
 r_acc       <= r_acc + signed(data_in) - signed(registers(registers'length-1));
+```
 
 A saída será a média dos registradores.
 data_out  <= std_logic_vector(r_acc(G_NBIT+G_AVG_LEN_LOG-1 downto G_AVG_LEN_LOG)); 
 
-
-
-
-
 ### Código em C
 
 Em hardware.h as definição dos endereços utilizados:
+
 ```c 
 #define PERIPH_BASE		((uint32_t)0x4000000) 
 
@@ -42,9 +44,12 @@ Em hardware.h as definição dos endereços utilizados:
 #define DIG_FILT_IN     (*(_IO32 *) (PERIPH_BASE + 84))
 #define DIG_FILT_OUT    (*(_IO32 *) (PERIPH_BASE + 88))	
 ```
+
 NOTA: os endereços supracitados são referentes as words x"14", x"15" e x"16" utilizados para leitura e escrita no .vhd
 
 O protótipo das funções e definições: 
+
+```c
 /* Digital filter peripheral 
 */
 #ifndef _DIF_FILT
@@ -68,10 +73,12 @@ void dig_filt_enable(uint8_t);
 uint32_t dig_filt_get_output();
 
 #endif
-
+```
 
 
 Implementação das funções:
+
+```c
 /* Digital filter peripheral
 */
 
@@ -88,8 +95,11 @@ void dig_filt_enable(uint8_t data){
 uint32_t dig_filt_get_output(){
   return (DIG_FILT_OUT);
 }
+```
 
 O código a seguir é um exemplo para observar-se o funcionamento do periférico:
+
+```c
 /* 
 	digital filter peripheral
 */
@@ -104,13 +114,11 @@ int main(){
 
 	while (1){
 
-
-        SEGMENTS_BASE_ADDRESS = dig_filt_get_output();  // get output function
+        	SEGMENTS_BASE_ADDRESS = dig_filt_get_output();  // get output function
 		      
-		delay_(100000);						// for human interaction
-	
+		delay_(100000);						// for human interaction	
 	}
 
 	return 0;
 }
-
+```
