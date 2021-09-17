@@ -1,0 +1,50 @@
+# Step motor controller
+
+Implementação de um periférico controlador de motor de passo compatível com o circuito integrado ULN2003.
+
+
+
+## Descrição dos pinos
+
+
+
+`clk`: Sinal de entrada de clock
+
+`outs`: Saída dos níveis de ativação do CI ULN2003
+
+`reset`: Retorna o motor para o estado inicial quando vai para nível lógico alto
+
+`reverse`: Sinal que inverte a rotação do motor quando vai para nível lógico alto
+
+`stop`: Sinal que para o motor no estado atual quando vai para nível lógico alto
+
+`half_full`: Alterna o tipo do passo do motor
+
+* `half_full = 0`: Meio passo
+* `half_full = 1`: Passo completo
+
+`speed`: Define a velocidade do motor em um intervalo de 0 até 7
+
+## Funcionamento do periférico
+
+![Figura [1] - Simulação completa](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\im0.png)
+
+Figura [1] - Simulação completa
+
+
+
+![](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\img1.png)
+
+Figura [2] - Estado de reset
+
+
+
+![img2](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\img2.png)
+
+Figura [3] - Estados do motor em passo completo e meio passo
+
+
+
+![img3](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\img3.png)
+
+Figura [4] - Estado de stop e rotação invertida
