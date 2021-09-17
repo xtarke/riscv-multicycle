@@ -30,7 +30,6 @@ entity stepmotor is
         dmask    : in  std_logic_vector(3 downto 0); --! Byte enable mask
 
         -- hardware input/output signals        
-
         outs     : out std_logic_vector(3 downto 0) -- Motor H-bridge control inputs
     );
 
@@ -52,6 +51,10 @@ begin
     begin
         if rst = '1' then
             reset <= '1';
+            reverse <= '0';
+            stop <= '0';
+            half_full <= '0';
+            speed <= to_unsigned(0,speed'length);
         else
             if rising_edge(clk) then
                 if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
@@ -75,9 +78,7 @@ begin
     begin
         if reset = '1' then
             cntr <= (others => '0');
-        end if;
-
-        if rising_edge(clk) then
+        elsif rising_edge(clk) then
             cntr <= cntr + 1;
         end if;
     end process rotate;
@@ -87,8 +88,7 @@ begin
     begin
         if reset = '1' then
             state <= A;
-        end if;
-        if rising_edge(rot) then
+        elsif rising_edge(rot) then
             if stop = '0' then
                 case state is
                     when A =>
@@ -160,27 +160,26 @@ begin
         end if;
     end process mealy;
 
-    moore : process(clk)
+    moore : process(state)
     begin
-        if rising_edge(clk) then
-            case state is
-                when A =>
-                    outs <= "1000";
-                when AB =>
-                    outs <= "1100";
-                when B =>
-                    outs <= "0100";
-                when BC =>
-                    outs <= "0110";
-                when C =>
-                    outs <= "0010";
-                when CD =>
-                    outs <= "0011";
-                when D =>
-                    outs <= "0001";
-                when DA =>
-                    outs <= "1001";
-            end case;
-        end if;
+        outs <= (others => '0');
+        case state is
+            when A =>
+                outs <= "1000";
+            when AB =>
+                outs <= "1100";
+            when B =>
+                outs <= "0100";
+            when BC =>
+                outs <= "0110";
+            when C =>
+                outs <= "0010";
+            when CD =>
+                outs <= "0011";
+            when D =>
+                outs <= "0001";
+            when DA =>
+                outs <= "1001";
+        end case;
     end process moore;
 end architecture;
