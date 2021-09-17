@@ -2,11 +2,16 @@
 
 Implementação de um periférico controlador de motor de passo compatível com o circuito integrado ULN2003.
 
+## ToDo
 
+* Testes e sintetização em hardware
+* Encontrar clock mais adequado para o funcionamento do motor de passo
+
+## Software
+
+Foi implementado um software capaz de colocar o motor em estado de reset, parar o motor, variar sua velocidade, inverter sua rotação e o tamanho do passo. Para mais detalhes sobre a utilização de cada função,  consultar o arquivo [step_motor.h](../../software/step_motor/step_motor.h)
 
 ## Descrição dos pinos
-
-
 
 `clk`: Sinal de entrada de clock
 
