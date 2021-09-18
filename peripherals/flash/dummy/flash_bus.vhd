@@ -4,17 +4,29 @@ library ieee;
 
 entity flash_bus is
   generic (
-    -- chip select
-    MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "00";
+    -- chip select: currently databus mux has only 2-bit size (see the file
+    -- databusmux.vhd). We will use chipselect "11" (the same of SRAM). To
+    -- differentiate between SRAM and FLASH, we will use a offset for flash.
+
+    -- Address (byte based) space and chip select:
+    -- 0x0000000000 ->  0b000 0000 0000 0000 0000 0000 0000 -> Instruction memory
+    -- 0x0002000000 ->  0b010 0000 0000 0000 0000 0000 0000 -> Data memory
+    -- 0x0004000000 ->  0b100 0000 0000 0000 0000 0000 0000 -> Input/Output generic address space
+    -- 0x0006000000 ->  0b110 0000 0000 0000 0000 0000 0000 -> SDRAM
+    -- 0x0007000000 ->  0b111 0000 0000 0000 0000 0000 0000 -> FLASH
+
+    MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "11";
     DADDRESS_BUS_SIZE : integer := 32;
-    -- if 'daddress' is a shared bus, we may need to setup a daddress offset
-    DADDRESS_OFFSET : integer := 0
+    -- offset from SDRAM base address - this is a word (32-bit) based offset.
+    DADDRESS_OFFSET : integer := 16#400000#
   );
   port (
     clk   : in STD_LOGIC; -- system clock
     rst   : in STD_LOGIC; -- asynchronous reset
 
     -- core data bus signals
+
+    -- daddress is a word based address
     daddress  : in   unsigned(DADDRESS_BUS_SIZE-1 downto 0); --! Data address
     ddata_w   : in	 std_logic_vector(31 downto 0);          --! Data to memory bus
     ddata_r	  : out  std_logic_vector(31 downto 0);          --! Data from memory bus
@@ -38,9 +50,10 @@ architecture rtl of flash_bus is
     type FSM is (IDLE, RREQUEST, READING, RDONE, WREQUEST, WRITING, WDONE);
     signal state : FSM;
 
-    -- dummy memory. 32-bit based addresses.
+    -- dummy memory. word (32-bit) based addresses.
     type reg_array is array (0 to SECTOR_5_ADDR_END) of std_logic_vector (DADDRESS_BUS_SIZE-1 downto 0);
     
+    -- function to initialize dummy flash content
     impure function InitFlash return reg_array is		
       variable FLASH : reg_array;	
     begin
@@ -52,8 +65,12 @@ architecture rtl of flash_bus is
       
     signal memory : reg_array := initFlash;
 
+    -- addr_local will contain the flash word (32-bit) based address without
+    -- offset. i.e. this is the correct address use internally in this component
+    signal addr_local : unsigned(22 downto 0);
+
   begin
-   
+  
   -- state transition (moore)
   process (clk, rst, dcsel)
   begin
@@ -64,8 +81,13 @@ architecture rtl of flash_bus is
       case state is
         when IDLE =>
 
-          -- address within boundaries?
-          if daddress >= 0 and daddress <= SECTOR_5_ADDR_END then
+          -- address within boundaries? note that we do not consider bits 23,
+          -- 24... of daddress because they contain mux information
+          if daddress(22 downto 0) >= DADDRESS_OFFSET and daddress(22 downto 0) <= (DADDRESS_OFFSET + SECTOR_5_ADDR_END) then
+
+            -- addr_local contains the flash 32-bit based address without offset.
+            addr_local <= daddress(22 downto 0) - to_unsigned(DADDRESS_OFFSET, 23);
+
             -- read mode
             if d_rd = '1' and d_we = '0' then 
               state <= RREQUEST;
@@ -116,7 +138,7 @@ architecture rtl of flash_bus is
 
       when RREQUEST =>
 
-        ddata_r <= memory(to_integer(daddress));
+        ddata_r <= memory(to_integer(addr_local));
 
       when READING =>
 
@@ -124,7 +146,7 @@ architecture rtl of flash_bus is
 
       when WREQUEST =>
 
-        memory(to_integer(daddress)) <= ddata_w;
+        memory(to_integer(addr_local)) <= ddata_w;
       
       when WRITING =>
       when WDONE =>
