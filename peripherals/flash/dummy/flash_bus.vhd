@@ -40,7 +40,17 @@ architecture rtl of flash_bus is
 
     -- dummy memory. 32-bit based addresses.
     type reg_array is array (0 to SECTOR_5_ADDR_END) of std_logic_vector (DADDRESS_BUS_SIZE-1 downto 0);
-    signal memory : reg_array;
+    
+    impure function InitFlash return reg_array is		
+      variable FLASH : reg_array;	
+    begin
+      for i in reg_array'range loop
+        FLASH(i) := (others => '1');		
+      end loop;
+        return FLASH;	
+      end function;	
+      
+    signal memory : reg_array := initFlash;
 
   begin
    
