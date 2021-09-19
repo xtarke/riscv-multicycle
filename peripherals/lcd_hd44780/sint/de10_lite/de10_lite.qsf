@@ -216,31 +216,27 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name ENABLE_LOGIC_ANALYZER_INTERFACE ON
+set_global_assignment -name USE_LOGIC_ANALYZER_INTERFACE_FILE logic_analyzer_signaltap.lai
+set_global_assignment -name SLD_NODE_CREATOR_ID 3698176 -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_multitap -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[0] -to altera_reserved_lai_0_0 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[1] -to altera_reserved_lai_0_1 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[2] -to altera_reserved_lai_0_2 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[3] -to altera_reserved_lai_0_3 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[4] -to altera_reserved_lai_0_4 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[5] -to altera_reserved_lai_0_5 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[6] -to altera_reserved_lai_0_6 -section_id auto_lai_0
+set_instance_assignment -name CONNECT_PIN_FROM_SLD_NODE_ENTITY_PORT acq_output[7] -to altera_reserved_lai_0_7 -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=3698176" -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC=13795" -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BANK_WIDTH=8" -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BANK_SIZE=1" -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BANK_SEL_WIDTH=1" -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_STATE=0" -section_id auto_lai_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ACQ_MODE=0" -section_id auto_lai_0
 set_global_assignment -name VHDL_FILE ../../lcd_hd44780.vhd
-set_global_assignment -name VHDL_FILE ../../../gpio/led_displays.vhd
-set_global_assignment -name VHDL_FILE ../../../gpio/gpio.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_clz.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/m/division_functions.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_naive.vhd
-set_global_assignment -name VHDL_FILE ../../../../memory/periphdatabusmux.vhd
-set_global_assignment -name VHDL_FILE ../../../timer/Timer.vhd
-set_global_assignment -name VHDL_FILE ../../../../core/csr.vhd
-set_global_assignment -name VHDL_FILE ../../../../registers/register_file.vhd
-set_global_assignment -name VHDL_FILE ../../../../memory/instructionbusmux.vhd
-set_global_assignment -name VHDL_FILE ../../../../memory/iodatabusmux.vhd
-set_global_assignment -name VHDL_FILE ../../../../memory/databusmux.vhd
-set_global_assignment -name QIP_FILE ../../../../memory/iram_quartus.qip
-set_global_assignment -name VHDL_FILE ../../../../memory/dmemory.vhd
-set_global_assignment -name VHDL_FILE ../../../../decoder/iregister.vhd
-set_global_assignment -name VHDL_FILE ../../../../decoder/decoder_types.vhd
-set_global_assignment -name VHDL_FILE ../../../../decoder/decoder.vhd
-set_global_assignment -name VHDL_FILE ../../../../core/core.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/m/M_types.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/m/M.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/alu_types.vhd
-set_global_assignment -name VHDL_FILE ../../../../alu/alu.vhd
 set_global_assignment -name VHDL_FILE de0_lite.vhd
 set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name SOURCE_FILE db/de10_lite.cmp.rdb
-set_global_assignment -name CDF_FILE ../../../../../../../Desktop/de10_lite.cdf
+set_global_assignment -name LOGIC_ANALYZER_INTERFACE_FILE logic_analyzer_signaltap.lai
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
