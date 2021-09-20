@@ -1,3 +1,31 @@
+# Introdução e organização
+
+Módulo para controlar a flash interna do Quartus. Como este módulo está
+organizado:
+
+```
+flash
+├── dummy                   # Pasta com versão da flash "dummy" isto é, flash falsa para testar seu comportamento
+│   ├── flash_bus.vhd       # componente da flash dummy
+│   ├── testbench_core.vhd  # simulação da flash dummy integrada ao core
+│   ├── testbench_flash.vhd # simulação da flash dummy sozinha, sem o core
+├── flash_bus.vhd           # componente da on-chip flash
+├── sint_core_no            # projeto do quartus com a flash e sem core, para testar comportamento da flash através de probe and source
+├── sint_core_yes           # projeto do quartus com a flash e com core (neste que o software da flash é carregado)
+├── testbench_flash.vhd     # simulação da on-chip flash, utilizando arquivos de simulação da flash gerados pelo quartus 
+```
+
+## Trabalhos futuros (TODOs)
+
+- fazer a flash interna do quartus (a "verdadeira") funcionar corretamente bem
+  como sua simulação
+- adicionar operação de apagamento (em blocos)
+- adicionar operação escrita (em blocos) para otimizar a vida útil da flash
+
+Essas duas últimas operações (apagamento e escrita em blocos) são totalmente
+suportadas pela flash interna do quartus, o que falta é adicionar suporte e
+interface a elas através deste módulo aqui (flash bus).
+
 # User Flash Memory (UFM)
 
 A flash interna do Quartus (UFM) utiliza a interface Avalon-MM para se comunicar
@@ -57,7 +85,12 @@ Depois disso, o processo de escrita é explicado pela figura seguinte.
 
 ![](.images/2021-08-28-08-58-34.png)
 
-'address' recebe o endereço no qual será escrito o valor de 'writedata', e o sinal 'write' e 'burstcount' devem ser setados para 1. O sinal 'waitrequest' é setado pela flash enquanto a operação de escrita estiver em andamento. Após a operação de escrita concluida, o bit 'write protection mode' deve ser setado de volta para '1'. O sucesso (ou insucesso) da operação de escrita é informado no registrador de status (bloco Control).
+'address' recebe o endereço no qual será escrito o valor de 'writedata', e o
+sinal 'write' e 'burstcount' devem ser setados para 1. O sinal 'waitrequest' é
+setado pela flash enquanto a operação de escrita estiver em andamento. Após a
+operação de escrita concluida, o bit 'write protection mode' deve ser setado de
+volta para '1'. O sucesso (ou insucesso) da operação de escrita é informado no
+registrador de status (bloco Control).
 
 ## Operação de leitura (read) de 32 bits em modo paralelo
 
@@ -82,9 +115,15 @@ status (bloco Control).
 
 ## Execução do periférico flash bus
 
-Atualmente o IP da Flash não funcionou na simulação nem na placa. O que acontece é que o sinal 'waitrequest' da flash fica sempre em '1' após o término da aplicação do sinal de reset (inicialização do IP). Esse comportamento não esperado pode ser visto ao simular o testbench `testbench_flash.vhd` (Veja a seção `Simulação` para mais detalhes).
+Atualmente o IP da Flash não funcionou na simulação nem na placa. O que acontece
+é que o sinal 'waitrequest' da flash fica sempre em '1' após o término da
+aplicação do sinal de reset (inicialização do IP). Esse comportamento não
+esperado pode ser visto ao simular o testbench `testbench_flash.vhd` (Veja a
+seção `Simulação` para mais detalhes).
 
-O comportamento também pode ser visto ao executar na placa. O projeto do quartus está localizado na pasta `./sint_core_no/de10_lite`. O arquivo `de10_lite.vhd` faz as seguintes associações no hardware:
+O comportamento também pode ser visto ao executar na placa. O projeto do quartus
+está localizado na pasta `./sint_core_no/de10_lite`. O arquivo `de10_lite.vhd`
+faz as seguintes associações no hardware:
 
 | pino           | sinal        |
 |------          |-------       |
@@ -107,8 +146,8 @@ adicionados meramente por questões de debug.
 ## Simulação
 
 Os arquivos de simulação foram gerados no IP Parameter Editor e estão na pasta
-`./sint_core_no/de10_lite/flash/simulation`. Há scripts para diferentes vendors (aldec,
-cadence, mentor, synopsys) entre outros arquivos .vhd e .v.
+`./sint_core_no/de10_lite/flash/simulation`. Há scripts para diferentes vendors
+(aldec, cadence, mentor, synopsys) entre outros arquivos .vhd e .v.
 
 ### build "manual", isto é, sem usar scripts de vendors
 
@@ -164,12 +203,10 @@ Alguns erros/warnings aparecem, também:
 # ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
 ```
 
-
-
 # Referências
 
-- As figuras e explicações do IP da Flash on-chip, na sua maioria, foram extraídos do
-  seguinte link:
+- As figuras e explicações do IP da Flash on-chip, na sua maioria, foram
+  extraídos do seguinte link:
   https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/max-10/ug_m10_ufm.pdf
 
 
