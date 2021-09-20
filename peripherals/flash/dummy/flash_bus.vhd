@@ -1,3 +1,8 @@
+--------------------------------------------------------------------------------
+-- Dummy quartus on-chip flash. This is just a mock entity to fake the behavour
+-- of quartus on-chip flash. 
+--------------------------------------------------------------------------------
+
 library ieee;
     use ieee.std_logic_1164.all;
     use ieee.numeric_std.all;
@@ -17,8 +22,14 @@ entity flash_bus is
 
     MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "11";
     DADDRESS_BUS_SIZE : integer := 32;
+    
     -- offset from SDRAM base address - this is a word (32-bit) based offset.
-    DADDRESS_OFFSET : integer := 16#400000#
+    DADDRESS_OFFSET : integer := 16#400000#;
+
+    -- ADDR_END only exists for dummy flash in order to reduce the internal
+    -- register array size. This can be useful when the board resources are
+    -- nearly full.
+    ADDR_END : natural := 16#57FFF#
   );
   port (
     clk   : in STD_LOGIC; -- system clock
@@ -44,14 +55,14 @@ architecture rtl of flash_bus is
 	  constant SECTOR_2_ADDR_END	: natural := 16#03FFF#;
 	  constant SECTOR_3_ADDR_END	: natural := 16#1BFFF#;
 	  constant SECTOR_4_ADDR_END	: natural := 16#2DFFF#;
-	  constant SECTOR_5_ADDR_END	: natural := 16#57FFF#;
+	  constant SECTOR_5_ADDR_END	: natural := ADDR_END;
 
     -- R: READ, W: WRITE, E: ERASE
     type FSM is (IDLE, RREQUEST, READING, RDONE, WREQUEST, WRITING, WDONE);
     signal state : FSM;
 
     -- dummy memory. word (32-bit) based addresses.
-    type reg_array is array (0 to SECTOR_5_ADDR_END) of std_logic_vector (DADDRESS_BUS_SIZE-1 downto 0);
+    type reg_array is array (0 to ADDR_END) of std_logic_vector (DADDRESS_BUS_SIZE-1 downto 0);
     
     -- function to initialize dummy flash content
     impure function InitFlash return reg_array is		
@@ -85,7 +96,7 @@ architecture rtl of flash_bus is
 
           -- address within boundaries? note that we do not consider bits 23,
           -- 24... of daddress because they contain mux information
-          if daddress(22 downto 0) >= DADDRESS_OFFSET and daddress(22 downto 0) <= (DADDRESS_OFFSET + SECTOR_5_ADDR_END) then
+          if daddress(22 downto 0) >= DADDRESS_OFFSET and daddress(22 downto 0) <= (DADDRESS_OFFSET + ADDR_END) then
 
             -- addr_local contains the flash 32-bit based address without offset.
             addr_local <= daddress(22 downto 0) - to_unsigned(DADDRESS_OFFSET, 23);
