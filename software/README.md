@@ -12,12 +12,16 @@ Esse diretório contém exemplos de softwares.
 - ./timer/ : temporizador
 - ./uart/  : módulo de comunicação UART
 - ./vga/   : hardware vga
+- ./flash/ : quartus on-chip flash
 
 ## Mapa de endereços
 
 Em hardware.h e sections.ld são definidos os endeços de cada periférico. Conforme a figura:
 
 ![Memory Map](../readme_img/memory_map.png "Mapa de memória")
+
+Observação: o periférico Flash está atualmente contido no endereço 0x7000000,
+logo acima da SDRAM.
 
 O funcionamento do exemplo de software depende da síntese do periférico, exemplo:
 
