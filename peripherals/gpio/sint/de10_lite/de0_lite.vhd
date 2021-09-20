@@ -118,6 +118,8 @@ architecture rtl of de0_lite is
     signal ddata_r_uart : std_logic_vector(31 downto 0);
     signal ddata_r_adc : std_logic_vector(31 downto 0);
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
+    signal ddata_r_dig_fil : std_logic_vector(31 downto 0);
+    signal data_in_dig_fil : std_logic_vector(15 downto 0);
     
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
@@ -230,7 +232,9 @@ begin
             ddata_r_adc      => ddata_r_adc,
             ddata_r_i2c      => ddata_r_i2c,
             ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph
+            ddata_r_periph   => ddata_r_periph,
+            ddata_r_dif_fil  => ddata_r_dig_fil
+            
         );
 
 	generic_gpio: entity work.gpio

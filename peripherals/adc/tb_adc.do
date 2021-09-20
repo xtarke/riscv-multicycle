@@ -46,6 +46,49 @@ vsim -t ns work.tb_adc
 view wave
 add wave -radix binary 	-label clk /clk
 add wave -radix binary 	-label rst /rst
+
+add wave -height 15 -divider "ADC"
+add wave -label clk_adc          -radix bin /clk_adc
+#add wave -label count           -radix dec /adc_bus/add_data/count_var
+add wave -label response_channel -radix hex /adc_bus/response_channel
+add wave -label sample           -radix dec /adc_bus/adc_sample_data
+add wave -label sample_verdaidera           -radix dec /adc_bus/ddata_r
+add wave -label channel_adc           -radix dec /adc_bus/channel_adc
+add wave -label interrupt_flag           -radix dec /adc_bus/adc_interrupt
+add wave -label flag_irq_dis           -radix dec /adc_bus/flag_irq_dis
+add wave -label flag_irq_en           -radix dec /adc_bus/flag_irq_en
+
+add wave -height 15 -divider "Data bus"
+add wave -label daddress        -radix hex /daddress
+add wave -label ddata_r         -radix hex /ddata_r
+add wave -label ddata_w         -radix hex /ddata_w
+add wave -label dmask           -radix bin /dmask
+add wave -label dcsel 	/dcsel
+add wave -label d_we 	/d_we
+add wave -label d_rd 	/d_rd
+add wave -label d_sig   /d_sig
+
+add wave -height 15 -divider "CSR"
+add wave -label interrupts -radix hex /myRiscv/interrupts
+add wave -label pending_interrupts -radix hex /myRiscv/ins_csr/pending_interrupts
+add wave -label mret -radix hex /myRiscv/ins_csr/mret
+add wave -label pending /myRiscv/pending
+add wave -label csr_write /myRiscv/csr_write
+add wave -label csr_addr /myRiscv/imm_i
+add wave -label csr_value -radix hex /myRiscv/csr_value
+add wave -label load_mepc -radix hex /myRiscv/load_mepc
+# add wave -label load_mepc_holder -radix hex /myRiscv/ins_csr/load_mepc_holder
+add wave -label mepc -radix hex /myRiscv/mepc
+add wave -label mretpc -radix hex /myRiscv/mretpc
+add wave -label csr_new -radix hex /myRiscv/rs1_data
+# add wave -label mreg -radix hex /myRiscv/ins_csr/mreg
+
+add wave -height 15             -divider "GPIO"
+add wave -label HEX0		 -radix hex /HEX0
+add wave -label HEX1		 -radix hex /HEX1
+add wave -label HEX2		 -radix hex /HEX2
+add wave -label HEX3		 -radix hex /HEX3
+
 add wave -height 15 -divider "Instruction Memory"
 add wave -label iAddr -radix hex /address
 add wave -label iWord -radix hex idata
@@ -96,28 +139,6 @@ add wave -label fsm_we /dmem/fsm_we
 add wave -label ddata_r_mem     -radix hex /dmem/q
 add wave -label datamemory      -radix hex /dmem/ram_block
 
-
-add wave -height 15 -divider "Data bus"
-add wave -label daddress        -radix hex /daddress
-add wave -label ddata_r         -radix hex /ddata_r
-add wave -label ddata_w         -radix hex /ddata_w
-add wave -label dmask           -radix bin /dmask
-add wave -label dcsel 	/dcsel
-add wave -label d_we 	/d_we
-add wave -label d_rd 	/d_rd
-add wave -label d_sig   /d_sig
-
-add wave -height 15 -divider "ADC"
-add wave -label clk_adc          -radix bin /clk_adc
-#add wave -label count           -radix dec /adc_bus/add_data/count_var
-add wave -label response_channel -radix hex /adc_bus/response_channel
-add wave -label sample           -radix dec /adc_bus/adc_sample_data
-
-add wave -height 15             -divider "GPIO"
-add wave -label HEX0		 -radix hex /HEX0
-add wave -label HEX1		 -radix hex /HEX1
-add wave -label HEX2		 -radix hex /HEX2
-add wave -label HEX3		 -radix hex /HEX3
 
 run 1000000 ns
 wave zoomfull
