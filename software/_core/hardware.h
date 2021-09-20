@@ -41,8 +41,22 @@
 
 #define PERIPH_BASE		((uint32_t)0x4000000)          /*!< Peripheral base address */
 #define SDRAM_BASE		((uint32_t)0x6000000)          /*!< SDRAM base address */
-
 #define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
+
+// flash base address is the same of SDRAM plus an offset. this is due to the
+// length of 'dcsel' (2 bits) in databusmux.vhd. There isn't room for more then
+// 4 peripherals there. if we increase the 'dcsel' length, then all references
+// to it must be changed in the codebase (TODO?!).
+
+// Address space (byte based) and chip select:
+// 0x0000000000 ->  0b000 0000 0000 0000 0000 0000 0000 -> Instruction memory
+// 0x0002000000 ->  0b010 0000 0000 0000 0000 0000 0000 -> Data memory
+// 0x0004000000 ->  0b100 0000 0000 0000 0000 0000 0000 -> Input/Output generic address space
+// 0x0006000000 ->  0b110 0000 0000 0000 0000 0000 0000 -> SDRAM
+// 0x0007000000 ->  0b111 0000 0000 0000 0000 0000 0000 -> FLASH
+
+#define FLASH_BASE		((uint32_t)0x7000000)       /*!< FLASH base address */
+#define FLASH 			(*(_IO32 *) (FLASH_BASE))	/*!< FLASH base address */
 
 // Each peripheral has 16 reserved memory addresses
 // In that .h only the base address must be defined

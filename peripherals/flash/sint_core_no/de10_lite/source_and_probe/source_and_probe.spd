@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/altsource_probe.vhd"
+   type="VHDL"
+   library="in_system_sources_probes_0" />
+ <file path="simulation/source_and_probe.vhd" type="VHDL" />
+ <topLevel name="source_and_probe" />
+ <deviceFamily name="max10" />
+</simPackage>
