@@ -1,10 +1,11 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = riscv-none-embed-
+#RISCV_TOOLS_PREFIX = riscv-none-embed-
 # Para usar no LSC
-#RISCV_TOOLS_PREFIX = /root/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = /mnt/c/Users/ke054737/Desktop/vhdl/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin/riscv-none-embed-
+#RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/riscv-none-embed-
 endif
 
-QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
+QUARTUS_DIR=/mnt/c/intelFPGA/20.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
@@ -34,7 +35,7 @@ $(MAIN)32.hex: $(MAIN).elf ../hex8tohex32.py
 start.o: ../_core/start.S
 	$(CC) -c -nostdlib ../_core/start.S $(LDLIBS)
 
-$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o adc.o
+$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o adc.o ../irq/interrupt.o
 	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T ../_core/sections.ld $(LDLIBS)
 	chmod -x $(MAIN).elf
 
