@@ -62,8 +62,10 @@ architecture rtl of flash_bus is
       end loop;
         return FLASH;	
       end function;	
-      
-    signal memory : reg_array := initFlash;
+    
+    -- the initialization of flash does not work in quartus!
+    -- signal memory : reg_array := initFlash; -- initialization
+    signal memory : reg_array; -- no initialization
 
     -- addr_local will contain the flash word (32-bit) based address without
     -- offset. i.e. this is the correct address use internally in this component
