@@ -79,7 +79,8 @@ architecture rtl of flash_bus is
     signal memory : reg_array; -- no initialization
 
     -- addr_local will contain the flash word (32-bit) based address without
-    -- offset. i.e. this is the correct address use internally in this component
+    -- offset. i.e. this is the correct address used internally in this
+    -- component
     signal addr_local : unsigned(22 downto 0);
 
   begin
@@ -143,8 +144,10 @@ architecture rtl of flash_bus is
   end process;
 
   -- mealy
-  process (state)
+  process (state, memory, addr_local, ddata_w)
   begin
+
+    -- ddata_r <= (others => '0');
 
     case state is
       when IDLE =>
