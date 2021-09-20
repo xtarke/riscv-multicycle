@@ -72,39 +72,41 @@ begin
 			c0     => clk_1k,
 			locked => locked
 		);
+	lcd : entity work.lcd_hd44780
+		port map(
+			clk            => clk_1k,
+			--
+			lcd_data(7)    => ARDUINO_IO(0),
+			lcd_data(6)    => ARDUINO_IO(1),
+			lcd_data(5)    => ARDUINO_IO(2),
+			lcd_data(4)    => ARDUINO_IO(3),
+			lcd_data(3)    => ARDUINO_IO(4),
+			lcd_data(2)    => ARDUINO_IO(5),
+			lcd_data(1)    => ARDUINO_IO(6),
+			lcd_data(0)    => ARDUINO_IO(7),
+			--
+			lcd_rs         => ARDUINO_IO(9),
+			lcd_e          => ARDUINO_IO(8),
+			--
+			rst            => SW(9),
+			lcd_init       => SW(0),
+			lcd_write_char => SW(1),
+			lcd_clear      => SW(2),
+			lcd_goto_l1    => SW(3),
+			lcd_goto_l2    => SW(4),
+			lcd_is_busy    => LEDR(8)
+		);
 	-- @brief Inputs
 
 	-- @brief Board outputs
 	LEDR(9) <= clk_1k;
-	lcd : entity work.lcd_hd44780
-		port map(
-			clk           => clk_1k,
-			--
-			lcd_data(7)   => ARDUINO_IO(0),
-			lcd_data(6)   => ARDUINO_IO(1),
-			lcd_data(5)   => ARDUINO_IO(2),
-			lcd_data(4)   => ARDUINO_IO(3),
-			lcd_data(3)   => ARDUINO_IO(4),
-			lcd_data(2)   => ARDUINO_IO(5),
-			lcd_data(1)   => ARDUINO_IO(6),
-			lcd_data(0)   => ARDUINO_IO(7),
-			--
-			lcd_rs        => ARDUINO_IO(9),
-			lcd_e         => ARDUINO_IO(8),
-			--
-			rst           => SW(9),
-			lcd_character => "00100010",
-			lcd_init      => SW(0),
-			lcd_is_busy   => LEDR(8)
-		);
-
 	-- All 7-seg displays off
-	HEX0 <= (others => '1');
-	HEX1 <= (others => '1');
-	HEX2 <= (others => '1');
-	HEX3 <= (others => '1');
-	HEX4 <= (others => '1');
-	HEX5 <= (others => '1');
+	HEX0    <= (others => '1');
+	HEX1    <= (others => '1');
+	HEX2    <= (others => '1');
+	HEX3    <= (others => '1');
+	HEX4    <= (others => '1');
+	HEX5    <= (others => '1');
 
 end architecture RTL;
 
