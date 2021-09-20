@@ -40,7 +40,7 @@ Para a aquisição ser feita, a resposta precisa ser validada pelo próprio bloc
 
 Como blocos de IP's não são simuláveis foi criado o arquivo 'adc_bus.vhd' que simula o funcionamento do ADC, este ainda utiliza o 'adc_qsysbus.vhd' (simula a ferramenta da Altera), onde foi inserido valores fixos de samples para verificar a integração com o softcore. Os arquivos 'tb_adc.vhd' e 'tb_adc.do', juntamente com os arquivos .c, refletem a simulação, mostrado abaixo.
 
-![image-20210913205024122](C:\Users\ke054737\Desktop\vhdl\riscv-multicycle-master\peripherals\adc\img\image-20210913205024122.png)
+![image-20210913205024122](../adc/img/image-20210913205024122.png)
 
 Observando o segmento do ADC:
 
@@ -54,7 +54,7 @@ Channel_adc: Numero do canal que deve ser lido o ADC.
 
 Interrup_flag: Momento onde uma interrupção é ativa. Permanece ativa por um ciclo conforme imagem abaixo:
 
-![image-20210913205905742](C:\Users\ke054737\Desktop\vhdl\riscv-multicycle-master\peripherals\adc\img\image-20210913205905742.png)
+![image-20210913205905742](../adc/img/image-20210913205905742.png)
 
 Através do adc_bus.vhd é possível entender o processo de interrupção. Ao levantar uma flag de interrupção no ADC, podemos observar no CSR que uma interrupção é gerada e após o flag baixar, outra flag de interrupção pendente é sinalizado, indicando que há um processo de interrupção a ser tratado. 
 
