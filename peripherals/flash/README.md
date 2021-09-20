@@ -17,6 +17,11 @@ flash
 
 ## Trabalhos futuros (TODOs)
 
+- flash dummy não está lendo corretamente os valores salvos internamente
+  (problema somente no quartus). Isso foi constatado ao executar o exemplo
+  main_flash.c no quartus. O esperado é que os valores lidos da flash (e que
+  aparecem nos LEDs e nos displays) fossem 0, 1, 2, 3, 4, ... Porém os valores
+  observados foram 3, 8, 2, 9, 7, ...
 - fazer a flash interna do quartus (a "verdadeira") funcionar corretamente bem
   como sua simulação
 - adicionar operação de apagamento (em blocos)
