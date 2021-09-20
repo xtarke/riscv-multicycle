@@ -1,6 +1,14 @@
 RISVC contributors
 ============================================
 
+## 2021/1
+
+* **[Ednei Freiberger](https://github.com/edneif)**
+  * Updated hardware digital filter.
+
+* **[Kevin Jahn Ferreira](https://github.com/kevjahn)**
+  * Added hardware interrupt to ADC.
+
 ## 2020/2
 
 * **[Lucas Odair Silva](https://github.com/luscasos)**

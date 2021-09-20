@@ -209,7 +209,7 @@ irq_entry: // -------------> This label will be set to MTVT2 register
 // TODO: Add more IRQ Handlers
 //    .weak  SPI0_IRQHandler
 //    .weak  I2C0_IRQHandler
-//    .weak  ADC0_IRQHandler
+    .weak  ADC0_IRQHandler
 
 
 vector_base:
@@ -232,7 +232,7 @@ vector_base:
     .word 	  0
     .word  	  0
     .word  	  0
-    .word  	  0
+    .word     ADC0_IRQHandler           // 17
 	  .word     EXTI0_IRQHandler          // 18
 	  .word     EXTI1_IRQHandler          // 19
 	  .word     EXTI2_IRQHandler          // 20
@@ -251,7 +251,7 @@ vector_base:
 //    .word     UART0_IRQHandler          // 32
 //    .word     SPI0_IRQHandler           // 33
 //    .word     I2C0_IRQHandler           // 34
-//    .word     ADC0_IRQHandler           // 35
+    
                                         // ...
 
 
