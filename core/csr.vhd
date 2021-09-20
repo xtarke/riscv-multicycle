@@ -69,6 +69,7 @@ architecture RTL of csr is
     constant TIMER0_2A_IRQHandler     : integer := 29;
     constant TIMER0_2B_IRQHandler     : integer := 30;
     constant UART_IRQHandler          : integer := 31;
+    constant ADC0_IRQHandler          : integer := 17;
     -- TODO: Add more IRQ Handlers
 
 
@@ -127,12 +128,20 @@ begin
                     elsif(pending_interrupts(EXTI10_15_IRQ)/='0')then
                         mcause_in <= to_unsigned(EXTI10_15_IRQ + 1,32);
                     end if;
+
                   elsif ((mreg(To_integer(MIE   (15 downto 12))) and MIP_MEIP ) /=x"0000_0000" and                     -- Check if External Interrupts are Enabled
                         (pending_interrupts(UART_IRQHandler))/='0' -- Check if External IRQs are Pending
                       ) then
                     mip_in<=MIP_MEIP;
                     mcause_in <= to_unsigned(UART_IRQHandler + 1, 32);
-                end if;
+                    
+
+                    elsif ((mreg(To_integer(MIE   (15 downto 12))) and MIP_MEIP ) /=x"0000_0000" and                     -- Check if External Interrupts are Enabled
+                        (pending_interrupts(ADC0_IRQHandler))/='0' -- Check if External IRQs are Pending
+                    ) then
+                    mip_in<=MIP_MEIP;
+                    mcause_in <= to_unsigned(ADC0_IRQHandler + 1, 32);
+                    end if;                
             end if;
 
 
