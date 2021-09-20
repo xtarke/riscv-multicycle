@@ -32,24 +32,24 @@ Foi implementado um software capaz de colocar o motor em estado de reset, parar 
 
 ## Funcionamento do periférico
 
-![Figura [1] - Simulação completa](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\im0.png)
+![Figura [1] - Simulação completa](./_images/im0.png)
 
 Figura [1] - Simulação completa
 
 
 
-![](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\img1.png)
+![img1](./_images/img1.png)
 
 Figura [2] - Estado de reset
 
 
 
-![img2](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\img2.png)
+![img2](./_images/img2.png)
 
 Figura [3] - Estados do motor em passo completo e meio passo
 
 
 
-![img3](C:\Users\rayan\Documents\GitHub\riscv-multicycle\peripherals\step_motor\_images\img3.png)
+![img3](./_images/img3.png)
 
 Figura [4] - Estado de stop e rotação invertida
