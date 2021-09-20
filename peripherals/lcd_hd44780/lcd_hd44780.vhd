@@ -17,7 +17,7 @@ entity lcd_hd44780 is
 		display_width       : integer := 16;
 		display_heigth      : integer := 2;
 		-- Countings
-		t0_startup_time     : integer := 100000; --! 40ms [1]
+		t0_startup_time     : integer := 80000; --! 40ms [1]
 		t1_short_wait       : integer := 200; --! 100us [1]
 		t2_long_wait        : integer := 10000; --! 4.1ms [1]
 		t3_enable_pulse     : integer := 500; --! 0,450us [1]
@@ -30,7 +30,6 @@ entity lcd_hd44780 is
 		-- TODO: 16x2 8-bit RAM peripheral memory shared with RISC-V
 
 		--! @brief LCD peripheral 32-bit register ("LCDREG0")
-		lcd_character  : in  std_logic_vector(7 downto 0); --! Bits 0 to 7 = CHARX
 		lcd_init       : in  std_logic; --! Bit 8 - Rising edge will start display initialization FSM
 		lcd_write_char : in  std_logic; --! Bit 9 - '1' will write char in bits 0-7
 		lcd_clear      : in  std_logic; --! Bit 10 - '1' will return cursor to home (Line1-0) and clear display
@@ -69,6 +68,11 @@ begin
 		if (rst = '1') then
 			power_state     <= LCD_OFF;
 			startup_counter <= 0;
+			time_counter    <= 0;
+			enable_counter  <= 0;
+			lcd_data        <= "00000000";
+			lcd_e           <= '0';
+			lcd_rs          <= '0';
 
 		elsif rising_edge(clk) then
 			startup_counter <= startup_counter + 1;
@@ -95,7 +99,9 @@ begin
 					else
 						lcd_is_busy <= '1';
 					end if;
-
+			end case;
+			case command is
+				when LCD_CMD_IDLE =>
 					--! Fetch bit instructions to internal "command" signal
 					if (lcd_init = '1') then
 						command <= LCD_CMD_INITIALIZE;
@@ -110,15 +116,12 @@ begin
 					else
 						command <= LCD_CMD_IDLE;
 					end if;
-			end case;
-
-			case command is
-				when LCD_CMD_IDLE =>
+				--! Initialization state machine
 				when LCD_CMD_INITIALIZE =>
 					lcd_rs <= '0';
 					case lcd_cmd_init_state is
 						when LCD_INIT_0 =>
-							lcd_data <= "00110000";
+							lcd_data <= "00110000"; --! Special function set 3x times
 							if (time_counter >= t2_long_wait) then
 								time_counter       <= 0;
 								lcd_e              <= '1';
@@ -140,7 +143,7 @@ begin
 								lcd_cmd_init_state <= LCD_INIT_2;
 							end if;
 						when LCD_INIT_2 =>
-							lcd_data <= "00110000";
+							lcd_data <= "00110000"; --! Function sets if Nlines = 1 or 2
 							if (time_counter >= t1_short_wait) then
 								time_counter       <= 0;
 								lcd_e              <= '1';
@@ -186,7 +189,6 @@ begin
 							end if;
 						when LCD_INIT_6 =>
 							lcd_data <= "00001101";
-
 							if (time_counter >= t1_short_wait) then
 								time_counter       <= 0;
 								lcd_e              <= '1';
@@ -198,6 +200,7 @@ begin
 								command            <= LCD_CMD_IDLE;
 							end if;
 					end case;
+				--! Write char
 				when LCD_CMD_WRITE_CHAR =>
 					lcd_rs   <= '1';
 					lcd_data <= "01000001"; --! 'A'
@@ -209,7 +212,8 @@ begin
 							lcd_e          <= '0';
 						end if;
 					end if;
-
+					command  <= LCD_CMD_IDLE;
+				--! Position cursor in 0x80 (L1) and clear DDRAM
 				when LCD_CMD_CLEAR_RETURN_HOME =>
 					lcd_rs   <= '0';
 					lcd_data <= "00000001";
@@ -221,12 +225,36 @@ begin
 							lcd_e          <= '0';
 						end if;
 					end if;
-
+					command  <= LCD_CMD_IDLE;
+				--! Position cursor in 0x40 -> 0x80 (L1)
 				when LCD_CMD_GOTO_LINE_1 =>
-
+					lcd_rs   <= '0';
+					lcd_data <= "10000000";
+					if (time_counter >= t1_short_wait) then
+						time_counter <= 0;
+						lcd_e        <= '1';
+						if (enable_counter >= t3_enable_pulse) then
+							enable_counter <= 0;
+							lcd_e          <= '0';
+						end if;
+					end if;
+					command  <= LCD_CMD_IDLE;
+				--! Position cursor in 0x40 -> 0xC0 (L2)
 				when LCD_CMD_GOTO_LINE_2 =>
+					lcd_rs   <= '0';
+					lcd_data <= "11000000";
+					if (time_counter >= t1_short_wait) then
+						time_counter <= 0;
+						lcd_e        <= '1';
+						if (enable_counter >= t3_enable_pulse) then
+							enable_counter <= 0;
+							lcd_e          <= '0';
+						end if;
+					end if;
+					command  <= LCD_CMD_IDLE;
 			end case;
 		end if;
+
 	end process;
 
 end controller;
