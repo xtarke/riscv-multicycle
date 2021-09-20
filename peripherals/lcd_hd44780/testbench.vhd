@@ -16,11 +16,9 @@ entity lcd_hd44780_tb is
 end entity lcd_hd44780_tb;
 
 architecture simulation of lcd_hd44780_tb is
-si
 	--! Internal signals (RISC-V Datapath)
-	signal clk            : std_logic
+	signal clk            : std_logic;
 	signal rst            : std_logic;
-	signal lcd_character  : std_logic_vector(7 downto 0);
 	signal lcd_init       : std_Logic;
 	signal lcd_write_char : std_logic;
 	signal lcd_clear      : std_logic;
@@ -39,7 +37,6 @@ begin
 		port map(
 			clk            => clk,
 			rst            => rst,
-			lcd_character  => lcd_character,
 			lcd_init       => lcd_init,
 			lcd_write_char => lcd_write_char,
 			lcd_clear      => lcd_clear,
@@ -63,16 +60,28 @@ begin
 	--! Inititialize display and write characters
 	process
 	begin
-		rst      <= '0';
-		wait for 10 us;
-		lcd_init <= '1';
-	end process;
+		rst <= '1';
+		wait for 5 ms;
+		rst <= '0';
 
-	-- Async reset
-	process
-	begin
-		wait for 2 us;
-		--rst <= '0';
+		lcd_init <= '1';                --! Turn on startup sequence
+		wait for 10 us;
+		lcd_init <= '0';
+
+		wait for 60 ms;                 --! LCD ON!
+
+		lcd_init <= '1';                --! Init CMD
+		wait for 5 ms;
+		lcd_init <= '0';
+
+		wait for 50 ms;                 --! Write char CMD
+
+		lcd_write_char <= '1';
+		wait for 5 ms;
+		lcd_write_char <= '0';
+
+		wait;
+
 	end process;
 
 end architecture simulation;
