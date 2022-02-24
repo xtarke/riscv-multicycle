@@ -6,7 +6,8 @@ ENTITY testbench IS
 END ENTITY testbench;
 
 ARCHITECTURE stimulus OF testbench IS
-    constant N_0: integer := 5;
+    constant N_0: integer := 32;
+    constant N_1: integer := 64;
 
     -- Declaração do componente
     component scalar_product is
