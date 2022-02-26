@@ -27,7 +27,7 @@ int main(){
 		/* Counter blink */
 		OUTBUS = data;
 		SEGMENTS_BASE_ADDRESS = data;
-		// delay_(10000);
+		delay_(10000);
 
 		data++;
 	}
