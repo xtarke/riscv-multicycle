@@ -1,7 +1,7 @@
 #Cria biblioteca do projeto
 vlib work
 
-#compila projeto: todos os aquivo. Ordem é importante
+#compila projeto: todos os arquivos. Ordem é importante
 vcom lcd.vhd lcd_tb.vhd
 
 #Simula (work é o diretório, testbench é o nome da entity)
