@@ -1,0 +1,80 @@
+ls
+# alu
+# CONTRIBUTORS.md
+# core
+# decoder
+# docs
+# LICENSE
+# memory
+# peripherals
+# pll
+# README-en.md
+# readme_img
+# README.md
+# registers
+# riscv-multicycle.doxyfile
+# software
+# testbench.do
+# testbench.vhd
+# transcript
+cd riscv-multicycle.doxyfile
+# couldn't change working directory to "riscv-multicycle.doxyfile": not a directory
+
+
+
+cd peripherals/nn_accelerator/primitives/activation
+do tb.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 10:11:08 on Feb 24,2022
+# vcom -reportprogress 300 sigmoidal.vhd testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity sigmoidal
+# -- Compiling architecture rtl of sigmoidal
+# ** Error (suppressible): sigmoidal.vhd(25): (vcom-1339) Case statement choices cover only 256 out of 43046721 cases.
+# ** Note: sigmoidal.vhd(284): VHDL Compiler exiting
+# End time: 10:11:09 on Feb 24,2022, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# ** Error: /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+# Error in macro ./tb.do line 5
+# /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+#     while executing
+# "vcom sigmoidal.vhd testbench.vhd"
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 10:11:45 on Feb 24,2022
+# vcom -reportprogress 300 sigmoidal.vhd testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity sigmoidal
+# -- Compiling architecture rtl of sigmoidal
+# -- Compiling entity testbench
+# -- Compiling architecture stimulus of testbench
+# -- Loading entity sigmoidal
+# ** Warning: testbench.vhd(24): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(27): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(30): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(33): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(36): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(39): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(42): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: testbench.vhd(45): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 10:11:45 on Feb 24,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 8
+# vsim -t ns work.testbench 
+# Start time: 10:11:45 on Feb 24,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.testbench(stimulus)
+# Loading work.sigmoidal(rtl)
+# .main_pane.wave.interior.cs.body.pw.wf
+# 0 ns
+# 21 ns
+# printing wave to file wave.ps

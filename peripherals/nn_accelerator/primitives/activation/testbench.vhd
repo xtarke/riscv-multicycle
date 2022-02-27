@@ -7,32 +7,45 @@ END ENTITY testbench;
 
 ARCHITECTURE stimulus OF testbench IS
     -- Declaração de sinais
-    signal input: std_logic_vector(3 downto 0);
-    signal segs:  std_logic_vector(7 downto 0);
+    signal input: std_logic_vector(7 downto 0);
+    signal output:  std_logic_vector(7 downto 0);
 
 BEGIN  -- inicio do corpo da arquitetura
     dut: entity work.sigmoidal 
         port map (
             input       => input,
-            segs        => segs
+            output        => output
         );
 
     -------------
     process
     begin
-        input <= "0000";
-        wait for 100ns;
+        input <= "10000000";
+        wait for 1ns;
 
-        input <= "0001";
-        wait for 100ns;
+        input <= "10000011";
+        wait for 1ns;
 
-        input <= "0010";
-        wait for 100ns;
+        input <= "10000011";
+        wait for 1ns;
 
-        input <= "1110";
-        wait for 100ns;
+        input <= "10001111";
+        wait for 1ns;
 
-        input <= "1111";
+        input <= "11111111";
+        wait for 1ns;
+
+        input <= "00000000";
+        wait for 1ns;
+
+        input <= "00000011";
+        wait for 1ns;
+
+        input <= "00001111";
+        wait for 1ns;
+
+        input <= "00111111";
+
         wait;
     end process;
 END ARCHITECTURE stimulus;
