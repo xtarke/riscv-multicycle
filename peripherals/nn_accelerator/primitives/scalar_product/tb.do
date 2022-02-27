@@ -13,16 +13,15 @@ view wave
 #Adiciona ondas específicas
 # -radix: binary, hex, dec
 # -label: nome da forma de onda
-add wave -radix dec  /a_0
-add wave -radix dec  /b_0
-add wave -radix dec  /product_0
+add wave -radix dec  /x0
+add wave -radix dec  /x1
+add wave -radix dec  /w0
+add wave -radix dec  /w1
+add wave -radix dec  /output
 
-add wave -radix dec  /a_1
-add wave -radix dec  /b_1
-add wave -radix dec  /product_1
 
-#Simula até um 500ns
-run 500ns
+#Simula
+run 10ns
 
 wave zoomfull
 write wave wave.ps

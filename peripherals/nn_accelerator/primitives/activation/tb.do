@@ -11,13 +11,11 @@ vsim -t ns work.testbench
 view wave
 
 #Adiciona ondas específicas
-# -radix: binary, hex, dec
-# -label: nome da forma de onda
-add wave -radix unsigned  /input
-add wave -radix binary    /segs
+add wave -radix signed  /input
+add wave -radix signed  /output
 
-#Simula até um 500ns
-run 500ns
+#Simula
+run 20ns
 
 wave zoomfull
 write wave wave.ps
