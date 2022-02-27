@@ -1,0 +1,772 @@
+ls
+# gpio.vhd
+# led_displays.vhd
+# primitives
+# README.md
+# sint
+# testbench.do
+# testbench.vhd
+# transcript
+cd primitives/neuron
+ls
+# perceptron.vhd
+# tb.do
+# testbench.vhd
+# vsim.wlf
+# wave.ps
+# work
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:54:08 on Feb 27,2022
+# vcom -reportprogress 300 ../activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# ** Error: ../activation/heaviside.vhd(26): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(26): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(27): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(27): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(28): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(28): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(29): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(29): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(30): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(30): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(31): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(31): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(32): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(32): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(33): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(33): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(34): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(34): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(35): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(35): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(36): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(36): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(37): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(37): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(38): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(38): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(39): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(39): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(40): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(40): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(41): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(41): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(42): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(42): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(43): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(43): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(44): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(44): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(45): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(45): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(46): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(46): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(47): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(47): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(48): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(48): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(49): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(49): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(50): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(50): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(51): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(51): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(52): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(52): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(53): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(53): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(54): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(54): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(55): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(55): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(56): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(56): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(57): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(57): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(58): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(58): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(59): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(59): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(60): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(60): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(61): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(61): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(62): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(62): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(63): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(63): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(64): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(64): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(65): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(65): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(66): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(66): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(67): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(67): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(68): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(68): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(69): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(69): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(70): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(70): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(71): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(71): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(72): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(72): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(73): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(73): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(74): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(74): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(75): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(75): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(76): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(76): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(77): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(77): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(78): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(78): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(79): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(79): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(80): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(80): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(81): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(81): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(82): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(82): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(83): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(83): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(84): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(84): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(85): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(85): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(86): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(86): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(87): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(87): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(88): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(88): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(89): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(89): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(90): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(90): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(91): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(91): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(92): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(92): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(93): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(93): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(94): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(94): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(95): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(95): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(96): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(96): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(97): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(97): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(98): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(98): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(99): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(99): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(100): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(100): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(101): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(101): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(102): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(102): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(103): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(103): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(104): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(104): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(105): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(105): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(106): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(106): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(107): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(107): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(108): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(108): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(109): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(109): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(110): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(110): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(111): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(111): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(112): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(112): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(113): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(113): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(114): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(114): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(115): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(115): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(116): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(116): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(117): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(117): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(118): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(118): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(119): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(119): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(120): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(120): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(121): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(121): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(122): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(122): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(123): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(123): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(124): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(124): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(125): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(125): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(126): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(126): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(127): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(127): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(128): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(128): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(129): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(129): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(130): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(130): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(131): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(131): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(132): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(132): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(133): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(133): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(134): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(134): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(135): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(135): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(136): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(136): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(137): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(137): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(138): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(138): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(139): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(139): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(140): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(140): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(141): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(141): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(142): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(142): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(143): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(143): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(144): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(144): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(145): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(145): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(146): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(146): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(147): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(147): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(148): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(148): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(149): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(149): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(150): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(150): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(151): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(151): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(152): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(152): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(153): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(153): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(154): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(154): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(155): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(155): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(156): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(156): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(157): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(157): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(158): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(158): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(159): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(159): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(160): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(160): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(161): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(161): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(162): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(162): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(163): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(163): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(164): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(164): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(165): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(165): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(166): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(166): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(167): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(167): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(168): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(168): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(169): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(169): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(170): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(170): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(171): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(171): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(172): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(172): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(173): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(173): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(174): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(174): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(175): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(175): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(176): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(176): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(177): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(177): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(178): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(178): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(179): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(179): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(180): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(180): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(181): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(181): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(182): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(182): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(183): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(183): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(184): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(184): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(185): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(185): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(186): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(186): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(187): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(187): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(188): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(188): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(189): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(189): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(190): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(190): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(191): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(191): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(192): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(192): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(193): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(193): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(194): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(194): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(195): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(195): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(196): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(196): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(197): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(197): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(198): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(198): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(199): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(199): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(200): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(200): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(201): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(201): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(202): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(202): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(203): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(203): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(204): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(204): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(205): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(205): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(206): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(206): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(207): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(207): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(208): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(208): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(209): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(209): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(210): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(210): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(211): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(211): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(212): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(212): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(213): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(213): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(214): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(214): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(215): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(215): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(216): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(216): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(217): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(217): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(218): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(218): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(219): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(219): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(220): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(220): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(221): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(221): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(222): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(222): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(223): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(223): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(224): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(224): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(225): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(225): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(226): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(226): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(227): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(227): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(228): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(228): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(229): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(229): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(230): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(230): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(231): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(231): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(232): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(232): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(233): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(233): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(234): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(234): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(235): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(235): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(236): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(236): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(237): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(237): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(238): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(238): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(239): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(239): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(240): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(240): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(241): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(241): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(242): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(242): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(243): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(243): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(244): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(244): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(245): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(245): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(246): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(246): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(247): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(247): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(248): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(248): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(249): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(249): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(250): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(250): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(251): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(251): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(252): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(252): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(253): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(253): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(254): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(254): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(255): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(255): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(256): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(256): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(257): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(257): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(258): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(258): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(259): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(259): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(260): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(260): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(261): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(261): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(262): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(262): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(263): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(263): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(264): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(264): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(265): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(265): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(266): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(266): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(267): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(267): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(268): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(268): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(269): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(269): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(270): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(270): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(271): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(271): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(272): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(272): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(273): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(273): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(274): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(274): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(275): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(275): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(276): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(276): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(277): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(277): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(278): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(278): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(279): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(279): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(280): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(280): (vcom-1136) Unknown identifier "segs".
+# ** Error: ../activation/heaviside.vhd(281): Illegal target for signal assignment.
+# ** Error: ../activation/heaviside.vhd(281): (vcom-1136) Unknown identifier "segs".
+# ** Note: ../activation/heaviside.vhd(284): VHDL Compiler exiting
+# End time: 19:54:08 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 512, Warnings: 0
+# ** Error: /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+# Error in macro ./tb.do line 5
+# /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+#     while executing
+# "vcom "../activation/heaviside.vhd""
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:55:17 on Feb 27,2022
+# vcom -reportprogress 300 ../activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 19:55:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:55:17 on Feb 27,2022
+# vcom -reportprogress 300 perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# End time: 19:55:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:55:17 on Feb 27,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity testbench
+# -- Compiling architecture stimulus of testbench
+# -- Loading entity perceptron
+# End time: 19:55:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t ns work.testbench 
+# Start time: 19:55:17 on Feb 27,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.testbench(stimulus)
+# Loading work.perceptron(rtl)
+# .main_pane.wave.interior.cs.body.pw.wf
+# 0 ns
+# 11 ns
+# printing wave to file wave.ps
+# A time value could not be extracted from the current line
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:03:43 on Feb 27,2022
+# vcom -reportprogress 300 ../activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 20:03:43 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:03:43 on Feb 27,2022
+# vcom -reportprogress 300 ../scalar_product/scalar_product.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product
+# -- Compiling architecture rtl of scalar_product
+# End time: 20:03:43 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:03:43 on Feb 27,2022
+# vcom -reportprogress 300 perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product
+# ** Error: (vcom-11) Could not find work.sigmoheavisideidal.
+# ** Error (suppressible): perceptron.vhd(50): (vcom-1195) Cannot find expanded name "work.sigmoheavisideidal".
+# ** Error: perceptron.vhd(50): Unknown expanded name.
+# ** Note: perceptron.vhd(61): VHDL Compiler exiting
+# End time: 20:03:43 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 0
+# ** Error: /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+# Error in macro ./tb.do line 7
+# /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+#     while executing
+# "vcom perceptron.vhd"
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:04:03 on Feb 27,2022
+# vcom -reportprogress 300 ../activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 20:04:03 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:04:03 on Feb 27,2022
+# vcom -reportprogress 300 ../scalar_product/scalar_product.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product
+# -- Compiling architecture rtl of scalar_product
+# End time: 20:04:03 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:04:03 on Feb 27,2022
+# vcom -reportprogress 300 perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product
+# -- Loading entity heaviside
+# End time: 20:04:03 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:04:03 on Feb 27,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity testbench
+# -- Compiling architecture stimulus of testbench
+# -- Loading entity perceptron
+# End time: 20:04:03 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 20:04:03 on Feb 27,2022, Elapsed time: 0:08:46
+# Errors: 1, Warnings: 0
+# vsim -t ns work.testbench 
+# Start time: 20:04:03 on Feb 27,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.testbench(stimulus)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product(rtl)
+# Loading work.heaviside(rtl)
+# .main_pane.wave.interior.cs.body.pw.wf
+# 0 ns
+# 11 ns
+# printing wave to file wave.ps
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:05:17 on Feb 27,2022
+# vcom -reportprogress 300 ../activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 20:05:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:05:17 on Feb 27,2022
+# vcom -reportprogress 300 ../scalar_product/scalar_product.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product
+# -- Compiling architecture rtl of scalar_product
+# End time: 20:05:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:05:17 on Feb 27,2022
+# vcom -reportprogress 300 perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product
+# -- Loading entity heaviside
+# End time: 20:05:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:05:17 on Feb 27,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity testbench
+# -- Compiling architecture stimulus of testbench
+# -- Loading entity perceptron
+# End time: 20:05:17 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 20:05:17 on Feb 27,2022, Elapsed time: 0:01:14
+# Errors: 0, Warnings: 0
+# vsim -t ns work.testbench 
+# Start time: 20:05:17 on Feb 27,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.testbench(stimulus)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product(rtl)
+# Loading work.heaviside(rtl)
+# .main_pane.wave.interior.cs.body.pw.wf
+# 0 ns
+# 11 ns
+# printing wave to file wave.ps
