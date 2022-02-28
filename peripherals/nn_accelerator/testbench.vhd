@@ -73,7 +73,11 @@ architecture RTL of coretestbench is
     signal ddata_r_uart : std_logic_vector(31 downto 0);
     signal ddata_r_adc : std_logic_vector(31 downto 0);
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
+    signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
     
+    -- StepMotor signals
+	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
+    signal outs : std_logic_vector(3 downto 0);
 begin
 
     clock_driver : process
@@ -190,7 +194,9 @@ begin
             ddata_r_adc      => ddata_r_adc,
             ddata_r_i2c      => ddata_r_i2c,
             ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph
+            ddata_r_periph   => ddata_r_periph,
+            ddata_r_stepmot  => ddata_r_stepmot,
+            ddata_r_dif_fil  => ddata_r_dif_fil
         );
 
     -- Softcore instatiation
