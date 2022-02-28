@@ -94,9 +94,22 @@ architecture rtl of de0_lite is
     signal state : cpu_state_t;
     signal d_sig : std_logic;
 
-    signal char : std_logic_vector(7 downto 0);
+    -- Peripheral data signals
+    signal ddata_r_segments : std_logic_vector(31 downto 0);
+    signal ddata_r_uart     : std_logic_vector(31 downto 0);
+    signal ddata_r_adc      : std_logic_vector(31 downto 0);
+    signal ddata_r_i2c      : std_logic_vector(31 downto 0);
+    signal ddata_r_timer    : std_logic_vector(31 downto 0);
+    signal ddata_r_periph   : std_logic_vector(31 downto 0);
+    signal ddata_r_dif_fil  : std_logic_vector(31 downto 0);
+    signal ddata_r_stepmot  : std_logic_vector(31 downto 0);
+    signal ddata_r_lcd      : std_logic_vector(31 downto 0);
 
 begin
+    -- Reset 
+    rst     <= SW(9);
+    n_rst   <= not rst;
+    LEDR(9) <= SW(9);
 
     pll_inst : entity work.pll
         port map(
@@ -104,10 +117,16 @@ begin
             c0     => clk
         );
 
-    -- Dummy out signals	
-    rst     <= SW(9);
-    n_rst   <= NOT rst;
-    LEDR(9) <= SW(9);
+    -- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
+    iram_quartus_inst : entity work.iram_quartus
+        port map(
+            address => address,
+            byteena => "1111",
+            clock   => clk,
+            data    => (others => '0'),
+            wren    => '0',
+            q       => idata
+        );
 
     -- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -122,17 +141,6 @@ begin
             daddress => daddress,
             iaddress => iaddress,
             address  => address
-        );
-
-    -- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
-    iram_quartus_inst : entity work.iram_quartus
-        port map(
-            address => address,
-            byteena => "1111",
-            clock   => clk,
-            data    => (others => '0'),
-            wren    => '0',
-            q       => idata
         );
 
     -- Data Memory RAM
@@ -192,31 +200,31 @@ begin
             state      => state
         );
 
-    process(clk, rst)
-    begin
-        if rst = '1' then
-            char(7 downto 0) <= (others => '0');
-            LEDR(7 downto 0) <= (others => '1');
-        else
-            if rising_edge(clk) then
-                if (d_we = '1') and (dcsel = "10") then
-                    -- ToDo: Simplify compartors
-                    -- ToDo: Maybe use byte addressing?  
-                    --       x"01" (word addressing) is x"04" (byte addressing)
-                    if daddress(8 downto 0) = x"01" then -- LEDS					
-                        char(7 downto 0) <= ddata_w(7 downto 0);
-                        LEDR(7 downto 0) <= ddata_w(7 downto 0);
-                    end if;
-                end if;
-            end if;
-        end if;
-    end process;
+    io_data_bus_mux : entity work.iodatabusmux
+        port map(
+            daddress         => daddress,
+            ddata_r_gpio     => ddata_r_gpio,
+            ddata_r_segments => ddata_r_segments,
+            ddata_r_uart     => ddata_r_uart,
+            ddata_r_adc      => ddata_r_adc,
+            ddata_r_i2c      => ddata_r_i2c,
+            ddata_r_timer    => ddata_r_timer,
+            ddata_r_periph   => ddata_r_periph,
+            ddata_r_dif_fil  => ddata_r_dif_fil,
+            ddata_r_stepmot  => ddata_r_stepmot,
+            ddata_r_lcd      => ddata_r_lcd
+        );
 
     lcd : entity work.lcd
         port map(
             clk        => clk,
             reset      => n_rst,
-            char       => char,
+            daddress   => daddress,
+            ddata_w    => ddata_w,
+            ddata_r    => ddata_r_lcd,
+            d_we       => d_we,
+            d_rd       => d_rd,
+            dcsel      => dcsel,
             rst        => ARDUINO_IO(0),
             ce         => ARDUINO_IO(1),
             dc         => ARDUINO_IO(2),

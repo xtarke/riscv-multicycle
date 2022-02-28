@@ -220,6 +220,7 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name VHDL_FILE ../../../../memory/iodatabusmux.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_clz.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/division_functions.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_naive.vhd

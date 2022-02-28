@@ -3,10 +3,24 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity lcd is
+    generic(
+        --! Chip select
+        MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
+        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"00A0";
+        DADDRESS_BUS_SIZE : integer                      := 32
+    );
     port(
-        clk        : in  std_logic;     -- 100 kHz
+        clk        : in  std_logic;     --! 100 kHz
         reset      : in  std_logic;
-        char       : in  std_logic_vector(7 downto 0);
+        --! Core data bus signals
+        daddress   : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
+        ddata_w    : in  std_logic_vector(31 downto 0);
+        ddata_r    : out std_logic_vector(31 downto 0);
+        d_we       : in  std_logic;
+        d_rd       : in  std_logic;
+        dcsel      : in  std_logic_vector(1 downto 0); --! Chip select 
+
+        --! Hardware input/output signals
         rst        : out std_logic;
         ce         : out std_logic;
         dc         : out std_logic;
@@ -20,7 +34,7 @@ architecture RTL of lcd is
     type lcd_state_type is (POWER_UP, SET_CMD_TYPE, SET_CONTRAST,
                             SET_TEMP_COEFF, SET_BIAS_MODE, SEND_0X20,
                             SET_CONTROL_MODE, CLEAR_X_INDEX, CLEAR_DISPLAY,
-                            SEND_DATA, FINISHED);
+                            SEND_DATA, RESEND);
 
     signal lcd_state : lcd_state_type;
 
@@ -30,9 +44,65 @@ architecture RTL of lcd is
     signal byte          : integer range 0 to 505;
     signal data          : std_logic_vector(0 to 7);
     signal data_LCD      : std_logic_vector(0 to 4031);
+
+    signal reg_ctrl : std_logic_vector(31 downto 0);
+    signal pos      : std_logic_vector(31 downto 0) := (others => '0');
+    signal char     : std_logic_vector(31 downto 0);
+    signal we       : std_logic_vector(31 downto 0);
+
+    signal tmp_pos : natural range 0 to 4031;
 begin
 
-    process(clk, serial_clk_en, reset) is
+    tmp_pos <= to_integer(unsigned(pos(12 downto 0)));
+
+    --! Input register
+    Input_register : process(clk, reset)
+    begin
+        if reset = '0' then
+            ddata_r <= (others => '0');
+        else
+            if rising_edge(clk) then
+                if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
+                        ddata_r <= reg_ctrl;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
+                        ddata_r <= pos;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then
+                        ddata_r <= char;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then
+                        ddata_r <= we;
+                    end if;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -- Output register
+    Output_register : process(clk, reset)
+    begin
+        if reset = '0' then
+            reg_ctrl <= (others => '0');
+            pos      <= (others => '0');
+            char     <= (others => '0');
+            we       <= (others => '0');
+        else
+            if rising_edge(clk) then
+                if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0000") then
+                        reg_ctrl <= ddata_w;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0001") then
+                        pos <= ddata_w;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0002") then
+                        char <= ddata_w;
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + x"0003") then
+                        we <= ddata_w;
+                    end if;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    Clock_enable : process(clk, serial_clk_en, reset) is
     begin
         if reset = '0' then
             serial_clk <= '0';
@@ -43,7 +113,7 @@ begin
         end if;
     end process;
 
-    process(clk, reset) is
+    State_transaction : process(clk, reset) is
     begin
         if reset = '0' then
             lcd_state     <= POWER_UP;
@@ -151,19 +221,19 @@ begin
                         end if;
                         lcd_state <= CLEAR_DISPLAY;
                     else
-                        if char = x"41" then
-                            data_LCD(0 to 7)   <= x"7e";
-                            data_LCD(8 to 15)  <= x"11";
-                            data_LCD(16 to 23) <= x"11";
-                            data_LCD(24 to 31) <= x"11";
-                            data_LCD(32 to 39) <= x"7e";
-                        elsif char = x"42" then
+                        if char(7 downto 0) = x"41" then
+                            data_LCD((0 + tmp_pos) to (7 + tmp_pos))   <= x"7e";
+                            data_LCD((8 + tmp_pos) to (15 + tmp_pos))  <= x"11";
+                            data_LCD((16 + tmp_pos) to (23 + tmp_pos)) <= x"11";
+                            data_LCD((24 + tmp_pos) to (31 + tmp_pos)) <= x"11";
+                            data_LCD((32 + tmp_pos) to (39 + tmp_pos)) <= x"7e";
+                        elsif char(7 downto 0) = x"42" then
                             data_LCD(0 to 7)   <= x"7f";
                             data_LCD(8 to 15)  <= x"49";
                             data_LCD(16 to 23) <= x"49";
                             data_LCD(24 to 31) <= x"49";
                             data_LCD(32 to 39) <= x"36";
-                        elsif char = x"43" then
+                        elsif char(7 downto 0) = x"43" then
                             data_LCD(0 to 7)   <= x"3e";
                             data_LCD(8 to 15)  <= x"41";
                             data_LCD(16 to 23) <= x"41";
@@ -195,16 +265,16 @@ begin
                         i             <= 0;
                         byte          <= 0;
                         serial_clk_en <= '0';
-                        lcd_state     <= FINISHED;
+                        lcd_state     <= RESEND;
                     end if;
 
-                when FINISHED =>
+                when RESEND =>
 
             end case;
         end if;
-
     end process;
-    process(lcd_state, clk_count, i, byte, data, data_LCD) is
+
+    Mealy : process(lcd_state, clk_count, i, byte, data, data_LCD) is
     begin
         rst   <= '1';
         ce    <= '1';
@@ -318,7 +388,7 @@ begin
                     ce <= '1';
                 end if;
 
-            when FINISHED =>
+            when RESEND =>
         end case;
     end process;
 end architecture RTL;
