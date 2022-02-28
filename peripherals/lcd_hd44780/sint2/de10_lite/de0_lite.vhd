@@ -120,6 +120,7 @@ architecture rtl of de0_lite is
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
     signal ddata_r_dig_fil : std_logic_vector(31 downto 0);
     signal ddata_r_stepmot : std_logic_vector(31 downto 0);
+		signal ddata_r_hd44780 : std_logic_vector(31 downto 0);
 	 
 	 signal data_in_dig_fil : std_logic_vector(15 downto 0);
 	 
@@ -297,6 +298,43 @@ begin
             hex6     => open,
             hex7     => open
         );
+
+		lcd : entity work.lcd_hd44780
+				port map(
+					clk            => clk_1k,
+					rst            => SW(9),
+					--
+					daddress => daddress,
+					ddata_w  => ddata_w,
+					ddata_r  => ddata_r_segments,
+					d_we     => d_we,
+					d_rd     => d_rd,
+					dcsel    => dcsel,
+					dmask    => dmask,
+					--
+					lcd_data(7)    => ARDUINO_IO(0),
+					lcd_data(6)    => ARDUINO_IO(1),
+					lcd_data(5)    => ARDUINO_IO(2),
+					lcd_data(4)    => ARDUINO_IO(3),
+					lcd_data(3)    => ARDUINO_IO(4),
+					lcd_data(2)    => ARDUINO_IO(5),
+					lcd_data(1)    => ARDUINO_IO(6),
+					lcd_data(0)    => ARDUINO_IO(7),
+					lcd_rs         => ARDUINO_IO(9),
+					lcd_e          => ARDUINO_IO(8),
+					lcd_is_busy    => LEDR(8)
+				);		
+				
+        -- daddress    : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
+        -- ddata_w     : in  std_logic_vector(31 downto 0);
+        -- ddata_r     : out std_logic_vector(31 downto 0);
+        -- d_we        : in  std_logic;
+        -- d_rd        : in  std_logic;
+        -- dcsel       : in  std_logic_vector(1 downto 0); --! Chip select 
+        -- -- ToDo: Module should mask bytes (Word, half word and byte access)
+        -- dmask       : in  std_logic_vector(3 downto 0); --! Byte enable mask				
+
+
         
 	-- Connect input hardware to gpio data
 	gpio_input(3 downto 0) <= SW(3 downto 0);
