@@ -5,11 +5,12 @@
 
 typedef struct{
     _IO32 reg_ctrl; /*!< State machine control register. */
-    _IO32 pos;         /*!< Data index. */
-    _IO32 data;         /*!< Data to display.*/
-    _IO32 we;         /*!< Write enable */
+    _IO32 pos;      /*!< Data index. */
+    _IO32 data;     /*!< Data to display.*/
+    _IO32 we;       /*!< Write enable */
 } DISPLAY_NOKIA_5110_REG_TYPE;
 
 #define DISPLAY_NOKIA_5110_REGISTER ((DISPLAY_NOKIA_5110_REG_TYPE *) &DISPLAY_NOKIA_5110_BASE_ADDRESS)
+#define LETTER_SPACING 6
 
 #endif 
