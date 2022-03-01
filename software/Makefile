@@ -1,10 +1,10 @@
 ifndef RISCV_TOOLS_PREFIX
 #RISCV_TOOLS_PREFIX=riscv-none-embed-
 # Para usar no LSC
-RISCV_TOOLS_PREFIX = /home/t4v0/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = ~/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
 endif
 
-QUARTUS_DIR=/mnt/c/intelFPGA_lite/20.1/quartus/bin64
+QUARTUS_DIR=~/intelFPGA_lite/21.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
