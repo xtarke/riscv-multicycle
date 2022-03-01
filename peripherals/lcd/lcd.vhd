@@ -20,7 +20,7 @@ entity lcd is
         d_rd       : in  std_logic;
         dcsel      : in  std_logic_vector(1 downto 0); --! Chip select 
 
-        --! Hardware input/output signals
+        --! Hardware output signals
         rst        : out std_logic;
         ce         : out std_logic;
         dc         : out std_logic;
@@ -34,7 +34,7 @@ architecture RTL of lcd is
     type lcd_state_type is (POWER_UP, SET_CMD_TYPE, SET_CONTRAST,
                             SET_TEMP_COEFF, SET_BIAS_MODE, SEND_0X20,
                             SET_CONTROL_MODE, CLEAR_X_INDEX, CLEAR_DISPLAY,
-                            SEND_DATA, RESEND);
+                            SET_Y_INDEX, SET_X_INDEX, SEND_DATA, RESEND);
 
     signal lcd_state : lcd_state_type;
 
@@ -43,18 +43,16 @@ architecture RTL of lcd is
     signal i             : integer range 0 to 8;
     signal byte          : integer range 0 to 505;
     signal data          : std_logic_vector(0 to 7);
-    signal data_LCD      : std_logic_vector(0 to 4031);
+    signal data_LCD      : std_logic_vector(0 to 39);
 
     signal reg_ctrl : std_logic_vector(31 downto 0);
     signal pos      : std_logic_vector(31 downto 0) := (others => '0');
     signal char     : std_logic_vector(31 downto 0);
     signal we       : std_logic_vector(31 downto 0);
 
-    signal tmp_pos : natural range 0 to 4031;
+    signal tmp_pos_x : std_logic_vector(31 downto 0);
+    signal tmp_pos_y : integer range 0 to 6;
 begin
-
-    tmp_pos <= to_integer(unsigned(pos(12 downto 0)));
-
     --! Input register
     Input_register : process(clk, reset)
     begin
@@ -219,14 +217,52 @@ begin
                             byte <= byte + 1;
                             i    <= 0;
                         end if;
+
+                        if byte = 503 then
+                            tmp_pos_x <= pos;
+                            tmp_pos_y <= 0;
+                        end if;
+
                         lcd_state <= CLEAR_DISPLAY;
                     else
+                        if unsigned(tmp_pos_x) > 83 then
+                            tmp_pos_x <= std_logic_vector(unsigned(tmp_pos_x) - 84);
+                            tmp_pos_y <= tmp_pos_y + 1;
+
+                            if tmp_pos_y = 6 then
+                                tmp_pos_y <= 0;
+                            end if;
+                            lcd_state <= CLEAR_DISPLAY;
+                        else
+                            i             <= 0;
+                            data          <= x"40" or std_logic_vector(to_unsigned(tmp_pos_y, data'length));
+                            lcd_state     <= SET_Y_INDEX;
+                            serial_clk_en <= '1';
+                        end if;
+                    end if;
+
+                when SET_Y_INDEX =>
+                    if i < 8 then
+                        i         <= i + 1;
+                        lcd_state <= SET_Y_INDEX;
+                    else
+                        i             <= 0;
+                        data          <= x"80" or tmp_pos_x(7 downto 0);
+                        lcd_state     <= SET_X_INDEX;
+                        serial_clk_en <= '1';
+                    end if;
+
+                when SET_X_INDEX =>
+                    if i < 8 then
+                        i         <= i + 1;
+                        lcd_state <= SET_X_INDEX;
+                    else
                         if char(7 downto 0) = x"41" then
-                            data_LCD((0 + tmp_pos) to (7 + tmp_pos))   <= x"7e";
-                            data_LCD((8 + tmp_pos) to (15 + tmp_pos))  <= x"11";
-                            data_LCD((16 + tmp_pos) to (23 + tmp_pos)) <= x"11";
-                            data_LCD((24 + tmp_pos) to (31 + tmp_pos)) <= x"11";
-                            data_LCD((32 + tmp_pos) to (39 + tmp_pos)) <= x"7e";
+                            data_LCD(0 to 7)   <= x"7e";
+                            data_LCD(8 to 15)  <= x"11";
+                            data_LCD(16 to 23) <= x"11";
+                            data_LCD(24 to 31) <= x"11";
+                            data_LCD(32 to 39) <= x"7e";
                         elsif char(7 downto 0) = x"42" then
                             data_LCD(0 to 7)   <= x"7f";
                             data_LCD(8 to 15)  <= x"49";
@@ -253,7 +289,7 @@ begin
                     end if;
 
                 when SEND_DATA =>
-                    if byte < 504 then
+                    if byte < 5 then
                         if i < 8 then
                             i <= i + 1;
                         else
@@ -369,8 +405,30 @@ begin
             when CLEAR_DISPLAY =>
                 dc <= '1';
                 ce <= '0';
-                if (i < 8) AND (byte < 504) then
-                    if data_LCD(i + 8 * byte) = '1' then
+                if (i < 8) and (byte < 504) then
+                    if data_LCD(i) = '1' then
+                        din <= '1';
+                    end if;
+                else
+                    ce <= '1';
+                end if;
+
+            when SET_Y_INDEX =>
+                dc <= '0';
+                ce <= '0';
+                if i < 8 then
+                    if data(i) = '1' then
+                        din <= '1';
+                    end if;
+                else
+                    ce <= '1';
+                end if;
+
+            when SET_X_INDEX =>
+                dc <= '0';
+                ce <= '0';
+                if i < 8 then
+                    if data(i) = '1' then
                         din <= '1';
                     end if;
                 else
@@ -380,7 +438,7 @@ begin
             when SEND_DATA =>
                 dc <= '1';
                 ce <= '0';
-                if (i < 8) AND (byte < 504) then
+                if (i < 8) and (byte < 504) then
                     if data_LCD(i + 8 * byte) = '1' then
                         din <= '1';
                     end if;
