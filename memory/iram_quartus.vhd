@@ -65,7 +65,7 @@ BEGIN
             intended_device_family        => "MAX 10",
             lpm_hint                      => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
             lpm_type                      => "altsyncram",
-            numwords_a                    => 1024,
+            numwords_a                    => 1000,
             operation_mode                => "SINGLE_PORT",
             outdata_aclr_a                => "NONE",
             outdata_reg_a                 => "UNREGISTERED",
