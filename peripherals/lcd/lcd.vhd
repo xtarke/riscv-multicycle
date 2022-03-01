@@ -1,6 +1,16 @@
+-------------------------------------------------------
+--! @file lcd.vhd
+--! @brief Nokia 5110 (PCD8544) LCD display controller
+-------------------------------------------------------
+
+--! Use standard library
 library ieee;
+--! Use standard logic elements
 use ieee.std_logic_1164.all;
+--! Use conversion functions
 use ieee.numeric_std.all;
+--! Use utilities package
+use work.lcd_utils.all;
 
 entity lcd is
     generic(
@@ -31,10 +41,10 @@ entity lcd is
 end entity lcd;
 
 architecture RTL of lcd is
-    type lcd_state_type is (POWER_UP, SET_CMD_TYPE, SET_CONTRAST,
+    type lcd_state_type is (START, POWER_UP, SET_CMD_TYPE, SET_CONTRAST,
                             SET_TEMP_COEFF, SET_BIAS_MODE, SEND_0X20,
                             SET_CONTROL_MODE, CLEAR_X_INDEX, CLEAR_DISPLAY,
-                            SET_Y_INDEX, SET_X_INDEX, SEND_DATA, RESEND);
+                            WAIT_ENABLE, SET_Y_INDEX, SET_X_INDEX, SEND_DATA);
 
     signal lcd_state : lcd_state_type;
 
@@ -43,13 +53,14 @@ architecture RTL of lcd is
     signal i             : integer range 0 to 8;
     signal byte          : integer range 0 to 505;
     signal data          : std_logic_vector(0 to 7);
-    signal data_LCD      : std_logic_vector(0 to 39);
+    signal data_input    : std_logic_vector(0 to 39);
 
     signal reg_ctrl : std_logic_vector(31 downto 0);
-    signal pos      : std_logic_vector(31 downto 0) := (others => '0');
+    signal pos      : std_logic_vector(31 downto 0);
     signal char     : std_logic_vector(31 downto 0);
     signal we       : std_logic_vector(31 downto 0);
 
+    signal data_LCD  : lcd_din;
     signal tmp_pos_x : std_logic_vector(31 downto 0);
     signal tmp_pos_y : integer range 0 to 6;
 begin
@@ -120,7 +131,13 @@ begin
             i             <= 0;
             byte          <= 0;
         elsif rising_edge(clk) then
-            CASE lcd_state IS
+            case lcd_state is
+                when START =>
+                    lcd_state <= START;
+                    if reg_ctrl(0) = '1' then
+                        lcd_state <= POWER_UP;
+                    end if;
+
                 when POWER_UP =>
                     if (clk_count <= 100) then -- wait 100 us
                         clk_count <= clk_count + 1;
@@ -204,7 +221,8 @@ begin
                         lcd_state <= CLEAR_X_INDEX;
                     else
                         i             <= 0;
-                        data_LCD      <= (others => '0');
+                        byte          <= 0;
+                        data_input    <= (others => '0');
                         lcd_state     <= CLEAR_DISPLAY;
                         serial_clk_en <= '1';
                     end if;
@@ -218,13 +236,20 @@ begin
                             i    <= 0;
                         end if;
 
-                        if byte = 503 then
-                            tmp_pos_x <= pos;
-                            tmp_pos_y <= 0;
-                        end if;
-
                         lcd_state <= CLEAR_DISPLAY;
                     else
+                        i             <= 0;
+                        lcd_state     <= WAIT_ENABLE;
+                        serial_clk_en <= '0';
+                    end if;
+
+                when WAIT_ENABLE =>
+                    if reg_ctrl(0) = '0' and we(0) = '1' then
+                        i             <= 0;
+                        data          <= x"80";
+                        lcd_state     <= CLEAR_X_INDEX;
+                        serial_clk_en <= '1';
+                    elsif i > 0 then
                         if unsigned(tmp_pos_x) > 83 then
                             tmp_pos_x <= std_logic_vector(unsigned(tmp_pos_x) - 84);
                             tmp_pos_y <= tmp_pos_y + 1;
@@ -232,13 +257,20 @@ begin
                             if tmp_pos_y = 6 then
                                 tmp_pos_y <= 0;
                             end if;
-                            lcd_state <= CLEAR_DISPLAY;
+                            lcd_state <= WAIT_ENABLE;
                         else
                             i             <= 0;
                             data          <= x"40" or std_logic_vector(to_unsigned(tmp_pos_y, data'length));
                             lcd_state     <= SET_Y_INDEX;
                             serial_clk_en <= '1';
                         end if;
+                    elsif we(0) = '0' then
+                        lcd_state <= WAIT_ENABLE;
+                    else
+                        tmp_pos_x <= pos;
+                        tmp_pos_y <= 0;
+                        i         <= 1;
+                        lcd_state <= WAIT_ENABLE;
                     end if;
 
                 when SET_Y_INDEX =>
@@ -257,35 +289,16 @@ begin
                         i         <= i + 1;
                         lcd_state <= SET_X_INDEX;
                     else
-                        if char(7 downto 0) = x"41" then
-                            data_LCD(0 to 7)   <= x"7e";
-                            data_LCD(8 to 15)  <= x"11";
-                            data_LCD(16 to 23) <= x"11";
-                            data_LCD(24 to 31) <= x"11";
-                            data_LCD(32 to 39) <= x"7e";
-                        elsif char(7 downto 0) = x"42" then
-                            data_LCD(0 to 7)   <= x"7f";
-                            data_LCD(8 to 15)  <= x"49";
-                            data_LCD(16 to 23) <= x"49";
-                            data_LCD(24 to 31) <= x"49";
-                            data_LCD(32 to 39) <= x"36";
-                        elsif char(7 downto 0) = x"43" then
-                            data_LCD(0 to 7)   <= x"3e";
-                            data_LCD(8 to 15)  <= x"41";
-                            data_LCD(16 to 23) <= x"41";
-                            data_LCD(24 to 31) <= x"41";
-                            data_LCD(32 to 39) <= x"22";
-                        else
-                            data_LCD(0 to 7)   <= x"FF";
-                            data_LCD(8 to 15)  <= x"FF";
-                            data_LCD(16 to 23) <= x"FF";
-                            data_LCD(24 to 31) <= x"FF";
-                            data_LCD(32 to 39) <= x"FF";
-                        end if;
-                        i             <= 0;
-                        byte          <= 0;
-                        lcd_state     <= SEND_DATA;
-                        serial_clk_en <= '1';
+                        LCD_CHARACTER(char(7 downto 0), data_LCD);
+                        data_input(0 to 7)   <= data_LCD(0);
+                        data_input(8 to 15)  <= data_LCD(1);
+                        data_input(16 to 23) <= data_LCD(2);
+                        data_input(24 to 31) <= data_LCD(3);
+                        data_input(32 to 39) <= data_LCD(4);
+                        i                    <= 0;
+                        byte                 <= 0;
+                        lcd_state            <= SEND_DATA;
+                        serial_clk_en        <= '1';
                     end if;
 
                 when SEND_DATA =>
@@ -300,17 +313,15 @@ begin
                     else
                         i             <= 0;
                         byte          <= 0;
+                        lcd_state     <= WAIT_ENABLE;
                         serial_clk_en <= '0';
-                        lcd_state     <= RESEND;
                     end if;
-
-                when RESEND =>
 
             end case;
         end if;
     end process;
 
-    Mealy : process(lcd_state, clk_count, i, byte, data, data_LCD) is
+    Mealy : process(lcd_state, clk_count, i, byte, data, data_input) is
     begin
         rst   <= '1';
         ce    <= '1';
@@ -318,7 +329,10 @@ begin
         din   <= '0';
         light <= '1';
 
-        case lcd_state IS
+        case lcd_state is
+
+            when START =>
+
             when POWER_UP =>
                 rst <= '0';
                 if (clk_count > 100) then
@@ -406,12 +420,14 @@ begin
                 dc <= '1';
                 ce <= '0';
                 if (i < 8) and (byte < 504) then
-                    if data_LCD(i) = '1' then
+                    if data_input(i) = '1' then
                         din <= '1';
                     end if;
                 else
                     ce <= '1';
                 end if;
+
+            when WAIT_ENABLE =>
 
             when SET_Y_INDEX =>
                 dc <= '0';
@@ -439,14 +455,13 @@ begin
                 dc <= '1';
                 ce <= '0';
                 if (i < 8) and (byte < 504) then
-                    if data_LCD(i + 8 * byte) = '1' then
+                    if data_input(i + 8 * byte) = '1' then
                         din <= '1';
                     end if;
                 else
                     ce <= '1';
                 end if;
 
-            when RESEND =>
         end case;
     end process;
 end architecture RTL;

@@ -225,6 +225,7 @@ set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_clz.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/division_functions.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_naive.vhd
 set_global_assignment -name VHDL_FILE ../../lcd.vhd
+set_global_assignment -name VHDL_FILE ../../lcd_utils.vhd
 set_global_assignment -name VHDL_FILE ../../../../registers/register_file.vhd
 set_global_assignment -name VHDL_FILE ../../../../memory/instructionbusmux.vhd
 set_global_assignment -name VHDL_FILE ../../../../memory/databusmux.vhd
