@@ -15,7 +15,7 @@
 #******************************************************************************
 
 vlib work
-vcom gpio.vhd
+vcom nn_accelerator.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../memory/instructionbusmux.vhd

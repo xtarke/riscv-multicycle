@@ -78,6 +78,8 @@ architecture RTL of coretestbench is
     -- StepMotor signals
 	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
     signal outs : std_logic_vector(3 downto 0);
+    
+    -- NN Acelarator
 begin
 
     clock_driver : process
@@ -227,8 +229,7 @@ begin
        interrupts(30 downto 25) <= timer_interrupt;
     end process;
 
-    -- Generic GPIO module instantiation
-    -- TODO START HERE
+    -- NN Acelerator starts here!
     generic_gpio: entity work.gpio
     generic map(
         MY_CHIPSELECT   => "10",
@@ -248,7 +249,7 @@ begin
         output   => gpio_output,
         gpio_interrupts => gpio_interrupts
     );
-    -- TODO STOP HERE
+    -- NN Acelerator ends here!
     
     
 

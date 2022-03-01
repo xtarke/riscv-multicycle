@@ -43,6 +43,7 @@ entity gpio is
 end entity gpio;
 
 architecture RTL of gpio is
+	-- Declaração de sinais
     signal myInterrupts_d : std_logic_vector(6 downto 0); 
     signal interrupts: std_logic_vector(6 downto 0);
     
@@ -55,36 +56,61 @@ architecture RTL of gpio is
     signal EXTI10_15: std_logic;
     signal output_reg:std_logic_vector(31 downto 0);    
     
-begin
-    
-    EXTIx<= (input xor edge_exti_mask) and enable_exti_mask;
-    
 
-    EXTI5_9<=   EXTIx(5) or 
-                EXTIx(6) or 
-                EXTIx(7) or 
-                EXTIx(8) or 
-                EXTIx(9);
-    EXTI10_15<= EXTIx(10) or 
-                EXTIx(11) or 
-                EXTIx(12) or 
-                EXTIx(13) or 
-                EXTIx(14) or 
-                EXTIx(15);
-    
-    interrupts <= EXTI10_15 & EXTI5_9 & EXTIx(4) & EXTIx(3) & EXTIx(2) & EXTIx(1) & EXTIx(0);
-	
-    interrupt_edge : process (clk, rst) is
-    begin
-        if rst = '1' then
-            myInterrupts_d <=(others => '0');
-            gpio_interrupts <=(others => '0');
-        elsif rising_edge(clk) then               
-            myInterrupts_d <= interrupts; 
-            gpio_interrupts <= not myInterrupts_d and interrupts;
-    
-        end if;
-    end process interrupt_edge;
+	-- index x_y: input x of neuron y
+	signal x0_0 : std_logic_vector(N-1 downto 0);
+    signal x1_0 : std_logic_vector(N-1 downto 0);
+    signal w0_0 : std_logic_vector(N-1 downto 0);
+    signal w1_0 : std_logic_vector(N-1 downto 0);
+    signal output_0 : std_logic_vector(N-1 downto 0);
+	signal x0_1 : std_logic_vector(N-1 downto 0);
+    signal x1_1 : std_logic_vector(N-1 downto 0);
+    signal w0_1 : std_logic_vector(N-1 downto 0);
+    signal w1_1 : std_logic_vector(N-1 downto 0);
+    signal output_1 : std_logic_vector(N-1 downto 0);
+	signal x0_2 : std_logic_vector(N-1 downto 0);
+    signal x1_2 : std_logic_vector(N-1 downto 0);
+    signal w0_2 : std_logic_vector(N-1 downto 0);
+    signal w1_2 : std_logic_vector(N-1 downto 0);
+    signal output_2 : std_logic_vector(N-1 downto 0);
+
+begin
+    -- Available neurons
+    n0: entity work.perceptron 
+        generic map (
+            N => N
+        ) 
+        port map (
+            x0 => x0_0,
+            x1 => x1_0,
+            w0 => w0_0,
+            w1 => w1_0,
+            output  => output_0
+    );
+
+    n1: entity work.perceptron 
+        generic map (
+            N => N
+        ) 
+        port map (
+            x0 => x0_1,
+            x1 => x1_1,
+            w0 => w0_1,
+            w1 => w1_1,
+            output  => output_1
+    );
+
+    n2: entity work.perceptron 
+        generic map (
+            N => N
+        ) 
+        port map (
+            x0 => x0_2,
+            x1 => x1_2,
+            w0 => w0_2,
+            w1 => w1_2,
+            output  => output_2
+    );
     
     
 	-- Input register
