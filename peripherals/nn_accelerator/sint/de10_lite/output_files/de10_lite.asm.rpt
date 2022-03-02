@@ -1,5 +1,5 @@
 Assembler report for de10_lite
-Sun Feb 13 15:49:15 2022
+Tue Mar  1 22:55:07 2022
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
 
 
@@ -39,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Feb 13 15:49:15 2022 ;
+; Assembler Status      ; Successful - Tue Mar  1 22:55:07 2022 ;
 ; Revision Name         ; de10_lite                             ;
 ; Top-level Entity Name ; de0_lite                              ;
 ; Family                ; MAX 10                                ;
@@ -64,13 +64,13 @@ https://fpgasoftware.intel.com/eula.
 +--------+------------------------+--------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                        ;
-+------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                        ;
-+------------------------------------------------------------------------------------------------------------------+
-; /home/benitez/Desktop/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof ;
-+------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                                  ;
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                                  ;
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/nn_accelerator/sint/de10_lite/output_files/de10_lite.sof ;
++--------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------+
@@ -78,8 +78,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------+------------------------+
 ; Option         ; Setting                ;
 +----------------+------------------------+
-; JTAG usercode  ; 0x005E9608             ;
-; Checksum       ; 0x005E9608             ;
+; JTAG usercode  ; 0x005AFC9F             ;
+; Checksum       ; 0x005AFC9F             ;
 +----------------+------------------------+
 
 
@@ -89,14 +89,14 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
-    Info: Processing started: Sun Feb 13 15:49:11 2022
+    Info: Processing started: Tue Mar  1 22:55:02 2022
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off de10_lite -c de10_lite
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 384 megabytes
-    Info: Processing ended: Sun Feb 13 15:49:15 2022
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 385 megabytes
+    Info: Processing ended: Tue Mar  1 22:55:07 2022
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
 
 
