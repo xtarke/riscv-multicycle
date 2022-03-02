@@ -242,21 +242,23 @@ begin
             
         );
 
-	generic_gpio: entity work.gpio
-		port map(
-			clk      => clk,
-			rst      => rst,
-			daddress => daddress,
-			ddata_w  => ddata_w,
-			ddata_r  => ddata_r_gpio,
-			d_we     => d_we,
-			d_rd     => d_rd,
-			dcsel    => dcsel,
-			dmask    => dmask,
-			input    => gpio_input,
-			output   => gpio_output,
-			gpio_interrupts => gpio_interrupts
-		);
+    -- NN Acelerator starts here!
+    my_nn_accelerator: entity work.nn_accelerator
+    generic map(
+        MY_CHIPSELECT   => "10",
+        MY_WORD_ADDRESS => x"0010"
+    )
+    port map(
+        clk      => clk,
+        rst      => rst,
+        daddress => daddress,
+        ddata_w  => ddata_w,
+        ddata_r  => ddata_r_gpio,
+        d_we     => d_we,
+        d_rd     => d_rd,
+        dcsel    => dcsel
+    );
+    -- NN Acelerator ends here!
 		
     -- Timer instantiation
     timer : entity work.Timer
@@ -275,27 +277,6 @@ begin
             dcsel    => dcsel,
             dmask    => dmask,
             timer_interrupt => timer_interrupt
-        );
-
-    generic_displays : entity work.led_displays      
-        port map(
-            clk      => clk,
-            rst      => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_segments,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            hex0     => HEX0,
-            hex1     => HEX1,
-            hex2     => HEX2,
-            hex3     => HEX3,
-            hex4     => HEX4,
-            hex5     => HEX5,
-            hex6     => open,
-            hex7     => open
         );
         
 	-- Connect input hardware to gpio data

@@ -116,18 +116,19 @@ begin
     gpio_test: process
     begin
         gpio_input <= (others => '0');
-        wait for 500 us;
-                
-        -- Generate a input pulse (External IRQ 0 or pooling)
-        gpio_input(0) <= '1';
-        wait for 1 us;
-        gpio_input(0) <= '0';
-        
-        -- Generate a input pulse (External IRQ 1 or pooling)
-        wait for 200 us;
-        gpio_input(1) <= '1';
-        wait for 1 us;
-        gpio_input(1) <= '0';
+        --wait for 500 us;
+        -- TODO?
+        --        
+        ---- Generate a input pulse (External IRQ 0 or pooling)
+        --gpio_input(0) <= '1';
+        --wait for 1 us;
+        --gpio_input(0) <= '0';
+        --
+        ---- Generate a input pulse (External IRQ 1 or pooling)
+        --wait for 200 us;
+        --gpio_input(1) <= '1';
+        --wait for 1 us;
+        --gpio_input(1) <= '0';
         
         wait;
     end process;  
@@ -230,7 +231,7 @@ begin
     end process;
 
     -- NN Acelerator starts here!
-    generic_gpio: entity work.gpio
+    my_nn_accelerator: entity work.nn_accelerator
     generic map(
         MY_CHIPSELECT   => "10",
         MY_WORD_ADDRESS => x"0010"
@@ -243,11 +244,7 @@ begin
         ddata_r  => ddata_r_gpio,
         d_we     => d_we,
         d_rd     => d_rd,
-        dcsel    => dcsel,
-        dmask    => dmask,
-        input    => gpio_input,
-        output   => gpio_output,
-        gpio_interrupts => gpio_interrupts
+        dcsel    => dcsel
     );
     -- NN Acelerator ends here!
     

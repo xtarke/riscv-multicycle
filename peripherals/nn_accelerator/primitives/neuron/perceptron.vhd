@@ -20,7 +20,7 @@ use ieee.numeric_std.all;
 	    
 entity perceptron is
     generic(
-        N : integer := 32 --! number of bits
+        N : integer := 8 --! number of bits
     );
 
     port (

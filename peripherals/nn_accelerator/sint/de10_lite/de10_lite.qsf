@@ -216,8 +216,11 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name VHDL_FILE ../../gpio.vhd
-set_global_assignment -name VHDL_FILE ../../led_displays.vhd
+
+set_global_assignment -name VHDL_FILE ../../primitives/activation/heaviside.vhd
+set_global_assignment -name VHDL_FILE ../../primitives/scalar_product/scalar_product.vhd
+set_global_assignment -name VHDL_FILE ../../primitives/neuron/perceptron.vhd
+set_global_assignment -name VHDL_FILE ../../nn_accelerator.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_clz.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/division_functions.vhd
 set_global_assignment -name VHDL_FILE ../../../../alu/m/quick_naive.vhd

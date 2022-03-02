@@ -1,5 +1,5 @@
 EDA Netlist Writer report for de10_lite
-Sun Feb 13 15:49:30 2022
+Tue Mar  1 22:55:21 2022
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Sun Feb 13 15:49:30 2022 ;
+; EDA Netlist Writer Status ; Successful - Tue Mar  1 22:55:21 2022 ;
 ; Revision Name             ; de10_lite                             ;
 ; Top-level Entity Name     ; de0_lite                              ;
 ; Family                    ; MAX 10                                ;
@@ -67,13 +67,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------------------------+--------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                                                              ;
-+-------------------------------------------------------------------------------------------------------------------------+
-; Generated Files                                                                                                         ;
-+-------------------------------------------------------------------------------------------------------------------------+
-; /home/benitez/Desktop/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/simulation/modelsim/de10_lite.vho ;
-+-------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                                                        ;
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                                                   ;
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/nn_accelerator/sint/de10_lite/simulation/modelsim/de10_lite.vho ;
++---------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -82,13 +82,13 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
-    Info: Processing started: Sun Feb 13 15:49:26 2022
+    Info: Processing started: Tue Mar  1 22:55:18 2022
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off de10_lite -c de10_lite
 Warning (10905): Generated the EDA functional simulation netlist because it is the only supported netlist type for this device.
-Info (204019): Generated file de10_lite.vho in folder "/home/benitez/Desktop/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file de10_lite.vho in folder "/home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/nn_accelerator/sint/de10_lite/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 691 megabytes
-    Info: Processing ended: Sun Feb 13 15:49:30 2022
+    Info: Peak virtual memory: 688 megabytes
+    Info: Processing ended: Tue Mar  1 22:55:22 2022
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 
