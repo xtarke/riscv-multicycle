@@ -78,10 +78,12 @@ end entity;
 architecture rtl of de0_lite is
     -- Clocks and reset
     signal clk : std_logic;
+		signal clk_1k : std_logic;
     signal rst : std_logic;
     signal clk_50MHz : std_logic;
     -- PLL signals
     signal locked_sig : std_logic;
+    signal locked_sig_2 : std_logic;
         
     -- Instruction bus signals
     signal idata     : std_logic_vector(31 downto 0);
@@ -149,6 +151,14 @@ begin
 			c1	 		=> clk_50MHz,
 			locked	=> locked_sig
 		);
+		
+    pll_lcd : entity work.pll_lcd
+        port map(
+            areset => SW(9),            --! @details If SW(9) is OFF (default), pll clock is ON
+            inclk0 => ADC_CLK_10,
+            c0     => clk_1k,
+            locked => locked_sig_2
+        );		
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst: entity work.iram_quartus
@@ -302,11 +312,11 @@ begin
 		lcd : entity work.lcd_hd44780
 				port map(
 					clk            => clk_1k,
-					rst            => SW(9),
+					rst            => rst,
 					--
 					daddress => daddress,
 					ddata_w  => ddata_w,
-					ddata_r  => ddata_r_segments,
+					ddata_r  => ddata_r_hd44780,
 					d_we     => d_we,
 					d_rd     => d_rd,
 					dcsel    => dcsel,
@@ -322,7 +332,9 @@ begin
 					lcd_data(0)    => ARDUINO_IO(7),
 					lcd_rs         => ARDUINO_IO(9),
 					lcd_e          => ARDUINO_IO(8),
-					lcd_is_busy    => LEDR(8)
+					lcd_is_busy    => LEDR(8),
+					teste0 => LEDR(0),
+					teste1 => LEDR(1)
 				);		
 				
         -- daddress    : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
@@ -337,7 +349,7 @@ begin
 
         
 	-- Connect input hardware to gpio data
-	gpio_input(3 downto 0) <= SW(3 downto 0);
-    LEDR(7 downto 0) <= gpio_output(7 downto 0);
+--	gpio_input(3 downto 0) <= SW(3 downto 0);
+--    LEDR(7 downto 0) <= gpio_output(7 downto 0);
 
 end;
