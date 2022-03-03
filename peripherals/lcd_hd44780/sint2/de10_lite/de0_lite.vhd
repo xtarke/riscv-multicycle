@@ -73,12 +73,9 @@ entity de0_lite is
 	);
 end entity;
 
-
-
 architecture rtl of de0_lite is
     -- Clocks and reset
     signal clk : std_logic;
-		signal clk_1k : std_logic;
     signal rst : std_logic;
     signal clk_50MHz : std_logic;
     -- PLL signals
@@ -151,14 +148,6 @@ begin
 			c1	 		=> clk_50MHz,
 			locked	=> locked_sig
 		);
-		
-    pll_lcd : entity work.pll_lcd
-        port map(
-            areset => SW(9),            --! @details If SW(9) is OFF (default), pll clock is ON
-            inclk0 => ADC_CLK_10,
-            c0     => clk_1k,
-            locked => locked_sig_2
-        );		
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
 	iram_quartus_inst: entity work.iram_quartus
@@ -311,7 +300,7 @@ begin
 
 		lcd : entity work.lcd_hd44780
 				port map(
-					clk            => clk_1k,
+					clk            => clk,
 					rst            => rst,
 					--
 					daddress => daddress,
