@@ -20,12 +20,14 @@ entity lcd_hd44780 is
         
         display_width       : integer                      := 16;
         display_heigth      : integer                      := 2;
-        -- Countings
-        t0_startup_time     : integer                      := 80000; --! 40ms [1]
-        t1_short_wait       : integer                      := 200; --! 100us [1]
-        t2_long_wait        : integer                      := 10000; --! 4.1ms [1]
-        t3_enable_pulse     : integer                      := 500; --! 0,450us [1]
-        t4_clear_and_return : integer                      := 2000 --! 1,52ms [1]
+
+        -- Countings (clk in = 1MHz)
+        t0_startup_time     : integer                      := 40000+20000; --! 40ms [1]
+        t1_short_wait       : integer                      := 100+50; --! 100us [1]
+        t2_long_wait        : integer                      := 4100+2050; --! 4.1ms [1]
+        t3_enable_pulse     : integer                      := 450+225; --! 0,450us [1]
+        t4_clear_and_return : integer                      := 1520+760 --! 1,52ms [1]
+        
     );
     port(
         --! @brief Internal signals (RISC-V Datapath)
@@ -80,7 +82,7 @@ architecture controller of lcd_hd44780 is
     signal lcd_goto_l2    : std_logic; --! Bit 12 - '1' will put cursor in first position of line 2
 
 begin
-    
+
     lcd_control : process(clk, rst)
     begin        
         if (rst = '1') then
@@ -96,16 +98,16 @@ begin
             lcd_write_char <= '0';
             lcd_clear <= '0';
             lcd_goto_l1 <= '0';
-            lcd_goto_l2 <= '0';
+            lcd_goto_l2 <= '0';  
 
             teste0 <= '0';
             teste1 <= '0';
 
         elsif rising_edge(clk) then
-			if (d_we = '1') and (dcsel = MY_CHIPSELECT) then			    
+            if (d_we = '1') and (dcsel = MY_CHIPSELECT) then                
 
                 if daddress(15 downto 0) = (MY_WORD_ADDRESS) then
-                    lcd_data <= ddata_w(7 downto 0);
+                   lcd_data <= ddata_w(7 downto 0);
                 elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+1) then
                     lcd_init <= ddata_w(0);
                 elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+2) then
@@ -151,9 +153,9 @@ begin
                     --! Fetch bit instructions to internal "command" signal
                     if (lcd_init = '1') then
                         command <= LCD_CMD_INITIALIZE;
-                        teste1 <= '1';
                     elsif (lcd_write_char = '1') then
                         command <= LCD_CMD_WRITE_CHAR;
+                        teste1 <= '1';
                     elsif (lcd_clear = '1') then
                         command <= LCD_CMD_CLEAR_RETURN_HOME;
                     elsif (lcd_goto_l1 = '1') then

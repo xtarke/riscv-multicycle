@@ -216,7 +216,6 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name QIP_FILE pll_lcd.qip
 set_global_assignment -name VHDL_FILE ../../lcd_hd44780.vhd
 set_global_assignment -name VHDL_FILE ../../../gpio/gpio.vhd
 set_global_assignment -name VHDL_FILE ../../../gpio/led_displays.vhd
