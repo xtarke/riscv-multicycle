@@ -1,7 +1,15 @@
-LIBRARY ieee;
-USE IEEE.STD_LOGIC_1164.ALL;
-use ieee.numeric_std.all;
+-------------------------------------------------------
+--! @file de0_lite.vhd
+--! @brief Description
+-------------------------------------------------------
 
+--! Use standard library
+library ieee;
+--! Use standard logic elements
+use ieee.std_logic_1164.all;
+--! Use conversion functions
+use ieee.numeric_std.all;
+--! Use RiscV decoder types
 use work.decoder_types.all;
 
 entity de0_lite is
