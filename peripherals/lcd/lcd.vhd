@@ -125,7 +125,7 @@ begin
     State_transaction : process(clk, reset) is
     begin
         if reset = '0' then
-            lcd_state     <= POWER_UP;
+            lcd_state     <= START;
             serial_clk_en <= '0';
             clk_count     <= 0;
             i             <= 0;
