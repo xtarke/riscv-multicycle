@@ -454,7 +454,7 @@ begin
             when SEND_DATA =>
                 dc <= '1';
                 ce <= '0';
-                if (i < 8) and (byte < 504) then
+                if (i < 8) and (byte < 5) then
                     if data_input(i + 8 * byte) = '1' then
                         din <= '1';
                     end if;
