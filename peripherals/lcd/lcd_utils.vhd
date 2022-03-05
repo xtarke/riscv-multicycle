@@ -1,25 +1,28 @@
--------------------------------------------------------------------
--- Name        : lcd_utils
--- Author      : Gustavo Vianna França
--- Date        : 28 de fev. de 2022
--- Version     : 0.1
--- Copyright   : Gustavo Vianna França, Departamento de Eletrônica, Florianópolis, IFSC
--- Description : Utilities package for the Nokia 5110 LCD display
--------------------------------------------------------------------
+-------------------------------------------------------
+--! @file lcd_utils.vhd
+--! @brief Utilities for the Nokia 5110 LCD display 
+--         controller.
+-------------------------------------------------------
+
+--! Use standard library
 library ieee;
+--! Use standard logic elements
 use ieee.std_logic_1164.all;
+--! Use conversion functions
 use ieee.numeric_std.all;
 
 package lcd_utils is
     type lcd_din is array (0 to 4) of std_logic_vector(0 to 7);
+    --! Implements a procedure that converts an ASCII input to a Nokia 5110 
+    --  LCD display output.
     procedure LCD_CHARACTER(signal char : in std_logic_vector(7 downto 0);
-                        signal din  : out lcd_din);
+                            signal din  : out lcd_din);
 
 end package lcd_utils;
 
 package body lcd_utils is
     procedure LCD_CHARACTER(signal char : in std_logic_vector(7 downto 0);
-                        signal din  : out lcd_din) is
+                            signal din  : out lcd_din) is
     begin
         if char(7 downto 0) = x"20" then
             din <= (x"00", x"00", x"00", x"00", x"00"); --! 20 Space

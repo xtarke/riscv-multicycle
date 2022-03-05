@@ -1,3 +1,9 @@
+/** @file main_lcd.h
+ *  @brief Nokia 5110 LCD display example file.
+ * 
+ *  Provides an example for its usage.
+*/
+
 #include <stdint.h>
 #include "lcd.h"
 #include "../_core/utils.h"

@@ -1,6 +1,7 @@
 -------------------------------------------------------
 --! @file testbench.vhd
---! @brief Nokia 5110 (PCD8544) LCD display controller testbench
+--! @brief Nokia 5110 (PCD8544) LCD display controller
+--         testbench.
 -------------------------------------------------------
 
 --! Use standard library

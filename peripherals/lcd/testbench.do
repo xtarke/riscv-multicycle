@@ -12,7 +12,7 @@
 #                                                                             *
 # REVISION HISTORY:                                                           *
 #  Revision 0.1.0    08/01/2018 - Initial Revision                            *
-#  Revision 0.2.0    04/03/2018 - Updated NOKIA 5110 Display LCD controller   *
+#  Revision 0.2.0    04/03/2022 - Updated NOKIA 5110 Display LCD controller   *
 #******************************************************************************
 
 vlib work

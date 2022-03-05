@@ -1,6 +1,9 @@
-#include <stdint.h>
-#include "../_core/utils.h"
-#include "../_core/hardware.h"
+/** @file lcd.c
+ *  @brief Nokia 5110 LCD display source file.
+ * 
+ *  Implements functions defined in its header file.
+*/
+
 #include "lcd.h"
 
 inline _IO32 lcd_pos(_IO32 x, _IO32 y){
@@ -15,13 +18,13 @@ inline _IO32 lcd_pos(_IO32 x, _IO32 y){
     return x + y * DISPLAY_NOKIA_5110_WIDTH;
 }
 
-void lcd_init(){
+void lcd_init(void){
     DISPLAY_NOKIA_5110_REGISTER->reg_ctrl = 1;
     DISPLAY_NOKIA_5110_REGISTER->we = 0;
     delay_(700);
 }
 
-void lcd_clear(){
+void lcd_clear(void){
     DISPLAY_NOKIA_5110_REGISTER->reg_ctrl = 0;
     DISPLAY_NOKIA_5110_REGISTER->we = 1;
     delay_(100);
