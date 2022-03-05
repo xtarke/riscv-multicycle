@@ -314,7 +314,7 @@ O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10
     <img width="100%" height="50%" src="connection.png">
 </p>
 
-Ao final, após a síntese e gravação do arquivo na memória interna utilizada para o núcleo RISCV, espera-se para o exemplo o comportamento demonstrado abaixo:
+Ao final, após a síntese e gravação do arquivo binário na memória interna utilizada para o núcleo RISCV, espera-se para o exemplo o comportamento demonstrado abaixo:
 
 <p align="center">
     <img width="25%" height="25%" src="Nokia5110LCD.gif">

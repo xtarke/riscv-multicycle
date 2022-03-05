@@ -133,6 +133,23 @@ Observa-se que além da frase "_Hello World!_", também foi feita a impressão d
 ```
 !"#$%&'()*+-,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 ```
+
+## Compilação do exemplo
+
+A compilação do exemplo é feita com auxílio do arquivo [`Makefile`](Makefile), no que a máquina usada para o processo deve ter instalada o compilador _cross compiler_ GNU riscv-none-embed-gcc e o seu caminho de instalação indicado apropriadamente no [`Makefile`](Makefile). Para fazer a compilação, mova-se para este diretório e digite o comando `make clean & make` no terminal.
+
+[`Makefile`](Makefile):
+```Makefile
+ifndef RISCV_TOOLS_PREFIX
+#RISCV_TOOLS_PREFIX=riscv-none-embed-
+# Para usar no LSC 
+RISCV_TOOLS_PREFIX = ~/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed- # <- Alterar o caminho.
+endif
+
+QUARTUS_DIR=~/intelFPGA_lite/21.1/quartus/bin/ # <- Opcionalmente alterar o caminho da instalação do Quartus.
+```
+Há também a opção de modificar o caminho da instalação do Quartus no arquivo, com o intuito de utilizar funcionalidades extras de síntese e gravação diretamente no [`Makefile`](Makefile).
+
 # Simulação do _testbench_
 
 Primeiramente, antes de realizar o _testbench_, devem ser comentadas as linhas que contenham `delay_(10000)` no arquivo de exemplo [`main_lcd.c`](main_lcd.c).
