@@ -193,11 +193,11 @@ typedef struct{
 #endif 
 ```
 
-Nota-se que os argumentos da função `lcd_print` incluem, respectivamente, a string a ser impressa, o seu tamanho, a posição inicial de impressão da coluna e posição inicial de impressão da linha. No que a coluna aceita valores de 0 até 83 (84 colunas) e a linha aceita valores da faixa de 0 até 5 (6 linhas).
+Nota-se que os argumentos da função `lcd_print` incluem, respectivamente, a string a ser impressa, o seu tamanho, a posição inicial de impressão da coluna e posição inicial de impressão da linha. No que a coluna aceita valores de 0 até 83 (84 colunas) e a linha aceita valores da faixa de 0 até 5 (6 linhas), valores excendentes para coluna resultam em incremento(s) para a linha, e para a linha, impera uma lógica circular.
 
 ## Funções
 
-Desse modo, as implementações dessas funções é dada no arquivo [`software/lcd/lcd.c`](../../software/lcd/lcd.c).
+Desse modo, as implementações dessas funções são dadas no arquivo [`software/lcd/lcd.c`](../../software/lcd/lcd.c).
 
 [`software/lcd/lcd.c`](../../software/lcd/lcd.c):
 ```C
@@ -289,7 +289,7 @@ int main(){
 }
 ```
 
-Observa-se que além da frase "_Hello World_", também foi feita a impressão de todos os caracteres suportados (incluindo espaço) pelo controlador, listados abaixo para ênfase:
+Observa-se que além da frase "_Hello World!_", também foi feita a impressão de todos os caracteres suportados (incluindo espaço) pelo controlador, listados abaixo para ênfase:
 
 ```
 !"#$%&'()*+-,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -308,7 +308,13 @@ O _testbench_ foi implementado no arquivo [`testbench.vhd`](testbench.vhd), ele 
 
 Já para a síntese na FPGA, devem ser descomentadas as linhas que contenham `delay_(10000)` no arquivo de exemplo [`software/lcd/main_lcd.c`](../../software/lcd/main_lcd.c).
 
-O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10_lite/de0_lite.vhd), em que são utilizados as portas ARDUINOIO[[2]](#bibliografia)
+O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10_lite/de0_lite.vhd), em que são utilizados as portas Arduino IO[[2]](#bibliografia), a porta de alimnentação de 3,3V ou 5V (de acordo com o modelo do _display_) e a referência no GND, seguindo o mesmo modelo do esquemático abaixo:
+
+<p align="center">
+    <img width="100%" height="50%" src="connection.png">
+</p>
+
+Ao final, após a síntese e gravação do arquivo na memória interna utilizada para o núcleo RISCV, espera-se para o exemplo o comportamento demonstrado abaixo:
 
 <p align="center">
     <img width="25%" height="25%" src="Nokia5110LCD.gif">
