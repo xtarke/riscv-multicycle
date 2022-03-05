@@ -16,6 +16,7 @@
 #******************************************************************************
 
 vlib work
+vcom lcd_utils.vhd
 vcom lcd.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
@@ -142,7 +143,7 @@ add wave -label lcd_state                    /lcd/lcd_state
 add wave -label transmitted_bit -radix dec   /lcd/i
 add wave -label byte_count      -radix dec   /lcd/byte
 add wave -label command         -radix hex   /lcd/data
-add wave -label data_input      -radix hex   /lcd/data_input
+add wave -label data_input      -radix hex   /lcd/data_LCD
 add wave -label reg_ctrl        -radix dec   /lcd/reg_ctrl
 add wave -label pos             -radix dec   /lcd/pos
 add wave -label char            -radix ASCII /lcd/char
