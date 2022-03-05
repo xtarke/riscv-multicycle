@@ -170,7 +170,7 @@ O arquivo principal para síntese é o [`peripherals/lcd/sint/de10_lite/de0_lite
     <img width="100%" height="50%" src="../../peripherals/lcd/connection.png">
 </p>
 
-Ao final, após a síntese e gravação do arquivo [`quartus_main_lcd.hex`](quartus_main_lcd.hex) na memória interna utilizada para o núcleo RISCV, espera-se para o exemplo o comportamento demonstrado abaixo:
+Ao final, após a síntese e gravação do arquivo [`quartus_main_lcd.hex`](quartus_main_lcd.hex) na memória interna utilizada para o núcleo RISCV, espera-se do exemplo o comportamento demonstrado abaixo:
 
 <p align="center">
     <img width="25%" height="25%" src="../../peripherals/lcd/Nokia5110LCD.gif">
