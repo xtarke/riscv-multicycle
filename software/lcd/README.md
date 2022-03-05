@@ -164,7 +164,7 @@ O _testbench_ foi implementado no arquivo [`peripherals/lcd/testbench.vhd`](../.
 
 Já para a síntese na FPGA, devem ser descomentadas as linhas que contenham `delay_(10000)` no arquivo de exemplo [`main_lcd.c`](main_lcd.c).
 
-O arquivo principal para síntese é o [`peripherals/lcd/sint/de10_lite/de0_lite.vhd`](../../peripherals/lcd/sint/de10_lite/de0_lite.vhd), em que são utilizados as portas Arduino IO[[2]](#bibliografia), a porta de alimnentação de 3,3V ou 5V (de acordo com o modelo do _display_) e a referência no GND, seguindo o mesmo modelo do esquemático abaixo:
+O arquivo principal para síntese é o [`peripherals/lcd/sint/de10_lite/de0_lite.vhd`](../../peripherals/lcd/sint/de10_lite/de0_lite.vhd), em que são utilizados as portas Arduino IO[[2]](#bibliografia), a porta de alimentação de 3,3V ou 5V (de acordo com o modelo do _display_) e a referência no GND, seguindo o mesmo modelo do esquemático abaixo:
 
 <p align="center">
     <img width="100%" height="50%" src="../../peripherals/lcd/connection.png">
