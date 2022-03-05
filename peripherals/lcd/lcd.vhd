@@ -1,7 +1,61 @@
--------------------------------------------------------
+------------------------------------------------------------------
 --! @file lcd.vhd
 --! @brief Nokia 5110 (PCD8544) LCD display controller
--------------------------------------------------------
+-- This controller implements a Mealy state machine which
+-- provides a initialization routine for the peripheral and
+-- interaction with the implemented RISCV core.
+--
+-- Detailed states's descriptions:
+-- START: Mealy machine first state, changes to POWER_UP state
+--        when reg_ctrl's least significant bit (LSB) is set,
+--        thus starts the LCD display initialization procedure.
+-- POWER_UP: LCD display initialization, must wait for at least
+--           100 us before sending an instruction, transits to
+--           SET_CMD_TYPE afterwards.
+-- SET_CMD_TYPE: Sends an instruction enabling extended instruct-
+--           ions for the LCD display. Proceeds to SET_CONSTRAST
+--           state.
+-- SET_CONTRAST: Sends an instruction that adjusts the LCD's con-
+--               trast level. Defaults to lowest contrast level,
+--               0xB0. After the instruction is sent, advances 
+--               to SET_TEMP_COEFF state.
+-- SET_TEMP_COEFF: Sends a set temperature coefficient command,
+--                 by default is set to the lowest coefficient, 
+--                 0x04. Then it progresses to the SET_BIAS_MODE
+--                 state.
+-- SET_BIAS_MODE: Sends a set bias mode command, the default is
+--                0x14 for the LCD display bias voltage. The sta-
+--                te that follows is SEND_0x20.
+-- SEND_0X20: Sends a instruction that enables the LCD display's
+--            basic instruction set mode, its value is 0x20. And
+--            then it changes to the SET_CONTROL_MODE state.
+-- SET_CONTROL_MODE: Sends a set control mode command, which is
+--                   set to normal mode (0x0C). The normal mode
+--                   has a clear background instead of a dark ba-
+--                   ckground. It then proceeds to CLEAR_X_INDEX.
+-- CLEAR_X_INDEX: Sends a instruction that resets the selected
+--                column address to zero, has value of 0x80. It's
+--                next state is CLEAR_DISPLAY.
+-- CLEAR_DISPLAY: Iterates over the entire LCD display's internal
+--                memory while providing it with 0x00 for its in-
+--                put. Afterwards, goes to the WAIT_ENABLE state.
+-- WAIT_ENABLE: This states waits for a combination of inputs. If
+--              reg_ctrl LSB's is deasserted and we LSB's is set,
+--              the next state is CLEAR_X_INDEX. Then if we LSB's
+--              is deasserted, it stays in the WAIT_ENABLE state.
+--              And if reg_ctrl and we LSBs's are asserted, reads
+--              pos into its variables and goes to SET_Y_INDEX
+--              state.
+-- SET_Y_INDEX: Sends an instruction that sets the line address,
+--              its value is derived from the previously read va-
+--              riable pos. Then proceeds to the SET_X_INDEX.
+-- SET_X_INDEX: Sends a command that sets the column address, its
+--              value is derived from the previously read pos. Al-
+--              so reads the LCD char/data variable to display. 
+--              Proceeds to the SEND_DATA.
+-- SEND_DATA: Sends five bytes containing the translated char/data
+--            and returns to WAIT_ENABLE.
+------------------------------------------------------------------
 
 --! Use standard library
 library ieee;

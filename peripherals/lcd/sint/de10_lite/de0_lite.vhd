@@ -1,6 +1,7 @@
 -------------------------------------------------------
 --! @file de0_lite.vhd
---! @brief Description
+--! @brief Nokia 5110 (PCD8544) LCD display controller
+--         synthesis test.
 -------------------------------------------------------
 
 --! Use standard library
