@@ -10,23 +10,25 @@ int main(){
                              "cdefghijklmnopqrstuvwxyz{|}~";
     _IO32 len = sizeof(phrase)-1;
     _IO32 len_all = sizeof(every_character)-1;
-
     lcd_init();
 
     while(1){
         lcd_print(phrase, len, 0, 0);
         
-        delay_(10000);
+        /* Comment delay for testbench and uncomment for synthesis. */
+        //delay_(10000);
         
         lcd_clear();
         lcd_print(every_character, len_all-12, 0, 0);
 
-        delay_(10000);
+        /* Comment delay for testbench and uncomment for synthesis. */
+        //delay_(10000);
         
         lcd_clear();
         lcd_print(&every_character[len_all-12], 12, 0, 0);
         
-        delay_(10000);
+        /* Comment delay for testbench and uncomment for synthesis. */
+        //delay_(10000);
         
         lcd_clear();
     }
