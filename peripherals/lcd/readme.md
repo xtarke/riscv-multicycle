@@ -294,6 +294,23 @@ Observa-se que além da frase "_Hello World!_", também foi feita a impressão d
 ```
 !"#$%&'()*+-,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 ```
+
+## Compilação do exemplo
+
+A compilação do exemplo é feita com auxílio do arquivo [`software/lcd/Makefile`](../../software/lcd/Makefile), no que a máquina usada para o processo deve ter instalada o compilador _cross compiler_ GNU riscv-none-embed-gcc e o seu caminho de instalação indicado apropriadamente no [`software/lcd/Makefile`](../../software/lcd/Makefile). Para fazer a compilação, mude o diretório atual para [`software/lcd`](../../software/lcd), e digite o comando `make clean & make` no terminal. Esse comando gera um arquivo IntelHex de nome [`software/lcd/quartus_main_lcd.hex`](../../software/lcd/quartus_main_lcd.hex).
+
+[`software/lcd/Makefile`](../../software/lcd/Makefile):
+```Makefile
+ifndef RISCV_TOOLS_PREFIX
+#RISCV_TOOLS_PREFIX=riscv-none-embed-
+# Para usar no LSC 
+RISCV_TOOLS_PREFIX = ~/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed- # <- Alterar o caminho.
+endif
+
+QUARTUS_DIR=~/intelFPGA_lite/21.1/quartus/bin/ # <- Opcionalmente alterar o caminho da instalação do Quartus.
+```
+Há também a opção de modificar o caminho da instalação do Quartus no arquivo, com o intuito de utilizar funcionalidades extras de síntese e gravação diretamente no [`software/lcd/Makefile`](../../software/lcd/Makefile).
+
 # Simulação do _testbench_
 
 Primeiramente, antes de realizar o _testbench_, devem ser comentadas as linhas que contenham `delay_(10000)` no arquivo de exemplo [`software/lcd/main_lcd.c`](../../software/lcd/main_lcd.c).
@@ -314,7 +331,7 @@ O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10
     <img width="100%" height="50%" src="connection.png">
 </p>
 
-Ao final, após a síntese e gravação do arquivo binário na memória interna utilizada para o núcleo RISCV, espera-se para o exemplo o comportamento demonstrado abaixo:
+Ao final, após a síntese e gravação do arquivo [`software/lcd/quartus_main_lcd.hex`](../../software/lcd/quartus_main_lcd.hex) na memória interna utilizada para o núcleo RISCV, espera-se para o exemplo o comportamento demonstrado abaixo:
 
 <p align="center">
     <img width="25%" height="25%" src="Nokia5110LCD.gif">
