@@ -56,7 +56,7 @@ Sequência de inicialização:
 
 # Código em C
 
-# Simução do _testbench_
+# Simulação do _testbench_
 
 <p align="center">
     <img width="100%" height="50%" src="op.png">
