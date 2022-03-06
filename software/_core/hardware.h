@@ -72,6 +72,7 @@
 #define TFT_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 7*16*4))	
 #define DIG_FIL_BASE_ADDRESS  	    (*(_IO32 *) (PERIPH_BASE + 8*16*4))  
 #define STEP_M_BASE_ADDRESS         (*(_IO32 *) (PERIPH_BASE + 9*16*4))
+#define NN_A_BASE_ADDRESS         (*(_IO32 *) (PERIPH_BASE + 11*16*4))
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	

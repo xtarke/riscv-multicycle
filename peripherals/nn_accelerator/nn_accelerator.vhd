@@ -38,6 +38,9 @@ end entity nn_accelerator;
 architecture RTL of nn_accelerator is
 	-- Declaração de sinais
 	-- index x_y: input x of neuron y
+	signal x0 : std_logic_vector(N_PRECISION-1 downto 0);
+	signal x1 : std_logic_vector(N_PRECISION-1 downto 0);
+
 	signal x0_0 : std_logic_vector(N_PRECISION-1 downto 0);
     signal x1_0 : std_logic_vector(N_PRECISION-1 downto 0);
     signal w0_0 : std_logic_vector(N_PRECISION-1 downto 0);
@@ -92,8 +95,16 @@ begin
             output  => output_2
     );
     
-    
-	-- Input register
+    -- Hardcoded interconnections
+    x0_0 <= x0;
+    x0_1 <= x0;
+    x1_0 <= x1;
+    x1_1 <= x1;
+
+    x0_2 <= output_0;
+    x1_2 <= output_1;
+
+	-- Read result
     process(clk, rst)
     begin
         if rst = '1' then
@@ -103,48 +114,43 @@ begin
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
 					ddata_r <= (others => '0');
 					ddata_r(N_PRECISION-1 downto 0) <= output_2;
-                    --if daddress(15 downto 0) = MY_WORD_ADDRESS then
-                    --    ddata_r <= input;  
-                    --elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
-                    --    ddata_r<=output_reg;              
-                    --elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
-                    --    ddata_r<=enable_exti_mask;
-                    --elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
-                    --    ddata_r<=edge_exti_mask;
-                    --end if;
                 end if;
             end if;
         end if;
     end process;
 
-    -- Output register
+    -- Set inputs
 	process(clk, rst)
 	begin		
 		if rst = '1' then
-			x0_0 <= (others => '0');
-			x1_0 <= (others => '0');
-			w0_0 <= (others => '0');
-			w1_0 <= (others => '0');
-			x0_1 <= (others => '0');
-			x1_1 <= (others => '0');
-			w0_1 <= (others => '0');
-			w1_1 <= (others => '0');
-			x0_2 <= (others => '0');
-			x1_2 <= (others => '0');
-			w0_2 <= (others => '0');
-			w1_2 <= (others => '0');
+            w0_0 <= (others => '0');
+            w1_0 <= (others => '0');
+            w0_1 <= (others => '0');
+            w1_1 <= (others => '0');
+            w0_2 <= (others => '0');
+            w1_2 <= (others => '0');
+            x0 <= (others => '0');
+            x1 <= (others => '0');
 		else
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then				
-					if daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
-					--   output <= ddata_w;
-					--   output_reg <= ddata_w;
-					--elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
-                    --    enable_exti_mask <= ddata_w;
-                    --elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
-                    --    edge_exti_mask <= ddata_w;     
-					end if;
-					
+					if daddress(15 downto 0) = (MY_WORD_ADDRESS + 0) then
+                        w0_0 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
+                        w1_0 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
+                        w0_1 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
+                        w1_1 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+                        w0_2 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 5) then
+                        w1_2 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 6) then
+                        x0 <= ddata_w(N_PRECISION-1 downto 0);
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 7) then
+                        x1 <= ddata_w(N_PRECISION-1 downto 0);   
+					end if;		
 				end if;
 			end if;
 		end if;		
