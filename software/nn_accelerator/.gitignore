@@ -1,1 +1,7 @@
 *.0
+*.elf
+*.lss
+*.map
+*.tmp
+*.hex
+*.o
