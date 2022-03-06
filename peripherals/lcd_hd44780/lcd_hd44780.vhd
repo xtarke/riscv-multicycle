@@ -27,7 +27,7 @@ entity lcd_hd44780 is
         t2_long_wait        : integer                      := 4100+2050; --! 4.1ms [1]
         t3_enable_pulse     : integer                      := 450+225; --! 0,450us [1]
         t4_clear_and_return : integer                      := 1520+760 --! 1,52ms [1]
-        
+
     );
     port(
         --! @brief Internal signals (RISC-V Datapath)
@@ -40,12 +40,11 @@ entity lcd_hd44780 is
         d_we        : in  std_logic;
         d_rd        : in  std_logic;
         dcsel       : in  std_logic_vector(1 downto 0); --! Chip select 
-        -- ToDo: Module should mask bytes (Word, half word and byte access)
         dmask       : in  std_logic_vector(3 downto 0); --! Byte enable mask
 
         lcd_is_busy : out std_logic;    --! Bit 13 - Status flag, during command send will be 1, else 0
 
-        --! @brief External signals (IOs to interface with LCD)
+        --! @brief External signals (IOs to interface with LCD)        
         lcd_data    : out std_logic_vector(7 downto 0);
         lcd_rs      : out std_logic;    --! Controls if command or char data
         lcd_e       : out std_logic;     --! Pulse in every command/data
@@ -80,8 +79,37 @@ architecture controller of lcd_hd44780 is
     signal lcd_clear      : std_logic; --! Bit 10 - '1' will return cursor to home (Line1-0) and clear display
     signal lcd_goto_l1    : std_logic; --! Bit 11 - '1' will put cursor in first position of line 1
     signal lcd_goto_l2    : std_logic; --! Bit 12 - '1' will put cursor in first position of line 2
+    signal lcd_character  : std_logic_vector(7 downto 0);
 
 begin
+
+    process(clk, rst)
+    begin
+        if (rst = '1') then
+            lcd_init <= '0'; 
+            lcd_write_char <= '0';
+            lcd_clear <= '0';
+            lcd_goto_l1 <= '0';
+            lcd_goto_l2 <= '0'; 
+        elsif rising_edge(clk) then
+            if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
+
+                if daddress(15 downto 0) = (MY_WORD_ADDRESS) then
+                    lcd_character <= ddata_w(7 downto 0);
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+1) then
+                    lcd_init <= ddata_w(0);
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+2) then
+                    lcd_write_char <= ddata_w(0);
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+3) then
+                    lcd_clear <= ddata_w(0);
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+4) then
+                    lcd_goto_l1 <= ddata_w(0);
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+5) then
+                    lcd_goto_l2 <= ddata_w(0);                    
+                end if;
+            end if;
+        end if;
+    end process;
 
     lcd_control : process(clk, rst)
     begin        
@@ -94,33 +122,12 @@ begin
             lcd_e           <= '0';
             lcd_rs          <= '0';
 
-            lcd_init <= '0';
-            lcd_write_char <= '0';
-            lcd_clear <= '0';
-            lcd_goto_l1 <= '0';
-            lcd_goto_l2 <= '0';  
+            -- command <= LCD_CMD_INITIALIZE;
 
             teste0 <= '0';
             teste1 <= '0';
 
         elsif rising_edge(clk) then
-            if (d_we = '1') and (dcsel = MY_CHIPSELECT) then                
-
-                if daddress(15 downto 0) = (MY_WORD_ADDRESS) then
-                   lcd_data <= ddata_w(7 downto 0);
-                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+1) then
-                    lcd_init <= ddata_w(0);
-                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+2) then
-                    lcd_write_char <= ddata_w(0);
-                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+3) then
-                    lcd_clear <= ddata_w(0);
-                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+4) then
-                    lcd_goto_l1 <= ddata_w(0);
-                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS+5) then
-                    lcd_goto_l2 <= ddata_w(0);                    
-                end if;
-
-            end if;
 
             startup_counter <= startup_counter + 1;
             time_counter    <= time_counter + 1;
@@ -244,17 +251,16 @@ begin
                                 if (enable_counter >= t3_enable_pulse) then
                                     enable_counter <= 0;
                                     lcd_e          <= '0';
-                                end if;
+                                end if;                                
                                 lcd_cmd_init_state <= LCD_INIT_0;
+                                -- command  <= LCD_CMD_CLEAR_RETURN_HOME;
                                 command            <= LCD_CMD_IDLE;
                             end if;
                     end case;
                 --! Write char
                 when LCD_CMD_WRITE_CHAR =>                        
                     lcd_rs   <= '1';
-                    lcd_data <= "01000001"; --! 'A' 01000001 // 00000000
-                    --          db7    db0
-
+                    lcd_data <= "00000000"; --lcd_character;
                     if (time_counter >= t1_short_wait) then
                         time_counter <= 0;
                         lcd_e        <= '1';
@@ -276,7 +282,7 @@ begin
                             lcd_e          <= '0';
                         end if;
                     end if;
-                    command  <= LCD_CMD_IDLE;
+                    command  <= LCD_CMD_IDLE;                    
                 --! Position cursor in 0x40 -> 0x80 (L1)
                 when LCD_CMD_GOTO_LINE_1 =>
                     lcd_rs   <= '0';
