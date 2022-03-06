@@ -18,7 +18,7 @@ ARCHITECTURE stimulus OF testbench IS
 
 
 BEGIN  -- inicio do corpo da arquitetura
-    dut: entity work.scalar_product 
+    dut: entity work.scalar_product_2 
         generic map (
             N => N
         ) 
