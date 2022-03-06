@@ -2,7 +2,7 @@
 vlib work
 
 #compila projeto: todos os aquivo. Ordem é importante
-vcom scalar_product.vhd testbench.vhd
+vcom scalar_product_2.vhd testbench.vhd
 
 #Simula (work é o diretorio, testbench é o nome da entity)
 vsim -t ns work.testbench

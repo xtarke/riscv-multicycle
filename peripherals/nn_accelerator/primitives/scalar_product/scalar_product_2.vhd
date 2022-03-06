@@ -1,5 +1,5 @@
 -------------------------------------------------------
---! @file    scalar_product.vhd
+--! @file    scalar_product_2.vhd
 --! @author  Leonardo Benitez
 --! @version 0.1
 --! @brief   Scalar Product circuit
@@ -11,7 +11,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 	    
-entity scalar_product is
+entity scalar_product_2 is
     generic(
         N : integer := 32 --! number of bits
     );
@@ -23,9 +23,9 @@ entity scalar_product is
         w1 : in std_logic_vector(N-1 downto 0);
         output : out std_logic_vector(N-1 downto 0)
     );
-end entity scalar_product;
+end entity scalar_product_2;
 
-architecture rtl of scalar_product is
+architecture rtl of scalar_product_2 is
     signal temp_output : std_logic_vector(2*N-1 downto 0);
 begin
     temp_output <= std_logic_vector(
