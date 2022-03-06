@@ -3,7 +3,7 @@ vlib work
 
 #compila projeto: todos os aquivo. Ordem é importante
 vcom ../activation/heaviside.vhd
-vcom ../scalar_product/scalar_product.vhd
+vcom ../scalar_product/scalar_product_2.vhd
 vcom perceptron.vhd
 vcom testbench.vhd
 

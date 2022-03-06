@@ -16,7 +16,7 @@
 
 vlib work
 vcom primitives/activation/heaviside.vhd
-vcom primitives/scalar_product/scalar_product.vhd
+vcom primitives/scalar_product/scalar_product_2.vhd
 vcom primitives/neuron/perceptron.vhd
 vcom nn_accelerator.vhd
 vcom ../../memory/iram_quartus.vhd
