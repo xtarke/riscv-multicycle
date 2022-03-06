@@ -17,6 +17,7 @@
 -- 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 -- ************************************************************
 
+
 --Copyright (C) 2020  Intel Corporation. All rights reserved.
 --Your use of Intel Corporation's design tools, logic functions 
 --and other software and tools, and any partner logic 
@@ -32,6 +33,7 @@
 --refer to the applicable agreement for further details, at
 --https://fpgasoftware.intel.com/eula.
 
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
@@ -39,50 +41,54 @@ LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
 
 ENTITY iram_quartus IS
-    PORT(
-        address : IN  STD_LOGIC_VECTOR(9 DOWNTO 0);
-        byteena : IN  STD_LOGIC_VECTOR(3 DOWNTO 0) := (OTHERS => '1');
-        clock   : IN  STD_LOGIC                    := '1';
-        data    : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
-        wren    : IN  STD_LOGIC;
-        q       : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
-    );
+	PORT
+	(
+		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		byteena		: IN STD_LOGIC_VECTOR (3 DOWNTO 0) :=  (OTHERS => '1');
+		clock		: IN STD_LOGIC  := '1';
+		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		wren		: IN STD_LOGIC ;
+		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
 END iram_quartus;
+
 
 ARCHITECTURE SYN OF iram_quartus IS
 
-    SIGNAL sub_wire0 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 
 BEGIN
-    q <= sub_wire0(31 DOWNTO 0);
+	q    <= sub_wire0(31 DOWNTO 0);
 
-    altsyncram_component : altsyncram
-        GENERIC MAP(
-            byte_size                     => 8,
-            clock_enable_input_a          => "BYPASS",
-            clock_enable_output_a         => "BYPASS",
-            init_file                     => "./software/quartus_lcd.hex",
-            intended_device_family        => "MAX 10",
-            lpm_hint                      => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
-            lpm_type                      => "altsyncram",
-            numwords_a                    => 1000,
-            operation_mode                => "SINGLE_PORT",
-            outdata_aclr_a                => "NONE",
-            outdata_reg_a                 => "UNREGISTERED",
-            power_up_uninitialized        => "FALSE",
-            read_during_write_mode_port_a => "NEW_DATA_NO_NBE_READ",
-            widthad_a                     => 10,
-            width_a                       => 32,
-            width_byteena_a               => 4
-        )
-        PORT MAP(
-            address_a => address,
-            byteena_a => byteena,
-            clock0    => clock,
-            data_a    => data,
-            wren_a    => wren,
-            q_a       => sub_wire0
-        );
+	altsyncram_component : altsyncram
+	GENERIC MAP (
+		byte_size => 8,
+		clock_enable_input_a => "BYPASS",
+		clock_enable_output_a => "BYPASS",
+		init_file => "./software/quartus_blink.hex",
+		intended_device_family => "MAX 10",
+		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
+		lpm_type => "altsyncram",
+		numwords_a => 1024,
+		operation_mode => "SINGLE_PORT",
+		outdata_aclr_a => "NONE",
+		outdata_reg_a => "UNREGISTERED",
+		power_up_uninitialized => "FALSE",
+		read_during_write_mode_port_a => "NEW_DATA_NO_NBE_READ",
+		widthad_a => 10,
+		width_a => 32,
+		width_byteena_a => 4
+	)
+	PORT MAP (
+		address_a => address,
+		byteena_a => byteena,
+		clock0 => clock,
+		data_a => data,
+		wren_a => wren,
+		q_a => sub_wire0
+	);
+
+
 
 END SYN;
 
