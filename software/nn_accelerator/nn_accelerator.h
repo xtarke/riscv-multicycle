@@ -18,9 +18,7 @@ typedef struct {
 
 #define NN_A_BASE ((nn_a_t *) &NN_A_BASE_ADDRESS)
 
-
+void set_weigh(int8_t w0_0, int8_t w1_0, int8_t w0_1, int8_t w1_1, int8_t w0_2, int8_t w1_2);
 int8_t inference(int8_t x0, int8_t x1);
-void set_weigh(int8_t w0, int8_t x1, int8_t x2);
-
 
 #endif

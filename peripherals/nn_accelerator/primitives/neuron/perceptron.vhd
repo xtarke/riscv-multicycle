@@ -35,7 +35,7 @@ end entity perceptron;
 architecture rtl of perceptron is
     signal pre_activation : std_logic_vector(N-1 downto 0);
 begin
-    scalar_produt: entity work.scalar_product 
+    scalar_produt: entity work.scalar_product_2 
         generic map (
             N => N
         ) 

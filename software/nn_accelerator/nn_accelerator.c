@@ -16,11 +16,20 @@ void input_interrupt_enable(GPIOx_Type irq,EDGE_Type edge){
 
 
 
+void set_weigh(int8_t w0_0, int8_t w1_0, int8_t w0_1, int8_t w1_1, int8_t w0_2, int8_t w1_2){
+    NN_A_BASE->w0_0 = w0_0;
+    NN_A_BASE->w1_0 = w1_0;
+    NN_A_BASE->w0_1 = w0_1;
+    NN_A_BASE->w1_1 = w1_1;
+    NN_A_BASE->w0_2 = w0_2;
+    NN_A_BASE->w1_2 = w1_2;
+}
+
+
+
 int8_t inference(int8_t x0, int8_t x1){
     NN_A_BASE->x0 = x0;
+    NN_A_BASE->x1 = x1;
     return NN_A_BASE->y1;
 }
 
-void set_weigh(int8_t w0, int8_t x1, int8_t x2){
-    
-}
