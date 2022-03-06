@@ -120,9 +120,7 @@ begin
             enable_counter  <= 0;
             lcd_data        <= "00000000";
             lcd_e           <= '0';
-            lcd_rs          <= '0';
-
-            -- command <= LCD_CMD_INITIALIZE;
+            lcd_rs          <= '0';            
 
             teste0 <= '0';
             teste1 <= '0';
@@ -142,7 +140,7 @@ begin
                 when LCD_STARTUP =>
                     lcd_is_busy <= '1';
                     if (startup_counter >= t0_startup_time) then
-                        startup_counter <= 0;
+                        startup_counter <= 0;                        
                         power_state     <= LCD_ON;
                     end if;
 
@@ -253,7 +251,6 @@ begin
                                     lcd_e          <= '0';
                                 end if;                                
                                 lcd_cmd_init_state <= LCD_INIT_0;
-                                -- command  <= LCD_CMD_CLEAR_RETURN_HOME;
                                 command            <= LCD_CMD_IDLE;
                             end if;
                     end case;
