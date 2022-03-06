@@ -260,7 +260,7 @@ begin
                 --! Write char
                 when LCD_CMD_WRITE_CHAR =>                        
                     lcd_rs   <= '1';
-                    lcd_data <= "00000000"; --lcd_character;
+                    lcd_data <= lcd_character; --lcd_character;
                     if (time_counter >= t1_short_wait) then
                         time_counter <= 0;
                         lcd_e        <= '1';
