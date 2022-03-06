@@ -1,5 +1,9 @@
 RISVC contributors
 ============================================
+## 2021/2
+
+* **[Gustavo Vianna França](https://github.com/Gustavo-V-F)**
+  * Nokia graph LCD controller integration. 
 
 ## 2021/1
 
