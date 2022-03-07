@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "nn_accelerator.h"
+#include "../gpio/gpio.h"
 
 int main(){
     int8_t w0_0 = 1;
@@ -16,8 +17,11 @@ int main(){
         x0 = 1;
         x1 = 2;
         y1 = inference(x0, x1);
-        //y1 deve ser 127, para essas entradas e esses pesos
-        //TODO: what to do with y1?!
+        
+        // Show in GPIO
+        OUTBUS = (uint32_t) y1;
+
+        //if y1==127 set something worked=true
         delay_(1);
     }
     return 0;

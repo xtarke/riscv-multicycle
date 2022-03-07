@@ -63,6 +63,7 @@ architecture RTL of coretestbench is
     signal gpio_input : std_logic_vector(31 downto 0);
     signal gpio_output : std_logic_vector(31 downto 0);
 
+    signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_timer : std_logic_vector(31 downto 0);
     signal timer_interrupt : std_logic_vector(5 downto 0);
     signal ddata_r_periph : std_logic_vector(31 downto 0);
@@ -117,7 +118,7 @@ begin
     begin
         --gpio_input <= (others => '0');
         wait for 182000 ns;
-        assert ddata_r = "00000000000000000000000001111111" severity failure; -- result should be 127        
+        --assert ddata_r = "00000000000000000000000001111111" severity failure; -- result should be 127        
         wait;
     end process;  
 
@@ -179,7 +180,7 @@ begin
     io_data_bus_mux: entity work.iodatabusmux
         port map(
             daddress         => daddress,
-            ddata_r_gpio     => ddata_r_gpio,
+            ddata_r_gpio     => ddata_r_nn_accelerator,
             ddata_r_segments => ddata_r_segments,
             ddata_r_uart     => ddata_r_uart,
             ddata_r_adc      => ddata_r_adc,
@@ -218,11 +219,11 @@ begin
        interrupts(30 downto 25) <= timer_interrupt;
     end process;
 
-    -- NN Acelerator starts here!
-    my_nn_accelerator: entity work.nn_accelerator
+    -- Generic GPIO module instantiation
+    generic_gpio: entity work.gpio
     generic map(
         MY_CHIPSELECT   => "10",
-        MY_WORD_ADDRESS => x"00B0"
+        MY_WORD_ADDRESS => x"0010"
     )
     port map(
         clk      => clk,
@@ -232,10 +233,29 @@ begin
         ddata_r  => ddata_r_gpio,
         d_we     => d_we,
         d_rd     => d_rd,
-        dcsel    => dcsel
+        dcsel    => dcsel,
+        dmask    => dmask,
+        input    => gpio_input,
+        output   => gpio_output,
+        gpio_interrupts => gpio_interrupts
     );
-    -- NN Acelerator ends here!
-    
+        
+    -- NN Acelerator
+    nn_accelerator: entity work.nn_accelerator
+    generic map(
+        MY_CHIPSELECT   => "10",
+        MY_WORD_ADDRESS => x"00B0"
+    )
+    port map(
+        clk      => clk,
+        rst      => rst,
+        daddress => daddress,
+        ddata_w  => ddata_w,
+        ddata_r  => ddata_r_nn_accelerator,
+        d_we     => d_we,
+        d_rd     => d_rd,
+        dcsel    => dcsel
+    );   
     
 
     -- FileOutput DEBUG 
