@@ -16,7 +16,7 @@ entity nn_accelerator is
 	generic (
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
-		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000";	
+		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"00B0";	
 		DADDRESS_BUS_SIZE : integer := 32;
 		N_PRECISION : integer := 8
 	);
@@ -40,6 +40,7 @@ architecture RTL of nn_accelerator is
 	-- index x_y: input x of neuron y
 	signal x0 : std_logic_vector(N_PRECISION-1 downto 0);
 	signal x1 : std_logic_vector(N_PRECISION-1 downto 0);
+	signal y1 : std_logic_vector(N_PRECISION-1 downto 0);
 
 	signal x0_0 : std_logic_vector(N_PRECISION-1 downto 0);
     signal x1_0 : std_logic_vector(N_PRECISION-1 downto 0);
@@ -103,6 +104,7 @@ begin
 
     x0_2 <= output_0;
     x1_2 <= output_1;
+    y1 <= output_2;
 
 	-- Read result
     process(clk, rst)
@@ -113,7 +115,8 @@ begin
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
 					ddata_r <= (others => '0');
-					ddata_r(N_PRECISION-1 downto 0) <= output_2;
+					ddata_r(N_PRECISION-1 downto 0) <= output_0;
+                    --ddata_r(N_PRECISION-1 downto 0) <= "01111111";
                 end if;
             end if;
         end if;
@@ -132,23 +135,25 @@ begin
             x0 <= (others => '0');
             x1 <= (others => '0');
 		else
-			if rising_edge(clk) then		
-				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then				
-					if daddress(15 downto 0) = (MY_WORD_ADDRESS + 0) then
+			if rising_edge(clk) then
+				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then                    			
+					if daddress(15 downto 0) = MY_WORD_ADDRESS then	
                         w0_0 <= ddata_w(N_PRECISION-1 downto 0);
-                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then	
                         w1_0 <= ddata_w(N_PRECISION-1 downto 0);
-                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then	
                         w0_1 <= ddata_w(N_PRECISION-1 downto 0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
                         w1_1 <= ddata_w(N_PRECISION-1 downto 0);
-                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then	
                         w0_2 <= ddata_w(N_PRECISION-1 downto 0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 5) then
+                        x0 <= "11011111";	
                         w1_2 <= ddata_w(N_PRECISION-1 downto 0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 6) then
+                        --x0 <= "11111111";
                         x0 <= ddata_w(N_PRECISION-1 downto 0);
-                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 7) then
+                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 7) then	
                         x1 <= ddata_w(N_PRECISION-1 downto 0);   
 					end if;		
 				end if;

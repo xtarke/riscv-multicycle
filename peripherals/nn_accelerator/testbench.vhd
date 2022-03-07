@@ -115,21 +115,9 @@ begin
     -- Connect input hardware to gpio data
     gpio_test: process
     begin
-        gpio_input <= (others => '0');
-        --wait for 500 us;
-        -- TODO?
-        --        
-        ---- Generate a input pulse (External IRQ 0 or pooling)
-        --gpio_input(0) <= '1';
-        --wait for 1 us;
-        --gpio_input(0) <= '0';
-        --
-        ---- Generate a input pulse (External IRQ 1 or pooling)
-        --wait for 200 us;
-        --gpio_input(1) <= '1';
-        --wait for 1 us;
-        --gpio_input(1) <= '0';
-        
+        --gpio_input <= (others => '0');
+        wait for 182000 ns;
+        assert ddata_r = "00000000000000000000000001111111" severity failure; -- result should be 127        
         wait;
     end process;  
 
@@ -234,7 +222,7 @@ begin
     my_nn_accelerator: entity work.nn_accelerator
     generic map(
         MY_CHIPSELECT   => "10",
-        MY_WORD_ADDRESS => x"0010"
+        MY_WORD_ADDRESS => x"00B0"
     )
     port map(
         clk      => clk,

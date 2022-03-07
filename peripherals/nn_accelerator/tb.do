@@ -105,6 +105,10 @@ add wave -label dcsel 	/dcsel
 add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
 add wave -label d_sig   /d_sig
+# add wave -label my_sig0  /my_nn_accelerator/n0/w0
+# add wave -label my_sig1  /my_nn_accelerator/n0/w1
+add wave -label my_x0  /my_nn_accelerator/x0
+add wave -label my_x1  /my_nn_accelerator/MY_WORD_ADDRESS
 
 add wave -height 15 -divider "GPIO"
 add wave -label gpio_input -radix hex /gpio_input

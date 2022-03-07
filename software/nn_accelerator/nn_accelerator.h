@@ -2,7 +2,7 @@
 #define __NN_A_H
 
 #include "../_core/hardware.h"
-
+#include "../_core/utils.h"
 
 typedef struct {
     _IO32 w0_0;
