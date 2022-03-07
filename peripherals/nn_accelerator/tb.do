@@ -15,6 +15,7 @@
 #******************************************************************************
 
 vlib work
+vcom ../gpio/gpio.vhd
 vcom primitives/activation/heaviside.vhd
 vcom primitives/scalar_product/scalar_product_2.vhd
 vcom primitives/neuron/perceptron.vhd
@@ -98,17 +99,15 @@ add wave -label datamemory -radix hex /dmem/ram_block
 
 add wave -height 15 -divider "Data bus"
 add wave -label daddress -radix hex /daddress
-add wave -label ddata_r -radix hex 	/ddata_r
-add wave -label ddata_w -radix hex 	/ddata_w
+add wave -label ddata_r -radix decimal 	/ddata_r
+add wave -label ddata_w -radix decimal 	/ddata_w
 add wave -label dmask -radix bin /dmask
 add wave -label dcsel 	/dcsel
 add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
 add wave -label d_sig   /d_sig
-# add wave -label my_sig0  /my_nn_accelerator/n0/w0
-# add wave -label my_sig1  /my_nn_accelerator/n0/w1
-add wave -label my_x0  /my_nn_accelerator/x0
-add wave -label my_x1  /my_nn_accelerator/MY_WORD_ADDRESS
+# add wave -label my_sig0  /nn_accelerator/n0/w0
+# add wave -label my_sig1  /nn_accelerator/n0/w1
 
 add wave -height 15 -divider "GPIO"
 add wave -label gpio_input -radix hex /gpio_input

@@ -62,13 +62,11 @@ int main(){
     int8_t y1;
     set_weigh(w0_0, w1_0, w0_1, w1_1, w0_2, w1_2);
 ```
-![image-20220306194410344](Images - README/image-20220306194410344.png)
 
 Depois, o programa realiza uma inferência:
 ```C
 y1 = inference(x0, x1);
 ```
-[TODO IMG]
 
 ## Simulação
 
@@ -78,8 +76,13 @@ Vale nota que muitas implementações são similares entre sí: `scalar_product_
 
 Para o periférico de alto nível apenas a simulação integrada com o core foi implementada, utilizando o exemplo em C fornecido.
 
+Primeiramente, o programa carrega os pesos da rede:
 
+![image-20220306194410344](images/image-20220306194410344.png)
 
+Depois, o programa realiza uma inferência:
+
+![image-20220306211237364](images/image-20220306211237364.png)
 
 
 
