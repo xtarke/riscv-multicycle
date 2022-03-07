@@ -111,6 +111,7 @@ architecture rtl of de0_lite is
     signal gpio_output : std_logic_vector(31 downto 0);
     
     -- Peripheral data signals
+    signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_gpio : std_logic_vector(31 downto 0);
     signal ddata_r_timer : std_logic_vector(31 downto 0);
     signal ddata_r_periph : std_logic_vector(31 downto 0);
@@ -230,7 +231,7 @@ begin
     io_data_bus_mux: entity work.iodatabusmux
         port map(
             daddress         => daddress,
-            ddata_r_gpio     => ddata_r_gpio,
+            ddata_r_gpio     => ddata_r_nn_accelerator,
             ddata_r_segments => ddata_r_segments,
             ddata_r_uart     => ddata_r_uart,
             ddata_r_adc      => ddata_r_adc,
@@ -238,12 +239,13 @@ begin
             ddata_r_timer    => ddata_r_timer,
             ddata_r_periph   => ddata_r_periph,
             ddata_r_dif_fil  => ddata_r_dig_fil,
-				ddata_r_stepmot  => ddata_r_stepmot
+			ddata_r_stepmot  => ddata_r_stepmot
             
         );
 
-    -- NN Acelerator starts here!
-    my_nn_accelerator: entity work.nn_accelerator
+
+    -- Generic GPIO module instantiation
+    generic_gpio: entity work.gpio
     generic map(
         MY_CHIPSELECT   => "10",
         MY_WORD_ADDRESS => x"0010"
@@ -254,6 +256,27 @@ begin
         daddress => daddress,
         ddata_w  => ddata_w,
         ddata_r  => ddata_r_gpio,
+        d_we     => d_we,
+        d_rd     => d_rd,
+        dcsel    => dcsel,
+        dmask    => dmask,
+        input    => gpio_input,
+        output   => gpio_output,
+        gpio_interrupts => gpio_interrupts
+    );
+
+		-- NN Acelerator starts here!
+    my_nn_accelerator: entity work.nn_accelerator
+    generic map(
+        MY_CHIPSELECT   => "10",
+        MY_WORD_ADDRESS => x"0010"
+    )
+    port map(
+        clk      => clk,
+        rst      => rst,
+        daddress => daddress,
+        ddata_w  => ddata_w,
+        ddata_r  => ddata_r_nn_accelerator,
         d_we     => d_we,
         d_rd     => d_rd,
         dcsel    => dcsel
