@@ -48,7 +48,27 @@ Implementou-se uma biblioteca C para realizar a interface com o periférico, com
 
 Implementou-se um programa mínimo que configura a rede com pesos pré-definidos e realizada a inferência para um conjunto de valores de entrada.
 
+Primeiramente, o programa carrega os pesos da rede:
+```C
+int main(){
+    int8_t w0_0 = 1;
+    int8_t w1_0 = 2;
+    int8_t w0_1 = 1;
+    int8_t w1_1 = -2;
+    int8_t w0_2 = 1;
+    int8_t w1_2 = 1;
+    int8_t x0;
+    int8_t x1;
+    int8_t y1;
+    set_weigh(w0_0, w1_0, w0_1, w1_1, w0_2, w1_2);
+```
+![image-20220306194410344](Images - README/image-20220306194410344.png)
 
+Depois, o programa realiza uma inferência:
+```C
+y1 = inference(x0, x1);
+```
+[TODO IMG]
 
 ## Simulação
 
@@ -56,17 +76,33 @@ Cada primitiva pode ser simulada e testada individualmente. Os testbenches já p
 
 Vale nota que muitas implementações são similares entre sí: `scalar_product_2` e `scalar_product_4`, por exemplo, diferem apenas no número de entradas. Nesses casos, o testbench contempla apenas uma das implementações, por brevidade. No futuro, talvez seja possível facilitar o desenvolvimento implementando uma única entidade genérica.
 
-Para o periférico de alto nível apenas a simulação integrada com o core foi implementada.
+Para o periférico de alto nível apenas a simulação integrada com o core foi implementada, utilizando o exemplo em C fornecido.
+
+
+
+
+
 
 ## Síntese
 
 ?
 
+## TODOs
+
+Algumas possibilidades de implementações futuras já foram comentadas ao longo do texto.
+
+Além dessas, podemos destacar:
+* **Tratamento de overflow**
+* **Precisões diferentes de 8 bits**
+  * Atualmente o maior problema de ter precisões diferentes está no nas funções de ativação, que são lookup tables
+  * As tabelas em sí foram geradas usando um script python, mas ainda assim pode ser inconveniente ter tabelas gigantes
+  * Talvez seja melhor ter tabelas menores, e buscar pelo valor mais próximo
+  * Além disso todas as funções foram "escaladas" para ocuparem toda a escala, o que facilmente causa overflow, talvez isso também deva ser repensado.
+* **Ponto flutuante**
+  * Atualmente todas as operações são em ponto fixo
+  * É comum que redes neurais sejam quantizadas para valores inteiros ao realizar a inferência, mas isso não é uma regra
 
 ## Referências
-
-
-
 [1] Neural Networks in Hardware: A Survey. Yihua Liao.
 [2] Ramacher, U., Raab, W., Anlauf, J., Hachmann, U., Beichter, J., Bruls, N., Webeling, M. and
 Sicheneder, E., 1993, Multiprocessor and Memory Architecture of the Neurocomputers SYNAPSE-1.
