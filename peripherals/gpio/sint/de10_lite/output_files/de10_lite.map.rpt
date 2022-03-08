@@ -1,5 +1,5 @@
 Analysis & Synthesis report for de10_lite
-Tue Mar  1 22:26:21 2022
+Tue Mar  8 10:17:56 2022
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
 
 
@@ -25,7 +25,7 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
  17. Registers Added for RAM Pass-Through Logic
  18. Registers Packed Into Inferred Megafunctions
  19. Multiplexer Restructuring Statistics (Restructuring Performed)
- 20. Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|altsyncram_nrt2:altsyncram1
+ 20. Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|altsyncram_qo03:altsyncram1
  21. Source assignments for core:myRiscv|register_file:registers|altsyncram:ram_rtl_0|altsyncram_jhl1:auto_generated
  22. Source assignments for core:myRiscv|register_file:registers|altsyncram:ram_rtl_1|altsyncram_jhl1:auto_generated
  23. Source assignments for dmemory:dmem|altsyncram:ram_block_rtl_0|altsyncram_ls31:auto_generated
@@ -87,13 +87,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Mar  1 22:26:21 2022       ;
+; Analysis & Synthesis Status        ; Successful - Tue Mar  8 10:17:56 2022       ;
 ; Quartus Prime Version              ; 21.1.0 Build 842 10/21/2021 SJ Lite Edition ;
 ; Revision Name                      ; de10_lite                                   ;
 ; Top-level Entity Name              ; de0_lite                                    ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 6,022                                       ;
-;     Total combinational functions  ; 5,202                                       ;
+; Total logic elements               ; 6,028                                       ;
+;     Total combinational functions  ; 5,208                                       ;
 ;     Dedicated logic registers      ; 1,638                                       ;
 ; Total registers                    ; 1638                                        ;
 ; Total pins                         ; 149                                         ;
@@ -206,7 +206,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.2%      ;
+;     Processor 2            ;   0.1%      ;
 +----------------------------+-------------+
 
 
@@ -251,8 +251,8 @@ https://fpgasoftware.intel.com/eula.
 ; altrom.inc                                                         ; yes             ; Megafunction                                          ; /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/altrom.inc                                                                                             ;             ;
 ; altram.inc                                                         ; yes             ; Megafunction                                          ; /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/altram.inc                                                                                             ;             ;
 ; altdpram.inc                                                       ; yes             ; Megafunction                                          ; /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/altdpram.inc                                                                                           ;             ;
-; db/altsyncram_n004.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_n004.tdf                                             ;             ;
-; db/altsyncram_nrt2.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_nrt2.tdf                                             ;             ;
+; db/altsyncram_qt24.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qt24.tdf                                             ;             ;
+; db/altsyncram_qo03.tdf                                             ; yes             ; Auto-Generated Megafunction                           ; /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qo03.tdf                                             ;             ;
 ; sld_mod_ram_rom.vhd                                                ; yes             ; Encrypted Megafunction                                ; /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd                                                                                    ;             ;
 ; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                                ; /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                          ;             ;
 ; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                                ; /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                      ;             ;
@@ -283,16 +283,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+---------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                           ;
 +---------------------------------------------+---------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 6,022                                                                           ;
+; Estimated Total logic elements              ; 6,028                                                                           ;
 ;                                             ;                                                                                 ;
-; Total combinational functions               ; 5202                                                                            ;
+; Total combinational functions               ; 5208                                                                            ;
 ; Logic element usage by number of LUT inputs ;                                                                                 ;
-;     -- 4 input functions                    ; 2374                                                                            ;
-;     -- 3 input functions                    ; 2068                                                                            ;
-;     -- <=2 input functions                  ; 760                                                                             ;
+;     -- 4 input functions                    ; 2378                                                                            ;
+;     -- 3 input functions                    ; 2069                                                                            ;
+;     -- <=2 input functions                  ; 761                                                                             ;
 ;                                             ;                                                                                 ;
 ; Logic elements by mode                      ;                                                                                 ;
-;     -- normal mode                          ; 3643                                                                            ;
+;     -- normal mode                          ; 3649                                                                            ;
 ;     -- arithmetic mode                      ; 1559                                                                            ;
 ;                                             ;                                                                                 ;
 ; Total registers                             ; 1638                                                                            ;
@@ -309,7 +309,7 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;                                                                                 ;
 ; Maximum fan-out node                        ; pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 1578                                                                            ;
-; Total fan-out                               ; 25830                                                                           ;
+; Total fan-out                               ; 25851                                                                           ;
 ; Average fan-out                             ; 3.52                                                                            ;
 +---------------------------------------------+---------------------------------------------------------------------------------+
 
@@ -319,7 +319,7 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                  ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |de0_lite                                                                                                                               ; 5202 (1)            ; 1638 (0)                  ; 67584       ; 0          ; 16           ; 0       ; 8         ; 149  ; 0            ; 0          ; |de0_lite                                                                                                                                                                                                                                                                                                                                            ; de0_lite                          ; work         ;
+; |de0_lite                                                                                                                               ; 5208 (1)            ; 1638 (0)                  ; 67584       ; 0          ; 16           ; 0       ; 8         ; 149  ; 0            ; 0          ; |de0_lite                                                                                                                                                                                                                                                                                                                                            ; de0_lite                          ; work         ;
 ;    |Timer:timer|                                                                                                                        ; 816 (816)           ; 323 (323)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|Timer:timer                                                                                                                                                                                                                                                                                                                                ; Timer                             ; work         ;
 ;    |core:myRiscv|                                                                                                                       ; 3936 (1209)         ; 894 (96)                  ; 2048        ; 0          ; 16           ; 0       ; 8         ; 0    ; 0            ; 0          ; |de0_lite|core:myRiscv                                                                                                                                                                                                                                                                                                                               ; core                              ; work         ;
 ;       |M:M_0|                                                                                                                           ; 1758 (174)          ; 386 (0)                   ; 0           ; 0          ; 16           ; 0       ; 8         ; 0    ; 0            ; 0          ; |de0_lite|core:myRiscv|M:M_0                                                                                                                                                                                                                                                                                                                         ; M                                 ; work         ;
@@ -347,20 +347,20 @@ https://fpgasoftware.intel.com/eula.
 ;    |iodatabusmux:io_data_bus_mux|                                                                                                       ; 18 (18)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iodatabusmux:io_data_bus_mux                                                                                                                                                                                                                                                                                                               ; iodatabusmux                      ; work         ;
 ;    |iram_quartus:iram_quartus_inst|                                                                                                     ; 93 (0)              ; 66 (0)                    ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst                                                                                                                                                                                                                                                                                                             ; iram_quartus                      ; work         ;
 ;       |altsyncram:altsyncram_component|                                                                                                 ; 93 (0)              ; 66 (0)                    ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                             ; altsyncram                        ; work         ;
-;          |altsyncram_n004:auto_generated|                                                                                               ; 93 (0)              ; 66 (0)                    ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated                                                                                                                                                                                                                                              ; altsyncram_n004                   ; work         ;
-;             |altsyncram_nrt2:altsyncram1|                                                                                               ; 0 (0)               ; 0 (0)                     ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|altsyncram_nrt2:altsyncram1                                                                                                                                                                                                                  ; altsyncram_nrt2                   ; work         ;
-;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 93 (73)             ; 66 (57)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                    ; sld_mod_ram_rom                   ; work         ;
-;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 20 (20)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                                 ; sld_rom_sr                        ; work         ;
+;          |altsyncram_qt24:auto_generated|                                                                                               ; 93 (0)              ; 66 (0)                    ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated                                                                                                                                                                                                                                              ; altsyncram_qt24                   ; work         ;
+;             |altsyncram_qo03:altsyncram1|                                                                                               ; 0 (0)               ; 0 (0)                     ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|altsyncram_qo03:altsyncram1                                                                                                                                                                                                                  ; altsyncram_qo03                   ; work         ;
+;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 93 (73)             ; 66 (57)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                    ; sld_mod_ram_rom                   ; work         ;
+;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 20 (20)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                                 ; sld_rom_sr                        ; work         ;
 ;    |led_displays:generic_displays|                                                                                                      ; 47 (47)             ; 106 (106)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|led_displays:generic_displays                                                                                                                                                                                                                                                                                                              ; led_displays                      ; work         ;
 ;    |pll:pll_inst|                                                                                                                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|pll:pll_inst                                                                                                                                                                                                                                                                                                                               ; pll                               ; work         ;
 ;       |altpll:altpll_component|                                                                                                         ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|pll:pll_inst|altpll:altpll_component                                                                                                                                                                                                                                                                                                       ; altpll                            ; work         ;
 ;          |pll_altpll:auto_generated|                                                                                                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|pll:pll_inst|altpll:altpll_component|pll_altpll:auto_generated                                                                                                                                                                                                                                                                             ; pll_altpll                        ; work         ;
-;    |sld_hub:auto_hub|                                                                                                                   ; 117 (1)             ; 86 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
-;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 116 (0)             ; 86 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
-;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 116 (0)             ; 86 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
-;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 116 (1)             ; 86 (5)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
-;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 115 (0)             ; 81 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
-;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 115 (79)            ; 81 (53)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
+;    |sld_hub:auto_hub|                                                                                                                   ; 123 (1)             ; 86 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
+;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 122 (0)             ; 86 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
+;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 122 (0)             ; 86 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
+;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 122 (1)             ; 86 (5)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
+;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 121 (0)             ; 81 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
+;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 121 (85)            ; 81 (53)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
 ;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 18 (18)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
 ;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 18 (18)             ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
@@ -375,7 +375,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; core:myRiscv|register_file:registers|altsyncram:ram_rtl_0|altsyncram_jhl1:auto_generated|ALTSYNCRAM                                  ; AUTO ; Simple Dual Port ; 32           ; 32           ; 32           ; 32           ; 1024  ; db/de10_lite.ram0_register_file_87c776fc.hdl.mif ;
 ; core:myRiscv|register_file:registers|altsyncram:ram_rtl_1|altsyncram_jhl1:auto_generated|ALTSYNCRAM                                  ; AUTO ; Simple Dual Port ; 32           ; 32           ; 32           ; 32           ; 1024  ; db/de10_lite.ram0_register_file_87c776fc.hdl.mif ;
 ; dmemory:dmem|altsyncram:ram_block_rtl_0|altsyncram_ls31:auto_generated|ALTSYNCRAM                                                    ; AUTO ; Single Port      ; 1024         ; 32           ; --           ; --           ; 32768 ; None                                             ;
-; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|altsyncram_nrt2:altsyncram1|ALTSYNCRAM ; AUTO ; True Dual Port   ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None                                             ;
+; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|altsyncram_qo03:altsyncram1|ALTSYNCRAM ; AUTO ; True Dual Port   ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None                                             ;
 +--------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+--------------------------------------------------+
 
 
@@ -841,12 +841,12 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                                                                                                                                                         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                                                                                                                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[31]                                                                                                                                                                                                             ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[7]                                                                                                                                                                                                              ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                                                                                                                                                                                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[31]                                                                                                                                                                                                             ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[7]                                                                                                                                                                                                              ;
 ; 3:1                ; 64 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |de0_lite|core:myRiscv|M:M_0|quick_naive:quick_div_signed|new_divisor[16]                                                                                                                                                                                                                                                                                          ;
 ; 3:1                ; 64 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |de0_lite|core:myRiscv|M:M_0|quick_naive:quick_div_unsigned|new_divisor[26]                                                                                                                                                                                                                                                                                        ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[1]                                                                                                                                                               ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[1]                                                                                                                                                               ;
 ; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |de0_lite|core:myRiscv|M:M_0|quick_naive:quick_div_signed|\quick_naive_process:t_remainder[12]                                                                                                                                                                                                                                                                     ;
 ; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |de0_lite|core:myRiscv|M:M_0|quick_naive:quick_div_unsigned|\quick_naive_process:t_remainder[15]                                                                                                                                                                                                                                                                   ;
 ; 5:1                ; 28 bits   ; 84 LEs        ; 56 LEs               ; 28 LEs                 ; Yes        ; |de0_lite|gpio:generic_gpio|ddata_r[19]                                                                                                                                                                                                                                                                                                                            ;
@@ -863,7 +863,7 @@ Encoding Type:  One-Hot
 ; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |de0_lite|Timer:timer|counter[19]                                                                                                                                                                                                                                                                                                                                  ;
 ; 9:1                ; 32 bits   ; 192 LEs       ; 64 LEs               ; 128 LEs                ; Yes        ; |de0_lite|core:myRiscv|csr:ins_csr|mreg[5][10]                                                                                                                                                                                                                                                                                                                     ;
 ; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |de0_lite|core:myRiscv|csr:ins_csr|mreg[0][3]                                                                                                                                                                                                                                                                                                                      ;
-; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[3]                                                                                                                                                                    ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |de0_lite|iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[3]                                                                                                                                                                    ;
 ; 16:1               ; 6 bits    ; 60 LEs        ; 48 LEs               ; 12 LEs                 ; Yes        ; |de0_lite|core:myRiscv|csr:ins_csr|mcause_in[0]                                                                                                                                                                                                                                                                                                                    ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_lite|core:myRiscv|Mux104                                                                                                                                                                                                                                                                                                                                      ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |de0_lite|core:myRiscv|M:M_0|quick_naive:quick_div_signed|ShiftLeft0                                                                                                                                                                                                                                                                                               ;
@@ -913,13 +913,13 @@ Encoding Type:  One-Hot
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|hub_minor_ver_reg[3]                    ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg|word_counter[0] ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|mixer_addr_reg_internal[1]              ;
-; 34:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; Yes        ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|design_hash_reg[1]                      ;
+; 34:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; Yes        ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|design_hash_reg[1]                      ;
 ; 20:1               ; 4 bits    ; 52 LEs        ; 32 LEs               ; 20 LEs                 ; Yes        ; |de0_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg|WORD_SR[1]      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|altsyncram_nrt2:altsyncram1 ;
+; Source assignments for iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|altsyncram_qo03:altsyncram1 ;
 +---------------------------------+--------------------+------+------------------------------------------------------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                                                                 ;
 +---------------------------------+--------------------+------+------------------------------------------------------------------------------------+
@@ -1339,64 +1339,64 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component ;
-+------------------------------------+----------------------------------+-------------------------------------+
-; Parameter Name                     ; Value                            ; Type                                ;
-+------------------------------------+----------------------------------+-------------------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                                ; Untyped                             ;
-; AUTO_CARRY_CHAINS                  ; ON                               ; AUTO_CARRY                          ;
-; IGNORE_CARRY_BUFFERS               ; OFF                              ; IGNORE_CARRY                        ;
-; AUTO_CASCADE_CHAINS                ; ON                               ; AUTO_CASCADE                        ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                              ; IGNORE_CASCADE                      ;
-; WIDTH_BYTEENA                      ; 1                                ; Untyped                             ;
-; OPERATION_MODE                     ; SINGLE_PORT                      ; Untyped                             ;
-; WIDTH_A                            ; 32                               ; Signed Integer                      ;
-; WIDTHAD_A                          ; 10                               ; Signed Integer                      ;
-; NUMWORDS_A                         ; 1024                             ; Signed Integer                      ;
-; OUTDATA_REG_A                      ; UNREGISTERED                     ; Untyped                             ;
-; ADDRESS_ACLR_A                     ; NONE                             ; Untyped                             ;
-; OUTDATA_ACLR_A                     ; NONE                             ; Untyped                             ;
-; WRCONTROL_ACLR_A                   ; NONE                             ; Untyped                             ;
-; INDATA_ACLR_A                      ; NONE                             ; Untyped                             ;
-; BYTEENA_ACLR_A                     ; NONE                             ; Untyped                             ;
-; WIDTH_B                            ; 1                                ; Signed Integer                      ;
-; WIDTHAD_B                          ; 1                                ; Signed Integer                      ;
-; NUMWORDS_B                         ; 0                                ; Signed Integer                      ;
-; INDATA_REG_B                       ; CLOCK1                           ; Untyped                             ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                           ; Untyped                             ;
-; RDCONTROL_REG_B                    ; CLOCK1                           ; Untyped                             ;
-; ADDRESS_REG_B                      ; CLOCK1                           ; Untyped                             ;
-; OUTDATA_REG_B                      ; UNREGISTERED                     ; Untyped                             ;
-; BYTEENA_REG_B                      ; CLOCK1                           ; Untyped                             ;
-; INDATA_ACLR_B                      ; NONE                             ; Untyped                             ;
-; WRCONTROL_ACLR_B                   ; NONE                             ; Untyped                             ;
-; ADDRESS_ACLR_B                     ; NONE                             ; Untyped                             ;
-; OUTDATA_ACLR_B                     ; NONE                             ; Untyped                             ;
-; RDCONTROL_ACLR_B                   ; NONE                             ; Untyped                             ;
-; BYTEENA_ACLR_B                     ; NONE                             ; Untyped                             ;
-; WIDTH_BYTEENA_A                    ; 4                                ; Signed Integer                      ;
-; WIDTH_BYTEENA_B                    ; 1                                ; Signed Integer                      ;
-; RAM_BLOCK_TYPE                     ; AUTO                             ; Untyped                             ;
-; BYTE_SIZE                          ; 8                                ; Signed Integer                      ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                        ; Untyped                             ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ             ; Untyped                             ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ             ; Untyped                             ;
-; INIT_FILE                          ; ../../software/quartus_blink.hex ; Untyped                             ;
-; INIT_FILE_LAYOUT                   ; PORT_A                           ; Untyped                             ;
-; MAXIMUM_DEPTH                      ; 0                                ; Signed Integer                      ;
-; CLOCK_ENABLE_INPUT_A               ; BYPASS                           ; Untyped                             ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL                           ; Untyped                             ;
-; CLOCK_ENABLE_OUTPUT_A              ; BYPASS                           ; Untyped                             ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                           ; Untyped                             ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                  ; Untyped                             ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                  ; Untyped                             ;
-; ENABLE_ECC                         ; FALSE                            ; Untyped                             ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                            ; Untyped                             ;
-; WIDTH_ECCSTATUS                    ; 3                                ; Signed Integer                      ;
-; DEVICE_FAMILY                      ; MAX 10                           ; Untyped                             ;
-; CBXI_PARAMETER                     ; altsyncram_n004                  ; Untyped                             ;
-+------------------------------------+----------------------------------+-------------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component         ;
++------------------------------------+---------------------------------------------------------------+----------------+
+; Parameter Name                     ; Value                                                         ; Type           ;
++------------------------------------+---------------------------------------------------------------+----------------+
+; BYTE_SIZE_BLOCK                    ; 8                                                             ; Untyped        ;
+; AUTO_CARRY_CHAINS                  ; ON                                                            ; AUTO_CARRY     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                                           ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                ; ON                                                            ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                                           ; IGNORE_CASCADE ;
+; WIDTH_BYTEENA                      ; 1                                                             ; Untyped        ;
+; OPERATION_MODE                     ; SINGLE_PORT                                                   ; Untyped        ;
+; WIDTH_A                            ; 32                                                            ; Signed Integer ;
+; WIDTHAD_A                          ; 10                                                            ; Signed Integer ;
+; NUMWORDS_A                         ; 1024                                                          ; Signed Integer ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                                  ; Untyped        ;
+; ADDRESS_ACLR_A                     ; NONE                                                          ; Untyped        ;
+; OUTDATA_ACLR_A                     ; NONE                                                          ; Untyped        ;
+; WRCONTROL_ACLR_A                   ; NONE                                                          ; Untyped        ;
+; INDATA_ACLR_A                      ; NONE                                                          ; Untyped        ;
+; BYTEENA_ACLR_A                     ; NONE                                                          ; Untyped        ;
+; WIDTH_B                            ; 1                                                             ; Signed Integer ;
+; WIDTHAD_B                          ; 1                                                             ; Signed Integer ;
+; NUMWORDS_B                         ; 0                                                             ; Signed Integer ;
+; INDATA_REG_B                       ; CLOCK1                                                        ; Untyped        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                                        ; Untyped        ;
+; RDCONTROL_REG_B                    ; CLOCK1                                                        ; Untyped        ;
+; ADDRESS_REG_B                      ; CLOCK1                                                        ; Untyped        ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                                  ; Untyped        ;
+; BYTEENA_REG_B                      ; CLOCK1                                                        ; Untyped        ;
+; INDATA_ACLR_B                      ; NONE                                                          ; Untyped        ;
+; WRCONTROL_ACLR_B                   ; NONE                                                          ; Untyped        ;
+; ADDRESS_ACLR_B                     ; NONE                                                          ; Untyped        ;
+; OUTDATA_ACLR_B                     ; NONE                                                          ; Untyped        ;
+; RDCONTROL_ACLR_B                   ; NONE                                                          ; Untyped        ;
+; BYTEENA_ACLR_B                     ; NONE                                                          ; Untyped        ;
+; WIDTH_BYTEENA_A                    ; 4                                                             ; Signed Integer ;
+; WIDTH_BYTEENA_B                    ; 1                                                             ; Signed Integer ;
+; RAM_BLOCK_TYPE                     ; AUTO                                                          ; Untyped        ;
+; BYTE_SIZE                          ; 8                                                             ; Signed Integer ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                     ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                                          ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                                          ; Untyped        ;
+; INIT_FILE                          ; ../../software/nn_accelerator/quartus_main_nn_accelerator.hex ; Untyped        ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                                        ; Untyped        ;
+; MAXIMUM_DEPTH                      ; 0                                                             ; Signed Integer ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS                                                        ; Untyped        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                                        ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS                                                        ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                                        ; Untyped        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                               ; Untyped        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                               ; Untyped        ;
+; ENABLE_ECC                         ; FALSE                                                         ; Untyped        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                                         ; Untyped        ;
+; WIDTH_ECCSTATUS                    ; 3                                                             ; Signed Integer ;
+; DEVICE_FAMILY                      ; MAX 10                                                        ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_qt24                                               ; Untyped        ;
++------------------------------------+---------------------------------------------------------------+----------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -1927,7 +1927,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------------+-------+-------+------------+-----------------------------------------------------------------------------------------------+
 ; Instance Index ; Instance ID ; Width ; Depth ; Mode       ; Hierarchy Location                                                                            ;
 +----------------+-------------+-------+-------+------------+-----------------------------------------------------------------------------------------------+
-; 0              ; 1           ; 32    ; 1024  ; Read/Write ; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated ;
+; 0              ; 1           ; 32    ; 1024  ; Read/Write ; iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated ;
 +----------------+-------------+-------+-------+------------+-----------------------------------------------------------------------------------------------+
 
 
@@ -1982,15 +1982,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SLD           ; 9                                        ;
 ;     SCLR              ; 7                                        ;
 ;     plain             ; 16                                       ;
-; cycloneiii_lcell_comb ; 117                                      ;
+; cycloneiii_lcell_comb ; 123                                      ;
 ;     arith             ; 8                                        ;
 ;         2 data inputs ; 8                                        ;
-;     normal            ; 109                                      ;
+;     normal            ; 115                                      ;
 ;         0 data inputs ; 1                                        ;
 ;         1 data inputs ; 6                                        ;
-;         2 data inputs ; 22                                       ;
-;         3 data inputs ; 29                                       ;
-;         4 data inputs ; 51                                       ;
+;         2 data inputs ; 23                                       ;
+;         3 data inputs ; 30                                       ;
+;         4 data inputs ; 55                                       ;
 ;                       ;                                          ;
 ; Max LUT depth         ; 4.00                                     ;
 ; Average LUT depth     ; 1.80                                     ;
@@ -2002,8 +2002,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------+--------------+
 ; Partition Name   ; Elapsed Time ;
 +------------------+--------------+
-; Top              ; 00:00:14     ;
-; sld_hub:auto_hub ; 00:00:00     ;
+; Top              ; 00:00:16     ;
+; sld_hub:auto_hub ; 00:00:01     ;
 +------------------+--------------+
 
 
@@ -2013,7 +2013,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
-    Info: Processing started: Tue Mar  1 22:25:40 2022
+    Info: Processing started: Tue Mar  8 10:17:10 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de10_lite -c de10_lite
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/gpio.vhd
@@ -2047,7 +2047,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file /home/b
     Info (12022): Found design unit 1: instructionbusmux-RTL File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/instructionbusmux.vhd Line: 30
     Info (12023): Found entity 1: instructionbusmux File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/instructionbusmux.vhd Line: 12
 Info (12021): Found 2 design units, including 1 entities, in source file /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/iodatabusmux.vhd
-    Info (12022): Found design unit 1: iodatabusmux-RTL File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/iodatabusmux.vhd Line: 31
+    Info (12022): Found design unit 1: iodatabusmux-RTL File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/iodatabusmux.vhd Line: 32
     Info (12023): Found entity 1: iodatabusmux File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/iodatabusmux.vhd Line: 13
 Info (12021): Found 2 design units, including 1 entities, in source file /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/databusmux.vhd
     Info (12022): Found design unit 1: databusmux-RTL File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/databusmux.vhd Line: 31
@@ -2208,7 +2208,7 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
     Info (12134): Parameter "indata_aclr_a" = "UNUSED"
     Info (12134): Parameter "indata_aclr_b" = "NONE"
     Info (12134): Parameter "indata_reg_b" = "CLOCK1"
-    Info (12134): Parameter "init_file" = "../../software/quartus_blink.hex"
+    Info (12134): Parameter "init_file" = "../../software/nn_accelerator/quartus_main_nn_accelerator.hex"
     Info (12134): Parameter "init_file_layout" = "PORT_A"
     Info (12134): Parameter "maximum_depth" = "0"
     Info (12134): Parameter "numwords_a" = "1024"
@@ -2238,16 +2238,16 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
     Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK1"
     Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1"
     Info (12134): Parameter "lpm_type" = "altsyncram"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_n004.tdf
-    Info (12023): Found entity 1: altsyncram_n004 File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_n004.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_n004" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_nrt2.tdf
-    Info (12023): Found entity 1: altsyncram_nrt2 File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_nrt2.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_nrt2" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|altsyncram_nrt2:altsyncram1" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_n004.tdf Line: 38
-Critical Warning (127003): Can't find Memory Initialization File or Hexadecimal (Intel-Format) File ../../software/quartus_blink.hex -- setting all initial values to 0 File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/iram_quartus.vhd Line: 63
-Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_n004.tdf Line: 39
-Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_n004.tdf Line: 39
-Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_n004.tdf Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qt24.tdf
+    Info (12023): Found entity 1: altsyncram_qt24 File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qt24.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_qt24" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qo03.tdf
+    Info (12023): Found entity 1: altsyncram_qo03 File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qo03.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_qo03" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|altsyncram_qo03:altsyncram1" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qt24.tdf Line: 38
+Critical Warning (127003): Can't find Memory Initialization File or Hexadecimal (Intel-Format) File ../../software/nn_accelerator/quartus_main_nn_accelerator.hex -- setting all initial values to 0 File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/memory/iram_quartus.vhd Line: 63
+Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qt24.tdf Line: 39
+Info (12130): Elaborated megafunction instantiation "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qt24.tdf Line: 39
+Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/db/altsyncram_qt24.tdf Line: 39
     Info (12134): Parameter "CVALUE" = "00000000000000000000000000000000"
     Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
     Info (12134): Parameter "IS_READABLE" = "1"
@@ -2256,9 +2256,9 @@ Info (12133): Instantiated megafunction "iram_quartus:iram_quartus_inst|altsyncr
     Info (12134): Parameter "SHIFT_COUNT_BITS" = "6"
     Info (12134): Parameter "WIDTH_WORD" = "32"
     Info (12134): Parameter "WIDTHAD" = "10"
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
-Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_n004:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
+Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "iram_quartus:iram_quartus_inst|altsyncram:altsyncram_component|altsyncram_qt24:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: /home/benitez/intelFPGA_lite/21.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
 Info (12128): Elaborating entity "instructionbusmux" for hierarchy "instructionbusmux:instr_mux" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 165
 Info (12128): Elaborating entity "dmemory" for hierarchy "dmemory:dmem" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 175
 Info (12128): Elaborating entity "databusmux" for hierarchy "databusmux:datamux" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 196
@@ -2277,7 +2277,7 @@ Info (12128): Elaborating entity "Timer" for hierarchy "Timer:timer" File: /home
 Warning (10036): Verilog HDL or VHDL warning at Timer.vhd(29): object "internal_counter_direction" assigned a value but never read File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/timer/Timer.vhd Line: 29
 Info (12128): Elaborating entity "led_displays" for hierarchy "led_displays:generic_displays" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 280
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2022.03.01.22:25:56 Progress: Loading slde7a58a48/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2022.03.08.10:17:28 Progress: Loading slde7a58a48/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2535,18 +2535,18 @@ Warning (21074): Design contains 11 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[8]" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 54
     Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 65
     Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: /home/benitez/Documents/Semester temp/workspace_vhdl/riscv-multicycle/peripherals/gpio/sint/de10_lite/de0_lite.vhd Line: 65
-Info (21057): Implemented 6509 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 6515 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 20 input pins
     Info (21059): Implemented 98 output pins
     Info (21060): Implemented 35 bidirectional pins
-    Info (21061): Implemented 6210 logic cells
+    Info (21061): Implemented 6216 logic cells
     Info (21064): Implemented 128 RAM segments
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 134 warnings
-    Info: Peak virtual memory: 476 megabytes
-    Info: Processing ended: Tue Mar  1 22:26:21 2022
-    Info: Elapsed time: 00:00:41
-    Info: Total CPU time (on all processors): 00:01:08
+    Info: Peak virtual memory: 484 megabytes
+    Info: Processing ended: Tue Mar  8 10:17:56 2022
+    Info: Elapsed time: 00:00:46
+    Info: Total CPU time (on all processors): 00:01:18
 
 

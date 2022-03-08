@@ -1,11 +1,7 @@
 -------------------------------------------------------
 --! @file
---! @brief RISCV Simple GPIO module
+--! @brief RISCV Neural Network Peripheral
 --         RAM mapped general purpose I/O
-
---! @Todo: Module should mask bytes (Word, half word and byte access)
---         
---        
 -------------------------------------------------------
 
 library ieee;
@@ -38,24 +34,24 @@ end entity nn_accelerator;
 architecture RTL of nn_accelerator is
 	-- Declaração de sinais
 	-- index x_y: input x of neuron y
-	signal x0 : std_logic_vector(N_PRECISION-1 downto 0);
-	signal x1 : std_logic_vector(N_PRECISION-1 downto 0);
-	signal y1 : std_logic_vector(N_PRECISION-1 downto 0);
+	signal x0       : std_logic_vector(N_PRECISION-1 downto 0);
+	signal x1       : std_logic_vector(N_PRECISION-1 downto 0);
+	signal y1       : std_logic_vector(N_PRECISION-1 downto 0);
 
-	signal x0_0 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal x1_0 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal w0_0 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal w1_0 : std_logic_vector(N_PRECISION-1 downto 0);
+	signal x0_0     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal x1_0     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal w0_0     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal w1_0     : std_logic_vector(N_PRECISION-1 downto 0);
     signal output_0 : std_logic_vector(N_PRECISION-1 downto 0);
-	signal x0_1 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal x1_1 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal w0_1 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal w1_1 : std_logic_vector(N_PRECISION-1 downto 0);
+	signal x0_1     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal x1_1     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal w0_1     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal w1_1     : std_logic_vector(N_PRECISION-1 downto 0);
     signal output_1 : std_logic_vector(N_PRECISION-1 downto 0);
-	signal x0_2 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal x1_2 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal w0_2 : std_logic_vector(N_PRECISION-1 downto 0);
-    signal w1_2 : std_logic_vector(N_PRECISION-1 downto 0);
+	signal x0_2     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal x1_2     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal w0_2     : std_logic_vector(N_PRECISION-1 downto 0);
+    signal w1_2     : std_logic_vector(N_PRECISION-1 downto 0);
     signal output_2 : std_logic_vector(N_PRECISION-1 downto 0);
 
 begin
@@ -65,10 +61,10 @@ begin
             N => N_PRECISION
         ) 
         port map (
-            x0 => x0_0,
-            x1 => x1_0,
-            w0 => w0_0,
-            w1 => w1_0,
+            x0      => x0_0,
+            x1      => x1_0,
+            w0      => w0_0,
+            w1      => w1_0,
             output  => output_0
     );
 
@@ -77,10 +73,10 @@ begin
             N => N_PRECISION
         ) 
         port map (
-            x0 => x0_1,
-            x1 => x1_1,
-            w0 => w0_1,
-            w1 => w1_1,
+            x0      => x0_1,
+            x1      => x1_1,
+            w0      => w0_1,
+            w1      => w1_1,
             output  => output_1
     );
 
@@ -89,10 +85,10 @@ begin
             N => N_PRECISION
         ) 
         port map (
-            x0 => x0_2,
-            x1 => x1_2,
-            w0 => w0_2,
-            w1 => w1_2,
+            x0      => x0_2,
+            x1      => x1_2,
+            w0      => w0_2,
+            w1      => w1_2,
             output  => output_2
     );
     
@@ -104,7 +100,7 @@ begin
 
     x0_2 <= output_0;
     x1_2 <= output_1;
-    y1 <= output_2;
+    y1   <= output_2;
 
 	-- Read result
     process(clk, rst)
@@ -114,9 +110,10 @@ begin
         else
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
-					ddata_r <= (others => '0');
-					ddata_r(N_PRECISION-1 downto 0) <= output_0;
-                    --ddata_r(N_PRECISION-1 downto 0) <= "01111111";
+                    if daddress(15 downto 0) = (MY_WORD_ADDRESS + 8) then	
+                        ddata_r <= (others => '0');
+                        ddata_r(N_PRECISION-1 downto 0) <= output_2;
+                    end if;
                 end if;
             end if;
         end if;
@@ -132,8 +129,8 @@ begin
             w1_1 <= (others => '0');
             w0_2 <= (others => '0');
             w1_2 <= (others => '0');
-            x0 <= (others => '0');
-            x1 <= (others => '0');
+            x0   <= (others => '0');
+            x1   <= (others => '0');
 		else
 			if rising_edge(clk) then
 				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then                    			
@@ -148,10 +145,8 @@ begin
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then	
                         w0_2 <= ddata_w(N_PRECISION-1 downto 0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 5) then
-                        x0 <= "11011111";	
                         w1_2 <= ddata_w(N_PRECISION-1 downto 0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 6) then
-                        --x0 <= "11111111";
                         x0 <= ddata_w(N_PRECISION-1 downto 0);
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 7) then	
                         x1 <= ddata_w(N_PRECISION-1 downto 0);   

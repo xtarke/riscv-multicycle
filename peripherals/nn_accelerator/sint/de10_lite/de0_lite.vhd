@@ -230,26 +230,21 @@ begin
     
     io_data_bus_mux: entity work.iodatabusmux
         port map(
-            daddress         => daddress,
-            ddata_r_gpio     => ddata_r_nn_accelerator,
-            ddata_r_segments => ddata_r_segments,
-            ddata_r_uart     => ddata_r_uart,
-            ddata_r_adc      => ddata_r_adc,
-            ddata_r_i2c      => ddata_r_i2c,
-            ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph,
-            ddata_r_dif_fil  => ddata_r_dig_fil,
-			ddata_r_stepmot  => ddata_r_stepmot
-            
+            daddress                   => daddress,
+            ddata_r_gpio               => ddata_r_gpio,
+            ddata_r_segments           => ddata_r_segments,
+            ddata_r_uart               => ddata_r_uart,
+            ddata_r_adc                => ddata_r_adc,
+            ddata_r_i2c                => ddata_r_i2c,
+            ddata_r_timer              => ddata_r_timer,
+            ddata_r_periph             => ddata_r_periph,
+            ddata_r_dif_fil            => ddata_r_dig_fil,
+			ddata_r_stepmot            => ddata_r_stepmot,
+            ddata_r_nn_accelerator     => ddata_r_nn_accelerator
         );
-
 
     -- Generic GPIO module instantiation
     generic_gpio: entity work.gpio
-    generic map(
-        MY_CHIPSELECT   => "10",
-        MY_WORD_ADDRESS => x"0010"
-    )
     port map(
         clk      => clk,
         rst      => rst,
@@ -265,11 +260,11 @@ begin
         gpio_interrupts => gpio_interrupts
     );
 
-		-- NN Acelerator starts here!
+    -- NN Accelerator
     my_nn_accelerator: entity work.nn_accelerator
     generic map(
         MY_CHIPSELECT   => "10",
-        MY_WORD_ADDRESS => x"0010"
+        MY_WORD_ADDRESS => x"00B0"
     )
     port map(
         clk      => clk,
@@ -281,7 +276,6 @@ begin
         d_rd     => d_rd,
         dcsel    => dcsel
     );
-    -- NN Acelerator ends here!
 		
     -- Timer instantiation
     timer : entity work.Timer

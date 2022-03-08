@@ -63,7 +63,7 @@ int main(){
     set_weigh(w0_0, w1_0, w0_1, w1_1, w0_2, w1_2);
 ```
 
-Depois, o programa realiza uma inferência:
+Depois, o programa realiza uma inferência (o valor esperado de y1 é 127, realizando os cálculos manualmente):
 ```C
 y1 = inference(x0, x1);
 ```
@@ -80,15 +80,16 @@ Primeiramente, o programa carrega os pesos da rede:
 
 ![image-20220306194410344](images/image-20220306194410344.png)
 
-Depois, o programa realiza uma inferência:
+Depois, o programa realiza uma inferência (o valor esperado de y1 é 127, realizando os cálculos manualmente):
 
 ![image-20220306211237364](images/image-20220306211237364.png)
 
 
-
 ## Síntese
 
-?
+A síntese contém os mesmos elementos da simulação, com o GPIO conectado nos LEDs.
+
+Com o exemplo em C fornecido, deve-se observar todos os leds acessos. 
 
 ## TODOs
 
@@ -106,13 +107,20 @@ Além dessas, podemos destacar:
   * É comum que redes neurais sejam quantizadas para valores inteiros ao realizar a inferência, mas isso não é uma regra
 
 ## Referências
+
 [1] Neural Networks in Hardware: A Survey. Yihua Liao.
+
 [2] Ramacher, U., Raab, W., Anlauf, J., Hachmann, U., Beichter, J., Bruls, N., Webeling, M. and
 Sicheneder, E., 1993, Multiprocessor and Memory Architecture of the Neurocomputers SYNAPSE-1.
 Proceedings of the 3rd International Conference on Microelectronics for Neural Networks (Micro
 Neuro), 227-231, 1993.
+
 [3] https://towardsdatascience.com/neural-network-inference-on-fpgas-d1c20c479e84
+
 [4] http://koreabizwire.com/kaist-develops-new-ai-chip-capable-of-deep-learning/93050
+
 [5] https://www.youtube.com/watch?v=CdH2p6mJnYk
+
 [6] https://www.xilinx.com/products/design-tools/vitis/vitis-ai.html
+
 [7] An FPGA Implementation for convolutional neural network. Guilherme dos Santos Korol. Pontífice Universidade Católica do Rio Grande do Sul.
