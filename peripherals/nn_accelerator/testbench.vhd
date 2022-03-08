@@ -179,16 +179,17 @@ begin
         
     io_data_bus_mux: entity work.iodatabusmux
         port map(
-            daddress         => daddress,
-            ddata_r_gpio     => ddata_r_nn_accelerator,
-            ddata_r_segments => ddata_r_segments,
-            ddata_r_uart     => ddata_r_uart,
-            ddata_r_adc      => ddata_r_adc,
-            ddata_r_i2c      => ddata_r_i2c,
-            ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph,
-            ddata_r_stepmot  => ddata_r_stepmot,
-            ddata_r_dif_fil  => ddata_r_dif_fil
+            daddress                   => daddress,
+            ddata_r_gpio               => ddata_r_gpio,
+            ddata_r_segments           => ddata_r_segments,
+            ddata_r_uart               => ddata_r_uart,
+            ddata_r_adc                => ddata_r_adc,
+            ddata_r_i2c                => ddata_r_i2c,
+            ddata_r_timer              => ddata_r_timer,
+            ddata_r_periph             => ddata_r_periph,
+            ddata_r_stepmot            => ddata_r_stepmot,
+            ddata_r_dif_fil            => ddata_r_dif_fil,
+            ddata_r_nn_accelerator     => ddata_r_nn_accelerator
         );
 
     -- Softcore instatiation
@@ -240,7 +241,7 @@ begin
         gpio_interrupts => gpio_interrupts
     );
         
-    -- NN Acelerator
+    -- NN Accelerator
     nn_accelerator: entity work.nn_accelerator
     generic map(
         MY_CHIPSELECT   => "10",

@@ -21,12 +21,12 @@ int main(){
         // Show in GPIO
         if (y1==(int8_t)127){ //worked
             //OUTBUS = 0b10000000000000000000000000000000 | (uint32_t) y1;
-            //OUTBUS = 0b10101010101010101010101010101010;
-            OUTBUS = (uint32_t) y1;
+            OUTBUS = 0b10101010101010101010101010101010;
+            //OUTBUS = (uint32_t) y1;
         } else { //failed
             //OUTBUS = 0b01111111111111111111111111111111 & (uint32_t) y1;
-            //OUTBUS = 0b00110011001100110011001100110011;
-            OUTBUS = (uint32_t) y1;
+            OUTBUS = 0b00110011001100110011001100110011;
+            //OUTBUS = (uint32_t) y1;
         }
         delay_(1);
     }

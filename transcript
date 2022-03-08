@@ -1,80 +1,2677 @@
-ls
-# alu
-# CONTRIBUTORS.md
-# core
-# decoder
-# docs
-# LICENSE
-# memory
-# peripherals
-# pll
-# README-en.md
-# readme_img
-# README.md
-# registers
-# riscv-multicycle.doxyfile
-# software
-# testbench.do
-# testbench.vhd
-# transcript
-cd riscv-multicycle.doxyfile
-# couldn't change working directory to "riscv-multicycle.doxyfile": not a directory
-
-
-
-cd peripherals/nn_accelerator/primitives/activation
-do tb.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:11:08 on Feb 24,2022
-# vcom -reportprogress 300 sigmoidal.vhd testbench.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity sigmoidal
-# -- Compiling architecture rtl of sigmoidal
-# ** Error (suppressible): sigmoidal.vhd(25): (vcom-1339) Case statement choices cover only 256 out of 43046721 cases.
-# ** Note: sigmoidal.vhd(284): VHDL Compiler exiting
-# End time: 10:11:09 on Feb 24,2022, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
-# ** Error: /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
-# Error in macro ./tb.do line 5
-# /home/benitez/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
-#     while executing
-# "vcom sigmoidal.vhd testbench.vhd"
+cd peripherals/nn_accelerator
 do tb.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:11:45 on Feb 24,2022
-# vcom -reportprogress 300 sigmoidal.vhd testbench.vhd 
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 ../gpio/gpio.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity sigmoidal
-# -- Compiling architecture rtl of sigmoidal
-# -- Compiling entity testbench
-# -- Compiling architecture stimulus of testbench
-# -- Loading entity sigmoidal
-# ** Warning: testbench.vhd(24): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(27): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(30): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(33): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(36): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(39): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(42): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: testbench.vhd(45): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# End time: 10:11:45 on Feb 24,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 8
-# vsim -t ns work.testbench 
-# Start time: 10:11:45 on Feb 24,2022
+# -- Compiling entity gpio
+# -- Compiling architecture RTL of gpio
+# End time: 09:20:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 primitives/activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 09:20:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 primitives/scalar_product/scalar_product_2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product_2
+# -- Compiling architecture rtl of scalar_product_2
+# End time: 09:20:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 primitives/neuron/perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product_2
+# -- Loading entity heaviside
+# End time: 09:20:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 nn_accelerator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity nn_accelerator
+# -- Compiling architecture RTL of nn_accelerator
+# -- Loading entity perceptron
+# End time: 09:20:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iram_quartus.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity iram_quartus
+# -- Compiling architecture SYN of iram_quartus
+# End time: 09:20:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/dmemory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dmemory
+# -- Compiling architecture RTL of dmemory
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/instructionbusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity instructionbusmux
+# -- Compiling architecture RTL of instructionbusmux
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/databusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity databusmux
+# -- Compiling architecture RTL of databusmux
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iodatabusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity iodatabusmux
+# -- Compiling architecture RTL of iodatabusmux
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package alu_types
+# -- Compiling package body alu_types
+# -- Loading package alu_types
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Compiling entity ULA
+# -- Compiling architecture RTL of ULA
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/division_functions.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package division_functions
+# -- Compiling package body division_functions
+# -- Loading package division_functions
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/quick_naive.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package division_functions
+# -- Compiling entity quick_naive
+# -- Compiling architecture behave of quick_naive
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package M_types
+# -- Compiling package body M_types
+# -- Loading package M_types
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package M_types
+# -- Compiling entity M
+# -- Compiling architecture RTL of M
+# -- Loading package division_functions
+# -- Loading entity quick_naive
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package decoder_types
+# -- Compiling package body decoder_types
+# -- Loading package decoder_types
+# End time: 09:20:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/iregister.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity iregister
+# -- Compiling architecture RTL of iregister
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Loading package decoder_types
+# -- Loading package M_types
+# -- Compiling entity decoder
+# -- Compiling architecture RTL of decoder
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../registers/register_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity register_file
+# -- Compiling architecture RTL of register_file
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/csr.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity csr
+# -- Compiling architecture RTL of csr
+# ** Warning: ../../core/csr.vhd(202): (vcom-1014) Array type case expression must be of a locally static subtype.
+# ** Warning: ../../core/csr.vhd(203): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(206): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(209): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(211): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(213): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(215): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(218): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(221): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 9
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/core.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Compiling entity core
+# -- Compiling architecture RTL of core
+# -- Loading entity csr
+# -- Loading entity iregister
+# -- Loading entity register_file
+# -- Loading entity decoder
+# -- Loading entity ULA
+# -- Loading entity M
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/txt_util.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package txt_util
+# -- Compiling package body txt_util
+# -- Loading package txt_util
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/trace_debug.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package txt_util
+# -- Compiling entity trace_debug
+# -- Compiling architecture RTL of trace_debug
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:20:45 on Mar 08,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity coretestbench
+# -- Compiling architecture RTL of coretestbench
+# -- Loading entity instructionbusmux
+# -- Loading package altera_mf_components
+# -- Loading entity iram_quartus
+# -- Loading entity dmemory
+# -- Loading entity databusmux
+# -- Loading entity iodatabusmux
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Loading entity core
+# -- Loading entity gpio
+# -- Loading entity nn_accelerator
+# -- Loading package txt_util
+# -- Loading entity trace_debug
+# End time: 09:20:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t ns work.coretestbench 
+# Start time: 09:20:45 on Mar 08,2022
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
-# Loading work.testbench(stimulus)
-# Loading work.sigmoidal(rtl)
+# Loading work.decoder_types(body)
+# Loading altera_mf.altera_mf_components
+# Loading work.alu_types(body)
+# Loading work.m_types(body)
+# Loading work.txt_util(body)
+# Loading work.coretestbench(rtl)
+# Loading work.instructionbusmux(rtl)
+# Loading work.iram_quartus(syn)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.dmemory(rtl)
+# Loading work.databusmux(rtl)
+# Loading work.iodatabusmux(rtl)
+# Loading work.core(rtl)
+# Loading work.csr(rtl)
+# Loading work.iregister(rtl)
+# Loading work.register_file(rtl)
+# Loading work.decoder(rtl)
+# Loading work.ula(rtl)
+# Loading work.division_functions(body)
+# Loading work.m(rtl)
+# Loading work.quick_naive(behave)
+# Loading work.gpio(rtl)
+# Loading work.nn_accelerator(rtl)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product_2(rtl)
+# Loading work.heaviside(rtl)
+# Loading work.trace_debug(rtl)
+# ** Warning: (vsim-8684) No drivers exist on out port /coretestbench/myRiscv/decoder0/dmemory.bus_lag, and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /coretestbench/myRiscv/dmemory.bus_lag.
 # .main_pane.wave.interior.cs.body.pw.wf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/dmem
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 1  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
 # 0 ns
-# 21 ns
-# printing wave to file wave.ps
+# 997500 ns
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 ../gpio/gpio.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gpio
+# -- Compiling architecture RTL of gpio
+# End time: 09:21:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 primitives/activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 09:21:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 primitives/scalar_product/scalar_product_2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product_2
+# -- Compiling architecture rtl of scalar_product_2
+# End time: 09:21:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 primitives/neuron/perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product_2
+# -- Loading entity heaviside
+# End time: 09:21:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 nn_accelerator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity nn_accelerator
+# -- Compiling architecture RTL of nn_accelerator
+# -- Loading entity perceptron
+# End time: 09:21:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iram_quartus.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity iram_quartus
+# -- Compiling architecture SYN of iram_quartus
+# End time: 09:21:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:45 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/dmemory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dmemory
+# -- Compiling architecture RTL of dmemory
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/instructionbusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity instructionbusmux
+# -- Compiling architecture RTL of instructionbusmux
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/databusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity databusmux
+# -- Compiling architecture RTL of databusmux
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iodatabusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity iodatabusmux
+# -- Compiling architecture RTL of iodatabusmux
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package alu_types
+# -- Compiling package body alu_types
+# -- Loading package alu_types
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Compiling entity ULA
+# -- Compiling architecture RTL of ULA
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/division_functions.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package division_functions
+# -- Compiling package body division_functions
+# -- Loading package division_functions
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/quick_naive.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package division_functions
+# -- Compiling entity quick_naive
+# -- Compiling architecture behave of quick_naive
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package M_types
+# -- Compiling package body M_types
+# -- Loading package M_types
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package M_types
+# -- Compiling entity M
+# -- Compiling architecture RTL of M
+# -- Loading package division_functions
+# -- Loading entity quick_naive
+# End time: 09:21:46 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:46 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package decoder_types
+# -- Compiling package body decoder_types
+# -- Loading package decoder_types
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/iregister.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity iregister
+# -- Compiling architecture RTL of iregister
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Loading package decoder_types
+# -- Loading package M_types
+# -- Compiling entity decoder
+# -- Compiling architecture RTL of decoder
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../registers/register_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity register_file
+# -- Compiling architecture RTL of register_file
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/csr.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity csr
+# -- Compiling architecture RTL of csr
+# ** Warning: ../../core/csr.vhd(202): (vcom-1014) Array type case expression must be of a locally static subtype.
+# ** Warning: ../../core/csr.vhd(203): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(206): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(209): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(211): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(213): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(215): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(218): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(221): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 9
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/core.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Compiling entity core
+# -- Compiling architecture RTL of core
+# -- Loading entity csr
+# -- Loading entity iregister
+# -- Loading entity register_file
+# -- Loading entity decoder
+# -- Loading entity ULA
+# -- Loading entity M
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/txt_util.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package txt_util
+# -- Compiling package body txt_util
+# -- Loading package txt_util
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/trace_debug.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package txt_util
+# -- Compiling entity trace_debug
+# -- Compiling architecture RTL of trace_debug
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:21:47 on Mar 08,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity coretestbench
+# -- Compiling architecture RTL of coretestbench
+# -- Loading entity instructionbusmux
+# -- Loading package altera_mf_components
+# -- Loading entity iram_quartus
+# -- Loading entity dmemory
+# -- Loading entity databusmux
+# -- Loading entity iodatabusmux
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Loading entity core
+# -- Loading entity gpio
+# -- Loading entity nn_accelerator
+# -- Loading package txt_util
+# -- Loading entity trace_debug
+# End time: 09:21:47 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 09:21:48 on Mar 08,2022, Elapsed time: 0:01:03
+# Errors: 0, Warnings: 81
+# vsim -t ns work.coretestbench 
+# Start time: 09:21:48 on Mar 08,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_types(body)
+# Loading altera_mf.altera_mf_components
+# Loading work.alu_types(body)
+# Loading work.m_types(body)
+# Loading work.txt_util(body)
+# Loading work.coretestbench(rtl)
+# Loading work.instructionbusmux(rtl)
+# Loading work.iram_quartus(syn)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.dmemory(rtl)
+# Loading work.databusmux(rtl)
+# Loading work.iodatabusmux(rtl)
+# Loading work.core(rtl)
+# Loading work.csr(rtl)
+# Loading work.iregister(rtl)
+# Loading work.register_file(rtl)
+# Loading work.decoder(rtl)
+# Loading work.ula(rtl)
+# Loading work.division_functions(body)
+# Loading work.m(rtl)
+# Loading work.quick_naive(behave)
+# Loading work.gpio(rtl)
+# Loading work.nn_accelerator(rtl)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product_2(rtl)
+# Loading work.heaviside(rtl)
+# Loading work.trace_debug(rtl)
+# ** Warning: (vsim-8684) No drivers exist on out port /coretestbench/myRiscv/decoder0/dmemory.bus_lag, and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /coretestbench/myRiscv/dmemory.bus_lag.
+# .main_pane.wave.interior.cs.body.pw.wf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/dmem
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 1  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# 0 ns
+# 997500 ns
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:42 on Mar 08,2022
+# vcom -reportprogress 300 ../gpio/gpio.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gpio
+# -- Compiling architecture RTL of gpio
+# End time: 09:32:42 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:42 on Mar 08,2022
+# vcom -reportprogress 300 primitives/activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 09:32:42 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:42 on Mar 08,2022
+# vcom -reportprogress 300 primitives/scalar_product/scalar_product_2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product_2
+# -- Compiling architecture rtl of scalar_product_2
+# End time: 09:32:42 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:42 on Mar 08,2022
+# vcom -reportprogress 300 primitives/neuron/perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product_2
+# -- Loading entity heaviside
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 nn_accelerator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity nn_accelerator
+# -- Compiling architecture RTL of nn_accelerator
+# -- Loading entity perceptron
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iram_quartus.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity iram_quartus
+# -- Compiling architecture SYN of iram_quartus
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/dmemory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dmemory
+# -- Compiling architecture RTL of dmemory
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/instructionbusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity instructionbusmux
+# -- Compiling architecture RTL of instructionbusmux
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/databusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity databusmux
+# -- Compiling architecture RTL of databusmux
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iodatabusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity iodatabusmux
+# -- Compiling architecture RTL of iodatabusmux
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package alu_types
+# -- Compiling package body alu_types
+# -- Loading package alu_types
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Compiling entity ULA
+# -- Compiling architecture RTL of ULA
+# End time: 09:32:43 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:43 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/division_functions.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package division_functions
+# -- Compiling package body division_functions
+# -- Loading package division_functions
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/quick_naive.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package division_functions
+# -- Compiling entity quick_naive
+# -- Compiling architecture behave of quick_naive
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package M_types
+# -- Compiling package body M_types
+# -- Loading package M_types
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package M_types
+# -- Compiling entity M
+# -- Compiling architecture RTL of M
+# -- Loading package division_functions
+# -- Loading entity quick_naive
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package decoder_types
+# -- Compiling package body decoder_types
+# -- Loading package decoder_types
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/iregister.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity iregister
+# -- Compiling architecture RTL of iregister
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Loading package decoder_types
+# -- Loading package M_types
+# -- Compiling entity decoder
+# -- Compiling architecture RTL of decoder
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../registers/register_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity register_file
+# -- Compiling architecture RTL of register_file
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/csr.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity csr
+# -- Compiling architecture RTL of csr
+# ** Warning: ../../core/csr.vhd(202): (vcom-1014) Array type case expression must be of a locally static subtype.
+# ** Warning: ../../core/csr.vhd(203): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(206): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(209): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(211): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(213): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(215): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(218): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(221): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 9
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/core.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Compiling entity core
+# -- Compiling architecture RTL of core
+# -- Loading entity csr
+# -- Loading entity iregister
+# -- Loading entity register_file
+# -- Loading entity decoder
+# -- Loading entity ULA
+# -- Loading entity M
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/txt_util.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package txt_util
+# -- Compiling package body txt_util
+# -- Loading package txt_util
+# End time: 09:32:44 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:44 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/trace_debug.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package txt_util
+# -- Compiling entity trace_debug
+# -- Compiling architecture RTL of trace_debug
+# End time: 09:32:45 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:32:45 on Mar 08,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity coretestbench
+# -- Compiling architecture RTL of coretestbench
+# -- Loading entity instructionbusmux
+# -- Loading package altera_mf_components
+# -- Loading entity iram_quartus
+# -- Loading entity dmemory
+# -- Loading entity databusmux
+# -- Loading entity iodatabusmux
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Loading entity core
+# -- Loading entity gpio
+# -- Loading entity nn_accelerator
+# -- Loading package txt_util
+# -- Loading entity trace_debug
+# End time: 09:32:45 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 09:32:45 on Mar 08,2022, Elapsed time: 0:10:57
+# Errors: 0, Warnings: 81
+# vsim -t ns work.coretestbench 
+# Start time: 09:32:45 on Mar 08,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_types(body)
+# Loading altera_mf.altera_mf_components
+# Loading work.alu_types(body)
+# Loading work.m_types(body)
+# Loading work.txt_util(body)
+# Loading work.coretestbench(rtl)
+# Loading work.instructionbusmux(rtl)
+# Loading work.iram_quartus(syn)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.dmemory(rtl)
+# Loading work.databusmux(rtl)
+# Loading work.iodatabusmux(rtl)
+# Loading work.core(rtl)
+# Loading work.csr(rtl)
+# Loading work.iregister(rtl)
+# Loading work.register_file(rtl)
+# Loading work.decoder(rtl)
+# Loading work.ula(rtl)
+# Loading work.division_functions(body)
+# Loading work.m(rtl)
+# Loading work.quick_naive(behave)
+# Loading work.gpio(rtl)
+# Loading work.nn_accelerator(rtl)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product_2(rtl)
+# Loading work.heaviside(rtl)
+# Loading work.trace_debug(rtl)
+# ** Warning: (vsim-8684) No drivers exist on out port /coretestbench/myRiscv/decoder0/dmemory.bus_lag, and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /coretestbench/myRiscv/dmemory.bus_lag.
+# .main_pane.wave.interior.cs.body.pw.wf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/dmem
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 1  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# 0 ns
+# 997500 ns
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:37 on Mar 08,2022
+# vcom -reportprogress 300 ../gpio/gpio.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gpio
+# -- Compiling architecture RTL of gpio
+# End time: 09:34:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:37 on Mar 08,2022
+# vcom -reportprogress 300 primitives/activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 primitives/scalar_product/scalar_product_2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product_2
+# -- Compiling architecture rtl of scalar_product_2
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 primitives/neuron/perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product_2
+# -- Loading entity heaviside
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 nn_accelerator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity nn_accelerator
+# -- Compiling architecture RTL of nn_accelerator
+# -- Loading entity perceptron
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iram_quartus.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity iram_quartus
+# -- Compiling architecture SYN of iram_quartus
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/dmemory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dmemory
+# -- Compiling architecture RTL of dmemory
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/instructionbusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity instructionbusmux
+# -- Compiling architecture RTL of instructionbusmux
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/databusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity databusmux
+# -- Compiling architecture RTL of databusmux
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iodatabusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity iodatabusmux
+# -- Compiling architecture RTL of iodatabusmux
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package alu_types
+# -- Compiling package body alu_types
+# -- Loading package alu_types
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Compiling entity ULA
+# -- Compiling architecture RTL of ULA
+# End time: 09:34:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/division_functions.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package division_functions
+# -- Compiling package body division_functions
+# -- Loading package division_functions
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/quick_naive.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package division_functions
+# -- Compiling entity quick_naive
+# -- Compiling architecture behave of quick_naive
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package M_types
+# -- Compiling package body M_types
+# -- Loading package M_types
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package M_types
+# -- Compiling entity M
+# -- Compiling architecture RTL of M
+# -- Loading package division_functions
+# -- Loading entity quick_naive
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package decoder_types
+# -- Compiling package body decoder_types
+# -- Loading package decoder_types
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/iregister.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity iregister
+# -- Compiling architecture RTL of iregister
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Loading package decoder_types
+# -- Loading package M_types
+# -- Compiling entity decoder
+# -- Compiling architecture RTL of decoder
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../registers/register_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity register_file
+# -- Compiling architecture RTL of register_file
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/csr.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity csr
+# -- Compiling architecture RTL of csr
+# ** Warning: ../../core/csr.vhd(202): (vcom-1014) Array type case expression must be of a locally static subtype.
+# ** Warning: ../../core/csr.vhd(203): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(206): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(209): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(211): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(213): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(215): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(218): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(221): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 9
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/core.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Compiling entity core
+# -- Compiling architecture RTL of core
+# -- Loading entity csr
+# -- Loading entity iregister
+# -- Loading entity register_file
+# -- Loading entity decoder
+# -- Loading entity ULA
+# -- Loading entity M
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/txt_util.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package txt_util
+# -- Compiling package body txt_util
+# -- Loading package txt_util
+# End time: 09:34:39 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:39 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/trace_debug.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package txt_util
+# -- Compiling entity trace_debug
+# -- Compiling architecture RTL of trace_debug
+# End time: 09:34:40 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:34:40 on Mar 08,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity coretestbench
+# -- Compiling architecture RTL of coretestbench
+# -- Loading entity instructionbusmux
+# -- Loading package altera_mf_components
+# -- Loading entity iram_quartus
+# -- Loading entity dmemory
+# -- Loading entity databusmux
+# -- Loading entity iodatabusmux
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Loading entity core
+# -- Loading entity gpio
+# -- Loading entity nn_accelerator
+# -- Loading package txt_util
+# -- Loading entity trace_debug
+# End time: 09:34:40 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 09:34:40 on Mar 08,2022, Elapsed time: 0:01:55
+# Errors: 0, Warnings: 81
+# vsim -t ns work.coretestbench 
+# Start time: 09:34:40 on Mar 08,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_types(body)
+# Loading altera_mf.altera_mf_components
+# Loading work.alu_types(body)
+# Loading work.m_types(body)
+# Loading work.txt_util(body)
+# Loading work.coretestbench(rtl)
+# Loading work.instructionbusmux(rtl)
+# Loading work.iram_quartus(syn)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.dmemory(rtl)
+# Loading work.databusmux(rtl)
+# Loading work.iodatabusmux(rtl)
+# Loading work.core(rtl)
+# Loading work.csr(rtl)
+# Loading work.iregister(rtl)
+# Loading work.register_file(rtl)
+# Loading work.decoder(rtl)
+# Loading work.ula(rtl)
+# Loading work.division_functions(body)
+# Loading work.m(rtl)
+# Loading work.quick_naive(behave)
+# Loading work.gpio(rtl)
+# Loading work.nn_accelerator(rtl)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product_2(rtl)
+# Loading work.heaviside(rtl)
+# Loading work.trace_debug(rtl)
+# ** Warning: (vsim-8684) No drivers exist on out port /coretestbench/myRiscv/decoder0/dmemory.bus_lag, and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /coretestbench/myRiscv/dmemory.bus_lag.
+# .main_pane.wave.interior.cs.body.pw.wf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/dmem
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 1  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# 0 ns
+# 997500 ns
+do tb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../gpio/gpio.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gpio
+# -- Compiling architecture RTL of gpio
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 primitives/activation/heaviside.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity heaviside
+# -- Compiling architecture rtl of heaviside
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 primitives/scalar_product/scalar_product_2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity scalar_product_2
+# -- Compiling architecture rtl of scalar_product_2
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 primitives/neuron/perceptron.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity perceptron
+# -- Compiling architecture rtl of perceptron
+# -- Loading entity scalar_product_2
+# -- Loading entity heaviside
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 nn_accelerator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity nn_accelerator
+# -- Compiling architecture RTL of nn_accelerator
+# -- Loading entity perceptron
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iram_quartus.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity iram_quartus
+# -- Compiling architecture SYN of iram_quartus
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/dmemory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dmemory
+# -- Compiling architecture RTL of dmemory
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/instructionbusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity instructionbusmux
+# -- Compiling architecture RTL of instructionbusmux
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/databusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity databusmux
+# -- Compiling architecture RTL of databusmux
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../../memory/iodatabusmux.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity iodatabusmux
+# -- Compiling architecture RTL of iodatabusmux
+# End time: 09:40:36 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:36 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package alu_types
+# -- Compiling package body alu_types
+# -- Loading package alu_types
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/alu.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Compiling entity ULA
+# -- Compiling architecture RTL of ULA
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/division_functions.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package division_functions
+# -- Compiling package body division_functions
+# -- Loading package division_functions
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/quick_naive.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package division_functions
+# -- Compiling entity quick_naive
+# -- Compiling architecture behave of quick_naive
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package M_types
+# -- Compiling package body M_types
+# -- Loading package M_types
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../alu/m/M.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package M_types
+# -- Compiling entity M
+# -- Compiling architecture RTL of M
+# -- Loading package division_functions
+# -- Loading entity quick_naive
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder_types.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package decoder_types
+# -- Compiling package body decoder_types
+# -- Loading package decoder_types
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/iregister.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity iregister
+# -- Compiling architecture RTL of iregister
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../decoder/decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package alu_types
+# -- Loading package decoder_types
+# -- Loading package M_types
+# -- Compiling entity decoder
+# -- Compiling architecture RTL of decoder
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../registers/register_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity register_file
+# -- Compiling architecture RTL of register_file
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/csr.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity csr
+# -- Compiling architecture RTL of csr
+# ** Warning: ../../core/csr.vhd(202): (vcom-1014) Array type case expression must be of a locally static subtype.
+# ** Warning: ../../core/csr.vhd(203): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(206): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(209): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(211): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(213): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(215): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(218): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# ** Warning: ../../core/csr.vhd(221): (vcom-1937) Choice in CASE statement alternative must be locally static.
+# End time: 09:40:37 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 9
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:37 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/core.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Compiling entity core
+# -- Compiling architecture RTL of core
+# -- Loading entity csr
+# -- Loading entity iregister
+# -- Loading entity register_file
+# -- Loading entity decoder
+# -- Loading entity ULA
+# -- Loading entity M
+# End time: 09:40:38 on Mar 08,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/txt_util.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package txt_util
+# -- Compiling package body txt_util
+# -- Loading package txt_util
+# End time: 09:40:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:38 on Mar 08,2022
+# vcom -reportprogress 300 ../../core/trace_debug.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Loading package txt_util
+# -- Compiling entity trace_debug
+# -- Compiling architecture RTL of trace_debug
+# End time: 09:40:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:40:38 on Mar 08,2022
+# vcom -reportprogress 300 testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package decoder_types
+# -- Compiling entity coretestbench
+# -- Compiling architecture RTL of coretestbench
+# -- Loading entity instructionbusmux
+# -- Loading package altera_mf_components
+# -- Loading entity iram_quartus
+# -- Loading entity dmemory
+# -- Loading entity databusmux
+# -- Loading entity iodatabusmux
+# -- Loading package alu_types
+# -- Loading package M_types
+# -- Loading entity core
+# -- Loading entity gpio
+# -- Loading entity nn_accelerator
+# -- Loading package txt_util
+# -- Loading entity trace_debug
+# End time: 09:40:38 on Mar 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 09:40:38 on Mar 08,2022, Elapsed time: 0:05:58
+# Errors: 0, Warnings: 81
+# vsim -t ns work.coretestbench 
+# Start time: 09:40:38 on Mar 08,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_types(body)
+# Loading altera_mf.altera_mf_components
+# Loading work.alu_types(body)
+# Loading work.m_types(body)
+# Loading work.txt_util(body)
+# Loading work.coretestbench(rtl)
+# Loading work.instructionbusmux(rtl)
+# Loading work.iram_quartus(syn)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading altera_mf.altera_common_conversion(body)
+# Loading altera_mf.altera_device_families(body)
+# Loading altera_mf.altsyncram(translated)
+# Loading work.dmemory(rtl)
+# Loading work.databusmux(rtl)
+# Loading work.iodatabusmux(rtl)
+# Loading work.core(rtl)
+# Loading work.csr(rtl)
+# Loading work.iregister(rtl)
+# Loading work.register_file(rtl)
+# Loading work.decoder(rtl)
+# Loading work.ula(rtl)
+# Loading work.division_functions(body)
+# Loading work.m(rtl)
+# Loading work.quick_naive(behave)
+# Loading work.gpio(rtl)
+# Loading work.nn_accelerator(rtl)
+# Loading work.perceptron(rtl)
+# Loading work.scalar_product_2(rtl)
+# Loading work.heaviside(rtl)
+# Loading work.trace_debug(rtl)
+# ** Warning: (vsim-8684) No drivers exist on out port /coretestbench/myRiscv/decoder0/dmemory.bus_lag, and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /coretestbench/myRiscv/dmemory.bus_lag.
+# .main_pane.wave.interior.cs.body.pw.wf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/debug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /coretestbench/dmem
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/registers
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 1  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."<": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/alu_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ns  Iteration: 2  Instance: /coretestbench/myRiscv/M_0
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/memAddrTypeSBlock
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 2  Region: /coretestbench/myRiscv/pc_blk
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."<=": metavalue detected, returning FALSE
+#    Time: 150 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 170 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 190 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 210 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 230 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 250 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 270 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 290 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 310 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 330 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 350 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 370 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 390 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 410 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 430 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 450 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 470 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 490 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 500 ns  Iteration: 2  Instance: /coretestbench/iram_quartus_inst/altsyncram_component
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_signed
+# ** Warning: NUMERIC_STD."/=": metavalue detected, returning TRUE
+#    Time: 510 ns  Iteration: 1  Instance: /coretestbench/myRiscv/M_0/quick_div_unsigned
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 242500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 327500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 412500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 497500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 582500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 667500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 752500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 837500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# ** Warning: (vsim-151) NUMERIC_STD.TO_INTEGER: Value -2147483522 is not in bounds of subtype NATURAL.
+#    Time: 922500 ns  Iteration: 2  Region: /coretestbench/myRiscv/branch_unit
+# 0 ns
+# 997500 ns

@@ -30,6 +30,7 @@ void set_weigh(int8_t w0_0, int8_t w1_0, int8_t w0_1, int8_t w1_1, int8_t w0_2, 
 int8_t inference(int8_t x0, int8_t x1){
     NN_A_BASE->x0 = x0;
     NN_A_BASE->x1 = x1;
+    //delay_(2);
     return NN_A_BASE->y1;
 }
 
