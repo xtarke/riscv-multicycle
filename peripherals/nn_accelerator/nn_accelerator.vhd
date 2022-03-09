@@ -2,6 +2,7 @@
 --! @file
 --! @brief RISCV Neural Network Peripheral
 --         RAM mapped general purpose I/O
+--TODO: desenhar as connecxçoes entre os neuros
 -------------------------------------------------------
 
 library ieee;

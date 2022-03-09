@@ -34,6 +34,8 @@ O periférico em sí, a entidade topo deste projeto, instancia diversas primitiv
 
 Foram implementados 3 neurônios do tipo perceptron, interconectados em uma rede neural com duas entradas e uma saída. Os dois primeiros neurônios recebem as duas entradas, a saída de cada um deles vai para as entradas do terceiro, e a saída desse é a saída da rede.
 
+![](images/network-connections.png)
+
 No futuro o periférico também deve ser responsável por configurar as interconexões entre as primitivas, por exemplo: o periférico foi sintetizado com 32 neurônios do tipo perceptron, 8 neurônios com ativação softmax e 8 neurônios com ativação linear; O programador decidiu utilizar 5 neurônios perceptron na camada de entrada, 3 em uma camada escondida, e 1 neurônio Softmax na camada de saída. 
 
 No futuro pode ser necessário que as entradas sejam configuradas de forma sequencial, de forma à diminuir o espaço de endereçamento necessários para o barramento. Por exemplo: os peso são inseridos 8 à 8, cada conjunto de 8 sendo configurado em um ciclo de clock.
