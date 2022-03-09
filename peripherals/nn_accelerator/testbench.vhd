@@ -80,7 +80,6 @@ architecture RTL of coretestbench is
 	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
     signal outs : std_logic_vector(3 downto 0);
     
-    -- NN Acelarator
 begin
 
     clock_driver : process
@@ -117,8 +116,9 @@ begin
     gpio_test: process
     begin
         --gpio_input <= (others => '0');
-        wait for 182000 ns;
-        --assert ddata_r = "00000000000000000000000001111111" severity failure; -- result should be 127        
+        -- TODO: automatically detect everytime my peripheral writes to GPIO
+        wait for 244000 ns; --time when the GPIO is written
+        assert ddata_w(31) = '1' severity failure;       
         wait;
     end process;  
 
