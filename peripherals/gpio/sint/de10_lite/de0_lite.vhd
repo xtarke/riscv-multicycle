@@ -82,12 +82,12 @@ architecture rtl of de0_lite is
     signal clk_50MHz : std_logic;
     -- PLL signals
     signal locked_sig : std_logic;
-        
+
     -- Instruction bus signals
     signal idata     : std_logic_vector(31 downto 0);
     signal iaddress : unsigned(15 downto 0);
     signal address   : std_logic_vector (9 downto 0);
-    
+
     -- Data bus signals
     signal daddress : unsigned(31 downto 0);
     signal ddata_r	:  	std_logic_vector(31 downto 0);
@@ -95,21 +95,21 @@ architecture rtl of de0_lite is
     signal ddata_r_mem : std_logic_vector(31 downto 0);
     signal dmask    : std_logic_vector(3 downto 0);
     signal dcsel    : std_logic_vector(1 downto 0);
-    signal d_we     : std_logic;	
+    signal d_we     : std_logic;
     signal d_rd     : std_logic;
     signal d_sig    : std_logic;
-        
+
     -- SDRAM signals
     signal ddata_r_sdram : std_logic_vector(31 downto 0);
-        
+
     -- CPU state signals
     signal state : cpu_state_t;
     signal div_result : std_logic_vector(31 downto 0);
-        
+
     -- I/O signals
     signal gpio_input : std_logic_vector(31 downto 0);
     signal gpio_output : std_logic_vector(31 downto 0);
-    
+
     -- Peripheral data signals
     signal ddata_r_gpio : std_logic_vector(31 downto 0);
     signal ddata_r_timer : std_logic_vector(31 downto 0);
@@ -120,22 +120,19 @@ architecture rtl of de0_lite is
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
     signal ddata_r_dig_fil : std_logic_vector(31 downto 0);
     signal ddata_r_stepmot : std_logic_vector(31 downto 0);
-	 
-	 signal data_in_dig_fil : std_logic_vector(15 downto 0);
-	 
-	 
-    
+    signal ddata_r_lcd : std_logic_vector(31 downto 0);
+
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
     signal gpio_interrupts : std_logic_vector(6 downto 0);
     signal timer_interrupt : std_logic_vector(5 downto 0);
-    
+
     -- I/O signals
-    signal input_in : std_logic_vector(31 downto 0);    
+    signal input_in : std_logic_vector(31 downto 0);
 
 begin
-    
-    -- Reset 
+
+    -- Reset
     rst <= SW(9);
     LEDR(9) <= SW(9);
 
@@ -159,7 +156,7 @@ begin
 			wren    => '0',
 			q       => idata
 		);
-		
+
     -- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
     instr_mux: entity work.instructionbusmux
@@ -204,7 +201,7 @@ begin
 		);
 
 	-- Softcore instatiation
-	myRiscv : entity work.core		
+	myRiscv : entity work.core
 		port map(
 			clk      => clk,
 			rst      => rst,
@@ -222,11 +219,11 @@ begin
 			interrupts=>interrupts,
 			state    => state
 		);
-		
-	-- IRQ lines
-	interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
-    interrupts(30 downto 25) <= timer_interrupt;
-    
+
+		-- IRQ lines
+		interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
+		interrupts(30 downto 25) <= timer_interrupt;
+
     io_data_bus_mux: entity work.iodatabusmux
         port map(
             daddress         => daddress,
@@ -238,68 +235,68 @@ begin
             ddata_r_timer    => ddata_r_timer,
             ddata_r_periph   => ddata_r_periph,
             ddata_r_dif_fil  => ddata_r_dig_fil,
-				ddata_r_stepmot  => ddata_r_stepmot
-            
+						ddata_r_stepmot  => ddata_r_stepmot,
+						ddata_r_lcd      => ddata_r_lcd
         );
 
-	generic_gpio: entity work.gpio
-		port map(
-			clk      => clk,
-			rst      => rst,
-			daddress => daddress,
-			ddata_w  => ddata_w,
-			ddata_r  => ddata_r_gpio,
-			d_we     => d_we,
-			d_rd     => d_rd,
-			dcsel    => dcsel,
-			dmask    => dmask,
-			input    => gpio_input,
-			output   => gpio_output,
-			gpio_interrupts => gpio_interrupts
-		);
-		
-    -- Timer instantiation
-    timer : entity work.Timer
-        generic map(
-            prescaler_size => 16,
-            compare_size   => 32
-        )
-        port map(
-            clock       => clk,
-            reset       => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_timer,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            timer_interrupt => timer_interrupt
-        );
+			generic_gpio: entity work.gpio
+				port map(
+					clk      => clk,
+					rst      => rst,
+					daddress => daddress,
+					ddata_w  => ddata_w,
+					ddata_r  => ddata_r_gpio,
+					d_we     => d_we,
+					d_rd     => d_rd,
+					dcsel    => dcsel,
+					dmask    => dmask,
+					input    => gpio_input,
+					output   => gpio_output,
+					gpio_interrupts => gpio_interrupts
+			);
 
-    generic_displays : entity work.led_displays      
-        port map(
-            clk      => clk,
-            rst      => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_segments,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            hex0     => HEX0,
-            hex1     => HEX1,
-            hex2     => HEX2,
-            hex3     => HEX3,
-            hex4     => HEX4,
-            hex5     => HEX5,
-            hex6     => open,
-            hex7     => open
-        );
-        
-	-- Connect input hardware to gpio data
-	gpio_input(3 downto 0) <= SW(3 downto 0);
-    LEDR(7 downto 0) <= gpio_output(7 downto 0);
+			-- Timer instantiation
+			timer : entity work.Timer
+			  generic map(
+			      prescaler_size => 16,
+			      compare_size   => 32
+			  )
+			  port map(
+			      clock       => clk,
+			      reset       => rst,
+			      daddress => daddress,
+			      ddata_w  => ddata_w,
+			      ddata_r  => ddata_r_timer,
+			      d_we     => d_we,
+			      d_rd     => d_rd,
+			      dcsel    => dcsel,
+			      dmask    => dmask,
+			      timer_interrupt => timer_interrupt
+			  );
+
+			generic_displays : entity work.led_displays
+			  port map(
+			      clk      => clk,
+			      rst      => rst,
+			      daddress => daddress,
+			      ddata_w  => ddata_w,
+			      ddata_r  => ddata_r_segments,
+			      d_we     => d_we,
+			      d_rd     => d_rd,
+			      dcsel    => dcsel,
+			      dmask    => dmask,
+			      hex0     => HEX0,
+			      hex1     => HEX1,
+			      hex2     => HEX2,
+			      hex3     => HEX3,
+			      hex4     => HEX4,
+			      hex5     => HEX5,
+			      hex6     => open,
+			      hex7     => open
+			  );
+
+			-- Connect input hardware to gpio data
+			gpio_input(3 downto 0) <= SW(3 downto 0);
+			LEDR(7 downto 0) <= gpio_output(7 downto 0);
 
 end;
