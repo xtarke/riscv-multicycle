@@ -6,6 +6,7 @@
 
   typedef struct {
     _IO32 character; // 0 a 7
+    _IO32 wait_next; // 0 a 7
     _IO32 start; // 8
     _IO32 wr_en; // 9
     _IO32 clear; // 10
