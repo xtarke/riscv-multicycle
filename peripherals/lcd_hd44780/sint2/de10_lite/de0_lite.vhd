@@ -321,9 +321,7 @@ begin
 					lcd_data(0)    => ARDUINO_IO(7),
 					lcd_rs         => ARDUINO_IO(9),
 					lcd_e          => ARDUINO_IO(8),
-					lcd_is_busy    => LEDR(8),
-					teste0 => LEDR(0),
-					teste1 => LEDR(1)
+					lcd_is_busy    => LEDR(8)
 				);		
 				
         -- daddress    : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
