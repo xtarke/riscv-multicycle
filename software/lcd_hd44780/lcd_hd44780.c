@@ -14,13 +14,13 @@ int main(){
   HD44780_REGISTER -> goL2 = 0;
   HD44780_REGISTER -> wait_next = 0;
   
-  delay_(500);
+  delay_(5000);
   HD44780_REGISTER -> start = 1;
-  delay_(500);
+  delay_(5000);
   HD44780_REGISTER -> start = 0;
-  delay_(500);
+  delay_(5000);
   HD44780_REGISTER -> clear = 1;
-  delay_(500);
+  delay_(5000);
   HD44780_REGISTER -> clear = 0;
 
   char string_lcd[] = "Hello World ";

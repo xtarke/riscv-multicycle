@@ -47,10 +47,7 @@ entity lcd_hd44780 is
         --! @brief External signals (IOs to interface with LCD)        
         lcd_data    : out std_logic_vector(7 downto 0);
         lcd_rs      : out std_logic;    --! Controls if command or char data
-        lcd_e       : out std_logic;     --! Pulse in every command/data
-        
-        teste0: out std_logic;
-        teste1: out std_logic
+        lcd_e       : out std_logic     --! Pulse in every command/data
         
     );
 end lcd_hd44780;
