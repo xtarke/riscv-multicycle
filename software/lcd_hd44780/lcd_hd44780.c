@@ -12,6 +12,8 @@ int main(){
   HD44780_REGISTER -> clear = 0;
   HD44780_REGISTER -> goL1 = 0;
   HD44780_REGISTER -> goL2 = 0;
+  HD44780_REGISTER -> wait_next = 0;
+  
   delay_(500);
   HD44780_REGISTER -> start = 1;
   delay_(500);
@@ -20,10 +22,20 @@ int main(){
   HD44780_REGISTER -> clear = 1;
   delay_(500);
   HD44780_REGISTER -> clear = 0;
+
+  char string_lcd[] = "Hello World ";
+
   while(1) {
-    HD44780_REGISTER -> wr_en = 1;
-    HD44780_REGISTER -> character = (int) 'C';
-    delay_(500);
+    for(i=0; i<12; i++){      
+      HD44780_REGISTER -> character = (int) string_lcd[i];  
+      HD44780_REGISTER -> wait_next = 0;   
+      HD44780_REGISTER -> wr_en = 1;
+      delay_(50);
+      HD44780_REGISTER -> wait_next = 1;
+      delay_(150);
+    }
+    HD44780_REGISTER -> wr_en = 0;
+    while(1){}
   }
   return 0;
 }
