@@ -5,3 +5,4 @@ incremental_db/
 greybox_tmp/
 .DS_Store
 .settings
+work/
