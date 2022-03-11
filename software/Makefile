@@ -1,7 +1,8 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = /home/benitez/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.2.0-1.2.1/.content/bin/riscv-none-embed-
+#RISCV_TOOLS_PREFIX=riscv-none-embed-
+# Para usar no LSC
+RISCV_TOOLS_PREFIX = ~/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/riscv-none-embed-
 endif
-
 
 QUARTUS_DIR=~/Data/Apps/intelFPGA/20.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
