@@ -3,7 +3,19 @@ RISVC contributors
 ## 2021/2
 
 * **[Gustavo Vianna França](https://github.com/Gustavo-V-F)**
-  * Nokia graph LCD controller integration. 
+  * Nokia graph LCD controller integration.
+
+* **[Leonardo Santiago Benitez Pereira](https://github.com/LeonardoSanBenitez)**
+  * Neural Network acelerator.
+
+* **[Carolina de Farias](https://github.com/Caroles12/)**
+  * Added FIR filter.
+
+* **[Luciano Caminha Junio](https:/ ?? )**
+  * Added one-wire LED controller (no RISCV integration).
+
+* **[Igor Godinho Debastiani](https:/ ?? )**
+    * Added RISV integration of 16x2 LCD controller .
 
 ## 2021/1
 
@@ -13,6 +25,15 @@ RISVC contributors
 * **[Kevin Jahn Ferreira](https://github.com/kevjahn)**
   * Added hardware interrupt to ADC.
 
+* **[Rafael Gustavo NAgel](https://github.com/RGNagel)**
+  * DE10 Flash memory integration (fitst attempt).
+
+* **[Rayan Martins Steinbach](https://github.com/rayanmst)**
+  * Added step motor controller.
+
+* **[Rodrigo Luiz da Costa](https://github.com/rodrigo-lc)**
+  * Added 16x2 LCD controller (no RISCV integration).
+
 ## 2020/2
 
 * **[Lucas Odair Silva](https://github.com/luscasos)**
@@ -20,16 +41,16 @@ RISVC contributors
 
 * **[Mikael Ferraz Aldebrand](https://github.com/miklz)**
   * Implemented new pipelined division unit.
-  
+
 * **[Jonas Vieira De Souza](https://github.com/jvsouza)**
-  * Integration of DE-10 Lite accelerometer unit 
-  
+  * Integration of DE-10 Lite accelerometer unit
+
 * **[Vitor Faccio](https://github.com/vitorfaccio) and Heloiza Martins Schaberle**
   * Watchdog Timer implementation
-  
+
 * **[Leticia De Oliveira Nunes](https://github.com/lele1991) and Marieli Fernandes Matos**
   * New implementation of MAX10 ADC. Software and hardware.
-  
+
 * **[Rafael Hiller](https://github.com/Hillerr)**
   * UART with reception ISR. ToDo: bus integration.
 
@@ -37,20 +58,20 @@ RISVC contributors
 
 * **[Lucas Odair Silva](https://github.com/luscasos)**
   * Corrected, tested and validated SDRAM controller and core integration
-  
+
 * **[Gustavo Vigarani Scalco](https://github.com/gscalco)**
   * Nokia graph LCD controller
-  
+
 * **[Suzi Yousif](https://github.com/suziyousif)**
   * Ultrassonic sensor
 
 * **[Hellen Avila Rosa](https://github.com/hellenavilarosa)** e Ana Claudia Banderchuk
   * GPIO with hardware counting debouncer
-  
+
 * **[Tarcis Aurelio Becher](https://github.com/tarciszera)**
   * Hardware digital filter
 
-## 2019/2 
+## 2019/2
 
 * **[Diesson Stefano Allebrandt](https://github.com/diesson)** and **[Felipe Rodrigues Broering](https://github.com/BroeringFelipe)**
   * TFT diplay controller
@@ -88,7 +109,4 @@ RISVC contributors
   * [M] Instructions extension.
 
 * **[Marcos Vinicius Leal Da Silva](https://github.com/marcosleal)**
-
   * 9600 baudrate UART.
-
-
