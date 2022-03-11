@@ -51,7 +51,7 @@ Porém, apresenta o problema em que comandos não são enviados um a um. Necessi
 
 ## Segunda parte
 
-O desenvolvimento da segunda parte contempla a integração da primeira parte com um processador riscV + memória. A dinâmica do projeto situa o controlador lcd como um periférico que é controlado pelo processador a partir da leitura de comandos em memória. Os comandos, por sua vez, são gerados a partir de um código C compilado para o conjunto de instruções riscV.
+O desenvolvimento da segunda parte contempla a integração da primeira parte com um softcore riscV. A dinâmica do projeto situa o controlador lcd como um periférico que é controlado pelo softcore a partir da leitura de comandos em memória. Os comandos, por sua vez, são gerados a partir de um código C compilado para o conjunto de instruções riscV.
   
 ### Objetivos
 A entidade projetada consiste em:
