@@ -1,0 +1,8 @@
+work/
+transcript
+vsim.wlf
+wave.ps
+
+sim.s
+
+*.bak
