@@ -16,31 +16,31 @@
 #******************************************************************************
 
 vlib work
-vcom ../../memory/iram_quartus.vhd
-vcom ../../memory/dmemory.vhd
-vcom ../../memory/instructionbusmux.vhd
-vcom ../../memory/databusmux.vhd
-vcom ../../memory/iodatabusmux.vhd
-vcom ../../alu/alu_types.vhd
-vcom ../../alu/alu.vhd
-vcom ../../alu/m/division_functions.vhd
-vcom ../../alu/m/quick_naive.vhd
-vcom ../../alu/m/M_types.vhd
-vcom ../../alu/m/M.vhd
-vcom ../../decoder/decoder_types.vhd
-vcom ../../decoder/iregister.vhd
-vcom ../../decoder/decoder.vhd
-vcom ../../registers/register_file.vhd
-vcom ../../peripherals/gpio/gpio.vhd
-vcom ../../peripherals/gpio/led_displays.vhd
-vcom ../../peripherals/timer/Timer.vhd
-vcom ../step_motor/stepmotor.vhd
+vcom ../../../memory/iram_quartus.vhd
+vcom ../../../memory/dmemory.vhd
+vcom ../../../memory/instructionbusmux.vhd
+vcom ../../../memory/databusmux.vhd
+vcom ../../../memory/iodatabusmux.vhd
+vcom ../../../alu/alu_types.vhd
+vcom ../../../alu/alu.vhd
+vcom ../../../alu/m/division_functions.vhd
+vcom ../../../alu/m/quick_naive.vhd
+vcom ../../../alu/m/M_types.vhd
+vcom ../../../alu/m/M.vhd
+vcom ../../../decoder/decoder_types.vhd
+vcom ../../../decoder/iregister.vhd
+vcom ../../../decoder/decoder.vhd
+vcom ../../../registers/register_file.vhd
+vcom ../../../peripherals/gpio/gpio.vhd
+vcom ../../../peripherals/gpio/led_displays.vhd
+vcom ../../../peripherals/timer/Timer.vhd
+vcom ../../step_motor/stepmotor.vhd
 vcom ./lcd_hd44780.vhd
-vcom ../../core/csr.vhd
-vcom ../../core/core.vhd
-vcom ../../core/txt_util.vhdl
-vcom ../../core/trace_debug.vhd
-vcom testbench_risc.vhd
+vcom ../../../core/csr.vhd
+vcom ../../../core/core.vhd
+vcom ../../../core/txt_util.vhdl
+vcom ../../../core/trace_debug.vhd
+vcom testbench.vhd
 
 vsim -t ns coretestbench
 
