@@ -2,7 +2,8 @@ ifndef RISCV_TOOLS_PREFIX
 RISCV_TOOLS_PREFIX = /home/benitez/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.2.0-1.2.1/.content/bin/riscv-none-embed-
 endif
 
-QUARTUS_DIR=/home/benitez/intelFPGA_lite/21.1/quartus/bin/
+
+QUARTUS_DIR=~/Data/Apps/intelFPGA/20.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
@@ -42,7 +43,7 @@ sint:
 fpga:
 	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof"
 
-flash:
+flash: quartus_$(MAIN).hex
 	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
 
 clean:

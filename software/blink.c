@@ -17,7 +17,7 @@
 
 int main(){
 	uint32_t data = 0;
-   
+
 	while (1){
 		/* Read input bus */
 		if (INBUS)
