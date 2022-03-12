@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 entity lcd_hd44780 is
     generic(
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"00A0";
+        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"00C0";
         DADDRESS_BUS_SIZE   : integer                      := 32;
         
         display_width       : integer                      := 16;
