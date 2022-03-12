@@ -1,15 +1,45 @@
-#include <stdint.h>
-#include "utils.h"
-#include "hardware.h"
+/** @file lcd.c
+ *  @brief Nokia 5110 LCD display source file.
+ * 
+ *  Implements functions defined in its header file.
+*/
 
-int main(){
-	char letter = 'A';
+#include "lcd.h"
 
-	
-	while (1){
-		OUTBUS = letter;
-		delay_(1000);
-	}
+inline _IO32 lcd_pos(_IO32 x, _IO32 y){
+    while(x >= DISPLAY_NOKIA_5110_WIDTH){
+        x -= DISPLAY_NOKIA_5110_WIDTH;
+        y += 1;
+    }
+    
+    while(y >= DISPLAY_NOKIA_5110_HEIGHT)
+        y -= DISPLAY_NOKIA_5110_HEIGHT;
+        
+    return x + y * DISPLAY_NOKIA_5110_WIDTH;
+}
 
-	return 0;
+void lcd_init(void){
+    DISPLAY_NOKIA_5110_REGISTER->reg_ctrl = 1;
+    DISPLAY_NOKIA_5110_REGISTER->we = 0;
+    delay_(700);
+}
+
+void lcd_clear(void){
+    DISPLAY_NOKIA_5110_REGISTER->reg_ctrl = 0;
+    DISPLAY_NOKIA_5110_REGISTER->we = 1;
+    delay_(100);
+    DISPLAY_NOKIA_5110_REGISTER->we = 0;
+    delay_(600);
+}
+void lcd_print(char *string, _IO32 len, _IO32 x, _IO32 y){
+    for(int i = 0; i < len; i++){
+        DISPLAY_NOKIA_5110_REGISTER->reg_ctrl = 1;
+        DISPLAY_NOKIA_5110_REGISTER->pos = lcd_pos(x, y) + (i*DISPLAY_NOKIA_5110_LETTER_SPACING);
+        DISPLAY_NOKIA_5110_REGISTER->data = string[i];
+        DISPLAY_NOKIA_5110_REGISTER->we = 1;
+        delay_(10);
+    }
+    
+    DISPLAY_NOKIA_5110_REGISTER->we = 0;
+    delay_(100);
 }
