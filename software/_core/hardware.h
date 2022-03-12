@@ -39,9 +39,9 @@
 #define _IO32S volatile int32_t
 #endif
 
-#define PERIPH_BASE		((uint32_t)0x4000000)          /*!< Peripheral base address */
-#define SDRAM_BASE		((uint32_t)0x6000000)          /*!< SDRAM base address */
-#define SDRAM 			(*(_IO32 *) (SDRAM_BASE))		/*!< SDRAM base address */
+#define PERIPH_BASE     ((uint32_t)0x4000000)          /*!< Peripheral base address */
+#define SDRAM_BASE      ((uint32_t)0x6000000)          /*!< SDRAM base address */
+#define SDRAM           (*(_IO32 *) (SDRAM_BASE))      /*!< SDRAM base address */
 
 // flash base address is the same of SDRAM plus an offset. this is due to the
 // length of 'dcsel' (2 bits) in databusmux.vhd. There isn't room for more then
@@ -62,23 +62,25 @@
 // In that .h only the base address must be defined
 // The specific addresses must be defined in the respective .h of the periphery
 // Take gpio.h as an example
-#define IONBUS_BASE_ADDRESS 	    	(*(_IO32 *) (PERIPH_BASE))			    
-#define SEGMENTS_BASE_ADDRESS 		  (*(_IO32 *) (PERIPH_BASE + 1*16*4))		
-#define UART_BASE_ADDRESS 		     	(*(_IO32 *) (PERIPH_BASE + 2*16*4))	
-#define ADC_BASE_ADDRESS 		        (*(_IO32 *) (PERIPH_BASE + 3*16*4))		
-#define I2C_BASE_ADDRESS 			      (*(_IO32 *) (PERIPH_BASE + 4*16*4))	
-#define TIMER_BASE_ADDRESS 		    	(*(_IO32 *) (PERIPH_BASE + 5*16*4))		
-#define SPI_BASE_ADDRESS 	    	    (*(_IO32 *) (PERIPH_BASE + 6*16*4))	
-#define TFT_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 7*16*4))	
-#define DIG_FIL_BASE_ADDRESS  	    (*(_IO32 *) (PERIPH_BASE + 8*16*4))  
-#define STEP_M_BASE_ADDRESS         (*(_IO32 *) (PERIPH_BASE + 9*16*4))
-#define HD44780_BASE_ADDRESS         (*(_IO32 *) (PERIPH_BASE + 12*16*4))
+
+#define IONBUS_BASE_ADDRESS             (*(_IO32 *) (PERIPH_BASE))
+#define SEGMENTS_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 1*16*4))
+#define UART_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 2*16*4))
+#define ADC_BASE_ADDRESS                (*(_IO32 *) (PERIPH_BASE + 3*16*4))
+#define I2C_BASE_ADDRESS                (*(_IO32 *) (PERIPH_BASE + 4*16*4))
+#define TIMER_BASE_ADDRESS              (*(_IO32 *) (PERIPH_BASE + 5*16*4))
+#define SPI_BASE_ADDRESS                (*(_IO32 *) (PERIPH_BASE + 6*16*4))
+#define TFT_BASE_ADDRESS                (*(_IO32 *) (PERIPH_BASE + 7*16*4))
+#define DIG_FIL_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 8*16*4))
+#define STEP_M_BASE_ADDRESS             (*(_IO32 *) (PERIPH_BASE + 9*16*4))
+#define DISPLAY_NOKIA_5110_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 10*16*4))
+#define NN_A_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 11*16*4))
+#define HD44780_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 12*16*4))
+
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
 //#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
 //#define TFT_RETURN    (*(_IO32 *) (PERIPH_BASE + 44))	
-
-
 
 #endif //HARDWARE_H
