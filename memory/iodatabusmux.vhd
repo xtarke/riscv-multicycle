@@ -22,6 +22,7 @@ entity iodatabusmux is
 		ddata_r_timer    : in   std_logic_vector(31 downto 0);
 		ddata_r_stepmot  : in   std_logic_vector(31 downto 0);
 		ddata_r_dif_fil  : in   std_logic_vector(31 downto 0);
+		ddata_r_fir_fil  : in   std_logic_vector(31 downto 0);
 		
 		-- Mux 
 		ddata_r_periph		: out 	std_logic_vector(31 downto 0)     --! Connect to data bus mux
@@ -40,7 +41,8 @@ begin
                           ddata_r_i2c       when x"0004",
                           ddata_r_timer     when x"0005",
                           ddata_r_dif_fil   when x"0008",
-                          ddata_r_stepmot  when x"0009",                          
+                          ddata_r_stepmot  when x"0009",
+                          ddata_r_fir_fil  when x"000D",
                           -- Add new io peripherals here                          
                           (others => '0') when others;
 end architecture RTL;
