@@ -3,13 +3,13 @@
 O controlador WS2812B comanda o acionamento de LEDs RGB. Sua principal característica é a possibilidade de ser utilizado de forma cascateada, formando cadeias de LEDs que podem ser ativados individualmente. O controlador possui, além dos pinos de alimentação, dois terminais de dados: data_in e data_out. Desta forma, toda a comunicação de comando é feita utilizando-se apenas um fio.
 
 <p align="center">
-    <img width="80%" height="50%" src="Figures/cascade_method.png">
+    <img width="50%" height="50%" src="Figures/cascade_method.png">
 </p>
 
 Segundo o datasheet do controlador [WS-2812B](https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf), para que o sistema interprete um sinal como bit 1, deverá ser gerado um sinal com 0,80us em nível lógico alto seguido por 0,45us em nível lógico baixo. Já para produzir um bit 0, o sinal deve iniciar com 0,45us em nível alto seguido por 0,85us em nível lógico baixo. O sinal de reset, que atualiza os valores dos LEDs, é interpretado quando o nível lógico baixo é mantido por pelo menos 50us:  
 
 <p align="center">
-    <img width="80%" height="50%" src="Figures/bit_structure.png">
+    <img width="50%" height="50%" src="Figures/bit_structure.png">
 </p>
  
 Para enviar a informação de cor para um LED é necessário respeitar seu formato de cor. As palavras de 24bits são compostas por 8 bits da cor verde (256 valores), 8 bits da cor vermelha e 8 bits da cor azul. O primeiro bit a ser lido é o de valor mais alto da cor verde.
@@ -21,7 +21,7 @@ Para enviar a informação de cor para um LED é necessário respeitar seu forma
 Por fim, caso esteja-se utilizando um acionamento cascateado todos os bits, primeiramente todos os bits, de todos os LEDs devem ser enviados, seguidos por um sinal de reset que atualizará a cor dos LEDs pelos respectivos valores enviados. Por exemplo, caso esteja-se utilizando um anel com 16 LEDs únicos, deverão ser enviados 384 bits (16*24) antes do sinal de reset ser enviado.
 
 <p align="center">
-    <img width="80%" height="50%" src="Figures/data_transmission.png">
+    <img width="50%" height="50%" src="Figures/data_transmission.png">
 </p>
 
 ## Simulação
@@ -32,10 +32,10 @@ O modelo foi simulado no software modelsim através do arquivo testebenchpll.vhd
 O sinal data_out, a ser conectado ao LED (ou anel ou fita de LEDs), é disponível no pino `ARDUINO_IO 3`. Por definição, o kit de desenvolvimento testado utiliza 3.3V como nível lógico alto e ele pode ser utilizado diretamente para acionar os LEDs, no entanto, o controlador possui melhor performance quando acionado com nível lógico alto de 5V. Recomenda-se, portanto, utilizar um conversor de nível lógico 3.3V-5V para o acionamento. A alimentação do LED deve também ser feita com 5V.
  
 <p align="center">
-    <img width="100%" height="50%" src="Figures/WS2812B--Pinout.png">
+    <img width="50%" height="50%" src="Figures/WS2812B--Pinout.png">
 </p> 
 <p align="center">
-    <img width="100%" height="50%" src="Figures/led_ring.jpeg">
+    <img width="50%" height="50%" src="Figures/led_ring.jpeg">
 </p>
  
 ## Resultados da síntese
@@ -63,6 +63,3 @@ Para quem desejar complementar o periférico, sugere-se a seguinte lista de tare
 ## Referências
 * [WS2812 Datasheet](https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf)
 * [Article: Protocol for the WS2812B Programmable LED](https://www.arrow.com/en/research-and-events/articles/protocol-for-the-ws2812b-programmable-led)
- 
- 
-
