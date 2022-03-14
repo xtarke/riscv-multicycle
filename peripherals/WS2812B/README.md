@@ -32,7 +32,7 @@ O modelo foi simulado no software modelsim através do arquivo testebenchpll.vhd
 O sinal data_out, a ser conectado ao LED (ou anel ou fita de LEDs), é disponível no pino `ARDUINO_IO 3`. Por definição, o kit de desenvolvimento testado utiliza 3.3V como nível lógico alto e ele pode ser utilizado diretamente para acionar os LEDs, no entanto, o controlador possui melhor performance quando acionado com nível lógico alto de 5V. Recomenda-se, portanto, utilizar um conversor de nível lógico 3.3V-5V para o acionamento. A alimentação do LED deve também ser feita com 5V.
  
 <p align="center">
-    <img width="50%" height="50%" src="Figures/WS2812B--Pinout.png">
+    <img width="20%" height="20%" src="Figures/WS2812B--Pinout.png">
 </p> 
 <p align="center">
     <img width="50%" height="50%" src="Figures/led_ring.jpeg">
