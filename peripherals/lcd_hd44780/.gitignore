@@ -1,0 +1,8 @@
+output_files/
+simulation/
+db/
+incremental_db/
+greybox_tmp/
+.DS_Store
+.settings
+work/

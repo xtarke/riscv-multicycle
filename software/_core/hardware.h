@@ -75,7 +75,9 @@
 #define STEP_M_BASE_ADDRESS             (*(_IO32 *) (PERIPH_BASE + 9*16*4))
 #define DISPLAY_NOKIA_5110_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 10*16*4))
 #define NN_A_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 11*16*4))
+#define HD44780_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 12*16*4))
 #define FIR_FILT_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 13*16*4))
+
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
