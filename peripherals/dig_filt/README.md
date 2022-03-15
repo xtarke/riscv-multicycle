@@ -138,9 +138,9 @@ O enable desse periférico é feito através de hardware, ou seja, a entrada som
 
 A saída utilizada nesse filtro(data_out) serve apenas para conferência no componente system sources e probes, podendo ser suprimida. 
 
-![]
+<p align="center"><img src = "img/filtro1.png"/></p>
 
-![image-20220312113357497](D:\Users\carol\Documents\PLD\pld\final\riscv-multicycle\peripherals\dig_filt\img\filtro1.png)
+
 
 ## Funcionamento do Periférico
 
@@ -150,24 +150,15 @@ Assim, quando ocorrer a borda de subida do clock e habilitação de escrita esti
 
 A entrada de dados é cascateada, de forma que ocorrerá a multiplicação entre os coeficientes e o valor da entrada. A saída é um sinal que recebe o somatório final. Quando a habilitação de leitura estiver ativada, será enviado a parte msb do dado em um endereço e então será enviado a parte lsb para outro endereço.
 
-![image-20220312121207200](D:\Users\carol\Documents\PLD\pld\final\riscv-multicycle\peripherals\dig_filt\img\modelsim.png)
+<p align="center"><img src = "img/modelsim.png"/></p>
+
+
 
 Assim, conforme a imagem, temos que:
-$$
-y[0] = coef(0) * datain(0) = -1
-$$
 
-$$
-y[1] = coef(0) * datain(1) + coef(1)*datain(0) = -2
-$$
+<p align="center"><img src = "img/resultado.png"/></p>
 
-$$
-y[2] = coef(0) * datain(2) + coef(1)*datain(1) + coef(0)*datain(0) = 2
-$$
 
-$$
-y[3] = coef(0)*datain(3) + coef(1)*datain(2) + coef(2)*datain(1) + coef(3)*datain(0) = 0
-$$
 
 ##  Código em C
 
@@ -175,7 +166,9 @@ Para adicionar o periférico ao núcleo do riscv, foi necessário modificar os s
 
 1. memory/iodatabusmux.vhd 
 
-   ![image-20220312125129108](D:\Users\carol\Documents\PLD\pld\final\riscv-multicycle\peripherals\dig_filt\img\modificacoes.png)
+   <p align="center"><img src = "img/modificacoes.png"/></p>
+
+   
 
    2. Inclusão do endereço em software/_core/hardware.h 
 
@@ -213,7 +206,7 @@ Para adicionar o periférico ao núcleo do riscv, foi necessário modificar os s
 
       
 
-4. Em fir_filt.c temos as funções.
+2. Em fir_filt.c temos as funções.
 
    ```c
      /* FIR filter peripheral
@@ -254,8 +247,8 @@ Para adicionar o periférico ao núcleo do riscv, foi necessário modificar os s
    }
    
    ```
-   
-5. Em main_fir_filt.c temos as chamadas de funções e a possibilidade de alterar os coeficientes do filtro.
+
+3. Em main_fir_filt.c temos as chamadas de funções e a possibilidade de alterar os coeficientes do filtro.
 
    ```c
    /* 
