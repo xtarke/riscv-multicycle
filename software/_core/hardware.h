@@ -62,6 +62,7 @@
 // In that .h only the base address must be defined
 // The specific addresses must be defined in the respective .h of the periphery
 // Take gpio.h as an example
+
 #define IONBUS_BASE_ADDRESS             (*(_IO32 *) (PERIPH_BASE))
 #define SEGMENTS_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 1*16*4))
 #define UART_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 2*16*4))
@@ -74,6 +75,7 @@
 #define STEP_M_BASE_ADDRESS             (*(_IO32 *) (PERIPH_BASE + 9*16*4))
 #define DISPLAY_NOKIA_5110_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 10*16*4))
 #define NN_A_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 11*16*4))
+#define FIR_FILT_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 13*16*4))
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
