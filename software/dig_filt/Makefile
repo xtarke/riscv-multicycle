@@ -1,8 +1,9 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = /home/edneif/.local/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = /home/caroles/xpack-riscv-none-embed-gcc-10.2.0-1.2/bin/riscv-none-embed-
+endif
 # Para usar no LSC
 #RISCV_TOOLS_PREFIX = ~/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
-endif
+#endif
 
 
 QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
@@ -14,7 +15,7 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl
 LDLIBS =
-MAIN = main_dig_filt
+MAIN = main_fir_filt
 
 #test: testbench.vvp $(MAIN)32.hex
 #	# vvp -l testbench.log -N testbench.vvp
@@ -35,7 +36,7 @@ $(MAIN)32.hex: $(MAIN).elf ../hex8tohex32.py
 start.o: ../_core/start.S
 	$(CC) -c -nostdlib ../_core/start.S $(LDLIBS)
 
-$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o dig_filt.o ../gpio/gpio.o ../irq/interrupt.o 
+$(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o fir_filt.o ../gpio/gpio.o ../irq/interrupt.o 
 	$(CC) $(LDFLAGS),-Map=$(MAIN).map -o $@ $^ -T ../_core/sections.ld $(LDLIBS)
 	chmod -x $(MAIN).elf
 
