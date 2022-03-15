@@ -1,8 +1,8 @@
 -------------------------------------------------------
 --! @file
 --! @brief RISCV Testbench
---         This testbench simulates a core with a 
---         generic IO hardware and a Timer     
+--         This testbench simulates a core with a
+--         generic IO hardware and a Timer
 --
 -------------------------------------------------------
 
@@ -45,12 +45,12 @@ architecture RTL of coretestbench is
 	signal clk       : std_logic;
 	signal clk_32x   : std_logic;
 	signal rst       : std_logic;
-	
+
 	-- Instruction bus and instruction memory
 	signal address     : std_logic_vector(9 downto 0);
 	signal iaddress : unsigned(15 downto 0);
 	signal idata : std_logic_vector(31 downto 0);
-	
+
     -- Data bus
 	signal daddress : unsigned(31 downto 0);
 	signal ddata_r  : std_logic_vector(31 downto 0);
@@ -75,7 +75,8 @@ architecture RTL of coretestbench is
 	signal ddata_r_timer : std_logic_vector(31 downto 0);
 	signal timer_interrupt : std_logic_vector(5 downto 0);
 	signal ddata_r_periph : std_logic_vector(31 downto 0);
-    signal ddata_r_sdram : std_logic_vector(31 downto 0);
+	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
+  signal ddata_r_sdram : std_logic_vector(31 downto 0);
 
 	signal gpio_interrupts : std_logic_vector(6 downto 0);
 	signal ddata_r_segments : std_logic_vector(31 downto 0);
@@ -83,7 +84,9 @@ architecture RTL of coretestbench is
 	signal ddata_r_adc : std_logic_vector(31 downto 0);
 	signal ddata_r_i2c : std_logic_vector(31 downto 0);
 	signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
-		
+	signal ddata_r_lcd : std_logic_vector(31 downto 0);
+	signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
+
 begin
 
 	clock_driver : process
@@ -104,7 +107,7 @@ begin
 		clk_32x <= '1';
 		wait for period / 2;
 	end process clock_driver_32x;
- 
+
 	reset : process is
 	begin
 		rst <= '1';
@@ -112,7 +115,7 @@ begin
 		rst <= '0';
 		wait;
 	end process reset;
-	
+
 	-- Connect gpio data to output hardware
     LEDR  <= gpio_output(9 downto 0);
 
@@ -121,20 +124,20 @@ begin
     begin
         gpio_input <= (others => '0');
         wait for 500 us;
-                
+
         -- Generate a input pulse (External IRQ 0 or pooling)
         gpio_input(0) <= '1';
         wait for 1 us;
         gpio_input(0) <= '0';
-        
+
         -- Generate a input pulse (External IRQ 1 or pooling)
         wait for 200 us;
         gpio_input(1) <= '1';
         wait for 1 us;
         gpio_input(1) <= '0';
-        
+
         wait;
-    end process;  
+    end process;
 
 	-- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -190,7 +193,7 @@ begin
 	        ddata_r_sdram  => ddata_r_sdram,
 	        ddata_r        => ddata_r
 	    );
-		
+
     io_data_bus_mux: entity work.iodatabusmux
         port map(
             daddress         => daddress,
@@ -201,6 +204,9 @@ begin
             ddata_r_i2c      => ddata_r_i2c,
             ddata_r_timer    => ddata_r_timer,
             ddata_r_dif_fil  => ddata_r_dif_fil,
+            ddata_r_stepmot  => ddata_r_stepmot,
+						ddata_r_lcd      => ddata_r_lcd,
+						ddata_r_nn_accelerator => ddata_r_nn_accelerator,
             ddata_r_periph   => ddata_r_periph
         );
 
@@ -223,7 +229,7 @@ begin
 			interrupts=>interrupts,
 			state    => cpu_state
 		);
-    
+
     -- Group IRQ signals.
 	irq_signals: process(timer_interrupt,gpio_interrupts)
 	begin
@@ -232,7 +238,7 @@ begin
        interrupts(30 downto 25) <= timer_interrupt;
     end process;
 
-    
+
 	-- Timer instantiation
 	timer : entity work.Timer
 	generic map(
@@ -251,7 +257,7 @@ begin
 	    dmask    => dmask,
 	    timer_interrupt => timer_interrupt
 	);
-	
+
 	-- Generic GPIO module instantiation
     generic_gpio: entity work.gpio
     port map(
@@ -269,7 +275,7 @@ begin
         gpio_interrupts => gpio_interrupts
     );
 
-	generic_displays : entity work.led_displays      
+	generic_displays : entity work.led_displays
         port map(
             clk      => clk,
             rst      => rst,
@@ -290,7 +296,7 @@ begin
             hex7     => open
         );
 
-	-- FileOutput DEBUG	
+	-- FileOutput DEBUG
 	debug : entity work.trace_debug
 	generic map(
 		MEMORY_WORDS => IMEMORY_WORDS
