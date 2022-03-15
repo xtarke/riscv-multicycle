@@ -127,16 +127,18 @@ int main(){
 # Filtro FIR
 
 Esse projeto implementa um filtro FIR como um dos periféricos do núcleo do riscv. Para realizar o equacionamento da entidade do filtro, foi utilizado a implementação proposta no livro Circuit Design with VHDL[1]  de Volnei A. Pedroni.  A equação para esse filtro pode ser vista abaixo.
-$$
-y(n) = 	\sum_{k=0}^{M} b_k*x[n-k]
-$$
+
+<img src = "img/equacaofiltro.png">
+
 Em que M representa a ordem do filtro,  b_k os coeficientes do filtro, x(n) é o valor do sinal de entrada e y(n) é o sinal de saída. Para o periférico do riscv, foi implementado um filtro com quatro coeficientes de entrada, representados por 32 bits, esses valores são armazenados em um vetor do tipo memory_t e imputados através do software.
 
 O enable desse periférico é feito através de hardware, ou seja, a entrada somente será filtrada quando todos os coeficientes já tiverem sidos carregados para a memória, assim, o pino "data_in_enable" serve apenas para conferência, podendo ser suprimido da saída. A entrada de dados também é representada por 32 bits, dessa forma, o valor da saída será de 64 bits, em que a parte alta(msb) pode ser visualizada nos pinos de gpio e a parte baixa(lsb) no display em formato hexadecimal.
 
 A saída utilizada nesse filtro(data_out) serve apenas para conferência no componente system sources e probes, podendo ser suprimida. 
 
-![image-20220312113357497](C:\Users\carol\AppData\Roaming\Typora\typora-user-images\image-20220312113357497.png)
+![]
+
+![image-20220312113357497](D:\Users\carol\Documents\PLD\pld\final\riscv-multicycle\peripherals\dig_filt\img\filtro1.png)
 
 ## Funcionamento do Periférico
 
@@ -146,7 +148,7 @@ Assim, quando ocorrer a borda de subida do clock e habilitação de escrita esti
 
 A entrada de dados é cascateada, de forma que ocorrerá a multiplicação entre os coeficientes e o valor da entrada. A saída é um sinal que recebe o somatório final. Quando a habilitação de leitura estiver ativada, será enviado a parte msb do dado em um endereço e então será enviado a parte lsb para outro endereço.
 
-![image-20220312121207200](C:\Users\carol\AppData\Roaming\Typora\typora-user-images\image-20220312121207200.png)
+![image-20220312121207200](D:\Users\carol\Documents\PLD\pld\final\riscv-multicycle\peripherals\dig_filt\img\modelsim.png)
 
 Assim, conforme a imagem, temos que:
 $$
@@ -171,7 +173,7 @@ Para adicionar o periférico ao núcleo do riscv, foi necessário modificar os s
 
 1. memory/iodatabusmux.vhd 
 
-   ![image-20220312125129108](C:\Users\carol\AppData\Roaming\Typora\typora-user-images\image-20220312125129108.png)
+   ![image-20220312125129108](D:\Users\carol\Documents\PLD\pld\final\riscv-multicycle\peripherals\dig_filt\img\modificacoes.png)
 
    2. Inclusão do endereço em software/_core/hardware.h 
 
