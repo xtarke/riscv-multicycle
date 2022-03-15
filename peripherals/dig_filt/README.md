@@ -1,4 +1,6 @@
-﻿# Filtro digital de média móvel
+﻿
+
+# Filtro digital de média móvel
 
 Este projeto implementa um filtro digital de média móvel como um dos periférico do núcleo riscv. O periférico implementa n registradores de 32 bits.
 
@@ -128,7 +130,7 @@ int main(){
 
 Esse projeto implementa um filtro FIR como um dos periféricos do núcleo do riscv. Para realizar o equacionamento da entidade do filtro, foi utilizado a implementação proposta no livro Circuit Design with VHDL[1]  de Volnei A. Pedroni.  A equação para esse filtro pode ser vista abaixo.
 
-<center><img src = "img/equacaofiltro.png"></center>
+<p align="center"><img src = "img/equacaofiltro.png"/></p>
 
 Em que M representa a ordem do filtro,  b_k os coeficientes do filtro, x(n) é o valor do sinal de entrada e y(n) é o sinal de saída. Para o periférico do riscv, foi implementado um filtro com quatro coeficientes de entrada, representados por 32 bits, esses valores são armazenados em um vetor do tipo memory_t e imputados através do software.
 
