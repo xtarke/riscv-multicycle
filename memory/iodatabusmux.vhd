@@ -11,6 +11,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity iodatabusmux is
+
     port(
         daddress                : in  unsigned(31 downto 0); --! Connect to RISC-V data bus address 
 
@@ -24,17 +25,17 @@ entity iodatabusmux is
         ddata_r_stepmot         : in  std_logic_vector(31 downto 0);
         ddata_r_lcd             : in  std_logic_vector(31 downto 0);
         ddata_r_nn_accelerator  : in   std_logic_vector(31 downto 0);
+        ddata_r_fir_fil         :   in   std_logic_vector(31 downto 0);
         -- Mux 
         ddata_r_periph   : out std_logic_vector(31 downto 0) --! Connect to data bus mux
     );
-
 end entity iodatabusmux;
 
 architecture RTL of iodatabusmux is
 
 begin
     -- Word address, ignoring least significant 4 bytes
-
+  
     with daddress(19 downto 4) select ddata_r_periph <=
         ddata_r_gpio when x"0000",
         ddata_r_segments when x"0001",
@@ -45,8 +46,8 @@ begin
         ddata_r_dif_fil when x"0008",
         ddata_r_stepmot when x"0009",
         ddata_r_lcd when x"000A",
-        ddata_r_nn_accelerator when x"000B",  
+        ddata_r_nn_accelerator when x"000B",
+        ddata_r_fir_fil  when x"000D",
         -- Add new io peripherals here
         (others => '0') when others;
-
 end architecture RTL;
