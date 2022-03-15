@@ -35,6 +35,7 @@ vcom ../../peripherals/gpio/gpio.vhd
 vcom ../../peripherals/gpio/led_displays.vhd
 vcom ../../peripherals/timer/Timer.vhd
 vcom ./dig_filt.vhd
+vcom ./fir_filt.vhd
 vcom ../../core/csr.vhd
 vcom ../../core/core.vhd
 vcom ../../core/txt_util.vhdl
@@ -183,6 +184,18 @@ add wave -label d_rd     -radix binary /dig_fil/d_rd
 add wave -label registers -radix unsigned /dig_fil/registers
 add wave -label r_acc -radix unsigned /dig_fil/r_acc
 
+
+add wave -height 15 -divider "FIR FILTER"
+add wave -label data_in  -radix signed  /fir_filt/data_in
+add wave -label data_out -radix signed  /fir_filt/data_out
+add wave -label ddata_r  -radix unsigned /fir_filt/ddata_r
+add wave -label ddata_w  -radix unsigned /fir_filt/ddata_w
+add wave -label d_rd     -radix binary /fir_filt/d_rd
+add wave -label d_we     -radix binary /fir_filt/d_we
+add wave -label registers -radix signed /fir_filt/reg
+add wave -label coef -radix unsigned /fir_filt/coef
+add wave -label data_in_enable -radix binary /fir_filt/data_in_enable
+add wave -label clock2 -radix binary /fir_filt/clk
 
 run 2000 us
 wave zoomfull
