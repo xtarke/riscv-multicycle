@@ -171,5 +171,5 @@ add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
-run 2000 us
+run 8000 us
 wave zoomfull
