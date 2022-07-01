@@ -17,14 +17,28 @@
 #include "interrupt.h"
 #include "../timer/timer.h"
 
+#define USE_GLOBAL_VAR
+
+volatile uint32_t global_1 = 0x53;
+volatile uint32_t global_2 = 0xf4;
+volatile uint32_t teste[8] = {0};
+
 void EXTI0_IRQHandler(void)
 {
-	OUTBUS = 0x52;	
+#ifndef USE_GLOBAL_VAR
+	OUTBUS = 0x52;
+#else
+	OUTBUS = global_1;
+#endif
 }
 
 void EXTI1_IRQHandler(void)
 {
+#ifndef USE_GLOBAL_VAR
 	OUTBUS = 0xf4;
+#else
+	OUTBUS = global_2;
+#endif
 }
 
 void TIMER0_0A_IRQHandler(void)

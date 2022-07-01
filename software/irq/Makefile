@@ -1,8 +1,4 @@
-ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = riscv-none-embed-
-# Para usar no LSC
-#RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
-endif
+RISCV_TOOLS_PREFIX = ../../compiler/gcc/bin/riscv-none-embed-
 
 QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
@@ -13,7 +9,7 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl
 LDLIBS =
-MAIN = iqr_example
+MAIN = irq_example
 
 #test: testbench.vvp $(MAIN)32.hex
 #	# vvp -l testbench.log -N testbench.vvp

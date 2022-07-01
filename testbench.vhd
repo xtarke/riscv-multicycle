@@ -124,7 +124,7 @@ begin
     gpio_test: process
     begin
         gpio_input <= (others => '0');
-        wait for 500 us;
+        wait for 6 ms;
 
         -- Generate a input pulse (External IRQ 0 or pooling)
         gpio_input(0) <= '1';
