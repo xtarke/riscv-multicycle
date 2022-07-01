@@ -1,8 +1,4 @@
-ifndef RISCV_TOOLS_PREFIX
-#RISCV_TOOLS_PREFIX=riscv-none-embed-
-# Para usar no LSC
-RISCV_TOOLS_PREFIX = ~/.local/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/riscv-none-embed-
-endif
+RISCV_TOOLS_PREFIX = ../compiler/gcc/bin/riscv-none-embed-
 
 QUARTUS_DIR=~/Data/Apps/intelFPGA/20.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
@@ -14,13 +10,6 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 LDFLAGS = -Wl
 LDLIBS =
 MAIN = blink
-
-#test: testbench.vvp $(MAIN)32.hex
-#	# vvp -l testbench.log -N testbench.vvp
-
-#testbench.vvp: testbench.v ../../picorv32.v $(MAIN)_dbg.v
-#	#iverilog -o testbench.vvp testbench.v ../../picorv32.v
-#	#chmod -x testbench.vvp
 
 quartus_$(MAIN).hex: $(MAIN)32.hex
 	python3 hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex
