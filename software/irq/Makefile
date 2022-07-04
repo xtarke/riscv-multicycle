@@ -1,6 +1,6 @@
 RISCV_TOOLS_PREFIX = ../../compiler/gcc/bin/riscv-none-embed-
 
-QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
+QUARTUS_DIR=~/Data/Apps/intelFPGA/20.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
@@ -35,7 +35,7 @@ $(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o ../timer/tim
 	chmod -x $(MAIN).elf
 
 sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/gpio/sint/de10_lite/de10_lite.cdf
+	$(QUARTUS_DIR)quartus_sh --flow compile ../../peripherals/gpio/sint/de10_lite/de10_lite.cdf
 
 fpga:
 	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof"
