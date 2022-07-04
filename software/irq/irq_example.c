@@ -19,9 +19,9 @@
 
 #define USE_GLOBAL_VAR
 
-volatile uint32_t global_1 = 0x53;
-volatile uint32_t global_2 = 0xf4;
-volatile uint32_t teste[8] = {0};
+volatile uint32_t global_1 = 0x5;
+volatile uint32_t global_2 = 0x8;
+volatile uint32_t teste[4] = {0x24, 0x35, 0x58, 0x47};
 
 void EXTI0_IRQHandler(void)
 {
@@ -30,6 +30,9 @@ void EXTI0_IRQHandler(void)
 #else
 	OUTBUS = global_1;
 #endif
+
+	global_1++;
+
 }
 
 void EXTI1_IRQHandler(void)
@@ -43,11 +46,18 @@ void EXTI1_IRQHandler(void)
 
 void TIMER0_0A_IRQHandler(void)
 {
-	SEGMENTS_BASE_ADDRESS = SEGMENTS_BASE_ADDRESS + 1;
+	static uint32_t i = 0;
+
+	SEGMENTS_BASE_ADDRESS = teste[i];  //SEGMENTS_BASE_ADDRESS + 1;
+
+	i++;
+	i &=0x03;
 }
+
+/* Check hardware */
 void TIMER0_0B_IRQHandler(void)
 {
-	//SEGMENTS_BASE_ADDRESS = SEGMENTS_BASE_ADDRESS  + 1;
+	// SEGMENTS_BASE_ADDRESS = SEGMENTS_BASE_ADDRESS  + 1;
 }
 
 void init_timer0(void)
@@ -81,6 +91,8 @@ int main(){
 	extern_interrupt_enable(true);
 	timer_interrupt_enable(true);
 	global_interrupt_enable(true);
+
+	teste[2] = 3;
 	
 	while (1){
         	data++;

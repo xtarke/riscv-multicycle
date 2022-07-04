@@ -96,24 +96,20 @@ void _exit(int exit_status)
 
 void init_data_section(){
 
+	/* See _core/sections.ld */
+	
+	/* Last address of .data section */
 	extern unsigned char _edata[];
+	/* First address of .data section */
 	extern unsigned char _data[];
+	/* Load address (LMA) at rom */
 	extern unsigned char _data_lma[];
 
+	/* Size computation */
 	long size = (long)_edata - (long)_data;
 
+	/* Copy data from .rom to .ram */
 	memcpy(_data, _data_lma, size);
-
-	//*_data = *_data_lma;
-
-
-	/* unsigned *flash_ptr = _data_lma;
-
-	while (ram_ptr < ram_ptr + size)
-		flash_ptr++;
-		*ram_ptr = *flash_ptr;*/
-
-
 }
 
  
