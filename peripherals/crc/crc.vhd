@@ -47,7 +47,7 @@ begin
                     end if;
                 end loop;
                 data_reg <= next_crc;
-            elsif daddress(15 downto 0) = MY_WORD_ADDRESS + 4 then -- escrita em data_init
+            elsif daddress(15 downto 0) = MY_WORD_ADDRESS + 1 then -- escrita em data_init
                 data_reg <= ddata_w(15 downto 0);
                 data_init  <= ddata_w(15 downto 0);
             end if;
@@ -62,7 +62,7 @@ begin
             if daddress(15 downto 0) = MY_WORD_ADDRESS + 0 then -- leitura de data_reg
                 ddata_r(15 downto 0)  <= data_reg;
                 ddata_r(31 downto 16) <= (others => '0');
-            elsif daddress(15 downto 0) = MY_WORD_ADDRESS + 4 then -- leitura de data_init
+            elsif daddress(15 downto 0) = MY_WORD_ADDRESS + 1 then -- leitura de data_init
                 ddata_r(15 downto 0)  <= data_init;
                 ddata_r(31 downto 16) <= (others => '0');
             end if;
