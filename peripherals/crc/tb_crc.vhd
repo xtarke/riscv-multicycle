@@ -15,9 +15,13 @@ architecture RTL of testbench is
     signal dmask    : std_logic_vector(3 downto 0);
     signal clk      : std_logic;
     signal rst      : std_logic;
-
+    
+    constant MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"00E0";
 begin
     crc : entity work.crc
+    	generic map(
+	    MY_WORD_ADDRESS => MY_WORD_ADDRESS
+	)
         port map(
             clk      => clk,
             rst      => rst,
@@ -61,12 +65,12 @@ begin
         wait until falling_edge(clk);
         rst <= '0';
 
-        daddress <= to_unsigned(0 + 4, 32);
+        daddress <= x"0040" & MY_WORD_ADDRESS + 1;
         ddata_w  <= x"FFFFFFFF";
         wait until falling_edge(clk);
         
         
-        daddress <= to_unsigned(0 + 0, 32);
+        daddress <= x"0040" & MY_WORD_ADDRESS + 0;
         for i in data'range loop
             ddata_w <= data(i);
             wait until falling_edge(clk);
