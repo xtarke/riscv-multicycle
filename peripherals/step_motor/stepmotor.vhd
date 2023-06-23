@@ -74,12 +74,21 @@ begin
         end if;
     end process;
 
+	 -- Divisor de clock duplo para conseguir implementar em 
+	 -- hardware o tempo necessario para motor de passo girar
     rotate : process(clk, reset)
+		-- Variavel extra para dividir counter do divisor de clock
+		variable div:unsigned(4 downto 0); 
     begin
         if reset = '1' then
             cntr <= (others => '0');
+				div := (others => '0');
         elsif rising_edge(clk) then
-            cntr <= cntr + 1;
+				div := div + 1;
+				-- Incrementa counter ao estourar valor de div
+				if div = x"0000" then 
+					cntr <= cntr + 1;
+				end if;
         end if;
     end process rotate;
     rot <= cntr(7 - to_integer(speed));

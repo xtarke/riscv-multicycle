@@ -35,7 +35,7 @@ SECTIONS {
         } > ram AT > rom
 
         .bss : {
-          _bss_start = .;
+          __bss_start = .;
           *(.bss .bss.*)
            . = ALIGN(4);
           _bss_end = .;
