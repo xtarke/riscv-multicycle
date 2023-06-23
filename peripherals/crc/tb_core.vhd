@@ -301,24 +301,6 @@ begin
             hex7     => open
         );
 
---    -- UART module instantiation
---    generic_uart : entity work.uart
---        port map(
---            clk        => clk,
---            rst        => rst,
---            clk_baud   => clk_baud,
---            daddress   => daddress,
---            ddata_w    => ddata_w,
---            ddata_r    => ddata_r_uart,
---            d_we       => d_we,
---            d_rd       => d_rd,
---            dcsel      => dcsel,
---            dmask      => dmask,
---            tx_out     => TX,
---            rx_out     => RX,
---            interrupts => uart_interrupts
---        );
-
     crc: entity work.crc
         port map(
             clk      => clk,

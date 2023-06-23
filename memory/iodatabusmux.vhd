@@ -49,7 +49,7 @@ begin
         ddata_r_lcd when x"000A",
         ddata_r_nn_accelerator when x"000B",
         ddata_r_fir_fil  when x"000D",
-	ddata_r_crc when x"000E",
+	ddata_r_crc when x"000F",
         -- Add new io peripherals here
         (others => '0') when others;
 end architecture RTL;

@@ -16,7 +16,7 @@ architecture RTL of testbench is
     signal clk      : std_logic;
     signal rst      : std_logic;
     
-    constant MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"00E0";
+    constant MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"00F0";
 begin
     crc : entity work.crc
     	generic map(
