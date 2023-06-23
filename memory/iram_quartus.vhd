@@ -67,7 +67,7 @@ BEGIN
 		clock_enable_output_a => "BYPASS",
 		intended_device_family => "MAX 10",
 		--init_file => "./software/quartus_blink.hex",
-		init_file => "C:/Users/ariel/dev/IFSC/riscv-multicycle/software/crc/quartus_main.hex",
+		init_file => "/var/data/aluno/riscv-multicycle/software/crc/quartus_main.hex",
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",
 		numwords_a => 1024,
