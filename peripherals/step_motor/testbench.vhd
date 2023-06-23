@@ -86,6 +86,10 @@ architecture RTL of coretestbench is
 	-- StepMotor signals
 	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
     	signal outs : std_logic_vector(3 downto 0);
+    	signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
+    	signal ddata_r_lcd : std_logic_vector(31 downto 0);
+    	signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
+    	signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
 	
 begin
 
@@ -203,6 +207,10 @@ begin
             ddata_r_adc => ddata_r_adc,
             ddata_r_i2c => ddata_r_i2c,
             ddata_r_timer => ddata_r_timer,
+            ddata_r_dif_fil => ddata_r_dif_fil,
+            ddata_r_lcd => ddata_r_lcd,
+            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+            ddata_r_fir_fil => ddata_r_fir_fil,
             ddata_r_stepmot => ddata_r_stepmot,
             ddata_r_periph => ddata_r_periph
         );

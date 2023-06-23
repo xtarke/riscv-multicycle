@@ -1,15 +1,15 @@
 vlib workstart
 
-#compila projeto: todos os aquivo. Ordem é importante
+#compila projeto: todos os aquivo. Ordem ï¿½ importante
 vcom stepmotor.vhd tb_stepmotor.vhd 
 
-#Simula (work é o diretorio, testbench é o nome da entity)
-vsim -t ns work.tb_stepmotor
+#Simula (work ï¿½ o diretorio, testbench ï¿½ o nome da entity)
+vsim -voptargs="+acc" -t ns work.tb_stepmotor
 
 #Mosta forma de onda
 view wave
 
-#Adiciona ondas específicas
+#Adiciona ondas especï¿½ficas
 # -radix: binary, hex, dec
 # -label: nome da forma de onda
 add wave -radix binary   -label clk /clk
@@ -22,7 +22,7 @@ add wave -radix unsigned -label speed /speed
 add wave -radix binary   -label output /outputs
 add wave                 -label state /motor0/state
 
-#Simula até 500ms
+#Simula atï¿½ 500ms
 run 500ms
 
 wave zoomfull
