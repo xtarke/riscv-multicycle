@@ -7,7 +7,7 @@
 int main() {
 	uint8_t data[] = {0xA1, 0x02, 0xF3, 0x34, 0x65, 0x06, 0xB7, 0xC8};
 	
-	CRC_REGISTER->initial;
+	CRC_REGISTER->initial = 0xFF;
 
 	for (int i = 0 ; i < 8; i++) 
 		CRC_REGISTER->crc_value = data[i];
