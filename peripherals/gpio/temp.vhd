@@ -107,11 +107,11 @@ architecture rtl of temperatura is
 function decimal_converter (entrada: unsigned(31 downto 0)) return std_logic_vector is
     variable contador: integer := 0;
     variable temp : integer := 0;  -- Inicializa temp com o valor de entrada
-    variable max_temp : integer := 150; --defina o n�mero m�ximo de vezes que o valor ser� sub de 10
+    variable max_temp : integer := 150; --defina o numero maximo de vezes que o valor sera sub de 10
   
 begin
     temp := to_integer(entrada);
-    while contador < max_temp loop -- Limite m�ximo de itera��es definido em 10.000
+    while contador < max_temp loop 
              temp := temp - 10;
             contador := contador + 1;
             if temp < 10 then
