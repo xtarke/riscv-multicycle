@@ -1,12 +1,6 @@
-
-# TODO
-- [ ] Alterar a posição de memória em:
-    https://github.com/ArielRM/riscv-multicycle/blob/c52c943c36a59460a284f738c3da6b2f9ca0e049/software/_core/hardware.h#L80
-    https://github.com/ArielRM/riscv-multicycle/blob/c52c943c36a59460a284f738c3da6b2f9ca0e049/memory/iodatabusmux.vhd#L52
-    https://github.com/ArielRM/riscv-multicycle/blob/c52c943c36a59460a284f738c3da6b2f9ca0e049/peripherals/crc/crc.vhd#L9
-- [ ] Terminar esse README
-
 # Periférico CRC
+
+Cada escrita em 0x00F0 resulta no calculo do CRC com o ultimo valor presente no mesmo endereço, o último valor calculado pode ser lido em 0x00F0. Para definir o valor inicial deve-se escrever o valor em 0x00F1.
 
 # Simulação do componente
 - Executar o script `peripherals/crc/crc.do` no ModelSim/Questa
@@ -48,4 +42,6 @@ ModelSim> pwd
 # peripherals/crc
 ModelSim> do core.do
 ```
+O resultado da compútação do CRC está bem no final da simulação
 
+![image](./img/sim.png)
