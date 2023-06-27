@@ -75,16 +75,7 @@ architecture RTL of crc_coretestbench is
     signal ddata_r_uart     : std_logic_vector(31 downto 0);
     signal ddata_r_adc      : std_logic_vector(31 downto 0);
     signal ddata_r_i2c      : std_logic_vector(31 downto 0);
-
-    signal TX              : std_logic;
-    signal RX              : std_logic;
     signal uart_interrupts : std_logic_vector(1 downto 0);
-
-    -- UART testbench
-    signal transmit_byte  : std_logic_vector(7 downto 0) := x"23";
-    signal transmit_frame : std_logic_vector(9 downto 0) := (others => '1');
-    signal clk_state      : boolean                      := FALSE;
-    signal cnt_rx         : integer                      := 0;
 
 begin
 
@@ -107,28 +98,6 @@ begin
         wait for period / 2;
     end process clock_driver_32x;
 
-    --    clock_driver_baud : process
-    --        constant period : time := 2000 ns;
-    --    begin
-    --        clk_baud <= '0';
-    --        wait for period / 2;
-    --        clk_baud <= '1';
-    --        wait for period / 2;
-    --    end process clock_driver_baud;
-
-    clock_baud : process
-        constant period : time := 2000 ns;
-    begin
-        clk_baud  <= '0';
-        clk_state <= FALSE;
-        --wait for 2 ns;
-        wait for period / 2;
-        clk_baud  <= '1';
-        clk_state <= TRUE;
-        --wait for 2 ns;
-        wait for period / 2;
-    end process clock_baud;
-
     reset : process is
     begin
         rst <= '1';
@@ -136,29 +105,6 @@ begin
         rst <= '0';
         wait;
     end process reset;
-
-    -- Connect gpio data to output hardware
-    LEDR <= gpio_output(9 downto 0);
-
-    -- Connect input hardware to gpio data
-    gpio_test : process
-    begin
-        gpio_input <= (others => '0');
-        wait for 500 us;
-
-        -- Generate a input pulse (External IRQ 0 or pooling)
-        gpio_input(0) <= '1';
-        wait for 1 us;
-        gpio_input(0) <= '0';
-
-        -- Generate a input pulse (External IRQ 1 or pooling)
-        wait for 200 us;
-        gpio_input(1) <= '1';
-        wait for 1 us;
-        gpio_input(1) <= '0';
-
-        wait;
-    end process;
 
     -- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming

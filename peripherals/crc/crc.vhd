@@ -36,7 +36,9 @@ begin
             data_reg  <= (others => '0');
             data_init <= (others => '0');
         elsif rising_edge(clk) and (dcsel = MY_CHIPSELECT) and (d_we = '1') then
-            if daddress(15 downto 0) = MY_WORD_ADDRESS + 0 then -- escrita em data_reg
+             -- escrita em data_reg
+            if daddress(15 downto 0) = MY_WORD_ADDRESS + 0 then
+                -- Lógica principal de CRC
                 next_crc := data_reg xor ddata_w(15 downto 0);
                 for bit in next_crc(7 downto 0)'range loop
                     if next_crc(0) = '1' then
@@ -47,7 +49,8 @@ begin
                     end if;
                 end loop;
                 data_reg <= next_crc;
-            elsif daddress(15 downto 0) = MY_WORD_ADDRESS + 1 then -- escrita em data_init
+            -- escrita em data_init
+            elsif daddress(15 downto 0) = MY_WORD_ADDRESS + 1 then 
                 data_reg  <= ddata_w(15 downto 0);
                 data_init <= ddata_w(15 downto 0);
             end if;
