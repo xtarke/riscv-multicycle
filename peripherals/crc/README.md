@@ -45,3 +45,4 @@ ModelSim> do core.do
 O resultado da compútação do CRC está bem no final da simulação
 
 ![image](./img/sim.png)
+
