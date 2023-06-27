@@ -315,7 +315,7 @@ _pvstart:
 	# lb s4, 2(a5)
 	# lb s5, 3(a5) 
 
-	jal init_data_section 
+	/* jal init_data_section */
 
 	/* push zeros on the stack for argc and argv */
 	/* (stack is aligned to 16 bytes in riscv calling convention) */
