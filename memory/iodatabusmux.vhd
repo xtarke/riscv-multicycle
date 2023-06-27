@@ -24,8 +24,8 @@ entity iodatabusmux is
         ddata_r_dif_fil         : in  std_logic_vector(31 downto 0);
         ddata_r_stepmot         : in  std_logic_vector(31 downto 0);
         ddata_r_lcd             : in  std_logic_vector(31 downto 0);
-        ddata_r_nn_accelerator  : in  std_logic_vector(31 downto 0);
-        ddata_r_fir_fil         : in  std_logic_vector(31 downto 0);
+	ddata_r_nn_accelerator  : in   std_logic_vector(31 downto 0);
+        ddata_r_fir_fil         :   in   std_logic_vector(31 downto 0);
     	ddata_r_crc		: in  std_logic_vector(31 downto 0);
         -- Mux 
         ddata_r_periph   : out std_logic_vector(31 downto 0) --! Connect to data bus mux
