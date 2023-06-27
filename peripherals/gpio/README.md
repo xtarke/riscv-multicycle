@@ -4,7 +4,7 @@ Este é um README para documentar os periféricos presentes na pasta GPIO.
 
 ## GPIO
 
-O *GPIO* (General Purpose Input/Output) é responsável por lidar com um pino GPIO de propósito geral. Ele é utilizado para trabalhar com interrupções, registradores de entrada e registradores de saída.
+O *GPIO* (General Purpose Input/Output) é responsável por lidar um GPIO de propósito geral. Ele é utilizado para trabalhar com interrupções, registradores de entrada e registradores de saída.
 
 ## LED Displays
 
