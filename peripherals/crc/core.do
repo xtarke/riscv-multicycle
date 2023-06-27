@@ -152,5 +152,5 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 
-run 20000 us
+run 3400 us
 wave zoomfull
