@@ -68,6 +68,7 @@ BEGIN
 		intended_device_family => "MAX 10",
         init_file => "../../software/step_motor/quartus_main_step_motor.hex",
         --init_file => "../../software/quartus_blink.hex",
+		--init_file => "./software/irq/quartus_irq_example.hex",
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",
 		numwords_a => 1024,
