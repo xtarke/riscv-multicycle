@@ -44,6 +44,7 @@ ModelSim> pwd
 # peripherals/crc
 ModelSim> do core.do
 ```
+O software de teste simplesmente computa o CRC de `{0xA1, 0x02, 0xF3, 0x34, 0x65, 0x06, 0xB7, 0xC8}` com valor inicial de `0xFF`.  
 O resultado da compútação do CRC está bem no final da simulação
 
 ![image](./img/sim.png)
