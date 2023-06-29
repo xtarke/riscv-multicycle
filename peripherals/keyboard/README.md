@@ -21,3 +21,6 @@ A primeira simulação foi feita ainda antes do periférico ser implementado no 
 O teclado é ligado diretamente aos pinos GPIO da FPGA conforme a imagem abaixo, sendo os fios laranjas os das linhas do teclado e os azuis das colunas.
 
 ![circuito](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/figures/de10teclado.png)
+
+# Referências
+* [Usando teclado matricial com Arduino](https://www.robocore.net/tutoriais/usando-teclado-matricial-com-arduino).
