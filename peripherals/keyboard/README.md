@@ -11,3 +11,7 @@ Para realizar o varrimento das linhas foi utilizado uma maquina de estados com a
 ![Maquina de estados](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/figures/maquina_estados.png)
 
 Onde após iniciar, cada estado corresponde a um dos 4 bits das linhas como valor 0, e em cada estado e verificado se o valor de alguma coluna é igual a 0.
+
+
+# Simulação
+A primeira simulação foi feita ainda antes do periférico ser implementado no projeto como um todo e pode ser visto nos arquivos [testbench2.vhd](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/testbench2.vhd) e [testbench2.do](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/testbench2.do)
