@@ -78,6 +78,8 @@
 #define HD44780_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 12*16*4))
 #define FIR_FILT_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 13*16*4))
 #define KEYBOARD_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 14*16*4))
+#define CRC_BASE_ADDRESS           	    (*(_IO32 *) (PERIPH_BASE + 15*16*4))
+
 
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
