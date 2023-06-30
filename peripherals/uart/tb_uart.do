@@ -2,16 +2,16 @@
 # Name        : tb_uart.do
 # Author      : Renan Augusto Starke
 # Version     : 0.1
-# Copyright   : Renan, Departamento de Eletr�nica, Florian�polis, IFSC
-# Description : Exemplo de script de compila��o ModelSim
+# Copyright   : Renan, Departamento de Eletr nica, Florian polis, IFSC
+# Description : Exemplo de script de compila  o ModelSim
 # ============================================================================
 
 
 #Cria biblioteca do projeto
 vlib work
 
-#compila projeto: todos os aquivo. Ordem � importante
-vcom uart.vhd tb_uart.vhd
+#compila projeto: todos os aquivo. Ordem   importante
+vcom uart.vhd coretestbench.vhd
 
 #Simula
 vsim -t ns work.tb_uart
@@ -19,7 +19,7 @@ vsim -t ns work.tb_uart
 #Mosta forma de onda
 view wave
 
-#Adiciona ondas espec�ficas
+#Adiciona ondas espec ficas
 # -radix: binary, hex, dec
 # -label: nome da forma de onda
 
@@ -47,7 +47,7 @@ add wave -radix dec -label cnt_rx /dut/cnt_rx
 add wave -radix binary -label rx_cmp /rx_cmp
 add wave -radix hex -label data_out /data_out
 
-#Simula at� 60ns
+#Simula at  60ns
 run 10000 us
 
 wave zoomfull

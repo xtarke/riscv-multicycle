@@ -1,7 +1,4 @@
-
 RISCV_TOOLS_PREFIX = /var/data/aluno/gcc/bin/riscv-none-elf-
-
-
 
 QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
