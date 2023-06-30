@@ -144,7 +144,7 @@ add wave -label ddata_r_gpio -radix hex     /ddata_r_gpio
 add wave -label gpio_interrupts -radix hex /gpio_interrupts
 add wave -label gpio_input -radix hex /gpio_input
 
-add wave -height 15 -divider "UART"
+add wave -height 21 -divider "UART"
 add wave -label clk /generic_uart/clk
 add wave -label clk_baud /generic_uart/clk_baud
 add wave -label transmit_byte -radix hex /transmit_byte
@@ -152,10 +152,13 @@ add wave -label transmit_frame /transmit_frame
 add wave -label config /generic_uart/config_register
 add wave -label uart_register -radix hex /generic_uart/uart_register
 add wave -label ddata_w -radix hex /generic_uart/ddata_w
+add wave -label ddata_r -radix hex /generic_uart/ddata_r
 add wave -label tx_register -radix hex /generic_uart/tx_register
 add wave -label rx_register -radix hex /generic_uart/rx_register
 add wave -label from_rx -radix bin /generic_uart/rx_receive/from_rx
-
+add wave -label baud_ready -radix bin /generic_uart/baud_ready
+add wave -label byte_received -radix bin /generic_uart/byte_received
+add wave -label byte_read -radix bin /generic_uart/byte_read
 add wave -label tx_done /generic_uart/tx_done
 add wave -label rx_done /generic_uart/rx_done
 add wave -label TX -radix hex /TX
@@ -163,12 +166,21 @@ add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_uart/state_rx
 add wave -label tx_state /generic_uart/state_tx
 add wave -label interrupts /generic_uart/interrupts
+add wave -label interrupts /generic_uart/interrupts
+add wave -label rx_cmp_irq /generic_uart/rx_cmp_irq
+add wave -label rx_done /generic_uart/rx_done
 
-
+add wave -height 6 -divider "BUFFER_UART"
+add wave -label buffer_rx -radix hex /generic_uart/buffer_rx
+add wave -label buffer_byte -radix hex /generic_uart/buffer_byte
+add wave -label cnt_rx_buffer -radix hex /generic_uart/cnt_rx_buffer
+add wave -label cnt_rx_irq -radix hex /generic_uart/rx_buffer_receive/cnt_rx_irq
+add wave -label buffer_mode -radix hex /generic_uart/buffer_mode
+add wave -label buffer_register -radix hex /generic_uart/buffer_register
 
 add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 
-run 2000 us
+run 20000 us
 wave zoomfull
