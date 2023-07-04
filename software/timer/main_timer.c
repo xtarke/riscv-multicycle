@@ -2,7 +2,7 @@
  * firmware.c
  *
  *  Created on: Dez 09, 2019
- *      Author: João Antônio Cardoso e Rafael Fernando Reis
+ *      Author: JoÃ£o AntÃ´nio Cardoso e Rafael Fernando Reis
  *      Instituto Federal de Santa Catarina
  * 
  * Simple Timer tests and examples
@@ -11,11 +11,13 @@
 #include "../_core/utils.h"
 #include "../_core/hardware.h"
 #include "timer.h"
+#include "../gpio/gpio.h"
 
 void test_mode_0(void);
 void test_mode_1(void);
 void test_mode_2(void);
 void test_mode_3(void);
+void test_mode_4(void);
 void example_heartbeat(void);
 
 void test_mode_0(void)
@@ -147,16 +149,32 @@ void example_heartbeat(void)
 	}
 }
 
+void test_mode_4(void)
+{
+    uint32_t events;
+
+    TIMER_0->timer_reset = 1;
+
+    TIMER_0->timer_mode = 4;
+    TIMER_0->prescaler = 1;
+
+    TIMER_0->timer_reset = 0;
+
+    while (TIMER_0->capture_value == 0);
+    SEGMENTS_BASE_ADDRESS = TIMER_0->capture_value;
+}   
+
 int main(void)
 {
     while(1){
 
-        test_mode_0();
-        test_mode_1();
-        test_mode_2();
-        test_mode_3();
+        //test_mode_0();
+        //test_mode_1();
+        //test_mode_2();
+        //test_mode_3();
+        test_mode_4();
 
-		example_heartbeat();
+	//example_heartbeat();
 
     }
 	return 0;
