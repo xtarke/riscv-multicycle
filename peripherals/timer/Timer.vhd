@@ -48,7 +48,6 @@ architecture RTL of Timer is
     signal output_B    : std_logic_vector(2 downto 0);
     
     signal captured_time : std_logic_vector(31 downto 0) := (others => '0');
-    signal time          : std_logic_vector(31 downto 0) := (others => '0');
     
     signal enable_timer_irq_mask  : std_logic_vector(31 downto 0);
     
@@ -434,8 +433,6 @@ begin
 						when others =>  -- none / error
 							internal_output_A := (others => '0');
 							internal_output_B := (others => '0');
-							
-							time <= (others => '0');
 
 					end case;
 				end if;
