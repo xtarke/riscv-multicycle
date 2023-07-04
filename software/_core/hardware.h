@@ -77,6 +77,7 @@
 #define NN_A_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 11*16*4))
 #define HD44780_BASE_ADDRESS            (*(_IO32 *) (PERIPH_BASE + 12*16*4))
 #define FIR_FILT_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 13*16*4))
+#define SPWM_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 17*16*4))
 
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
