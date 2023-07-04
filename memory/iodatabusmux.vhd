@@ -21,12 +21,14 @@ entity iodatabusmux is
         ddata_r_adc             : in  std_logic_vector(31 downto 0);
         ddata_r_i2c             : in  std_logic_vector(31 downto 0);
         ddata_r_timer           : in  std_logic_vector(31 downto 0);
-        ddata_r_dif_fil         : in  std_logic_vector(31 downto 0);
+        ddata_r_dif_fil          : in  std_logic_vector(31 downto 0);
         ddata_r_stepmot         : in  std_logic_vector(31 downto 0);
         ddata_r_lcd             : in  std_logic_vector(31 downto 0);
         ddata_r_nn_accelerator  : in   std_logic_vector(31 downto 0);
-        ddata_r_fir_fil         :   in   std_logic_vector(31 downto 0);
-        ddata_r_spwm         :   in   std_logic_vector(31 downto 0);
+        ddata_r_fir_fil           :   in   std_logic_vector(31 downto 0);
+        ddata_r_spwm           :   in   std_logic_vector(31 downto 0);
+    	  ddata_r_crc		         : in  std_logic_vector(31 downto 0);
+        ddata_r_key        :   in   std_logic_vector(31 downto 0);
         -- Mux 
         ddata_r_periph   : out std_logic_vector(31 downto 0) --! Connect to data bus mux
     );
@@ -49,6 +51,8 @@ begin
         ddata_r_lcd when x"000A",
         ddata_r_nn_accelerator when x"000B",
         ddata_r_fir_fil  when x"000D",
+        ddata_r_key when x"000E",
+	      ddata_r_crc when x"000F",
         ddata_r_spwm  when x"0011",
         -- Add new io peripherals here
         (others => '0') when others;
