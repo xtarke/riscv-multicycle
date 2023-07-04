@@ -2,7 +2,7 @@
  * timer.h
  *
  *  Created on: July 1, 2019
- *      Author: Rafael Reis e Jo�o Ant�nio Cardoso
+ *      Author: Rafael Reis e Joï¿½o Antï¿½nio Cardoso
  *      Instituto Federal de Santa Catarina
  *
  */
@@ -35,6 +35,7 @@ typedef struct {
   _IO32           : 26;
 
   _IO32 enable_irq;       // 0x2C
+  _IO32 capture_value;     // 0x30
 } TIMER_TYPE;
 
 
@@ -56,5 +57,6 @@ uint32_t timer_get_output1A(void);
 uint32_t timer_get_output1B(void);
 uint32_t timer_get_output2A(void);
 uint32_t timer_get_output2B(void);
+uint32_t timer_get_capture(void);
 
 #endif // __TIMER_H

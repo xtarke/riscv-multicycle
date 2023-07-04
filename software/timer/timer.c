@@ -46,3 +46,7 @@ uint32_t timer_get_output2A(void) {
 uint32_t timer_get_output2B(void) {
 	return TIMER_0->output_2B;
 }
+
+uint32_t timer_get_capture(void){
+    return TIMER_0->capture_value;
+}
