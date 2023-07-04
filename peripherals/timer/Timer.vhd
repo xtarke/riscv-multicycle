@@ -18,21 +18,25 @@ entity Timer is
         d_rd        : in  std_logic;
         dcsel       : in std_logic_vector(1 downto 0);
         dmask       : in std_logic_vector(3 downto 0);
-        timer_interrupt : out std_logic_vector(5 downto 0)
-		
+        timer_interrupt : out std_logic_vector(5 downto 0);
+        
+        -- changes rk --
+        ifcap       : in std_logic      -- capture flag
+        ------------
 	);
 end entity Timer;
 
 architecture RTL of Timer is
-	signal counter                    : unsigned(compare_size - 1 downto 0) := (others => '0');
-	signal internal_clock             : std_logic                           := '1';
-	signal internal_counter_direction : std_logic                           := '0';
+	signal counter                    : unsigned(31 downto 0)  := (others => '0');
+	signal internal_clock             : std_logic              := '1';
+	signal internal_counter_direction : std_logic              := '0'; -- @suppress "signal internal_counter_direction is never read"
 	--	type counter_direction_t is (Up, Down);
 
         -- TIMER Signals
     signal timer_reset : std_logic;
-    signal timer_mode  : unsigned(1 downto 0);
-    signal prescaler   : unsigned(15 downto 0);
+    -- signal timer_mode  : unsigned(1 downto 0); original
+    signal timer_mode  : unsigned(2 downto 0);
+    signal prescaler   : unsigned(prescaler_size - 1 downto 0);
     signal top_counter : unsigned(31 downto 0);
     signal compare_0A  : unsigned(31 downto 0);
     signal compare_1A  : unsigned(31 downto 0);
@@ -42,6 +46,8 @@ architecture RTL of Timer is
     signal compare_2B  : unsigned(31 downto 0);
     signal output_A    : std_logic_vector(2 downto 0);
     signal output_B    : std_logic_vector(2 downto 0);
+    
+    signal captured_time : std_logic_vector(31 downto 0) := (others => '0');
     
     signal enable_timer_irq_mask  : std_logic_vector(31 downto 0);
     
@@ -54,6 +60,7 @@ begin
 
     interrupts_holder<=output_B(2) & output_A(2) & output_B(1) & output_A(1) & output_B(0) & output_A(0) ;
     interrupts <= interrupts_holder and enable_timer_irq_mask(5 downto 0);
+    
     
     interrupt_edge : process (clock, reset) is
     begin
@@ -69,11 +76,11 @@ begin
     end process interrupt_edge;
 
     -- Output register
-    process(clock, reset)
+    p0: process(clock, reset)
     begin
         if reset = '1' then
             timer_reset<='0';
-            timer_mode <="00";
+            timer_mode <="000";
             prescaler  <= (others => '0');
             top_counter<= (others => '0');
             compare_0A <= (others => '0');
@@ -93,9 +100,9 @@ begin
                     if daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0000") then -- TIMER_ADDRESS
                         timer_reset <= ddata_w(0);
                     elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0001") then -- TIMER_ADDRESS
-                        timer_mode <= unsigned(ddata_w(1 downto 0));
+                        timer_mode <= unsigned(ddata_w(2 downto 0));
                     elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0002") then -- TIMER_ADDRESS
-                        prescaler <= unsigned(ddata_w(15 downto 0));
+                        prescaler <= unsigned(ddata_w(prescaler_size - 1 downto 0));
                     elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0003") then -- TIMER_ADDRESS
                         top_counter <= unsigned(ddata_w);
                     elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"0004") then -- TIMER_ADDRESS
@@ -116,10 +123,10 @@ begin
                 end if;
             end if;
         end if;
-    end process;
+    end process p0;
 
     -- Input register
-    process(clock, reset)
+    pi: process(clock, reset)
     begin
         if reset = '1' then
             ddata_r <= (others => '0');
@@ -134,15 +141,17 @@ begin
                     elsif daddress(15 downto 0) =(TIMER_BASE_ADDRESS + x"000a") then
                         ddata_r(2 downto 0) <= output_A(2 downto 0);
                         ddata_r(5 downto 3) <= output_B(2 downto 0);
+                    elsif daddress(15 downto 0) = (TIMER_BASE_ADDRESS + x"000c") then 
+                        ddata_r <= captured_time;
                     end if;
                 end if;
             end if;
         end if;
 
-    end process;
+    end process pi;
 
 
-	p1 : process(clock, reset, prescaler) is
+	p1 : process(clock, reset, prescaler) is 
 		variable temp_counter : unsigned(prescaler_size - 1 downto 0) := (others => '0');
 	begin
 	    if reset = '1' then
@@ -155,25 +164,32 @@ begin
                     if temp_counter >= prescaler - 1 then
                         internal_clock <= not (internal_clock);
                         temp_counter   := (others => '0');
+                    else
+                        internal_clock <= '1'; -- todo
                     end if;
+                else
+                    -- internal_clock <= '';
                 end if;
 			else
 			     internal_clock <= clock;
 			end if;
 		end if;
 	end process p1;
-
+	
 	p2 : process(internal_clock, reset) is
 		variable internal_output_A : std_logic_vector(2 downto 0) := (others => '0');
 		variable internal_output_B : std_logic_vector(2 downto 0) := (others => '0');
 		variable counter_direction : std_logic                    := '0';
+		--variable time              : std_logic_vector(31 downto 0)        := (others => '0');
+		variable ifc               : std_logic := '0';
 	begin
 		if reset = '1' then
             internal_output_A := (others => '0');
             internal_output_B := (others => '0');
             output_A <= internal_output_A;
             output_B <= internal_output_B;
-            counter_direction := '0';		    
+            counter_direction := '0';	
+            ifc := '0';	    
 		else
 			if rising_edge(internal_clock) then
 				if timer_reset = '1' then
@@ -181,9 +197,10 @@ begin
 					internal_output_B := (others => '0');
 					counter           <= (others => '0');
 					counter_direction := '0';
+					captured_time <= (others => '0');
 				else
 					case timer_mode is
-						when "00" =>    -- one shot mode
+						when "000" =>    -- one shot mode
 
 							if counter >= compare_0A - 1 then
 								internal_output_A(0) := '1';
@@ -227,7 +244,7 @@ begin
 								counter              <= counter + 1;
 							end if;
 
-						when "11" =>    -- clear on compare mode, counter is as sawtooth wave
+						when "011" =>    -- clear on compare mode, counter is as sawtooth wave
 
 							-- the counter resets if reaches B comparator.
 							-- the output has a rectangular waveform like a simple PWM, but active when between A and B comparators
@@ -261,7 +278,7 @@ begin
 								internal_output_B(2) := '1';
 							end if;
 
-						when "10" =>    -- clear on compare mode, counter is a centered triangle wave
+						when "010" =>    -- clear on compare mode, counter is a centered triangle wave
 
 							-- the counter change its direction (up or down) when it reaches its maximum possible value
 							-- the output has a rectangular waveform centered to the top value, active when between A and B comparators. 
@@ -357,7 +374,7 @@ begin
 
 							internal_counter_direction <= counter_direction;
 
-						when "01" =>    -- clear on top mode, counter is as sawtooth wave
+						when "001" =>    -- clear on top mode, counter is as sawtooth wave
 
 							-- the counter resets if reaches its maximum possible value
 							-- the output has a rectangular waveform like a simple PWM
@@ -402,6 +419,16 @@ begin
 							else
 								internal_output_B(2) := '0';
 							end if;
+							
+						when "100" =>     -- capture timer
+						    if ifcap = '1' and ifc = '0' then
+						        captured_time <= std_logic_vector(counter);
+						        ifc := '1';
+						    elsif ifcap = '0' then
+						        ifc := '0';
+						    end if;
+						    
+						    counter <= counter +1;
 
 						when others =>  -- none / error
 							internal_output_A := (others => '0');
@@ -413,9 +440,10 @@ begin
 
 			output_A <= internal_output_A;
 			output_B <= internal_output_B;
-
+			
 		end if;
 
 	end process p2;
+
 
 end architecture RTL;
