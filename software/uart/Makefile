@@ -1,9 +1,4 @@
-ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX=~/Data/Apps/riscv/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin/riscv-none-embed-
-# Para usar no LSC
-#RISCV_TOOLS_PREFIX = ~/opt/xPacks/@gnu-mcu-eclipse/riscv-none-gcc/8.2.0-2.2.1/.content/bin/riscv-none-embed-
-endif
-
+RISCV_TOOLS_PREFIX = /var/data/aluno/gcc/bin/riscv-none-elf-
 
 QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im

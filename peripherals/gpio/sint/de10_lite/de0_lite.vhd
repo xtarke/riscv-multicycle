@@ -304,3 +304,4 @@ begin
 			LEDR(7 downto 0) <= gpio_output(7 downto 0);
 
 end;
+
