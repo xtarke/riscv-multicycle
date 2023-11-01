@@ -76,7 +76,7 @@ architecture RTL of coretestbench is
 	signal timer_interrupt : std_logic_vector(5 downto 0);
 	signal ddata_r_periph : std_logic_vector(31 downto 0);
 	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
-  signal ddata_r_sdram : std_logic_vector(31 downto 0);
+	signal ddata_r_sdram : std_logic_vector(31 downto 0);
 
 	signal gpio_interrupts : std_logic_vector(6 downto 0);
 	signal ddata_r_segments : std_logic_vector(31 downto 0);
@@ -87,6 +87,12 @@ architecture RTL of coretestbench is
 	signal ddata_r_lcd : std_logic_vector(31 downto 0);
 	signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
 	signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+	signal ddata_r_spwm  :   std_logic_vector(31 downto 0);
+	signal ddata_r_crc : std_logic_vector(31 downto 0);
+	signal ddata_r_key : std_logic_vector(31 downto 0);
+
+	-- Timer
+	signal ifcap : std_logic;
 
 begin
 
@@ -206,9 +212,12 @@ begin
             ddata_r_timer    => ddata_r_timer,
             ddata_r_dif_fil  => ddata_r_dif_fil,
             ddata_r_stepmot  => ddata_r_stepmot,
-						ddata_r_lcd      => ddata_r_lcd,
-						ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-						ddata_r_fir_fil  => ddata_r_fir_fil,
+			ddata_r_lcd      => ddata_r_lcd,
+			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			ddata_r_fir_fil  => ddata_r_fir_fil,
+            ddata_r_spwm => ddata_r_spwm,
+            ddata_r_crc => ddata_r_crc,
+            ddata_r_key => ddata_r_key,
             ddata_r_periph   => ddata_r_periph
         );
 
@@ -257,7 +266,8 @@ begin
 	    d_rd     => d_rd,
 	    dcsel    => dcsel,
 	    dmask    => dmask,
-	    timer_interrupt => timer_interrupt
+	    timer_interrupt => timer_interrupt,
+	    ifcap => ifcap
 	);
 
 	-- Generic GPIO module instantiation
