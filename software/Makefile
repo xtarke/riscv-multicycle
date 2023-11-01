@@ -1,4 +1,4 @@
-RISCV_TOOLS_PREFIX = ../compiler/gcc/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = ../compiler/gcc/bin/riscv-none-elf-
 
 QUARTUS_DIR=~/Data/Apps/intelFPGA/20.1/quartus/bin/
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
