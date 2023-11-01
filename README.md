@@ -27,71 +27,8 @@ Simulador assembly baseado no MARS: [RARS](https://github.com/TheThirdOne/rars)
 
 ## Getting Started (software):
 
-A compilação de programas necessita do _toolchain_ __riscv32-unknown-elf__ (ou __riscv-none-embed__) suportando o subconjunto __RV32IM__, __sem ABI__. Em ./software/ há vários exemplos. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). _libc_ ainda não foi testado/suportado.
+A compilação de programas necessita do _toolchain_ __riscv-none-elf__ (ou __riscv-none-embed__) suportando o subconjunto __RV32IM__, __sem ABI__. Em ./software/ há vários exemplos. Perceba que na fase atual do projeto utilizamos um _script_ de _linker_ customizado (sections.ld). _libc_ ainda não foi testado/suportado.
 
-### Instalação do compilador no Linux
+Veja mais detalhes para a instalação compilador [aqui](./compiler/README.md)
 
-Guia para instalação no [gnu-mcu-eclipse.github.io](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/#gnulinux)
 
-Toolchain Release: riscv-none-gcc [Github](https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases).
-
-Na utilização do xPacks talvez seja necessário exportar o `XPACKS_REPO_FOLDER`:
-
-```export XPACKS_REPO_FOLDER=~/opt/xPacks/```
-
-Instruções para Arch Linux (adaptar para outras distribuições):
-```
-sudo pacman -Syyu npm
-sudo npm install --global xpm@latest
-export XPACKS_REPO_FOLDER=~/opt/xPacks/
-mkdir -p $XPACKS_REPO_FOLDER
-xpm install --global @xpack-dev-tools/riscv-none-embed-gcc@latest
-export MY_PLD_WORKSPACE=~/workspace_vhdl
-mkdir -p $MY_PLD_WORKSPACE
-cd $MY_PLD_WORKSPACE
-git clone https://github.com/xtarke/riscv-multicycle
-cd $MY_PLD_WORKSPACE/riscv-multicycle/tests
-```
-
-1. Atualizar Makefile com o diretório da toolchain.
-
-Exemplo:
-
-```RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-```
-
-2. Para compilar, _make_.
-
-### Instalação do compilador no Windows (Windows Subsystem for Linux)
-
-1. Instalar o WSL: [Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-2. Instalar o Ubuntu no WSL
-
-	- Para integrar o Visual Code com o compilador interno ao WSL, siga esse [link](https://devblogs.microsoft.com/commandline/an-in-depth-tutorial-on-linux-development-on-windows-with-wsl-and-visual-studio-code/)
-
-3. No shell Ubuntu (busque Ubuntu no Iniciar do Windows):
-4. Instalar os pacotes para o nodejs:
-
-```sudo apt update
-sudo apt upgrade
-sudo apt install nodejs
-sudo apt install npm
-sudo npm --global install xpm
-```
-
-5. Instalar por xmp [GNU Eclipse](https://gnu-mcu-eclipse.github.io/toolchain/riscv/install/):
-
-```xpm install --global @gnu-mcu-eclipse/riscv-none-gcc```
-
-6. Altere o caminho do compilador no _Makefile_:
-	- de:
-```RISCV_TOOLS_PREFIX = riscv32-unknown-elf-```
-	- para:
-```RISCV_TOOLS_PREFIX = ~/opt/xPacks/@<versão compilador>/.contents/bin/riscv-none-embed-```
-
-7. Utilizando o shell Ubuntu,  mude o diretório atual para o repositório:
-
-```cd /mnt/c/<caminho sistema arquivos Windows>```
-
-8. Para compilar, _make_.
-
-Após a compilação, mova, copie ou faça um _link_ simbólico de ./tests/quartus.hex para a raiz do projeto.
