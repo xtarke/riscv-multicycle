@@ -9,12 +9,12 @@ library ieee;
 entity accel_bus is
   generic (
     -- chip select
-    MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10";
-    MY_WORD_ADDRESS : std_logic_vector(7 downto 0) := x"10"
+    MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10"; -- Input/Output generic address space
+    MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0120" -- 
   );
   port (
     -- core data bus signals
-    daddress : in natural;
+    daddress : in unsigned(31 downto 0);
     ddata_w  : in  std_logic_vector(31 downto 0);
     ddata_r  : out std_logic_vector(31 downto 0);
     d_we     : in std_logic;
@@ -25,8 +25,8 @@ entity accel_bus is
     clk   : in STD_LOGIC; -- system clock
     rst   : in STD_LOGIC; -- active low asynchronous reset
     miso  : in STD_LOGIC; -- SPI bus: master in, slave out    
-	 sclk  : buffer STD_LOGIC; -- SPI bus: serial clock    
-	 ss_n  : buffer STD_LOGIC_VECTOR(0 downto 0); -- SPI bus: slave select	 
+	sclk  : buffer STD_LOGIC; -- SPI bus: serial clock    
+	ss_n  : buffer STD_LOGIC_VECTOR(0 downto 0); -- SPI bus: slave select	 
     mosi  : out STD_LOGIC; -- SPI bus: master out, slave in
 	 -- axis
     axi_x : buffer STD_LOGIC_VECTOR(15 downto 0); -- x_axis acceleration data
@@ -62,13 +62,13 @@ architecture rtl of accel_bus is
     else		
       if rising_edge(clk) then
 			if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
-        -- #define ACCELEROMETER_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 8*16*4))
-        -- 8*16 = 128 (decimal) -> 80 (hexadecimal)
-				if    to_unsigned(daddress, 32)(7 downto 0) = x"80" then
+        -- #define ACCELEROMETER_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 18*16*4))
+        -- 18*16 = 244 (decimal) -> 0x0120 (hexadecimal)
+				if    daddress(15 downto 0) = (MY_WORD_ADDRESS) then
 					ddata_r <= x"0000" & axi_x;
-				elsif to_unsigned(daddress, 32)(7 downto 0) = x"81" then
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
 					ddata_r <= x"0000" & axi_y;
-				elsif to_unsigned(daddress, 32)(7 downto 0) = x"82" then
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
 					ddata_r <= x"0000" & axi_z;
 				end if;
 			end if;

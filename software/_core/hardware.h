@@ -80,7 +80,7 @@
 #define KEYBOARD_BASE_ADDRESS           (*(_IO32 *) (PERIPH_BASE + 14*16*4))
 #define CRC_BASE_ADDRESS           	    (*(_IO32 *) (PERIPH_BASE + 15*16*4))
 #define SPWM_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 17*16*4))
-
+#define ACCELEROMETER_BASE_ADDRESS      (*(_IO32 *) (PERIPH_BASE + 18*16*4))
 
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	

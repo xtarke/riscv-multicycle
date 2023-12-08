@@ -67,7 +67,15 @@ architecture rtl of e_testbench is
   signal acceleration_y : STD_LOGIC_VECTOR(15 downto 0);
   signal acceleration_z : STD_LOGIC_VECTOR(15 downto 0);
 
+  signal dmemory_address_u: unsigned(SIZE-1 downto 0);
+  signal daddress_u: unsigned(SIZE-1 downto 0);
+  signal iaddress_u: unsigned(SIZE-1 downto 0);
+
   begin
+    
+  dmemory_address_u <= to_unsigned(dmemory_address, SIZE);
+  daddress_u <= to_unsigned(daddress, SIZE);
+  iaddress_u <= to_unsigned(iaddress, SIZE);
 
   -- instatiation: 32-bits x 1024 words quartus RAM
   e_iram_quartus : entity work.iram_quartus
@@ -83,32 +91,33 @@ architecture rtl of e_testbench is
   -- instatiation: data nemory RAM
   e_data_memory : entity work.dmemory
     generic map(
-      MEMORY_WORDS => DMEMORY_WORDS
+      MEMORY_WORDS => DMEMORY_WORDS,
+      DADDRESS_BUS_SIZE => SIZE
     )
     port map(
-      rst        => rst, 
-      clk        => clk, 
-      data       => ddata_w, 
-      address    => dmemory_address, 
-      we         => d_we, 
-      signal_ext => d_sig, 
-      csel       => dcsel(0), 
-      dmask      => dmask, 
+      rst        => rst,
+      clk        => clk,
+      data       => ddata_w,
+      address    => dmemory_address_u,
+      we         => d_we,
+      csel       => dcsel(0),
+      dmask      => dmask,
+      signal_ext => d_sig,
       q          => ddata_r_mem
     );
 
   -- instatiation: softcore
   e_softcore : entity work.core
     generic map(
-      IMEMORY_WORDS => IMEMORY_WORDS, 
-      DMEMORY_WORDS => DMEMORY_WORDS
+      IADDRESS_BUS_SIZE => SIZE, 
+      DADDRESS_BUS_SIZE => SIZE
     )
     port map(
       clk      => clk, 
       rst      => rst, 
-      iaddress => iaddress, 
+      iaddress => iaddress_u, 
       idata    => idata, 
-      daddress => daddress, 
+      daddress => daddress_u, 
       ddata_r  => ddata_r, 
       ddata_w  => ddata_w, 
       d_we     => d_we, 
@@ -121,7 +130,7 @@ architecture rtl of e_testbench is
     );
  
   -- instatiation: accelerometer
-  e_accel_bs : entity work.accel_bus_tb
+  e_accel_bs : entity work.accel_bus
     generic map(
       MY_CHIPSELECT   => MY_CHIPSELECT, 
       MY_WORD_ADDRESS => MY_WORD_ADDRESS
@@ -143,18 +152,19 @@ architecture rtl of e_testbench is
       ss_n(0)        => ss_n, 
       mosi           => mosi, 
       -- accelerometer axes
-      acceleration_x => acceleration_x, 
-      acceleration_y => acceleration_y, 
-      acceleration_z => acceleration_z
+      axi_x => acceleration_x, 
+      axi_y => acceleration_y, 
+      axi_z => acceleration_z
     );
 
   -- instatiation: file output debug
   e_debug : entity work.trace_debug
     generic map(
-      MEMORY_WORDS => IMEMORY_WORDS
+      MEMORY_WORDS => IMEMORY_WORDS,
+      IADDRESS_BUS_SIZE => SIZE
     )
     port map(
-      pc   => iaddress, 
+      pc   => iaddress_u, 
       data => idata, 
       inst => debugString
     );
