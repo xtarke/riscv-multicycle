@@ -2,12 +2,14 @@
 library ieee;
 	use ieee.std_logic_1164.all;
 	use ieee.numeric_std.all;
+	
 -- -- interfaces (entradas, saidas) -- --
 entity bin_to_bcd is
 	port( num_bin    : in  std_logic_vector(15 downto 0);
 		  num_signal : in  std_logic;
 		  num_bcd    : out unsigned(15 downto 0) );
 end entity bin_to_bcd;
+
 -- -- interligacoes (entidade e componentes) -- --
 architecture rlt of bin_to_bcd is
 	begin
