@@ -19,4 +19,4 @@ Utilizou-se uma tabela para converter a entrada em pontos e traços (pontos são
 ![maquina de estados ](./imagens/Maquina_de_estados.png)
 
 # Simulação
-A primeira simulação foi feita ainda antes do periférico ser implementado no projeto como um todo e pode ser visto nos arquivos [testbench](/peripherals/morse/testbench.vhd) e [tb.do](https://github.com/suzuki1994/Morse_Code/blob/main/tb.do)
+A primeira simulação foi feita ainda antes do periférico ser implementado no projeto como um todo e pode ser visto nos arquivos [testbench](/peripherals/morse/testbench.vhd) e [tb.do](/peripherals/morse/tb.do)
