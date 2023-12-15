@@ -95,13 +95,13 @@ As saídas do timer foram conectadas a pinos de saída, dessa forma, utilizando 
 - Output_1A e output_1B
 
 <p align="center">
-    <img width="100%" height="50%" src="Medicao1_Mode5.jpg">
+    <img width="100%" height="50%" src="Medicao1_Mode5.JPG">
 </p>
 
 - Output_2A e output_2B
 
 <p align="center">
-    <img width="100%" height="50%" src="Medicao2_Mode5.jpg">
+    <img width="100%" height="50%" src="Medicao2_Mode5.JPG">
 </p>
 
 ### PWM mode - counter up (`0b110`)
@@ -128,15 +128,15 @@ Nas imagens abaixo é possível observar os resultados obtidos nesse modo do tim
 Por meio dos pinos de saída foram visualizadas no osciloscópio as formas de onda geradas . Seguem as imagens capturadas, demonstrando as saídas, considerando os mesmos parâmetros utilizados na simulação.
 
 - Output_0A e output_0B
-- 
+
 <p align="center">
-    <img width="100%" height="50%" src="Medicao0_Mode6.jpg">
+    <img width="100%" height="50%" src="Medicao0_Mode6.JPG">
 </p>
 
 - Output_2A e output_2B
 
 <p align="center">
-    <img width="100%" height="50%" src="Medicao2_Mode6.jpg">
+    <img width="100%" height="50%" src="Medicao2_Mode6.JPG">
 </p>
 
 ## Integração com o núcleo
