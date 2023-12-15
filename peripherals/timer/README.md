@@ -130,7 +130,7 @@ Por meio dos pinos de saída foram visualizadas no osciloscópio as formas de on
 - Output_0A e output_0B
 
 <p align="center">
-    <img width="100%" height="50%" src="Medicao0_Mode6.JPG">
+    <img width="50%" height="50%" src="Medicao0_Mode6.JPG">
 </p>
 
 - Output_2A e output_2B
