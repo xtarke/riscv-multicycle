@@ -6,7 +6,7 @@ set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY de10_lite
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.0.0
-set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.2 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:49:34  JUNE 20, 2019"
 
 
@@ -20,7 +20,7 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
@@ -111,30 +111,30 @@ set_location_assignment PIN_B21 -to HEX2[4]
 set_location_assignment PIN_C22 -to HEX2[5]
 set_location_assignment PIN_B22 -to HEX2[6]
 set_location_assignment PIN_A19 -to HEX2[7]
-set_location_assignment PIN_F21 -to HEX3[0] -disable
-set_location_assignment PIN_E22 -to HEX3[1] -disable
-set_location_assignment PIN_E21 -to HEX3[2] -disable
-set_location_assignment PIN_C19 -to HEX3[3] -disable
-set_location_assignment PIN_C20 -to HEX3[4] -disable
-set_location_assignment PIN_D19 -to HEX3[5] -disable
-set_location_assignment PIN_E17 -to HEX3[6] -disable
-set_location_assignment PIN_D22 -to HEX3[7] -disable
-set_location_assignment PIN_F18 -to HEX4[0] -disable
-set_location_assignment PIN_E20 -to HEX4[1] -disable
-set_location_assignment PIN_E19 -to HEX4[2] -disable
-set_location_assignment PIN_J18 -to HEX4[3] -disable
-set_location_assignment PIN_H19 -to HEX4[4] -disable
-set_location_assignment PIN_F19 -to HEX4[5] -disable
-set_location_assignment PIN_F20 -to HEX4[6] -disable
-set_location_assignment PIN_F17 -to HEX4[7] -disable
-set_location_assignment PIN_J20 -to HEX5[0] -disable
-set_location_assignment PIN_K20 -to HEX5[1] -disable
-set_location_assignment PIN_L18 -to HEX5[2] -disable
-set_location_assignment PIN_N18 -to HEX5[3] -disable
-set_location_assignment PIN_M20 -to HEX5[4] -disable
-set_location_assignment PIN_N19 -to HEX5[5] -disable
-set_location_assignment PIN_N20 -to HEX5[6] -disable
-set_location_assignment PIN_L19 -to HEX5[7] -disable
+set_location_assignment PIN_F21 -to HEX3[0]
+set_location_assignment PIN_E22 -to HEX3[1]
+set_location_assignment PIN_E21 -to HEX3[2]
+set_location_assignment PIN_C19 -to HEX3[3]
+set_location_assignment PIN_C20 -to HEX3[4]
+set_location_assignment PIN_D19 -to HEX3[5]
+set_location_assignment PIN_E17 -to HEX3[6]
+set_location_assignment PIN_D22 -to HEX3[7]
+set_location_assignment PIN_F18 -to HEX4[0]
+set_location_assignment PIN_E20 -to HEX4[1]
+set_location_assignment PIN_E19 -to HEX4[2]
+set_location_assignment PIN_J18 -to HEX4[3]
+set_location_assignment PIN_H19 -to HEX4[4]
+set_location_assignment PIN_F19 -to HEX4[5]
+set_location_assignment PIN_F20 -to HEX4[6]
+set_location_assignment PIN_F17 -to HEX4[7]
+set_location_assignment PIN_J20 -to HEX5[0]
+set_location_assignment PIN_K20 -to HEX5[1]
+set_location_assignment PIN_L18 -to HEX5[2]
+set_location_assignment PIN_N18 -to HEX5[3]
+set_location_assignment PIN_M20 -to HEX5[4]
+set_location_assignment PIN_N19 -to HEX5[5]
+set_location_assignment PIN_N20 -to HEX5[6]
+set_location_assignment PIN_L19 -to HEX5[7]
 
 
 # KEY
@@ -160,14 +160,14 @@ set_location_assignment PIN_B11 -to LEDR[9]
 # SW
 #============================================================
 set_location_assignment PIN_C10 -to SW[0]
-set_location_assignment PIN_C11 -to SW[1] -disable
-set_location_assignment PIN_D12 -to SW[2] -disable
-set_location_assignment PIN_C12 -to SW[3] -disable
-set_location_assignment PIN_A12 -to SW[4] -disable
-set_location_assignment PIN_B12 -to SW[5] -disable
-set_location_assignment PIN_A13 -to SW[6] -disable
-set_location_assignment PIN_A14 -to SW[7] -disable
-set_location_assignment PIN_B14 -to SW[8] -disable
+set_location_assignment PIN_C11 -to SW[1]
+set_location_assignment PIN_D12 -to SW[2]
+set_location_assignment PIN_C12 -to SW[3]
+set_location_assignment PIN_A12 -to SW[4]
+set_location_assignment PIN_B12 -to SW[5]
+set_location_assignment PIN_A13 -to SW[6]
+set_location_assignment PIN_A14 -to SW[7]
+set_location_assignment PIN_B14 -to SW[8]
 set_location_assignment PIN_F15 -to SW[9]
 
 
@@ -226,6 +226,8 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE ../../gpio/led_displays.vhd
+set_global_assignment -name VHDL_FILE ../../../memory/iodatabusmux.vhd
 set_global_assignment -name VHDL_FILE ../../gpio/gpio.vhd
 set_global_assignment -name VHDL_FILE ../disp_data.vhd
 set_global_assignment -name VHDL_FILE de10_lite.vhd
