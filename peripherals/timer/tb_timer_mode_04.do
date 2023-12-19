@@ -5,7 +5,7 @@ vlib work
 vcom Timer.vhd tb_timer_mode_04.vhd
 
 # Simula (work é o diretorio, testbench é o nome da entity)
-vsim -voptargs="+acc" -t ns work.testbench_timer_mode_04
+vsim -voptargs="+acc" -t ns work.testbench work.testbench_timer_mode_04
 
 # Mosta forma de onda
 view wave

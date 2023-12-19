@@ -41,11 +41,11 @@ vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
 vcom testbench.vhd
 
-vsim -voptargs="+acc" -t ns work.testbench
+vsim -voptargs="+acc" -t ns work.coretestbench
 
 view wave
-add wave -radix binary -label clk /clk
-add wave -radix binary  -label rst /rst
+add wave -radix binary  /clk
+add wave -radix binary  /rst
 add wave -height 15 -divider "Instruction Memory"
 add wave -label iAddr -radix hex /address
 add wave -label iWord -radix hex idata
@@ -83,6 +83,11 @@ add wave -height 15 -divider "Register file debug"
 
 # decoder debug
 add wave -label states /myRiscv/decoder0/state
+
+add wave -height 15 -divider "GPIO"
+add wave -label enable_exti_mask -radix hex /generic_gpio/enable_exti_mask
+add wave -label edge_exti_mask -radix hex /generic_gpio/edge_exti_mask
+add wave -label output_reg -radix hex /generic_gpio/output_reg
 
 add wave -height 15 -divider "CSR"
 add wave -label interrupts -radix hex /myRiscv/interrupts
@@ -139,12 +144,35 @@ add wave -label ddata_r_gpio -radix hex     /ddata_r_gpio
 add wave -label gpio_interrupts -radix hex /gpio_interrupts
 add wave -label gpio_input -radix hex /gpio_input
 
-add wave -height 15 -divider "TIMER"
-add wave -radix binary -label ifcap /ifcap
-add wave -radix binary -label mode /timer/timer_mode
-add wave -radix unsigned -label prescaler /timer/prescaler
-add wave -radix unsigned -label time /timer/time
-add wave -radix unsigned -label captured_time /timer/captured_time
+add wave -height 15 -divider "Timer"
+add wave -label enable_timer_irq_mask -radix hex /timer/enable_timer_irq_mask
+add wave -label timer_interrupt -radix hex /timer/timer_interrupt
+add wave -label timer_reset -radix binary /timer/timer_reset
+add wave -label timer_mode -radix unsigned /timer/timer_mode
+add wave -label prescaler -radix unsigned /timer/prescaler
+add wave -label top_counter -radix unsigned /timer/top_counter
+add wave -label counter -radix unsigned /timer/counter
+add wave -label c -radix unsigned /timer/p2/c
+add wave -label compare_0A -radix unsigned /timer/compare_0A
+add wave -label compare_0B -radix unsigned /timer/compare_0B
+add wave -label compare_1A -radix unsigned /timer/compare_1A
+add wave -label compare_1B -radix unsigned /timer/compare_1B
+add wave -label compare_2A -radix unsigned /timer/compare_2A
+add wave -label compare_2B -radix unsigned /timer/compare_2B
+add wave -label output_0A -radix binary /timer/output_A(0)
+add wave -label output_0B -radix binary /timer/output_B(0)
+add wave -label output_1A -radix binary /timer/output_A(1)
+add wave -label output_1B -radix binary /timer/output_B(1)
+add wave -label output_2A -radix binary /timer/output_A(2)
+add wave -label output_2B -radix binary /timer/output_B(2)
+add wave -label internal_clock -radix binary /timer/internal_clock
 
-run 5000 us
+
+add wave -height 15 -divider "Input/Output SIM"
+add wave -label LEDR -radix hex /LEDR
+add wave -label HEX0 -radix hex /HEX0
+add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
+
+run 8000 us
 wave zoomfull
+write wave wave.ps

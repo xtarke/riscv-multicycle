@@ -28,6 +28,11 @@ void timer_set_compare2A(uint32_t comp_value) {
 void timer_set_compare2B(uint32_t comp_value) {
 	TIMER_0->compare_2B = comp_value;
 }
+
+void timer_set_dead_time(uint32_t dead_time){
+	TIMER_0->dead_time = dead_time;
+}
+
 uint32_t timer_get_output0A(void) {
 	return TIMER_0->output_0A;
 }

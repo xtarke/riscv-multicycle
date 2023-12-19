@@ -132,6 +132,9 @@ architecture rtl of de0_lite is
     -- I/O signals
     signal input_in : std_logic_vector(31 downto 0);
     signal ifcap : std_logic;
+    signal ddata_r_spwm : std_logic_vector(31 downto 0);
+    signal ddata_r_crc : std_logic_vector(31 downto 0);
+    signal ddata_r_key : std_logic_vector(31 downto 0);
 
 begin
 
@@ -241,7 +244,10 @@ begin
 						ddata_r_stepmot  => ddata_r_stepmot,
 						ddata_r_lcd      => ddata_r_lcd,
 						ddata_r_fir_fil  => ddata_r_fir_fil,
-						ddata_r_nn_accelerator => ddata_r_nn_accelerator
+                        ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+                        ddata_r_spwm => ddata_r_spwm,
+                        ddata_r_crc => ddata_r_crc,
+                        ddata_r_key => ddata_r_key
         );
 
 			generic_gpio: entity work.gpio
@@ -263,21 +269,28 @@ begin
 			-- Timer instantiation
 			timer : entity work.Timer
 			  generic map(
-			      prescaler_size => 16,
-			      compare_size   => 32
+                  DADDRESS_BUS_SIZE => 32,
+                  prescaler_size => 16,
+                  compare_size   => 32
 			  )
 			  port map(
-			      clock       => clk,
-			      reset       => rst,
-			      daddress => daddress,
-			      ddata_w  => ddata_w,
-			      ddata_r  => ddata_r_timer,
-			      d_we     => d_we,
-			      d_rd     => d_rd,
-			      dcsel    => dcsel,
-			      dmask    => dmask,
-			      timer_interrupt => timer_interrupt,
-			      ifcap  => ifcap
+                  clock       => clk,
+                  reset       => rst,
+                  daddress => daddress,
+                  ddata_w  => ddata_w,
+                  ddata_r  => ddata_r_timer,
+                  d_we     => d_we,
+                  d_rd     => d_rd,
+                  dcsel    => dcsel,
+                  dmask    => dmask,
+                  timer_interrupt => timer_interrupt,
+                  ifcap  => ifcap,
+                  out_A(0) => ARDUINO_IO(0),
+                  out_A(1) => ARDUINO_IO(1),
+                  out_A(2) => ARDUINO_IO(2),
+                  out_B(0) => ARDUINO_IO(3),
+                  out_B(1) => ARDUINO_IO(4),
+                  out_B(2) => ARDUINO_IO(5)
 			  );
 
 			generic_displays : entity work.led_displays
