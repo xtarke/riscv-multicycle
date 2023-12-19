@@ -38,7 +38,7 @@ architecture RTL of iodatabusmux is
 
 begin
     -- Word address, ignoring least significant 4 bytes
-  
+
     with daddress(19 downto 4) select ddata_r_periph <=
         ddata_r_gpio when x"0000",
         ddata_r_segments when x"0001",
@@ -52,7 +52,7 @@ begin
         ddata_r_nn_accelerator when x"000B",
         ddata_r_fir_fil  when x"000D",
         ddata_r_key when x"000E",
-	      ddata_r_crc when x"000F",
+        ddata_r_crc when x"000F",
         ddata_r_spwm  when x"0011",
         -- Add new io peripherals here
         (others => '0') when others;
