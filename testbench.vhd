@@ -13,7 +13,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
-entity coretestbench is
+entity core_main_testbench is
 	generic(
 		--! Num of 32-bits memory words
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
@@ -38,9 +38,9 @@ entity coretestbench is
 	);
 
 
-end entity coretestbench;
+end entity core_main_testbench;
 
-architecture RTL of coretestbench is
+architecture RTL of core_main_testbench is
     -- Clocks and reset
 	signal clk       : std_logic;
 	signal clk_32x   : std_logic;
