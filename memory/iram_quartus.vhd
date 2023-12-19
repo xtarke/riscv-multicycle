@@ -65,8 +65,13 @@ BEGIN
 		byte_size => 8,
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "../../../../software/quartus_blink.hex",
 		intended_device_family => "MAX 10",
+    
+		-- Specify here core software binary
+		init_file => "../../software/quartus_blink.hex",
+		-- init_file => "./software/irq/quartus_irq_example.hex",
+		-- init_file => "./software/irq/quartus_irq_example.hex",
+
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",
 		numwords_a => 1024,

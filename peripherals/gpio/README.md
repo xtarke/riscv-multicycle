@@ -17,3 +17,7 @@ O *temp.vhd* é responsável por converter um valor para a base decimal e aprese
 A função recebe o valor presente em *ddata_w* e o transforma em um número na base decimal. No caso desse projeto, a leitura é feita usando um conversor analógico-digital (ADC) conectado a um sensor de temperatura (LM35). A função basicamente subtrai 10 do valor da variável *temp* e possui um contador responsável por registrar quantas vezes 10 foi subtraído do valor de *temp*. Se *temp* for menor que 10, o programa sai do loop.
 
 A função retorna o valor do contador e, em seguida, o valor convertido é enviado para outra função responsável por apresentar o valor em decimal no display de 7 segmentos. No arquivo *temp.vhd*, esse componente é utilizado para apresentar a temperatura medida pelo sensor nos displays de 7 segmentos, tanto em graus Celsius como em graus Fahrenheit (por exemplo, 12°C/53°F).
+
+# README GPIO deboucer
+
+O GPIO do debouncer foi integrado ao GPIO do projeto com a finalidade de ser uma escolha ao usuário entre usar um ou outro. Com isso foi acrescentado um endereço no iodata_bus para o gpio_deb
