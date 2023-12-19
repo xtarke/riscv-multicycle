@@ -26,7 +26,7 @@ architecture behavior of accelerometer_adxl345 is
 
   type machine is(start, pause, configure, read_data, output_result); --needed states
   signal state              : machine := start; --state machine
-  signal parameter          : integer range 0 to 3; --parameter being configured
+  signal parameter_a        : integer range 0 to 3; --parameter being configured
   signal parameter_addr     : STD_LOGIC_VECTOR(5 downto 0); --register address of configuration parameter
   signal parameter_data     : STD_LOGIC_VECTOR(3 downto 0); --value of configuration parameter
   signal spi_busy_prev      : STD_LOGIC; --previous value of the SPI component's busy signal
@@ -76,9 +76,9 @@ architecture behavior of accelerometer_adxl345 is
 
         --entry state
         when start => 
-          count := 0; --clear universal counter
-          parameter <= 0; --clear parameter indicator
-          state     <= pause;
+          count       := 0; --clear universal counter
+          parameter_a <= 0; --clear parameter indicator
+          state       <= pause;
  
           --pauses 200ns between SPI transactions and selects SPI transaction
         when pause => 
@@ -88,19 +88,19 @@ architecture behavior of accelerometer_adxl345 is
               state <= pause; --remain in pause state
             else --200ns has elapsed
               count := 0; --clear counter
-              case parameter is --select SPI transaction
+              case parameter_a is --select SPI transaction
                 when 0 => --SPI transaction to set range
-                  parameter      <= parameter + 1; --increment parameter for next transaction
+                  parameter_a    <= parameter_a + 1; --increment parameter for next transaction
                   parameter_addr <= "110001"; --register address with range setting
                   parameter_data <= "10" & data_range; --data to set specified range
                   state          <= configure; --proceed to SPI transaction
                 when 1 => --SPI transaction to set data rate
-                  parameter      <= parameter + 1; --increment parameter for next transaction
+                  parameter_a      <= parameter_a + 1; --increment parameter for next transaction
                   parameter_addr <= "101100"; --register address with data rate setting
                   parameter_data <= data_rate; --code to set specified data rate
                   state          <= configure; --proceed to SPI transaction
                 when 2 => --SPI transaction to enable measuring
-                  parameter      <= parameter + 1; --increment parameter for next transaction
+                  parameter_a      <= parameter_a + 1; --increment parameter for next transaction
                   parameter_addr <= "101101"; --register address with enable measurement setting
                   parameter_data <= "1000"; --data to enable measurement
                   state          <= configure; --proceed to SPI transaction
@@ -180,11 +180,6 @@ architecture behavior of accelerometer_adxl345 is
           axi_y <= axi_y_int; --output y-axis data
           axi_z <= axi_z_int; --output z-axis data
           state          <= pause; --return to pause state
- 
-          --default to start state
-        when others => 
-          state <= start;
-
       end case; 
     end if;
   end process;
