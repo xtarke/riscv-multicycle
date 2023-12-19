@@ -18,6 +18,8 @@ void test_mode_1(void);
 void test_mode_2(void);
 void test_mode_3(void);
 void test_mode_4(void);
+void test_mode_5(void);
+void test_mode_6(void);
 void example_heartbeat(void);
 
 void test_mode_0(void)
@@ -164,17 +166,70 @@ void test_mode_4(void)
     SEGMENTS_BASE_ADDRESS = TIMER_0->capture_value;
 }   
 
+
+void test_mode_5(void)
+{
+    uint32_t events;
+
+    TIMER_0->timer_reset = 1; 
+
+    TIMER_0->timer_mode = 5;
+    TIMER_0->prescaler = 2;
+    TIMER_0->top_counter = 20;
+    TIMER_0->dead_time = 2;
+
+    TIMER_0->compare_0A = 5;
+    TIMER_0->compare_1A = 10;
+    TIMER_0->compare_2A = 14;
+
+
+    TIMER_0->timer_reset = 0;
+
+}
+
+void test_mode_6(void)
+{
+    uint32_t events;
+
+    TIMER_0->timer_reset = 1;
+
+    TIMER_0->timer_mode = 6;
+    TIMER_0->prescaler = 2;
+    TIMER_0->top_counter = 20;
+    TIMER_0->dead_time = 2;
+
+    TIMER_0->compare_0A = 5;
+    TIMER_0->compare_1A = 10;
+    TIMER_0->compare_2A = 14;
+
+
+    TIMER_0->timer_reset = 0;
+
+}
+
 int main(void)
 {
-    while(1){
 
+   test_mode_5();
+   uint32_t data = 0;
+  
+    while(1){
+        
         //test_mode_0();
         //test_mode_1();
         //test_mode_2();
-        //test_mode_3();
-        test_mode_4();
+        //test_mode_4();
+	    //example_heartbeat();
+	    	/* Read input bus */
+		if (INBUS)
+			/* Resets data when any input is high */
+			data = 0;
 
-	//example_heartbeat();
+		/* Counter blink */
+		OUTBUS = data;
+		SEGMENTS_BASE_ADDRESS = data;
+
+		data++;
 
     }
 	return 0;
