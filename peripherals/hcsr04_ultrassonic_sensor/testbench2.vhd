@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------
 -- Name        : testbench2.vhd
--- Author      : Suzi Yousif
+-- Author      : Thiago de Lira
 -- Description : A simple testbench for Ultrassonic Sensor HC-SR04.
 --				 This test was made to check the state machine and
 --				 the variable 'measure_ms'.
@@ -11,13 +11,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity hcsr04_testbench is
-end entity hcsr04_testbench;
+entity testbenchlira is
+end entity testbenchlira;
 
-architecture RTL of hcsr04_testbench is
+architecture RTL of testbenchlira is
     signal clk       : std_logic;
     signal rst       : std_logic;
-    signal daddress : unsigned(31 downto 0);
+    signal daddress :unsigned(31 downto 0);
     signal ddata_r  : std_logic_vector(31 downto 0);
     signal ddata_w  : std_logic_vector(31 downto 0);
     signal dmask    : std_logic_vector(3 downto 0);
@@ -28,6 +28,8 @@ architecture RTL of hcsr04_testbench is
     -- I/O signals
     signal echo : std_logic;
     signal Trig : std_logic;
+
+
 begin
 
     HCSR04_inst : entity work.HCSR04
@@ -47,10 +49,15 @@ begin
             dmask    => dmask,
             echo     => echo,
             Trig     => Trig
+
         );
 
     clock_driver : process
         constant period : time := 10000 ns;
+
+        -- Simulation constants
+        constant ECHO_TIMEOUT : integer := 1000;
+        constant MEASUREMENT_CYCLE : integer := 60000;
     begin
         clk <= '0';
         wait for period / 2;
@@ -65,8 +72,8 @@ begin
         rst <= '0';
         wait;
     end process reset;
+    -- echo <= '0', '1' after 800000 ns, '0' after 850000 ns;
+    echo <= '0', '1' after 800000 ns, '0' after 1070000 ns;
 
-    echo <= '0',  '1' after 600000 ns, '0' after 950000 ns;
-    -- echo <= '1';--,  '1' after 600000 ns, '0' after 950000 ns;
 
 end architecture RTL;

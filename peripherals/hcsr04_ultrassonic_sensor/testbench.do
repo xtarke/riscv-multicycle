@@ -33,8 +33,8 @@ vcom ../../core/core.vhd
 vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
 vcom testbench.vhd
-
-vsim -t ns work.coretestbench
+vsim -voptargs="+acc" -t ns work.coretestbench
+#vsim -t ns work.coretestbench
 
 view wave
 add wave -radix binary 	-label clk /clk

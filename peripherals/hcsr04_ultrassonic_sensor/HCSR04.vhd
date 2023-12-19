@@ -1,6 +1,6 @@
 -------------------------------------------------------------------
 -- Name        : HCSR04.vhd
--- Author      : Suzi Yousif
+-- Author      : Suzi Yousif, Thiago de Lira
 -- Description : Ultrassonic Sensor HC-SR04
 -------------------------------------------------------------------
 library ieee;
@@ -12,7 +12,7 @@ entity HCSR04 is
         --! Chip selec
         MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
         MY_WORD_ADDRESS : unsigned(7 downto 0) := x"10";
-        DADDRESS_BUS_SIZE : integer := 32                       --! Data bus size
+        DADDRESS_BUS_SIZE : integer := 32
     );
 
     port(
@@ -26,35 +26,29 @@ entity HCSR04 is
         ddata_r   : out	std_logic_vector(31 downto 0);
         d_we      : in std_logic;
         d_rd	  : in std_logic;
-        dcsel	  : in std_logic_vector(1 downto 0);	--! Chip select 
+        dcsel	  : in std_logic_vector(1 downto 0);	--! Chip select
         -- ToDo: Module should mask bytes (Word, half word and byte access)
         dmask     : in std_logic_vector(3 downto 0);	--! Byte enable mask
 
         -- hardware input/output signals
         echo  : in std_logic;
-        trig : out std_logic;
-
-        state_debug : out std_logic_vector(7 downto 0)
+        Trig : out std_logic
     );
 end entity HCSR04;
 
 architecture RTL of HCSR04 is
-    type state_type is (IDLE, TRIG_STATE, SONIC_BURST, ECHO_STATE, REGISTER_STATE);
+    type state_type is (Idle, Trig_state, Sonic_Burst, Echo_state, Register_state);
     signal state : state_type;
 
     signal counter : unsigned (31 downto 0);
-    signal echo_counter : unsigned (31 downto 0);  
+
+    signal echo_counter : unsigned (31 downto 0);
+    signal echo_wait : unsigned (7 downto 0);
     signal measure_ms :   unsigned (31 downto 0);
 
-    -- Simulation constants
-    -- constant ECHO_TIMEOUT : integer := 100;    
-    -- constant MEASUREMENT_CYCLE : integer := 600; 
-    
-    -- Real hardware constants
-    -- Cycles to wait for echo signal (CLK = 1MHz, 1ms => 1k)
-    constant ECHO_TIMEOUT : integer := 1000;    
-    -- Cycles to wait for new measurement cycle (datahsheet) (CLK = 1MHz, 60ms => 60k)
-    constant MEASUREMENT_CYCLE : integer := 60000; 
+    --
+    constant ECHO_TIMEOUT : integer := 100;
+    constant MEASUREMENT_CYCLE : integer := 600;
 
 begin
     -- Input register
@@ -74,77 +68,66 @@ begin
     state_transation: process(clk, rst) is
     begin
         if rst = '1' then
-            state <= IDLE;
+            state <= Idle;
+            echo_wait <= to_unsigned(0, 8);
+            echo_counter <=  to_unsigned(0, 32);
+
+            measure_ms <= to_unsigned(0, 32);
+            Trig <= '0';
+
             counter <= (others => '0');
-            echo_counter <=  (others => '0');
-            measure_ms <= (others => '0');           
+
         elsif rising_edge(clk) then
             case state is
-                when IDLE =>
-                
+                when Idle =>
+                    Trig <= '0';
+                    echo_counter <=  to_unsigned(0, 32);
+
                     counter <= (others => '0');
-                    echo_counter <=  (others => '0');
-                    state <= TRIG_STATE;
 
-                when TRIG_STATE =>
+                    state <= Trig_state;
+
+                when Trig_state =>
+
+                    Trig <= '1';
+
                     counter <= counter + 1;
-               
-                    if counter > x"0b" then
-                        state <= SONIC_BURST;
+                    if counter > x"10" then
+                        state <= Sonic_Burst;
                         counter <= (others => '0');
                     end if;
 
-                when SONIC_BURST =>
-                    
-                    counter <= counter + 1;
-               
-                    if (counter > to_unsigned(ECHO_TIMEOUT, counter'length)) then
-                        state <= REGISTER_STATE;
-                        counter <= (others => '0');                    
-                    elsif (echo = '1') then
-                        state <= ECHO_STATE;
-                        counter <= (others => '0');
+                when Sonic_Burst =>
+                    Trig <= '0';
+
+                   counter <= counter + 1;
+                --if counter > x"0b" then
+
+                        if echo <= '1' then
+                            state <= Echo_state;
+                            counter <= (others => '0');
+                        end if;
+
+                        if counter > to_unsigned (ECHO_TIMEOUT,counter'length)then
+                            state <= Register_State;
+                        end if;
+                    --end if;
+
+                when Echo_state =>
+					if (echo = '1') then
+						echo_counter <= echo_counter + 1;
+					end if;
+
+					counter <= counter + 1;
+                    if counter > to_unsigned (MEASUREMENT_CYCLE,counter'length) then
+                        state <= Register_State;
                     end if;
 
-                when ECHO_STATE =>
-                     counter <= counter + 1;
-                    
-                    if (echo = '1') then                        
-                        echo_counter <= echo_counter + 1;
-                    end if;                    
+				when Register_State =>
+				    measure_ms <= echo_counter;
+				    state <= Idle;
 
-                    if (counter > to_unsigned(MEASUREMENT_CYCLE, counter'length)) then
-                        state <= REGISTER_STATE;
-                        counter <= (others => '0');
-                    end if;
-
-                when REGISTER_STATE =>
-                    measure_ms <= echo_counter;
-                    state <= IDLE;   
-
-            end case;
+			end case;
         end if;
     end process;
-
-
-    moore: process(state)
-    begin
-        state_debug <= x"00";
-        trig <= '0';
-        
-        case state is 
-            when IDLE =>
-                state_debug <= x"01";
-            when TRIG_STATE =>
-                state_debug <= x"02";
-                trig <= '1';
-            when SONIC_BURST =>
-                state_debug <= x"03";
-            when ECHO_STATE =>
-                state_debug <= x"04";
-            when REGISTER_STATE =>
-                state_debug <= x"05";
-        end case;
-    end process;
-
 end architecture RTL;
