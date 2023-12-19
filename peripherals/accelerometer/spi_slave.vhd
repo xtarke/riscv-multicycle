@@ -55,7 +55,7 @@ entity spi_slave is
            not sclk when others;
 
     --keep track of miso/mosi bit counts for data alignmnet
-    process (ss_n, clk)
+    process (ss_n, clk, rst)
     begin
       if (ss_n = '1' or rst = '1') then --this slave is not selected or being reset
         bit_cnt <= (conv_integer(not l_cpha) => '1', others => '0'); --reset miso/mosi bit count
@@ -66,7 +66,7 @@ entity spi_slave is
       end if;
     end process;
 
-    process (ss_n, clk, st_load_en, tx_load_en, rx_req)
+    process (ss_n, clk, st_load_en, tx_load_en, rx_req, rst, rx_buf, st_load_roe, st_load_rrdy, st_load_trdy, tx_load_data)
       begin
         --write address register ('0' for receive, '1' for status)
         if (bit_cnt(1) = '1' and falling_edge(clk)) then

@@ -6,8 +6,6 @@
 #include "../_core/utils.h"
 #include "../_core/hardware.h"
 
-#define OUTBUS  *(&IONBUS_BASE_ADDRESS + 1)
-
 typedef struct
 {
 	_IO32 axe_x; //	0x0000, 128, x80
