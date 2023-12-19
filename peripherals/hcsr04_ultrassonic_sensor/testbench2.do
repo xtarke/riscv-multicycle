@@ -13,8 +13,8 @@ vlib work
 vcom HCSR04.vhd testbench2.vhd
 
 #Simula (work é o diretorio, testbench é o nome da entity)
-vsim -t ns work.testbench
-
+#vsim -t ns work.testbenchlira
+vsim -voptargs="+acc" -t ns work.testbenchlira
 #Mosta forma de onda
 view wave
 
@@ -31,7 +31,7 @@ add wave -label measure_ms -radix unsigned /HCSR04_inst/measure_ms
 add wave -label echo_counter -radix unsigned /HCSR04_inst/echo_counter
 add wave -label echo_wait -radix unsigned /HCSR04_inst/echo_wait
 
-run 1000000 ns
+run 10 ms
 
 wave zoomfull
 write wave wave.ps

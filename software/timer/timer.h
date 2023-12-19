@@ -36,6 +36,9 @@ typedef struct {
 
   _IO32 enable_irq;       // 0x2C
   _IO32 capture_value;     // 0x30
+  
+  _IO32 dead_time;     // 0x34
+  
 } TIMER_TYPE;
 
 
@@ -50,6 +53,7 @@ void timer_set_compare1A(uint32_t comp_value);
 void timer_set_compare1B(uint32_t comp_value);
 void timer_set_compare2A(uint32_t comp_value);
 void timer_set_compare2B(uint32_t comp_value);
+void timer_set_dead_time(uint32_t dead_time);
 
 uint32_t timer_get_output0A(void);
 uint32_t timer_get_output0B(void);
