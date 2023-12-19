@@ -16,6 +16,8 @@
 
 vlib work
 vcom gpio.vhd
+vcom debouncer.vhd
+vcom gpio_deb.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../memory/instructionbusmux.vhd
@@ -35,9 +37,10 @@ vcom ../../core/csr.vhd
 vcom ../../core/core.vhd
 vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
-vcom testbench.vhd
+vcom testbench2.vhd
 
-vsim -t ns work.coretestbench
+#vsim -t ns work.coretestbench
+vsim -voptargs=+acc -t ns work.coretestbench
 
 view wave
 add wave -radix binary 	-label clk /clk
@@ -89,8 +92,8 @@ add wave -label fsm_data -radix hex /dmem/fsm_data
 add wave -label ram_data -radix hex /dmem/ram_data
 add wave -label mState /dmem/state
 add wave -label fsm_we /dmem/fsm_we
-add wave -label ddata_r_mem -radix hex /dmem/q
-add wave -label datamemory -radix hex /dmem/ram_block
+#add wave -label ddata_r_mem -radix hex /dmem/q
+#add wave -label datamemory -radix hex /dmem/ram_block
 
 
 add wave -height 15 -divider "Data bus"
@@ -103,6 +106,15 @@ add wave -label d_we 	/d_we
 add wave -label d_rd 	/d_rd
 add wave -label d_sig   /d_sig
 
+add wave -height 15 -divider "DEBOUNCER"
+add wave -label key_debouncer -radix hex /key_debouncer
+add wave -label led_debouncer -radix hex /led_debouncer
+
+add wave -label output -radix hex deb/output
+add wave -label result -radix hex deb/result
+add wave -label count -radix hex deb/deb2/debouncer2/count
+add wave -label vetor -radix hex deb/deb2/debouncer2/vetor
+
 add wave -height 15 -divider "GPIO"
 add wave -label gpio_input -radix hex /gpio_input
 add wave -label gpio_output -radix hex /gpio_output
@@ -111,5 +123,5 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
 
-run 950000 ns
+run 2 ms
 wave zoomfull
