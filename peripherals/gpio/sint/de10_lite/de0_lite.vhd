@@ -11,7 +11,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
-entity de0_lite is
+entity de0_lite_gpio is
     generic (
         --! Num of 32-bits memory words
         IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
@@ -75,7 +75,7 @@ end entity;
 
 
 
-architecture rtl of de0_lite is
+architecture rtl of de0_lite_gpio is
     -- Clocks and reset
     signal clk : std_logic;
     signal rst : std_logic;
@@ -123,10 +123,10 @@ architecture rtl of de0_lite is
     signal ddata_r_lcd : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
-    signal ddata_r_spwm           :      std_logic_vector(31 downto 0);
-    signal  ddata_r_crc		         :   std_logic_vector(31 downto 0);
-    signal  ddata_r_key        :      std_logic_vector(31 downto 0);
-    signal ddata_r_deb_gpio : std_logic_vector(31 downto 0);
+    signal ddata_r_spwm : std_logic_vector(31 downto 0);
+    signal ddata_r_crc : std_logic_vector(31 downto 0);
+    signal ddata_r_key : std_logic_vector(31 downto 0);
+    signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
 
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
@@ -251,24 +251,10 @@ begin
             ddata_r_spwm  		=> ddata_r_spwm,
             ddata_r_crc			=> ddata_r_crc,
             ddata_r_key       => ddata_r_key,
-            ddata_r_deb_gpio     => ddata_r_deb_gpio
+            ddata_r_accelerometer     => ddata_r_accelerometer
         );
 
-    deb_gpio: entity work.gpio_deb
-        port map(
-            clk      => clk,
-            rst      => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_deb_gpio, 
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            input    => gpio_input,
-            output   => gpio_output 
-        );
-    generic_gpio: entity work.gpio
+	  generic_gpio: entity work.gpio	    
         port map(
             clk      => clk,
             rst      => rst,
@@ -280,15 +266,15 @@ begin
             dcsel    => dcsel,
             dmask    => dmask,
             input    => gpio_input,
-            --output   => gpio_output, -- deixar esse comentado para utilizar o deb gpio
+            output   => gpio_output,
             gpio_interrupts => gpio_interrupts
         );
 
     -- Timer instantiation
     timer : entity work.Timer
         generic map(
-            prescaler_size => 16,
-            compare_size   => 32
+            PRESCALER_SIZE => 16,
+            COMPARE_SIZE   => 32
         )
         port map(
             clock       => clk,

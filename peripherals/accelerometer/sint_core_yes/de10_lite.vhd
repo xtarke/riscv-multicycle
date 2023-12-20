@@ -1,10 +1,17 @@
+-------------------------------------------------------------------
+-- Name        : de0_lite.vhd
+-- Author      :
+-- Version     : 0.1
+-- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
+-- Description : Projeto base DE10-Lite
+-------------------------------------------------------------------
 
 library ieee;
     use ieee.std_logic_1164.all;
     use ieee.numeric_std.all;
     use work.decoder_types.all;
 
-entity de10_lite is
+entity de10_lite_acc_core is
       generic (
         --! Num of 32-bits memory words
         IMEMORY_WORDS : integer := 1024;  --!= 4K (1024 * 4) bytes
@@ -64,9 +71,9 @@ entity de10_lite is
         ARDUINO_IO: inout std_logic_vector(15 downto 0);
         ARDUINO_RESET_N: inout std_logic
     );
-end de10_lite;
+end de10_lite_acc_core;
 
-architecture rtl of de10_lite is
+architecture rtl of de10_lite_acc_core is
   -- chip select
   constant MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10";
   constant MY_ACCELEROMETER_ADDRESS : unsigned(15 downto 0) := x"0120";
