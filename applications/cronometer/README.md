@@ -14,16 +14,16 @@ O sistema permite iniciar, parar, zerar o cronômetro e salvar tempos intermedi�
 2. **Zerar Contagem**:  
    - **Chave 2**: Ao ser ativada, esta chave zera a contagem dos displays 1 e 2, isso é feito ao zerar os contadores atrelados a esses displays.
 
-3. **Salvar Split (Tempo Intermediário)**:  
-   - **Chave 3**: Salva o primeiro tempo intermediário (split) nos displays 3 e 4.
-   - **Chave 4**: Salva o segundo tempo intermediário (split) nos displays 5 e 6.
+3. **Salvar Split**:  
+   - **Chave 3**: Salva o primeiro split nos displays 3 e 4.
+   - **Chave 4**: Salva o segundo split nos displays 5 e 6.
 
 4. **Limpar Displays e Splits**:  
    - **Chave 5**: Quando ativada, esta chave limpa todos os contadores, incluindo os splits, e reinicia o sistema.
   
 A indicação da ordem das chaves e displays é mostrada na figura abaixo:
 
-FOTO
+<img src="Imagens/placa.jpg">
 
 ## Estrutura do Código
 
@@ -31,11 +31,11 @@ FOTO
 
 Para executar esse código são necessários uma série de arquivos de cabeçalho que fornecem definições e funções auxiliares:
 
-- **`utils.h`**: Utilitários gerais usados em diversas partes do código.
-- **`hardware.h`**: Definições e funções específicas do hardware, incluindo manipulação de GPIOs e outros periféricos.
+- **`utils.h`**
+- **`hardware.h`**: Definições específicas do hardware, incluindo manipulação de GPIOs.
 - **`timer.h`**: Configuração e controle do temporizador.
-- **`interrupt.h`**: Controle das interrupções, incluindo habilitação e desabilitação.
-- **`gpio.h`**: Controle das entradas e saídas digitais (GPIOs) usadas para ler o estado das chaves.
+- **`interrupt.h`**: Controle das interrupções.
+- **`gpio.h`**: Controle das entradas e saídas (GPIOs) usadas para ler o estado das chaves e escrever nos displays.
 
 ### Variáveis
 
@@ -61,16 +61,14 @@ Esta é a rotina de tratamento de interrupção do temporizador (TIMER0). Suas p
 - **Contagem do Cronômetro**: Incrementa o contador do display 1 a cada segundo. Se o contador atingir 9, o display 1 é resetado e o display 2 é incrementado (contagem BCD).
 - **Atualização dos Displays**: Combina os tempos atuais e os splits para formar o valor final a ser exibido nos displays, usando a variável `SEGMENTS`.
 
-#### `init_timer0(void)`: Configura o temporizador (TIMER0) para controlar a geração das interrupções de tempo. Especificamente:
+#### `init_timer0(void)`
+Configura o temporizador (TIMER0) para controlar a geração das interrupções de tempo. Especificamente:
 
-#### `main(void)`: Inicializa o temporizador e as interrupções globais, e entra em um loop infinito que mantém o sistema em operação, permitindo que as interrupções controlem a lógica do cronômetro.
+#### `main(void)`
+Inicializa o temporizador e as interrupções globais, e entra em um loop infinito que mantém o sistema em operação, permitindo que as interrupções controlem a lógica do cronômetro.
 
-## Instâncias
+### Funcionamento
 
-Para executar esse código são necessários uma série de arquivos de cabeçalho que fornecem definições e funções auxiliares:
+Abaixo é mostrado um gif no qual o cronômetro está contando e é ativada a chave do split 1 e do split 2.
 
-- **`utils.h`**: Utilitários gerais usados em diversas partes do código.
-- **`hardware.h`**: Definições e funções específicas do hardware, incluindo manipulação de GPIOs e outros periféricos.
-- **`timer.h`**: Configuração e controle do temporizador.
-- **`interrupt.h`**: Controle das interrupções, incluindo habilitação e desabilitação.
-- **`gpio.h`**: Controle das entradas e saídas digitais (GPIOs) usadas para ler o estado das chaves.
+<img src="Imagens/funcionamento.gif">
