@@ -6,3 +6,5 @@ O LED WS2812 é um LED RGB inteligente com controle integrado. Ele permite o con
 <p align="center">
     <img width="50%" height="50%" src="imagens/pinos_led.jpg">
 </p>
+
+
