@@ -35,5 +35,5 @@ Para testar o driver utilizando a placa DE10Lite foi utilizado o In-System Sourc
 
 <p align="center">
     <img src="imagens/Verde_probe.jpg">
-    <img src="imagens/led_verde.jpg">
+    <img height="500" src="imagens/led_verde.jpg">
 </p>
