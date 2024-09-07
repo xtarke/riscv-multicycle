@@ -5,11 +5,11 @@ O LED WS2812 é um LED RGB inteligente com controle integrado. Ele permite o con
 
  
 <p align="center">
-    <img height="500" src="imagens/pinos_led.jpg">
+    <img height="300" src="imagens/pinos_led.jpg">
 </p>
 
 <p align="center">
-    <img height="500" src="imagens/led.jpg">
+    <img height="400" src="imagens/led.jpg">
 </p>
 
 O LED WS2812 utiliza um protocolo de comunicação baseado em um sinal de dados serial com a frequÊcnai de aproximadamente 800KHz. Para controlar a cor e o brilho, é enviados 24 bits por led.
