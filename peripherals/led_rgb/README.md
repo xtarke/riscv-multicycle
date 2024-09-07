@@ -31,23 +31,24 @@ No estado IDLE, o controlador fica inativo até que o sinal de início (start) s
 
 O processo continua até que todos os 24 bits do registrador de deslocamento sejam enviados. Quando todos os bits foram transmitidos, o controlador entra no estado END_SEND_DATA, onde aguarda por um tempo antes de retornar ao estado IDLE, pronto para uma nova transmissão. O código também possui um sinal de reinicialização (reset) que coloca o controlador de volta no estado IDLE e reinicializa os contadores e o registrador de deslocamento.  
 
-Para testar o driver utilizando a placa DE10Lite foi utilizado o In-System Sources and Probes para selecionar o dado a ser enviado:
+Para testar o driver utilizando a placa DE10Lite foi utilizado o In-System Sources and Probes para selecionar o dado a ser enviado:  
 
+## Verde
 <p align="center">
     <img src="imagens/Verde_probe.jpg">
     <img height="300" src="imagens/led_verde.jpg">
 </p>
-
+## Vermelho
 <p align="center">
     <img src="imagens/Vermelho_probe.jpg">
     <img height="300" src="imagens/led_vermelho.jpg">
 </p>
-
+## Azul
 <p align="center">
     <img src="imagens/Azul_probe.jpg">
     <img height="300" src="imagens/led_azul.jpg">
 </p>
-
+## Branco
 <p align="center">
     <img src="imagens/Branco_probe.jpg">
     <img height="300" src="imagens/led_branco.jpg">
