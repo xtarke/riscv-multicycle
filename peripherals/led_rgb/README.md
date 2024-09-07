@@ -22,5 +22,5 @@ Os dados são enviados em pacotes de 24 bits por LED, sem pausas entre a informa
     <img src="imagens/led_cascata.jpg">
 </p>
 
-Após o envio dos dados, o controlador do LED WS2812 precisa de um intervalo de pelo menos 50 µs de baixa tensão para concluir a transmissão e exibir as cores configuradas. Isso também permite que o sistema de controle saiba que a transmissão de dados foi finalizada, iniciando um novo ciclo se necessário.
-
+Após o envio dos dados, o controlador do LED WS2812 precisa de um intervalo de pelo menos 50 µs de baixa tensão para concluir a transmissão e exibir as cores configuradas. Isso também permite que o sistema de controle saiba que a transmissão de dados foi finalizada, iniciando um novo ciclo se necessário.  
+# Desenvolvimento do driver RGB
