@@ -13,7 +13,10 @@ Cada LED WS2812 possui um controlador integrado que interpreta o sinal de dados.
 
 <p align="center">
     <img src="imagens/comunicação_nrz.jpg">
+    <img src="imagens/tempos_nrz.jpg">
 </p>
+
+
 
 Os dados são enviados em pacotes de 24 bits por LED, com 8 bits para o valor de cada cor (verde, vermelho e azul, nessa ordem). O primeiro LED da cadeia recebe o pacote de dados, armazena as informações que correspondem a ele e retransmite o restante do sinal para o próximo LED na cadeia, processando os dados subsequentes. Isso permite que cada LED seja controlado individualmente, e o sinal é propagado de um LED para o próximo ao longo da cadeia.
 
