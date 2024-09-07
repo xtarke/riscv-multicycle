@@ -7,7 +7,7 @@ O LED WS2812 é um LED RGB inteligente com controle integrado. Ele permite o con
     <img height="500" src="imagens/led.jpg">
 </p>
 
-O LED WS2812 utiliza um protocolo de comunicação baseado em um sinal de dados serial com a frequÊcnai de aproximadamente 800KHz. Para controlar a cor e o brilho são enviados 24 bits por led.
+O LED WS2812 utiliza um protocolo de comunicação baseado em um sinal de dados serial com a frequÊcnai de aproximadamente 800KHz. Para controlar a cor e o brilho, é enviados 24 bits por led.
 
 Cada LED WS2812 possui um controlador integrado que interpreta o sinal de dados. O sinal é transmitido em formato NRZ (Non-Return to Zero), onde a duração dos pulsos representa os bits 0 e 1. Um bit '0' é representado por um pulso de alta tensão (nível lógico alto) de 0,4 µs seguido de um pulso de baixa tensão (nível lógico baixo) de 0,85 µs. Um bit '1' é representado por um pulso de alta tensão de 0,8 µs seguido de um pulso de baixa tensão de 0,45 µs.
 
