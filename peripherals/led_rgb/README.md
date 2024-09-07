@@ -1,7 +1,12 @@
 # Driver RGB
 
 
-O LED WS2812 é um LED RGB inteligente com controle integrado. Ele permite o controle individual de cada cor (vermelho, verde e azul) através de um único pino de dados, o que simplifica a conexão de vários LEDs em cascata. O led possui um pino de alimentação 5V, um pino para o GND e outro pino de dados
+O LED WS2812 é um LED RGB inteligente com controle integrado. Ele permite o controle individual de cada cor (vermelho, verde e azul) através de um único pino de dados, o que simplifica a conexão de vários LEDs em cascata. O led possui um pino de alimentação 5V, um pino para o GND, pino de entrada dados e outro de saída de dados conectado ao próximo led.
+
+ 
+<p align="center">
+    <img height="500" src="imagens/pinosled.jpg">
+</p>
 
 <p align="center">
     <img height="500" src="imagens/led.jpg">
