@@ -1,7 +1,7 @@
 ifndef RISCV_TOOLS_PREFIX
 # RISCV_TOOLS_PREFIX = riscv-none-embed-
 # Para usar no LSC
-RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.2.0-1.2.1/.content/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = /var/data/aluno/riscv-multicycle-master/compiler/gcc/bin/riscv-none-embed-
 endif
 
 QUARTUS_DIR= ~/intelFPGA/quartus21.1/21.1/quartus/bin/
