@@ -3,7 +3,7 @@
 - Controle dos estados luzes de um semáforo (Red, Yellow e Green);
 - Contagem do número de pedestres (apenas no estado Red);
 - Contagem do número de carros (apenas nos estados Yellow e Green);
-- Exibição das luzes do semáforo, da contagem dos pedestres e carros, do tempo de cada estado do semáforo.
+- Exibição das luzes do semáforo, da contagem dos pedestres e carros, bem como do tempo de cada estado do semáforo.
 -------------------------------------------------------------------
 ## 1 ESPECIFICAÇÕES
 ### 1.1 PORTAS DE ENTRADA
