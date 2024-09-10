@@ -55,7 +55,7 @@ O modelo de chaveamento segue da mesma forma que a modulação bipolar, porém a
 - sine_spwm2 = 0  quando Vseno_offset < Vtriangular
 
 <p align="center">
-<img src="https://github.com/xtarke/riscv-multicycle/blob/master/peripherals/spwm/spwm_example_unipolar.png" width="436" height="326">
+<img src="https://github.com/RamonSerafim/riscv-multicycle/blob/master/peripherals/spwm/spwm_example_unipolar.png" width="436" height="326">
 
 
 
