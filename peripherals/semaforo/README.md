@@ -95,7 +95,7 @@
 
 ## 4 SIMULAÇÃO SEMÁFORO
  - 1) Abrir o software Modelsim
- - 2) cd C:/Users/elvis/OneDrive/Documentos/projeto_final/riscv-multicycle-master/riscv-multicycle-master/peripherals/semaforo2
+ - 2) cd C:/Users/elvis/OneDrive/Documentos/projeto_final/riscv-multicycle-master/riscv-multicycle-master/peripherals/semaforo
  - 3) do tb.do
  - 4) Imagens da simulação
    
@@ -122,7 +122,7 @@ Os arquivos utilizados nos subprogramas são:
 Simulação dos Subprogramas:
 
  - 1) Abrir o software Modelsim
- - 2) cd C:/Users/elvis/OneDrive/Documentos/projeto_final/riscv-multicycle-master/riscv-multicycle-master/peripherals/semaforo2
+ - 2) cd C:/Users/elvis/OneDrive/Documentos/projeto_final/riscv-multicycle-master/riscv-multicycle-master/peripherals/semaforo
  - 3) do_BCD_to_7seg_display.do
  - 4) Imagem da simulação
 
