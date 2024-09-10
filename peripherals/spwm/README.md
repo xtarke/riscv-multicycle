@@ -9,7 +9,7 @@ Implementação de um componente VHDL gerador de PWM senoidal a partir da compar
 
 - `reset`: sinal de reset do periférico, deve ser conectado ao barramento do `reset` do _core_.  
 
-- `sel_modeulation`: Seleciona qual modulação será apresentada na saída.
+- `sel_modulation`: Seleciona qual modulação será apresentada na saída.
 
 - `sine_spwm1`: Saída 1 do pwm senoidal gerado pelo hardware.
 
