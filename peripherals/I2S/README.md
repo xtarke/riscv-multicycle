@@ -57,9 +57,11 @@ Como o áudio é exportado em .hex e a parte significativa do áudio são os 24 
 
 Para a análise da gravação foi utilizado o Ocenaudio.
 Abaixo tem o espectro do áudio gravado quando é emitido um som na frequência de 1KHz.
-![alt text](imgs/1KHz_test.png)
+
+![alt text](imgs/1Khz_test.png)
 
 Testando o microfone com voz se tem o seguinte resultado:
+
 ![alt text](imgs/audio_test.png)
 
 ### Pendências
