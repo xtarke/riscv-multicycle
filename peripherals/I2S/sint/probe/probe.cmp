@@ -1,0 +1,6 @@
+	component probe is
+		port (
+			probe : in std_logic_vector(95 downto 0) := (others => 'X')  -- probe
+		);
+	end component probe;
+
