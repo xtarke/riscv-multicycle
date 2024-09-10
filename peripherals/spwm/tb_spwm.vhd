@@ -88,8 +88,18 @@ architecture RTL of coretestbench is
 	signal ddata_r_lcd : std_logic_vector(31 downto 0);
 	signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
 	signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+	signal ddata_r_crc : std_logic_vector(31 downto 0);
+    signal ddata_r_key : std_logic_vector(31 downto 0);
+    signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
+	
+	signal ifcap :std_logic;
 
-	signal switching_sine	: std_logic;
+	signal switching_sine1	: std_logic;
+	signal switching_sine2  : std_logic;
+	signal switching_sine3  : std_logic;
+	signal switching_sine4  : std_logic;
+	signal sel_modulation   : std_logic;
+	
 
 begin
 
@@ -104,7 +114,11 @@ begin
 	port map(
 		clock     => clk_32x,
 		reset     => rst,
-		sine_pwm1 => switching_sine,
+		sel_modulation => sel_modulation,
+		sine_pwm1 => switching_sine1,
+		sine_pwm2 => switching_sine2,
+		sine_pwm3 => switching_sine3,
+		sine_pwm4 => switching_sine4,
 		daddress  => daddress,
 		ddata_w   => ddata_w,
 		ddata_r   => ddata_r_spwm,
@@ -142,7 +156,8 @@ begin
 	end process reset;
 
 	-- Connect gpio data to output hardware
-    LEDR  <= gpio_output(9 downto 0);
+	LEDR  <= gpio_output(9 downto 0);
+	sel_modulation <= '0';
 
     -- Connect input hardware to gpio data
     gpio_test: process
@@ -231,10 +246,13 @@ begin
             ddata_r_dif_fil  => ddata_r_dif_fil,
 			ddata_r_spwm	=> ddata_r_spwm,
             ddata_r_stepmot  => ddata_r_stepmot,
-						ddata_r_lcd      => ddata_r_lcd,
-						ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-						ddata_r_fir_fil  => ddata_r_fir_fil,
-            ddata_r_periph   => ddata_r_periph
+			ddata_r_lcd      => ddata_r_lcd,
+			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			ddata_r_fir_fil  => ddata_r_fir_fil,
+			ddata_r_periph   => ddata_r_periph,
+			ddata_r_crc      => ddata_r_crc,
+            ddata_r_key      => ddata_r_key,
+            ddata_r_accelerometer      => ddata_r_accelerometer
         );
 
 	-- Softcore instatiation
@@ -281,7 +299,8 @@ begin
 	    d_rd     => d_rd,
 	    dcsel    => dcsel,
 	    dmask    => dmask,
-	    timer_interrupt => timer_interrupt
+	    timer_interrupt => timer_interrupt,
+	    ifcap => ifcap
 	);	
 
 	-- Generic GPIO module instantiation
