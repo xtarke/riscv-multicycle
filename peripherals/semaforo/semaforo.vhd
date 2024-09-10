@@ -130,7 +130,7 @@ BEGIN
                 END IF;
 
             WHEN RED =>
-                count_limit <= "00000011";  -- Exemplo: 15 ciclos de clock para o estado RED
+                count_limit <= "00001111";  -- Exemplo: 15 ciclos de clock para o estado RED
                 IF start = '1' THEN
                     nx_state <= YELLOW;
                 ELSE
@@ -146,7 +146,7 @@ BEGIN
                 END IF;
 
             WHEN GREEN =>
-                count_limit <= "00000011";  -- Exemplo: 15 ciclos de clock para o estado GREEN
+                count_limit <= "00001111";  -- Exemplo: 15 ciclos de clock para o estado GREEN
                 IF start = '1' THEN
                     nx_state <= RED;
                 ELSE
