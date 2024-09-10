@@ -103,7 +103,7 @@ No primeiro ciclo da máquina de estados.
 ![Simulação](semaforo2/simulacao.png)
 
 A partir do segundo ciclo da máquina de estados.
-![Simulação](semaforo2/simulacao2.png)
+![Simulação](semaforo/simulacao2.png)
 
 ## 5 SUBPROGRAMAS
 Os subprogramas possuem as seguintes especificações:
@@ -126,7 +126,7 @@ Simulação dos Subprogramas:
  - 3) do_BCD_to_7seg_display.do
  - 4) Imagem da simulação
 
-![Simulação](semaforo2/simulacao3.png)
+![Simulação](semaforo/simulacao3.png)
 
 ## 6 SÍNTESE
 O arquivo de síntese é denominado de_10_lite.vhd e é composto de:
@@ -150,16 +150,16 @@ Compilação Síntese
   - BCD_to_7seg_display.vhd
   - bcd_to_7seg_pkg.vhd
 
-![Sintese](semaforo2/sintese.png)
+![Sintese](semaforo/sintese.png)
 
 - 4) Compilação (control + L):
-![Sintese](semaforo2/compilacao.png)
+![Sintese](semaforo/compilacao.png)
 
 ## 7 GRAVAÇÃO
               
 - Tools >> Programmer >> Start
  
- ![Sintese](semaforo2/programmer.png)
+ ![Sintese](semaforo/programmer.png)
 
  ## 8 Make - Procedimento Windows
 
@@ -190,4 +190,4 @@ python hex8tohex32.py blink.tmp > blink32.hex
 python hex8tointel.py blink.tmp > quartus_blink.hex
 rm blink32.hex
 
- ![make](semaforo2/make.png)
+ ![make](semaforo/make.png)
