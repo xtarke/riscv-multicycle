@@ -100,7 +100,7 @@
  - 4) Imagens da simulação
    
 No primeiro ciclo da máquina de estados.
-![Simulação](semaforo2/simulacao.png)
+![Simulação](semaforo/simulacao.png)
 
 A partir do segundo ciclo da máquina de estados.
 ![Simulação](semaforo/simulacao2.png)
