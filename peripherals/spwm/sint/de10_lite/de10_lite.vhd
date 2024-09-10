@@ -123,8 +123,11 @@ architecture rtl of de10_lite is
     signal ddata_r_dig_fil : std_logic_vector(31 downto 0);
     signal ddata_r_stepmot : std_logic_vector(31 downto 0);
     signal ddata_r_lcd : std_logic_vector(31 downto 0);
-		signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
-		signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+	signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
+	signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+	signal ddata_r_crc : std_logic_vector(31 downto 0);
+	signal ddata_r_key : std_logic_vector(31 downto 0);
+	signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
 
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
@@ -133,8 +136,12 @@ architecture rtl of de10_lite is
 
     -- I/O signals
     signal input_in : std_logic_vector(31 downto 0);
-	 
 	 signal switching_sine           : std_logic;
+	 
+	 --Timer
+	 signal ifcap : std_logic ;     -- capture flag
+	 
+	 signal sel_modulation : std_logic;
 
 begin
 
@@ -174,7 +181,11 @@ begin
 	port map(
 		clock     => clk_50MHz,
 		reset     => rst,
+		sel_modulation => SW(5),
 		sine_pwm1 => ARDUINO_IO(0),
+		sine_pwm2 => ARDUINO_IO(2),
+		sine_pwm3 => ARDUINO_IO(4),
+      sine_pwm4 => ARDUINO_IO(6),
 		daddress  => daddress,
 		ddata_w   => ddata_w,
 		ddata_r   => ddata_r_spwm,
@@ -217,6 +228,7 @@ begin
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space
 	-- ( ... )    ->    ( ... )
+	
 	datamux: entity work.databusmux
 		port map(
 			dcsel        => dcsel,
@@ -263,10 +275,14 @@ begin
             ddata_r_periph   => ddata_r_periph,
 				ddata_r_spwm	  => ddata_r_spwm,
             ddata_r_dif_fil  => ddata_r_dig_fil,
-						ddata_r_stepmot  => ddata_r_stepmot,
-						ddata_r_lcd      => ddata_r_lcd,
-						ddata_r_fir_fil  => ddata_r_fir_fil,
-						ddata_r_nn_accelerator => ddata_r_nn_accelerator
+				ddata_r_stepmot  => ddata_r_stepmot,
+				ddata_r_lcd      => ddata_r_lcd,
+				ddata_r_fir_fil  => ddata_r_fir_fil,
+				ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+				ddata_r_crc      => ddata_r_crc,
+				ddata_r_key      => ddata_r_key,
+				ddata_r_accelerometer      => ddata_r_accelerometer
+				
         );
 
 			generic_gpio: entity work.gpio
@@ -301,7 +317,8 @@ begin
 			      d_rd     => d_rd,
 			      dcsel    => dcsel,
 			      dmask    => dmask,
-			      timer_interrupt => timer_interrupt
+			      timer_interrupt => timer_interrupt,                                     
+					ifcap => ifcap
 			  );
 
 			generic_displays : entity work.led_displays
