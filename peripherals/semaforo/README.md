@@ -191,3 +191,8 @@ python hex8tointel.py blink.tmp > quartus_blink.hex
 rm blink32.hex
 
  ![make](/peripherals/semaforo/make.png)
+
+  ## 9 Video - YOUTUBE - Demonstração
+
+  https://www.youtube.com/watch?v=rF7BGWolLLM
+  
