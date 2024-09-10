@@ -126,7 +126,7 @@ Simulação dos Subprogramas:
  - 3) do_BCD_to_7seg_display.do
  - 4) Imagem da simulação
 
-![Simulação](semaforo/simulacao3.png)
+![Simulação](/peripherals/semaforo/simulacao3.png)
 
 ## 6 SÍNTESE
 O arquivo de síntese é denominado de_10_lite.vhd e é composto de:
@@ -150,16 +150,16 @@ Compilação Síntese
   - BCD_to_7seg_display.vhd
   - bcd_to_7seg_pkg.vhd
 
-![Sintese](semaforo/sintese.png)
+![Sintese](/peripherals/semaforo/sintese.png)
 
 - 4) Compilação (control + L):
-![Sintese](semaforo/compilacao.png)
+![Sintese](/peripherals/semaforo/compilacao.png)
 
 ## 7 GRAVAÇÃO
               
 - Tools >> Programmer >> Start
  
- ![Sintese](semaforo/programmer.png)
+ ![Sintese](/peripherals/semaforo/programmer.png)
 
  ## 8 Make - Procedimento Windows
 
@@ -190,4 +190,4 @@ python hex8tohex32.py blink.tmp > blink32.hex
 python hex8tointel.py blink.tmp > quartus_blink.hex
 rm blink32.hex
 
- ![make](semaforo/make.png)
+ ![make](/peripherals/semaforo/make.png)
