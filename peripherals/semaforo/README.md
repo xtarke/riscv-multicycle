@@ -103,7 +103,7 @@ No primeiro ciclo da máquina de estados.
 ![Simulação](/peripherals/semaforo/simulacao.png)
 
 A partir do segundo ciclo da máquina de estados.
-![Simulação](semaforo/simulacao2.png)
+![Simulação](/peripherals/semaforo/simulacao2.png)
 
 ## 5 SUBPROGRAMAS
 Os subprogramas possuem as seguintes especificações:
