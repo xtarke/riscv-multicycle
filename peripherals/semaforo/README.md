@@ -100,7 +100,7 @@
  - 4) Imagens da simulação
    
 No primeiro ciclo da máquina de estados.
-![Simulação](semaforo/simulacao.png)
+![Simulação](riscv-multicycle/peripherals/semaforo/simulacao.png)
 
 A partir do segundo ciclo da máquina de estados.
 ![Simulação](semaforo/simulacao2.png)
