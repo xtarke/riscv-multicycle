@@ -13,20 +13,18 @@
 #include "../gpio/gpio.h"
 #include "spwm.h"
 
-// SPWM Variables
-uint32_t sine_frequency = 50;
-uint32_t modulator_frequency = 1000;
-uint32_t amplitude_ratio = 100;    // %
-
 void example_spwm(void){
 
-    spwm_set_sine_frequency(sine_frequency);
-    spwm_set_amplitude_modulation_ratio(amplitude_ratio);
-    
-    spwm_set_modulator_frequency(modulator_frequency);
+    spwm_set_sine_frequency(50);
+    spwm_set_amplitude_modulation_ratio(100);
+    spwm_set_modulator_frequency(1000);
 }
 
 int main(void){
+  // SPWM Variables
+  uint32_t sine_frequency = 50;
+  uint32_t modulator_frequency = 1000;
+  uint32_t amplitude_ratio = 100;    // %
 
     example_spwm();
 

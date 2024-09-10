@@ -160,7 +160,10 @@ add wave -label sine_freq -radix unsigned /spwm/sine_freq
 add wave -label sine_clkdiv_top_value -radix unsigned /spwm/sine_clkdiv_top_value
 add wave -label mod_freq -radix unsigned /spwm/mod_freq
 add wave -label mod_clkdiv_top_value -radix unsigned /spwm/mod_clkdiv_top_value
-add wave -label spwm -radix binary /switching_sine
+add wave -label spwm1 -radix binary /switching_sine1
+add wave -label spwm2 -radix binary /switching_sine2
+add wave -label spwm3 -radix binary /switching_sine3
+add wave -label spwm4 -radix binary /switching_sine4
 add wave -label clk_sine -radix binary /spwm/clk_sine
 add wave -label sine_value -radix signed /spwm/sine_value
 add wave -label clk_mod -radix binary /spwm/clk_mod
