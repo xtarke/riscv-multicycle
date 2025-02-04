@@ -1,0 +1,128 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/PLD/riscv-multicycle/peripherals/servo_motor
+Econtador
+Z1 w1738711587
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8contador.vhd
+Z6 Fcontador.vhd
+l0
+L13
+V6W[O0XPoShZCoA0lYEc;=0
+!s100 `A]9Ae;CSfbkd3k3U9IC?1
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1738711655
+!i10b 1
+Z9 !s108 1738711655.000000
+Z10 !s90 -reportprogress|300|contador.vhd|testbench.vhd|
+Z11 !s107 testbench.vhd|contador.vhd|
+!i113 1
+Z12 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+Z13 DEx4 work 8 contador 0 22 6W[O0XPoShZCoA0lYEc;=0
+l23
+L22
+Z14 VQh0f=GXiAk`]8QnNDiZJP2
+Z15 !s100 <L_j:SBlPOT9g]=[H>zgb1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+Eservomotor
+Z16 w1738709732
+R2
+R3
+R4
+R0
+Z17 8servo_motor.vhd
+Z18 Fservo_motor.vhd
+l0
+L13
+VUjA7fF]Lk[Of[gBGZoUGe3
+!s100 >hzz_VzJnR8miVB:[BfQm3
+R7
+32
+Z19 !s110 1738709743
+!i10b 1
+Z20 !s108 1738709743.000000
+Z21 !s90 -reportprogress|300|servo_motor.vhd|testbench.vhd|
+Z22 !s107 testbench.vhd|servo_motor.vhd|
+!i113 1
+R12
+Artl
+R2
+R3
+R4
+DEx4 work 10 servomotor 0 22 UjA7fF]Lk[Of[gBGZoUGe3
+l24
+L23
+VnIB4eOGJnCac;4iadMg`:0
+!s100 70mZ`SbnJ0djNaN=h6Mb73
+R7
+32
+R19
+!i10b 1
+R20
+R21
+R22
+!i113 1
+R12
+Etestbench
+Z23 w1738711651
+R2
+R3
+R4
+R0
+Z24 8testbench.vhd
+Z25 Ftestbench.vhd
+l0
+L5
+VC2E1=nSbS>EPDbb:_]AIH1
+!s100 AKP9mV3P:`ZYUYQ95BZ=:1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+Artl
+R13
+R2
+R3
+R4
+Z26 DEx4 work 9 testbench 0 22 C2E1=nSbS>EPDbb:_]AIH1
+l14
+L8
+V>og?AzWESlYIWZ54m0><i3
+!s100 CFDk1eDMnUeNU>gL[:9T03
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
