@@ -9,20 +9,16 @@ architecture rtl of testbench is
     
     signal clk_tb : std_logic; 
     signal rst_tb : std_logic;
-    signal cont_tb : integer range 0 to 20000;
+    signal pwm_tb : std_logic;  
 
 begin
     
-    countador_inst : entity work.contador
+    pwm_inst : entity work.pwm
         port map(
             clk  => clk_tb,
             rst  => rst_tb,
-          --  angulo => angulo_tb,
-            cont => cont_tb
-        );
-
-   
---angulo_tb <= 50;      
+            pwm => pwm_tb
+        );   
 
     process is
     begin

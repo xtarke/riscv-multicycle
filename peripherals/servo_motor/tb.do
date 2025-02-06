@@ -10,7 +10,7 @@
 vlib work
 
 #compila projeto: todos os aquivo. Ordem é importante
-vcom contador.vhd testbench.vhd
+vcom contador.vhd pwm.vhd testbench.vhd
 
 #Simula (work é o diretorio, testbench é o nome da entity)
 vsim -voptargs="+acc" -t ns work.testbench
@@ -24,7 +24,7 @@ view wave
 
 add wave -radix binary  /clk_tb
 add wave -radix binary  /rst_tb
-add wave -radix dec /cont_tb
+add wave -radix binary /pwm_tb
 #add wave -radix dec /angulo_tb
 
 
