@@ -25,7 +25,8 @@ view wave
 add wave -radix binary  /clk_tb
 add wave -radix binary  /rst_tb
 add wave -radix binary /pwm_tb
-#add wave -radix dec /angulo_tb
+#add wave -radix dec /test_tb
+add wave -radix dec /rot_tb
 
 
 

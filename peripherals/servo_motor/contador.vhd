@@ -14,14 +14,14 @@ entity contador is
     port (
         clk : in std_logic;
         rst : in std_logic;
-        cont : out integer range 0 to 20000
+        cont : out integer range 0 to 20001
     );
 end entity contador;
 
 architecture rtl of contador is
 begin
     process (clk, rst) 
-        variable temp: integer range 0 to 20000;
+        variable temp: integer range 0 to 20001;
     begin            
         if rst = '1' then 
 			cont <= 0;

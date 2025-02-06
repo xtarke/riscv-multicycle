@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/PLD/riscv-multicycle/peripherals/servo_motor
 Econtador
-Z1 w1738880877
+Z1 w1738881401
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
@@ -18,13 +18,13 @@ Z5 8contador.vhd
 Z6 Fcontador.vhd
 l0
 L13
-VIMWmIHZz^>82nm<EZg_;=1
-!s100 EPCbg_W1ZMVGB21>K=dhA3
+V@chKCSE;O[EA]KQhSFQZ82
+!s100 ZYLClz;ZX0MTZSeRZ=^0`2
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1738880980
+Z8 !s110 1738883292
 !i10b 1
-Z9 !s108 1738880980.000000
+Z9 !s108 1738883292.000000
 Z10 !s90 -reportprogress|300|contador.vhd|pwm.vhd|testbench.vhd|
 Z11 !s107 testbench.vhd|pwm.vhd|contador.vhd|
 !i113 1
@@ -33,11 +33,11 @@ Artl
 R2
 R3
 R4
-Z13 DEx4 work 8 contador 0 22 IMWmIHZz^>82nm<EZg_;=1
+Z13 DEx4 work 8 contador 0 22 @chKCSE;O[EA]KQhSFQZ82
 l22
 L21
-VS7OA]DHC1VU<^XOeE3B6i1
-!s100 P0Oo5@c75JSDR:h[QNaEM1
+Z14 Vm09X[ge<?M6_Wd4Yz>F2`3
+Z15 !s100 JIRSQmC@I5RND7AUk9L<Y0
 R7
 32
 R8
@@ -48,17 +48,17 @@ R11
 !i113 1
 R12
 Epwm
-Z14 w1738880724
+Z16 w1738883208
 R2
 R3
 R4
 R0
-Z15 8pwm.vhd
-Z16 Fpwm.vhd
+Z17 8pwm.vhd
+Z18 Fpwm.vhd
 l0
 L13
-V6QQiQgdf0WJbl9YhPzGF?1
-!s100 ^TgZeLao8PWRgYQLo[6GS0
+V<LcB0[z^L2W1`Oc><>3mC1
+!s100 Y<aiI<THP0UH;:;YFDNCR1
 R7
 32
 R8
@@ -73,11 +73,11 @@ R13
 R2
 R3
 R4
-Z17 DEx4 work 3 pwm 0 22 6QQiQgdf0WJbl9YhPzGF?1
-l25
-L23
-Z18 VTK63BO4Sb7:1VW>NNSg_R1
-Z19 !s100 Dgbdm`RGS8<foY`F;E:@o0
+Z19 DEx4 work 3 pwm 0 22 <LcB0[z^L2W1`Oc><>3mC1
+l27
+L25
+VNm6GzgIleD13hbnLhL?@B3
+!s100 n>kNXSmJ^a[3<86amBYkH0
 R7
 32
 R8
@@ -127,7 +127,7 @@ R26
 !i113 1
 R12
 Etestbench
-Z27 w1738880721
+Z27 w1738883274
 R2
 R3
 R4
@@ -148,15 +148,15 @@ R11
 !i113 1
 R12
 Artl
-R17
+R19
 R2
 R3
 R4
 Z30 DEx4 work 9 testbench 0 22 C2E1=nSbS>EPDbb:_]AIH1
-l14
+l18
 L8
-Z31 VVh;UnBRRgnOF[l8DXEhW@2
-Z32 !s100 a@FN5h0fA8JVf88FXU=Fk0
+Vg1S98YbOU6oJQEE?k=l]k1
+!s100 KbgT6fYO8XDh:U4Wg[^R<3
 R7
 32
 R8
