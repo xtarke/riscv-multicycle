@@ -13,7 +13,8 @@ entity cordic_bus is
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
 		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000";	
-		DADDRESS_BUS_SIZE : integer := 32
+		DADDRESS_BUS_SIZE : integer := 32;
+		DATA_WIDTH_BUS : integer := 16
 	);
 	
 	port(
@@ -28,14 +29,14 @@ entity cordic_bus is
 		d_rd	  : in std_logic;
 		dcsel	  : in std_logic_vector(1 downto 0);	--! Chip select 
 		-- ToDo: Module should mask bytes (Word, half word and byte access)
-		dmask     : in std_logic_vector(3 downto 0)	--! Byte enable mask
+		dmask     : in std_logic_vector(3 downto 0);	--! Byte enable mask
 		
 		--cordic_core stuff
 		start_bus    : in  std_logic;
-        angle_in_bus : in  signed(DATA_WIDTH-1 downto 0);
-        sin_out_bus  : out signed(DATA_WIDTH-1 downto 0);
-        cos_out_bus  : out signed(DATA_WIDTH-1 downto 0);
-        valid_bus    : out std_logic
+    	angle_in_bus : in  signed(DATA_WIDTH_BUS-1 downto 0);
+    	sin_out_bus  : out signed(DATA_WIDTH_BUS-1 downto 0);
+    	cos_out_bus  : out signed(DATA_WIDTH_BUS-1 downto 0);
+    	valid_bus    : out std_logic
 	);
 end entity cordic_bus;
 
@@ -43,6 +44,7 @@ architecture RTL of cordic_bus is
     signal enable_exti_mask: std_logic_vector(31 downto 0);
     signal edge_exti_mask: std_logic_vector(31 downto 0);
     
+	 signal output    :std_logic_vector(31 downto 0);
     signal output_reg:std_logic_vector(31 downto 0);    
     
 begin
@@ -67,8 +69,10 @@ begin
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
                     if daddress(15 downto 0) = MY_WORD_ADDRESS then
-						ddata_r(31 downto 16) <= std_logic_vector(sin_out_bus);
-						ddata_r(15 downto 0) <= std_logic_vector(cos_out_bus);  
+						sin_out_bus <= signed(ddata_w(31 downto 16));
+						cos_out_bus <= signed(ddata_w(15 downto 0));
+						-- ddata_r(31 downto 16) <= std_logic_vector(sin_out_bus);
+						-- ddata_r(15 downto 0) <= std_logic_vector(cos_out_bus);  
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
                         ddata_r<=output_reg;              
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then

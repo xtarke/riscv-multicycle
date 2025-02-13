@@ -35,11 +35,11 @@ architecture Behavioral of cordic_core is
     signal iteration : integer range 0 to N_ITER := 0;
     
 begin
-    process(clk, rst)
+    process(clk_bus, rst_bus)
         variable x1, y1, z1 : signed(DATA_WIDTH-1 downto 0);
         variable x2, y2, z2 : signed(DATA_WIDTH-1 downto 0);
     begin
-        if rst = '1' then
+        if rst_bus = '1' then
             state <= IDLE;
             valid <= '0';
             x_reg <= (others => '0');
@@ -47,7 +47,7 @@ begin
             z_reg <= (others => '0');
             iteration <= 0;
         else
-            if rising_edge(clk) then
+            if rising_edge(clk_bus) then
                 case state is
                     when IDLE =>
                         valid <= '0';
@@ -106,12 +106,12 @@ end Behavioral;
 -- exemplo no quartus
 -- signal cordic_x_out, cordic_y_out : std_logic_vector(15 downto 0);
 -- signal cordic_angle, cordic_x_in, cordic_y_in : std_logic_vector(15 downto 0);
--- signal cordic_clk, cordic_rst : std_logic;
+-- signal cordic_clk_bus, cordic_rst : std_logic;
 
 -- begin
 --     cordic_inst : entity work.cordic
 --         port map (
---             clk     => cordic_clk,
+--             clk_bus     => cordic_clk_bus,
 --             rst     => cordic_rst,
 --             x_in    => cordic_x_in,
 --             y_in    => cordic_y_in,
