@@ -14,7 +14,11 @@ entity cordic is
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
 		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000";	
-		DADDRESS_BUS_SIZE : integer := 32
+		DADDRESS_BUS_SIZE : integer := 32;
+
+		N_ITER     : integer := 16;     -- must be pair
+        DATA_WIDTH : integer := 16;
+        ANGLE_BITS : integer := 14
 	);
 	
 	port(
@@ -29,7 +33,16 @@ entity cordic is
 		d_rd	  : in std_logic;
 		dcsel	  : in std_logic_vector(1 downto 0);	--! Chip select 
 		-- ToDo: Module should mask bytes (Word, half word and byte access)
-		dmask     : in std_logic_vector(3 downto 0)	--! Byte enable mask   
+		dmask     : in std_logic_vector(3 downto 0);	--! Byte enable mask
+		
+		-- cordic ports
+		-- clk      : in  std_logic;
+        -- rst      : in  std_logic;
+        start    : in  std_logic;
+        angle_in : in  signed(DATA_WIDTH-1 downto 0);
+        sin_out  : out signed(DATA_WIDTH-1 downto 0);
+        cos_out  : out signed(DATA_WIDTH-1 downto 0);
+        valid    : out std_logic
 	);
 end entity cordic;
 
