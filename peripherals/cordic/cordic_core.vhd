@@ -9,8 +9,8 @@ entity cordic_core is
         ANGLE_BITS : integer := 14
     );
     port(
-        clk      : in  std_logic;
-        rst      : in  std_logic;
+        clk_bus  : in  std_logic;
+        rst_bus  : in  std_logic;
         start    : in  std_logic;
         angle_in : in  signed(DATA_WIDTH-1 downto 0);
         sin_out  : out signed(DATA_WIDTH-1 downto 0);

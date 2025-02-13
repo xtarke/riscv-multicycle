@@ -8,7 +8,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity cordic is
+entity cordic_bus is
 	generic (
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
@@ -17,8 +17,8 @@ entity cordic is
 	);
 	
 	port(
-		clk_bus : in std_logic;
-		rst_bus : in std_logic;
+		clk : in std_logic;
+		rst : in std_logic;
 		
 		-- Core data bus signals
 		daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
@@ -30,16 +30,16 @@ entity cordic is
 		-- ToDo: Module should mask bytes (Word, half word and byte access)
 		dmask     : in std_logic_vector(3 downto 0)	--! Byte enable mask
 		
-		--cordic_code stuff
+		--cordic_core stuff
 		start_bus    : in  std_logic;
         angle_in_bus : in  signed(DATA_WIDTH-1 downto 0);
         sin_out_bus  : out signed(DATA_WIDTH-1 downto 0);
         cos_out_bus  : out signed(DATA_WIDTH-1 downto 0);
         valid_bus    : out std_logic
 	);
-end entity cordic;
+end entity cordic_bus;
 
-architecture RTL of cordic is
+architecture RTL of cordic_bus is
     signal enable_exti_mask: std_logic_vector(31 downto 0);
     signal edge_exti_mask: std_logic_vector(31 downto 0);
     
@@ -49,14 +49,14 @@ begin
 
 	cordic_inst: entity work.cordic_core
 		port map(
-			clk => clk_bus,
-			rst => rst_bus,
+			clk_bus => clk,
+			rst_bus => rst,
 			start => start_bus,
 			angle_in => angle_in_bus,
 			sin_out => sin_out_bus,
 			cos_out => cos_out_bus,
 			valid => valid_bus
-		)
+		);
     
 	-- Input register
     process(clk, rst)
@@ -67,8 +67,8 @@ begin
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
                     if daddress(15 downto 0) = MY_WORD_ADDRESS then
-						ddata_r(31 downto 16) <= (others => '0');
-                        ddata_r(15 downto 0) <= angle_in_bus;  
+						ddata_r(31 downto 16) <= std_logic_vector(sin_out_bus);
+						ddata_r(15 downto 0) <= std_logic_vector(cos_out_bus);  
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
                         ddata_r<=output_reg;              
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
@@ -93,10 +93,10 @@ begin
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then				
 					if daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
-						output(31 downto 16) <= sin_out_bus;
-						output(15 downto 0)  <= cos_out_bus;
-						output_reg(31 downto 16) <= sin_out_bus;
-						output_reg(15 downto 0)  <= cos_out_bus;
+						output(31 downto 16) <= (others => '0');
+						output(15 downto 0)  <= std_logic_vector(angle_in_bus);
+						output_reg(31 downto 16) <= (others => '0');
+						output_reg(15 downto 0)  <= std_logic_vector(angle_in_bus);
 
 					--    output <= ddata_w;
 					--    output_reg <= ddata_w;
