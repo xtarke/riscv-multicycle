@@ -11,9 +11,9 @@
  * -----------------------------------------
  */
 
-#include "_core/utils.h"
-#include "_core/hardware.h"
-#include "gpio/gpio.h"
+#include "../_core/utils.h"
+#include "../_core/hardware.h"
+#include "../gpio/gpio.h"
 
 int main(){
 	uint32_t data = 0;

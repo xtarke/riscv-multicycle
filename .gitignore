@@ -1,0 +1,3 @@
+*.o
+*.tmp
+/peripherals/gpio/sint/de10_lite/db

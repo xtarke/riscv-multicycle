@@ -1,0 +1,374 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o (atexit)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+                              syscalls.o (__errno)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o (exit)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o (__libc_fini_array)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o) (_global_impure_ptr)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o (__libc_init_array)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+                              syscalls.o (memcpy)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memset.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o (memset)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o) (__register_exitproc)
+c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+                              c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o) (__call_exitprocs)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000000000000 0x000000000000fc00 xr
+ram              0x0000000002000000 0x0000000000000800 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+LOAD blink.o
+LOAD gpio.o
+LOAD interrupt.o
+LOAD start.o
+LOAD syscalls.o
+LOAD utils.o
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32\libgcc.a
+START GROUP
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libgloss.a
+END GROUP
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32\libgcc.a
+LOAD c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+
+.rom            0x0000000000000000      0x34f
+ _pvstart*(.text)
+ start*(.text)
+ .text          0x0000000000000000       0x58 start.o
+                0x0000000000000000                _pvstart
+                0x0000000000000058                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000000000058       0x40 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+                0x0000000000000058                _start
+ .text          0x0000000000000098        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .text          0x0000000000000098       0x4c blink.o
+                0x0000000000000098                main
+ .text          0x00000000000000e4       0x40 gpio.o
+                0x00000000000000e4                input_interrupt_enable
+ .text          0x0000000000000124       0x48 interrupt.o
+                0x0000000000000124                global_interrupt_enable
+                0x0000000000000138                extern_interrupt_enable
+                0x0000000000000154                timer_interrupt_enable
+ .text          0x000000000000016c       0xd4 syscalls.o
+                0x000000000000016c                _getpid
+                0x000000000000016c                _utime
+                0x000000000000016c                _sysconf
+                0x000000000000016c                _ftime
+                0x000000000000016c                _faccessat
+                0x000000000000016c                _isatty
+                0x000000000000016c                _open
+                0x000000000000016c                _gettimeofday
+                0x000000000000016c                _times
+                0x000000000000016c                _stat
+                0x000000000000016c                _chdir
+                0x000000000000016c                _wait
+                0x000000000000016c                _lseek
+                0x000000000000016c                _kill
+                0x000000000000016c                _fstatat
+                0x000000000000016c                _link
+                0x000000000000016c                _chown
+                0x000000000000016c                _access
+                0x000000000000016c                _openat
+                0x000000000000016c                _execve
+                0x000000000000016c                _getcwd
+                0x000000000000016c                _chmod
+                0x000000000000016c                _lstat
+                0x000000000000016c                _unlink
+                0x000000000000016c                _fork
+                0x0000000000000170                unimplemented_syscall
+                0x0000000000000190                _read
+                0x0000000000000198                _write
+                0x00000000000001bc                _close
+                0x00000000000001c4                _fstat
+                0x00000000000001e8                _sbrk
+                0x000000000000020c                _exit
+                0x0000000000000210                init_data_section
+ .text          0x0000000000000240       0x10 utils.o
+                0x0000000000000240                delay_
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+ .text          0x0000000000000250        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+ .text          0x0000000000000250       0xdc c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memset.o)
+                0x0000000000000250                memset
+ .text          0x000000000000032c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+ .text          0x000000000000032c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+ .text          0x000000000000032c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+ *(.rodata*)
+ .rodata.str1.4
+                0x000000000000032c       0x23 syscalls.o
+
+.text.deregister_tm_clones
+                0x0000000000000350       0x1c
+ .text.deregister_tm_clones
+                0x0000000000000350       0x1c c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.text.register_tm_clones
+                0x000000000000036c       0x30
+ .text.register_tm_clones
+                0x000000000000036c       0x30 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.text.__do_global_dtors_aux
+                0x000000000000039c       0x48
+ .text.__do_global_dtors_aux
+                0x000000000000039c       0x48 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.text.frame_dummy
+                0x00000000000003e4       0x30
+ .text.frame_dummy
+                0x00000000000003e4       0x30 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.text.trap      0x0000000000000414       0xc8
+ .text.trap     0x0000000000000414       0xc8 start.o
+                0x0000000000000414                trap_entry
+
+.text.irq       0x00000000000004dc       0xa8
+ .text.irq      0x00000000000004dc       0xa8 start.o
+                0x00000000000004dc                irq_entry
+
+.init           0x0000000000000584       0x84
+ .init          0x0000000000000584       0x84 start.o
+
+.text.atexit    0x0000000000000608       0x14
+ .text.atexit   0x0000000000000608       0x14 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+                0x0000000000000608                atexit
+
+.text.__errno   0x000000000000061c        0x8
+ .text.__errno  0x000000000000061c        0x8 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+                0x000000000000061c                __errno
+
+.text.exit      0x0000000000000624       0x34
+ .text.exit     0x0000000000000624       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+                0x0000000000000624                exit
+
+.text.__libc_fini_array
+                0x0000000000000658       0x54
+ .text.__libc_fini_array
+                0x0000000000000658       0x54 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+                0x0000000000000658                __libc_fini_array
+
+.text.__libc_init_array
+                0x00000000000006ac       0x84
+ .text.__libc_init_array
+                0x00000000000006ac       0x84 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+                0x00000000000006ac                __libc_init_array
+
+.text.memcpy    0x0000000000000730      0x128
+ .text.memcpy   0x0000000000000730      0x128 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+                0x0000000000000730                memcpy
+
+.text.__register_exitproc
+                0x0000000000000858       0x9c
+ .text.__register_exitproc
+                0x0000000000000858       0x9c c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+                0x0000000000000858                __register_exitproc
+
+.text.__call_exitprocs
+                0x00000000000008f4      0x124
+ .text.__call_exitprocs
+                0x00000000000008f4      0x124 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+                0x00000000000008f4                __call_exitprocs
+
+.srodata._global_impure_ptr
+                0x0000000000000a18        0x4
+ .srodata._global_impure_ptr
+                0x0000000000000a18        0x4 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+                0x0000000000000a18                _global_impure_ptr
+
+.rela.dyn       0x0000000000000a1c        0x0
+ .rela.text     0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.text.deregister_tm_clones
+                0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.text.register_tm_clones
+                0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.text.__do_global_dtors_aux
+                0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.text.frame_dummy
+                0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.init     0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.text.__libc_fini_array
+                0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .rela.text.__libc_init_array
+                0x0000000000000a1c        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+
+.data           0x0000000002000000      0x430 load address 0x0000000000000a1c
+                0x0000000000000a1c                _data_lma = LOADADDR (.data)
+                0x0000000002000000                _data = .
+                0x0000000002000000                __global_pointer$ = .
+ *(.data .data.*)
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .data          0x0000000002000000        0x0 blink.o
+ .data          0x0000000002000000        0x0 gpio.o
+ .data          0x0000000002000000        0x0 interrupt.o
+ .data          0x0000000002000000        0x0 start.o
+ .data          0x0000000002000000        0x0 syscalls.o
+ .data          0x0000000002000000        0x0 utils.o
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+ .data          0x0000000002000000        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+ .data.impure_data
+                0x0000000002000000      0x428 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+ .data          0x0000000002000428        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+ .data          0x0000000002000428        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+ .data          0x0000000002000428        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memset.o)
+ .data          0x0000000002000428        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+ .data          0x0000000002000428        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+ .data          0x0000000002000428        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+ *(.sdata .sdata.*)
+ .sdata.__dso_handle
+                0x0000000002000428        0x4 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+                0x0000000002000428                __dso_handle
+ .sdata._impure_ptr
+                0x000000000200042c        0x4 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+                0x000000000200042c                _impure_ptr
+                0x0000000002000430                . = ALIGN (0x4)
+                0x0000000002000430                _edata = .
+
+.eh_frame       0x0000000002000430      0x120 load address 0x0000000000000e4c
+ .eh_frame      0x0000000002000430        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .eh_frame      0x0000000002000430       0x28 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+ .eh_frame      0x0000000002000458       0x14 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x000000000200046c       0x1c c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+                                         0x30 (size before relaxing)
+ .eh_frame      0x0000000002000488       0x28 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+                                         0x3c (size before relaxing)
+ .eh_frame      0x00000000020004b0       0x2c c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+                                         0x40 (size before relaxing)
+ .eh_frame      0x00000000020004dc       0x14 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x00000000020004f0       0x14 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000002000504       0x48 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+                                         0x5c (size before relaxing)
+ .eh_frame      0x000000000200054c        0x4 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+
+.tm_clone_table
+                0x0000000002000550        0x0 load address 0x0000000000000f6c
+ .tm_clone_table
+                0x0000000002000550        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .tm_clone_table
+                0x0000000002000550        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+
+.fini_array     0x0000000002000550        0x4 load address 0x0000000000000f6c
+ .fini_array    0x0000000002000550        0x4 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.init_array     0x0000000002000554        0x4 load address 0x0000000000000f70
+ .init_array    0x0000000002000554        0x4 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.bss            0x0000000002000558       0x18 load address 0x0000000000000f74
+                0x0000000002000558                __bss_start = .
+ *(.bss .bss.*)
+ .bss           0x0000000002000558        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .bss           0x0000000002000558        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .bss.object.0  0x0000000002000558       0x18 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .bss           0x0000000002000570        0x0 blink.o
+ .bss           0x0000000002000570        0x0 gpio.o
+ .bss           0x0000000002000570        0x0 interrupt.o
+ .bss           0x0000000002000570        0x0 start.o
+ .bss           0x0000000002000570        0x0 syscalls.o
+ .bss           0x0000000002000570        0x0 utils.o
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memset.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+ .bss           0x0000000002000570        0x0 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+                0x0000000002000570                . = ALIGN (0x4)
+                0x0000000002000570                _bss_end = .
+                0x0000000002000570                _end = .
+OUTPUT(main.elf elf32-littleriscv)
+
+.sbss.completed.1
+                0x0000000002000570        0x1 load address 0x0000000000000f74
+ .sbss.completed.1
+                0x0000000002000570        0x1 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+
+.sbss           0x0000000002000574        0x4 load address 0x0000000000000f74
+ .sbss          0x0000000002000574        0x4 syscalls.o
+
+.riscv.attributes
+                0x0000000000000000       0x25
+ .riscv.attributes
+                0x0000000000000000       0x1f c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32/crt0.o
+ .riscv.attributes
+                0x000000000000001f       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+ .riscv.attributes
+                0x0000000000000040       0x21 blink.o
+ .riscv.attributes
+                0x0000000000000061       0x21 gpio.o
+ .riscv.attributes
+                0x0000000000000082       0x25 interrupt.o
+ .riscv.attributes
+                0x00000000000000a7       0x23 start.o
+ .riscv.attributes
+                0x00000000000000ca       0x21 syscalls.o
+ .riscv.attributes
+                0x00000000000000eb       0x21 utils.o
+ .riscv.attributes
+                0x000000000000010c       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+ .riscv.attributes
+                0x000000000000012d       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+ .riscv.attributes
+                0x000000000000014e       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+ .riscv.attributes
+                0x000000000000016f       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+ .riscv.attributes
+                0x0000000000000190       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+ .riscv.attributes
+                0x00000000000001b1       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+ .riscv.attributes
+                0x00000000000001d2       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+ .riscv.attributes
+                0x00000000000001f3       0x1f c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memset.o)
+ .riscv.attributes
+                0x0000000000000212       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+ .riscv.attributes
+                0x0000000000000233       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+ .riscv.attributes
+                0x0000000000000254       0x21 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
+
+.comment        0x0000000000000000       0x33
+ .comment       0x0000000000000000       0x33 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtbegin.o
+                                         0x34 (size before relaxing)
+ .comment       0x0000000000000033       0x34 blink.o
+ .comment       0x0000000000000033       0x34 gpio.o
+ .comment       0x0000000000000033       0x34 interrupt.o
+ .comment       0x0000000000000033       0x34 syscalls.o
+ .comment       0x0000000000000033       0x34 utils.o
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-atexit.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-errno.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-exit.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-fini.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-init.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-memcpy.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__atexit.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/../../../../riscv-none-elf/lib/rv32im/ilp32\libc.a(lib_a-__call_atexit.o)
+ .comment       0x0000000000000033       0x34 c:/dev/vscode_riscv_hex/data/xpack-riscv-none-elf-gcc-11.3.0-1/bin/../lib/gcc/riscv-none-elf/11.3.0/rv32im/ilp32/crtend.o
