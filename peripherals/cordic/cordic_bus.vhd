@@ -33,32 +33,36 @@ entity cordic_bus is
 		
 		--cordic_core stuff
 		start_bus    : in  std_logic;
-    	angle_in_bus : in  signed(DATA_WIDTH_BUS-1 downto 0);
-    	sin_out_bus  : out signed(DATA_WIDTH_BUS-1 downto 0);
-    	cos_out_bus  : out signed(DATA_WIDTH_BUS-1 downto 0);
     	valid_bus    : out std_logic
 	);
 end entity cordic_bus;
 
 architecture RTL of cordic_bus is
+
     signal enable_exti_mask: std_logic_vector(31 downto 0);
-    signal edge_exti_mask: std_logic_vector(31 downto 0);
+    signal edge_exti_mask  : std_logic_vector(31 downto 0);
     
-	 signal output    :std_logic_vector(31 downto 0);
-    signal output_reg:std_logic_vector(31 downto 0);    
+	signal output          : std_logic_vector(31 downto 0);
+    signal output_reg      : std_logic_vector(31 downto 0);
+
+	signal converted_angle_in : signed(15 downto 0);
+	signal converted_sin_out  : signed(15 downto 0);
+	signal converted_cos_out  : signed(15 downto 0);
     
 begin
 
+	converted_angle_in <= signed(output(15 downto 0));
+	
 	cordic_inst: entity work.cordic_core
-		port map(
-			clk_bus => clk,
-			rst_bus => rst,
-			start => start_bus,
-			angle_in => angle_in_bus,
-			sin_out => sin_out_bus,
-			cos_out => cos_out_bus,
-			valid => valid_bus
-		);
+	port map(
+		clk_bus => clk,
+		rst_bus => rst,
+		start => start_bus,
+		angle_in => converted_angle_in,
+		sin_out => converted_sin_out,
+		cos_out => converted_cos_out,
+		valid => valid_bus
+	);
     
 	-- Input register
     process(clk, rst)
@@ -69,16 +73,22 @@ begin
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
                     if daddress(15 downto 0) = MY_WORD_ADDRESS then
-						sin_out_bus <= signed(ddata_w(31 downto 16));
-						cos_out_bus <= signed(ddata_w(15 downto 0));
-						-- ddata_r(31 downto 16) <= std_logic_vector(sin_out_bus);
-						-- ddata_r(15 downto 0) <= std_logic_vector(cos_out_bus);  
-                    elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
-                        ddata_r<=output_reg;              
+
+						ddata_r(31 downto 16) <= std_logic_vector(converted_sin_out);
+						ddata_r(15 downto 0)  <= std_logic_vector(converted_cos_out);
+                    
+					elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
+
+                        ddata_r<=output_reg; 
+
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
+
                         ddata_r<=enable_exti_mask;
+
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
+
                         ddata_r<=edge_exti_mask;
+						
                     end if;
                 end if;
             end if;
@@ -97,14 +107,11 @@ begin
 			if rising_edge(clk) then		
 				if (d_we = '1') and (dcsel = MY_CHIPSELECT) then				
 					if daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
-						output(31 downto 16) <= (others => '0');
-						output(15 downto 0)  <= std_logic_vector(angle_in_bus);
-						output_reg(31 downto 16) <= (others => '0');
-						output_reg(15 downto 0)  <= std_logic_vector(angle_in_bus);
 
-					--    output <= ddata_w;
-					--    output_reg <= ddata_w;
-					elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
+						output(15 downto 0) <= ddata_w(15 downto 0);
+						output_reg <= std_logic_vector(ddata_w);
+					
+						elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
                         enable_exti_mask <= ddata_w;
                     elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
                         edge_exti_mask <= ddata_w;     
