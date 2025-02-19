@@ -1,0 +1,5845 @@
+0: 30047073 : csrrci x8, x0, 768
+
+4: 00000297 : auipc x5,  0x0
+8: 76828293 : addi x5, x5, 1896
+C: 30729073 : csrrw x5, x7, 775
+
+10: 00000297 : auipc x5,  0x0
+14: 6B428293 : addi x5, x5, 1716
+18: 7EC29073 : csrrw x5, x12, 2028
+
+1C: 7EC0E073 : csrrsi x1, x12, 2028
+
+20: 00000297 : auipc x5,  0x0
+24: 5DC28293 : addi x5, x5, 1500
+28: 30529073 : csrrw x5, x5, 773
+
+2C: 02001137 : lui x2,  0x2001000
+30: 80010113 : addi x2, x2, -2048
+34: 020001B7 : lui x3,  0x2000000
+38: 00018193 : addi x3, x3, 0
+3C: FF010113 : addi x2, x2, -16
+40: 00012023 : sw x0, 0(x2)
+44: 00012223 : sw x0, 4(x2)
+48: 00012423 : sw x0, 8(x2)
+4C: 00012623 : sw x0, 12(x2)
+50: 0FC000EF : jal x1, 252
+
+14C: FE010113 : addi x2, x2, -32
+150: 00112E23 : sw x1, 28(x2)
+154: 00812C23 : sw x8, 24(x2)
+158: 00912A23 : sw x9, 20(x2)
+15C: 01212823 : sw x18, 16(x2)
+160: 01312623 : sw x19, 12(x2)
+164: 01412423 : sw x20, 8(x2)
+168: 58018023 : sb x0, 1408(x3)
+16C: 57818793 : addi x15, x3, 1400
+170: 00078023 : sb x0, 0(x15)
+174: 000780A3 : sb x0, 1(x15)
+178: 00078123 : sb x0, 2(x15)
+17C: 000781A3 : sb x0, 3(x15)
+180: 00078223 : sb x0, 4(x15)
+184: 000782A3 : sb x0, 5(x15)
+188: 00078323 : sb x0, 6(x15)
+18C: 000783A3 : sb x0, 7(x15)
+190: 00000593 : addi x11, x0, 0
+194: 00200513 : addi x10, x0, 2
+198: 164000EF : jal x1, 356
+
+2FC: 040007B7 : lui x15,  0x4000000
+300: 0807A703 : lw x14, 128(x15)
+304: FF8006B7 : lui x13,  0x-800000
+308: 00D77733 : and x14, x14, x13
+30C: 08E7A023 : sw x14, 128(x15)
+310: 0807A703 : lw x14, 128(x15)
+314: 01559593 : slli x11, x11, 21
+318: 006006B7 : lui x13,  0x600000
+31C: 00D5F5B3 : and x11, x11, x13
+320: 00E5E5B3 : or x11, x11, x14
+324: 01351513 : slli x10, x10, 19
+328: 00180737 : lui x14,  0x180000
+32C: 00E57533 : and x10, x10, x14
+330: 00A5E5B3 : or x11, x11, x10
+334: 08B7A023 : sw x11, 128(x15)
+338: 00008067 : jalr x0, 0(x1)
+
+19C: 06100593 : addi x11, x0, 97
+1A0: 00100513 : addi x10, x0, 1
+1A4: 198000EF : jal x1, 408
+
+33C: 02051A63 : bne x10, x0, 52
+
+370: 040007B7 : lui x15,  0x4000000
+374: 08B786A3 : sb x11, 141(x15)
+378: 08078623 : sb x0, 140(x15)
+37C: FD1FF06F : jal x0, -48
+
+34C: 00157513 : andi x10, x10, 1
+350: 04000737 : lui x14,  0x4000000
+354: 00F51513 : slli x10, x10, 15
+358: 08275783 : lhu x15, 130(x14)
+35C: 01179793 : slli x15, x15, 17
+360: 0117D793 : srli x15, x15, 17
+364: 00A7E7B3 : or x15, x15, x10
+368: 08F71123 : sh x15, 130(x14)
+36C: 00008067 : jalr x0, 0(x1)
+
+1A8: 20C000EF : jal x1, 524
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+1AC: 21C000EF : jal x1, 540
+
+3C8: 040007B7 : lui x15,  0x4000000
+3CC: 0827D703 : lhu x14, 130(x15)
+3D0: 10076713 : oir x14, x14, 256
+3D4: 08E79123 : sh x14, 130(x15)
+3D8: 00008067 : jalr x0, 0(x1)
+
+1B0: 00100513 : addi x10, x0, 1
+1B4: F39FF0EF : jal x1, -200
+
+EC: 000012B7 : lui x5,  0x1000
+F0: 80028293 : addi x5, x5, -2048
+F4: 00050663 : beq x10, x0, 12
+
+F8: 3042A073 : csrrs x5, x4, 772
+
+FC: 00008067 : jalr x0, 0(x1)
+
+1B8: 00100513 : addi x10, x0, 1
+1BC: F1DFF0EF : jal x1, -228
+
+D8: 00050663 : beq x10, x0, 12
+
+DC: 30046073 : csrrsi x8, x0, 768
+
+E0: 00008067 : jalr x0, 0(x1)
+
+1C0: 00100913 : addi x18, x0, 1
+1C4: 0080006F : jal x0, 8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+6C4: FB010113 : addi x2, x2, -80
+6C8: 00112023 : sw x1, 0(x2)
+6CC: 00412223 : sw x4, 4(x2)
+6D0: 00512423 : sw x5, 8(x2)
+6D4: 00612623 : sw x6, 12(x2)
+6D8: 00712823 : sw x7, 16(x2)
+6DC: 00A12A23 : sw x10, 20(x2)
+6E0: 00B12C23 : sw x11, 24(x2)
+6E4: 00C12E23 : sw x12, 28(x2)
+6E8: 02D12023 : sw x13, 32(x2)
+6EC: 02E12223 : sw x14, 36(x2)
+6F0: 02F12423 : sw x15, 40(x2)
+6F4: 03012623 : sw x16, 44(x2)
+6F8: 03112823 : sw x17, 48(x2)
+6FC: 03C12A23 : sw x28, 52(x2)
+700: 03D12C23 : sw x29, 56(x2)
+704: 03E12E23 : sw x30, 60(x2)
+708: 05F12023 : sw x31, 64(x2)
+70C: 34202673 : csrrs x0, x2, 834
+
+710: 30702773 : csrrs x0, x7, 775
+
+714: 00261613 : slli x12, x12, 2
+718: 00C70733 : add x14, x14, x12
+71C: 00072703 : lw x14, 0(x14)
+720: 000700E7 : jalr x1, 0(x14)
+
+120: FF010113 : addi x2, x2, -16
+124: 00112623 : sw x1, 12(x2)
+128: 00800593 : addi x11, x0, 8
+12C: 57818513 : addi x10, x3, 1400
+130: 250000EF : jal x1, 592
+
+380: 0075F593 : andi x11, x11, 7
+384: 02058663 : beq x11, x0, 44
+
+3B0: 00008067 : jalr x0, 0(x1)
+
+134: 00100713 : addi x14, x0, 1
+138: 58E18023 : sb x14, 1408(x3)
+13C: 278000EF : jal x1, 632
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+140: 00C12083 : lw x1, 12(x2)
+144: 01010113 : addi x2, x2, 16
+148: 00008067 : jalr x0, 0(x1)
+
+724: 00012083 : lw x1, 0(x2)
+728: 00412203 : lw x4, 4(x2)
+72C: 00812283 : lw x5, 8(x2)
+730: 00C12303 : lw x6, 12(x2)
+734: 01012383 : lw x7, 16(x2)
+738: 01412503 : lw x10, 20(x2)
+73C: 01812583 : lw x11, 24(x2)
+740: 01C12603 : lw x12, 28(x2)
+744: 02012683 : lw x13, 32(x2)
+748: 02412703 : lw x14, 36(x2)
+74C: 02812783 : lw x15, 40(x2)
+750: 02C12803 : lw x16, 44(x2)
+754: 03012883 : lw x17, 48(x2)
+758: 03412E03 : lw x28, 52(x2)
+75C: 03812E83 : lw x29, 56(x2)
+760: 03C12F03 : lw x30, 60(x2)
+764: 05010113 : addi x2, x2, 80
+mret
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1D8: 57818413 : addi x8, x3, 1400
+1DC: 00840993 : addi x19, x8, 8
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+6C4: FB010113 : addi x2, x2, -80
+6C8: 00112023 : sw x1, 0(x2)
+6CC: 00412223 : sw x4, 4(x2)
+6D0: 00512423 : sw x5, 8(x2)
+6D4: 00612623 : sw x6, 12(x2)
+6D8: 00712823 : sw x7, 16(x2)
+6DC: 00A12A23 : sw x10, 20(x2)
+6E0: 00B12C23 : sw x11, 24(x2)
+6E4: 00C12E23 : sw x12, 28(x2)
+6E8: 02D12023 : sw x13, 32(x2)
+6EC: 02E12223 : sw x14, 36(x2)
+6F0: 02F12423 : sw x15, 40(x2)
+6F4: 03012623 : sw x16, 44(x2)
+6F8: 03112823 : sw x17, 48(x2)
+6FC: 03C12A23 : sw x28, 52(x2)
+700: 03D12C23 : sw x29, 56(x2)
+704: 03E12E23 : sw x30, 60(x2)
+708: 05F12023 : sw x31, 64(x2)
+70C: 34202673 : csrrs x0, x2, 834
+
+710: 30702773 : csrrs x0, x7, 775
+
+714: 00261613 : slli x12, x12, 2
+718: 00C70733 : add x14, x14, x12
+71C: 00072703 : lw x14, 0(x14)
+720: 000700E7 : jalr x1, 0(x14)
+
+120: FF010113 : addi x2, x2, -16
+124: 00112623 : sw x1, 12(x2)
+128: 00800593 : addi x11, x0, 8
+12C: 57818513 : addi x10, x3, 1400
+130: 250000EF : jal x1, 592
+
+380: 0075F593 : andi x11, x11, 7
+384: 02058663 : beq x11, x0, 44
+
+3B0: 00008067 : jalr x0, 0(x1)
+
+134: 00100713 : addi x14, x0, 1
+138: 58E18023 : sb x14, 1408(x3)
+13C: 278000EF : jal x1, 632
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+140: 00C12083 : lw x1, 12(x2)
+144: 01010113 : addi x2, x2, 16
+148: 00008067 : jalr x0, 0(x1)
+
+724: 00012083 : lw x1, 0(x2)
+728: 00412203 : lw x4, 4(x2)
+72C: 00812283 : lw x5, 8(x2)
+730: 00C12303 : lw x6, 12(x2)
+734: 01012383 : lw x7, 16(x2)
+738: 01412503 : lw x10, 20(x2)
+73C: 01812583 : lw x11, 24(x2)
+740: 01C12603 : lw x12, 28(x2)
+744: 02012683 : lw x13, 32(x2)
+748: 02412703 : lw x14, 36(x2)
+74C: 02812783 : lw x15, 40(x2)
+750: 02C12803 : lw x16, 44(x2)
+754: 03012883 : lw x17, 48(x2)
+758: 03412E03 : lw x28, 52(x2)
+75C: 03812E83 : lw x29, 56(x2)
+760: 03C12F03 : lw x30, 60(x2)
+764: 05010113 : addi x2, x2, 80
+mret
+
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1F0: FD9FF06F : jal x0, -40
+
+1C8: 58018023 : sb x0, 1408(x3)
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+6C4: FB010113 : addi x2, x2, -80
+6C8: 00112023 : sw x1, 0(x2)
+6CC: 00412223 : sw x4, 4(x2)
+6D0: 00512423 : sw x5, 8(x2)
+6D4: 00612623 : sw x6, 12(x2)
+6D8: 00712823 : sw x7, 16(x2)
+6DC: 00A12A23 : sw x10, 20(x2)
+6E0: 00B12C23 : sw x11, 24(x2)
+6E4: 00C12E23 : sw x12, 28(x2)
+6E8: 02D12023 : sw x13, 32(x2)
+6EC: 02E12223 : sw x14, 36(x2)
+6F0: 02F12423 : sw x15, 40(x2)
+6F4: 03012623 : sw x16, 44(x2)
+6F8: 03112823 : sw x17, 48(x2)
+6FC: 03C12A23 : sw x28, 52(x2)
+700: 03D12C23 : sw x29, 56(x2)
+704: 03E12E23 : sw x30, 60(x2)
+708: 05F12023 : sw x31, 64(x2)
+70C: 34202673 : csrrs x0, x2, 834
+
+710: 30702773 : csrrs x0, x7, 775
+
+714: 00261613 : slli x12, x12, 2
+718: 00C70733 : add x14, x14, x12
+71C: 00072703 : lw x14, 0(x14)
+720: 000700E7 : jalr x1, 0(x14)
+
+120: FF010113 : addi x2, x2, -16
+124: 00112623 : sw x1, 12(x2)
+128: 00800593 : addi x11, x0, 8
+12C: 57818513 : addi x10, x3, 1400
+130: 250000EF : jal x1, 592
+
+380: 0075F593 : andi x11, x11, 7
+384: 02058663 : beq x11, x0, 44
+
+3B0: 00008067 : jalr x0, 0(x1)
+
+134: 00100713 : addi x14, x0, 1
+138: 58E18023 : sb x14, 1408(x3)
+13C: 278000EF : jal x1, 632
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+140: 00C12083 : lw x1, 12(x2)
+144: 01010113 : addi x2, x2, 16
+148: 00008067 : jalr x0, 0(x1)
+
+724: 00012083 : lw x1, 0(x2)
+728: 00412203 : lw x4, 4(x2)
+72C: 00812283 : lw x5, 8(x2)
+730: 00C12303 : lw x6, 12(x2)
+734: 01012383 : lw x7, 16(x2)
+738: 01412503 : lw x10, 20(x2)
+73C: 01812583 : lw x11, 24(x2)
+740: 01C12603 : lw x12, 28(x2)
+744: 02012683 : lw x13, 32(x2)
+748: 02412703 : lw x14, 36(x2)
+74C: 02812783 : lw x15, 40(x2)
+750: 02C12803 : lw x16, 44(x2)
+754: 03012883 : lw x17, 48(x2)
+758: 03412E03 : lw x28, 52(x2)
+75C: 03812E83 : lw x29, 56(x2)
+760: 03C12F03 : lw x30, 60(x2)
+764: 05010113 : addi x2, x2, 80
+mret
+
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1D8: 57818413 : addi x8, x3, 1400
+1DC: 00840993 : addi x19, x8, 8
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+6C4: FB010113 : addi x2, x2, -80
+6C8: 00112023 : sw x1, 0(x2)
+6CC: 00412223 : sw x4, 4(x2)
+6D0: 00512423 : sw x5, 8(x2)
+6D4: 00612623 : sw x6, 12(x2)
+6D8: 00712823 : sw x7, 16(x2)
+6DC: 00A12A23 : sw x10, 20(x2)
+6E0: 00B12C23 : sw x11, 24(x2)
+6E4: 00C12E23 : sw x12, 28(x2)
+6E8: 02D12023 : sw x13, 32(x2)
+6EC: 02E12223 : sw x14, 36(x2)
+6F0: 02F12423 : sw x15, 40(x2)
+6F4: 03012623 : sw x16, 44(x2)
+6F8: 03112823 : sw x17, 48(x2)
+6FC: 03C12A23 : sw x28, 52(x2)
+700: 03D12C23 : sw x29, 56(x2)
+704: 03E12E23 : sw x30, 60(x2)
+708: 05F12023 : sw x31, 64(x2)
+70C: 34202673 : csrrs x0, x2, 834
+
+710: 30702773 : csrrs x0, x7, 775
+
+714: 00261613 : slli x12, x12, 2
+718: 00C70733 : add x14, x14, x12
+71C: 00072703 : lw x14, 0(x14)
+720: 000700E7 : jalr x1, 0(x14)
+
+120: FF010113 : addi x2, x2, -16
+124: 00112623 : sw x1, 12(x2)
+128: 00800593 : addi x11, x0, 8
+12C: 57818513 : addi x10, x3, 1400
+130: 250000EF : jal x1, 592
+
+380: 0075F593 : andi x11, x11, 7
+384: 02058663 : beq x11, x0, 44
+
+3B0: 00008067 : jalr x0, 0(x1)
+
+134: 00100713 : addi x14, x0, 1
+138: 58E18023 : sb x14, 1408(x3)
+13C: 278000EF : jal x1, 632
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+140: 00C12083 : lw x1, 12(x2)
+144: 01010113 : addi x2, x2, 16
+148: 00008067 : jalr x0, 0(x1)
+
+724: 00012083 : lw x1, 0(x2)
+728: 00412203 : lw x4, 4(x2)
+72C: 00812283 : lw x5, 8(x2)
+730: 00C12303 : lw x6, 12(x2)
+734: 01012383 : lw x7, 16(x2)
+738: 01412503 : lw x10, 20(x2)
+73C: 01812583 : lw x11, 24(x2)
+740: 01C12603 : lw x12, 28(x2)
+744: 02012683 : lw x13, 32(x2)
+748: 02412703 : lw x14, 36(x2)
+74C: 02812783 : lw x15, 40(x2)
+750: 02C12803 : lw x16, 44(x2)
+754: 03012883 : lw x17, 48(x2)
+758: 03412E03 : lw x28, 52(x2)
+75C: 03812E83 : lw x29, 56(x2)
+760: 03C12F03 : lw x30, 60(x2)
+764: 05010113 : addi x2, x2, 80
+mret
+
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1F0: FD9FF06F : jal x0, -40
+
+1C8: 58018023 : sb x0, 1408(x3)
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+6C4: FB010113 : addi x2, x2, -80
+6C8: 00112023 : sw x1, 0(x2)
+6CC: 00412223 : sw x4, 4(x2)
+6D0: 00512423 : sw x5, 8(x2)
+6D4: 00612623 : sw x6, 12(x2)
+6D8: 00712823 : sw x7, 16(x2)
+6DC: 00A12A23 : sw x10, 20(x2)
+6E0: 00B12C23 : sw x11, 24(x2)
+6E4: 00C12E23 : sw x12, 28(x2)
+6E8: 02D12023 : sw x13, 32(x2)
+6EC: 02E12223 : sw x14, 36(x2)
+6F0: 02F12423 : sw x15, 40(x2)
+6F4: 03012623 : sw x16, 44(x2)
+6F8: 03112823 : sw x17, 48(x2)
+6FC: 03C12A23 : sw x28, 52(x2)
+700: 03D12C23 : sw x29, 56(x2)
+704: 03E12E23 : sw x30, 60(x2)
+708: 05F12023 : sw x31, 64(x2)
+70C: 34202673 : csrrs x0, x2, 834
+
+710: 30702773 : csrrs x0, x7, 775
+
+714: 00261613 : slli x12, x12, 2
+718: 00C70733 : add x14, x14, x12
+71C: 00072703 : lw x14, 0(x14)
+720: 000700E7 : jalr x1, 0(x14)
+
+120: FF010113 : addi x2, x2, -16
+124: 00112623 : sw x1, 12(x2)
+128: 00800593 : addi x11, x0, 8
+12C: 57818513 : addi x10, x3, 1400
+130: 250000EF : jal x1, 592
+
+380: 0075F593 : andi x11, x11, 7
+384: 02058663 : beq x11, x0, 44
+
+3B0: 00008067 : jalr x0, 0(x1)
+
+134: 00100713 : addi x14, x0, 1
+138: 58E18023 : sb x14, 1408(x3)
+13C: 278000EF : jal x1, 632
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+140: 00C12083 : lw x1, 12(x2)
+144: 01010113 : addi x2, x2, 16
+148: 00008067 : jalr x0, 0(x1)
+
+724: 00012083 : lw x1, 0(x2)
+728: 00412203 : lw x4, 4(x2)
+72C: 00812283 : lw x5, 8(x2)
+730: 00C12303 : lw x6, 12(x2)
+734: 01012383 : lw x7, 16(x2)
+738: 01412503 : lw x10, 20(x2)
+73C: 01812583 : lw x11, 24(x2)
+740: 01C12603 : lw x12, 28(x2)
+744: 02012683 : lw x13, 32(x2)
+748: 02412703 : lw x14, 36(x2)
+74C: 02812783 : lw x15, 40(x2)
+750: 02C12803 : lw x16, 44(x2)
+754: 03012883 : lw x17, 48(x2)
+758: 03412E03 : lw x28, 52(x2)
+75C: 03812E83 : lw x29, 56(x2)
+760: 03C12F03 : lw x30, 60(x2)
+764: 05010113 : addi x2, x2, 80
+mret
+
+1D4: FF279CE3 : bne x15, x18, -8
+
+1CC: 5801C783 : lbu x15, 1408(x3)
+1D0: 0FF7F793 : andi x15, x15, 255
+1D4: FF279CE3 : bne x15, x18, -8
+
+1D8: 57818413 : addi x8, x3, 1400
+1DC: 00840993 : addi x19, x8, 8
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2DC: 04000737 : lui x14,  0x4000000
+2E0: 08070023 : sb x0, 128(x14)
+2E4: 08072783 : lw x15, 128(x14)
+2E8: 00F567B3 : or x15, x10, x15
+2EC: 000106B7 : lui x13,  0x10000
+2F0: 00D7E7B3 : or x15, x15, x13
+2F4: 08F72023 : sw x15, 128(x14)
+2F8: 00008067 : jalr x0, 0(x1)
+
+1E8: 00140413 : addi x8, x8, 1
+1EC: FF341AE3 : bne x8, x19, -12
+
+1E0: 00044503 : lbu x10, 0(x8)
+1E4: 0E4000EF : jal x1, 228
+
+2C8: 04000737 : lui x14,  0x4000000
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+2D4: 0017F793 : andi x15, x15, 1
+2D8: FE078AE3 : beq x15, x0, -12
+
+2CC: 08072783 : lw x15, 128(x14)
+2D0: 0117D793 : srli x15, x15, 17
+6C4: FB010113 : addi x2, x2, -80
+6C8: 00112023 : sw x1, 0(x2)
+6CC: 00412223 : sw x4, 4(x2)
+6D0: 00512423 : sw x5, 8(x2)
+6D4: 00612623 : sw x6, 12(x2)
+6D8: 00712823 : sw x7, 16(x2)
+6DC: 00A12A23 : sw x10, 20(x2)
+6E0: 00B12C23 : sw x11, 24(x2)
+6E4: 00C12E23 : sw x12, 28(x2)
+6E8: 02D12023 : sw x13, 32(x2)
+6EC: 02E12223 : sw x14, 36(x2)
+6F0: 02F12423 : sw x15, 40(x2)
+6F4: 03012623 : sw x16, 44(x2)
+6F8: 03112823 : sw x17, 48(x2)
+6FC: 03C12A23 : sw x28, 52(x2)
+700: 03D12C23 : sw x29, 56(x2)
+704: 03E12E23 : sw x30, 60(x2)
+708: 05F12023 : sw x31, 64(x2)
+70C: 34202673 : csrrs x0, x2, 834
+
+710: 30702773 : csrrs x0, x7, 775
+
+714: 00261613 : slli x12, x12, 2
+718: 00C70733 : add x14, x14, x12
+71C: 00072703 : lw x14, 0(x14)
+720: 000700E7 : jalr x1, 0(x14)
+
+120: FF010113 : addi x2, x2, -16
+124: 00112623 : sw x1, 12(x2)
+128: 00800593 : addi x11, x0, 8
+12C: 57818513 : addi x10, x3, 1400
+130: 250000EF : jal x1, 592
+
+380: 0075F593 : andi x11, x11, 7
+384: 02058663 : beq x11, x0, 44
+
+3B0: 00008067 : jalr x0, 0(x1)
+
+134: 00100713 : addi x14, x0, 1
+138: 58E18023 : sb x14, 1408(x3)
+13C: 278000EF : jal x1, 632
+
+3B4: 040007B7 : lui x15,  0x4000000
+3B8: 0827D703 : lhu x14, 130(x15)
+3BC: 08076713 : oir x14, x14, 128
+3C0: 08E79123 : sh x14, 130(x15)
+3C4: 00008067 : jalr x0, 0(x1)
+
+140: 00C12083 : lw x1, 12(x2)
+144: 040007B7 : lui x15,  0x4000000
+144: 01010113 : addi x2, x2, 16
+148: 00008067 : jalr x0, 0(x1)
+
