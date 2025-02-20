@@ -65,6 +65,11 @@ begin
     
     -- Test process
     test_process : process
+        function to_q214(angle: real) return signed is
+        begin
+            return to_signed(integer(angle * 2.0**14 / 1.0), 16);
+        end function;
+
     begin
         wait for 30 ns;
         
@@ -72,7 +77,7 @@ begin
         d_we <= '1';
         daddress(15 downto 0) <= x"0001";
         dcsel <= "10";
-        ddata_w <= x"0000" & std_logic_vector(to_signed((45 * 16384) / 90, 16));
+        ddata_w <= x"0000" & std_logic_vector(to_q214(0.5236));
         wait for CLK_PERIOD;
         d_we <= '0';
         
@@ -96,7 +101,7 @@ begin
         d_we <= '1';
         daddress(15 downto 0) <= x"0001";
         dcsel <= "10";
-        ddata_w <= x"0000" & std_logic_vector(to_signed((50 * 16384) / 90, 16));
+        ddata_w <= x"0000" & std_logic_vector(to_q214(0.7854));
         wait for CLK_PERIOD;
         d_we <= '0';
         
