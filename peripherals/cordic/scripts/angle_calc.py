@@ -1,22 +1,31 @@
 import math
+import sys
 
-# Definindo o ângulo de 45 graus
-angulo_graus = 45
-angulo_radianos = math.radians(angulo_graus)
+# Check if an argument was provided
+if len(sys.argv) != 2:
+    print("Usage: python3 angle_calc.py <angle_in_degrees>")
+    sys.exit(1)
 
-print(angulo_radianos)
+# Get the angle from the command-line argument
+try:
+    angle_deg = float(sys.argv[1])
+except ValueError:
+    print("Error: The argument must be a valid number.")
+    sys.exit(1)
 
-# Calculando seno e cosseno
-seno = math.sin(angulo_radianos)
-cosseno = math.cos(angulo_radianos)
+angle_radians = math.radians(angle_deg)
 
-# Escalonando para 16 bits (multiplicando por 16384)
-escala = 16384
-seno_esc = int(seno * escala)
-cosseno_esc = int(cosseno * escala)
+print(f'Angle (rads): {angle_radians:.4f}')
 
-# Convertendo para hexadecimal
-seno_hex = hex(seno_esc)
-cosseno_hex = hex(cosseno_esc)
+sine = math.sin(angle_radians)
+cosine = math.cos(angle_radians)
 
-print(seno_esc, cosseno_esc, seno_hex, cosseno_hex)
+# 16-bit scaling
+scale = 16384
+sine_scaled = int(sine * scale)
+cosine_scaled = int(cosine * scale)
+
+sine_hex = hex(sine_scaled)
+cosine_hex = hex(cosine_scaled)
+
+print(f"Fixed values: {sine_scaled} {cosine_scaled}\nHEX values: {sine_hex} {cosine_hex}")
