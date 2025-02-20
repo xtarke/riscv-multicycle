@@ -68,7 +68,7 @@ BEGIN
 		intended_device_family => "MAX 10",
     
 		-- Specify here core software binary
-		init_file => "./quartus.hex",
+		init_file => "../../software/uart_RS485/quartus.hex",
 		-- init_file => "./software/irq/quartus_irq_example.hex",
 		-- init_file => "./software/irq/quartus_irq_example.hex",
 
