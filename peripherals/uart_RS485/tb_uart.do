@@ -14,7 +14,7 @@ vlib work
 vcom uart.vhd coretestbench.vhd
 
 #Simula
-vsim -t ns work.tb_uart
+vsim -t ns work.uart
 
 #Mosta forma de onda
 view wave
