@@ -2,3 +2,5 @@
 *.tmp
 /peripherals/gpio/sint/de10_lite/db
 peripherals/spi/images/osc_spi_gifs.gif
+/peripherals/uart_RS485/work
+peripherals/uart_RS485/transcript
