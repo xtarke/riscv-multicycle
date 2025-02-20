@@ -1,6 +1,4 @@
--- format beautify: https://g2384.github.io/work/VHDLformatter.html
--- accel_bus: without spi slave, inptu values get GSENSOR de10_lite
--- accel_bus_tb (testbench) : with spi slave for input values test
+-- morse_bus
 
 library ieee;
     use ieee.std_logic_1164.all;
@@ -60,9 +58,10 @@ architecture rtl of morse_bus is
       entrada <= 0;
     else		
       if rising_edge(clk) then
+	      -- implementar verificação de fim de caracter para poder escrever caracteres em sequência
 			if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
-        -- #define ACCELEROMETER_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 18*16*4))
-        -- 18*16 = 244 (decimal) -> 0x0120 (hexadecimal)
+        -- #define MORSE_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 18*16*4))
+        -- 20*16 = 320 (decimal) -> 0x0140 (hexadecimal)
 				if    daddress(15 downto 0) = (MY_WORD_ADDRESS) then
 					entrada <= to_integer(unsigned(ddata_w));
 				end if;
