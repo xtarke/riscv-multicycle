@@ -12,13 +12,14 @@ entity cordic_bus is
 	generic (
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
-		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000";	
+		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0540";	
 		DADDRESS_BUS_SIZE : integer := 32;
 		DATA_WIDTH_BUS : integer := 16
 	);
 	
 	port(
 		clk : in std_logic;
+		clk_32x : in std_logic;
 		rst : in std_logic;
 		
 		-- Core data bus signals
@@ -55,7 +56,7 @@ begin
 	
 	cordic_inst: entity work.cordic_core
 	port map(
-		clk_bus => clk,
+		clk_bus => clk_32x,
 		rst_bus => rst,
 		start => start_bus,
 		angle_in => converted_angle_in,
@@ -73,10 +74,23 @@ begin
             if rising_edge(clk) then
                 if (d_rd = '1') and (dcsel = MY_CHIPSELECT) then
                     if daddress(15 downto 0) = MY_WORD_ADDRESS then
+						ddata_r <= (others => '0');
+                        case dmask is
+                            when "1111" => ddata_r <= std_logic_vector(converted_sin_out) & std_logic_vector(converted_cos_out);
+                            when "0011" => 
+								if (converted_cos_out(15) = '0') then
+									ddata_r(15 downto 0) <= std_logic_vector(converted_cos_out);
+								else
+									ddata_r <= x"FFFFFFFF" & std_logic_vector(converted_cos_out);
+								end if;
+                            when "1100" => 
+								if (converted_sin_out(15) = '0') then
+									ddata_r(15 downto 0) <= std_logic_vector(converted_sin_out);
+								else
+									ddata_r <= x"FFFFFFFF" & std_logic_vector(converted_sin_out);
+                            when others =>
+                        end case;
 
-						ddata_r(31 downto 16) <= std_logic_vector(converted_sin_out);
-						ddata_r(15 downto 0)  <= std_logic_vector(converted_cos_out);
-                    
 					elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
 
                         ddata_r<=output_reg; 
