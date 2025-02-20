@@ -6,7 +6,7 @@ entity RS485_uart is
     generic(
         --! Chip selec
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0020";
+        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0170";
         DADDRESS_BUS_SIZE : integer                      := 32
     );
 
