@@ -6,3 +6,7 @@ peripherals/spi/images/osc_spi_gifs.gif
 peripherals/uart_RS485/transcript
 peripherals/uart_RS485/sim.s
 peripherals/uart_RS485/vsim.wlf
+peripherals/RS485/sim.s
+peripherals/RS485/transcript
+peripherals/RS485/vsim.wlf
+/peripherals/RS485/work
