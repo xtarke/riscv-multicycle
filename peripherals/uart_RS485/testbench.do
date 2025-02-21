@@ -149,7 +149,7 @@ add wave -label clk /generic_RS485_uart/clk
 add wave -label clk_baud /generic_RS485_uart/clk_baud
 add wave -label transmit_byte -radix hex /transmit_byte
 add wave -label transmit_frame /transmit_frame    
-add wave -label config /generic_RS485_uart/config_register
+# add wave -label config /generic_RS485_uart/config_register
 add wave -label uart_register -radix hex /generic_RS485_uart/uart_register
 add wave -label ddata_w -radix hex /generic_RS485_uart/ddata_w
 add wave -label ddata_r -radix hex /generic_RS485_uart/ddata_r
