@@ -39,15 +39,15 @@ typedef enum irq_buffer_config {
   IRQ_BYTE_FINAL
 } buffer_t;
 
-void UART_write(uint8_t data);
-void UART_setup(baud_rate_t baud, parity_t parity);
+void RS485_write(uint8_t data);
+void RS485_setup(baud_rate_t baud, parity_t parity);
 void Buffer_setup(buffer_t buffer_type, uint8_t config_byte);
-void UART_interrupt_enable(void);
-void UART_reception_enable(void);
-void UART_reception_disable(void);
-uint8_t UART_read(void);
-uint8_t UART_unblocked_read(void);
-void UART_buffer_read(uint8_t* vetor, uint8_t size);
+void RS485_interrupt_enable(void);
+void RS485_reception_enable(void);
+void RS485_reception_disable(void);
+uint8_t RS485_read(void);
+uint8_t RS485_unblocked_read(void);
+void RS485_buffer_read(uint8_t* vetor, uint8_t size);
 
 typedef struct {
   _IO8 tx_byte;           /*!< Data to transfer. */
@@ -65,8 +65,8 @@ typedef struct {
   _IO8 buffer_rx[8];       /*Definição do Buffer para recepção. Duas words 1 e 2*/
   _IO8 num_bytes_irq;      /*Numero de bytes para gerar uma interrupção. Bit 0 a 7 word 3*/
   _IO8 byte_final;         /*É o byte que determina o final do pacote serial. Bit 8 a 15 word 3*/
-} UART_REG_TYPE;
+} RS485_REG_TYPE;
 
-#define UART_REGISTER ((UART_REG_TYPE *) &UART_BASE_ADDRESS)
+#define RS485_REGISTER ((RS485_REG_TYPE *) &RS485_BASE_ADDRESS)
 
 #endif // __UART_H
