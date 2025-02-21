@@ -88,6 +88,7 @@ begin
 									ddata_r(15 downto 0) <= std_logic_vector(converted_sin_out);
 								else
 									ddata_r <= x"FFFFFFFF" & std_logic_vector(converted_sin_out);
+								end if;
                             when others =>
                         end case;
 

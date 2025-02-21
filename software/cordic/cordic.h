@@ -8,6 +8,7 @@ typedef struct {
    _IO16 sin;
    _IO16 cos;
    _IO32 angle_in;
+   _IO32 start_signal;
 
 } CORDIC_TYPE;
  

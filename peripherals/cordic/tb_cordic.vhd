@@ -78,7 +78,7 @@ begin
         d_we <= '1';
         daddress(15 downto 0) <= x"0541";
         dcsel <= "10";
-        ddata_w <= x"0000" & std_logic_vector(to_q214(0.5236));
+        ddata_w <= x"0000" & std_logic_vector(to_q214(-0.5236));
         wait for CLK_PERIOD;
         d_we <= '0';
         
@@ -102,7 +102,7 @@ begin
         d_we <= '1';
         daddress(15 downto 0) <= x"0541";
         dcsel <= "10";
-        ddata_w <= x"0000" & std_logic_vector(to_q214(0.7854));
+        ddata_w <= x"0000" & std_logic_vector(to_q214(-0.7854));
         wait for CLK_PERIOD;
         d_we <= '0';
         
