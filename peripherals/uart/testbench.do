@@ -16,7 +16,7 @@
 #******************************************************************************
 
 vlib work
-vcom ./uart.vhd
+vcom uart.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../memory/instructionbusmux.vhd
