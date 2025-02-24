@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2025.02.18.19:47:34"
+ outputDirectory="C:/PLD/riscv-multicycle/peripherals/servo_motor/de10_lite/rotacao/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="MAX 10"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="10M50DAF484C7G"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="7"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="sources" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="source" direction="output" role="source" width="32" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="rotacao:1.0:AUTO_DEVICE=10M50DAF484C7G,AUTO_DEVICE_FAMILY=MAX 10,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1739918852,AUTO_UNIQUE_ID=(altera_in_system_sources_probes:23.1:create_source_clock=false,create_source_clock_enable=false,device_family=MAX 10,enable_metastability=NO,gui_use_auto_index=true,instance_id=NONE,probe_width=0,sld_auto_instance_index=YES,sld_instance_index=0,source_initial_value=0,source_width=32)"
+   instancePathKey="rotacao"
+   kind="rotacao"
+   version="1.0"
+   name="rotacao">
+  <parameter name="AUTO_GENERATION_ID" value="1739918852" />
+  <parameter name="AUTO_DEVICE" value="10M50DAF484C7G" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <generatedFiles>
+   <file
+       path="C:/PLD/riscv-multicycle/peripherals/servo_motor/de10_lite/rotacao/synthesis/rotacao.vhd"
+       type="VHDL" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="C:/PLD/riscv-multicycle/peripherals/servo_motor/de10_lite/rotacao/synthesis/submodules/altsource_probe_top.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="C:/PLD/riscv-multicycle/peripherals/servo_motor/de10_lite/rotacao.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="C:/intelfpga_lite/23.1std/ip/altera/sld/jtag/altera_in_system_sources_probes/altera_in_system_sources_probes_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="rotacao">queue size: 0 starting:rotacao "rotacao"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>1</b> modules, <b>0</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Debug" culprit="rotacao"><![CDATA["<b>rotacao</b>" reuses <b>altera_in_system_sources_probes</b> "<b>submodules/altsource_probe_top</b>"]]></message>
+   <message level="Debug" culprit="rotacao">queue size: 0 starting:altera_in_system_sources_probes "submodules/altsource_probe_top"</message>
+   <message level="Info" culprit="in_system_sources_probes_0"><![CDATA["<b>rotacao</b>" instantiated <b>altera_in_system_sources_probes</b> "<b>in_system_sources_probes_0</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_in_system_sources_probes:23.1:create_source_clock=false,create_source_clock_enable=false,device_family=MAX 10,enable_metastability=NO,gui_use_auto_index=true,instance_id=NONE,probe_width=0,sld_auto_instance_index=YES,sld_instance_index=0,source_initial_value=0,source_width=32"
+   instancePathKey="rotacao:.:in_system_sources_probes_0"
+   kind="altera_in_system_sources_probes"
+   version="23.1"
+   name="altsource_probe_top">
+  <parameter name="create_source_clock" value="false" />
+  <parameter name="instance_id" value="NONE" />
+  <parameter name="source_initial_value" value="0" />
+  <parameter name="sld_auto_instance_index" value="YES" />
+  <parameter name="sld_instance_index" value="0" />
+  <parameter name="probe_width" value="0" />
+  <parameter name="source_width" value="32" />
+  <parameter name="create_source_clock_enable" value="false" />
+  <parameter name="device_family" value="MAX 10" />
+  <parameter name="enable_metastability" value="NO" />
+  <parameter name="gui_use_auto_index" value="true" />
+  <generatedFiles>
+   <file
+       path="C:/PLD/riscv-multicycle/peripherals/servo_motor/de10_lite/rotacao/synthesis/submodules/altsource_probe_top.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="C:/intelfpga_lite/23.1std/ip/altera/sld/jtag/altera_in_system_sources_probes/altera_in_system_sources_probes_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="rotacao" as="in_system_sources_probes_0" />
+  <messages>
+   <message level="Debug" culprit="rotacao">queue size: 0 starting:altera_in_system_sources_probes "submodules/altsource_probe_top"</message>
+   <message level="Info" culprit="in_system_sources_probes_0"><![CDATA["<b>rotacao</b>" instantiated <b>altera_in_system_sources_probes</b> "<b>in_system_sources_probes_0</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

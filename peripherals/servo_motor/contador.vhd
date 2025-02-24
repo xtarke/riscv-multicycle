@@ -3,7 +3,7 @@
 -- Author      : Thaine Martini
 -- Version     : 0.1
 -- Copyright   : Thaine, Departamento de Eletrônica, Florianópolis, IFSC
--- Description : Contador de 0 a 200000, para converter 10MHz em 50Hz 
+-- Description : 
 -------------------------------------------------------------------
 
 library ieee;
