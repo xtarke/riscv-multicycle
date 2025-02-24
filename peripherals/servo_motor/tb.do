@@ -1,8 +1,8 @@
 # ============================================================================
-# Name        : reg_tb.do
+# Name        : tb.do
 # Author      : Thaine Martini
 # Version     : 0.1
-# Description : Parametros para a simulação para um código de um contador
+# Description : Parametros para a simulação para um código do pwm
 # ============================================================================
 
 
