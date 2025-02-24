@@ -14,7 +14,7 @@ O hardwar utilizado foi o DE10Lite.
 O periférico recebe um valor de 0 a 100, esse valor correspode ao quanto o usuario deseja mover o servo sendo que 0% equivale a 0° e 100% equivale a 180°. O valor de entrada é enviado  pelo In-System Source. 
 Caso seja necessário, a chave sw0 funciona como reset quando em nivel lógico alto. 
 
-![rotacao](../servo_motor/img/rotacao.png)
+![rotacao](../servo_motor/img/r.png)
 
 
 A seguir, a demonstração da saída quando variada a entrada de 10 em 10.
