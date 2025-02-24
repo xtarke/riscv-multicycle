@@ -19,7 +19,8 @@ Caso seja necessário, a chave sw0 funciona como reset quando em nivel lógico a
 
 A seguir, a demonstração da saída quando variada a entrada de 10 em 10.
 
-![demonstração](..s/servo_motor/img/demonstracao1.png)
+![demonstração](../servo_motor/img/demonstracao1.png)
+![demonstração](../servo_motor/img/demonstracao2.png)
 
 A frequência do sinal.
 
