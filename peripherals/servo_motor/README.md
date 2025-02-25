@@ -28,7 +28,7 @@ O sinal gerado com a frequência estável de 50 Hz.
 
 ## Síntese 
 
- A síntese desse projeto contém um bloco de Propriedade Intelectual, o componente "rotacao", que utiliza do In-System Sources and Probes como entrada do sistema. O bloco principal desse sistema é o pwm, ele tem como entrada um clock de 10MHz, um valor de porecentagem de rotação e um reset, como saída possui o sinal mostrado anteriormente. O diagrama de blocos do pwm é representado a seguir. 
+ A síntese desse projeto contém um bloco de Propriedade Intelectual, o componente "rotacao", que utiliza do In-System Sources and Probes como entrada do sistema. O bloco principal desse sistema é o pwm, ele tem como entrada um clock de 10MHz, um valor de porcentagem de rotação e um reset, como saída possui o sinal mostrado anteriormente. O diagrama de blocos do pwm é representado a seguir. 
 
  ![Diagrama de blocos pwm](../servo_motor/img/blockdiagrampwm.png)
 
@@ -47,6 +47,6 @@ O contado é utilizado pelo pwm para contar de 0 até 200000. Isso se dá porque
 ## Pwm.vhd
 
 O Pwm é o bloco principal e já foi comentado anteriormente, mas para melhor entendimento será aprofundado. 
-O Pwm, funciona recebendo um valor, que nesse *script* é chamado de rotate (na síntese é o rot), esse valor é multiplicado por 100 e somado com 5000, assim temos o valor do duty cycle. Enquanto o contador for menor que o valor calculado a saída será '1' e depois, irá permanecer em '0' até que o contador volte para 0, como é mostrado a seguir.
+O Pwm, funciona recebendo um valor, que é chamado de "rotate" (na síntese é o "rot"), esse valor é multiplicado por 100 e somado com 5000, assim temos o valor do duty cycle. Enquanto o contador for menor que o valor calculado a saída será '1' e depois, irá permanecer em '0' até que o contador volte para 0, como é mostrado a seguir.
 
 ![script pwm](../servo_motor/img/scriptpwm.png)
