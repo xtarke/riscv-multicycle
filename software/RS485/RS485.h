@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef __UART_H
-#define __UART_H
+#ifndef __RS485_H
+#define __RS485_H
 
 #include <stdint.h>
 #include "../_core/hardware.h"
