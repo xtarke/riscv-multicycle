@@ -20,8 +20,8 @@
 int main()
 {
 
-	uint8_t data = 10;
-	volatile uint8_t x = 0;
+	// uint8_t data = 10;
+	// volatile uint8_t x = 0;
 
 	RS485_setup(_9600, NO_PARITY);
 	// RS485_reception_enable();
@@ -33,14 +33,14 @@ int main()
 
 		// Testing UART - Transmission
 		RS485_write('A');
-		// RS485_write('L');
-		// RS485_write('E');
-		// RS485_write('X');
+		RS485_write('L');
+		RS485_write('E');
+		RS485_write('X');
 
 		// delay_(100);
 
 		// Display data in IO bus
-		SEGMENTS_BASE_ADDRESS = x;
+		// SEGMENTS_BASE_ADDRESS = x;
 	}
 
 	return 0;

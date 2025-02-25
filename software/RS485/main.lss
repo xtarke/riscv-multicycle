@@ -143,20 +143,20 @@ Disassembly of section .rom:
  11c:	00008067          	ret
 
 00000120 +ADw-main+AD4-:
- 120:	fe010113          	addi	sp,sp,-32
- 124:	00112e23          	sw	ra,28(sp)
- 128:	00812c23          	sw	s0,24(sp)
- 12c:	000107a3          	sb	zero,15(sp)
- 130:	00000593          	li	a1,0
- 134:	00200513          	li	a0,2
- 138:	054000ef          	jal	ra,18c +ADw-RS485+AF8-setup+AD4-
- 13c:	04000437          	lui	s0,0x4000
- 140:	04100513          	li	a0,65
- 144:	014000ef          	jal	ra,158 +ADw-RS485+AF8-write+AD4-
- 148:	00f14783          	lbu	a5,15(sp)
- 14c:	0ff7f793          	zext.b	a5,a5
- 150:	04f42023          	sw	a5,64(s0) +ACM- 4000040 +ADw-heap+AF8-end.0+-0x1fffacc+AD4-
- 154:	fedff06f          	j	140 +ADw-main+-0x20+AD4-
+ 120:	ff010113          	addi	sp,sp,-16
+ 124:	00112623          	sw	ra,12(sp)
+ 128:	00000593          	li	a1,0
+ 12c:	00200513          	li	a0,2
+ 130:	05c000ef          	jal	ra,18c +ADw-RS485+AF8-setup+AD4-
+ 134:	04100513          	li	a0,65
+ 138:	020000ef          	jal	ra,158 +ADw-RS485+AF8-write+AD4-
+ 13c:	04c00513          	li	a0,76
+ 140:	018000ef          	jal	ra,158 +ADw-RS485+AF8-write+AD4-
+ 144:	04500513          	li	a0,69
+ 148:	010000ef          	jal	ra,158 +ADw-RS485+AF8-write+AD4-
+ 14c:	05800513          	li	a0,88
+ 150:	008000ef          	jal	ra,158 +ADw-RS485+AF8-write+AD4-
+ 154:	fe1ff06f          	j	134 +ADw-main+-0x14+AD4-
 
 00000158 +ADw-RS485+AF8-write+AD4-:
  158:	04000737          	lui	a4,0x4000
