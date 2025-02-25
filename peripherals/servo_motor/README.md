@@ -1,6 +1,6 @@
 # Servo Motor
 
-Este repositório contempla a implementação de um servo motor como periférico.
+Este repositório contempla a implementação do controle de um servo motor como periférico.
 
 Caracteristicas do servo motor:
 - Periodo de 20ms (50 Hz).
@@ -40,7 +40,7 @@ O esquema de entrada e saída fisíca é a seguinte:
 
 ## Contador.vhd
 
-O contador é um *script* que é utilizado pelo pwm para contar de 0 até 200000. Isso se dá porque o clock fornecido é de 10MHz e para que se consiga usar uma frequência de 50Hz, é preciso considerar que 20ms é 200000. O contador também possui um reset que se ativa em nível lógico alto. O diagram de blocos do contador é repesentado a seguir.
+O contado é utilizado pelo pwm para contar de 0 até 200000. Isso se dá porque o clock fornecido é de 10MHz e para que se consiga usar uma frequência de 50Hz, é preciso considerar que 20ms é 200000. O contador também possui um reset que se ativa em nível lógico alto. O diagram de blocos do contador é repesentado a seguir.
 
 ![Diagrama de blocos do contador](../servo_motor/img/blockdiagramcontador.png)
 
