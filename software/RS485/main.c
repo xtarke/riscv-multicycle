@@ -110,7 +110,7 @@ int main()
 	// volatile uint8_t x = 0;
 
 	RS485_setup(_9600, NO_PARITY);
-	RS485_reception_enable();
+	uint8_t data = 0;
 
 	while (1)
 	{
@@ -119,8 +119,7 @@ int main()
 		// RS485_write('L');
 		// RS485_write('E');
 		// RS485_write('X');
-
-		uint8_t data = 0;
+		RS485_reception_enable();
 		data = RS485_read();
 
 		// // Display data in IO bus
