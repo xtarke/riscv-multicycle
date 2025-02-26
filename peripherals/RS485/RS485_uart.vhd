@@ -355,9 +355,19 @@ begin                                   --Baud Entrada = 38400
                         end if;
                     end if;
                 when MOUNT_BYTE =>
-                    state_tx <= TRANSMIT;
+                    if (cnt_tx > 1) then
+                        state_tx <= MOUNT_BYTE;
+                    else
+                        state_tx <= TRANSMIT;
+                    end if;
+                    --state_tx <= TRANSMIT;
                 when MOUNT_BYTE_PARITY =>
-                    state_tx <= TRANSMIT_PARITY;
+                    if (cnt_tx > 1) then
+                        state_tx <= MOUNT_BYTE_PARITY;
+                    else
+                        state_tx <= TRANSMIT_PARITY;
+                    end if;
+                    --state_tx <= TRANSMIT_PARITY;
                 when TRANSMIT =>
                     if (cnt_tx < 10) then
                         state_tx <= TRANSMIT;
@@ -393,14 +403,28 @@ begin                                   --Baud Entrada = 38400
                 send_byte <= '0';
                 tx_done   <= '1';
             when MOUNT_BYTE =>
-                to_tx     <= "11" & tx_register(7 downto 0) & '0';
-                tx_done   <= '0';
-                send_byte <= '0';
+                if (cnt_tx > 1) then
+                    
+                else
+                    to_tx     <= "11" & tx_register(7 downto 0) & '0';
+                    tx_done   <= '0';
+                    send_byte <= '0';
+                end if;
+                --to_tx     <= "11" & tx_register(7 downto 0) & '0';
+                --tx_done   <= '0';
+                --send_byte <= '0';
 
             when MOUNT_BYTE_PARITY =>
-                to_tx_p     <= "11" & tx_register(7 downto 0) & parity & '0';
-                tx_done     <= '0';
-                send_byte_p <= '0';
+                if (cnt_tx > 1) then
+                    
+                else
+                    to_tx_p     <= "11" & tx_register(7 downto 0) & parity & '0';
+                    tx_done     <= '0';
+                    send_byte_p <= '0';
+                end if;
+                --to_tx_p     <= "11" & tx_register(7 downto 0) & parity & '0';
+                --tx_done     <= '0';
+                --send_byte_p <= '0';
 
             when TRANSMIT =>
                 send_byte <= '1';

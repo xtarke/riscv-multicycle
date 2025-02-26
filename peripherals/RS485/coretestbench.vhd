@@ -73,7 +73,7 @@ architecture RTL of RS485_uart_coretestbench is
     signal ddata_r_lcd            : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
-    signal ddata_r_RS485           : std_logic_vector(31 downto 0);
+    signal ddata_r_RS485           : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
 
     signal TX              : std_logic;
     signal RX              : std_logic;
@@ -241,7 +241,7 @@ begin
             ddata_r_lcd            => ddata_r_lcd,
             ddata_r_fir_fil        => ddata_r_fir_fil,
             ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_RS485           => ddata_r_RS485,
+            ddata_r_RS485           => ddata_r_RS485, -- adicionando novo io do mux
             ddata_r_spwm           => (others => '0'),
             ddata_r_crc            => (others => '0'),
             ddata_r_key            => (others => '0'),
@@ -323,7 +323,7 @@ begin
             clk_baud   => clk_baud,
             daddress   => daddress,
             ddata_w    => ddata_w,
-            ddata_r    => ddata_r_RS485,
+            ddata_r    => ddata_r_RS485, -- [RS485]trocando iobus
             d_we       => d_we,
             d_rd       => d_rd,
             dcsel      => dcsel,
