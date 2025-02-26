@@ -11,26 +11,25 @@ entity RS485 is
     );
 
     port(
-        clk        : in  std_logic;
-        rst        : in  std_logic;
-        clk_baud   : in  std_logic;
+        clk          : in  std_logic;
+        rst          : in  std_logic;
+        clk_baud     : in  std_logic;
         -- Core data bus signals
-        daddress   : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
-        ddata_w    : in  std_logic_vector(31 downto 0);
-        ddata_r    : out std_logic_vector(31 downto 0);
-        d_we       : in  std_logic;
-        d_rd       : in  std_logic;
-        dcsel      : in  std_logic_vector(1 downto 0); --! Chip select 
+        daddress     : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
+        ddata_w      : in  std_logic_vector(31 downto 0);
+        ddata_r      : out std_logic_vector(31 downto 0);
+        d_we         : in  std_logic;
+        d_rd         : in  std_logic;
+        dcsel        : in  std_logic_vector(1 downto 0); --! Chip select 
         -- ToDo: Module should mask bytes (Word, half word and byte access)
-        dmask      : in  std_logic_vector(3 downto 0); --! Byte enable mask
+        dmask        : in  std_logic_vector(3 downto 0); --! Byte enable mask
 
         -- hardware input/output signals
-        tx_out     : out std_logic;
-        rx_out     : in  std_logic;
-        interrupts : out std_logic_vector(1 downto 0);
-        
+        tx_out       : out std_logic;
+        rx_out       : in  std_logic;
+        interrupts   : out std_logic_vector(1 downto 0);
         -- sinal de controle de direção [RS485]
-        rs485_dir_DE  : out std_logic  -- '1' para transmissor, '0' para receptor
+        rs485_dir_DE : out std_logic    -- '1' para transmissor, '0' para receptor
     );
 end entity RS485;
 
@@ -360,14 +359,14 @@ begin                                   --Baud Entrada = 38400
                     else
                         state_tx <= TRANSMIT;
                     end if;
-                    --state_tx <= TRANSMIT;
+                --state_tx <= TRANSMIT;
                 when MOUNT_BYTE_PARITY =>
                     if (cnt_tx > 1) then
                         state_tx <= MOUNT_BYTE_PARITY;
                     else
                         state_tx <= TRANSMIT_PARITY;
                     end if;
-                    --state_tx <= TRANSMIT_PARITY;
+                --state_tx <= TRANSMIT_PARITY;
                 when TRANSMIT =>
                     if (cnt_tx < 10) then
                         state_tx <= TRANSMIT;
@@ -399,32 +398,17 @@ begin                                   --Baud Entrada = 38400
 
         case state_tx is
             when IDLE =>
-                to_tx     <= (others => '1');
-                send_byte <= '0';
-                tx_done   <= '1';
+                to_tx   <= (others => '1');
+                tx_done <= '1';
             when MOUNT_BYTE =>
-                if (cnt_tx > 1) then
-                    
-                else
-                    to_tx     <= "11" & tx_register(7 downto 0) & '0';
-                    tx_done   <= '0';
-                    send_byte <= '0';
+                if (cnt_tx = 0) then
+                    to_tx <= "11" & tx_register(7 downto 0) & '0';
                 end if;
-                --to_tx     <= "11" & tx_register(7 downto 0) & '0';
-                --tx_done   <= '0';
-                --send_byte <= '0';
 
             when MOUNT_BYTE_PARITY =>
-                if (cnt_tx > 1) then
-                    
-                else
-                    to_tx_p     <= "11" & tx_register(7 downto 0) & parity & '0';
-                    tx_done     <= '0';
-                    send_byte_p <= '0';
+                if (cnt_tx = 0) then
+                    to_tx_p <= "11" & tx_register(7 downto 0) & parity & '0';
                 end if;
-                --to_tx_p     <= "11" & tx_register(7 downto 0) & parity & '0';
-                --tx_done     <= '0';
-                --send_byte_p <= '0';
 
             when TRANSMIT =>
                 send_byte <= '1';
@@ -588,7 +572,7 @@ begin                                   --Baud Entrada = 38400
         elsif rising_edge(clk) then
             interrupts(1) <= '0';
 
-            if input_data = '0' and rx_cmp_irq = '1' and uart_register(IRQ_RX_ENABLE_BIT) = '1' then 
+            if input_data = '0' and rx_cmp_irq = '1' and uart_register(IRQ_RX_ENABLE_BIT) = '1' then
                 interrupts(0) <= '1';
             else
                 interrupts(0) <= '0';
@@ -604,18 +588,16 @@ begin                                   --Baud Entrada = 38400
     process(clk, rst)
     begin
         if rst = '1' then
-            rs485_dir_int <= '0';  -- Modo recepção por padrão
+            rs485_dir_int <= '0';       -- Modo recepção por padrão
         elsif rising_edge(clk) then
             if state_tx /= IDLE then
-                rs485_dir_int <= '1';  -- Ativa transmissão sempre que state_tx não estiver em IDLE, estiver transmitindo
+                rs485_dir_int <= '1';   -- Ativa transmissão sempre que state_tx não estiver em IDLE, estiver transmitindo
             else
-                rs485_dir_int <= '0';  -- Caso contrario volta para o modo recepção
+                rs485_dir_int <= '0';   -- Caso contrario volta para o modo recepção
             end if;
         end if;
     end process;
 
     tx_out <= tx;
-
-
 
 end architecture RTL;
