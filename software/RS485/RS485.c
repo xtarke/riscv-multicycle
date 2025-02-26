@@ -18,6 +18,7 @@
 
 #include <stdint.h>
 #include "RS485.h"
+#include "../_core/utils.h"
 #include "../_core/hardware.h"
 
 void RS485_write(uint8_t data){
@@ -31,6 +32,8 @@ void RS485_write(uint8_t data){
 	/* Fast assembly: less instructions */
 	RS485_REGISTER->tx_byte = 0;
 	*((_IO32 *)RS485_REGISTER) |= (1 << 16) | data;
+	// delay_(10);
+	// while (RS485_REGISTER->tx_done);
 }
 
 void RS485_setup(baud_rate_t baud, parity_t parity){

@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity RS485_uart is
+entity RS485 is
     generic(
         --! Chip selec
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
@@ -32,9 +32,9 @@ entity RS485_uart is
         -- sinal de controle de direção [RS485]
         rs485_dir_DE  : out std_logic  -- '1' para transmissor, '0' para receptor
     );
-end entity RS485_uart;
+end entity RS485;
 
-architecture RTL of RS485_uart is
+architecture RTL of RS485 is
 
     --! UART TX TYPE bit maps (See uart.h)
     constant TX_START_BIT : integer := 16;

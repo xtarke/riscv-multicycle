@@ -16,7 +16,7 @@
 #******************************************************************************
 
 vlib work
-vcom ./RS485_uart.vhd
+vcom RS485.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../memory/instructionbusmux.vhd
@@ -41,7 +41,7 @@ vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
 vcom coretestbench.vhd
 
-vsim -t ns work.RS485_uart_coretestbench
+vsim -t ns work.RS485_testbench
 
 view wave
 # add wave -radix binary -label clk /clk
@@ -161,14 +161,14 @@ add wave -label byte_received -radix bin /generic_RS485_uart/byte_received
 add wave -label byte_read -radix bin /generic_RS485_uart/byte_read
 add wave -label tx_done /generic_RS485_uart/tx_done
 add wave -label rx_done /generic_RS485_uart/rx_done
+add wave -label cnt_tx /generic_RS485_uart/cnt_tx
 add wave -label TX -radix hex /TX
 add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_RS485_uart/state_rx
-add wave -label tx_state /generic_RS485_uart/state_tx
+add wave -label state_tx /generic_RS485_uart/state_tx
 add wave -label DE_state /generic_RS485_uart/rs485_dir_DE
-add wave -label cnt_tx /generic_RS485_uart/cnt_tx
-add wave -label interrupts /generic_RS485_uart/interrupts
-add wave -label interrupts /generic_RS485_uart/interrupts
+#add wave -label interrupts /generic_RS485_uart/interrupts
+#add wave -label interrupts /generic_RS485_uart/interrupts
 add wave -label rx_cmp_irq /generic_RS485_uart/rx_cmp_irq
 add wave -label rx_done /generic_RS485_uart/rx_done
 
@@ -184,5 +184,5 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 
-run 20 ms
-wave zoomfull
+run 8 ms
+#wave zoomfull

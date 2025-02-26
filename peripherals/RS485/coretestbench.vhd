@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
-entity RS485_uart_coretestbench is
+entity RS485_testbench is
     generic(
         --! Num of 32-bits memory words
         IMEMORY_WORDS : integer := 1024; --!= 4K (1024 * 4) bytes
@@ -23,9 +23,9 @@ entity RS485_uart_coretestbench is
         LEDR : out std_logic_vector(9 downto 0)
     );
 
-end entity RS485_uart_coretestbench;
+end entity RS485_testbench;
 
-architecture RTL of RS485_uart_coretestbench is
+architecture RTL of RS485_testbench is
     -- Clocks and reset
     signal clk      : std_logic;
     signal clk_32x  : std_logic;
@@ -316,7 +316,7 @@ begin
         );
 
     -- RS485_UART module instantiation
-    generic_RS485_uart : entity work.RS485_uart
+    generic_RS485_uart : entity work.RS485
         port map(
             clk        => clk,
             rst        => rst,
