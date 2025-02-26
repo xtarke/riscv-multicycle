@@ -153,8 +153,8 @@ add wave -label transmit_frame /transmit_frame
 add wave -label uart_register -radix hex /generic_RS485_uart/uart_register
 add wave -label ddata_w -radix hex /generic_RS485_uart/ddata_w
 add wave -label ddata_r -radix hex /generic_RS485_uart/ddata_r
-add wave -label tx_register -radix ascii /generic_RS485_uart/tx_register
-add wave -label rx_register -radix ascii /generic_RS485_uart/rx_register
+add wave -label tx_register -radix hex /generic_RS485_uart/tx_register
+add wave -label rx_register -radix hex /generic_RS485_uart/rx_register
 add wave -label from_rx -radix bin /generic_RS485_uart/rx_receive/from_rx
 add wave -label baud_ready -radix bin /generic_RS485_uart/baud_ready
 add wave -label byte_received -radix bin /generic_RS485_uart/byte_received
@@ -184,5 +184,5 @@ add wave -height 15 -divider "Input/Output SIM"
 add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 
-run 8 ms
+run 20 ms
 #wave zoomfull

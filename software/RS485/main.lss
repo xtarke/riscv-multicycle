@@ -3,53 +3,53 @@ main.elf:     file format elf32-littleriscv
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .rom          000006a7  00000000  00000000  00001000  2+ACoAKg-2
+  0 .rom          0000068f  00000000  00000000  00001000  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .text.deregister+AF8-tm+AF8-clones 0000001c  000006a8  000006a8  000016a8  2+ACoAKg-2
+  1 .text.deregister+AF8-tm+AF8-clones 0000001c  00000690  00000690  00001690  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .text.register+AF8-tm+AF8-clones 00000030  000006c4  000006c4  000016c4  2+ACoAKg-2
+  2 .text.register+AF8-tm+AF8-clones 00000030  000006ac  000006ac  000016ac  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  3 .text.+AF8AXw-do+AF8-global+AF8-dtors+AF8-aux 00000048  000006f4  000006f4  000016f4  2+ACoAKg-2
+  3 .text.+AF8AXw-do+AF8-global+AF8-dtors+AF8-aux 00000048  000006dc  000006dc  000016dc  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  4 .text.frame+AF8-dummy 00000030  0000073c  0000073c  0000173c  2+ACoAKg-2
+  4 .text.frame+AF8-dummy 00000030  00000724  00000724  00001724  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  5 .text.trap    000000c8  0000076c  0000076c  0000176c  2+ACoAKg-2
+  5 .text.trap    000000c8  00000754  00000754  00001754  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  6 .text.irq     000000a8  00000834  00000834  00001834  2+ACoAKg-2
+  6 .text.irq     000000a8  0000081c  0000081c  0000181c  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  7 .init         00000084  000008dc  000008dc  000018dc  2+ACoAKg-2
+  7 .init         00000084  000008c4  000008c4  000018c4  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  8 .text.atexit  00000014  00000960  00000960  00001960  2+ACoAKg-2
+  8 .text.atexit  00000014  00000948  00000948  00001948  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  9 .text.+AF8AXw-errno 00000008  00000974  00000974  00001974  2+ACoAKg-2
+  9 .text.+AF8AXw-errno 00000008  0000095c  0000095c  0000195c  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 10 .text.exit    00000034  0000097c  0000097c  0000197c  2+ACoAKg-2
+ 10 .text.exit    00000034  00000964  00000964  00001964  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 11 .text.+AF8AXw-libc+AF8-fini+AF8-array 00000054  000009b0  000009b0  000019b0  2+ACoAKg-2
+ 11 .text.+AF8AXw-libc+AF8-fini+AF8-array 00000054  00000998  00000998  00001998  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 12 .text.+AF8AXw-libc+AF8-init+AF8-array 00000084  00000a04  00000a04  00001a04  2+ACoAKg-2
+ 12 .text.+AF8AXw-libc+AF8-init+AF8-array 00000084  000009ec  000009ec  000019ec  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 13 .text.memcpy  00000128  00000a88  00000a88  00001a88  2+ACoAKg-2
+ 13 .text.memcpy  00000128  00000a70  00000a70  00001a70  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 14 .text.+AF8AXw-register+AF8-exitproc 0000009c  00000bb0  00000bb0  00001bb0  2+ACoAKg-2
+ 14 .text.+AF8AXw-register+AF8-exitproc 0000009c  00000b98  00000b98  00001b98  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 15 .text.+AF8AXw-call+AF8-exitprocs 00000124  00000c4c  00000c4c  00001c4c  2+ACoAKg-2
+ 15 .text.+AF8AXw-call+AF8-exitprocs 00000124  00000c34  00000c34  00001c34  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 16 .srodata.+AF8-global+AF8-impure+AF8-ptr 00000004  00000d70  00000d70  00001d70  2+ACoAKg-2
+ 16 .srodata.+AF8-global+AF8-impure+AF8-ptr 00000004  00000d58  00000d58  00001d58  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
- 17 .data         00000430  02000000  00000d74  00002000  2+ACoAKg-3
+ 17 .data         00000430  02000000  00000d5c  00002000  2+ACoAKg-3
                   CONTENTS, ALLOC, LOAD, DATA
- 18 .eh+AF8-frame     00000120  02000430  000011a4  00002430  2+ACoAKg-2
+ 18 .eh+AF8-frame     00000120  02000430  0000118c  00002430  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, DATA
- 19 .fini+AF8-array   00000004  02000550  000012c4  00002550  2+ACoAKg-2
+ 19 .fini+AF8-array   00000004  02000550  000012ac  00002550  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, DATA
- 20 .init+AF8-array   00000004  02000554  000012c8  00002554  2+ACoAKg-2
+ 20 .init+AF8-array   00000004  02000554  000012b0  00002554  2+ACoAKg-2
                   CONTENTS, ALLOC, LOAD, DATA
- 21 .bss          00000018  02000558  000012cc  00002558  2+ACoAKg-2
+ 21 .bss          00000018  02000558  000012b4  00002558  2+ACoAKg-2
                   ALLOC
- 22 .sbss.completed.1 00000001  02000570  000012cc  00002570  2+ACoAKg-0
+ 22 .sbss.completed.1 00000001  02000570  000012b4  00002570  2+ACoAKg-0
                   ALLOC
- 23 .sbss         00000004  02000574  000012cc  00002574  2+ACoAKg-2
+ 23 .sbss         00000004  02000574  000012b4  00002574  2+ACoAKg-2
                   ALLOC
  24 .riscv.attributes 00000025  00000000  00000000  00002558  2+ACoAKg-0
                   CONTENTS, READONLY
@@ -61,14 +61,14 @@ Disassembly of section .rom:
 00000000 +ADwAXw-pvstart+AD4-:
    0:	30047073          	csrci	mstatus,8
    4:	00001297          	auipc	t0,0x1
-   8:	8d828293          	addi	t0,t0,-1832 +ACM- 8dc +ADw-vector+AF8-base+AD4-
+   8:	8c028293          	addi	t0,t0,-1856 +ACM- 8c4 +ADw-vector+AF8-base+AD4-
    c:	30729073          	csrw	0x307,t0
   10:	00001297          	auipc	t0,0x1
-  14:	82428293          	addi	t0,t0,-2012 +ACM- 834 +ADw-irq+AF8-entry+AD4-
+  14:	80c28293          	addi	t0,t0,-2036 +ACM- 81c +ADw-irq+AF8-entry+AD4-
   18:	7ec29073          	csrw	0x7ec,t0
   1c:	7ec0e073          	csrsi	0x7ec,1
   20:	00000297          	auipc	t0,0x0
-  24:	74c28293          	addi	t0,t0,1868 +ACM- 76c +ADw-trap+AF8-entry+AD4-
+  24:	73428293          	addi	t0,t0,1844 +ACM- 754 +ADw-trap+AF8-entry+AD4-
   28:	30529073          	csrw	mtvec,t0
   2c:	02001137          	lui	sp,0x2001
   30:	80010113          	addi	sp,sp,-2048 +ACM- 2000800 +ADw-heap+AF8-end.0+-0x28c+AD4-
@@ -89,16 +89,16 @@ Disassembly of section .rom:
   64:	57018613          	addi	a2,gp,1392 +ACM- 2000570 +ADw-completed.1+AD4-
   68:	40a60633          	sub	a2,a2,a0
   6c:	00000593          	li	a1,0
-  70:	538000ef          	jal	ra,5a8 +ADw-memset+AD4-
+  70:	520000ef          	jal	ra,590 +ADw-memset+AD4-
   74:	00001517          	auipc	a0,0x1
-  78:	93c50513          	addi	a0,a0,-1732 +ACM- 9b0 +ADwAXwBf-libc+AF8-fini+AF8-array+AD4-
-  7c:	0e5000ef          	jal	ra,960 +ADw-atexit+AD4-
-  80:	185000ef          	jal	ra,a04 +ADwAXwBf-libc+AF8-init+AF8-array+AD4-
+  78:	92450513          	addi	a0,a0,-1756 +ACM- 998 +ADwAXwBf-libc+AF8-fini+AF8-array+AD4-
+  7c:	0cd000ef          	jal	ra,948 +ADw-atexit+AD4-
+  80:	16d000ef          	jal	ra,9ec +ADwAXwBf-libc+AF8-init+AF8-array+AD4-
   84:	00012503          	lw	a0,0(sp)
   88:	00410593          	addi	a1,sp,4
   8c:	00000613          	li	a2,0
   90:	29c000ef          	jal	ra,32c +ADw-main+AD4-
-  94:	0e90006f          	j	97c +ADw-exit+AD4-
+  94:	0d10006f          	j	964 +ADw-exit+AD4-
 
 00000098 +ADw-input+AF8-interrupt+AF8-enable+AD4-:
   98:	04000737          	lui	a4,0x4000
@@ -127,7 +127,7 @@ Disassembly of section .rom:
 
 000000ec +ADw-extern+AF8-interrupt+AF8-enable+AD4-:
   ec:	000012b7          	lui	t0,0x1
-  f0:	80028293          	addi	t0,t0,-2048 +ACM- 800 +ADw-trap+AF8-entry+-0x94+AD4-
+  f0:	80028293          	addi	t0,t0,-2048 +ACM- 800 +ADw-trap+AF8-entry+-0xac+AD4-
   f4:	00050663          	beqz	a0,100 +ADw-extern+AF8-interrupt+AF8-enable+-0x14+AD4-
   f8:	3042a073          	csrs	mie,t0
   fc:	00008067          	ret
@@ -148,19 +148,19 @@ Disassembly of section .rom:
  128:	00812423          	sw	s0,8(sp)
  12c:	00050413          	mv	s0,a0
  130:	08100513          	li	a0,129
- 134:	230000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 134:	218000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  138:	00040513          	mv	a0,s0
- 13c:	228000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 13c:	210000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  140:	0fa00513          	li	a0,250
- 144:	220000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 144:	208000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  148:	00000513          	li	a0,0
- 14c:	218000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 14c:	200000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  150:	00000513          	li	a0,0
- 154:	210000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 154:	1f8000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  158:	00000513          	li	a0,0
- 15c:	208000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 15c:	1f0000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  160:	00000513          	li	a0,0
- 164:	200000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 164:	1e8000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  168:	00c12083          	lw	ra,12(sp)
  16c:	00812403          	lw	s0,8(sp)
  170:	01010113          	addi	sp,sp,16
@@ -173,26 +173,26 @@ Disassembly of section .rom:
  184:	00912223          	sw	s1,4(sp)
  188:	00050413          	mv	s0,a0
  18c:	08100513          	li	a0,129
- 190:	1d4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 190:	1bc000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  194:	00040513          	mv	a0,s0
- 198:	1cc000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 198:	1b4000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  19c:	0fd00513          	li	a0,253
- 1a0:	1c4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 1a0:	1ac000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  1a4:	00000513          	li	a0,0
- 1a8:	1bc000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 1a8:	1a4000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  1ac:	00000513          	li	a0,0
- 1b0:	1b4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 1b0:	19c000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  1b4:	00000513          	li	a0,0
- 1b8:	1ac000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 1b8:	194000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  1bc:	00000513          	li	a0,0
- 1c0:	1a4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 1c4:	28c000ef          	jal	ra,450 +ADw-RS485+AF8-reception+AF8-enable+AD4-
+ 1c0:	18c000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
+ 1c4:	274000ef          	jal	ra,438 +ADw-RS485+AF8-reception+AF8-enable+AD4-
  1c8:	00800493          	li	s1,8
- 1cc:	2c0000ef          	jal	ra,48c +ADw-RS485+AF8-read+AD4-
+ 1cc:	2a8000ef          	jal	ra,474 +ADw-RS485+AF8-read+AD4-
  1d0:	00050413          	mv	s0,a0
  1d4:	fff48493          	addi	s1,s1,-1
  1d8:	fe049ae3          	bnez	s1,1cc +ADw-keep+AF8-connection+-0x54+AD4-
- 1dc:	29c000ef          	jal	ra,478 +ADw-RS485+AF8-reception+AF8-disable+AD4-
+ 1dc:	284000ef          	jal	ra,460 +ADw-RS485+AF8-reception+AF8-disable+AD4-
  1e0:	f8040513          	addi	a0,s0,-128
  1e4:	00153513          	seqz	a0,a0
  1e8:	00c12083          	lw	ra,12(sp)
@@ -208,26 +208,26 @@ Disassembly of section .rom:
  208:	00912223          	sw	s1,4(sp)
  20c:	00050413          	mv	s0,a0
  210:	08100513          	li	a0,129
- 214:	150000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 214:	138000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  218:	00040513          	mv	a0,s0
- 21c:	148000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 21c:	130000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  220:	0fe00513          	li	a0,254
- 224:	140000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 224:	128000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  228:	00000513          	li	a0,0
- 22c:	138000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 22c:	120000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  230:	00000513          	li	a0,0
- 234:	130000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 234:	118000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  238:	00000513          	li	a0,0
- 23c:	128000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 23c:	110000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  240:	00000513          	li	a0,0
- 244:	120000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 248:	208000ef          	jal	ra,450 +ADw-RS485+AF8-reception+AF8-enable+AD4-
+ 244:	108000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
+ 248:	1f0000ef          	jal	ra,438 +ADw-RS485+AF8-reception+AF8-enable+AD4-
  24c:	00800493          	li	s1,8
- 250:	23c000ef          	jal	ra,48c +ADw-RS485+AF8-read+AD4-
+ 250:	224000ef          	jal	ra,474 +ADw-RS485+AF8-read+AD4-
  254:	00050413          	mv	s0,a0
  258:	fff48493          	addi	s1,s1,-1
  25c:	fe049ae3          	bnez	s1,250 +ADw-register+AF8-information+-0x54+AD4-
- 260:	218000ef          	jal	ra,478 +ADw-RS485+AF8-reception+AF8-disable+AD4-
+ 260:	200000ef          	jal	ra,460 +ADw-RS485+AF8-reception+AF8-disable+AD4-
  264:	f8040513          	addi	a0,s0,-128
  268:	00153513          	seqz	a0,a0
  26c:	00c12083          	lw	ra,12(sp)
@@ -243,29 +243,29 @@ Disassembly of section .rom:
  28c:	00912a23          	sw	s1,20(sp)
  290:	00050413          	mv	s0,a0
  294:	08100513          	li	a0,129
- 298:	0cc000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 298:	0b4000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  29c:	00040513          	mv	a0,s0
- 2a0:	0c4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 2a0:	0ac000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  2a4:	0c800513          	li	a0,200
- 2a8:	0bc000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 2a8:	0a4000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  2ac:	00000513          	li	a0,0
- 2b0:	0b4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 2b0:	09c000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  2b4:	00000513          	li	a0,0
- 2b8:	0ac000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 2b8:	094000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  2bc:	00000513          	li	a0,0
- 2c0:	0a4000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
+ 2c0:	08c000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
  2c4:	00000513          	li	a0,0
- 2c8:	09c000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 2cc:	184000ef          	jal	ra,450 +ADw-RS485+AF8-reception+AF8-enable+AD4-
+ 2c8:	084000ef          	jal	ra,34c +ADw-RS485+AF8-write+AD4-
+ 2cc:	16c000ef          	jal	ra,438 +ADw-RS485+AF8-reception+AF8-enable+AD4-
  2d0:	00012423          	sw	zero,8(sp)
  2d4:	00012623          	sw	zero,12(sp)
  2d8:	00810413          	addi	s0,sp,8
  2dc:	01010493          	addi	s1,sp,16
- 2e0:	1ac000ef          	jal	ra,48c +ADw-RS485+AF8-read+AD4-
+ 2e0:	194000ef          	jal	ra,474 +ADw-RS485+AF8-read+AD4-
  2e4:	00a40023          	sb	a0,0(s0)
  2e8:	00140413          	addi	s0,s0,1
  2ec:	fe941ae3          	bne	s0,s1,2e0 +ADw-check+AF8-alarm+AF8-input+-0x60+AD4-
- 2f0:	188000ef          	jal	ra,478 +ADw-RS485+AF8-reception+AF8-disable+AD4-
+ 2f0:	170000ef          	jal	ra,460 +ADw-RS485+AF8-reception+AF8-disable+AD4-
  2f4:	00b14503          	lbu	a0,11(sp)
  2f8:	00c14783          	lbu	a5,12(sp)
  2fc:	00f57533          	and	a0,a0,a5
@@ -286,732 +286,726 @@ Disassembly of section .rom:
  330:	00112623          	sw	ra,12(sp)
  334:	00000593          	li	a1,0
  338:	00200513          	li	a0,2
- 33c:	05c000ef          	jal	ra,398 +ADw-RS485+AF8-setup+AD4-
- 340:	04100513          	li	a0,65
- 344:	020000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 348:	04c00513          	li	a0,76
- 34c:	018000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 350:	04500513          	li	a0,69
- 354:	010000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 358:	05800513          	li	a0,88
- 35c:	008000ef          	jal	ra,364 +ADw-RS485+AF8-write+AD4-
- 360:	fe1ff06f          	j	340 +ADw-main+-0x14+AD4-
+ 33c:	044000ef          	jal	ra,380 +ADw-RS485+AF8-setup+AD4-
+ 340:	00000513          	li	a0,0
+ 344:	e35ff0ef          	jal	ra,178 +ADw-keep+AF8-connection+AD4-
+ 348:	ff9ff06f          	j	340 +ADw-main+-0x14+AD4-
 
-00000364 +ADw-RS485+AF8-write+AD4-:
- 364:	04000737          	lui	a4,0x4000
- 368:	5c072783          	lw	a5,1472(a4) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
- 36c:	0117d793          	srli	a5,a5,0x11
- 370:	0017f793          	andi	a5,a5,1
- 374:	fe078ae3          	beqz	a5,368 +ADw-RS485+AF8-write+-0x4+AD4-
- 378:	04000737          	lui	a4,0x4000
- 37c:	5c070023          	sb	zero,1472(a4) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
- 380:	5c072783          	lw	a5,1472(a4)
- 384:	00f567b3          	or	a5,a0,a5
- 388:	000106b7          	lui	a3,0x10
- 38c:	00d7e7b3          	or	a5,a5,a3
- 390:	5cf72023          	sw	a5,1472(a4)
- 394:	00008067          	ret
+0000034c +ADw-RS485+AF8-write+AD4-:
+ 34c:	04000737          	lui	a4,0x4000
+ 350:	5c072783          	lw	a5,1472(a4) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
+ 354:	0117d793          	srli	a5,a5,0x11
+ 358:	0017f793          	andi	a5,a5,1
+ 35c:	fe078ae3          	beqz	a5,350 +ADw-RS485+AF8-write+-0x4+AD4-
+ 360:	04000737          	lui	a4,0x4000
+ 364:	5c070023          	sb	zero,1472(a4) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
+ 368:	5c072783          	lw	a5,1472(a4)
+ 36c:	00f567b3          	or	a5,a0,a5
+ 370:	000106b7          	lui	a3,0x10
+ 374:	00d7e7b3          	or	a5,a5,a3
+ 378:	5cf72023          	sw	a5,1472(a4)
+ 37c:	00008067          	ret
 
-00000398 +ADw-RS485+AF8-setup+AD4-:
- 398:	040007b7          	lui	a5,0x4000
- 39c:	5c07a703          	lw	a4,1472(a5) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
- 3a0:	ff8006b7          	lui	a3,0xff800
- 3a4:	00d77733          	and	a4,a4,a3
- 3a8:	5ce7a023          	sw	a4,1472(a5)
- 3ac:	5c07a703          	lw	a4,1472(a5)
- 3b0:	01559593          	slli	a1,a1,0x15
- 3b4:	006006b7          	lui	a3,0x600
- 3b8:	00d5f5b3          	and	a1,a1,a3
- 3bc:	00e5e5b3          	or	a1,a1,a4
- 3c0:	01351513          	slli	a0,a0,0x13
- 3c4:	00180737          	lui	a4,0x180
- 3c8:	00e57533          	and	a0,a0,a4
- 3cc:	00a5e5b3          	or	a1,a1,a0
- 3d0:	5cb7a023          	sw	a1,1472(a5)
- 3d4:	00008067          	ret
+00000380 +ADw-RS485+AF8-setup+AD4-:
+ 380:	040007b7          	lui	a5,0x4000
+ 384:	5c07a703          	lw	a4,1472(a5) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
+ 388:	ff8006b7          	lui	a3,0xff800
+ 38c:	00d77733          	and	a4,a4,a3
+ 390:	5ce7a023          	sw	a4,1472(a5)
+ 394:	5c07a703          	lw	a4,1472(a5)
+ 398:	01559593          	slli	a1,a1,0x15
+ 39c:	006006b7          	lui	a3,0x600
+ 3a0:	00d5f5b3          	and	a1,a1,a3
+ 3a4:	00e5e5b3          	or	a1,a1,a4
+ 3a8:	01351513          	slli	a0,a0,0x13
+ 3ac:	00180737          	lui	a4,0x180
+ 3b0:	00e57533          	and	a0,a0,a4
+ 3b4:	00a5e5b3          	or	a1,a1,a0
+ 3b8:	5cb7a023          	sw	a1,1472(a5)
+ 3bc:	00008067          	ret
 
-000003d8 +ADw-Buffer+AF8-setup+AD4-:
- 3d8:	02051a63          	bnez	a0,40c +ADw-Buffer+AF8-setup+-0x34+AD4-
- 3dc:	040007b7          	lui	a5,0x4000
- 3e0:	5cb78623          	sb	a1,1484(a5) +ACM- 40005cc +ADw-heap+AF8-end.0+-0x2000058+AD4-
- 3e4:	5c0786a3          	sb	zero,1485(a5)
- 3e8:	00157513          	andi	a0,a0,1
- 3ec:	04000737          	lui	a4,0x4000
- 3f0:	00f51513          	slli	a0,a0,0xf
- 3f4:	5c275783          	lhu	a5,1474(a4) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
- 3f8:	01179793          	slli	a5,a5,0x11
- 3fc:	0117d793          	srli	a5,a5,0x11
- 400:	00a7e7b3          	or	a5,a5,a0
- 404:	5cf71123          	sh	a5,1474(a4)
- 408:	00008067          	ret
- 40c:	040007b7          	lui	a5,0x4000
- 410:	5cb786a3          	sb	a1,1485(a5) +ACM- 40005cd +ADw-heap+AF8-end.0+-0x2000059+AD4-
- 414:	5c078623          	sb	zero,1484(a5)
- 418:	fd1ff06f          	j	3e8 +ADw-Buffer+AF8-setup+-0x10+AD4-
+000003c0 +ADw-Buffer+AF8-setup+AD4-:
+ 3c0:	02051a63          	bnez	a0,3f4 +ADw-Buffer+AF8-setup+-0x34+AD4-
+ 3c4:	040007b7          	lui	a5,0x4000
+ 3c8:	5cb78623          	sb	a1,1484(a5) +ACM- 40005cc +ADw-heap+AF8-end.0+-0x2000058+AD4-
+ 3cc:	5c0786a3          	sb	zero,1485(a5)
+ 3d0:	00157513          	andi	a0,a0,1
+ 3d4:	04000737          	lui	a4,0x4000
+ 3d8:	00f51513          	slli	a0,a0,0xf
+ 3dc:	5c275783          	lhu	a5,1474(a4) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
+ 3e0:	01179793          	slli	a5,a5,0x11
+ 3e4:	0117d793          	srli	a5,a5,0x11
+ 3e8:	00a7e7b3          	or	a5,a5,a0
+ 3ec:	5cf71123          	sh	a5,1474(a4)
+ 3f0:	00008067          	ret
+ 3f4:	040007b7          	lui	a5,0x4000
+ 3f8:	5cb786a3          	sb	a1,1485(a5) +ACM- 40005cd +ADw-heap+AF8-end.0+-0x2000059+AD4-
+ 3fc:	5c078623          	sb	zero,1484(a5)
+ 400:	fd1ff06f          	j	3d0 +ADw-Buffer+AF8-setup+-0x10+AD4-
 
-0000041c +ADw-RS485+AF8-buffer+AF8-read+AD4-:
- 41c:	0075f593          	andi	a1,a1,7
- 420:	02058663          	beqz	a1,44c +ADw-RS485+AF8-buffer+AF8-read+-0x30+AD4-
- 424:	00000793          	li	a5,0
- 428:	04000637          	lui	a2,0x4000
- 42c:	5c060613          	addi	a2,a2,1472 +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
- 430:	00f60733          	add	a4,a2,a5
- 434:	00474683          	lbu	a3,4(a4)
- 438:	00f50733          	add	a4,a0,a5
- 43c:	00d70023          	sb	a3,0(a4)
- 440:	00178793          	addi	a5,a5,1
- 444:	0ff7f713          	zext.b	a4,a5
- 448:	feb764e3          	bltu	a4,a1,430 +ADw-RS485+AF8-buffer+AF8-read+-0x14+AD4-
- 44c:	00008067          	ret
+00000404 +ADw-RS485+AF8-buffer+AF8-read+AD4-:
+ 404:	0075f593          	andi	a1,a1,7
+ 408:	02058663          	beqz	a1,434 +ADw-RS485+AF8-buffer+AF8-read+-0x30+AD4-
+ 40c:	00000793          	li	a5,0
+ 410:	04000637          	lui	a2,0x4000
+ 414:	5c060613          	addi	a2,a2,1472 +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
+ 418:	00f60733          	add	a4,a2,a5
+ 41c:	00474683          	lbu	a3,4(a4)
+ 420:	00f50733          	add	a4,a0,a5
+ 424:	00d70023          	sb	a3,0(a4)
+ 428:	00178793          	addi	a5,a5,1
+ 42c:	0ff7f713          	zext.b	a4,a5
+ 430:	feb764e3          	bltu	a4,a1,418 +ADw-RS485+AF8-buffer+AF8-read+-0x14+AD4-
+ 434:	00008067          	ret
 
-00000450 +ADw-RS485+AF8-reception+AF8-enable+AD4-:
- 450:	040007b7          	lui	a5,0x4000
- 454:	5c27d703          	lhu	a4,1474(a5) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
- 458:	08076713          	ori	a4,a4,128
- 45c:	5ce79123          	sh	a4,1474(a5)
- 460:	00008067          	ret
+00000438 +ADw-RS485+AF8-reception+AF8-enable+AD4-:
+ 438:	040007b7          	lui	a5,0x4000
+ 43c:	5c27d703          	lhu	a4,1474(a5) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
+ 440:	08076713          	ori	a4,a4,128
+ 444:	5ce79123          	sh	a4,1474(a5)
+ 448:	00008067          	ret
 
-00000464 +ADw-RS485+AF8-interrupt+AF8-enable+AD4-:
- 464:	040007b7          	lui	a5,0x4000
- 468:	5c27d703          	lhu	a4,1474(a5) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
- 46c:	10076713          	ori	a4,a4,256
- 470:	5ce79123          	sh	a4,1474(a5)
- 474:	00008067          	ret
+0000044c +ADw-RS485+AF8-interrupt+AF8-enable+AD4-:
+ 44c:	040007b7          	lui	a5,0x4000
+ 450:	5c27d703          	lhu	a4,1474(a5) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
+ 454:	10076713          	ori	a4,a4,256
+ 458:	5ce79123          	sh	a4,1474(a5)
+ 45c:	00008067          	ret
 
-00000478 +ADw-RS485+AF8-reception+AF8-disable+AD4-:
- 478:	040007b7          	lui	a5,0x4000
- 47c:	5c27d703          	lhu	a4,1474(a5) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
- 480:	f7f77713          	andi	a4,a4,-129
- 484:	5ce79123          	sh	a4,1474(a5)
- 488:	00008067          	ret
+00000460 +ADw-RS485+AF8-reception+AF8-disable+AD4-:
+ 460:	040007b7          	lui	a5,0x4000
+ 464:	5c27d703          	lhu	a4,1474(a5) +ACM- 40005c2 +ADw-heap+AF8-end.0+-0x200004e+AD4-
+ 468:	f7f77713          	andi	a4,a4,-129
+ 46c:	5ce79123          	sh	a4,1474(a5)
+ 470:	00008067          	ret
 
-0000048c +ADw-RS485+AF8-read+AD4-:
- 48c:	04000737          	lui	a4,0x4000
- 490:	5c072783          	lw	a5,1472(a4) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
- 494:	0127d793          	srli	a5,a5,0x12
- 498:	0017f793          	andi	a5,a5,1
- 49c:	fe078ae3          	beqz	a5,490 +ADw-RS485+AF8-read+-0x4+AD4-
+00000474 +ADw-RS485+AF8-read+AD4-:
+ 474:	04000737          	lui	a4,0x4000
+ 478:	5c072783          	lw	a5,1472(a4) +ACM- 40005c0 +ADw-heap+AF8-end.0+-0x200004c+AD4-
+ 47c:	0127d793          	srli	a5,a5,0x12
+ 480:	0017f793          	andi	a5,a5,1
+ 484:	fe078ae3          	beqz	a5,478 +ADw-RS485+AF8-read+-0x4+AD4-
+ 488:	040007b7          	lui	a5,0x4000
+ 48c:	5c17c503          	lbu	a0,1473(a5) +ACM- 40005c1 +ADw-heap+AF8-end.0+-0x200004d+AD4-
+ 490:	5c27d703          	lhu	a4,1474(a5)
+ 494:	08076713          	ori	a4,a4,128
+ 498:	5ce79123          	sh	a4,1474(a5)
+ 49c:	00008067          	ret
+
+000004a0 +ADw-RS485+AF8-unblocked+AF8-read+AD4-:
  4a0:	040007b7          	lui	a5,0x4000
  4a4:	5c17c503          	lbu	a0,1473(a5) +ACM- 40005c1 +ADw-heap+AF8-end.0+-0x200004d+AD4-
- 4a8:	5c27d703          	lhu	a4,1474(a5)
- 4ac:	08076713          	ori	a4,a4,128
- 4b0:	5ce79123          	sh	a4,1474(a5)
- 4b4:	00008067          	ret
+ 4a8:	00008067          	ret
 
-000004b8 +ADw-RS485+AF8-unblocked+AF8-read+AD4-:
- 4b8:	040007b7          	lui	a5,0x4000
- 4bc:	5c17c503          	lbu	a0,1473(a5) +ACM- 40005c1 +ADw-heap+AF8-end.0+-0x200004d+AD4-
- 4c0:	00008067          	ret
+000004ac +ADwAXw-access+AD4-:
+ 4ac:	0040006f          	j	4b0 +ADw-unimplemented+AF8-syscall+AD4-
 
-000004c4 +ADwAXw-access+AD4-:
- 4c4:	0040006f          	j	4c8 +ADw-unimplemented+AF8-syscall+AD4-
+000004b0 +ADw-unimplemented+AF8-syscall+AD4-:
+ 4b0:	66c00793          	li	a5,1644
+ 4b4:	05500713          	li	a4,85
+ 4b8:	100006b7          	lui	a3,0x10000
+ 4bc:	00178793          	addi	a5,a5,1
+ 4c0:	00e6a023          	sw	a4,0(a3) +ACM- 10000000 +ADw-heap+AF8-end.0+-0xdfffa8c+AD4-
+ 4c4:	0007c703          	lbu	a4,0(a5)
+ 4c8:	fe071ae3          	bnez	a4,4bc +ADw-unimplemented+AF8-syscall+-0xc+AD4-
+ 4cc:	00100073          	ebreak
 
-000004c8 +ADw-unimplemented+AF8-syscall+AD4-:
- 4c8:	68400793          	li	a5,1668
- 4cc:	05500713          	li	a4,85
- 4d0:	100006b7          	lui	a3,0x10000
- 4d4:	00178793          	addi	a5,a5,1
- 4d8:	00e6a023          	sw	a4,0(a3) +ACM- 10000000 +ADw-heap+AF8-end.0+-0xdfffa8c+AD4-
- 4dc:	0007c703          	lbu	a4,0(a5)
- 4e0:	fe071ae3          	bnez	a4,4d4 +ADw-unimplemented+AF8-syscall+-0xc+AD4-
- 4e4:	00100073          	ebreak
+000004d0 +ADwAXw-read+AD4-:
+ 4d0:	00000513          	li	a0,0
+ 4d4:	00008067          	ret
 
-000004e8 +ADwAXw-read+AD4-:
- 4e8:	00000513          	li	a0,0
- 4ec:	00008067          	ret
+000004d8 +ADwAXw-write+AD4-:
+ 4d8:	00060513          	mv	a0,a2
+ 4dc:	00c58733          	add	a4,a1,a2
+ 4e0:	00e58c63          	beq	a1,a4,4f8 +ADwAXw-write+-0x20+AD4-
+ 4e4:	100006b7          	lui	a3,0x10000
+ 4e8:	00158593          	addi	a1,a1,1
+ 4ec:	fff5c783          	lbu	a5,-1(a1)
+ 4f0:	00f6a023          	sw	a5,0(a3) +ACM- 10000000 +ADw-heap+AF8-end.0+-0xdfffa8c+AD4-
+ 4f4:	feb71ae3          	bne	a4,a1,4e8 +ADwAXw-write+-0x10+AD4-
+ 4f8:	00008067          	ret
 
-000004f0 +ADwAXw-write+AD4-:
- 4f0:	00060513          	mv	a0,a2
- 4f4:	00c58733          	add	a4,a1,a2
- 4f8:	00e58c63          	beq	a1,a4,510 +ADwAXw-write+-0x20+AD4-
- 4fc:	100006b7          	lui	a3,0x10000
- 500:	00158593          	addi	a1,a1,1
- 504:	fff5c783          	lbu	a5,-1(a1)
- 508:	00f6a023          	sw	a5,0(a3) +ACM- 10000000 +ADw-heap+AF8-end.0+-0xdfffa8c+AD4-
- 50c:	feb71ae3          	bne	a4,a1,500 +ADwAXw-write+-0x10+AD4-
- 510:	00008067          	ret
+000004fc +ADwAXw-close+AD4-:
+ 4fc:	00000513          	li	a0,0
+ 500:	00008067          	ret
 
-00000514 +ADwAXw-close+AD4-:
- 514:	00000513          	li	a0,0
- 518:	00008067          	ret
+00000504 +ADwAXw-fstat+AD4-:
+ 504:	ff010113          	addi	sp,sp,-16
+ 508:	00112623          	sw	ra,12(sp)
+ 50c:	450000ef          	jal	ra,95c +ADwAXwBf-errno+AD4-
+ 510:	00200793          	li	a5,2
+ 514:	00f52023          	sw	a5,0(a0)
+ 518:	fff00513          	li	a0,-1
+ 51c:	00c12083          	lw	ra,12(sp)
+ 520:	01010113          	addi	sp,sp,16
+ 524:	00008067          	ret
 
-0000051c +ADwAXw-fstat+AD4-:
- 51c:	ff010113          	addi	sp,sp,-16
- 520:	00112623          	sw	ra,12(sp)
- 524:	450000ef          	jal	ra,974 +ADwAXwBf-errno+AD4-
- 528:	00200793          	li	a5,2
- 52c:	00f52023          	sw	a5,0(a0)
- 530:	fff00513          	li	a0,-1
- 534:	00c12083          	lw	ra,12(sp)
- 538:	01010113          	addi	sp,sp,16
- 53c:	00008067          	ret
+00000528 +ADwAXw-sbrk+AD4-:
+ 528:	00050793          	mv	a5,a0
+ 52c:	5741a703          	lw	a4,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
+ 530:	00071663          	bnez	a4,53c +ADwAXw-sbrk+-0x14+AD4-
+ 534:	57018713          	addi	a4,gp,1392 +ACM- 2000570 +ADw-completed.1+AD4-
+ 538:	56e1aa23          	sw	a4,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
+ 53c:	5741a503          	lw	a0,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
+ 540:	00a787b3          	add	a5,a5,a0
+ 544:	56f1aa23          	sw	a5,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
+ 548:	00008067          	ret
 
-00000540 +ADwAXw-sbrk+AD4-:
- 540:	00050793          	mv	a5,a0
- 544:	5741a703          	lw	a4,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
- 548:	00071663          	bnez	a4,554 +ADwAXw-sbrk+-0x14+AD4-
- 54c:	57018713          	addi	a4,gp,1392 +ACM- 2000570 +ADw-completed.1+AD4-
- 550:	56e1aa23          	sw	a4,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
- 554:	5741a503          	lw	a0,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
- 558:	00a787b3          	add	a5,a5,a0
- 55c:	56f1aa23          	sw	a5,1396(gp) +ACM- 2000574 +ADw-heap+AF8-end.0+AD4-
- 560:	00008067          	ret
+0000054c +ADwAXw-exit+AD4-:
+ 54c:	00100073          	ebreak
 
-00000564 +ADwAXw-exit+AD4-:
- 564:	00100073          	ebreak
+00000550 +ADw-init+AF8-data+AF8-section+AD4-:
+ 550:	ff010113          	addi	sp,sp,-16
+ 554:	00112623          	sw	ra,12(sp)
+ 558:	00018613          	mv	a2,gp
+ 55c:	43018793          	addi	a5,gp,1072 +ACM- 2000430 +ADwAXwBf-EH+AF8-FRAME+AF8-BEGIN+AF8AXwA+-
+ 560:	40c78633          	sub	a2,a5,a2
+ 564:	000015b7          	lui	a1,0x1
+ 568:	d5c58593          	addi	a1,a1,-676 +ACM- d5c +ADwAXw-data+AF8-lma+AD4-
+ 56c:	00018513          	mv	a0,gp
+ 570:	500000ef          	jal	ra,a70 +ADw-memcpy+AD4-
+ 574:	00c12083          	lw	ra,12(sp)
+ 578:	01010113          	addi	sp,sp,16
+ 57c:	00008067          	ret
 
-00000568 +ADw-init+AF8-data+AF8-section+AD4-:
- 568:	ff010113          	addi	sp,sp,-16
- 56c:	00112623          	sw	ra,12(sp)
- 570:	00018613          	mv	a2,gp
- 574:	43018793          	addi	a5,gp,1072 +ACM- 2000430 +ADwAXwBf-EH+AF8-FRAME+AF8-BEGIN+AF8AXwA+-
- 578:	40c78633          	sub	a2,a5,a2
- 57c:	000015b7          	lui	a1,0x1
- 580:	d7458593          	addi	a1,a1,-652 +ACM- d74 +ADwAXw-data+AF8-lma+AD4-
- 584:	00018513          	mv	a0,gp
- 588:	500000ef          	jal	ra,a88 +ADw-memcpy+AD4-
- 58c:	00c12083          	lw	ra,12(sp)
- 590:	01010113          	addi	sp,sp,16
- 594:	00008067          	ret
+00000580 +ADw-delay+AF8APg-:
+ 580:	fff00793          	li	a5,-1
+ 584:	fff50513          	addi	a0,a0,-1
+ 588:	fef51ee3          	bne	a0,a5,584 +ADw-delay+AF8AKw-0x4+AD4-
+ 58c:	00008067          	ret
 
-00000598 +ADw-delay+AF8APg-:
- 598:	fff00793          	li	a5,-1
- 59c:	fff50513          	addi	a0,a0,-1
- 5a0:	fef51ee3          	bne	a0,a5,59c +ADw-delay+AF8AKw-0x4+AD4-
- 5a4:	00008067          	ret
-
-000005a8 +ADw-memset+AD4-:
- 5a8:	00f00313          	li	t1,15
- 5ac:	00050713          	mv	a4,a0
- 5b0:	02c37e63          	bgeu	t1,a2,5ec +ADw-memset+-0x44+AD4-
- 5b4:	00f77793          	andi	a5,a4,15
- 5b8:	0a079063          	bnez	a5,658 +ADw-memset+-0xb0+AD4-
- 5bc:	08059263          	bnez	a1,640 +ADw-memset+-0x98+AD4-
- 5c0:	ff067693          	andi	a3,a2,-16
- 5c4:	00f67613          	andi	a2,a2,15
- 5c8:	00e686b3          	add	a3,a3,a4
- 5cc:	00b72023          	sw	a1,0(a4)
- 5d0:	00b72223          	sw	a1,4(a4)
- 5d4:	00b72423          	sw	a1,8(a4)
- 5d8:	00b72623          	sw	a1,12(a4)
- 5dc:	01070713          	addi	a4,a4,16
- 5e0:	fed766e3          	bltu	a4,a3,5cc +ADw-memset+-0x24+AD4-
- 5e4:	00061463          	bnez	a2,5ec +ADw-memset+-0x44+AD4-
- 5e8:	00008067          	ret
- 5ec:	40c306b3          	sub	a3,t1,a2
- 5f0:	00269693          	slli	a3,a3,0x2
- 5f4:	00000297          	auipc	t0,0x0
- 5f8:	005686b3          	add	a3,a3,t0
- 5fc:	00c68067          	jr	12(a3)
- 600:	00b70723          	sb	a1,14(a4)
- 604:	00b706a3          	sb	a1,13(a4)
- 608:	00b70623          	sb	a1,12(a4)
- 60c:	00b705a3          	sb	a1,11(a4)
- 610:	00b70523          	sb	a1,10(a4)
- 614:	00b704a3          	sb	a1,9(a4)
- 618:	00b70423          	sb	a1,8(a4)
- 61c:	00b703a3          	sb	a1,7(a4)
- 620:	00b70323          	sb	a1,6(a4)
- 624:	00b702a3          	sb	a1,5(a4)
- 628:	00b70223          	sb	a1,4(a4)
- 62c:	00b701a3          	sb	a1,3(a4)
- 630:	00b70123          	sb	a1,2(a4)
- 634:	00b700a3          	sb	a1,1(a4)
- 638:	00b70023          	sb	a1,0(a4)
- 63c:	00008067          	ret
- 640:	0ff5f593          	zext.b	a1,a1
- 644:	00859693          	slli	a3,a1,0x8
- 648:	00d5e5b3          	or	a1,a1,a3
- 64c:	01059693          	slli	a3,a1,0x10
- 650:	00d5e5b3          	or	a1,a1,a3
- 654:	f6dff06f          	j	5c0 +ADw-memset+-0x18+AD4-
- 658:	00279693          	slli	a3,a5,0x2
- 65c:	00000297          	auipc	t0,0x0
- 660:	005686b3          	add	a3,a3,t0
- 664:	00008293          	mv	t0,ra
- 668:	fa0680e7          	jalr	-96(a3)
- 66c:	00028093          	mv	ra,t0
- 670:	ff078793          	addi	a5,a5,-16
- 674:	40f70733          	sub	a4,a4,a5
- 678:	00f60633          	add	a2,a2,a5
- 67c:	f6c378e3          	bgeu	t1,a2,5ec +ADw-memset+-0x44+AD4-
- 680:	f3dff06f          	j	5bc +ADw-memset+-0x14+AD4-
- 684:	6e55                	.2byte	0x6e55
- 686:	6d69                	.2byte	0x6d69
- 688:	6c70                	.2byte	0x6c70
- 68a:	6d65                	.2byte	0x6d65
- 68c:	6e65                	.2byte	0x6e65
- 68e:	6574                	.2byte	0x6574
- 690:	2064                	.2byte	0x2064
- 692:	74737973          	csrrci	s2,0x747,6
- 696:	6d65                	.2byte	0x6d65
- 698:	6320                	.2byte	0x6320
- 69a:	6c61                	.2byte	0x6c61
- 69c:	206c                	.2byte	0x206c
- 69e:	6c6c6163          	bltu	s8,t1,d60 +ADwAXwBf-call+AF8-exitprocs+-0x114+AD4-
- 6a2:	6465                	.2byte	0x6465
- 6a4:	0a21                	.2byte	0xa21
+00000590 +ADw-memset+AD4-:
+ 590:	00f00313          	li	t1,15
+ 594:	00050713          	mv	a4,a0
+ 598:	02c37e63          	bgeu	t1,a2,5d4 +ADw-memset+-0x44+AD4-
+ 59c:	00f77793          	andi	a5,a4,15
+ 5a0:	0a079063          	bnez	a5,640 +ADw-memset+-0xb0+AD4-
+ 5a4:	08059263          	bnez	a1,628 +ADw-memset+-0x98+AD4-
+ 5a8:	ff067693          	andi	a3,a2,-16
+ 5ac:	00f67613          	andi	a2,a2,15
+ 5b0:	00e686b3          	add	a3,a3,a4
+ 5b4:	00b72023          	sw	a1,0(a4)
+ 5b8:	00b72223          	sw	a1,4(a4)
+ 5bc:	00b72423          	sw	a1,8(a4)
+ 5c0:	00b72623          	sw	a1,12(a4)
+ 5c4:	01070713          	addi	a4,a4,16
+ 5c8:	fed766e3          	bltu	a4,a3,5b4 +ADw-memset+-0x24+AD4-
+ 5cc:	00061463          	bnez	a2,5d4 +ADw-memset+-0x44+AD4-
+ 5d0:	00008067          	ret
+ 5d4:	40c306b3          	sub	a3,t1,a2
+ 5d8:	00269693          	slli	a3,a3,0x2
+ 5dc:	00000297          	auipc	t0,0x0
+ 5e0:	005686b3          	add	a3,a3,t0
+ 5e4:	00c68067          	jr	12(a3)
+ 5e8:	00b70723          	sb	a1,14(a4)
+ 5ec:	00b706a3          	sb	a1,13(a4)
+ 5f0:	00b70623          	sb	a1,12(a4)
+ 5f4:	00b705a3          	sb	a1,11(a4)
+ 5f8:	00b70523          	sb	a1,10(a4)
+ 5fc:	00b704a3          	sb	a1,9(a4)
+ 600:	00b70423          	sb	a1,8(a4)
+ 604:	00b703a3          	sb	a1,7(a4)
+ 608:	00b70323          	sb	a1,6(a4)
+ 60c:	00b702a3          	sb	a1,5(a4)
+ 610:	00b70223          	sb	a1,4(a4)
+ 614:	00b701a3          	sb	a1,3(a4)
+ 618:	00b70123          	sb	a1,2(a4)
+ 61c:	00b700a3          	sb	a1,1(a4)
+ 620:	00b70023          	sb	a1,0(a4)
+ 624:	00008067          	ret
+ 628:	0ff5f593          	zext.b	a1,a1
+ 62c:	00859693          	slli	a3,a1,0x8
+ 630:	00d5e5b3          	or	a1,a1,a3
+ 634:	01059693          	slli	a3,a1,0x10
+ 638:	00d5e5b3          	or	a1,a1,a3
+ 63c:	f6dff06f          	j	5a8 +ADw-memset+-0x18+AD4-
+ 640:	00279693          	slli	a3,a5,0x2
+ 644:	00000297          	auipc	t0,0x0
+ 648:	005686b3          	add	a3,a3,t0
+ 64c:	00008293          	mv	t0,ra
+ 650:	fa0680e7          	jalr	-96(a3)
+ 654:	00028093          	mv	ra,t0
+ 658:	ff078793          	addi	a5,a5,-16
+ 65c:	40f70733          	sub	a4,a4,a5
+ 660:	00f60633          	add	a2,a2,a5
+ 664:	f6c378e3          	bgeu	t1,a2,5d4 +ADw-memset+-0x44+AD4-
+ 668:	f3dff06f          	j	5a4 +ADw-memset+-0x14+AD4-
+ 66c:	6e55                	.2byte	0x6e55
+ 66e:	6d69                	.2byte	0x6d69
+ 670:	6c70                	.2byte	0x6c70
+ 672:	6d65                	.2byte	0x6d65
+ 674:	6e65                	.2byte	0x6e65
+ 676:	6574                	.2byte	0x6574
+ 678:	2064                	.2byte	0x2064
+ 67a:	74737973          	csrrci	s2,0x747,6
+ 67e:	6d65                	.2byte	0x6d65
+ 680:	6320                	.2byte	0x6320
+ 682:	6c61                	.2byte	0x6c61
+ 684:	206c                	.2byte	0x206c
+ 686:	6c6c6163          	bltu	s8,t1,d48 +ADwAXwBf-call+AF8-exitprocs+-0x114+AD4-
+ 68a:	6465                	.2byte	0x6465
+ 68c:	0a21                	.2byte	0xa21
 	...
 
 Disassembly of section .text.deregister+AF8-tm+AF8-clones:
 
-000006a8 +ADw-deregister+AF8-tm+AF8-clones+AD4-:
- 6a8:	55018513          	addi	a0,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
- 6ac:	55018793          	addi	a5,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
- 6b0:	00a78863          	beq	a5,a0,6c0 +ADw-deregister+AF8-tm+AF8-clones+-0x18+AD4-
- 6b4:	00000793          	li	a5,0
- 6b8:	00078463          	beqz	a5,6c0 +ADw-deregister+AF8-tm+AF8-clones+-0x18+AD4-
- 6bc:	00078067          	jr	a5
- 6c0:	00008067          	ret
+00000690 +ADw-deregister+AF8-tm+AF8-clones+AD4-:
+ 690:	55018513          	addi	a0,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
+ 694:	55018793          	addi	a5,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
+ 698:	00a78863          	beq	a5,a0,6a8 +ADw-deregister+AF8-tm+AF8-clones+-0x18+AD4-
+ 69c:	00000793          	li	a5,0
+ 6a0:	00078463          	beqz	a5,6a8 +ADw-deregister+AF8-tm+AF8-clones+-0x18+AD4-
+ 6a4:	00078067          	jr	a5
+ 6a8:	00008067          	ret
 
 Disassembly of section .text.register+AF8-tm+AF8-clones:
 
-000006c4 +ADw-register+AF8-tm+AF8-clones+AD4-:
- 6c4:	55018513          	addi	a0,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
- 6c8:	55018593          	addi	a1,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
- 6cc:	40a585b3          	sub	a1,a1,a0
- 6d0:	4025d793          	srai	a5,a1,0x2
- 6d4:	01f5d593          	srli	a1,a1,0x1f
- 6d8:	00f585b3          	add	a1,a1,a5
- 6dc:	4015d593          	srai	a1,a1,0x1
- 6e0:	00058863          	beqz	a1,6f0 +ADw-register+AF8-tm+AF8-clones+-0x2c+AD4-
- 6e4:	00000793          	li	a5,0
- 6e8:	00078463          	beqz	a5,6f0 +ADw-register+AF8-tm+AF8-clones+-0x2c+AD4-
- 6ec:	00078067          	jr	a5
- 6f0:	00008067          	ret
+000006ac +ADw-register+AF8-tm+AF8-clones+AD4-:
+ 6ac:	55018513          	addi	a0,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
+ 6b0:	55018593          	addi	a1,gp,1360 +ACM- 2000550 +ADwAXwBf-TMC+AF8-END+AF8AXwA+-
+ 6b4:	40a585b3          	sub	a1,a1,a0
+ 6b8:	4025d793          	srai	a5,a1,0x2
+ 6bc:	01f5d593          	srli	a1,a1,0x1f
+ 6c0:	00f585b3          	add	a1,a1,a5
+ 6c4:	4015d593          	srai	a1,a1,0x1
+ 6c8:	00058863          	beqz	a1,6d8 +ADw-register+AF8-tm+AF8-clones+-0x2c+AD4-
+ 6cc:	00000793          	li	a5,0
+ 6d0:	00078463          	beqz	a5,6d8 +ADw-register+AF8-tm+AF8-clones+-0x2c+AD4-
+ 6d4:	00078067          	jr	a5
+ 6d8:	00008067          	ret
 
 Disassembly of section .text.+AF8AXw-do+AF8-global+AF8-dtors+AF8-aux:
 
-000006f4 +ADwAXwBf-do+AF8-global+AF8-dtors+AF8-aux+AD4-:
- 6f4:	ff010113          	addi	sp,sp,-16
- 6f8:	00812423          	sw	s0,8(sp)
- 6fc:	57018413          	addi	s0,gp,1392 +ACM- 2000570 +ADw-completed.1+AD4-
- 700:	00044783          	lbu	a5,0(s0)
- 704:	00112623          	sw	ra,12(sp)
- 708:	02079263          	bnez	a5,72c +ADwAXwBf-do+AF8-global+AF8-dtors+AF8-aux+-0x38+AD4-
- 70c:	f9dff0ef          	jal	ra,6a8 +ADw-deregister+AF8-tm+AF8-clones+AD4-
- 710:	00000793          	li	a5,0
- 714:	00078863          	beqz	a5,724 +ADwAXwBf-do+AF8-global+AF8-dtors+AF8-aux+-0x30+AD4-
- 718:	43018513          	addi	a0,gp,1072 +ACM- 2000430 +ADwAXwBf-EH+AF8-FRAME+AF8-BEGIN+AF8AXwA+-
- 71c:	00000097          	auipc	ra,0x0
- 720:	000000e7          	jalr	zero +ACM- 0 +ADwAXw-pvstart+AD4-
- 724:	00100793          	li	a5,1
- 728:	00f40023          	sb	a5,0(s0)
- 72c:	00c12083          	lw	ra,12(sp)
- 730:	00812403          	lw	s0,8(sp)
- 734:	01010113          	addi	sp,sp,16
- 738:	00008067          	ret
+000006dc +ADwAXwBf-do+AF8-global+AF8-dtors+AF8-aux+AD4-:
+ 6dc:	ff010113          	addi	sp,sp,-16
+ 6e0:	00812423          	sw	s0,8(sp)
+ 6e4:	57018413          	addi	s0,gp,1392 +ACM- 2000570 +ADw-completed.1+AD4-
+ 6e8:	00044783          	lbu	a5,0(s0)
+ 6ec:	00112623          	sw	ra,12(sp)
+ 6f0:	02079263          	bnez	a5,714 +ADwAXwBf-do+AF8-global+AF8-dtors+AF8-aux+-0x38+AD4-
+ 6f4:	f9dff0ef          	jal	ra,690 +ADw-deregister+AF8-tm+AF8-clones+AD4-
+ 6f8:	00000793          	li	a5,0
+ 6fc:	00078863          	beqz	a5,70c +ADwAXwBf-do+AF8-global+AF8-dtors+AF8-aux+-0x30+AD4-
+ 700:	43018513          	addi	a0,gp,1072 +ACM- 2000430 +ADwAXwBf-EH+AF8-FRAME+AF8-BEGIN+AF8AXwA+-
+ 704:	00000097          	auipc	ra,0x0
+ 708:	000000e7          	jalr	zero +ACM- 0 +ADwAXw-pvstart+AD4-
+ 70c:	00100793          	li	a5,1
+ 710:	00f40023          	sb	a5,0(s0)
+ 714:	00c12083          	lw	ra,12(sp)
+ 718:	00812403          	lw	s0,8(sp)
+ 71c:	01010113          	addi	sp,sp,16
+ 720:	00008067          	ret
 
 Disassembly of section .text.frame+AF8-dummy:
 
-0000073c +ADw-frame+AF8-dummy+AD4-:
- 73c:	00000793          	li	a5,0
- 740:	02078463          	beqz	a5,768 +ADw-frame+AF8-dummy+-0x2c+AD4-
- 744:	ff010113          	addi	sp,sp,-16
- 748:	55818593          	addi	a1,gp,1368 +ACM- 2000558 +ADw-object.0+AD4-
- 74c:	43018513          	addi	a0,gp,1072 +ACM- 2000430 +ADwAXwBf-EH+AF8-FRAME+AF8-BEGIN+AF8AXwA+-
- 750:	00112623          	sw	ra,12(sp)
- 754:	00000097          	auipc	ra,0x0
- 758:	000000e7          	jalr	zero +ACM- 0 +ADwAXw-pvstart+AD4-
- 75c:	00c12083          	lw	ra,12(sp)
- 760:	01010113          	addi	sp,sp,16
- 764:	f61ff06f          	j	6c4 +ADw-register+AF8-tm+AF8-clones+AD4-
- 768:	f5dff06f          	j	6c4 +ADw-register+AF8-tm+AF8-clones+AD4-
+00000724 +ADw-frame+AF8-dummy+AD4-:
+ 724:	00000793          	li	a5,0
+ 728:	02078463          	beqz	a5,750 +ADw-frame+AF8-dummy+-0x2c+AD4-
+ 72c:	ff010113          	addi	sp,sp,-16
+ 730:	55818593          	addi	a1,gp,1368 +ACM- 2000558 +ADw-object.0+AD4-
+ 734:	43018513          	addi	a0,gp,1072 +ACM- 2000430 +ADwAXwBf-EH+AF8-FRAME+AF8-BEGIN+AF8AXwA+-
+ 738:	00112623          	sw	ra,12(sp)
+ 73c:	00000097          	auipc	ra,0x0
+ 740:	000000e7          	jalr	zero +ACM- 0 +ADwAXw-pvstart+AD4-
+ 744:	00c12083          	lw	ra,12(sp)
+ 748:	01010113          	addi	sp,sp,16
+ 74c:	f61ff06f          	j	6ac +ADw-register+AF8-tm+AF8-clones+AD4-
+ 750:	f5dff06f          	j	6ac +ADw-register+AF8-tm+AF8-clones+AD4-
 
 Disassembly of section .text.trap:
 
-0000076c +ADw-trap+AF8-entry+AD4-:
- 76c:	fb010113          	addi	sp,sp,-80
- 770:	00112023          	sw	ra,0(sp)
- 774:	00412223          	sw	tp,4(sp)
- 778:	00512423          	sw	t0,8(sp)
- 77c:	00612623          	sw	t1,12(sp)
- 780:	00712823          	sw	t2,16(sp)
- 784:	00a12a23          	sw	a0,20(sp)
- 788:	00b12c23          	sw	a1,24(sp)
- 78c:	00c12e23          	sw	a2,28(sp)
- 790:	02d12023          	sw	a3,32(sp)
- 794:	02e12223          	sw	a4,36(sp)
- 798:	02f12423          	sw	a5,40(sp)
- 79c:	03012623          	sw	a6,44(sp)
- 7a0:	03112823          	sw	a7,48(sp)
- 7a4:	03c12a23          	sw	t3,52(sp)
- 7a8:	03d12c23          	sw	t4,56(sp)
- 7ac:	03e12e23          	sw	t5,60(sp)
- 7b0:	05f12023          	sw	t6,64(sp)
- 7b4:	341022f3          	csrr	t0,mepc
- 7b8:	04512023          	sw	t0,64(sp)
- 7bc:	300022f3          	csrr	t0,mstatus
- 7c0:	04512223          	sw	t0,68(sp)
- 7c4:	7c4022f3          	csrr	t0,0x7c4
- 7c8:	04512423          	sw	t0,72(sp)
- 7cc:	34202573          	csrr	a0,mcause
- 7d0:	00010593          	mv	a1,sp
- 7d4:	04012283          	lw	t0,64(sp)
- 7d8:	34129073          	csrw	mepc,t0
- 7dc:	04412283          	lw	t0,68(sp)
- 7e0:	30029073          	csrw	mstatus,t0
- 7e4:	04812283          	lw	t0,72(sp)
- 7e8:	7c429073          	csrw	0x7c4,t0
- 7ec:	00012083          	lw	ra,0(sp)
- 7f0:	00412203          	lw	tp,4(sp)
- 7f4:	00812283          	lw	t0,8(sp)
- 7f8:	00c12303          	lw	t1,12(sp)
- 7fc:	01012383          	lw	t2,16(sp)
- 800:	01412503          	lw	a0,20(sp)
- 804:	01812583          	lw	a1,24(sp)
- 808:	01c12603          	lw	a2,28(sp)
- 80c:	02012683          	lw	a3,32(sp)
- 810:	02412703          	lw	a4,36(sp)
- 814:	02812783          	lw	a5,40(sp)
- 818:	02c12803          	lw	a6,44(sp)
- 81c:	03012883          	lw	a7,48(sp)
- 820:	03412e03          	lw	t3,52(sp)
- 824:	03812e83          	lw	t4,56(sp)
- 828:	03c12f03          	lw	t5,60(sp)
- 82c:	05010113          	addi	sp,sp,80
- 830:	30200073          	mret
+00000754 +ADw-trap+AF8-entry+AD4-:
+ 754:	fb010113          	addi	sp,sp,-80
+ 758:	00112023          	sw	ra,0(sp)
+ 75c:	00412223          	sw	tp,4(sp)
+ 760:	00512423          	sw	t0,8(sp)
+ 764:	00612623          	sw	t1,12(sp)
+ 768:	00712823          	sw	t2,16(sp)
+ 76c:	00a12a23          	sw	a0,20(sp)
+ 770:	00b12c23          	sw	a1,24(sp)
+ 774:	00c12e23          	sw	a2,28(sp)
+ 778:	02d12023          	sw	a3,32(sp)
+ 77c:	02e12223          	sw	a4,36(sp)
+ 780:	02f12423          	sw	a5,40(sp)
+ 784:	03012623          	sw	a6,44(sp)
+ 788:	03112823          	sw	a7,48(sp)
+ 78c:	03c12a23          	sw	t3,52(sp)
+ 790:	03d12c23          	sw	t4,56(sp)
+ 794:	03e12e23          	sw	t5,60(sp)
+ 798:	05f12023          	sw	t6,64(sp)
+ 79c:	341022f3          	csrr	t0,mepc
+ 7a0:	04512023          	sw	t0,64(sp)
+ 7a4:	300022f3          	csrr	t0,mstatus
+ 7a8:	04512223          	sw	t0,68(sp)
+ 7ac:	7c4022f3          	csrr	t0,0x7c4
+ 7b0:	04512423          	sw	t0,72(sp)
+ 7b4:	34202573          	csrr	a0,mcause
+ 7b8:	00010593          	mv	a1,sp
+ 7bc:	04012283          	lw	t0,64(sp)
+ 7c0:	34129073          	csrw	mepc,t0
+ 7c4:	04412283          	lw	t0,68(sp)
+ 7c8:	30029073          	csrw	mstatus,t0
+ 7cc:	04812283          	lw	t0,72(sp)
+ 7d0:	7c429073          	csrw	0x7c4,t0
+ 7d4:	00012083          	lw	ra,0(sp)
+ 7d8:	00412203          	lw	tp,4(sp)
+ 7dc:	00812283          	lw	t0,8(sp)
+ 7e0:	00c12303          	lw	t1,12(sp)
+ 7e4:	01012383          	lw	t2,16(sp)
+ 7e8:	01412503          	lw	a0,20(sp)
+ 7ec:	01812583          	lw	a1,24(sp)
+ 7f0:	01c12603          	lw	a2,28(sp)
+ 7f4:	02012683          	lw	a3,32(sp)
+ 7f8:	02412703          	lw	a4,36(sp)
+ 7fc:	02812783          	lw	a5,40(sp)
+ 800:	02c12803          	lw	a6,44(sp)
+ 804:	03012883          	lw	a7,48(sp)
+ 808:	03412e03          	lw	t3,52(sp)
+ 80c:	03812e83          	lw	t4,56(sp)
+ 810:	03c12f03          	lw	t5,60(sp)
+ 814:	05010113          	addi	sp,sp,80
+ 818:	30200073          	mret
 
 Disassembly of section .text.irq:
 
-00000834 +ADw-irq+AF8-entry+AD4-:
- 834:	fb010113          	addi	sp,sp,-80
- 838:	00112023          	sw	ra,0(sp)
- 83c:	00412223          	sw	tp,4(sp)
- 840:	00512423          	sw	t0,8(sp)
- 844:	00612623          	sw	t1,12(sp)
- 848:	00712823          	sw	t2,16(sp)
- 84c:	00a12a23          	sw	a0,20(sp)
- 850:	00b12c23          	sw	a1,24(sp)
- 854:	00c12e23          	sw	a2,28(sp)
- 858:	02d12023          	sw	a3,32(sp)
- 85c:	02e12223          	sw	a4,36(sp)
- 860:	02f12423          	sw	a5,40(sp)
- 864:	03012623          	sw	a6,44(sp)
- 868:	03112823          	sw	a7,48(sp)
- 86c:	03c12a23          	sw	t3,52(sp)
- 870:	03d12c23          	sw	t4,56(sp)
- 874:	03e12e23          	sw	t5,60(sp)
- 878:	05f12023          	sw	t6,64(sp)
- 87c:	34202673          	csrr	a2,mcause
- 880:	30702773          	csrr	a4,0x307
- 884:	00261613          	slli	a2,a2,0x2
- 888:	00c70733          	add	a4,a4,a2
- 88c:	00072703          	lw	a4,0(a4)
- 890:	000700e7          	jalr	a4
- 894:	00012083          	lw	ra,0(sp)
- 898:	00412203          	lw	tp,4(sp)
- 89c:	00812283          	lw	t0,8(sp)
- 8a0:	00c12303          	lw	t1,12(sp)
- 8a4:	01012383          	lw	t2,16(sp)
- 8a8:	01412503          	lw	a0,20(sp)
- 8ac:	01812583          	lw	a1,24(sp)
- 8b0:	01c12603          	lw	a2,28(sp)
- 8b4:	02012683          	lw	a3,32(sp)
- 8b8:	02412703          	lw	a4,36(sp)
- 8bc:	02812783          	lw	a5,40(sp)
- 8c0:	02c12803          	lw	a6,44(sp)
- 8c4:	03012883          	lw	a7,48(sp)
- 8c8:	03412e03          	lw	t3,52(sp)
- 8cc:	03812e83          	lw	t4,56(sp)
- 8d0:	03c12f03          	lw	t5,60(sp)
- 8d4:	05010113          	addi	sp,sp,80
- 8d8:	30200073          	mret
+0000081c +ADw-irq+AF8-entry+AD4-:
+ 81c:	fb010113          	addi	sp,sp,-80
+ 820:	00112023          	sw	ra,0(sp)
+ 824:	00412223          	sw	tp,4(sp)
+ 828:	00512423          	sw	t0,8(sp)
+ 82c:	00612623          	sw	t1,12(sp)
+ 830:	00712823          	sw	t2,16(sp)
+ 834:	00a12a23          	sw	a0,20(sp)
+ 838:	00b12c23          	sw	a1,24(sp)
+ 83c:	00c12e23          	sw	a2,28(sp)
+ 840:	02d12023          	sw	a3,32(sp)
+ 844:	02e12223          	sw	a4,36(sp)
+ 848:	02f12423          	sw	a5,40(sp)
+ 84c:	03012623          	sw	a6,44(sp)
+ 850:	03112823          	sw	a7,48(sp)
+ 854:	03c12a23          	sw	t3,52(sp)
+ 858:	03d12c23          	sw	t4,56(sp)
+ 85c:	03e12e23          	sw	t5,60(sp)
+ 860:	05f12023          	sw	t6,64(sp)
+ 864:	34202673          	csrr	a2,mcause
+ 868:	30702773          	csrr	a4,0x307
+ 86c:	00261613          	slli	a2,a2,0x2
+ 870:	00c70733          	add	a4,a4,a2
+ 874:	00072703          	lw	a4,0(a4)
+ 878:	000700e7          	jalr	a4
+ 87c:	00012083          	lw	ra,0(sp)
+ 880:	00412203          	lw	tp,4(sp)
+ 884:	00812283          	lw	t0,8(sp)
+ 888:	00c12303          	lw	t1,12(sp)
+ 88c:	01012383          	lw	t2,16(sp)
+ 890:	01412503          	lw	a0,20(sp)
+ 894:	01812583          	lw	a1,24(sp)
+ 898:	01c12603          	lw	a2,28(sp)
+ 89c:	02012683          	lw	a3,32(sp)
+ 8a0:	02412703          	lw	a4,36(sp)
+ 8a4:	02812783          	lw	a5,40(sp)
+ 8a8:	02c12803          	lw	a6,44(sp)
+ 8ac:	03012883          	lw	a7,48(sp)
+ 8b0:	03412e03          	lw	t3,52(sp)
+ 8b4:	03812e83          	lw	t4,56(sp)
+ 8b8:	03c12f03          	lw	t5,60(sp)
+ 8bc:	05010113          	addi	sp,sp,80
+ 8c0:	30200073          	mret
 
 Disassembly of section .init:
 
-000008dc +ADw-vector+AF8-base+AD4-:
- 8dc:	f7cff06f          	j	58 +ADwAXw-start+AD4-
+000008c4 +ADw-vector+AF8-base+AD4-:
+ 8c4:	f94ff06f          	j	58 +ADwAXw-start+AD4-
 	...
 
 Disassembly of section .text.atexit:
 
-00000960 +ADw-atexit+AD4-:
- 960:	00050593          	mv	a1,a0
- 964:	00000693          	li	a3,0
- 968:	00000613          	li	a2,0
- 96c:	00000513          	li	a0,0
- 970:	2400006f          	j	bb0 +ADwAXwBf-register+AF8-exitproc+AD4-
+00000948 +ADw-atexit+AD4-:
+ 948:	00050593          	mv	a1,a0
+ 94c:	00000693          	li	a3,0
+ 950:	00000613          	li	a2,0
+ 954:	00000513          	li	a0,0
+ 958:	2400006f          	j	b98 +ADwAXwBf-register+AF8-exitproc+AD4-
 
 Disassembly of section .text.+AF8AXw-errno:
 
-00000974 +ADwAXwBf-errno+AD4-:
- 974:	42c1a503          	lw	a0,1068(gp) +ACM- 200042c +ADwAXw-impure+AF8-ptr+AD4-
- 978:	00008067          	ret
+0000095c +ADwAXwBf-errno+AD4-:
+ 95c:	42c1a503          	lw	a0,1068(gp) +ACM- 200042c +ADwAXw-impure+AF8-ptr+AD4-
+ 960:	00008067          	ret
 
 Disassembly of section .text.exit:
 
-0000097c +ADw-exit+AD4-:
- 97c:	ff010113          	addi	sp,sp,-16
- 980:	00000593          	li	a1,0
- 984:	00812423          	sw	s0,8(sp)
- 988:	00112623          	sw	ra,12(sp)
- 98c:	00050413          	mv	s0,a0
- 990:	2bc000ef          	jal	ra,c4c +ADwAXwBf-call+AF8-exitprocs+AD4-
- 994:	00000517          	auipc	a0,0x0
- 998:	3dc52503          	lw	a0,988(a0) +ACM- d70 +ADwAXw-global+AF8-impure+AF8-ptr+AD4-
- 99c:	03c52783          	lw	a5,60(a0)
- 9a0:	00078463          	beqz	a5,9a8 +ADw-exit+-0x2c+AD4-
- 9a4:	000780e7          	jalr	a5
- 9a8:	00040513          	mv	a0,s0
- 9ac:	bb9ff0ef          	jal	ra,564 +ADwAXw-exit+AD4-
+00000964 +ADw-exit+AD4-:
+ 964:	ff010113          	addi	sp,sp,-16
+ 968:	00000593          	li	a1,0
+ 96c:	00812423          	sw	s0,8(sp)
+ 970:	00112623          	sw	ra,12(sp)
+ 974:	00050413          	mv	s0,a0
+ 978:	2bc000ef          	jal	ra,c34 +ADwAXwBf-call+AF8-exitprocs+AD4-
+ 97c:	00000517          	auipc	a0,0x0
+ 980:	3dc52503          	lw	a0,988(a0) +ACM- d58 +ADwAXw-global+AF8-impure+AF8-ptr+AD4-
+ 984:	03c52783          	lw	a5,60(a0)
+ 988:	00078463          	beqz	a5,990 +ADw-exit+-0x2c+AD4-
+ 98c:	000780e7          	jalr	a5
+ 990:	00040513          	mv	a0,s0
+ 994:	bb9ff0ef          	jal	ra,54c +ADwAXw-exit+AD4-
 
 Disassembly of section .text.+AF8AXw-libc+AF8-fini+AF8-array:
 
-000009b0 +ADwAXwBf-libc+AF8-fini+AF8-array+AD4-:
- 9b0:	ff010113          	addi	sp,sp,-16
- 9b4:	00812423          	sw	s0,8(sp)
- 9b8:	00000793          	li	a5,0
- 9bc:	00000413          	li	s0,0
- 9c0:	40f40433          	sub	s0,s0,a5
- 9c4:	00912223          	sw	s1,4(sp)
- 9c8:	00112623          	sw	ra,12(sp)
- 9cc:	40245493          	srai	s1,s0,0x2
- 9d0:	02048063          	beqz	s1,9f0 +ADwAXwBf-libc+AF8-fini+AF8-array+-0x40+AD4-
- 9d4:	ffc40413          	addi	s0,s0,-4
- 9d8:	00f40433          	add	s0,s0,a5
- 9dc:	00042783          	lw	a5,0(s0)
- 9e0:	fff48493          	addi	s1,s1,-1
- 9e4:	ffc40413          	addi	s0,s0,-4
- 9e8:	000780e7          	jalr	a5
- 9ec:	fe0498e3          	bnez	s1,9dc +ADwAXwBf-libc+AF8-fini+AF8-array+-0x2c+AD4-
- 9f0:	00c12083          	lw	ra,12(sp)
- 9f4:	00812403          	lw	s0,8(sp)
- 9f8:	00412483          	lw	s1,4(sp)
- 9fc:	01010113          	addi	sp,sp,16
- a00:	00008067          	ret
+00000998 +ADwAXwBf-libc+AF8-fini+AF8-array+AD4-:
+ 998:	ff010113          	addi	sp,sp,-16
+ 99c:	00812423          	sw	s0,8(sp)
+ 9a0:	00000793          	li	a5,0
+ 9a4:	00000413          	li	s0,0
+ 9a8:	40f40433          	sub	s0,s0,a5
+ 9ac:	00912223          	sw	s1,4(sp)
+ 9b0:	00112623          	sw	ra,12(sp)
+ 9b4:	40245493          	srai	s1,s0,0x2
+ 9b8:	02048063          	beqz	s1,9d8 +ADwAXwBf-libc+AF8-fini+AF8-array+-0x40+AD4-
+ 9bc:	ffc40413          	addi	s0,s0,-4
+ 9c0:	00f40433          	add	s0,s0,a5
+ 9c4:	00042783          	lw	a5,0(s0)
+ 9c8:	fff48493          	addi	s1,s1,-1
+ 9cc:	ffc40413          	addi	s0,s0,-4
+ 9d0:	000780e7          	jalr	a5
+ 9d4:	fe0498e3          	bnez	s1,9c4 +ADwAXwBf-libc+AF8-fini+AF8-array+-0x2c+AD4-
+ 9d8:	00c12083          	lw	ra,12(sp)
+ 9dc:	00812403          	lw	s0,8(sp)
+ 9e0:	00412483          	lw	s1,4(sp)
+ 9e4:	01010113          	addi	sp,sp,16
+ 9e8:	00008067          	ret
 
 Disassembly of section .text.+AF8AXw-libc+AF8-init+AF8-array:
 
-00000a04 +ADwAXwBf-libc+AF8-init+AF8-array+AD4-:
- a04:	ff010113          	addi	sp,sp,-16
- a08:	00812423          	sw	s0,8(sp)
- a0c:	01212023          	sw	s2,0(sp)
- a10:	00000413          	li	s0,0
- a14:	00000913          	li	s2,0
- a18:	40890933          	sub	s2,s2,s0
- a1c:	00112623          	sw	ra,12(sp)
- a20:	00912223          	sw	s1,4(sp)
- a24:	40295913          	srai	s2,s2,0x2
- a28:	00090e63          	beqz	s2,a44 +ADwAXwBf-libc+AF8-init+AF8-array+-0x40+AD4-
- a2c:	00000493          	li	s1,0
- a30:	00042783          	lw	a5,0(s0)
- a34:	00148493          	addi	s1,s1,1
- a38:	00440413          	addi	s0,s0,4
- a3c:	000780e7          	jalr	a5
- a40:	fe9918e3          	bne	s2,s1,a30 +ADwAXwBf-libc+AF8-init+AF8-array+-0x2c+AD4-
- a44:	00000413          	li	s0,0
- a48:	00000913          	li	s2,0
- a4c:	40890933          	sub	s2,s2,s0
- a50:	40295913          	srai	s2,s2,0x2
- a54:	00090e63          	beqz	s2,a70 +ADwAXwBf-libc+AF8-init+AF8-array+-0x6c+AD4-
- a58:	00000493          	li	s1,0
- a5c:	00042783          	lw	a5,0(s0)
- a60:	00148493          	addi	s1,s1,1
- a64:	00440413          	addi	s0,s0,4
- a68:	000780e7          	jalr	a5
- a6c:	fe9918e3          	bne	s2,s1,a5c +ADwAXwBf-libc+AF8-init+AF8-array+-0x58+AD4-
- a70:	00c12083          	lw	ra,12(sp)
- a74:	00812403          	lw	s0,8(sp)
- a78:	00412483          	lw	s1,4(sp)
- a7c:	00012903          	lw	s2,0(sp)
- a80:	01010113          	addi	sp,sp,16
- a84:	00008067          	ret
+000009ec +ADwAXwBf-libc+AF8-init+AF8-array+AD4-:
+ 9ec:	ff010113          	addi	sp,sp,-16
+ 9f0:	00812423          	sw	s0,8(sp)
+ 9f4:	01212023          	sw	s2,0(sp)
+ 9f8:	00000413          	li	s0,0
+ 9fc:	00000913          	li	s2,0
+ a00:	40890933          	sub	s2,s2,s0
+ a04:	00112623          	sw	ra,12(sp)
+ a08:	00912223          	sw	s1,4(sp)
+ a0c:	40295913          	srai	s2,s2,0x2
+ a10:	00090e63          	beqz	s2,a2c +ADwAXwBf-libc+AF8-init+AF8-array+-0x40+AD4-
+ a14:	00000493          	li	s1,0
+ a18:	00042783          	lw	a5,0(s0)
+ a1c:	00148493          	addi	s1,s1,1
+ a20:	00440413          	addi	s0,s0,4
+ a24:	000780e7          	jalr	a5
+ a28:	fe9918e3          	bne	s2,s1,a18 +ADwAXwBf-libc+AF8-init+AF8-array+-0x2c+AD4-
+ a2c:	00000413          	li	s0,0
+ a30:	00000913          	li	s2,0
+ a34:	40890933          	sub	s2,s2,s0
+ a38:	40295913          	srai	s2,s2,0x2
+ a3c:	00090e63          	beqz	s2,a58 +ADwAXwBf-libc+AF8-init+AF8-array+-0x6c+AD4-
+ a40:	00000493          	li	s1,0
+ a44:	00042783          	lw	a5,0(s0)
+ a48:	00148493          	addi	s1,s1,1
+ a4c:	00440413          	addi	s0,s0,4
+ a50:	000780e7          	jalr	a5
+ a54:	fe9918e3          	bne	s2,s1,a44 +ADwAXwBf-libc+AF8-init+AF8-array+-0x58+AD4-
+ a58:	00c12083          	lw	ra,12(sp)
+ a5c:	00812403          	lw	s0,8(sp)
+ a60:	00412483          	lw	s1,4(sp)
+ a64:	00012903          	lw	s2,0(sp)
+ a68:	01010113          	addi	sp,sp,16
+ a6c:	00008067          	ret
 
 Disassembly of section .text.memcpy:
 
-00000a88 +ADw-memcpy+AD4-:
- a88:	00b547b3          	xor	a5,a0,a1
- a8c:	0037f793          	andi	a5,a5,3
- a90:	00c508b3          	add	a7,a0,a2
- a94:	06079663          	bnez	a5,b00 +ADw-memcpy+-0x78+AD4-
- a98:	00300793          	li	a5,3
- a9c:	06c7f263          	bgeu	a5,a2,b00 +ADw-memcpy+-0x78+AD4-
- aa0:	00357793          	andi	a5,a0,3
- aa4:	00050713          	mv	a4,a0
- aa8:	0c079a63          	bnez	a5,b7c +ADw-memcpy+-0xf4+AD4-
- aac:	ffc8f613          	andi	a2,a7,-4
- ab0:	40e606b3          	sub	a3,a2,a4
- ab4:	02000793          	li	a5,32
- ab8:	02000293          	li	t0,32
- abc:	06d7c263          	blt	a5,a3,b20 +ADw-memcpy+-0x98+AD4-
- ac0:	00058693          	mv	a3,a1
- ac4:	00070793          	mv	a5,a4
- ac8:	02c77863          	bgeu	a4,a2,af8 +ADw-memcpy+-0x70+AD4-
- acc:	0006a803          	lw	a6,0(a3)
- ad0:	00478793          	addi	a5,a5,4
- ad4:	00468693          	addi	a3,a3,4
- ad8:	ff07ae23          	sw	a6,-4(a5)
- adc:	fec7e8e3          	bltu	a5,a2,acc +ADw-memcpy+-0x44+AD4-
- ae0:	fff60793          	addi	a5,a2,-1
- ae4:	40e787b3          	sub	a5,a5,a4
- ae8:	ffc7f793          	andi	a5,a5,-4
- aec:	00478793          	addi	a5,a5,4
- af0:	00f70733          	add	a4,a4,a5
- af4:	00f585b3          	add	a1,a1,a5
- af8:	01176863          	bltu	a4,a7,b08 +ADw-memcpy+-0x80+AD4-
- afc:	00008067          	ret
- b00:	00050713          	mv	a4,a0
- b04:	ff157ce3          	bgeu	a0,a7,afc +ADw-memcpy+-0x74+AD4-
- b08:	0005c783          	lbu	a5,0(a1)
- b0c:	00170713          	addi	a4,a4,1
- b10:	00158593          	addi	a1,a1,1
- b14:	fef70fa3          	sb	a5,-1(a4)
- b18:	ff1768e3          	bltu	a4,a7,b08 +ADw-memcpy+-0x80+AD4-
- b1c:	00008067          	ret
- b20:	0045a683          	lw	a3,4(a1)
- b24:	01c5a783          	lw	a5,28(a1)
- b28:	0005af83          	lw	t6,0(a1)
- b2c:	0085af03          	lw	t5,8(a1)
- b30:	00c5ae83          	lw	t4,12(a1)
- b34:	0105ae03          	lw	t3,16(a1)
- b38:	0145a303          	lw	t1,20(a1)
- b3c:	0185a803          	lw	a6,24(a1)
- b40:	00d72223          	sw	a3,4(a4)
- b44:	0205a683          	lw	a3,32(a1)
- b48:	01f72023          	sw	t6,0(a4)
- b4c:	01e72423          	sw	t5,8(a4)
- b50:	01d72623          	sw	t4,12(a4)
- b54:	01c72823          	sw	t3,16(a4)
- b58:	00672a23          	sw	t1,20(a4)
- b5c:	01072c23          	sw	a6,24(a4)
- b60:	00f72e23          	sw	a5,28(a4)
- b64:	02470713          	addi	a4,a4,36
- b68:	40e607b3          	sub	a5,a2,a4
- b6c:	fed72e23          	sw	a3,-4(a4)
- b70:	02458593          	addi	a1,a1,36
- b74:	faf2c6e3          	blt	t0,a5,b20 +ADw-memcpy+-0x98+AD4-
- b78:	f49ff06f          	j	ac0 +ADw-memcpy+-0x38+AD4-
+00000a70 +ADw-memcpy+AD4-:
+ a70:	00b547b3          	xor	a5,a0,a1
+ a74:	0037f793          	andi	a5,a5,3
+ a78:	00c508b3          	add	a7,a0,a2
+ a7c:	06079663          	bnez	a5,ae8 +ADw-memcpy+-0x78+AD4-
+ a80:	00300793          	li	a5,3
+ a84:	06c7f263          	bgeu	a5,a2,ae8 +ADw-memcpy+-0x78+AD4-
+ a88:	00357793          	andi	a5,a0,3
+ a8c:	00050713          	mv	a4,a0
+ a90:	0c079a63          	bnez	a5,b64 +ADw-memcpy+-0xf4+AD4-
+ a94:	ffc8f613          	andi	a2,a7,-4
+ a98:	40e606b3          	sub	a3,a2,a4
+ a9c:	02000793          	li	a5,32
+ aa0:	02000293          	li	t0,32
+ aa4:	06d7c263          	blt	a5,a3,b08 +ADw-memcpy+-0x98+AD4-
+ aa8:	00058693          	mv	a3,a1
+ aac:	00070793          	mv	a5,a4
+ ab0:	02c77863          	bgeu	a4,a2,ae0 +ADw-memcpy+-0x70+AD4-
+ ab4:	0006a803          	lw	a6,0(a3)
+ ab8:	00478793          	addi	a5,a5,4
+ abc:	00468693          	addi	a3,a3,4
+ ac0:	ff07ae23          	sw	a6,-4(a5)
+ ac4:	fec7e8e3          	bltu	a5,a2,ab4 +ADw-memcpy+-0x44+AD4-
+ ac8:	fff60793          	addi	a5,a2,-1
+ acc:	40e787b3          	sub	a5,a5,a4
+ ad0:	ffc7f793          	andi	a5,a5,-4
+ ad4:	00478793          	addi	a5,a5,4
+ ad8:	00f70733          	add	a4,a4,a5
+ adc:	00f585b3          	add	a1,a1,a5
+ ae0:	01176863          	bltu	a4,a7,af0 +ADw-memcpy+-0x80+AD4-
+ ae4:	00008067          	ret
+ ae8:	00050713          	mv	a4,a0
+ aec:	ff157ce3          	bgeu	a0,a7,ae4 +ADw-memcpy+-0x74+AD4-
+ af0:	0005c783          	lbu	a5,0(a1)
+ af4:	00170713          	addi	a4,a4,1
+ af8:	00158593          	addi	a1,a1,1
+ afc:	fef70fa3          	sb	a5,-1(a4)
+ b00:	ff1768e3          	bltu	a4,a7,af0 +ADw-memcpy+-0x80+AD4-
+ b04:	00008067          	ret
+ b08:	0045a683          	lw	a3,4(a1)
+ b0c:	01c5a783          	lw	a5,28(a1)
+ b10:	0005af83          	lw	t6,0(a1)
+ b14:	0085af03          	lw	t5,8(a1)
+ b18:	00c5ae83          	lw	t4,12(a1)
+ b1c:	0105ae03          	lw	t3,16(a1)
+ b20:	0145a303          	lw	t1,20(a1)
+ b24:	0185a803          	lw	a6,24(a1)
+ b28:	00d72223          	sw	a3,4(a4)
+ b2c:	0205a683          	lw	a3,32(a1)
+ b30:	01f72023          	sw	t6,0(a4)
+ b34:	01e72423          	sw	t5,8(a4)
+ b38:	01d72623          	sw	t4,12(a4)
+ b3c:	01c72823          	sw	t3,16(a4)
+ b40:	00672a23          	sw	t1,20(a4)
+ b44:	01072c23          	sw	a6,24(a4)
+ b48:	00f72e23          	sw	a5,28(a4)
+ b4c:	02470713          	addi	a4,a4,36
+ b50:	40e607b3          	sub	a5,a2,a4
+ b54:	fed72e23          	sw	a3,-4(a4)
+ b58:	02458593          	addi	a1,a1,36
+ b5c:	faf2c6e3          	blt	t0,a5,b08 +ADw-memcpy+-0x98+AD4-
+ b60:	f49ff06f          	j	aa8 +ADw-memcpy+-0x38+AD4-
+ b64:	0005c683          	lbu	a3,0(a1)
+ b68:	00170713          	addi	a4,a4,1
+ b6c:	00377793          	andi	a5,a4,3
+ b70:	fed70fa3          	sb	a3,-1(a4)
+ b74:	00158593          	addi	a1,a1,1
+ b78:	f0078ee3          	beqz	a5,a94 +ADw-memcpy+-0x24+AD4-
  b7c:	0005c683          	lbu	a3,0(a1)
  b80:	00170713          	addi	a4,a4,1
  b84:	00377793          	andi	a5,a4,3
  b88:	fed70fa3          	sb	a3,-1(a4)
  b8c:	00158593          	addi	a1,a1,1
- b90:	f0078ee3          	beqz	a5,aac +ADw-memcpy+-0x24+AD4-
- b94:	0005c683          	lbu	a3,0(a1)
- b98:	00170713          	addi	a4,a4,1
- b9c:	00377793          	andi	a5,a4,3
- ba0:	fed70fa3          	sb	a3,-1(a4)
- ba4:	00158593          	addi	a1,a1,1
- ba8:	fc079ae3          	bnez	a5,b7c +ADw-memcpy+-0xf4+AD4-
- bac:	f01ff06f          	j	aac +ADw-memcpy+-0x24+AD4-
+ b90:	fc079ae3          	bnez	a5,b64 +ADw-memcpy+-0xf4+AD4-
+ b94:	f01ff06f          	j	a94 +ADw-memcpy+-0x24+AD4-
 
 Disassembly of section .text.+AF8AXw-register+AF8-exitproc:
 
-00000bb0 +ADwAXwBf-register+AF8-exitproc+AD4-:
- bb0:	00000717          	auipc	a4,0x0
- bb4:	1c072703          	lw	a4,448(a4) +ACM- d70 +ADwAXw-global+AF8-impure+AF8-ptr+AD4-
- bb8:	14872783          	lw	a5,328(a4)
- bbc:	04078c63          	beqz	a5,c14 +ADwAXwBf-register+AF8-exitproc+-0x64+AD4-
- bc0:	0047a703          	lw	a4,4(a5)
- bc4:	01f00813          	li	a6,31
- bc8:	06e84e63          	blt	a6,a4,c44 +ADwAXwBf-register+AF8-exitproc+-0x94+AD4-
- bcc:	00271813          	slli	a6,a4,0x2
- bd0:	02050663          	beqz	a0,bfc +ADwAXwBf-register+AF8-exitproc+-0x4c+AD4-
- bd4:	01078333          	add	t1,a5,a6
- bd8:	08c32423          	sw	a2,136(t1)
- bdc:	1887a883          	lw	a7,392(a5)
- be0:	00100613          	li	a2,1
- be4:	00e61633          	sll	a2,a2,a4
- be8:	00c8e8b3          	or	a7,a7,a2
- bec:	1917a423          	sw	a7,392(a5)
- bf0:	10d32423          	sw	a3,264(t1)
- bf4:	00200693          	li	a3,2
- bf8:	02d50463          	beq	a0,a3,c20 +ADwAXwBf-register+AF8-exitproc+-0x70+AD4-
- bfc:	00170713          	addi	a4,a4,1
- c00:	00e7a223          	sw	a4,4(a5)
- c04:	010787b3          	add	a5,a5,a6
- c08:	00b7a423          	sw	a1,8(a5)
- c0c:	00000513          	li	a0,0
- c10:	00008067          	ret
- c14:	14c70793          	addi	a5,a4,332
- c18:	14f72423          	sw	a5,328(a4)
- c1c:	fa5ff06f          	j	bc0 +ADwAXwBf-register+AF8-exitproc+-0x10+AD4-
- c20:	18c7a683          	lw	a3,396(a5)
- c24:	00170713          	addi	a4,a4,1
- c28:	00e7a223          	sw	a4,4(a5)
- c2c:	00c6e6b3          	or	a3,a3,a2
- c30:	18d7a623          	sw	a3,396(a5)
- c34:	010787b3          	add	a5,a5,a6
- c38:	00b7a423          	sw	a1,8(a5)
- c3c:	00000513          	li	a0,0
- c40:	00008067          	ret
- c44:	fff00513          	li	a0,-1
- c48:	00008067          	ret
+00000b98 +ADwAXwBf-register+AF8-exitproc+AD4-:
+ b98:	00000717          	auipc	a4,0x0
+ b9c:	1c072703          	lw	a4,448(a4) +ACM- d58 +ADwAXw-global+AF8-impure+AF8-ptr+AD4-
+ ba0:	14872783          	lw	a5,328(a4)
+ ba4:	04078c63          	beqz	a5,bfc +ADwAXwBf-register+AF8-exitproc+-0x64+AD4-
+ ba8:	0047a703          	lw	a4,4(a5)
+ bac:	01f00813          	li	a6,31
+ bb0:	06e84e63          	blt	a6,a4,c2c +ADwAXwBf-register+AF8-exitproc+-0x94+AD4-
+ bb4:	00271813          	slli	a6,a4,0x2
+ bb8:	02050663          	beqz	a0,be4 +ADwAXwBf-register+AF8-exitproc+-0x4c+AD4-
+ bbc:	01078333          	add	t1,a5,a6
+ bc0:	08c32423          	sw	a2,136(t1)
+ bc4:	1887a883          	lw	a7,392(a5)
+ bc8:	00100613          	li	a2,1
+ bcc:	00e61633          	sll	a2,a2,a4
+ bd0:	00c8e8b3          	or	a7,a7,a2
+ bd4:	1917a423          	sw	a7,392(a5)
+ bd8:	10d32423          	sw	a3,264(t1)
+ bdc:	00200693          	li	a3,2
+ be0:	02d50463          	beq	a0,a3,c08 +ADwAXwBf-register+AF8-exitproc+-0x70+AD4-
+ be4:	00170713          	addi	a4,a4,1
+ be8:	00e7a223          	sw	a4,4(a5)
+ bec:	010787b3          	add	a5,a5,a6
+ bf0:	00b7a423          	sw	a1,8(a5)
+ bf4:	00000513          	li	a0,0
+ bf8:	00008067          	ret
+ bfc:	14c70793          	addi	a5,a4,332
+ c00:	14f72423          	sw	a5,328(a4)
+ c04:	fa5ff06f          	j	ba8 +ADwAXwBf-register+AF8-exitproc+-0x10+AD4-
+ c08:	18c7a683          	lw	a3,396(a5)
+ c0c:	00170713          	addi	a4,a4,1
+ c10:	00e7a223          	sw	a4,4(a5)
+ c14:	00c6e6b3          	or	a3,a3,a2
+ c18:	18d7a623          	sw	a3,396(a5)
+ c1c:	010787b3          	add	a5,a5,a6
+ c20:	00b7a423          	sw	a1,8(a5)
+ c24:	00000513          	li	a0,0
+ c28:	00008067          	ret
+ c2c:	fff00513          	li	a0,-1
+ c30:	00008067          	ret
 
 Disassembly of section .text.+AF8AXw-call+AF8-exitprocs:
 
-00000c4c +ADwAXwBf-call+AF8-exitprocs+AD4-:
- c4c:	fd010113          	addi	sp,sp,-48
- c50:	01412c23          	sw	s4,24(sp)
- c54:	00000a17          	auipc	s4,0x0
- c58:	11ca2a03          	lw	s4,284(s4) +ACM- d70 +ADwAXw-global+AF8-impure+AF8-ptr+AD4-
- c5c:	03212023          	sw	s2,32(sp)
- c60:	148a2903          	lw	s2,328(s4)
- c64:	02112623          	sw	ra,44(sp)
- c68:	02812423          	sw	s0,40(sp)
- c6c:	02912223          	sw	s1,36(sp)
- c70:	01312e23          	sw	s3,28(sp)
- c74:	01512a23          	sw	s5,20(sp)
- c78:	01612823          	sw	s6,16(sp)
- c7c:	01712623          	sw	s7,12(sp)
- c80:	01812423          	sw	s8,8(sp)
- c84:	04090063          	beqz	s2,cc4 +ADwAXwBf-call+AF8-exitprocs+-0x78+AD4-
- c88:	00050b13          	mv	s6,a0
- c8c:	00058b93          	mv	s7,a1
- c90:	00100a93          	li	s5,1
- c94:	fff00993          	li	s3,-1
- c98:	00492483          	lw	s1,4(s2)
- c9c:	fff48413          	addi	s0,s1,-1
- ca0:	02044263          	bltz	s0,cc4 +ADwAXwBf-call+AF8-exitprocs+-0x78+AD4-
- ca4:	00249493          	slli	s1,s1,0x2
- ca8:	009904b3          	add	s1,s2,s1
- cac:	040b8463          	beqz	s7,cf4 +ADwAXwBf-call+AF8-exitprocs+-0xa8+AD4-
- cb0:	1044a783          	lw	a5,260(s1)
- cb4:	05778063          	beq	a5,s7,cf4 +ADwAXwBf-call+AF8-exitprocs+-0xa8+AD4-
- cb8:	fff40413          	addi	s0,s0,-1
- cbc:	ffc48493          	addi	s1,s1,-4
- cc0:	ff3416e3          	bne	s0,s3,cac +ADwAXwBf-call+AF8-exitprocs+-0x60+AD4-
- cc4:	02c12083          	lw	ra,44(sp)
- cc8:	02812403          	lw	s0,40(sp)
- ccc:	02412483          	lw	s1,36(sp)
- cd0:	02012903          	lw	s2,32(sp)
- cd4:	01c12983          	lw	s3,28(sp)
- cd8:	01812a03          	lw	s4,24(sp)
- cdc:	01412a83          	lw	s5,20(sp)
- ce0:	01012b03          	lw	s6,16(sp)
- ce4:	00c12b83          	lw	s7,12(sp)
- ce8:	00812c03          	lw	s8,8(sp)
- cec:	03010113          	addi	sp,sp,48
- cf0:	00008067          	ret
- cf4:	00492783          	lw	a5,4(s2)
- cf8:	0044a683          	lw	a3,4(s1)
- cfc:	fff78793          	addi	a5,a5,-1
- d00:	04878e63          	beq	a5,s0,d5c +ADwAXwBf-call+AF8-exitprocs+-0x110+AD4-
- d04:	0004a223          	sw	zero,4(s1)
- d08:	fa0688e3          	beqz	a3,cb8 +ADwAXwBf-call+AF8-exitprocs+-0x6c+AD4-
- d0c:	18892783          	lw	a5,392(s2)
- d10:	008a9733          	sll	a4,s5,s0
- d14:	00492c03          	lw	s8,4(s2)
- d18:	00f777b3          	and	a5,a4,a5
- d1c:	02079263          	bnez	a5,d40 +ADwAXwBf-call+AF8-exitprocs+-0xf4+AD4-
- d20:	000680e7          	jalr	a3
- d24:	00492703          	lw	a4,4(s2)
- d28:	148a2783          	lw	a5,328(s4)
- d2c:	01871463          	bne	a4,s8,d34 +ADwAXwBf-call+AF8-exitprocs+-0xe8+AD4-
- d30:	f92784e3          	beq	a5,s2,cb8 +ADwAXwBf-call+AF8-exitprocs+-0x6c+AD4-
- d34:	f80788e3          	beqz	a5,cc4 +ADwAXwBf-call+AF8-exitprocs+-0x78+AD4-
- d38:	00078913          	mv	s2,a5
- d3c:	f5dff06f          	j	c98 +ADwAXwBf-call+AF8-exitprocs+-0x4c+AD4-
- d40:	18c92783          	lw	a5,396(s2)
- d44:	0844a583          	lw	a1,132(s1)
- d48:	00f77733          	and	a4,a4,a5
- d4c:	00071c63          	bnez	a4,d64 +ADwAXwBf-call+AF8-exitprocs+-0x118+AD4-
- d50:	000b0513          	mv	a0,s6
- d54:	000680e7          	jalr	a3
- d58:	fcdff06f          	j	d24 +ADwAXwBf-call+AF8-exitprocs+-0xd8+AD4-
- d5c:	00892223          	sw	s0,4(s2)
- d60:	fa9ff06f          	j	d08 +ADwAXwBf-call+AF8-exitprocs+-0xbc+AD4-
- d64:	00058513          	mv	a0,a1
- d68:	000680e7          	jalr	a3
- d6c:	fb9ff06f          	j	d24 +ADwAXwBf-call+AF8-exitprocs+-0xd8+AD4-
+00000c34 +ADwAXwBf-call+AF8-exitprocs+AD4-:
+ c34:	fd010113          	addi	sp,sp,-48
+ c38:	01412c23          	sw	s4,24(sp)
+ c3c:	00000a17          	auipc	s4,0x0
+ c40:	11ca2a03          	lw	s4,284(s4) +ACM- d58 +ADwAXw-global+AF8-impure+AF8-ptr+AD4-
+ c44:	03212023          	sw	s2,32(sp)
+ c48:	148a2903          	lw	s2,328(s4)
+ c4c:	02112623          	sw	ra,44(sp)
+ c50:	02812423          	sw	s0,40(sp)
+ c54:	02912223          	sw	s1,36(sp)
+ c58:	01312e23          	sw	s3,28(sp)
+ c5c:	01512a23          	sw	s5,20(sp)
+ c60:	01612823          	sw	s6,16(sp)
+ c64:	01712623          	sw	s7,12(sp)
+ c68:	01812423          	sw	s8,8(sp)
+ c6c:	04090063          	beqz	s2,cac +ADwAXwBf-call+AF8-exitprocs+-0x78+AD4-
+ c70:	00050b13          	mv	s6,a0
+ c74:	00058b93          	mv	s7,a1
+ c78:	00100a93          	li	s5,1
+ c7c:	fff00993          	li	s3,-1
+ c80:	00492483          	lw	s1,4(s2)
+ c84:	fff48413          	addi	s0,s1,-1
+ c88:	02044263          	bltz	s0,cac +ADwAXwBf-call+AF8-exitprocs+-0x78+AD4-
+ c8c:	00249493          	slli	s1,s1,0x2
+ c90:	009904b3          	add	s1,s2,s1
+ c94:	040b8463          	beqz	s7,cdc +ADwAXwBf-call+AF8-exitprocs+-0xa8+AD4-
+ c98:	1044a783          	lw	a5,260(s1)
+ c9c:	05778063          	beq	a5,s7,cdc +ADwAXwBf-call+AF8-exitprocs+-0xa8+AD4-
+ ca0:	fff40413          	addi	s0,s0,-1
+ ca4:	ffc48493          	addi	s1,s1,-4
+ ca8:	ff3416e3          	bne	s0,s3,c94 +ADwAXwBf-call+AF8-exitprocs+-0x60+AD4-
+ cac:	02c12083          	lw	ra,44(sp)
+ cb0:	02812403          	lw	s0,40(sp)
+ cb4:	02412483          	lw	s1,36(sp)
+ cb8:	02012903          	lw	s2,32(sp)
+ cbc:	01c12983          	lw	s3,28(sp)
+ cc0:	01812a03          	lw	s4,24(sp)
+ cc4:	01412a83          	lw	s5,20(sp)
+ cc8:	01012b03          	lw	s6,16(sp)
+ ccc:	00c12b83          	lw	s7,12(sp)
+ cd0:	00812c03          	lw	s8,8(sp)
+ cd4:	03010113          	addi	sp,sp,48
+ cd8:	00008067          	ret
+ cdc:	00492783          	lw	a5,4(s2)
+ ce0:	0044a683          	lw	a3,4(s1)
+ ce4:	fff78793          	addi	a5,a5,-1
+ ce8:	04878e63          	beq	a5,s0,d44 +ADwAXwBf-call+AF8-exitprocs+-0x110+AD4-
+ cec:	0004a223          	sw	zero,4(s1)
+ cf0:	fa0688e3          	beqz	a3,ca0 +ADwAXwBf-call+AF8-exitprocs+-0x6c+AD4-
+ cf4:	18892783          	lw	a5,392(s2)
+ cf8:	008a9733          	sll	a4,s5,s0
+ cfc:	00492c03          	lw	s8,4(s2)
+ d00:	00f777b3          	and	a5,a4,a5
+ d04:	02079263          	bnez	a5,d28 +ADwAXwBf-call+AF8-exitprocs+-0xf4+AD4-
+ d08:	000680e7          	jalr	a3
+ d0c:	00492703          	lw	a4,4(s2)
+ d10:	148a2783          	lw	a5,328(s4)
+ d14:	01871463          	bne	a4,s8,d1c +ADwAXwBf-call+AF8-exitprocs+-0xe8+AD4-
+ d18:	f92784e3          	beq	a5,s2,ca0 +ADwAXwBf-call+AF8-exitprocs+-0x6c+AD4-
+ d1c:	f80788e3          	beqz	a5,cac +ADwAXwBf-call+AF8-exitprocs+-0x78+AD4-
+ d20:	00078913          	mv	s2,a5
+ d24:	f5dff06f          	j	c80 +ADwAXwBf-call+AF8-exitprocs+-0x4c+AD4-
+ d28:	18c92783          	lw	a5,396(s2)
+ d2c:	0844a583          	lw	a1,132(s1)
+ d30:	00f77733          	and	a4,a4,a5
+ d34:	00071c63          	bnez	a4,d4c +ADwAXwBf-call+AF8-exitprocs+-0x118+AD4-
+ d38:	000b0513          	mv	a0,s6
+ d3c:	000680e7          	jalr	a3
+ d40:	fcdff06f          	j	d0c +ADwAXwBf-call+AF8-exitprocs+-0xd8+AD4-
+ d44:	00892223          	sw	s0,4(s2)
+ d48:	fa9ff06f          	j	cf0 +ADwAXwBf-call+AF8-exitprocs+-0xbc+AD4-
+ d4c:	00058513          	mv	a0,a1
+ d50:	000680e7          	jalr	a3
+ d54:	fb9ff06f          	j	d0c +ADwAXwBf-call+AF8-exitprocs+-0xd8+AD4-

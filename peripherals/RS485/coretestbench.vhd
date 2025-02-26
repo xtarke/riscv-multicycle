@@ -73,7 +73,7 @@ architecture RTL of RS485_testbench is
     signal ddata_r_lcd            : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
-    signal ddata_r_RS485           : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
+    signal ddata_r_RS485          : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
 
     signal TX              : std_logic;
     signal RX              : std_logic;
@@ -120,15 +120,15 @@ begin
     clock_baud : process
         constant period : time := 26041 ns;
     begin
-        clk_baud  <= '0';
+        clk_baud <= '0';
         --wait for 2 ns;
         wait for period / 2;
-        clk_baud  <= '1';
+        clk_baud <= '1';
         --wait for 2 ns;
         wait for period / 2;
     end process clock_baud;
-    
-        clock_baud_9600 : process
+
+    clock_baud_9600 : process
         constant period : time := 104 us;
     begin
         clk_state <= FALSE;
@@ -138,7 +138,6 @@ begin
         --wait for 2 ns;
         wait for period / 2;
     end process clock_baud_9600;
-    
 
     reset : process is
     begin
@@ -241,11 +240,11 @@ begin
             ddata_r_lcd            => ddata_r_lcd,
             ddata_r_fir_fil        => ddata_r_fir_fil,
             ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_RS485           => ddata_r_RS485, -- adicionando novo io do mux
+            ddata_r_RS485          => ddata_r_RS485, -- adicionando novo io do mux
             ddata_r_spwm           => (others => '0'),
             ddata_r_crc            => (others => '0'),
             ddata_r_key            => (others => '0'),
-            ddata_r_accelerometer  => (others => '0') 
+            ddata_r_accelerometer  => (others => '0')
         );
 
     -- Softcore instatiation
@@ -318,19 +317,19 @@ begin
     -- RS485_UART module instantiation
     generic_RS485_uart : entity work.RS485
         port map(
-            clk        => clk,
-            rst        => rst,
-            clk_baud   => clk_baud,
-            daddress   => daddress,
-            ddata_w    => ddata_w,
-            ddata_r    => ddata_r_RS485, -- [RS485]trocando iobus
-            d_we       => d_we,
-            d_rd       => d_rd,
-            dcsel      => dcsel,
-            dmask      => dmask,
-            tx_out     => TX,
-            rx_out     => RX,
-            interrupts => uart_interrupts,
+            clk          => clk,
+            rst          => rst,
+            clk_baud     => clk_baud,
+            daddress     => daddress,
+            ddata_w      => ddata_w,
+            ddata_r      => ddata_r_RS485, -- [RS485]trocando iobus
+            d_we         => d_we,
+            d_rd         => d_rd,
+            dcsel        => dcsel,
+            dmask        => dmask,
+            tx_out       => TX,
+            rx_out       => RX,
+            interrupts   => uart_interrupts,
             rs485_dir_DE => rs485_dir_DE_tb -- [RS485]adicionado para verificar sinal DE
         );
 
@@ -350,18 +349,34 @@ begin
     --     wait for 1000 us;
     -- end process;
 
-    -- process
-    -- begin
-    -- transmit_byte  <= x"A5";
-    -- transmit_frame <= '1' & transmit_byte & '0';
-    -- wait for 2000 us;
-    -- transmit_byte  <= x"61";
-    -- transmit_frame <= '1' & transmit_byte & '0';
-    -- wait for 2000 us;
-    -- transmit_byte  <= x"61";
-    -- transmit_frame <= '1' & transmit_byte & '0';
-    -- wait for 2000 us;
-    -- end process;
+    process
+    begin
+        wait for 9 ms;
+        transmit_byte  <= x"81";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"00";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"FD";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"00";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"00";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"00";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"00";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 1042 us;
+        transmit_byte  <= x"80";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait;
+    end process;
 
     -- FileOutput DEBUG 
     debug : entity work.trace_debug
