@@ -21,27 +21,30 @@ entity MorseCodeBuzzer is
 end MorseCodeBuzzer;
 
 architecture Behavioral of MorseCodeBuzzer is
-    constant T: integer :=225;--225 para a placa; para os testbench 10      muda a frequencia de operação
-    constant Tbase: integer :=5555;--5555 para a placa; para os testbench 1    muda a frequencia do tom
+    constant T: integer :=10;--225 para a placa; para os testbench 10      muda a frequencia de operação
+    constant Tbase: integer :=1;--5555 para a placa; para os testbench 1    muda a frequencia do tom
     signal count_T,count_3T,count_7T, count_within_char, count_between_letters : integer:=0;  -- contadores de cada tempo
     signal count_T_TC, count_3T_TC,count_7T_TC, count_within_char_TC, count_between_letters_TC: std_logic:='0';-- sinal de contagem completa
-    signal counter : integer := 0;-- contador da palavra
-    signal temp: bit:='1';--qual o bit atual
+    --signal counter : integer := 4;-- contador da palavra
+    --signal temp: bit:='1';--qual o bit atual
     signal count_pulse: integer range 0 to Tbase-1 := 0;  -- Contador para a geração da freq do buzzer
     signal tone: std_logic := '0';  -- Sinal de saida do buzzer modulado pela frequencia
-    signal morse_code : bit_vector (4 downto 0);-- vetor que é recebido pelo arquivo package (onde entra o número inteiro e sai o vetor de bits)
+    --signal morse_code : bit_vector (4 downto 0);-- vetor que é recebido pelo arquivo package (onde entra o número inteiro e sai o vetor de bits)
     type MorseStates is (IDLE, TIME_T, TIME_3T, TIME_7T,NEXT_CARACTER, TIME_WITHIN_LETTER, TIME_BETWEEN_LETTERS);-- maquina de estados
     signal STATE : MorseStates := IDLE;-- estado inicial
 
 begin
     process (clk, rst)
+        variable temp : bit:='1';
+        variable morse_code : bit_vector (4 downto 0);
+        variable counter : integer := 4;-- contador da palavra
     begin
 
         if rst = '1' then  -- não esquecer de resetar tudo
             STATE <= IDLE;
-            counter <= 0;
-            temp<='0';
-            morse_code<="00000";
+            counter:= 4;
+            temp:='0';
+            morse_code:="00000";
             buzzer <= '1';
             ledt<='0';
             ledf<='0';
@@ -59,8 +62,9 @@ begin
             case STATE is
                 when IDLE =>
                     if entrada >= 0 and entrada <= 9 then --limitar o numero entre 0 a 9
-                        morse_code <= Morse_codes(entrada);-- entra com a entrada na tabela e recebe o vetor de bit
-                        temp<= morse_code(counter);-- seleciona o bit em relação ao contador (faz a varredura)
+                    	count_between_letters_TC<='0'; -- Reiniciar sinal para fim de caracter
+                        morse_code := Morse_codes(entrada);-- entra com a entrada na tabela e recebe o vetor de bit
+                        temp:= morse_code(counter);-- seleciona o bit em relação ao contador (faz a varredura)
                         ledf<='0';-- desliga o led de quando acaba a palavra
                         if temp = '0' then -- caso seja ponto
                             count_T <=T;    -- o valor de count passa a ser a constante definida anteriormente 
@@ -115,17 +119,17 @@ begin
                         STATE<=IDLE;
                     end if;
                 when NEXT_CARACTER =>-- proxima bit
-                    counter<= counter+1; -- aumenta o contador da bit
-                    temp<=morse_code(counter);-- seleciona o prox bit da bit
-                    if counter = 4 then-- como foi feito apenas com numeros e o seu numero max é 5 (lembra do 0)
-                        morse_code <= Morse_codes(entrada);
-                        temp<= morse_code(counter);
-                        counter<= 0;
-                        count_between_letters<=3*T;
+                    counter:= counter-1; -- aumenta o contador da bit
+                    if counter = -1 then-- como foi feito apenas com numeros e o seu numero max é 5 (lembra do 0)
+                        morse_code := Morse_codes(entrada);
+                        counter:= 4;
+                        temp:= morse_code(counter);
+                        count_between_letters<=5*T;
                         STATE<= TIME_BETWEEN_LETTERS;-- intervalo entre palavras/numeros/fim do caracter atual
                         ledf<='1';
                     else
                         -- recomeça o processo com o proximo bit
+                    	temp:=morse_code(counter);-- seleciona o prox bit da bit
                         if temp = '0' then -- caso seja ponto
                             count_T <=T;
                             STATE<= TIME_T;
