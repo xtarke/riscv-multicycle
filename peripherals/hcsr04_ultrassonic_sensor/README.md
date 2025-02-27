@@ -2,7 +2,7 @@
 	O HCSR04 é um sensor ultrassônico facilmente encontrado e altamente difundido e para o projeto, deve-se considerar as distâncias máxima (400 cm) e mínima (2 cm), além da duração mínima do pulso de trigger (10 µs). O funcionamento do sensor consiste no envio de um pulso ultrassônico de 40 kHz por meio do transdutor emissor. Esse sinal viaja pelo ar até encontrar um obstáculo, sendo então refletido de volta ao sensor. O transdutor receptor capta esse eco e contabiliza o tempo decorrido entre o envio e o recebimento da onda sonora. Durante esse período, o pino Echo é mantido em nível alto, indicando o tempo que a onda levou para retornar ao sensor após a reflexão no obstáculo. Para iniciar uma medição, o microcontrolador deve enviar um pulso de nível alto no pino trigger, com duração mínima de 10 µs. Esse pulso ativa o sensor, iniciando a emissão da onda ultrassônica. 
 
 # Sensor Ultrassônico HC-SR04
-- Esta é uma implementação de uso do periférico [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf), o qual é um sensor ultrassônica. O funcionamento dele é descrito conforme apresentado no diagrama abaixo. Primeiro é enviado um pulso de trigger de 10 us. Posteriormente é recebido um sinal de echo, em que sua largura é proporcional à distância do sensor a um objeto específico.
+ [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf), 
 
 <kbd>DIAGRAMA DE TEMPO![DiagramaTempo](https://github.com/lirahc/hcsr04_pld_ultrassonic/assets/49963038/ec08f287-c4fc-4ad3-9d37-afcda94749b8)</kbd>
 
