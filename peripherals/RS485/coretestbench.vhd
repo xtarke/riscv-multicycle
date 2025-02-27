@@ -335,11 +335,12 @@ begin
 
     data_transmit_proc : process
     begin
+        --ENVIA quando transmit_frame atualiza, 
         --RX     <= '1';
         --wait for 2 us;
         --wait until clk_state;
         --RX     <= '0';
-        wait for 100 us;
+        --wait for 100 us;
         wait on transmit_frame;  -- Espera até que transmit_frame mude
         wait for 10 us;
         for i in 0 to 9 loop
@@ -350,7 +351,7 @@ begin
         --cnt_rx <= 0;
         RX     <= '1';
 
-        --OLD---
+        --OLD    ENVIA APOS 9ms em loop
         ----RX     <= '1';
         ----wait for 2 us;
         ----wait until clk_state;
@@ -376,25 +377,33 @@ begin
         wait for 9 ms;
         transmit_byte  <= x"81";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"00";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"FD";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"00";
+        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
+        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"00";
+        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
+        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"00";
+        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
+        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"00";
+        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
+        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1500 us;
+        wait for 1250 us;
         transmit_byte  <= x"80";
         transmit_frame <= '1' & transmit_byte & '0';
         wait;
