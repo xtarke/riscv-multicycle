@@ -172,7 +172,6 @@ add wave -label DE_state /generic_RS485_uart/rs485_dir_DE
 #add wave -label interrupts /generic_RS485_uart/interrupts
 #add wave -label interrupts /generic_RS485_uart/interrupts
 add wave -label rx_cmp_irq /generic_RS485_uart/rx_cmp_irq
-add wave -label rx_done /generic_RS485_uart/rx_done
 
 add wave -height 6 -divider "BUFFER_UART"
 add wave -label buffer_rx -radix hex /generic_RS485_uart/buffer_rx

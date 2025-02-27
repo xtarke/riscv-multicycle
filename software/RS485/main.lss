@@ -287,8 +287,8 @@ Disassembly of section .rom:
  334:	00000593          	li	a1,0
  338:	00200513          	li	a0,2
  33c:	044000ef          	jal	ra,380 +ADw-RS485+AF8-setup+AD4-
- 340:	00000513          	li	a0,0
- 344:	e35ff0ef          	jal	ra,178 +ADw-keep+AF8-connection+AD4-
+ 340:	0f8000ef          	jal	ra,438 +ADw-RS485+AF8-reception+AF8-enable+AD4-
+ 344:	130000ef          	jal	ra,474 +ADw-RS485+AF8-read+AD4-
  348:	ff9ff06f          	j	340 +ADw-main+-0x14+AD4-
 
 0000034c +ADw-RS485+AF8-write+AD4-:
