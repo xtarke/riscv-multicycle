@@ -1,5 +1,5 @@
 -- format beautify: https://g2384.github.io/work/VHDLformatter.html
--- accel_bus: without spi slave, inptu values get GSENSOR de10_lite
+-- accel_bus: without spi slave, input values get GSENSOR de10_lite
 -- accel_bus_tb (testbench) : with spi slave for input values test
 
 library ieee;
@@ -32,11 +32,18 @@ entity accel_bus is
     axi_x : buffer STD_LOGIC_VECTOR(15 downto 0); -- x_axis acceleration data
     axi_y : buffer STD_LOGIC_VECTOR(15 downto 0); -- y_axis acceleration data
     axi_z : buffer STD_LOGIC_VECTOR(15 downto 0)  -- z_axis acceleration data
+    --axi_x_max : buffer STD_LOGIC_VECTOR(15 downto 0); -- x_axis acceleration data
+    --axi_y_max : buffer STD_LOGIC_VECTOR(15 downto 0); -- y_axis acceleration data
+    --axi_z_max : buffer STD_LOGIC_VECTOR(15 downto 0)  -- z_axis acceleration data
   );
 end accel_bus;
 
 architecture rtl of accel_bus is
 	 
+  signal s_axi_x_max : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  signal s_axi_y_max : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  signal s_axi_z_max : STD_LOGIC_VECTOR(15 DOWNTO 0);
+
   begin
 
   -- instatiation: accelerometer
@@ -70,10 +77,39 @@ architecture rtl of accel_bus is
 					ddata_r <= x"0000" & axi_y;
 				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
 					ddata_r <= x"0000" & axi_z;
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
+					ddata_r <= x"0000" & s_axi_x_max;
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+					ddata_r <= x"0000" & s_axi_y_max;
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 5) then
+					ddata_r <= x"0000" & s_axi_z_max;
 				end if;
 			end if;
       end if;
     end if;
+  end process;
+
+  process (rst, clk)
+  begin
+      if rst = '1' then
+          s_axi_x_max <= (others => '0');
+          s_axi_y_max <= (others => '0');
+          s_axi_z_max <= (others => '0');
+          
+      elsif rising_edge(clk) then
+        if axi_x > s_axi_x_max then
+          s_axi_x_max <= axi_x;
+        end if;
+
+        if axi_y > s_axi_y_max then
+          s_axi_y_max <= axi_y;
+        end if;
+
+        if axi_z > s_axi_z_max then
+          s_axi_z_max <= axi_z;
+        end if;
+
+      end if;
   end process;
    
 end rtl;
