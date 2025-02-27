@@ -137,7 +137,7 @@ view wave
 # add wave -label d_sig   /d_sig
 # 
 # add wave -height 15 -divider "Peripheral Data bus"
-# add wave -label daddress -radix hex /daddress
+    add wave -label daddress -radix hex /daddress
 # add wave -label ddata_r_periph -radix hex   /ddata_r_periph
 # add wave -label ddata_r_gpio -radix hex     /ddata_r_gpio
 # 
@@ -167,23 +167,25 @@ add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_RS485_uart/state_rx
 add wave -label state_tx /generic_RS485_uart/state_tx
 add wave -label cnt_rx /generic_RS485_uart/cnt_rx
-add wave -label rx_out /generic_RS485_uart/rx_out
+#add wave -label rx_out /generic_RS485_uart/rx_out
 add wave -label DE_state /generic_RS485_uart/rs485_dir_DE
 #add wave -label interrupts /generic_RS485_uart/interrupts
 #add wave -label interrupts /generic_RS485_uart/interrupts
-add wave -label rx_cmp_irq /generic_RS485_uart/rx_cmp_irq
+#add wave -label rx_cmp_irq /generic_RS485_uart/rx_cmp_irq
 
-add wave -height 6 -divider "BUFFER_UART"
-add wave -label buffer_rx -radix hex /generic_RS485_uart/buffer_rx
-add wave -label buffer_byte -radix hex /generic_RS485_uart/buffer_byte
-add wave -label cnt_rx_buffer -radix hex /generic_RS485_uart/cnt_rx_buffer
-add wave -label cnt_rx_irq -radix hex /generic_RS485_uart/rx_buffer_receive/cnt_rx_irq
-add wave -label buffer_mode -radix hex /generic_RS485_uart/buffer_mode
-add wave -label buffer_register -radix hex /generic_RS485_uart/buffer_register
+
+#add wave -height 6 -divider "BUFFER_UART"
+#add wave -label buffer_rx -radix hex /generic_RS485_uart/buffer_rx
+#add wave -label buffer_byte -radix hex /generic_RS485_uart/buffer_byte
+#add wave -label cnt_rx_buffer -radix hex /generic_RS485_uart/cnt_rx_buffer
+#add wave -label cnt_rx_irq -radix hex /generic_RS485_uart/rx_buffer_receive/cnt_rx_irq
+#add wave -label buffer_mode -radix hex /generic_RS485_uart/buffer_mode
+#add wave -label buffer_register -radix hex /generic_RS485_uart/buffer_register
 
 add wave -height 15 -divider "Input/Output SIM"
-add wave -label LEDR -radix hex /LEDR
+#add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
+add wave -label HEX1 -radix hex /HEX1
 
 run 20 ms
 #wave zoomfull

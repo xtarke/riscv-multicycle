@@ -1,21 +1,16 @@
-
-/*
- * main.c
- *
- *  Created on: Jan 20, 2019
- *      Author: Marcos Vinicius Leal Da Silva e Daniel Pereira
+/* 		Created on: Jan 20, 2019
+ *      Author: Alexsander e Jonas
  *      Instituto Federal de Santa Catarina
  *
  *   Modified: Renan Augusto Starke
  *
- * Simple pooling UART TX example.
- * -----------------------------------------
- */
+ * Simple pooling RS485 keep connection example.  */
 
 #include <limits.h>
 #include "RS485.h"
 #include "../_core/utils.h"
 #include "../_core/hardware.h"
+#include "../gpio/gpio.h"
 
 uint8_t power_on(uint8_t address)
 {
@@ -44,9 +39,9 @@ uint8_t keep_connection(uint8_t address)
 	for (int i = 0; i < 8; i++)
 		data = RS485_read();
 
-	RS485_reception_disable();
+	// RS485_reception_disable();
 
-	if (data == 0x80)
+	if (data > 0x0)
 		return 1;
 	return 0;
 }
@@ -105,11 +100,10 @@ uint8_t check_alarm_input(uint8_t address)
 
 int main()
 {
+	// RS485_setup();
+	// RS485_reception_enable();
+	SEGMENTS = 1;
 
-	// uint8_t data = 10;
-	// volatile uint8_t x = 0;
-
-	RS485_setup(_9600, NO_PARITY);
 	uint8_t data = 0;
 
 	while (1)
@@ -119,15 +113,17 @@ int main()
 		// RS485_write('L');
 		// RS485_write('E');
 		// RS485_write('X');
-		RS485_reception_enable();
-		data = RS485_read();
 
-		// // Display data in IO bus
-		// SEGMENTS_BASE_ADDRESS = data;
+		// RS485_read();
+		// SEGMENTS = RS485_REGISTER->rx_byte;
+
+		// SEGMENTS_BASE_ADDRESS = data;  // Display data in IO bus
 
 		// power_on(0);
-		// keep_connection(0);
+			if (keep_connection(0))
+				SEGMENTS = 2;
+			else
+				SEGMENTS = 0xE;
 	}
-
 	return 0;
 }

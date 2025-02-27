@@ -85,7 +85,6 @@ architecture RTL of RS485_testbench is
     signal transmit_byte  : std_logic_vector(7 downto 0) := x"23";
     signal transmit_frame : std_logic_vector(9 downto 0) := (others => '1');
     signal clk_state      : boolean                      := FALSE;
-    signal cnt_rx         : integer                      := 0;
 
 begin
 
@@ -108,23 +107,12 @@ begin
         wait for period / 2;
     end process clock_driver_32x;
 
-    --    clock_driver_baud : process
-    --        constant period : time := 2000 ns;
-    --    begin
-    --        clk_baud <= '0';
-    --        wait for period / 2;
-    --        clk_baud <= '1';
-    --        wait for period / 2;
-    --    end process clock_driver_baud;
-
     clock_baud : process
         constant period : time := 26041 ns;
     begin
         clk_baud <= '0';
-        --wait for 2 ns;
         wait for period / 2;
         clk_baud <= '1';
-        --wait for 2 ns;
         wait for period / 2;
     end process clock_baud;
 
@@ -132,10 +120,8 @@ begin
         constant period : time := 104 us;
     begin
         clk_state <= FALSE;
-        --wait for 2 ns;
         wait for period / 2;
         clk_state <= TRUE;
-        --wait for 2 ns;
         wait for period / 2;
     end process clock_baud_9600;
 
@@ -240,11 +226,11 @@ begin
             ddata_r_lcd            => ddata_r_lcd,
             ddata_r_fir_fil        => ddata_r_fir_fil,
             ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_RS485          => ddata_r_RS485, -- adicionando novo io do mux
             ddata_r_spwm           => (others => '0'),
             ddata_r_crc            => (others => '0'),
             ddata_r_key            => (others => '0'),
-            ddata_r_accelerometer  => (others => '0')
+            ddata_r_accelerometer  => (others => '0'),
+            ddata_r_RS485          => ddata_r_RS485 -- adicionando novo io do mux
         );
 
     -- Softcore instatiation
@@ -335,126 +321,76 @@ begin
 
     data_transmit_proc : process
     begin
-        --ENVIA quando transmit_frame atualiza, 
-        --RX     <= '1';
-        --wait for 2 us;
-        --wait until clk_state;
-        --RX     <= '0';
-        --wait for 100 us;
-        wait on transmit_frame;  -- Espera até que transmit_frame mude
+        RX <= '1';
+        wait on transmit_frame;         -- Espera até que transmit_frame mude
         wait for 10 us;
         for i in 0 to 9 loop
-            RX     <= (transmit_frame(i));
-            --cnt_rx <= cnt_rx + 1;
+            RX <= (transmit_frame(i));
             wait until clk_state;
         end loop;
-        --cnt_rx <= 0;
-        RX     <= '1';
-
-        --OLD    ENVIA APOS 9ms em loop
-        ----RX     <= '1';
-        ----wait for 2 us;
-        ----wait until clk_state;
-        ----RX     <= '0';
-        --wait for 9 ms;
-        -- while true loop  -- Loop infinito
-        --     for i in 0 to 9 loop
-        --         RX     <= (transmit_frame(i));
-        --         --cnt_rx <= cnt_rx + 1;
-        --         wait until clk_state;
-        --     end loop;
-        --     --cnt_rx <= 0;
-        --     RX     <= '1';
-        --     --wait for 1000 us;
-        --     wait;
-        --     --RX     <= '1';
-        -- end loop;
-
     end process;
 
     process
     begin
         wait for 9 ms;
+        -- wait for 300 us;
 
         transmit_byte  <= x"81";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
 
-        wait for 1250 us;
+        wait for 1042 us;
 
         transmit_byte  <= x"00";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
 
-        wait for 1250 us;
+        wait for 1042 us;
 
         transmit_byte  <= x"FD";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
 
-        wait for 1250 us;
-        
-        transmit_byte  <= x"00";
-        --transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        --wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
-        transmit_frame <= '1' & transmit_byte & '0';
-
-        wait for 1250 us;
+        wait for 1042 us;
 
         transmit_byte  <= x"00";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
 
-        wait for 1250 us;
+        wait for 1042 us;
 
         transmit_byte  <= x"00";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
 
-        wait for 1250 us;
+        wait for 1042 us;
 
         transmit_byte  <= x"00";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
 
-        wait for 1250 us;
+        wait for 1042 us;
+
+        transmit_byte  <= x"00";
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= '1' & transmit_byte & '0';
+
+        wait for 1042 us;
 
         transmit_byte  <= x"80";
-        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
-        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
+        transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
+        wait for 1 ns;                  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
-        
+
         wait;
     end process;
-	
-	-- -- Simulação da recepção de um byte 0x81
-    -- rx_process : process
-    -- begin
-    --     wait for 8500 us;
-    --     RX <= '0';  -- Start bit
-    --     wait for 104 us;
-        
-    --     -- Transmitindo os bits do byte 0x81 (LSB primeiro)
-    --     RX <= '1'; wait for 104 us; -- Bit 0
-    --     RX <= '0'; wait for 104 us; -- Bit 1
-    --     RX <= '0'; wait for 104 us; -- Bit 2
-    --     RX <= '0'; wait for 104 us; -- Bit 3
-    --     RX <= '0'; wait for 104 us; -- Bit 4
-    --     RX <= '0'; wait for 104 us; -- Bit 5
-    --     RX <= '0'; wait for 104 us; -- Bit 6
-    --     RX <= '1'; wait for 104 us; -- Bit 7
-        
-    --     RX <= '1'; -- Stop bit
-    --     wait for 104 us;
-        
-    --     wait;
-    -- end process;
 
     -- FileOutput DEBUG 
     debug : entity work.trace_debug

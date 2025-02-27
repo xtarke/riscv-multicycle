@@ -6,8 +6,7 @@ entity RS485 is
     generic(
         --! Chip selec
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0170";
-        DADDRESS_BUS_SIZE : integer                      := 32
+        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0170"
     );
 
     port(
@@ -15,7 +14,7 @@ entity RS485 is
         rst          : in  std_logic;
         clk_baud     : in  std_logic;
         -- Core data bus signals
-        daddress     : in  unsigned(DADDRESS_BUS_SIZE - 1 downto 0);
+        daddress     : in  unsigned(31 downto 0);
         ddata_w      : in  std_logic_vector(31 downto 0);
         ddata_r      : out std_logic_vector(31 downto 0);
         d_we         : in  std_logic;
@@ -46,7 +45,6 @@ architecture RTL of RS485 is
     constant RX_ENABLE_BIT     : integer := 23;
     constant IRQ_RX_ENABLE_BIT : integer := 24;
 
-    constant BAUD_RATE_BIT : integer := 19; --! Bits 19 and 20
     constant PARITY_BIT    : integer := 21; --! Bits 21 and 22
 
     --! BUFFER CONFIG TYPE bit maps (See uart.h)
@@ -64,7 +62,7 @@ architecture RTL of RS485 is
     signal send_byte_p : std_logic;
 
     -- Interal registers
-    signal config_register : std_logic_vector(31 downto 0);
+    -- signal config_register : std_logic_vector(31 downto 0);
     signal rx_register     : std_logic_vector(7 downto 0);
     signal tx_register     : std_logic_vector(7 downto 0);
 
@@ -91,7 +89,6 @@ architecture RTL of RS485 is
     -- Signals for baud rates
     signal baud_19200 : std_logic := '0';
     signal baud_09600 : std_logic := '0';
-    signal baud_04800 : std_logic := '0';
     signal baud_ready : std_logic := '0';
 
     -- Signals for parity
@@ -101,7 +98,7 @@ architecture RTL of RS485 is
     -- Interrupt signal
     signal input_data   : std_logic;
     signal rx_cmp_irq   : std_logic;
-    signal interrupt_en : std_logic := '0';
+    -- signal interrupt_en : std_logic := '0';
 
     -- Sinal interno para controle de direção RS485 [RS485]
     signal rs485_dir_int : std_logic := '0';
@@ -161,33 +158,9 @@ begin                                   --Baud Entrada = 38400
             baud_09600 <= '0';
         end if;
     end process;
-
-    -------------- Baud Rate 4800 --------------
-    baud4800 : process(baud_09600, baud_04800) is
-    begin
-        if rising_edge(baud_09600) and (baud_04800 = '0') then
-            baud_04800 <= '1';
-        elsif rising_edge(baud_09600) and (baud_04800 = '1') then
-            baud_04800 <= '0';
-        end if;
-    end process;
-
-    -------------- Baud Rate Select -------------
-    baudselect : process(uart_register(BAUD_RATE_BIT+1 downto BAUD_RATE_BIT), baud_04800, baud_09600, baud_19200, clk_baud) is
-    begin
-        case uart_register(BAUD_RATE_BIT + 1 downto BAUD_RATE_BIT) is
-            when "00" =>
-                baud_ready <= clk_baud;
-            when "01" =>
-                baud_ready <= baud_19200;
-            when "10" =>
-                baud_ready <= baud_09600;
-            when "11" =>
-                baud_ready <= baud_04800;
-            when others =>
-                baud_ready <= baud_09600;
-        end case;
-    end process;
+    
+    -- force 9600
+    baud_ready <= baud_09600;
 
     -- Input register
     process(clk, rst)
