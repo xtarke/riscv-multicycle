@@ -478,13 +478,9 @@ begin                                   --Baud Entrada = 38400
         byte_read     <= '0';
         case state_rx is
             when IDLE =>
-                rx_done       <= not uart_register(RX_ENABLE_BIT);
-                byte_received <= '0';
-                byte_read     <= '0';
+                rx_done <= not uart_register(RX_ENABLE_BIT);
             when READ_BYTE =>
-                rx_done       <= '0';
                 byte_received <= '1';
-                byte_read     <= '0';
             when DONE =>
                 rx_done   <= '1';
                 byte_read <= '1';
@@ -505,7 +501,6 @@ begin                                   --Baud Entrada = 38400
                     buffer_mode <= '1';
                     buffer_byte <= buffer_register(BYTE_FINAL downto BYTE_FINAL - 7);
                 when others =>
-
             end case;
         end if;
     end process;
