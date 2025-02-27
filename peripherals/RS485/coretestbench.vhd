@@ -405,6 +405,8 @@ begin
         transmit_frame <= '1' & transmit_byte & '0';
         wait for 1250 us;
         transmit_byte  <= x"80";
+        transmit_frame <= (others => '0');  -- Valor temporário para forçar a mudança
+        wait for 1 ns;  -- Pequeno atraso para garantir que a mudança ocorra
         transmit_frame <= '1' & transmit_byte & '0';
         wait;
     end process;
