@@ -333,50 +333,95 @@ begin
             rs485_dir_DE => rs485_dir_DE_tb -- [RS485]adicionado para verificar sinal DE
         );
 
-    -- data_transmit_proc : process
-    -- begin
-    --     --RX     <= '1';
-    --     --wait for 2 us;
-    --     --wait until clk_state;
-    --     --RX     <= '0';
-    --     for i in 0 to 9 loop
-    --         RX     <= (transmit_frame(i));
-    --         --cnt_rx <= cnt_rx + 1;
-    --         wait until clk_state;
-    --     end loop;
-    --     --cnt_rx <= 0;
-    --      RX     <= '1';
-    --     wait for 1000 us;
-    -- end process;
+    data_transmit_proc : process
+    begin
+        --RX     <= '1';
+        --wait for 2 us;
+        --wait until clk_state;
+        --RX     <= '0';
+        wait for 100 us;
+        wait on transmit_frame;  -- Espera até que transmit_frame mude
+        wait for 10 us;
+        for i in 0 to 9 loop
+            RX     <= (transmit_frame(i));
+            --cnt_rx <= cnt_rx + 1;
+            wait until clk_state;
+        end loop;
+        --cnt_rx <= 0;
+        RX     <= '1';
+
+        --OLD---
+        ----RX     <= '1';
+        ----wait for 2 us;
+        ----wait until clk_state;
+        ----RX     <= '0';
+        --wait for 9 ms;
+        -- while true loop  -- Loop infinito
+        --     for i in 0 to 9 loop
+        --         RX     <= (transmit_frame(i));
+        --         --cnt_rx <= cnt_rx + 1;
+        --         wait until clk_state;
+        --     end loop;
+        --     --cnt_rx <= 0;
+        --     RX     <= '1';
+        --     --wait for 1000 us;
+        --     wait;
+        --     --RX     <= '1';
+        -- end loop;
+
+    end process;
 
     process
     begin
         wait for 9 ms;
         transmit_byte  <= x"81";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"00";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"FD";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"00";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"00";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"00";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"00";
         transmit_frame <= '1' & transmit_byte & '0';
-        wait for 1042 us;
+        wait for 1500 us;
         transmit_byte  <= x"80";
         transmit_frame <= '1' & transmit_byte & '0';
         wait;
     end process;
+	
+	-- -- Simulação da recepção de um byte 0x81
+    -- rx_process : process
+    -- begin
+    --     wait for 8500 us;
+    --     RX <= '0';  -- Start bit
+    --     wait for 104 us;
+        
+    --     -- Transmitindo os bits do byte 0x81 (LSB primeiro)
+    --     RX <= '1'; wait for 104 us; -- Bit 0
+    --     RX <= '0'; wait for 104 us; -- Bit 1
+    --     RX <= '0'; wait for 104 us; -- Bit 2
+    --     RX <= '0'; wait for 104 us; -- Bit 3
+    --     RX <= '0'; wait for 104 us; -- Bit 4
+    --     RX <= '0'; wait for 104 us; -- Bit 5
+    --     RX <= '0'; wait for 104 us; -- Bit 6
+    --     RX <= '1'; wait for 104 us; -- Bit 7
+        
+    --     RX <= '1'; -- Stop bit
+    --     wait for 104 us;
+        
+    --     wait;
+    -- end process;
 
     -- FileOutput DEBUG 
     debug : entity work.trace_debug

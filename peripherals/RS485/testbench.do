@@ -166,6 +166,8 @@ add wave -label TX -radix hex /TX
 add wave -label RX -radix hex /RX
 add wave -label rx_state /generic_RS485_uart/state_rx
 add wave -label state_tx /generic_RS485_uart/state_tx
+add wave -label cnt_rx /generic_RS485_uart/cnt_rx
+add wave -label rx_out /generic_RS485_uart/rx_out
 add wave -label DE_state /generic_RS485_uart/rs485_dir_DE
 #add wave -label interrupts /generic_RS485_uart/interrupts
 #add wave -label interrupts /generic_RS485_uart/interrupts
