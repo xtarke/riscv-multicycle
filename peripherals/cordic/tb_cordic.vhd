@@ -42,13 +42,9 @@ begin
         wait;
     end process;
     
+    -- start_bus <= ddata_w(16);
+
     dut : entity work.cordic_bus
-        generic map (
-            MY_CHIPSELECT => "10",
-            MY_WORD_ADDRESS => x"0540",
-            DADDRESS_BUS_SIZE => 32,
-            DATA_WIDTH_BUS => 16
-        )
         port map (
             clk => clk,
             clk_32x => clk,
@@ -76,9 +72,10 @@ begin
         
         -- Write angle
         d_we <= '1';
-        daddress(15 downto 0) <= x"0541";
+        daddress(15 downto 0) <= x"0151";
         dcsel <= "10";
-        ddata_w <= x"0000" & std_logic_vector(to_q214(-0.5236));
+        ddata_w <= x"0001" & std_logic_vector(to_q214(-0.5236));
+        -- ddata_w(16) <= '1';
         wait for CLK_PERIOD;
         d_we <= '0';
         
@@ -91,7 +88,7 @@ begin
         wait until valid_bus = '1';
         
         -- Read results
-        daddress(15 downto 0) <= x"0540";
+        daddress(15 downto 0) <= x"0150";
         d_rd <= '1';
         wait for 2*CLK_PERIOD;
         d_rd <= '0';
@@ -100,22 +97,46 @@ begin
         
         -- Write angle
         d_we <= '1';
-        daddress(15 downto 0) <= x"0541";
+        daddress(15 downto 0) <= x"0151";
         dcsel <= "10";
-        ddata_w <= x"0000" & std_logic_vector(to_q214(-0.7854));
+        ddata_w <= x"0000" & std_logic_vector(to_q214(0.7854));
+        ddata_w(16) <= '1';
         wait for CLK_PERIOD;
         d_we <= '0';
         
         -- Start computation
         start_bus <= '1';
         wait for CLK_PERIOD;
-        start_bus <= '0';
+        -- start_bus <= '0';
         
         -- Wait for valid signal
         wait until valid_bus = '1';
         
         -- Read results
-        daddress(15 downto 0) <= x"0540";
+        daddress(15 downto 0) <= x"0150";
+        d_rd <= '1';
+        wait for 2*CLK_PERIOD;
+        d_rd <= '0';
+
+        -- Write angle
+        d_we <= '1';
+        daddress(15 downto 0) <= x"0151";
+        -- dcsel <= "10";
+        -- ddata_w <= x"0000" & std_logic_vector(to_q214(-0.7854));
+        ddata_w(16) <= '1';
+        wait for CLK_PERIOD;
+        d_we <= '0';
+        
+        -- Start computation
+        -- start_bus <= '1';
+        wait for CLK_PERIOD;
+        -- start_bus <= '0';
+        
+        -- Wait for valid signal
+        wait until valid_bus = '1';
+        
+        -- Read results
+        daddress(15 downto 0) <= x"0150";
         d_rd <= '1';
         wait for 2*CLK_PERIOD;
         d_rd <= '0';

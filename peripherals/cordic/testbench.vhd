@@ -91,6 +91,7 @@ architecture RTL of core_main_testbench is
 	signal ddata_r_crc : std_logic_vector(31 downto 0);
 	signal ddata_r_key : std_logic_vector(31 downto 0);
 	signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
+	signal ddata_r_cordic : std_logic_vector(31 downto 0);
 
 	-- Timer
 	signal ifcap : std_logic;
@@ -225,7 +226,8 @@ begin
             ddata_r_crc => ddata_r_crc,
             ddata_r_key => ddata_r_key,
             ddata_r_accelerometer => ddata_r_accelerometer,
-            ddata_r_periph   => ddata_r_periph
+            ddata_r_periph   => ddata_r_periph,
+			ddata_r_cordic   => ddata_r_cordic
         );
 
 	-- Softcore instatiation
@@ -326,20 +328,14 @@ begin
 		inst => debugString
 	);
 
-	cordic : entity work.cordic_bus
-	generic map (
-		MY_CHIPSELECT => "10",
-		MY_WORD_ADDRESS => x"0150",
-		DADDRESS_BUS_SIZE => 32,
-		DATA_WIDTH_BUS => 16
-	)
+	cordic_bus : entity work.cordic_bus
 	port map (
 		clk => clk,
 		clk_32x => clk_32x,
 		rst => rst,
 		daddress => daddress,
 		ddata_w => ddata_w,
-		ddata_r => ddata_r,
+		ddata_r => ddata_r_cordic,
 		d_we => d_we,
 		d_rd => d_rd,
 		dcsel => dcsel,

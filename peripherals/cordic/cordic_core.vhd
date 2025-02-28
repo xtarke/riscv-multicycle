@@ -102,20 +102,3 @@ begin
         end if;
     end process;
 end Behavioral;
-
--- exemplo no quartus
--- signal cordic_x_out, cordic_y_out : std_logic_vector(15 downto 0);
--- signal cordic_angle, cordic_x_in, cordic_y_in : std_logic_vector(15 downto 0);
--- signal cordic_clk_bus, cordic_rst : std_logic;
-
--- begin
---     cordic_inst : entity work.cordic
---         port map (
---             clk_bus     => cordic_clk_bus,
---             rst     => cordic_rst,
---             x_in    => cordic_x_in,
---             y_in    => cordic_y_in,
---             angle   => cordic_angle,
---             x_out   => cordic_x_out,
---             y_out   => cordic_y_out
---         );

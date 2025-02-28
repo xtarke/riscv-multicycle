@@ -38,6 +38,7 @@ vcom ../.././core/csr.vhd
 vcom ../.././core/core.vhd
 vcom ../.././core/txt_util.vhdl
 vcom ../.././core/trace_debug.vhd
+vcom cordic_bus.vhd
 vcom testbench.vhd
 
 vsim -voptargs="+acc" -t ns work.core_main_testbench
@@ -128,6 +129,7 @@ add wave -label datamemory -radix hex /dmem/ram_block
 add wave -height 15 -divider "Data bus"
 add wave -label daddress -radix hex /daddress
 add wave -label ddata_r -radix hex 	/ddata_r
+add wave -label ddata_r -radix hex 	/ddata_r_cordic
 add wave -label ddata_w -radix hex 	/ddata_w
 add wave -label dmask -radix bin /dmask
 add wave -label dcsel 	/dcsel
@@ -140,8 +142,16 @@ add wave -label daddress -radix hex /daddress
 add wave -label ddata_r_periph -radix hex 	/ddata_r_periph
 add wave -label ddata_r_gpio -radix hex 	/ddata_r_gpio
 
-add wave -label gpio_interrupts -radix hex /gpio_interrupts
-add wave -label gpio_input -radix hex /gpio_input
+add wave -height 15 -divider "Cordic"
+add wave -label output -radix hex    /cordic_bus/output
+add wave -label output_reg -radix hex    /cordic_bus/output_reg
+add wave -label angle_in -radix hex    /cordic_bus/converted_angle_in
+add wave -label sin_out -radix hex    /cordic_bus/converted_sin_out
+add wave -label cos_out -radix hex    /cordic_bus/converted_cos_out
+
+
+#add wave -label gpio_interrupts -radix hex /gpio_interrupts
+#add wave -label gpio_input -radix hex /gpio_input
 
 add wave -height 15 -divider "Timer"
 add wave -label enable_timer_irq_mask -radix hex /timer/enable_timer_irq_mask
