@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 entity RS485 is
     generic(
         --! Chip selec
-        MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0170"
+        MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10";
+        MY_WORD_ADDRESS : unsigned(15 downto 0)        := x"0170"
     );
 
     port(
@@ -21,7 +21,7 @@ entity RS485 is
         d_rd         : in  std_logic;
         dcsel        : in  std_logic_vector(1 downto 0); --! Chip select 
         -- ToDo: Module should mask bytes (Word, half word and byte access)
-        dmask        : in  std_logic_vector(3 downto 0); --! Byte enable mask
+        dmask        : in  std_logic_vector(3 downto 0) := "0011"; --! Byte enable mask
 
         -- hardware input/output signals
         tx_out       : out std_logic;
@@ -45,7 +45,7 @@ architecture RTL of RS485 is
     constant RX_ENABLE_BIT     : integer := 23;
     constant IRQ_RX_ENABLE_BIT : integer := 24;
 
-    constant PARITY_BIT    : integer := 21; --! Bits 21 and 22
+    constant PARITY_BIT : integer := 21; --! Bits 21 and 22
 
     --! BUFFER CONFIG TYPE bit maps (See uart.h)
     constant IRQ_MODE_BIT  : integer := 31; --! Bit 31
@@ -55,7 +55,7 @@ architecture RTL of RS485 is
     -- Signals for TX
     type state_tx_type is (IDLE, MOUNT_BYTE, TRANSMIT, MOUNT_BYTE_PARITY, TRANSMIT_PARITY, DONE);
     signal state_tx    : state_tx_type                 := IDLE;
-    signal cnt_tx      : integer                       := 0;
+    signal cnt_tx      : natural range 0 to 16         := 0;
     signal to_tx       : std_logic_vector(10 downto 0) := (others => '1');
     signal to_tx_p     : std_logic_vector(11 downto 0) := (others => '1');
     signal send_byte   : std_logic;
@@ -63,8 +63,8 @@ architecture RTL of RS485 is
 
     -- Interal registers
     -- signal config_register : std_logic_vector(31 downto 0);
-    signal rx_register     : std_logic_vector(7 downto 0);
-    signal tx_register     : std_logic_vector(7 downto 0);
+    signal rx_register : std_logic_vector(7 downto 0);
+    signal tx_register : std_logic_vector(7 downto 0);
 
     signal uart_register : std_logic_vector(31 downto 0);
 
@@ -79,8 +79,8 @@ architecture RTL of RS485 is
 
     -- Signals for RX
     type state_rx_type is (IDLE, READ_BYTE, DONE);
-    signal state_rx      : state_rx_type := IDLE;
-    signal cnt_rx        : integer       := 0;
+    signal state_rx      : state_rx_type         := IDLE;
+    signal cnt_rx        : natural range 0 to 16 := 0;
     signal byte_received : std_logic;
     -- Signal for Buffer RX
     signal byte_read     : std_logic;
@@ -92,12 +92,12 @@ architecture RTL of RS485 is
     signal baud_ready : std_logic := '0';
 
     -- Signals for parity
-    signal parity : std_logic := '0';
-    signal number : integer   := 0;
+    signal parity : std_logic             := '0';
+    signal number : natural range 0 to 16 := 0;
 
     -- Interrupt signal
-    signal input_data   : std_logic;
-    signal rx_cmp_irq   : std_logic;
+    signal input_data : std_logic;
+    signal rx_cmp_irq : std_logic;
     -- signal interrupt_en : std_logic := '0';
 
     -- Sinal interno para controle de direção RS485 [RS485]
@@ -111,7 +111,7 @@ architecture RTL of RS485 is
 
     ------------ Function Count Ones -----------
     function count_ones(s : std_logic_vector) return integer is
-        variable temp : natural := 0;
+        variable temp : natural range 0 to s'high := 0;
     begin
         for i in s'range loop
             if s(i) = '1' then
@@ -140,7 +140,7 @@ architecture RTL of RS485 is
 begin                                   --Baud Entrada = 38400
 
     ------------- Baud Rate 19200 --------------
-    baud19200 : process(clk_baud, baud_19200) is
+    baud19200 : process(clk_baud) is
     begin
         if rising_edge(clk_baud) and (baud_19200 = '0') then
             baud_19200 <= '1';
@@ -150,7 +150,7 @@ begin                                   --Baud Entrada = 38400
     end process;
 
     -------------- Baud Rate 9600 --------------
-    baud9600 : process(baud_19200, baud_09600) is
+    baud9600 : process(baud_19200) is
     begin
         if rising_edge(baud_19200) and (baud_09600 = '0') then
             baud_09600 <= '1';
@@ -158,7 +158,7 @@ begin                                   --Baud Entrada = 38400
             baud_09600 <= '0';
         end if;
     end process;
-    
+
     -- force 9600
     baud_ready <= baud_09600;
 
@@ -360,7 +360,7 @@ begin                                   --Baud Entrada = 38400
     end process;
 
     -- MEALY: transmission
-    tx_proc : process(state_tx, tx_register, parity)
+    tx_proc : process(state_tx, tx_register, parity, cnt_tx)
     begin
         tx_done     <= '0';
         send_byte   <= '0';
@@ -537,6 +537,8 @@ begin                                   --Baud Entrada = 38400
     begin
         if rst = '1' then
             interrupts <= (others => '0');
+            input_data <= '0';
+
         elsif rising_edge(clk) then
             interrupts(1) <= '0';
 

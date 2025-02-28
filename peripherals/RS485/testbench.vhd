@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.decoder_types.all;
+use work.decoder_types.all; -- @suppress 
 
 entity RS485_testbench is
     generic(
@@ -49,7 +49,7 @@ architecture RTL of RS485_testbench is
     signal d_sig       : std_logic;
 
     -- Modelsim debug signals
-    signal cpu_state   : cpu_state_t;
+    signal cpu_state   : cpu_state_t; -- @suppress 
     signal debugString : string(1 to 40) := (others => '0');
 
     -- I/O signals
@@ -59,7 +59,7 @@ architecture RTL of RS485_testbench is
     signal gpio_output  : std_logic_vector(31 downto 0);
 
     signal ddata_r_timer   : std_logic_vector(31 downto 0);
-    signal timer_interrupt : std_logic_vector(5 downto 0);
+    signal timer_interrupt : std_logic_vector(5 downto 0); -- @suppress
     signal ddata_r_periph  : std_logic_vector(31 downto 0);
     signal ddata_r_sdram   : std_logic_vector(31 downto 0);
 
@@ -73,13 +73,17 @@ architecture RTL of RS485_testbench is
     signal ddata_r_lcd            : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
+    signal ddata_r_spwm           : std_logic_vector(31 downto 0);
+    signal ddata_r_crc            : std_logic_vector(31 downto 0);
+    signal ddata_r_key            : std_logic_vector(31 downto 0);
+    signal ddata_r_accelerometer  : std_logic_vector(31 downto 0);
     signal ddata_r_RS485          : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
 
-    signal TX              : std_logic;
+    signal TX              : std_logic; -- @suppress "Signal TX is never read"
     signal RX              : std_logic;
     signal uart_interrupts : std_logic_vector(1 downto 0);
 
-    signal rs485_dir_DE_tb : std_logic;
+    signal rs485_dir_DE_tb : std_logic; -- @suppress "Signal rs485_dir_DE_tb is never read"
 
     -- UART testbench
     signal transmit_byte  : std_logic_vector(7 downto 0) := x"23";
@@ -158,7 +162,7 @@ begin
 
     -- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-    instr_mux : entity work.instructionbusmux
+    instr_mux : entity work.instructionbusmux -- @suppress 
         port map(
             d_rd     => d_rd,
             dcsel    => dcsel,
@@ -168,7 +172,7 @@ begin
         );
 
     -- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
-    iram_quartus_inst : entity work.iram_quartus
+    iram_quartus_inst : entity work.iram_quartus -- @suppress 
         port map(
             address => address(9 downto 0),
             byteena => "1111",
@@ -180,7 +184,7 @@ begin
 
     -- dmemory_address <= daddress;
     -- Data Memory RAM
-    dmem : entity work.dmemory
+    dmem : entity work.dmemory -- @suppress 
         generic map(
             MEMORY_WORDS => DMEMORY_WORDS
         )
@@ -201,7 +205,7 @@ begin
     -- 0x20000    ->    Data memory
     -- 0x40000    ->    Input/Output generic address space
     -- 0x60000    ->    SDRAM address space
-    data_bus_mux : entity work.databusmux
+    data_bus_mux : entity work.databusmux -- @suppress 
         port map(
             dcsel          => dcsel,
             idata          => idata,
@@ -211,7 +215,7 @@ begin
             ddata_r        => ddata_r
         );
 
-    io_data_bus_mux : entity work.iodatabusmux
+    io_data_bus_mux : entity work.iodatabusmux -- @suppress 
         port map(
             daddress               => daddress,
             ddata_r_gpio           => ddata_r_gpio,
@@ -226,15 +230,15 @@ begin
             ddata_r_lcd            => ddata_r_lcd,
             ddata_r_fir_fil        => ddata_r_fir_fil,
             ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_spwm           => (others => '0'),
-            ddata_r_crc            => (others => '0'),
-            ddata_r_key            => (others => '0'),
-            ddata_r_accelerometer  => (others => '0'),
+            ddata_r_spwm           => ddata_r_spwm,
+            ddata_r_crc            => ddata_r_crc,
+            ddata_r_key            => ddata_r_key,
+            ddata_r_accelerometer  => ddata_r_accelerometer,
             ddata_r_RS485          => ddata_r_RS485 -- adicionando novo io do mux
         );
 
     -- Softcore instatiation
-    myRiscv : entity work.core
+    myRiscv : entity work.core -- @suppress 
         port map(
             clk        => clk,
             rst        => rst,
@@ -263,7 +267,7 @@ begin
     end process;
 
     -- Generic GPIO module instantiation
-    generic_gpio : entity work.gpio
+    generic_gpio : entity work.gpio -- @suppress 
         port map(
             clk             => clk,
             rst             => rst,
@@ -279,7 +283,7 @@ begin
             gpio_interrupts => gpio_interrupts
         );
 
-    generic_displays : entity work.led_displays
+    generic_displays : entity work.led_displays -- @suppress 
         port map(
             clk      => clk,
             rst      => rst,
@@ -302,6 +306,10 @@ begin
 
     -- RS485_UART module instantiation
     generic_RS485_uart : entity work.RS485
+        generic map(
+            MY_CHIPSELECT   => "10",
+            MY_WORD_ADDRESS => x"0170"
+        )
         port map(
             clk          => clk,
             rst          => rst,
@@ -393,7 +401,7 @@ begin
     end process;
 
     -- FileOutput DEBUG 
-    debug : entity work.trace_debug
+    debug : entity work.trace_debug -- @suppress 
         generic map(
             MEMORY_WORDS => IMEMORY_WORDS
         )

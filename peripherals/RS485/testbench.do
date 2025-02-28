@@ -16,7 +16,7 @@
 #******************************************************************************
 
 vlib work
-vcom RS485.vhd
+
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
 vcom ../../memory/instructionbusmux.vhd
@@ -39,7 +39,8 @@ vcom ../../core/csr.vhd
 vcom ../../core/core.vhd
 vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
-vcom coretestbench.vhd
+vcom RS485.vhd
+vcom testbench.vhd
 
 vsim -t ns work.RS485_testbench
 
