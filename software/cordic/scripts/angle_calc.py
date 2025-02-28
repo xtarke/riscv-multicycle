@@ -31,7 +31,7 @@ def to_signed_16bit(val):
 sine_scaled = to_signed_16bit(sine_scaled)
 cosine_scaled = to_signed_16bit(cosine_scaled)
 
-print(f'Hex in: {hex(int(to_signed_16bit(angle_radians)))}')
+# print(f'Hex in: {hex(int(to_signed_16bit(angle_radians)))}')
 print("Scaled values: ")
 print(f"Angle in: {int(scale*angle_radians)}")
 

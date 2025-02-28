@@ -30,6 +30,7 @@ entity iodatabusmux is
         ddata_r_crc		        : in  std_logic_vector(31 downto 0);
         ddata_r_key             : in   std_logic_vector(31 downto 0);
         ddata_r_accelerometer   : in  std_logic_vector(31 downto 0);
+        ddata_r_cordic          : in std_logic_vector(31 downto 0);
         -- Mux 
         ddata_r_periph   : out std_logic_vector(31 downto 0) --! Connect to data bus mux
     );
@@ -56,6 +57,7 @@ begin
         ddata_r_crc when x"000F",
         ddata_r_spwm  when x"0011",
         ddata_r_accelerometer when x"0012",
+        ddata_r_cordic when x"0015",
         -- Add new io peripherals here
         (others => '0') when others;
 end architecture RTL;
