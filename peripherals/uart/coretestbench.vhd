@@ -237,11 +237,7 @@ begin
             ddata_r_stepmot        => ddata_r_stepmot,
             ddata_r_lcd            => ddata_r_lcd,
             ddata_r_fir_fil        => ddata_r_fir_fil,
-            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_spwm           => (others => '0'),
-            ddata_r_crc            => (others => '0'),
-            ddata_r_key            => (others => '0'),
-            ddata_r_accelerometer  => (others => '0') 
+            ddata_r_nn_accelerator => ddata_r_nn_accelerator
         );
 
     -- Softcore instatiation
