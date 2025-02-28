@@ -117,15 +117,15 @@ begin
     clock_baud : process
         constant period : time := 26041 ns;
     begin
-        clk_baud  <= '0';
+        clk_baud <= '0';
         --wait for 2 ns;
         wait for period / 2;
-        clk_baud  <= '1';
+        clk_baud <= '1';
         --wait for 2 ns;
         wait for period / 2;
     end process clock_baud;
-    
-        clock_baud_9600 : process
+
+    clock_baud_9600 : process
         constant period : time := 104 us;
     begin
         clk_state <= FALSE;
@@ -135,7 +135,6 @@ begin
         --wait for 2 ns;
         wait for period / 2;
     end process clock_baud_9600;
-    
 
     reset : process is
     begin
@@ -237,7 +236,11 @@ begin
             ddata_r_stepmot        => ddata_r_stepmot,
             ddata_r_lcd            => ddata_r_lcd,
             ddata_r_fir_fil        => ddata_r_fir_fil,
-            ddata_r_nn_accelerator => ddata_r_nn_accelerator
+            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+            ddata_r_spwm           => (others => '0'),
+            ddata_r_crc            => (others => '0'),
+            ddata_r_key            => (others => '0'),
+            ddata_r_accelerometer  => (others => '0')
         );
 
     -- Softcore instatiation
@@ -332,26 +335,26 @@ begin
         --wait until clk_state;
         --RX     <= '0';
         for i in 0 to 9 loop
-            RX     <= (transmit_frame(i));
+            RX <= (transmit_frame(i));
             --cnt_rx <= cnt_rx + 1;
             wait until clk_state;
         end loop;
         --cnt_rx <= 0;
-         RX     <= '1';
+        RX <= '1';
         wait for 1000 us;
     end process;
 
     process
     begin
-    transmit_byte  <= x"A5";
-    transmit_frame <= '1' & transmit_byte & '0';
-    wait for 2000 us;
-    transmit_byte  <= x"61";
-    transmit_frame <= '1' & transmit_byte & '0';
-    wait for 2000 us;
-    transmit_byte  <= x"61";
-    transmit_frame <= '1' & transmit_byte & '0';
-    wait for 2000 us;
+        transmit_byte  <= x"A5";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 2000 us;
+        transmit_byte  <= x"61";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 2000 us;
+        transmit_byte  <= x"61";
+        transmit_frame <= '1' & transmit_byte & '0';
+        wait for 2000 us;
     end process;
 
     -- FileOutput DEBUG 
