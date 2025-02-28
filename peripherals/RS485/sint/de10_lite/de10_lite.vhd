@@ -9,7 +9,7 @@ LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
-use work.decoder_types.all;
+use work.decoder_types.all; -- @suppress 
 
 entity de10_lite is
 	generic(
@@ -73,7 +73,7 @@ architecture rtl of de10_lite is
 	signal clk_baud   : std_logic;      --! 38400 Hz
 	-- PLL signals
 	signal locked_sig : std_logic;
-
+	
 	-- Instruction bus signals
 	signal idata    : std_logic_vector(31 downto 0);
 	signal iaddress : unsigned(15 downto 0);
@@ -94,7 +94,7 @@ architecture rtl of de10_lite is
 	signal ddata_r_sdram : std_logic_vector(31 downto 0);
 
 	-- CPU state signals
-	signal state      : cpu_state_t;
+	signal state      : cpu_state_t; -- @suppress 
 	signal div_result : std_logic_vector(31 downto 0);
 
 	-- I/O signals
@@ -147,7 +147,7 @@ begin
 		);
 
 	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
-	iram_quartus_inst : entity work.iram_quartus
+	iram_quartus_inst : entity work.iram_quartus -- @suppress 
 		port map(
 			address => address,
 			byteena => "1111",
@@ -159,7 +159,7 @@ begin
 
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	instr_mux : entity work.instructionbusmux
+	instr_mux : entity work.instructionbusmux -- @suppress 
 		port map(
 			d_rd     => d_rd,
 			dcsel    => dcsel,
@@ -169,7 +169,7 @@ begin
 		);
 
 	-- Data Memory RAM
-	dmem : entity work.dmemory
+	dmem : entity work.dmemory -- @suppress 
 		generic map(
 			MEMORY_WORDS => DMEMORY_WORDS
 		)
@@ -190,7 +190,7 @@ begin
 	-- 0x20000    ->    Data memory
 	-- 0x40000    ->    Input/Output generic address space
 	-- ( ... )    ->    ( ... )
-	datamux : entity work.databusmux
+	datamux : entity work.databusmux -- @suppress 
 		port map(
 			dcsel          => dcsel,
 			idata          => idata,
@@ -201,7 +201,7 @@ begin
 		);
 
 	-- Softcore instatiation
-	myRiscv : entity work.core
+	myRiscv : entity work.core -- @suppress 
 		port map(
 			clk        => clk,
 			rst        => rst,
@@ -225,7 +225,7 @@ begin
 	interrupts(30 downto 25) <= timer_interrupt;
 	interrupts(31)           <= uart_interrupts(0);
 
-	io_data_bus_mux : entity work.iodatabusmux
+	io_data_bus_mux : entity work.iodatabusmux -- @suppress 
 		port map(
 			daddress               => daddress,
 			ddata_r_gpio           => ddata_r_gpio,
@@ -247,7 +247,7 @@ begin
 			ddata_r_RS485          => ddata_r_RS485 -- adicionando novo io do mux
 		);
 
-	generic_gpio : entity work.gpio
+	generic_gpio : entity work.gpio -- @suppress 
 		port map(
 			clk             => clk,
 			rst             => rst,
@@ -264,7 +264,7 @@ begin
 		);
 
 	-- Timer instantiation
-	timer : entity work.Timer
+	timer : entity work.Timer -- @suppress 
 		generic map(
 			prescaler_size => 16,
 			compare_size   => 32
@@ -282,7 +282,7 @@ begin
 			timer_interrupt => timer_interrupt
 		);
 
-	generic_displays : entity work.led_displays
+	generic_displays : entity work.led_displays -- @suppress 
 		port map(
 			clk      => clk,
 			rst      => rst,
