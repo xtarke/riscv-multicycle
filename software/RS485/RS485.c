@@ -44,20 +44,6 @@ void RS485_write(volatile uint8_t data)
 
 }
 
-// void RS485_setup()
-// {
-// 	/* Slow assembly
-// 	RS485_SETUP_REG->baud_rate = baud;
-// 	RS485_SETUP_REG->parity = parity; */
-
-// 	baud_rate_t baud = _9600;
-// 	parity_t parity = NO_PARITY;
-
-// 	/* Fast assembly: less instructions */
-// 	*((_IO32 *)RS485_REGISTER) &= (~0x0f) << 19;
-// 	*((_IO32 *)RS485_REGISTER) |= ((baud & 0x03) << 19) | ((0x03 & parity) << 21);
-// }
-
 inline void RS485_reception_enable(void)
 {
 	// RS485_REGISTER->rx_enable = 1; //DONT WORK
@@ -74,32 +60,14 @@ uint8_t RS485_read(void)
 {
 	volatile uint8_t byte;
 
-	/*Wait for a new byte */
-	// while (!RS485_REGISTER->rx_done)
-	// {
-	// };
-
-	while (!(RS485_BASE_ADDRESS >> 18) & 1)
+	while (!((RS485_BASE_ADDRESS >> 18) & 1))
 	{
 	};
-
-	/* Read byte */
-	// byte = RS485_REGISTER->rx_byte;
-
-	// byte = *(volatile uint32_t *)RS485_REGISTER >> 8;
-
-	// byte = RS485_BASE_ADDRESS >> 8 & 0xFF;
-	// RS485_BASE_ADDRESS |= (1 << 23) ;
-
-	/* Reenable receiver */
-	// RS485_REGISTER->rx_enable = 1;
-
-	// return byte;
 
 	return RS485_BASE_ADDRESS >> 8 & 0xFF;
 }
 
 inline uint8_t RS485_unblocked_read(void)
 {
-	return RS485_REGISTER->rx_byte;
+	return RS485_BASE_ADDRESS >> 8 & 0xFF;
 }

@@ -20,7 +20,7 @@ entity RS485_testbench is
         HEX4 : out std_logic_vector(7 downto 0);
         HEX5 : out std_logic_vector(7 downto 0);
         ----------- SW ------------
-        LEDR : out std_logic_vector(9 downto 0)
+        LEDR : out std_logic_vector(9 downto 0) -- @suppress 
     );
 
 end entity RS485_testbench;
@@ -65,20 +65,7 @@ architecture RTL of RS485_testbench is
 
     signal gpio_interrupts  : std_logic_vector(6 downto 0);
     signal ddata_r_segments : std_logic_vector(31 downto 0);
-    -- signal ddata_r_uart           : std_logic_vector(31 downto 0);
-    -- signal ddata_r_adc            : std_logic_vector(31 downto 0);
-    -- signal ddata_r_i2c            : std_logic_vector(31 downto 0);
-    -- signal ddata_r_dig_fil        : std_logic_vector(31 downto 0);
-    -- signal ddata_r_stepmot        : std_logic_vector(31 downto 0);
-    -- signal ddata_r_lcd            : std_logic_vector(31 downto 0);
-    -- signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
-    -- signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
-    -- signal ddata_r_spwm           : std_logic_vector(31 downto 0);
-    -- signal ddata_r_crc            : std_logic_vector(31 downto 0);
-    -- signal ddata_r_key            : std_logic_vector(31 downto 0);
-    -- signal ddata_r_accelerometer  : std_logic_vector(31 downto 0);
     signal ddata_r_RS485    : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
-
 
     signal TX              : std_logic; -- @suppress "Signal TX is never read"
     signal RX              : std_logic;
@@ -87,7 +74,7 @@ architecture RTL of RS485_testbench is
     signal rs485_dir_DE_tb : std_logic; -- @suppress "Signal rs485_dir_DE_tb is never read"
 
     -- UART testbench
-    signal transmit_byte  : std_logic_vector(7 downto 0) := x"23";
+    signal transmit_byte  : std_logic_vector(7 downto 0) := x"00";
     signal transmit_frame : std_logic_vector(9 downto 0) := (others => '1');
     signal clk_state      : boolean                      := FALSE;
 
@@ -137,29 +124,6 @@ begin
         rst <= '0';
         wait;
     end process reset;
-
-    -- Connect gpio data to output hardware
-    LEDR <= gpio_output(9 downto 0);
-
-    -- Connect input hardware to gpio data
-    gpio_test : process
-    begin
-        gpio_input <= (others => '0');
-        wait for 500 us;
-
-        -- Generate a input pulse (External IRQ 0 or pooling)
-        gpio_input(0) <= '1';
-        wait for 1 us;
-        gpio_input(0) <= '0';
-
-        -- Generate a input pulse (External IRQ 1 or pooling)
-        wait for 200 us;
-        gpio_input(1) <= '1';
-        wait for 1 us;
-        gpio_input(1) <= '0';
-
-        wait;
-    end process;
 
     -- IMem shoud be read from instruction and data buses
     -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
@@ -215,28 +179,6 @@ begin
             ddata_r_sdram  => ddata_r_sdram,
             ddata_r        => ddata_r
         );
-
-    -- io_data_bus_mux : entity work.iodatabusmux -- @suppress 
-    --     port map(
-    --         daddress               => daddress,
-    --         ddata_r_gpio           => ddata_r_gpio,
-    --         ddata_r_segments       => ddata_r_segments,
-    --         ddata_r_uart           => ddata_r_uart,
-    --         ddata_r_adc            => ddata_r_adc,
-    --         ddata_r_i2c            => ddata_r_i2c,
-    --         ddata_r_timer          => ddata_r_timer,
-    --         ddata_r_periph         => ddata_r_periph,
-    --         ddata_r_dif_fil        => ddata_r_dig_fil,
-    --         ddata_r_stepmot        => ddata_r_stepmot,
-    --         ddata_r_lcd            => ddata_r_lcd,
-    --         ddata_r_fir_fil        => ddata_r_fir_fil,
-    --         ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-    --         ddata_r_spwm           => ddata_r_spwm,
-    --         ddata_r_crc            => ddata_r_crc,
-    --         ddata_r_key            => ddata_r_key,
-    --         ddata_r_accelerometer  => ddata_r_accelerometer,
-    --         ddata_r_RS485          => ddata_r_RS485 -- adicionando novo io do mux
-    --     );
 
     io_data_bus_mux : entity work.iodatabusmux -- @suppress 
         port map(
@@ -351,7 +293,7 @@ begin
             rs485_dir_DE => rs485_dir_DE_tb -- [RS485]adicionado para verificar sinal DE
         );
 
-        -- ddata_r_RS485 <= x"45674567";
+    -- ddata_r_RS485 <= x"45674567";
 
     data_transmit_proc : process
     begin
@@ -366,8 +308,8 @@ begin
 
     process
     begin
-        wait for 9 ms;
-        -- wait for 4300 us;
+        wait for 8700 us;
+        -- wait for 300 us;
 
         transmit_byte  <= x"81";
         transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
