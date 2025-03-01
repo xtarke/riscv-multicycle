@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.decoder_types.all; -- @suppress 
+use work.decoder_types.all;             -- @suppress 
 
 entity RS485_testbench is
     generic(
@@ -49,7 +49,7 @@ architecture RTL of RS485_testbench is
     signal d_sig       : std_logic;
 
     -- Modelsim debug signals
-    signal cpu_state   : cpu_state_t; -- @suppress 
+    signal cpu_state   : cpu_state_t;   -- @suppress 
     signal debugString : string(1 to 40) := (others => '0');
 
     -- I/O signals
@@ -58,26 +58,27 @@ architecture RTL of RS485_testbench is
     signal gpio_input   : std_logic_vector(31 downto 0);
     signal gpio_output  : std_logic_vector(31 downto 0);
 
-    signal ddata_r_timer   : std_logic_vector(31 downto 0);
+    -- signal ddata_r_timer   : std_logic_vector(31 downto 0);
     signal timer_interrupt : std_logic_vector(5 downto 0); -- @suppress
     signal ddata_r_periph  : std_logic_vector(31 downto 0);
     signal ddata_r_sdram   : std_logic_vector(31 downto 0);
 
-    signal gpio_interrupts        : std_logic_vector(6 downto 0);
-    signal ddata_r_segments       : std_logic_vector(31 downto 0);
-    signal ddata_r_uart           : std_logic_vector(31 downto 0);
-    signal ddata_r_adc            : std_logic_vector(31 downto 0);
-    signal ddata_r_i2c            : std_logic_vector(31 downto 0);
-    signal ddata_r_dig_fil        : std_logic_vector(31 downto 0);
-    signal ddata_r_stepmot        : std_logic_vector(31 downto 0);
-    signal ddata_r_lcd            : std_logic_vector(31 downto 0);
-    signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
-    signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
-    signal ddata_r_spwm           : std_logic_vector(31 downto 0);
-    signal ddata_r_crc            : std_logic_vector(31 downto 0);
-    signal ddata_r_key            : std_logic_vector(31 downto 0);
-    signal ddata_r_accelerometer  : std_logic_vector(31 downto 0);
-    signal ddata_r_RS485          : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
+    signal gpio_interrupts  : std_logic_vector(6 downto 0);
+    signal ddata_r_segments : std_logic_vector(31 downto 0);
+    -- signal ddata_r_uart           : std_logic_vector(31 downto 0);
+    -- signal ddata_r_adc            : std_logic_vector(31 downto 0);
+    -- signal ddata_r_i2c            : std_logic_vector(31 downto 0);
+    -- signal ddata_r_dig_fil        : std_logic_vector(31 downto 0);
+    -- signal ddata_r_stepmot        : std_logic_vector(31 downto 0);
+    -- signal ddata_r_lcd            : std_logic_vector(31 downto 0);
+    -- signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
+    -- signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
+    -- signal ddata_r_spwm           : std_logic_vector(31 downto 0);
+    -- signal ddata_r_crc            : std_logic_vector(31 downto 0);
+    -- signal ddata_r_key            : std_logic_vector(31 downto 0);
+    -- signal ddata_r_accelerometer  : std_logic_vector(31 downto 0);
+    signal ddata_r_RS485    : std_logic_vector(31 downto 0); -- adicionando sinal do novo io do mux
+
 
     signal TX              : std_logic; -- @suppress "Signal TX is never read"
     signal RX              : std_logic;
@@ -184,7 +185,7 @@ begin
 
     -- dmemory_address <= daddress;
     -- Data Memory RAM
-    dmem : entity work.dmemory -- @suppress 
+    dmem : entity work.dmemory          -- @suppress 
         generic map(
             MEMORY_WORDS => DMEMORY_WORDS
         )
@@ -215,30 +216,52 @@ begin
             ddata_r        => ddata_r
         );
 
+    -- io_data_bus_mux : entity work.iodatabusmux -- @suppress 
+    --     port map(
+    --         daddress               => daddress,
+    --         ddata_r_gpio           => ddata_r_gpio,
+    --         ddata_r_segments       => ddata_r_segments,
+    --         ddata_r_uart           => ddata_r_uart,
+    --         ddata_r_adc            => ddata_r_adc,
+    --         ddata_r_i2c            => ddata_r_i2c,
+    --         ddata_r_timer          => ddata_r_timer,
+    --         ddata_r_periph         => ddata_r_periph,
+    --         ddata_r_dif_fil        => ddata_r_dig_fil,
+    --         ddata_r_stepmot        => ddata_r_stepmot,
+    --         ddata_r_lcd            => ddata_r_lcd,
+    --         ddata_r_fir_fil        => ddata_r_fir_fil,
+    --         ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+    --         ddata_r_spwm           => ddata_r_spwm,
+    --         ddata_r_crc            => ddata_r_crc,
+    --         ddata_r_key            => ddata_r_key,
+    --         ddata_r_accelerometer  => ddata_r_accelerometer,
+    --         ddata_r_RS485          => ddata_r_RS485 -- adicionando novo io do mux
+    --     );
+
     io_data_bus_mux : entity work.iodatabusmux -- @suppress 
         port map(
             daddress               => daddress,
             ddata_r_gpio           => ddata_r_gpio,
             ddata_r_segments       => ddata_r_segments,
-            ddata_r_uart           => ddata_r_uart,
-            ddata_r_adc            => ddata_r_adc,
-            ddata_r_i2c            => ddata_r_i2c,
-            ddata_r_timer          => ddata_r_timer,
-            ddata_r_periph         => ddata_r_periph,
-            ddata_r_dif_fil        => ddata_r_dig_fil,
-            ddata_r_stepmot        => ddata_r_stepmot,
-            ddata_r_lcd            => ddata_r_lcd,
-            ddata_r_fir_fil        => ddata_r_fir_fil,
-            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_spwm           => ddata_r_spwm,
-            ddata_r_crc            => ddata_r_crc,
-            ddata_r_key            => ddata_r_key,
-            ddata_r_accelerometer  => ddata_r_accelerometer,
-            ddata_r_RS485          => ddata_r_RS485 -- adicionando novo io do mux
+            ddata_r_uart           => (others => '0'),
+            ddata_r_adc            => (others => '0'),
+            ddata_r_i2c            => (others => '0'),
+            ddata_r_timer          => (others => '0'),
+            ddata_r_dif_fil        => (others => '0'),
+            ddata_r_stepmot        => (others => '0'),
+            ddata_r_lcd            => (others => '0'),
+            ddata_r_fir_fil        => (others => '0'),
+            ddata_r_nn_accelerator => (others => '0'),
+            ddata_r_spwm           => (others => '0'),
+            ddata_r_crc            => (others => '0'),
+            ddata_r_key            => (others => '0'),
+            ddata_r_accelerometer  => (others => '0'),
+            ddata_r_RS485          => ddata_r_RS485, -- adicionando novo io do mux
+            ddata_r_periph         => ddata_r_periph
         );
 
     -- Softcore instatiation
-    myRiscv : entity work.core -- @suppress 
+    myRiscv : entity work.core          -- @suppress 
         port map(
             clk        => clk,
             rst        => rst,
@@ -267,7 +290,7 @@ begin
     end process;
 
     -- Generic GPIO module instantiation
-    generic_gpio : entity work.gpio -- @suppress 
+    generic_gpio : entity work.gpio     -- @suppress 
         port map(
             clk             => clk,
             rst             => rst,
@@ -316,6 +339,7 @@ begin
             clk_baud     => clk_baud,
             daddress     => daddress,
             ddata_w      => ddata_w,
+            -- ddata_r      => ddata_r_RS485, -- [RS485]trocando iobus
             ddata_r      => ddata_r_RS485, -- [RS485]trocando iobus
             d_we         => d_we,
             d_rd         => d_rd,
@@ -326,6 +350,8 @@ begin
             interrupts   => uart_interrupts,
             rs485_dir_DE => rs485_dir_DE_tb -- [RS485]adicionado para verificar sinal DE
         );
+
+        -- ddata_r_RS485 <= x"45674567";
 
     data_transmit_proc : process
     begin
@@ -341,7 +367,7 @@ begin
     process
     begin
         wait for 9 ms;
-        -- wait for 300 us;
+        -- wait for 4300 us;
 
         transmit_byte  <= x"81";
         transmit_frame <= (others => '0'); -- Valor temporário para forçar a mudança
@@ -401,7 +427,7 @@ begin
     end process;
 
     -- FileOutput DEBUG 
-    debug : entity work.trace_debug -- @suppress 
+    debug : entity work.trace_debug     -- @suppress 
         generic map(
             MEMORY_WORDS => IMEMORY_WORDS
         )

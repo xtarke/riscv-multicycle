@@ -127,18 +127,17 @@ view wave
 # add wave -label datamemory -radix hex /dmem/ram_block
 
 
-# add wave -height 15 -divider "Data bus"
-# add wave -label daddress -radix hex /daddress
-# add wave -label ddata_r -radix hex  /ddata_r
-# add wave -label ddata_w -radix hex  /ddata_w
-# add wave -label dmask -radix bin /dmask
-# add wave -label dcsel   /dcsel
-# add wave -label d_we    /d_we
-# add wave -label d_rd    /d_rd
-# add wave -label d_sig   /d_sig
+#add wave -height 15 -divider "Data bus"
+#add wave -label daddress -radix hex /daddress
+#add wave -label ddata_r -radix hex  /ddata_r
+#add wave -label ddata_w -radix hex  /ddata_w
+#add wave -label dcsel   /dcsel
+#add wave -label d_we    /d_we
+#add wave -label d_rd    /d_rd
+#add wave -label d_sig   /d_sig
 # 
 # add wave -height 15 -divider "Peripheral Data bus"
-    add wave -label daddress -radix hex /daddress
+# add wave -label daddress -radix hex /daddress
 # add wave -label ddata_r_periph -radix hex   /ddata_r_periph
 # add wave -label ddata_r_gpio -radix hex     /ddata_r_gpio
 # 
@@ -158,8 +157,8 @@ add wave -label tx_register -radix hex /generic_RS485_uart/tx_register
 add wave -label rx_register -radix hex /generic_RS485_uart/rx_register
 add wave -label from_rx -radix bin /generic_RS485_uart/rx_receive/from_rx
 add wave -label baud_ready -radix bin /generic_RS485_uart/baud_ready
-add wave -label byte_received -radix bin /generic_RS485_uart/byte_received
-add wave -label byte_read -radix bin /generic_RS485_uart/byte_read
+#add wave -label byte_received -radix bin /generic_RS485_uart/byte_received
+#add wave -label byte_read -radix bin /generic_RS485_uart/byte_read
 add wave -label tx_done /generic_RS485_uart/tx_done
 add wave -label rx_done /generic_RS485_uart/rx_done
 add wave -label cnt_tx /generic_RS485_uart/cnt_tx
@@ -187,6 +186,10 @@ add wave -height 15 -divider "Input/Output SIM"
 #add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 add wave -label HEX1 -radix hex /HEX1
+add wave -label HEX2 -radix hex /HEX2
+add wave -label HEX3 -radix hex /HEX3
+add wave -label HEX4 -radix hex /HEX4
+add wave -label HEX5 -radix hex /HEX5
 
 run 20 ms
 #wave zoomfull

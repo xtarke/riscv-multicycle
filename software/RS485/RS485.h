@@ -42,18 +42,18 @@ typedef enum irq_buffer_config
 
 void RS485_write(uint8_t data);
 // void RS485_setup();
-void Buffer_setup(buffer_t buffer_type, uint8_t config_byte);
-void RS485_interrupt_enable(void);
+// void Buffer_setup(buffer_t buffer_type, uint8_t config_byte);
+// void RS485_interrupt_enable(void);
 void RS485_reception_enable(void);
 void RS485_reception_disable(void);
 uint8_t RS485_read(void);
 uint8_t RS485_unblocked_read(void);
-void RS485_buffer_read(uint8_t *vetor, uint8_t size);
+// void RS485_buffer_read(uint8_t *vetor, uint8_t size);
 
 typedef struct
 {
-  _IO32 tx_byte : 8;       /*!< Data to transfer. */
-  _IO32 rx_byte : 8;       /*!< Data received. */
+  _IO8 tx_byte;       /*!< Data to transfer. */
+  _IO8 rx_byte;       /*!< Data received. */
   _IO32 tx_start : 1;      /*!< Start Transmission. Bit 16. */
   _IO32 tx_done : 1;       /*!< Transmission done flag. Bit 17. */
   _IO32 rx_done : 1;       /*!< Reception done flag. Bit 18 */

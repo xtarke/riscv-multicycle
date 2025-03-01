@@ -33,7 +33,7 @@ uint8_t keep_connection(uint8_t address)
 	RS485_write(0);
 	RS485_write(0);
 
-	RS485_reception_enable();
+	// RS485_reception_enable();
 
 	uint8_t data = 0;
 	for (int i = 0; i < 8; i++)
@@ -100,30 +100,74 @@ uint8_t check_alarm_input(uint8_t address)
 
 int main()
 {
-	// RS485_setup();
-	// RS485_reception_enable();
-	SEGMENTS = 1;
-
+	RS485_reception_enable();
+	// RS485_BASE_ADDRESS |= (1 << 23);
+	// SEGMENTS = 0xFF765432;
+	// volatile uint32_t test = 0;
 	uint8_t data = 0;
+	// delay_(50);
+
+	RS485_write(0x81);
+	RS485_write(0); // 0 to 3
+	RS485_write(0xFD);
+	RS485_write(0);
+	RS485_write(0);
+	RS485_write(0);
+	RS485_write(0);
+
+	// for (int i = 0; i < 8; i++)
+	// 	SEGMENTS = RS485_read();
 
 	while (1)
 	{
+		SEGMENTS = RS485_read();
 		// Testing RS485 - Transmission
 		// RS485_write('A');
 		// RS485_write('L');
 		// RS485_write('E');
 		// RS485_write('X');
 
-		// RS485_read();
-		// SEGMENTS = RS485_REGISTER->rx_byte;
+		// SEGMENTS = RS485_read();
+
+		// test = (volatile uint32_t);
+
+		// volatile uint32_t *ptr = &RS485_BASE_ADDRESS;
+		// uint32_t word = *ptr;  // Read the word from memory
+		// SEGMENTS = ((volatile uint32_t *)&RS485_BASE_ADDRESS);
+
+		// while (((RS485_BASE_ADDRESS >> 18) & 1) == 0)
+		// {
+		// };
+
+		// SEGMENTS = RS485_BASE_ADDRESS >> 8 & 0xFF;
+		// SEGMENTS = 0xFFFFFFFF;
+
+		// // // RS485_BASE_ADDRESS = 0x12344321;
+		// if(data != (RS485_BASE_ADDRESS >> 8 & 0xFF))
+		// {
+		// 	data = RS485_BASE_ADDRESS >> 8 & 0xFF;
+		// 	SEGMENTS = data;
+		// }
+
+		// delay_(100);
+
+		// while ((RS485_BASE_ADDRESS >> 18) & 1)
+		// {
+		// };
+
+		// delay_(100);
+
+		// *(volatile uint32_t*)RS485_REGISTER = 0xFFFFFFFF;
 
 		// SEGMENTS_BASE_ADDRESS = data;  // Display data in IO bus
 
 		// power_on(0);
-			if (keep_connection(0))
-				SEGMENTS = 2;
-			else
-				SEGMENTS = 0xE;
+		// if (keep_connection(0))
+		// 	SEGMENTS = 0x01;
+		// else
+		// 	SEGMENTS = 0xE;
+
+		// keep_connection(0);
 	}
 	return 0;
 }

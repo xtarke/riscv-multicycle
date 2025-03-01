@@ -5,6 +5,7 @@ peripherals/*/sint/de10_lite/output_files
 peripherals/*/sint/de10_lite/simulation
 peripherals/*/sint/de10_lite/*.bak
 peripherals/*/sint/de10_lite/*.qdf
+peripherals/*/sint/de10_lite/*.qws
 
 peripherals/*/*.s
 peripherals/*/transcript
