@@ -144,7 +144,7 @@ view wave
 # add wave -label gpio_interrupts -radix hex /gpio_interrupts
 # add wave -label gpio_input -radix hex /gpio_input
 
-add wave -height 21 -divider "UART"
+add wave -height 21 -divider "RS485"
 add wave -label clk /generic_RS485_uart/clk
 add wave -label clk_baud /generic_RS485_uart/clk_baud
 add wave -label transmit_byte -radix hex /transmit_byte
@@ -186,10 +186,10 @@ add wave -height 15 -divider "Input/Output SIM"
 #add wave -label LEDR -radix hex /LEDR
 add wave -label HEX0 -radix hex /HEX0
 add wave -label HEX1 -radix hex /HEX1
-add wave -label HEX2 -radix hex /HEX2
-add wave -label HEX3 -radix hex /HEX3
-add wave -label HEX4 -radix hex /HEX4
-add wave -label HEX5 -radix hex /HEX5
+#add wave -label HEX2 -radix hex /HEX2
+#add wave -label HEX3 -radix hex /HEX3
+#add wave -label HEX4 -radix hex /HEX4
+#add wave -label HEX5 -radix hex /HEX5
 
 run 20 ms
 #wave zoomfull
