@@ -39,11 +39,11 @@ Para simular o periférico foi gerados valores para os eixos via SPI SLAVE.
 
 ## Integração ao softcore
 ### Parte 1 - VHDL
-Esse periférico fornece os valores do eixos, então o softcore precisa **ler** esses dados.
+Esse periférico fornece os valores do eixos e o maior valor lido em cada eixo desde o último reset, então o softcore precisa **ler** esses dados.
 Foi adicionado ao módulo do acelerômetro um processo de leitura.
 
 ```vhdl
--- insert the values ​​on the core bus
+  -- insert the values ​​on the core bus
   process (clk, rst)
     begin
     if rst = '1' then
@@ -59,6 +59,12 @@ Foi adicionado ao módulo do acelerômetro um processo de leitura.
 					ddata_r <= x"0000" & axi_y;
 				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
 					ddata_r <= x"0000" & axi_z;
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
+					ddata_r <= x"0000" & s_axi_x_max;
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+					ddata_r <= x"0000" & s_axi_y_max;
+				elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 5) then
+					ddata_r <= x"0000" & s_axi_z_max;
 				end if;
 			end if;
       end if;
@@ -72,7 +78,7 @@ Para generalização do softcore e periféricos foi agregado ao bloco do aceler�
 
 ![enter image description here](https://i.imgur.com/STL6NcP.png)
 
-Instanciamos uma entidade GPIO que receberá os valores de input por meio das chaves SW(7 downto 0) presentes na placa de desenvolvimento utilizada. Os valores de output serão enviados para os LEDs da placa para que possamos desenvolver uma aplicação.
+Instanciou-se uma entidade GPIO que receberá os valores de input por meio das chaves SW(7 downto 0) presentes na placa de desenvolvimento utilizada. Os valores de output serão enviados para os LEDs da placa para desenvolvimento da aplicação.
 ```vhdl
 -- Instância GPIO	
 generic_gpio: entity work.gpio
@@ -98,7 +104,7 @@ A chave SW(8) foi utilizada como botão de modo debug, que permite enviar os val
   rst <= SW(9);                                 -- Chave para o RESET
   sw_debug <= SW(8);                            -- Chave para debug
 ```
-Instanciamos o acelerômetro utilizando como saída a entrada do multiplexador **ddata_r_accelerometer**, cujo endereço será aquele comentado anteriormente (0x0120).
+Instanciou-se o acelerômetro utilizando como saída a entrada do multiplexador **ddata_r_accelerometer**, cujo endereço será aquele comentado anteriormente (0x0120).
 ```vhdl    
     -- Instância Acelerômetro
     e_accelerometer: entity work.accel_bus
@@ -150,6 +156,8 @@ Os valores dos eixos são finalmente colocados nos displays de 7 segmentos após
                 HEX_1 => HEX1,
                 HEX_2 => HEX2);
 ```
+>Este trecho atualmente está comentado na versão sint_core_yes pois na nova implementação envolvendo os valores máximos o display deve receber os dados do softcore. 
+
 O restante dos displays não utilizados são apagados para que facilite a visualização dos resultados.
 ```vhdl
 HEX3 <= "11111111";
@@ -167,13 +175,18 @@ Em hardware.h as definição dos endereços utilizados:
 ```
 
 #### Protótipos e implementação das funções
-Diferentes eixos do acelerômetros podem ser lidos por meio de diferentes funções.
+Diferentes eixos do acelerômetros e seus valores máximos podem ser lidos por meio de diferentes funções.
 ```c 
 typedef struct
 {
-	_IO32 axe_x; //	288, x120
-	_IO32 axe_y; //	289, x121
-	_IO32 axe_z; //	290, x122
+	_IO32 axe_x; //	0x0000, 128, x80
+	_IO32 axe_y; //	0x0001, 129, x81
+	_IO32 axe_z; //	0x0002, 130, x82
+	_IO32 axe_x_max; //	0x0000, 131, x83
+	_IO32 axe_y_max; //	0x0001, 132, x84
+	_IO32 axe_z_max; //	0x0002, 133, x85
+	// dado que vai para jose
+	// dado que vem do josé
 } ACCEL_TYPE;
 
 #define ACCEL ((ACCEL_TYPE *) &ACCELEROMETER_BASE_ADDRESS)
@@ -181,19 +194,40 @@ typedef struct
 uint32_t read_axe_x(void);
 uint32_t read_axe_y(void);
 uint32_t read_axe_z(void);
+uint32_t read_axe_x_max(void);
+uint32_t read_axe_y_max(void);
+uint32_t read_axe_z_max(void);
 ```
 ```c 
 uint32_t read_axe_x(void)
 {
-	return ACCEL -> axe_x;}
+	return ACCEL -> axe_x;
+}
 
 uint32_t read_axe_y(void)
 {
-	return ACCEL -> axe_y;}
+	return ACCEL -> axe_y;
+}
 
 uint32_t read_axe_z(void)
 {
-	return ACCEL -> axe_z;}
+	return ACCEL -> axe_z;
+}
+
+uint32_t read_axe_x_max(void)
+{
+	return ACCEL -> axe_x_max;
+}
+
+uint32_t read_axe_y_max(void)
+{
+	return ACCEL -> axe_y_max;
+}
+
+uint32_t read_axe_z_max(void)
+{
+	return ACCEL -> axe_z_max;
+}
 ```
 
 #### Código para testar o funcionamento do periférico
@@ -284,4 +318,71 @@ Por meio de diversas comparações, o código identifica em quais LEDs devem ser
   // OUTBUS = 0x2ef;
 }
 return 0;
+```
+
+#### Segunda aplicação
+Uma segunda aplicação é de um sensor de impacto, para tal o dispositivo armazena o maior valor de leitura de cada um dos eixos em um registrador que é resetado ao se resetar o dispositivo e que pode ser lido acionando a chave SW(3).
+```vhdl
+process (rst, clk)
+  begin
+      if rst = '1' then
+          s_axi_x_max <= (others => '0');
+          s_axi_y_max <= (others => '0');
+          s_axi_z_max <= (others => '0');
+          
+      elsif rising_edge(clk) then
+        if axi_x > s_axi_x_max then
+          s_axi_x_max <= axi_x;
+        end if;
+
+        if axi_y > s_axi_y_max then
+          s_axi_y_max <= axi_y;
+        end if;
+
+        if axi_z > s_axi_z_max then
+          s_axi_z_max <= axi_z;
+        end if;
+
+      end if;
+  end process;
+```
+
+este registrador fica no accel_bus e contel elém do processo de armazenamento que compõe o registrador a seguinte lógica para acesso dos dados pelo softcore:
+```vhdl
+        elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
+					ddata_r <= x"0000" & s_axi_x_max;
+				end if;
+        elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+					ddata_r <= x"0000" & s_axi_y_max;
+				end if;
+        elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 5) then
+					ddata_r <= x"0000" & s_axi_z_max;
+				end if;
+```
+Para a visualização destas informações no display, adicionou-se o seguinte ao arquivo main_accelerometer.c:
+```c
+        entrada = (INBUS&0X7);
+        if      (((entrada)) == 1){      // If SW(0) is on return axe_x values
+            axe = read_axe_x();}
+        else if (((entrada)) == 2){      // If SW(1) is on return axe_y values
+            axe = read_axe_y();}
+        else if (((entrada)) == 3){      // If SW(0) and SW(1) is on return axe_z values
+            axe = read_axe_z();}
+        else if (((entrada)) == 5){      // If SW(2) AND SW(0) is on return axe_x_max values
+            axe = read_axe_x_max();}
+        else if (((entrada)) == 6){      // If SW(2) and SW(1) is on return axe_y_max values
+            axe = read_axe_y_max();}  
+        else if (((entrada)) == 7){      // If SW(2) and SW(1) and SW(0) is on return axe_z_max values
+            axe = read_axe_z_max();}   
+        else{                              // If none of the above, return 0
+            axe = 0;}
+
+	SEGMENTS = axe;
+```
+Observou-se que decorrente de os daados dos eixos serem passados em complemento de 2, valores negativos quando tratados como unsigned são lidos como sendo valores maiores que o maior valor positivo possível, sendo o menor valor negativo o maior valor lido. Logo caso qualquer um dos eixos leia um valor negativo, obersavar-se-há que o valor máximo deste eixo será, errôneamente, um valor extraordináriamente grande. Para tratar tal problema tentou-se a implementação abaixo, porém a mesma não foi bem-sucedida, ficando como proposta de mehoria a solução deste problema.
+
+```c
+        signed_axe = (int32_t) axe;
+        abs_axe = (uint8_t)((signed_axe < 0) ? -signed_axe : signed_axe);
+	SEGMENTS = abs_axe;
 ```
