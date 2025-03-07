@@ -63,6 +63,7 @@
 // The specific addresses must be defined in the respective .h of the periphery
 // Take gpio.h as an example
 
+
 #define IONBUS_BASE_ADDRESS                 (*(_IO32 *) (PERIPH_BASE))
 #define SEGMENTS_BASE_ADDRESS               (*(_IO32 *) (PERIPH_BASE + 1*16*4))
 #define UART_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 2*16*4))
@@ -83,9 +84,9 @@
 #define ACCELEROMETER_BASE_ADDRESS          (*(_IO32 *) (PERIPH_BASE + 18*16*4))
 #define SIMPLE_SERIAL_TRANSMITTER_ADDRESS   (*(_IO32 *) (PERIPH_BASE + 19*16*4))
 #define MORSE_BASE_ADDRESS                  (*(_IO32 *) (PERIPH_BASE + 20*16*4))
-#define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 21*16*4))
-#define RS485_BASE_ADDRESS               	(*(_IO32 *) (PERIPH_BASE + 23*16*4))
-
+#define CORDIC_BASE_ADDRESS                 (*(_IO32 *) (PERIPH_BASE + 21*16*4))
+#define RS485_BASE_ADDRESS                	(*(_IO32 *) (PERIPH_BASE + 23*16*4))
+#define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 24*16*4))
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
