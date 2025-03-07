@@ -30,7 +30,7 @@ entity Timer is
         timer_interrupt : out std_logic_vector(5 downto 0);
 
         -- changes rk --
-        ifcap       : in std_logic ;     -- capture flag
+        ifcap       : in std_logic := '0';     -- capture flag
         ------------
         
         -- out pins --

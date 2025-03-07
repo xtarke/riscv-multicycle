@@ -20,3 +20,8 @@ Utilizou-se uma tabela para converter a entrada em pontos e traços (pontos são
 
 # Simulação
 A primeira simulação foi feita ainda antes do periférico ser implementado no projeto como um todo e pode ser visto nos arquivos [testbench](/peripherals/morse/testbench.vhd) e [tb.do](/peripherals/morse/tb.do)
+
+# Simulação Softcore
+Criado o barramento para a integração com o softcore e feito um código em C para enviar os dados e comunicar com o barramento, na imagem abaixo tem o envio do dado para o periferico.
+
+![maquina de estados ](./imagens/envio_de_dado.png)
