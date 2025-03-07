@@ -1,0 +1,8 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst probe1.in_system_sources_probes_0 -pg 1 -lvl 1 -y 30
+preplace inst probe1 -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>probe1</net_container>(SLAVE)in_system_sources_probes_0.sources,(SLAVE)probe1.sources) 1 0 1 NJ
+preplace netloc EXPORT<net_container>probe1</net_container>(SLAVE)in_system_sources_probes_0.probes,(SLAVE)probe1.probes) 1 0 1 NJ
+levelinfo -pg 1 0 60 290
+levelinfo -hier probe1 70 140 270
