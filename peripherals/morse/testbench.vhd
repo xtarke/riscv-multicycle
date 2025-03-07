@@ -1,67 +1,291 @@
+-------------------------------------------------------
+--! @file
+--! @brief RISCV Testbench
+--         This testbench simulates a core with a
+--         generic IO hardware and a Timer
+--
+-------------------------------------------------------
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity testbench is
-end entity testbench;
+use work.decoder_types.all;
 
-architecture RTL of testbench is -- sinais do testbench
-    signal clk_tb: std_logic;
-    signal rst_tb: std_logic;
-    signal entrada_tb:integer;
-    signal buzzer_tb: std_logic;
-    signal ledt_tb : std_logic;
-    signal led3t_tb : std_logic;
-    signal ledf_tb : std_logic;
+entity core_main_testbench is
+	generic(
+		--! Num of 32-bits memory words
+		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
+		DMEMORY_WORDS : integer := 1024  	--!= 2k (512 * 2) bytes
+	);
+
+	port(
+		----------- SEG7 ------------
+		HEX0 : out std_logic_vector(7 downto 0);
+		HEX1 : out std_logic_vector(7 downto 0);
+		HEX2 : out std_logic_vector(7 downto 0);
+		HEX3 : out std_logic_vector(7 downto 0);
+		HEX4 : out std_logic_vector(7 downto 0);
+		HEX5 : out std_logic_vector(7 downto 0);
+		----------- SW ------------
+
+		SW: in std_logic_vector(9 downto 0);
+		LEDR: out std_logic_vector(9 downto 0);
+
+		---------- ARDUINO IO -----
+		ARDUINO_IO: inout std_logic_vector(15 downto 0)
+	);
+
+
+end entity core_main_testbench;
+
+architecture RTL of core_main_testbench is
+    -- Clocks and reset
+	signal clk       : std_logic;
+	signal clk_32x   : std_logic;
+	signal rst       : std_logic;
+
+	-- Instruction bus and instruction memory
+	signal address     : std_logic_vector(9 downto 0);
+	signal iaddress : unsigned(15 downto 0);
+	signal idata : std_logic_vector(31 downto 0);
+
+    -- Data bus
+	signal daddress : unsigned(31 downto 0);
+	signal ddata_r  : std_logic_vector(31 downto 0);
+	signal ddata_w  : std_logic_vector(31 downto 0);
+	signal dmask    : std_logic_vector(3 downto 0);
+	signal dcsel    : std_logic_vector(1 downto 0);
+	signal d_we     : std_logic := '0';
+	signal ddata_r_mem : std_logic_vector(31 downto 0);
+	signal d_rd : std_logic;
+	signal d_sig : std_logic;
+
+	-- Modelsim debug signals
+	signal cpu_state    : cpu_state_t;
+	signal debugString  : string(1 to 40) := (others => '0');
+
+	-- I/O signals
+	signal interrupts : std_logic_vector(31 downto 0);
+	signal ddata_r_gpio : std_logic_vector(31 downto 0);
+	signal gpio_input : std_logic_vector(31 downto 0);
+	signal gpio_output : std_logic_vector(31 downto 0);
+
+	signal ddata_r_timer : std_logic_vector(31 downto 0);
+	signal timer_interrupt : std_logic_vector(5 downto 0);
+	signal ddata_r_periph : std_logic_vector(31 downto 0);
+	signal ddata_r_stepmot : std_logic_vector(31 downto 0);
+	signal ddata_r_sdram : std_logic_vector(31 downto 0);
+
+	signal gpio_interrupts : std_logic_vector(6 downto 0);
+	signal ddata_r_segments : std_logic_vector(31 downto 0);
+	signal ddata_r_uart : std_logic_vector(31 downto 0);
+	signal ddata_r_adc : std_logic_vector(31 downto 0);
+	signal ddata_r_i2c : std_logic_vector(31 downto 0);
+	signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
+	signal ddata_r_lcd : std_logic_vector(31 downto 0);
+	signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
+	signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+	signal ddata_r_spwm  :   std_logic_vector(31 downto 0);
+	signal ddata_r_crc : std_logic_vector(31 downto 0);
+	signal ddata_r_key : std_logic_vector(31 downto 0);
+	signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
+
+	-- Morse
+	signal buzzer : std_logic;
+	signal ledt : std_logic;
+	signal ledf : std_logic;
+	signal led3t : std_logic;
+	signal ddata_r_morse : std_logic_vector(31 downto 0);
+	
+
 begin
-    final: entity work.MorseCodeBuzzer -- relaciona os sinais do testbench com as entradas e saídas do arq. principal
-        port map(
-            clk    => clk_tb,
-            rst    => rst_tb,
-            entrada => entrada_tb,
-            ledt => ledt_tb,
-            led3t => led3t_tb,
-            ledf => ledf_tb,
-            buzzer => buzzer_tb
-        );
-        process
-    begin-- faz o processo do clock 1 nseg em cada nivel logico
-        clk_tb <= '0';
-        wait for 1 ns;
-        clk_tb <= '1';
-        wait for 1 ns;
+
+	clock_driver : process
+		constant period : time := 1000 ns;
+	begin
+		clk <= '0';
+		wait for period / 2;
+		clk <= '1';
+		wait for period / 2;
+	end process clock_driver;
+
+	--! Division unit clock
+	clock_driver_32x : process
+		constant period : time := 20 ns;
+	begin
+		clk_32x <= '0';
+		wait for period / 2;
+		clk_32x <= '1';
+		wait for period / 2;
+	end process clock_driver_32x;
+
+	reset : process is
+	begin
+		rst <= '1';
+		wait for 150 ns;
+		rst <= '0';
+		wait;
+	end process reset;
+
+	-- Connect gpio data to output hardware
+    LEDR  <= gpio_output(9 downto 0);
+
+    -- Connect input hardware to gpio data
+    gpio_test: process
+    begin
+        gpio_input <= (others => '0');
+        wait for 6 ms;
+
+        -- Generate a input pulse (External IRQ 0 or pooling)
+        gpio_input(0) <= '1';
+        wait for 1 us;
+        gpio_input(0) <= '0';
+
+        -- Generate a input pulse (External IRQ 1 or pooling)
+        wait for 200 us;
+        gpio_input(1) <= '1';
+        wait for 1 us;
+        gpio_input(1) <= '0';
+
+        wait;
     end process;
 
-    process
-    begin
-        rst_tb<= '1';-- reset
-        wait for 1 ns;
-        rst_tb<= '0';
-        wait for 20000 ns;
+	-- IMem shoud be read from instruction and data buses
+    -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
+    instr_mux: entity work.instructionbusmux
+        port map(
+            d_rd     => d_rd,
+            dcsel    => dcsel,
+            daddress => daddress,
+            iaddress => iaddress,
+            address  => address
+    );
+
+	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
+	iram_quartus_inst : entity work.iram_quartus
+		port map(
+			address => address(9 downto 0),
+			byteena => "1111",
+			clock   => clk,
+			data    => (others => '0'),
+			wren    => '0',
+			q       => idata
+		);
+
+	-- dmemory_address <= daddress;
+	-- Data Memory RAM
+	dmem : entity work.dmemory
+		generic map(
+			MEMORY_WORDS => DMEMORY_WORDS
+		)
+		port map(
+			rst     => rst,
+			clk     => clk,
+			data    => ddata_w,
+			address => daddress,
+			we      => d_we,
+			signal_ext => d_sig,
+			csel    => dcsel(0),
+			dmask   => dmask,
+			q       => ddata_r_mem
+		);
+
+	-- Adress space mux ((check sections.ld) -> Data chip select:
+	-- 0x00000    ->    Instruction memory
+	-- 0x20000    ->    Data memory
+	-- 0x40000    ->    Input/Output generic address space
+	-- 0x60000    ->    SDRAM address space
+	data_bus_mux: entity work.databusmux
+	    port map(
+	        dcsel          => dcsel,
+	        idata          => idata,
+	        ddata_r_mem    => ddata_r_mem,
+	        ddata_r_periph => ddata_r_periph,
+	        ddata_r_sdram  => ddata_r_sdram,
+	        ddata_r        => ddata_r
+	    );
+
+    io_data_bus_mux: entity work.iodatabusmux
+        port map(
+            daddress         => daddress,
+            ddata_r_gpio     => ddata_r_gpio,
+            ddata_r_segments => ddata_r_segments,
+            ddata_r_uart     => ddata_r_uart,
+            ddata_r_adc      => ddata_r_adc,
+            ddata_r_i2c      => ddata_r_i2c,
+            ddata_r_timer    => ddata_r_timer,
+            ddata_r_dif_fil  => ddata_r_dif_fil,
+            ddata_r_stepmot  => ddata_r_stepmot,
+			ddata_r_lcd      => ddata_r_lcd,
+			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			ddata_r_fir_fil  => ddata_r_fir_fil,
+            ddata_r_spwm => ddata_r_spwm,
+            ddata_r_crc => ddata_r_crc,
+            ddata_r_key => ddata_r_key,
+            ddata_r_accelerometer => ddata_r_accelerometer,
+            ddata_r_periph   => ddata_r_periph,
+			ddata_r_morse => ddata_r_morse
+        );
+
+	-- Softcore instatiation
+	myRiscv : entity work.core
+		port map(
+			clk      => clk,
+			rst      => rst,
+			clk_32x  => clk_32x,
+			iaddress => iaddress,
+			idata    => idata,
+			daddress => daddress,
+			ddata_r  => ddata_r,
+			ddata_w  => ddata_w,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			d_sig	 => d_sig,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			interrupts=>interrupts,
+			state    => cpu_state
+		);
+
+    -- Group IRQ signals.
+	irq_signals: process(timer_interrupt,gpio_interrupts)
+	begin
+	   interrupts <= (others => '0');
+       interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
+       interrupts(30 downto 25) <= timer_interrupt;
     end process;
-    
-        process
-    begin
-        entrada_tb<= 4;     --entra valor de 4
-        wait for 500 ns;
-        entrada_tb<= 1;     --entra valor de 1
-        wait for 500 ns;
-        entrada_tb<= 2;     --entra valor de 2
-        wait for 500 ns;
-        entrada_tb<= 3;     --entra valor de 3
-        wait for 500 ns;
-        entrada_tb<= 4;     --entra valor de 4
-        wait for 500 ns;
-        entrada_tb<= 5;     --entra valor de 5
-        wait for 500 ns;
-        entrada_tb<= 6;     --entra valor de 6
-        wait for 500 ns;
-        entrada_tb<= 7;     --entra valor de 7
-        wait for 500 ns;
-        entrada_tb<= 8;     --entra valor de 8
-        wait for 500 ns;
-        entrada_tb<= 9;     --entra valor de 9
-        wait for 500 ns;
-        
-    end process;
+
+
+	-- Morse instantiation
+	morse_bus_inst : entity work.morse_bus
+		port map(
+			daddress => daddress,
+			ddata_w  => ddata_w,
+			ddata_r  => ddata_r_morse,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			clk      => clk_32x,
+			rst      => rst,
+			buzzer   => buzzer,
+			ledt     => ledt,
+			ledf     => ledf,
+			led3t    => led3t
+		);
+	
+
+	-- FileOutput DEBUG
+	debug : entity work.trace_debug
+	generic map(
+		MEMORY_WORDS => IMEMORY_WORDS
+	)
+	port map(
+		pc   => iaddress,
+		data => idata,
+		inst => debugString
+	);
+
 end architecture RTL;

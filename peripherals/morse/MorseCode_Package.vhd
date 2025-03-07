@@ -8,7 +8,7 @@ package MorseCode_Package is
         function Morse_codes(Morse_value : integer) return bit_vector;
         
         constant MorseCodes : MorseCodeTable := (
-    -- Para uma futura implementação:
+    -- Para uma futura implementaÃ§Ã£o:
     -- acrescentar as letra e caracteres especiais
     -- utilizar de "." e "-" no lugar de "0" e "1"
     --    'A' => ".-",       'B' => "-...",     'C' => "-.-.",
@@ -21,10 +21,10 @@ package MorseCode_Package is
     --    'V' => "...-",     'W' => ".--",      'X' => "-..-",
     --    'Y' => "-.--",     'Z' => "--..",
     --     0 => "-----",    1 => ".----",    2 => "..---",
-    --     3 => "...--",    4 => " ....-",    5 => ".....",
+    --     3 => "...--",    4 => "....-",    5 => ".....",
     --     6 => "-....",    7 => "--...",    8 => "---..",
     --     9 => "----."
-    -- ponto e 0 e traço e 1
+    -- ponto e 0 e traÃ§o e 1
         0 => "11111",    1 => "01111",    2 => "00111",
         3 => "00011",    4 => "00001",    5 => "00000",
         6 => "10000",    7 => "11000",    8 => "11100",
