@@ -1,5 +1,5 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX= ../../compiler/gcc/bin/riscv-none-elf-
+RISCV_TOOLS_PREFIX= ../../gcc/bin/riscv-none-elf-
 
 # Para usar no LSC
 #RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.1.0-1.1.1/.content/bin/riscv-none-embed-
