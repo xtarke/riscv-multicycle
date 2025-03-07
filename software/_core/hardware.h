@@ -82,6 +82,7 @@
 #define SPWM_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 17*16*4))
 #define ACCELEROMETER_BASE_ADDRESS          (*(_IO32 *) (PERIPH_BASE + 18*16*4))
 #define SIMPLE_SERIAL_TRANSMITTER_ADDRESS   (*(_IO32 *) (PERIPH_BASE + 19*16*4))
+#define MORSE_BASE_ADDRESS                  (*(_IO32 *) (PERIPH_BASE + 20*16*4))
 #define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 21*16*4))
 
 
