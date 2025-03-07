@@ -332,13 +332,36 @@ begin
       axi_z    => axi_z
   );
 
-    --display values of axis by accelerometer in HEX
-    disp_data : entity work.disp_data
-    port map(   data_in => axi_disp,
-                HEX_0 => HEX0,
-                HEX_1 => HEX1,
-                HEX_2 => HEX2);
 
+    generic_displays : entity work.led_displays
+            port map(
+                clk      => clk,
+                rst      => rst,
+                daddress => daddress,
+                ddata_w  => ddata_w,
+                ddata_r  => ddata_r_segments,
+                d_we     => d_we,
+                d_rd     => d_rd,
+                dcsel    => dcsel,
+                dmask    => dmask,
+                hex0     => HEX0,
+                hex1     => HEX1,
+                hex2     => HEX2,
+                hex3     => HEX3,
+                hex4     => HEX4,
+                hex5     => HEX5,
+                hex6     => open,
+                hex7     => open
+            );
+
+
+   -- --display values of axis by accelerometer in HEX
+   -- disp_data : entity work.disp_data
+   -- port map(   data_in => axi_disp,
+   --             HEX_0 => HEX0,
+   --             HEX_1 => HEX1,
+   --             HEX_2 => HEX2);
+--
 --------------------------------------
 
   gpio_input(7 downto 0) <= SW(7 downto 0);     -- Connect input hardware to gpio data
@@ -358,8 +381,8 @@ begin
         end if;
     end process;
             
-    HEX3 <= "11111111";
-    HEX4 <= "11111111";
-    HEX5 <= "11111111";
+    --HEX3 <= "10110100";
+    --HEX4 <= "10110100";
+    --HEX5 <= "10110100";
 
 end architecture rtl;

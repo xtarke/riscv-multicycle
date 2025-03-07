@@ -15,7 +15,12 @@ entity accelerometer_adxl345 is
     --
     axi_x : out STD_LOGIC_VECTOR(15 downto 0);  --x-axis acceleration data
     axi_y : out STD_LOGIC_VECTOR(15 downto 0);  --y-axis acceleration data
-    axi_z : out STD_LOGIC_VECTOR(15 downto 0)); --z-axis acceleration data
+    axi_z : out STD_LOGIC_VECTOR(15 downto 0) --z-axis acceleration data
+    
+    --axi_x_max : out STD_LOGIC_VECTOR(15 downto 0);  --maximum x-axis acceleration data
+    --axi_y_max : out STD_LOGIC_VECTOR(15 downto 0);  --maximum y-axis acceleration data
+    --axi_z_max : out STD_LOGIC_VECTOR(15 downto 0) --maximum z-axis acceleration data
+	 );
 end accelerometer_adxl345;
 
 architecture behavior of accelerometer_adxl345 is
@@ -38,6 +43,12 @@ architecture behavior of accelerometer_adxl345 is
   signal axi_x_int : STD_LOGIC_VECTOR(15 downto 0); --internal x-axis acceleration data buffer
   signal axi_y_int : STD_LOGIC_VECTOR(15 downto 0); --internal y-axis acceleration data buffer
   signal axi_z_int : STD_LOGIC_VECTOR(15 downto 0); --internal z-axis acceleration data buffer
+
+
+  --new outputs, maximum values
+  signal axi_x_int_max : STD_LOGIC_VECTOR(15 downto 0); --internal x-axis acceleration data buffer
+  signal axi_y_int_max : STD_LOGIC_VECTOR(15 downto 0); --internal y-axis acceleration data buffer
+  signal axi_z_int_max : STD_LOGIC_VECTOR(15 downto 0); --internal z-axis acceleration data buffer
 
   begin
 
@@ -70,6 +81,9 @@ architecture behavior of accelerometer_adxl345 is
       axi_x <= (others => '0'); --clear x-axis acceleration data
       axi_y <= (others => '0'); --clear y-axis acceleration data
       axi_z <= (others => '0'); --clear z-axis acceleration data
+      --axi_x_max <= (others => '0'); --clear x-axis acceleration data
+      --axi_y_max <= (others => '0'); --clear y-axis acceleration data
+      --axi_z_max <= (others => '0'); --clear z-axis acceleration data
       state          <= start; --restart state machine
     elsif (clk'EVENT and clk = '1') then --rising edge of system clock
       case state is --state machine
@@ -179,6 +193,19 @@ architecture behavior of accelerometer_adxl345 is
           axi_x <= axi_x_int; --output x-axis data
           axi_y <= axi_y_int; --output y-axis data
           axi_z <= axi_z_int; --output z-axis data
+
+          --if (axi_x_int_max < axi_x_int) then --grava maior valor de x
+          --  axi_x_int_max <= axi_x_int; --store maximum x value
+          --  axi_x_max <= axi_x_int_max; --output maximum x value
+          --end if;
+          --if (axi_y_int_max < axi_y_int) then --grava maior valor de x
+          --  axi_y_int_max <= axi_y_int; --store maximum x value
+          --  axi_y_max <= axi_y_int_max; --output maximum x value
+          --end if;
+          --if (axi_z_int_max < axi_z_int) then --grava maior valor de x
+          --  axi_z_int_max <= axi_z_int; --store maximum x value
+          --  axi_z_max <= axi_z_int_max; --output maximum x value
+          --end if;
           state          <= pause; --return to pause state
       end case; 
     end if;
