@@ -84,6 +84,7 @@
 #define SIMPLE_SERIAL_TRANSMITTER_ADDRESS   (*(_IO32 *) (PERIPH_BASE + 19*16*4))
 #define MORSE_BASE_ADDRESS                  (*(_IO32 *) (PERIPH_BASE + 20*16*4))
 #define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 21*16*4))
+#define RS485_BASE_ADDRESS               	(*(_IO32 *) (PERIPH_BASE + 23*16*4))
 
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
