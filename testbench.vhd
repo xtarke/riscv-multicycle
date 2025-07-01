@@ -91,6 +91,9 @@ architecture RTL of core_main_testbench is
 	signal ddata_r_crc : std_logic_vector(31 downto 0);
 	signal ddata_r_key : std_logic_vector(31 downto 0);
 	signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
+   signal ddata_r_cordic : std_logic_vector(31 downto 0);
+	signal ddata_r_RS485 : std_logic_vector(31 downto 0);
+	
 
 	-- Timer
 	signal ifcap : std_logic;
@@ -214,13 +217,15 @@ begin
             ddata_r_timer    => ddata_r_timer,
             ddata_r_dif_fil  => ddata_r_dif_fil,
             ddata_r_stepmot  => ddata_r_stepmot,
-			ddata_r_lcd      => ddata_r_lcd,
-			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-			ddata_r_fir_fil  => ddata_r_fir_fil,
+			   ddata_r_lcd      => ddata_r_lcd,
+			   ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			   ddata_r_fir_fil  => ddata_r_fir_fil,
             ddata_r_spwm => ddata_r_spwm,
             ddata_r_crc => ddata_r_crc,
             ddata_r_key => ddata_r_key,
             ddata_r_accelerometer => ddata_r_accelerometer,
+				ddata_r_cordic    => ddata_r_cordic,
+				ddata_r_RS485     => ddata_r_RS485,
             ddata_r_periph   => ddata_r_periph
         );
 
