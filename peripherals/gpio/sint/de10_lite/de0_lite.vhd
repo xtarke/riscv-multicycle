@@ -127,7 +127,9 @@ architecture rtl of de0_lite_gpio is
     signal ddata_r_crc : std_logic_vector(31 downto 0);
     signal ddata_r_key : std_logic_vector(31 downto 0);
     signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
-
+	 signal ddata_r_cordic : std_logic_vector(31 downto 0);
+	 signal ddata_r_RS485 : std_logic_vector(31 downto 0);
+	 
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
     signal gpio_interrupts : std_logic_vector(6 downto 0);
@@ -251,6 +253,8 @@ begin
             ddata_r_spwm  		=> ddata_r_spwm,
             ddata_r_crc			=> ddata_r_crc,
             ddata_r_key       => ddata_r_key,
+				ddata_r_cordic    => ddata_r_cordic,
+				ddata_r_RS485     => ddata_r_RS485,
             ddata_r_accelerometer     => ddata_r_accelerometer
         );
 
