@@ -1,3 +1,8 @@
+--! @file i2c_master.vhdl
+--! @author Emanuel Staub Araldi & ?
+--! @brief i2c Master, Implementa protocolo i2c como mestre do canal
+--! @date 2025-07-14
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -13,14 +18,14 @@ entity i2c_master is
 		rw      : in    std_logic;      -- 0 to write 1 to read
 		addr    : in    std_logic_vector(6 downto 0);
 		data_w  : in    std_logic_vector(7 downto 0);
-		--		data_r  : out   std_logic_vector(7 downto 0);
+		data_r  : out   std_logic_vector(7 downto 0);
 		ack_err : out   std_logic       --;
 		--		busy    : out   std_logic
 	);
 end entity i2c_master;
 
 architecture RTL of i2c_master is
-	type state_type is (ready, start, env_addr_cm, slv_ack_cm, rw_st, slv_ack_2, stop); -- faltam ainda os estados para leitura
+	type state_type is (ready, start, Address_RW, slv_ack_cm, Write, Read, slv_ack_2, Master_Ack, stop); -- faltam ainda os estados para leitura
 	signal state             : state_type := ready;
 	signal scl_state_machine : state_type := ready;
 	signal data_tx           : std_logic_vector(7 downto 0);
@@ -32,7 +37,7 @@ architecture RTL of i2c_master is
 	signal ack_received		 : std_logic;
 	--signal sda_ena           : std_logic;
 	--signal rw_temp           : std_logic;
-	--	signal data_rx : std_logic_vector(7 downto 0);
+	signal data_rx : std_logic_vector(7 downto 0);
 begin
 
 	states_change : process(clk, rst) is
@@ -53,9 +58,9 @@ begin
 
 				when start =>
 					cnt_sda <= 7;
-					state   <= env_addr_cm;
+					state   <= Address_RW;
 
-				when env_addr_cm =>
+				when Address_RW =>
 					if cnt_sda >= 0 then -- enquanto variavel maior que zero vai enviando o endereco
 						
 						if cnt_sda = 0 then
@@ -76,7 +81,7 @@ begin
 						
 						cnt_ack <= 2;
 						if  ack_received = '1' then 					-- verifica o ack
-							state <= rw_st;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
+							state <= Write;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
 							cnt_sda <= 7;
 						else
 							ack_err <= '1';
@@ -87,22 +92,28 @@ begin
 						cnt_ack <= cnt_ack - 1;
 					end if;
 
-				when rw_st =>
-
+				when Write =>
 					-- escreve o dado
-				--	if rw_temp = '0' then--					elsif rw_temp = '1' then
+					--	if rw_temp = '0' then--					elsif rw_temp = '1' then
 					if cnt_sda >= 0 then -- enquanto variavel maior que zero vai enviando o registrador		
-						
-						
 						if cnt_sda = 0 then
 							state <= slv_ack_2;
 							cnt_ack <= 1;
 						else
 							cnt_sda <= cnt_sda - 1;
 						end if;
-
 					end if;
-
+				
+				when Read =>
+					-- Lê dado
+					if cnt_sda >= 0 then -- enquanto variavel maior que zero vai enviando o registrador		
+						if cnt_sda = 0 then
+							state <= slv_ack_2;
+							cnt_ack <= 1;
+						else
+							cnt_sda <= cnt_sda - 1;
+						end if;
+					end if;
 				when slv_ack_2 =>
 
 					-- intervalo onde o mestre libera sda e passa � ouvir
@@ -116,7 +127,7 @@ begin
 						cnt_ack <= 2;
 						if  ack_received = '1' then 				-- verifica o ack
 							if ena = '1' then
-								state <= rw_st;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
+								state <= Write;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
 								cnt_sda <= 7;
 							else
 								state <= stop;
@@ -130,6 +141,8 @@ begin
 					else
 						cnt_ack <= cnt_ack - 1;
 					end if;
+				when Master_Ack =>
+					null;
 
 				when stop =>
 -- sda pra baixo e desabilita o scl antes de entrar no stop
@@ -161,7 +174,7 @@ begin
 					data_tx <= addr & rw; -- 7 bits addr device + rw bit
 					sda     <= '0';     --start bit
 
-				when env_addr_cm =>
+				when Address_RW =>
 					
 					if data_tx(cnt_sda) = '0' then
 						sda <= '0';
@@ -174,11 +187,22 @@ begin
 					end if;
 				--	rw_temp <= rw;
 					data_tx <= data_w;
-				when rw_st =>
+				when Write =>
 					if data_tx(cnt_sda) = '0' then
 						sda <= '0';
 					else
 						sda <= 'Z';
+					end if;
+				when Read =>
+					if scl_ena = '1' then
+						if cnt_sda = '0' then
+							sda <= '0';
+						else
+							sda <= '1';
+						end if;
+						cnt_sda <= 7;
+						data_r <= data_rx;
+						state <= Mater_Ack;
 					end if;
 				when slv_ack_2 =>
 					if cnt_ack = 1 then
@@ -205,7 +229,7 @@ begin
 					scl_ena <= "00";    --sets scl high impedance
 				when start =>
 					scl_ena <= "01";    --sets scl zero
-				when env_addr_cm =>
+				when Address_RW =>
 					scl_ena <= "11";
 				when slv_ack_cm =>
 				
@@ -217,7 +241,7 @@ begin
 						scl_ena <= "01";    --sets scl zero
 					end if;
 					
-				when rw_st =>
+				when Write =>
 					ack_received <= '0';
 					scl_ena <= "11";
 				when slv_ack_2 =>

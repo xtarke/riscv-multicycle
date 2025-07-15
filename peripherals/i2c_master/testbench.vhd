@@ -1,3 +1,9 @@
+--! @file testbench.vhdl
+--! @author Emanuel Staub Araldi & ?
+--! @brief Testbench para i2c master, junto com softcore
+--! @date 2025-07-14
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
