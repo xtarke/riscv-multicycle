@@ -23,23 +23,23 @@ view wave
 # -radix: binary, hex, dec
 # -label: nome da forma de onda
 
-add wave -radix binary /clk
-add wave -radix binary /clk_scl
-add wave -radix binary /sda
-# add wave -radix binary /scl # => Optimized out of the circuit
-# add wave -radix binary /rst # => Optimized out of the circuit
-# add wave -radix binary /ena # => Optimized out of the circuit
-add wave -radix binary /rw
-# add wave -radix binary /ack_err # => Optimized out of the circuit
-add wave -radix binary /addr
+add wave -label "clock" -radix binary /clk
+add wave -label "serial clock" -radix binary /clk_scl
+add wave -label "serial data" -radix binary /sda
+# add wave -label "serial clock" -radix binary /scl # => Optimized out of the circuit
+# add wave -label "Reset" -radix binary /rst # => Optimized out of the circuit
+# add wave -label "Enable" -radix binary /ena # => Optimized out of the circuit
+add wave -label "Read / Write" -radix binary /rw
+# add wave -label "ACK" -radix binary /ack_err # => Optimized out of the circuit
+add wave -label "Address" -radix binary /addr
 
-add wave -radix hex /dut/cnt_ack
-add wave -radix hex /dut/cnt_stop
+add wave -label "Count ACK" -radix hex /dut/cnt_ack
+add wave -label "Count Stop" -radix hex /dut/cnt_stop
 
-add wave -radix hex /dut/state
-add wave -radix hex /dut/scl_state_machine
-# add wave -radix hex /dut/scl_ena # => Optimized out of the circuit
-add wave -radix hex /dut/data_tx
+add wave -label "State" -radix hex /dut/state
+add wave -label "Serial Clock FSM" -radix hex /dut/scl_state_machine
+# add wave -label "Serial CLock Enable" -radix hex /dut/scl_ena # => Optimized out of the circuit
+add wave -label "Data Tx" -radix hex /dut/data_tx
 
 
 #Simula at� 60ns
