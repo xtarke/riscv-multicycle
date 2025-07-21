@@ -10,15 +10,15 @@ use ieee.numeric_std.all;
 entity i2c_master is
 	port(
 		sda     : inout std_logic;
-		scl     : inout   std_logic;
+		scl     : inout std_logic;
 		clk     : in    std_logic;
 		clk_scl : in    std_logic;      -- defasado em 90� -- PLL
 		rst     : in    std_logic;
 		ena     : in    std_logic;
 		rw      : in    std_logic;      -- 0 to write 1 to read
 		addr    : in    std_logic_vector(6 downto 0);
-		data_w  : in    std_logic_vector(7 downto 0);
-		data_r  : out   std_logic_vector(7 downto 0);
+		data_wr : in    std_logic_vector(7 downto 0);
+		data_rd : out   std_logic_vector(7 downto 0);
 		ack_err : out   std_logic       --;
 		--		busy    : out   std_logic
 	);
@@ -37,6 +37,7 @@ architecture RTL of i2c_master is
 	signal ack_received		 : std_logic;
 	--signal sda_ena           : std_logic;
 	--signal rw_temp           : std_logic;
+	signal addr_rw			 : std_logic_vector(7 downto 0);
 	signal data_rx : std_logic_vector(7 downto 0);
 begin
 
@@ -81,7 +82,11 @@ begin
 						
 						cnt_ack <= 2;
 						if  ack_received = '1' then 					-- verifica o ack
-							state <= Write;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
+							if rw = '0' then
+								state <= Write;
+							else
+								state <= Read;
+							end if;
 							cnt_sda <= 7;
 						else
 							ack_err <= '1';
@@ -106,13 +111,15 @@ begin
 				
 				when Read =>
 					-- Lê dado
-					if cnt_sda >= 0 then -- enquanto variavel maior que zero vai enviando o registrador		
-						if cnt_sda = 0 then
-							state <= slv_ack_2;
-							cnt_ack <= 1;
-						else
-							cnt_sda <= cnt_sda - 1;
-						end if;
+					if cnt_sda = 0 then -- Quando chegar no último bit	
+						-- SDA controlado no processo Moore
+						cnt_sda <= 7;
+						data_rd <= data_rx;
+						state <= Master_Ack;
+					else
+						data_rx(cnt_sda-1) <= sda; -- Lê dado que o escravo enviou durante SCL='0'
+						cnt_sda <= cnt_sda - 1;
+						state <= Read;			-- Continua lendo
 					end if;
 				when slv_ack_2 =>
 
@@ -142,40 +149,42 @@ begin
 						cnt_ack <= cnt_ack - 1;
 					end if;
 				when Master_Ack =>
-					null;
-
+					if ena = '1' then
+						if (addr_rw = addr & rw) then
+							state <= Read;
+						else
+							state <= start;
+						end if;
+					end if;
 				when stop =>
--- sda pra baixo e desabilita o scl antes de entrar no stop
+				-- sda pra baixo e desabilita o scl antes de entrar no stop
 					if cnt_stop = 0 then	
 						state   <= ready;
 					else
 						cnt_stop <= cnt_stop - 1;
 					end if;
-
-
 				when others =>
 					state <= ready;
 			end case;
 		end if;
 	end process;
 
+--! =========================================================================== !--
+
 	moore : process(clk) is
 	begin
 		if rising_edge(clk) then
 			case state is
 			when ready =>
---scl_ena <= "00";    --sets scl high impedance
+					--scl_ena <= "00";    --sets scl high impedance
 					sda <= 'Z';         --sets sda high impedance					
 					--busy    <= '1';           --indicate not available
 					--data_rd <= "00000000";    --clear data read port
-
 				when start =>
-
+					addr_rw <= addr & rw;
 					data_tx <= addr & rw; -- 7 bits addr device + rw bit
 					sda     <= '0';     --start bit
-
 				when Address_RW =>
-					
 					if data_tx(cnt_sda) = '0' then
 						sda <= '0';
 					else
@@ -185,8 +194,8 @@ begin
 					if cnt_ack = 1 then
 						sda <= 'Z';
 					end if;
-				--	rw_temp <= rw;
-					data_tx <= data_w;
+					--	rw_temp <= rw;
+					data_tx <= data_wr;
 				when Write =>
 					if data_tx(cnt_sda) = '0' then
 						sda <= '0';
@@ -194,22 +203,27 @@ begin
 						sda <= 'Z';
 					end if;
 				when Read =>
-					if scl_ena = '1' then
-						if cnt_sda = '0' then
-							sda <= '0';
+					if ena = '1' then
+						if cnt_sda = 0 then	-- Terminou leitura
+							sda <= '0';			-- Send Ack
 						else
-							sda <= '1';
+							sda <= 'Z';
 						end if;
-						cnt_sda <= 7;
-						data_r <= data_rx;
-						state <= Mater_Ack;
 					end if;
 				when slv_ack_2 =>
 					if cnt_ack = 1 then
 						sda <= 'Z';
 					end if;
-				--	rw_temp <= rw;
-					data_tx <= data_w;
+					--	rw_temp <= rw;
+					data_tx <= data_wr;
+				when Master_Ack =>
+					if ena = '1' then
+						addr_rw <= addr & rw;
+						data_tx <= data_wr;
+						if (addr_rw = addr & rw) then
+							sda <= 'Z';
+						end if;
+					end if;
 				when stop =>
 					sda <= 'Z';
 					if cnt_stop = 1 then
@@ -221,24 +235,26 @@ begin
 		end if;
 	end process;
 
+--! =========================================================================== !--
+
 	scl_cntrl : process(clk_scl) is
 	begin
 		if rising_edge(clk_scl) then
 			case scl_state_machine is
 				when ready =>
-					scl_ena <= "00";    --sets scl high impedance
+					scl_ena <= "00";    -- Sets scl high impedance
 				when start =>
-					scl_ena <= "01";    --sets scl zero
+					scl_ena <= "01";    -- Sets scl '0'
 				when Address_RW =>
-					scl_ena <= "11";
+					scl_ena <= "11";	-- Receives from PLL
 				when slv_ack_cm =>
-				
+
 					if sda = '0' then
 						ack_received <= '1';
 					end if;
 				
 					if cnt_ack = 2	then
-						scl_ena <= "01";    --sets scl zero
+						scl_ena <= "01";    -- Sets scl '0'
 					end if;
 					
 				when Write =>
@@ -251,13 +267,16 @@ begin
 					end if;
 					
 					if cnt_ack = 2	then
-						scl_ena <= "01";    --sets scl zero
+						scl_ena <= "01";    -- Sets scl '0'
 					end if;
+				when Read =>
+					scl_ena <= "11";	-- Set scl to PLL
+				when Master_Ack =>
+					scl_ena <= "01";	-- Set scl to '0'
 				when stop =>
 					ack_received <= '0';
 					scl_ena <= "00";
 				when others =>
-
 			end case;
 		end if;
 	end process;
