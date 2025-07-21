@@ -61,11 +61,27 @@ begin
 		end process;
 		
 		process
+			variable data: std_logic_vector(7 downto 0):= "10101100";
 		begin
 			rst <= '1';
 			ena <= '0';
 			
-			data_wr <= "10101100";
+			wait for 270 ns;
+			sda <= 'Z';
+			wait for 20 ns;
+			sda <= '0';
+			wait for 20 ns;
+			sda <= 'Z';
+			wait for 20 ns;
+			sda <= '0';
+			wait for 20 ns;
+			sda <= 'Z';
+			wait for 20 ns;
+			sda <= 'Z';
+			wait for 20 ns;
+			sda <= '0';
+			wait for 20 ns;
+			sda <= '0';
 			wait for 20 ns;
 			rst <= '0';
 			ena <= '1';
@@ -78,22 +94,4 @@ begin
 			wait;			
 		end process;
 		
-		process
-		begin
-			
-			sda <= 'Z';
-			wait for 235 ns;
-			sda <= '0';
-			wait for 20 ns;
-			sda <= 'Z';
-			wait for 180 ns;
-			sda <= '0';
-			wait for 20 ns;
-			sda <= 'Z';
-			wait;			
-			
-		end process;
-		
-		
-
 end architecture RTL;

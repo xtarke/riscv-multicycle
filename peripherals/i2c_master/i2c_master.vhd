@@ -219,7 +219,7 @@ begin
 				when Master_Ack =>
 					if ena = '1' then
 						addr_rw <= addr & rw;
-						data_rx <= data_rd;
+						data_tx <= data_wr;
 						if (addr_rw = addr & rw) then
 							sda <= 'Z';
 						end if;
