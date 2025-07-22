@@ -76,5 +76,13 @@ begin
 			ena <= '1';
 			wait;			
 		end process;
+
+		process
+		begin
+			wait for 210 ns;
+			sda <= '0';
+			wait for 40 ns;
+			sda <= 'Z';
+		end process;
 		
 end architecture RTL;

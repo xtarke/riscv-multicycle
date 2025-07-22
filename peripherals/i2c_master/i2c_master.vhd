@@ -39,6 +39,7 @@ architecture RTL of i2c_master is
 	--signal rw_temp           : std_logic;
 	signal addr_rw			 : std_logic_vector(7 downto 0);
 	signal data_rx : std_logic_vector(7 downto 0);
+	signal sda_sig			 : std_logic; -- Armazena '1' ou '0' para sda='Z' ou '0'
 begin
 
 	states_change : process(clk, rst) is
@@ -111,17 +112,12 @@ begin
 				
 				when Read =>
 					-- Lê dado
+					data_rx(cnt_sda) <= sda_sig;
 					if cnt_sda = 0 then -- Quando chegar no último bit	
 						-- SDA controlado no processo Moore
 						cnt_sda <= 7;
-						data_rd <= data_rx;
 						state <= Master_Ack;
 					else
-						if sda = 'Z' then
-							data_rx(cnt_sda-1) <= '1'; -- Lê dado que o escravo enviou durante SCL='0'
-						else
-							data_rx(cnt_sda-1) <= '0';
-						end if;
 						cnt_sda <= cnt_sda - 1;
 						state <= Read;			-- Continua lendo
 					end if;
@@ -138,7 +134,7 @@ begin
 						cnt_ack <= 2;
 						if  ack_received = '1' then 				-- verifica o ack
 							if ena = '1' then
-								state <= Write;		-- futuramente: if rw = 0 vai p/ escrita = 1 vai para leitura
+								state <= Write;
 								cnt_sda <= 7;
 							else
 								state <= stop;
@@ -223,7 +219,7 @@ begin
 				when Master_Ack =>
 					if ena = '1' then
 						addr_rw <= addr & rw;
-						data_tx <= data_wr;
+						data_rd <= data_rx;
 						if (addr_rw = addr & rw) then
 							sda <= 'Z';
 						end if;
@@ -282,6 +278,15 @@ begin
 					scl_ena <= "00";
 				when others =>
 			end case;
+		end if;
+	end process;
+
+	get_sda : process(sda)
+	begin
+		if sda ='Z' then
+			sda_sig <= '1';
+		else
+			sda_sig <= '0';
 		end if;
 	end process;
 

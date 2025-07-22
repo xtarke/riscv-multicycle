@@ -14,7 +14,7 @@ vlib work
 vcom i2c_master.vhd i2c_master_testbench.vhd
 
 #Simula
-vsim -t ns work.i2c_master_testbench
+vsim -t ns -voptargs="+acc" work.i2c_master_testbench
 
 #Mosta forma de onda
 view wave
