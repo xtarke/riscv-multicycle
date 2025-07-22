@@ -14,11 +14,10 @@ use ieee.numeric_std.all;
 
 entity fsm_animation_segs is
 port(
-    --speed       : in std_logic_vector(1 downto 0);
     direction   : in std_logic;
     rst         : in std_logic;
     clk         : in std_logic;
-    output      : out  unsigned(2 downto 0)
+    output      : out  std_logic_vector(3 downto 0)
 );
 end entity fsm_animation_segs;
 
@@ -26,16 +25,20 @@ end entity fsm_animation_segs;
 architecture RTL of fsm_animation_segs is 
 
     -- Estados de animação do display
-    type state_type is (A, AB, B, BC, C, CD, D, DE, E, EF, F, FA); 
+    type state_type is (IDLE, A, AB, B, BC, C, CD, D, DE, E, EF, F, FA); 
     signal state: state_type;
 
 begin 
     state_transition: process (clk, rst)
     begin
-        if rst = '1' then
-            state <= A;
+        if rst = '1' then --Reset assíncrono máquina de estados
+            state <= IDLE;
+            
         elsif rising_edge(clk) then 
             case state is 
+            when IDLE =>
+                    state <= A;
+                
             when A =>
                 if direction = '1' then
                     state <= AB;
@@ -112,6 +115,13 @@ begin
                 elsif direction = '0' then
                     state <= EF;
                 end if;
+
+            when FA =>
+                if direction = '1' then
+                    state <= A;
+                elsif direction = '0' then
+                    state <= F;
+                end if;
             end case;
         end if;
     end process;
@@ -120,6 +130,8 @@ begin
     begin
         output <= "0000";
         case state is
+            when IDLE =>
+                output <= "0000";            
             when A =>
                 output <= "0001";
             when AB =>

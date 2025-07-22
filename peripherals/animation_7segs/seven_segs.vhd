@@ -12,8 +12,8 @@ use ieee.numeric_std.all;
 
 entity seven_segs is
     port(
-        input : in  unsigned(3 downto 0);
-        segs  : out unsigned(7 downto 0)   
+        input : in  std_logic_vector(3 downto 0);
+        segs  : out std_logic_vector(7 downto 0)   
     );
 end entity seven_segs;
 
