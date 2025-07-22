@@ -1,0 +1,300 @@
+Archive member included to satisfy reference by file (symbol)
+
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                              ../_core/syscalls.o (__errno)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (exit)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o) (_global_impure_ptr)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (__libc_init_array)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                              ../_core/syscalls.o (memcpy)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o (memset)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o) (__call_exitprocs)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o) (__libc_fini_array)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o) (atexit)
+/mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                              /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o) (__register_exitproc)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000000000000 0x000000000000fc00 xr
+ram              0x0000000002000000 0x0000000000000800 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+LOAD main.o
+LOAD start.o
+LOAD ../_core/syscalls.o
+LOAD ../_core/utils.o
+LOAD led_rgb.o
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/libgcc.a
+START GROUP
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/libgcc.a
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libc.a
+END GROUP
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/libgcc.a
+LOAD /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtend.o
+
+.rom            0x0000000000000000      0x2f7
+ _pvstart*(.text)
+ start*(.text)
+ .text          0x0000000000000000       0x58 start.o
+                0x0000000000000000                _pvstart
+                0x0000000000000058                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000000000058       0x4c /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+                0x0000000000000058                _start
+ .text          0x00000000000000a4        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+ .text          0x00000000000000a4       0x58 main.o
+                0x00000000000000a4                main
+ .text          0x00000000000000fc       0xd4 ../_core/syscalls.o
+                0x00000000000000fc                _getpid
+                0x00000000000000fc                _utime
+                0x00000000000000fc                _sysconf
+                0x00000000000000fc                _ftime
+                0x00000000000000fc                _isatty
+                0x00000000000000fc                _open
+                0x00000000000000fc                _times
+                0x00000000000000fc                _stat
+                0x00000000000000fc                _chdir
+                0x00000000000000fc                _wait
+                0x00000000000000fc                _lseek
+                0x00000000000000fc                _fstatat
+                0x00000000000000fc                _link
+                0x00000000000000fc                _chown
+                0x00000000000000fc                _access
+                0x00000000000000fc                _openat
+                0x00000000000000fc                _execve
+                0x00000000000000fc                _chmod
+                0x00000000000000fc                _lstat
+                0x00000000000000fc                _unlink
+                0x00000000000000fc                _fork
+                0x00000000000000fc                _getcwd
+                0x00000000000000fc                _kill
+                0x00000000000000fc                _gettimeofday
+                0x00000000000000fc                _faccessat
+                0x0000000000000100                unimplemented_syscall
+                0x0000000000000120                _read
+                0x0000000000000128                _write
+                0x000000000000014c                _close
+                0x0000000000000154                _fstat
+                0x0000000000000178                _sbrk
+                0x000000000000019c                _exit
+                0x00000000000001a0                init_data_section
+ .text          0x00000000000001d0       0x10 ../_core/utils.o
+                0x00000000000001d0                delay_
+ .text          0x00000000000001e0       0x18 led_rgb.o
+                0x00000000000001e0                led_rgb_init
+                0x00000000000001e4                led_rgb_set_color
+ .text          0x00000000000001f8        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .text          0x00000000000001f8        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .text          0x00000000000001f8        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .text          0x00000000000001f8        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .text          0x00000000000001f8        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .text          0x00000000000001f8       0xdc /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+                0x00000000000001f8                memset
+ .text          0x00000000000002d4        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .text          0x00000000000002d4        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .text          0x00000000000002d4        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .text          0x00000000000002d4        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .text          0x00000000000002d4        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtend.o
+ *(.rodata*)
+ .rodata.str1.4
+                0x00000000000002d4       0x23 ../_core/syscalls.o
+
+.text.__do_global_dtors_aux
+                0x00000000000002f8       0x48
+ .text.__do_global_dtors_aux
+                0x00000000000002f8       0x48 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+
+.text.frame_dummy
+                0x0000000000000340       0x20
+ .text.frame_dummy
+                0x0000000000000340       0x20 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+
+.text.trap      0x0000000000000360       0xc8
+ .text.trap     0x0000000000000360       0xc8 start.o
+                0x0000000000000360                trap_entry
+
+.text.irq       0x0000000000000428       0xa8
+ .text.irq      0x0000000000000428       0xa8 start.o
+                0x0000000000000428                irq_entry
+
+.init           0x00000000000004d0       0x84
+ .init          0x00000000000004d0       0x84 start.o
+
+.text.__errno   0x0000000000000554        0x8
+ .text.__errno  0x0000000000000554        0x8 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+                0x0000000000000554                __errno
+
+.text.exit      0x000000000000055c       0x34
+ .text.exit     0x000000000000055c       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+                0x000000000000055c                exit
+
+.text.__libc_init_array
+                0x0000000000000590       0x84
+ .text.__libc_init_array
+                0x0000000000000590       0x84 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+                0x0000000000000590                __libc_init_array
+
+.text.memcpy    0x0000000000000614      0x128
+ .text.memcpy   0x0000000000000614      0x128 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+                0x0000000000000614                memcpy
+
+.text.startup.register_fini
+                0x000000000000073c       0x18
+ .text.startup.register_fini
+                0x000000000000073c       0x18 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+
+.text.__call_exitprocs
+                0x0000000000000754      0x124
+ .text.__call_exitprocs
+                0x0000000000000754      0x124 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+                0x0000000000000754                __call_exitprocs
+
+.text.__libc_fini_array
+                0x0000000000000878       0x54
+ .text.__libc_fini_array
+                0x0000000000000878       0x54 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+                0x0000000000000878                __libc_fini_array
+
+.text.atexit    0x00000000000008cc       0x14
+ .text.atexit   0x00000000000008cc       0x14 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+                0x00000000000008cc                atexit
+
+.text.__register_exitproc
+                0x00000000000008e0       0x9c
+ .text.__register_exitproc
+                0x00000000000008e0       0x9c /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+                0x00000000000008e0                __register_exitproc
+
+.eh_frame       0x000000000000097c        0x4
+ .eh_frame      0x000000000000097c        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+ .eh_frame      0x000000000000097c        0x4 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtend.o
+
+.srodata._global_impure_ptr
+                0x0000000000000980        0x4
+ .srodata._global_impure_ptr
+                0x0000000000000980        0x4 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x0000000000000980                _global_impure_ptr
+
+.rela.dyn       0x0000000000000984        0x0
+ .rela.text     0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.__do_global_dtors_aux
+                0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.frame_dummy
+                0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.init     0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.__libc_init_array
+                0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.startup.register_fini
+                0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .rela.text.__libc_fini_array
+                0x0000000000000984        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+
+.data           0x0000000002000000      0x42c load address 0x0000000000000984
+                0x0000000000000984                _data_lma = LOADADDR (.data)
+                0x0000000002000000                _data = .
+                0x0000000002000000                __global_pointer$ = .
+ *(.data .data.*)
+ .data          0x0000000002000000        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .data          0x0000000002000000        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+ .data          0x0000000002000000        0x0 main.o
+ .data          0x0000000002000000        0x0 start.o
+ .data          0x0000000002000000        0x0 ../_core/syscalls.o
+ .data          0x0000000002000000        0x0 ../_core/utils.o
+ .data          0x0000000002000000        0x0 led_rgb.o
+ .data          0x0000000002000000        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .data          0x0000000002000000        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .data          0x0000000002000000        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .data.impure_data
+                0x0000000002000000      0x428 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .data          0x0000000002000428        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtend.o
+ *(.sdata .sdata.*)
+ .sdata._impure_ptr
+                0x0000000002000428        0x4 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+                0x0000000002000428                _impure_ptr
+                0x000000000200042c                . = ALIGN (0x4)
+                0x000000000200042c                _edata = .
+
+.fini_array     0x000000000200042c        0x4 load address 0x0000000000000db0
+ .fini_array    0x000000000200042c        0x4 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+
+.init_array     0x0000000002000430        0x4 load address 0x0000000000000db4
+ .init_array    0x0000000002000430        0x4 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+
+.init_array.00000
+                0x0000000002000434        0x4 load address 0x0000000000000db8
+ .init_array.00000
+                0x0000000002000434        0x4 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+
+.bss            0x0000000002000438       0x18 load address 0x0000000000000dbc
+                0x0000000002000438                __bss_start = .
+ *(.bss .bss.*)
+ .bss           0x0000000002000438        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/crt0.o
+ .bss           0x0000000002000438        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+ .bss.object.0  0x0000000002000438       0x18 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+ .bss           0x0000000002000450        0x0 main.o
+ .bss           0x0000000002000450        0x0 start.o
+ .bss           0x0000000002000450        0x0 ../_core/syscalls.o
+ .bss           0x0000000002000450        0x0 ../_core/utils.o
+ .bss           0x0000000002000450        0x0 led_rgb.o
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memset.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .bss           0x0000000002000450        0x0 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtend.o
+                0x0000000002000450                . = ALIGN (0x4)
+                0x0000000002000450                _bss_end = .
+                0x0000000002000450                _end = .
+OUTPUT(main.elf elf32-littleriscv)
+
+.sbss.completed.1
+                0x0000000002000450        0x1 load address 0x0000000000000dbc
+ .sbss.completed.1
+                0x0000000002000450        0x1 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+
+.sbss           0x0000000002000454        0x4 load address 0x0000000000000dbc
+ .sbss          0x0000000002000454        0x4 ../_core/syscalls.o
+
+.comment        0x0000000000000000       0x33
+ .comment       0x0000000000000000       0x33 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtbegin.o
+                                         0x34 (size before relaxing)
+ .comment       0x0000000000000033       0x34 main.o
+ .comment       0x0000000000000033       0x34 ../_core/syscalls.o
+ .comment       0x0000000000000033       0x34 ../_core/utils.o
+ .comment       0x0000000000000033       0x34 led_rgb.o
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-errno.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-exit.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-impure.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-init.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-memcpy.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__call_atexit.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-fini.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-atexit.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/libg.a(lib_a-__atexit.o)
+ .comment       0x0000000000000033       0x34 /mnt/c/PLD projects/riscv-multicycle-master/compiler/gcc/bin/../lib/gcc/riscv-none-embed/10.2.0/rv32im/ilp32/crtend.o
