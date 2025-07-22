@@ -117,7 +117,11 @@ begin
 						data_rd <= data_rx;
 						state <= Master_Ack;
 					else
-						data_rx(cnt_sda-1) <= sda; -- Lê dado que o escravo enviou durante SCL='0'
+						if sda = 'Z' then
+							data_rx(cnt_sda-1) <= '1'; -- Lê dado que o escravo enviou durante SCL='0'
+						else
+							data_rx(cnt_sda-1) <= '0';
+						end if;
 						cnt_sda <= cnt_sda - 1;
 						state <= Read;			-- Continua lendo
 					end if;

@@ -39,8 +39,9 @@ add wave -label "Count Stop" -radix hex /dut/cnt_stop
 add wave -label "State" -radix hex /dut/state
 add wave -label "Serial Clock FSM" -radix hex /dut/scl_state_machine
 # add wave -label "Serial CLock Enable" -radix hex /dut/scl_ena # => Optimized out of the circuit
-add wave -label "Data Tx" -radix hex /dut/data_tx
-
+# add wave -label "Data Tx" -radix hex /dut/data_tx
+add wave -label "Data Rd" -radix hex /data_rd
+add wave -label "Data Rx" -radix hex /dut/data_rx
 
 #Simula at� 60ns
 run 1200ns

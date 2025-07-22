@@ -66,22 +66,6 @@ begin
 			rst <= '1';
 			ena <= '0';
 			
-			wait for 270 ns;
-			sda <= 'Z';
-			wait for 20 ns;
-			sda <= '0';
-			wait for 20 ns;
-			sda <= 'Z';
-			wait for 20 ns;
-			sda <= '0';
-			wait for 20 ns;
-			sda <= 'Z';
-			wait for 20 ns;
-			sda <= 'Z';
-			wait for 20 ns;
-			sda <= '0';
-			wait for 20 ns;
-			sda <= '0';
 			wait for 20 ns;
 			rst <= '0';
 			ena <= '1';
@@ -89,7 +73,6 @@ begin
 			ena <= '0';
 			wait for 300 ns;
 			
-			data_wr <= "10100011";
 			ena <= '1';
 			wait;			
 		end process;
