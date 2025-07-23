@@ -19,9 +19,9 @@ A simulação no ModelSim foi realizada para verificar se o RTC estava funcionan
 
 Abaixo, segue a forma de onda gerada no ModelSim, mostrando os sinais de segundos, minutos e horas, e sua conversão para BCD. As saídas do RTC (segundos, minutos, horas) foram observadas de forma contínua e precisa.
 
-![ModelSim](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard1.jpeg)
+![ModelSim](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/modelsim1.png)
 
-![ModelSim](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard1.jpeg)
+![ModelSim](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/modelsim2.png)
 
 
 **2. Funcionamento do Sistema**
@@ -30,15 +30,15 @@ Após a simulação, o código foi carregado no DE10-Lite FPGA e testado fisicam
 
 Abaixo, segue um gif que demonstra o funcionamento do sistema, mostrando a contagem de tempo e a exibição dos valores no hardware real. O RTC começa com o valor de 00:00:00 e vai contando até que o limite de 59 segundos, 59 minutos e 23 horas seja alcançado, reiniciando a contagem.
 
-![Sintese](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard1.jpeg)
+![Sintese](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/sintese.jpg)
 
-![Gif](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard1.jpeg)
+![Gif](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/Gif.mp4)
 
 
 **3. Diagrama de Blocos**
 
 O diagrama de blocos a seguir mostra a interação entre os principais componentes do sistema, incluindo o RTC, divisor de clock, e os conversores binário para BCD. O diagrama ajuda a entender como o sinal de clock é processado, como os contadores são incrementados e como os valores são convertidos para BCD para exibição.
 
-![Diagrama_Blocos](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard1.jpeg)
+![Diagrama_Blocos](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/diagrama_blocos.png)
 
 
