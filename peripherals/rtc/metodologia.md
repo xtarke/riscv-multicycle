@@ -31,7 +31,7 @@ A simulação foi realizada utilizando o ModelSim, onde foi gerado o arquivo tb.
 
 A seguir é possível acessar o código para simulação: 
 
-[**Clique aqui**](./codigo_modelsim.md/Codigo_modelsim)
+[**Clique aqui**](./codigo_modelsim.md/ProjetoFinal_RTC_ModelSim)
 
 **4. Implementação do Código para o DE10-Lite**
 
@@ -59,4 +59,4 @@ Após a implementação e verificação dos módulos, o próximo passo foi sinte
 
 Abaixo é possível acessar o código completo de síntese: 
 
-[**Clique aqui**](./codigo_quartus.md/Codigo_final)
+[**Clique aqui**](./codigo_quartus.md/ProjetoFinal_sintese_Quartus)
