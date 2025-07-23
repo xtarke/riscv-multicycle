@@ -1,4 +1,6 @@
-# DISPOSITIVOS LÓGICO-PROGRAMÁVEIS - IFSC - 2025.1
+# RTC em VHDL - Implementação de um Relógio de Tempo Real com Conversão para BCD
+
+## DISPOSITIVOS LÓGICO-PROGRAMÁVEIS - IFSC - 2025.1
 
 Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina - Campus Florianópolis
 
@@ -6,13 +8,14 @@ Departamento Acadêmico de Eletrônica
 
 Licenciatura em Engenharia Eletrônica
 
-_*Matéria:*_ Dispositivos Lógico-Programáveis
+__*Matéria:*__
+* Dispositivos Lógico-Programáveis
 
 __*Professor:*__
 
 * Renan Augusto Starke
 
-__*Estudante:*__
+__*Aluno:*__
 
 * Thais Silva Lisatchok
 
