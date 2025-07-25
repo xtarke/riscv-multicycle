@@ -28,9 +28,13 @@ Abaixo, segue a forma de onda gerada no ModelSim, mostrando os sinais de segundo
 
 Após a simulação, o código foi carregado no DE10-Lite FPGA e testado fisicamente. O RTC começou a contar os segundos, minutos e horas de forma precisa, e os valores foram exibidos corretamente nos displays de 7 segmentos.
 
-Abaixo, segue um gif que demonstra o funcionamento do sistema, mostrando a contagem de tempo e a exibição dos valores no hardware real. O RTC começa com o valor de 00:00:00 e vai contando até que o limite de 59 segundos, 59 minutos e 23 horas seja alcançado, reiniciando a contagem.
+Abaixo, segue uma imagem e um gif que demonstra o funcionamento do sistema, mostrando a contagem de tempo e a exibição dos valores no hardware real. O RTC começa com o valor de 00:00:00 e vai contando até que o limite de 59 segundos, 59 minutos e 23 horas seja alcançado, reiniciando a contagem.
+
+**Imagem:**
 
 ![Sintese](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/sintese.jpg)
+
+**Gif:**
 
 ![Gif](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/Gif.gif)
 
