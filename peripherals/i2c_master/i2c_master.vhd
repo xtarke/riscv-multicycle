@@ -12,6 +12,7 @@ entity i2c_master is
 		sda     : inout std_logic;
 		scl     : inout std_logic;
 		clk     : in    std_logic;
+		clk_32x : in	std_logic; 		-- Dummy clock signal for fast multiplication
 		clk_scl : in    std_logic;      -- defasado em 90� -- PLL
 		rst     : in    std_logic;
 		ena     : in    std_logic;
