@@ -32,6 +32,9 @@ Os dois canais de comunicação são bidirecionais. O mestre é responsável por
 Simulação do periférico:
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/periferic_simulation.png)
 
+Simulação de Leitura:
+![](https://github.com/Emanuel600/riscv-multicycle/blob/master/peripherals/i2c_master/images/read_simulation.png)
+
 Simulação do periférico integrado ao softcore:
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/simulation.png)
 
