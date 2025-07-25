@@ -37,7 +37,20 @@ Abaixo, segue um gif que demonstra o funcionamento do sistema, mostrando a conta
 
 **3. Diagrama de Blocos**
 
-O diagrama de blocos a seguir mostra a interação entre os principais componentes do sistema, incluindo o RTC, divisor de clock, e os conversores binário para BCD. O diagrama ajuda a entender como o sinal de clock é processado, como os contadores são incrementados e como os valores são convertidos para BCD para exibição.
+O diagrama de blocos a seguir ilustra a arquitetura funcional do sistema de Relógio de Tempo Real (RTC) desenvolvido em VHDL. Nele, é possível observar a interação entre os principais módulos que compõem o projeto:
+
+- **Módulo `rtc` (work.rtc)**: representa a unidade principal do sistema, responsável por coordenar o funcionamento do RTC. Ele gerencia os contadores de tempo (segundos, minutos, horas, dia, mês e ano) e realiza o controle global dos sinais.
+
+- **Divisor de clock (`divisor_clock`)**: recebe o sinal de clock de alta frequência (32.768 Hz) e o divide para gerar um pulso de 1 Hz. Esse sinal reduzido é utilizado para a atualização dos contadores de tempo de forma precisa, uma vez por segundo.
+
+- **Conversores de Binário para BCD (`bin_to_bcd`)**: cada campo de tempo (segundos, minutos, horas, dia, mês e ano) é convertido de binário para o formato BCD (Binary-Coded Decimal), facilitando a exibição direta dos valores em displays de 7 segmentos ou outros dispositivos de visualização digital.
+
+- **Sinais auxiliares de controle (`num_signal`)**: indicam quando o valor binário deve ser convertido para BCD, sincronizando a conversão com a atualização dos contadores.
+
+- **Saídas segmentadas (`seg0` a `seg5`)**: representam as divisões de dígitos em BCD para exibição dos diferentes campos de tempo.
+
+Este diagrama permite visualizar com clareza o fluxo de dados e controle no sistema: desde a entrada do clock, passando pela divisão de frequência, incremento dos contadores binários, até a conversão final em BCD. Com isso, compreende-se a lógica sequencial envolvida na atualização e exibição das informações temporais no relógio.
+
 
 ![Diagrama_Blocos](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/diagrama_blocos.png)
 
