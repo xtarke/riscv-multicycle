@@ -1,10 +1,11 @@
 -------------------------------------------------------------------
 -- Name        : de0_lite.vhd
--- Author      : 
--- Version     : 0.1
+-- Author      : Emanuel Staub Araldi, ?
+-- Version     : 0.5
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
 -- Description : Projeto base DE10-Lite
 -------------------------------------------------------------------
+-- Arquivo modificado para versão atual do projeto, mas provavelmente terá que refazer
 LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
@@ -84,6 +85,8 @@ architecture rtl of de0_lite is
 	signal clk : std_logic;
 	signal clk_32 : std_logic; -- 32 MHz clock
 	signal rst : std_logic;
+
+	signal interrupts:std_logic_vector(31 downto 0);
 	
 	-- Instruction bus signals
 	signal idata     : std_logic_vector(31 downto 0);
@@ -133,7 +136,7 @@ begin
 		);
 	
 	
-	pll_i2c_inst: entity work.pll_i2c
+	pll_i2c_inst: entity work.pll_i2c -- Não precisa de clk 32 MHz
 	 PORT MAP (
 		inclk0	 => MAX10_CLK1_50,
 		c0	 => i2c_clk,
@@ -167,16 +170,16 @@ begin
 	DRAM_DQ <= ddata_r(15 downto 0);
 	--ARDUINO_IO <= ddata_r(31 downto 16);
 	LEDR(9) <= SW(9);
-	DRAM_ADDR(9 downto 0) <= address;
+	-- DRAM_ADDR(9 downto 0) <= address;
 		
 	-- IMem shoud be read from instruction and data buses
 	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
 	process(d_rd, dcsel, daddress, iaddress)
 	begin
 		if (d_rd = '1') and (dcsel = "00") then
-			address <= std_logic_vector(daddress);
+			-- address <= std_logic_vector(daddress);
 		else
-			address <= std_logic_vector(iaddress);
+			-- address <= std_logic_vector(iaddress);
 		end if;		
 	end process;
 
@@ -220,14 +223,12 @@ begin
 	
 	-- Softcore instatiation
 	myRisc: entity work.core
-		generic map(
-			IMEMORY_WORDS => IMEMORY_WORDS,
-			DMEMORY_WORDS => DMEMORY_WORDS
-		)
 		port map(			
 			clk      => clk,
+			clk_32x  => clk_32,
 			rst      => rst,
 			iaddress => iaddress,
+			interrupts => interrupts,
 			idata    => idata,
 			daddress => daddress,
 			ddata_r  => ddata_r,
@@ -257,16 +258,16 @@ begin
 					-- ToDo: Simplify comparators
 					-- ToDo: Maybe use byte addressing?  
 					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
+					if daddress(8 downto 0) = x"01" then										
 						LEDR(4 downto 0) <= ddata_w(4 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
+					elsif daddress(8 downto 0) = x"02" then
 					 	HEX0 <= ddata_w(7 downto 0);
 						HEX1 <= ddata_w(15 downto 8);
 						HEX2 <= ddata_w(23 downto 16);
 						HEX3 <= ddata_w(31 downto 24);
 						HEX4 <= (others => '1');
 						HEX5 <= (others => '1');
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
+					elsif daddress(8 downto 0) = x"08" then
 						i2c_data_w <= ddata_w(7 downto 0);
 						i2c_addr <= ddata_w(14 downto 8);
 						i2c_rw <= ddata_w(28);
@@ -290,7 +291,7 @@ begin
 				if (d_rd = '1') and (dcsel = "10") then
 					input_in(4 downto 0) <= SW(4 downto 0);
 					
-					if to_unsigned(daddress, 32)(8 downto 0) = x"08" then		
+					if daddress(8 downto 0) = x"08" then		
 						input_in(7 downto 0) <= i2c_data_w;
 						input_in(14 downto 8) <= i2c_addr;
 						input_in(28) <= i2c_rw;
