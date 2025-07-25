@@ -19,17 +19,26 @@ vlib work
 # vcom ./memory/imemory_load.vhd
 vcom ../../memory/iram_quartus.vhd
 vcom ../../memory/dmemory.vhd
+vcom ../../memory/instructionbusmux.vhd
+vcom ../../memory/databusmux.vhd
+vcom ../../memory/iodatabusmux.vhd
 vcom ../../alu/alu_types.vhd
 vcom ../../alu/alu.vhd
+vcom ../../alu/m/division_functions.vhd
+vcom ../../alu/m/quick_naive.vhd
 vcom ../../alu/m/M_types.vhd
 vcom ../../alu/m/M.vhd
 vcom ../../decoder/decoder_types.vhd
 vcom ../../decoder/iregister.vhd
 vcom ../../decoder/decoder.vhd
 vcom ../../registers/register_file.vhd
+vcom ../../core/csr.vhd
 vcom ../../core/core.vhd
 vcom ../../core/txt_util.vhdl
 vcom ../../core/trace_debug.vhd
+vcom ../timer/Timer.vhd
+vcom ../gpio/gpio.vhd
+vcom ../gpio/led_displays.vhd
 vcom ./i2c_master.vhd
 
 # vcom ./uart/uart.vhd
