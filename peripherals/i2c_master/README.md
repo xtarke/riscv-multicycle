@@ -33,7 +33,7 @@ Simulação do periférico:
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/periferic_simulation.png)
 
 Simulação de Leitura:
-![](https://github.com/Emanuel600/riscv-multicycle/blob/master/peripherals/i2c_master/images/i2c_read-sim.png)
+![](https://github.com/Emanuel600/riscv-multicycle/blob/dev/peripherals/i2c_master/images/i2c_read-sim.png)
 
 Simulação do periférico integrado ao softcore:
 ![](https://github.com/jhonatanlang/riscv-multicycle/blob/master/peripherals/i2c_master/images/simulation.png)
