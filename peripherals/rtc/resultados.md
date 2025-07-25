@@ -32,7 +32,7 @@ Abaixo, segue um gif que demonstra o funcionamento do sistema, mostrando a conta
 
 ![Sintese](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/sintese.jpg)
 
-![Gif](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/Gif.mp4)
+![Gif](https://github.com/thaislisatchok/riscv-multicycle/blob/master/peripherals/rtc/imagens.md/Gif.gif)
 
 
 **3. Diagrama de Blocos**
