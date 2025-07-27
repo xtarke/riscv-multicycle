@@ -1,16 +1,20 @@
 vlib work
 vcom seven_segs.vhd
 vcom fsm_animation_segs.vhd
+vcom clock_divider.vhd
 vcom animation_segs.vhd
 vcom tb_animation_segs.vhd
 
 vsim -voptargs="+acc" work.tb_animation_segs
 view wave
 
-add wave -divider "Controle"
+add wave -divider "Clock"
 add wave -label clk /clk
-add wave -label rst /rst
-add wave -label direction /direction
+
+add wave -divider "Entradas"
+add wave -label reset /rst
+add wave -label direção /direction
+add wave -label velocidade /speed
 
 add wave -divider "Dados"
 add wave -label segs -radix hex /segs

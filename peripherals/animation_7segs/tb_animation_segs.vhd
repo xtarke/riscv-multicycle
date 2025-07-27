@@ -9,8 +9,9 @@ architecture sim of tb_animation_segs is
 
     signal clk       : std_logic := '0';
     signal rst       : std_logic := '0';
-    signal direction : std_logic := '1';
-    signal segs      : unsigned(7 downto 0);
+    signal direction : std_logic := '0';
+    signal speed     : std_logic_vector(1 downto 0) := "11";
+    signal segs      : std_logic_vector(7 downto 0);
 
 begin
 
@@ -20,6 +21,7 @@ begin
             clk       => clk,
             rst       => rst,
             direction => direction,
+            speed     => speed,
             segs      => segs
         );
 
@@ -27,13 +29,13 @@ begin
     clk_process : process
     begin
             clk <= '1';
-            wait for 500 us;
+            wait for 500 ns;
             clk <= '0';
-            wait for 500 us;
+            wait for 500 ns;
     end process;
 
-    -- Estímulos
-    stim_proc : process
+    
+    reset_inst : process
     begin
         -- Reset inicial
         rst <= '1';
@@ -42,8 +44,9 @@ begin
         wait;
     end process;
 
-    process
+    direction_inst: process
     begin
+        speed <= "11";
         -- Direção direta
         direction <= '1';
         wait for 14 ms;
