@@ -15,8 +15,11 @@ Este projeto implementa uma **máquina de estados finita (FSM)** em VHDL para an
 
 ---
 
-## ⚙️ Máquina de Estados
+## ⚙️ Organização do projeto
 
+Os blocos e sinais estão conectados como ilustra abaixo:
+
+![Diagrama de Blocos ](media/diagrama_blocos.png)
 
 A FSM possui estados definidos para alternar os bits acesos em `segs`, com comportamento dependente do sinal `direction` e o controle de velocidade é feito por um contador interno que depende do valor do vetor `speed`.
 
