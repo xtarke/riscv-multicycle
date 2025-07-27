@@ -1,11 +1,12 @@
 -------------------------------------------------------------------
--- Name        : seven_segs.vhd
+-- Name        : fsm_animation_segs.vhd
 -- Author      : Joana Wasserberg
 -- Version     : 0.1
 -- Copyright   : Joana, Departamento de Eletrônica, Florianópolis, IFSC
--- Description : Implementa uma máquina de estados para  controle de 
---               animação do display de 7-segmentos.
---              
+-- Description : Implementa uma máquina de estados finitos (FSM) que
+--               controla uma sequência animada no display de 7 segmentos.
+--               A direção da animação é controlada por um sinal externo.
+--               A FSM avança ou retrocede por 13 estados.    
 -------------------------------------------------------------------
 
 library ieee;
@@ -13,12 +14,12 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity fsm_animation_segs is
-port(
-    direction   : in std_logic;
-    rst         : in std_logic;
-    clk         : in std_logic;
-    output      : out  std_logic_vector(3 downto 0)
-);
+    port(
+        direction : in std_logic;                          -- Direção da animação (1 = direita, 0 = esquerda)
+        rst       : in std_logic;                          -- Reset assíncrono
+        clk       : in std_logic;                          -- Clock da FSM
+        output    : out std_logic_vector(3 downto 0)       -- Saída codificada para representar o estado atual
+    );
 end entity fsm_animation_segs;
 
 
