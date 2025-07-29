@@ -1,6 +1,6 @@
 -------------------------------------------------------------------
 -- Name        : de2_115.vhd
--- Author      : Guido Momm
+-- Author      : Guido Momm & Conrado Becker Gressler
 -- Version     : 0.1
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
 -- Description : Projeto base DE2-115
@@ -237,6 +237,8 @@ architecture rtl of DE2_115 is
     signal ddata_r_key : std_logic_vector(31 downto 0);
     signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
 	 signal ddata_r_irda : std_logic_vector(31 downto 0);
+	 signal ddata_r_cordic : std_logic_vector(31 downto 0);
+	 signal ddata_r_RS485 : std_logic_vector(31 downto 0);
 
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
@@ -254,6 +256,20 @@ architecture rtl of DE2_115 is
 	 
 	 
 	 signal data_ready: std_logic;
+	 
+	 
+		component probes is
+		port (
+				source : out std_logic_vector(31 downto 0);                    -- source
+				probe  : in  std_logic_vector(31 downto 0) := (others => 'X')  -- probe
+			);
+		end component probes;
+		
+		signal source : std_logic_vector(31 downto 0);
+		signal probe  : std_logic_vector(31 downto 0);
+		
+	 
+	 
 begin
 
     -- Reset
@@ -321,7 +337,6 @@ begin
             ddata_r_periph => ddata_r_periph,
             ddata_r_sdram =>ddata_r_sdram,
             ddata_r      => ddata_r
-
         );
 
     -- Softcore instatiation
@@ -348,99 +363,96 @@ begin
     interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
     interrupts(30 downto 25) <= timer_interrupt;
 
-    io_data_bus_mux: entity work.iodatabusmux
-        port map(
-            daddress         => daddress,
-            ddata_r_gpio     => ddata_r_gpio,
-            ddata_r_segments => ddata_r_segments,
-            ddata_r_uart     => ddata_r_uart,
-            ddata_r_adc      => ddata_r_adc,
-            ddata_r_i2c      => ddata_r_i2c,
-            ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph,
-            ddata_r_dif_fil  => ddata_r_dig_fil,
-            ddata_r_stepmot  => ddata_r_stepmot,
-            ddata_r_lcd      => ddata_r_lcd,
-            ddata_r_fir_fil  => ddata_r_fir_fil,
-            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_spwm  		=> ddata_r_spwm,
-            ddata_r_crc			=> ddata_r_crc,
-            ddata_r_key       => ddata_r_key,
-            ddata_r_accelerometer     => ddata_r_accelerometer,
-            ddata_r_irda => ddata_r_irda
-        );
+		io_data_bus_mux: entity work.iodatabusmux
+		port map(
+			daddress         => daddress,
+			ddata_r_gpio     => ddata_r_gpio,
+			ddata_r_segments => ddata_r_segments,
+			ddata_r_uart     => ddata_r_uart,
+			ddata_r_adc      => ddata_r_adc,
+			ddata_r_i2c      => ddata_r_i2c,
+			ddata_r_timer    => ddata_r_timer,
+			ddata_r_periph   => ddata_r_periph,
+			ddata_r_dif_fil  => ddata_r_dig_fil,
+			ddata_r_stepmot  => ddata_r_stepmot,
+			ddata_r_lcd      => ddata_r_lcd,
+			ddata_r_fir_fil  => ddata_r_fir_fil,
+			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			ddata_r_spwm  		=> ddata_r_spwm,
+			ddata_r_crc			=> ddata_r_crc,
+			ddata_r_key       => ddata_r_key,
+			ddata_r_accelerometer     => ddata_r_accelerometer,
+			ddata_r_cordic		=> ddata_r_cordic,
+			ddata_r_RS485		=> ddata_r_RS485,
+			ddata_r_irda 		=> ddata_r_irda
+		);
 
---	  irda_bus: entity work.irda_bus	    
---        port map(
---            clk      => clk,
---            clk_50 => clk_50MHz,
---            rst      => rst,
---            daddress => daddress,
---            ddata_w  => ddata_w,
---            ddata_r  => ddata_r_irda,
---            d_we     => d_we,
---            d_rd     => d_rd,
---            dcsel    => dcsel,
---            dmask    => dmask,
---            irda_sensor => IRDA_RXD,
---				irda_debug => irda_debug
---        );
+		-- Timer instantiation
+		timer : entity work.Timer
+		generic map(
+			PRESCALER_SIZE => 16,
+			COMPARE_SIZE   => 32
+		)
+		port map(
+			clock       => clk,
+			reset       => rst,
+			daddress => daddress,
+			ddata_w  => ddata_w,
+			ddata_r  => ddata_r_timer,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			timer_interrupt => timer_interrupt,
+			ifcap => ifcap
+		);
 
-    -- Timer instantiation
-    timer : entity work.Timer
-        generic map(
-            PRESCALER_SIZE => 16,
-            COMPARE_SIZE   => 32
-        )
-        port map(
-            clock       => clk,
-            reset       => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_timer,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            timer_interrupt => timer_interrupt,
-            ifcap => ifcap
-        );
-
-    generic_displays : entity work.led_displays
-        port map(
-            clk      => clk,
-            rst      => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_segments,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            hex0(6 downto 0)     => HEX0,
-            hex1(6 downto 0)     => HEX1,
-            hex2(6 downto 0)     => HEX2,
-            hex3(6 downto 0)     => HEX3,
-            hex4(6 downto 0)     => HEX4,
-            hex5(6 downto 0)     => HEX5,
-            hex6(6 downto 0)     => open,
-            hex7(6 downto 0)     => open
-        );
+		generic_displays : entity work.led_displays
+		port map(
+			clk      => clk,
+			rst      => rst,
+			daddress => daddress,
+			ddata_w  => ddata_w,
+			ddata_r  => ddata_r_segments,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			hex0(6 downto 0)     => HEX0,
+			hex1(6 downto 0)     => HEX1,
+			hex2(6 downto 0)     => HEX2,
+			hex3(6 downto 0)     => HEX3,
+			hex4(6 downto 0)     => HEX4,
+			hex5(6 downto 0)     => HEX5,
+			hex6(6 downto 0)     => open,
+			hex7(6 downto 0)     => open
+		);
+		  
+		-- IRDA bus instantiation
+		irda_inst : entity work.irda_bus
+		port map(
+			clk      => clk,
+			clk_50	=> clk_50MHz,
+         rst      => rst,
+         daddress => daddress,
+         ddata_w  => ddata_w,
+         ddata_r  => ddata_r_irda,
+         d_we     => d_we,
+         d_rd     => d_rd,
+         dcsel    => dcsel,
+         dmask    => dmask	,
+			irda_sensor => IRDA_RXD,
+			irda_debug => probe
+		);
 
     -- Connect input hardware to gpio data
     gpio_input(3 downto 0) <= SW(3 downto 0);
-   -- LEDR(7 downto 0) <= gpio_output(7 downto 0);
-	 LEDG(3 downto 0) <= irda_debug(31 downto 28);
 	 
-	 
-	     u1: work.irda
-        Port Map (
-            iCLK        => CLOCK_50,
-            iRST_n      => KEY(0),
-            iIRDA       => IRDA_RXD,
-            oDATA_READY => data_ready,
-            oDATA       => irda_debug
-        );
+--	 -- Debugging probe
+--		u0 : component probes
+--		port map (
+--			source => source, -- sources.source
+--			probe  => probe   --  probes.probe
+--		);
+		
 end;
-
-
