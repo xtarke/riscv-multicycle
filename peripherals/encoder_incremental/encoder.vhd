@@ -16,7 +16,6 @@ use work.my_package.all;
 -- Entidade e portas
 entity encoder is
     port(
-        PPR    : in  unsigned(9 downto 0) := to_unsigned(1000, 10); -- PPR = Pulsos por rotação
         clk    : in  std_logic;         -- Clock de 10Hz que serve como Timmer
         aclr_n : in  std_logic;         -- Sinal para reset do bloco
         A      : in  std_logic;         -- Sinal do encoder para a contagem dos pulsos
@@ -24,16 +23,16 @@ entity encoder is
         segs_a : out std_logic_vector(7 downto 0); -- Apresenta a velocidade bits[3  0]
         segs_b : out std_logic_vector(7 downto 0); -- Apresenta a velocidade bits[7  4]
         segs_c : out std_logic_vector(7 downto 0); -- Apresenta a velocidade bits[11 8]
-        segs_d : out std_logic_vector(7 downto 0) -- Apresenta a sentido de rotação: Apagado (horário) | Sinal negativo (anti-horário)
+        segs_d : out std_logic_vector(7 downto 0); -- Apresenta a velocidade bits[15 12]
+        segs_e : out std_logic_vector(7 downto 0) := (others => '1') -- Apresenta a sentido de rotação: Apagado (horário) | Sinal negativo (anti-horário)
     );
 end entity encoder;
 
 -- Arquitetura
 architecture rtl of encoder is
-    signal pulse_count : unsigned(9 downto 0)  := (others => '0'); -- Contagem dos pulso de A
-    signal freq        : unsigned(19 downto 0) := (others => '0'); -- Frequência de A, em pulsos por minuto
+    signal pulse_count : unsigned(11 downto 0)  := (others => '0'); -- Contagem dos pulso de A
     signal flag        : std_logic             := '0'; -- Sinal para informar o quando ocorre a borda de subida do clk (timmer): disponibiliza a velocidade e reinicia contagem
-    signal velocidade  : unsigned(19 downto 0) := (others => '0'); -- Sinal para obter a velocidade
+    signal velocidade  : unsigned(15 downto 0) := (others => '0'); -- Sinal para obter a velocidade
     signal flag_B      : std_logic             := '0'; -- Sinal para informar que o motor mudou de sentido
 
 begin
@@ -51,7 +50,7 @@ begin
 
     -- Contagem dos pulsos do encoder
     process(aclr_n, A, flag)
-        variable var_count : unsigned(9 downto 0) := (others => '0');
+        variable var_count : unsigned(11 downto 0) := (others => '0');
     begin
         if aclr_n = '0' then
             var_count := (others => '0');
@@ -81,33 +80,37 @@ begin
     end process;
 
     -- Obtendo a velocidade
-    process(aclr_n, PPR, flag, pulse_count)
-        constant multiplicador  : unsigned(9 downto 0)  := to_unsigned(600, 10); -- 10Hz (período de 100ms, referente ao clk) * 60 = pulsos por minuto
-        variable var_velocidade : unsigned(19 downto 0) := (others => '0');
-        variable frequencia_rot : unsigned(19 downto 0) := (others => '0');
+    process(aclr_n, flag, pulse_count)
+        -- O PPR (pulsos por rotação) do encoder é 412.
+        -- Cálculo da velocidade -> RPM = contagem_pulsos * frequência_timmer * 60 /PPR
+        -- O uso da operação de divisão em VHDL não é recomendada, portanto, o resultado da operação com as constantes será armazenado na constante 'multiplicador'. 
+        -- frequência_timmer *60 / PPR = 1,46
+        -- Esse valor será multiplicador por 10 ->  multiplicador = 14
+        -- Deste modo, a velocidade terá um dígito a mais de precisão 
+        constant multiplicador  : unsigned(3 downto 0)  := to_unsigned(14, 4); -- 10Hz (período de 100ms, referente ao clk) * 60/412 = pulsos por minuto
+        variable var_velocidade : unsigned(15 downto 0) := (others => '0');
     begin
         if aclr_n = '0' then
             var_velocidade := (others => '0');
         elsif flag = '1' then
-            frequencia_rot := pulse_count * multiplicador;
-            var_velocidade := frequencia_rot / PPR;
+            var_velocidade := pulse_count * multiplicador;
         end if;
         velocidade <= var_velocidade;
-        freq       <= frequencia_rot;
     end process;
 
     -- Apresenta nos displays:
     segs_a <= conversion_bin_to_7seg(velocidade(3 downto 0));
     segs_b <= conversion_bin_to_7seg(velocidade(7 downto 4));
     segs_c <= conversion_bin_to_7seg(velocidade(11 downto 8));
+    segs_d <= conversion_bin_to_7seg(velocidade(15 downto 12));
 
     Direction : process(A) is
     begin
         if rising_edge(A) then
             if B = '0' then
-                segs_d <= "11111111";   -- Sentido horário
+                segs_e <= "11111111";   -- Sentido horário
             else
-                segs_d <= "10111111";   -- Sentido anti-horário
+                segs_e <= "10111111";   -- Sentido anti-horário
             end if;
         end if;
 
