@@ -104,7 +104,7 @@ begin
     segs_c <= conversion_bin_to_7seg(velocidade(11 downto 8));
     segs_d <= conversion_bin_to_7seg(velocidade(15 downto 12));
 
-    Direction : process(A) is
+    direction : process(A) is
     begin
         if rising_edge(A) then
             if B = '0' then
