@@ -19,7 +19,7 @@ architecture rtl of controlador is
     signal counter : INTEGER range 0 to 10000 := 0;
     signal bit_counter : INTEGER range 0 to 24 := 0; -- Contador de bits
     signal shift_reg : STD_LOGIC_VECTOR(23 downto 0); -- Registrador de deslocamento
-    signal clock_counter : INTEGER range 0 to 40 := 1; -- Contador de ciclos para gerar pulsos NZR
+    signal clock_counter : INTEGER range 0 to 50 := 1; -- Contador de ciclos para gerar pulsos NZR
 
     -- Constantes para definir o tempo do pulso para o sinal NZR
     constant T0H_TIME : INTEGER := 20;  -- 400ns - 400ns
