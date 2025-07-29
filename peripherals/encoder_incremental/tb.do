@@ -22,7 +22,7 @@ view wave
 # binary, octal, decimal, signed, unsigned, hexadecimal, ascii or default
 # -radix: binary, hex, dec
 # -label: nome da forma de onda
-add wave -label clock_10kHz -radix binary   /clk_10kHz
+add wave -label clock_1MHz -radix binary   /clk_1MHz
 add wave -label clock_10Hz -radix binary   /clk_tb
 add wave -label Reset -radix binary     	/aclr_n_tb
 add wave -label A -radix binary         	/A_tb
@@ -30,13 +30,14 @@ add wave -label B -radix binary         	/B_tb
 add wave -label HEX0 -radix binary       /segs_a_tb 
 add wave -label HEX1 -radix binary      /segs_b_tb 
 add wave -label HEX2 -radix binary     /segs_c_tb
-add wave -label HEX3 -radix binary    /segs_d_tb 
+add wave -label HEX3 -radix binary    /segs_d_tb
+add wave -label HEX4 -radix binary    /segs_e_tb 
+
 
 #Como mostrar sinais internos do processo
 #add wave -radix dec /dut/p0/count
-add wave -label counter_out -radix uns /encoder_inst/pulse_count
-add wave -label frequencia_rot -radix uns /encoder_inst/freq
-add wave -label Velocidade -radix uns /encoder_inst/velocidade
+#add wave -label counter_out -radix uns /encoder_inst/pulse_count
+add wave -label Velocidade -radix hex /encoder_inst/velocidade
 
 
 
