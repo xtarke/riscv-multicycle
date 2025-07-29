@@ -62,3 +62,31 @@ Para testar o driver utilizando a placa DE10Lite foi utilizado o In-System Sourc
     <img height="300" src="imagens/Branco_probe.jpg">
     <img height="300" src="imagens/led_branco.jpg">
 </p>
+
+---
+### Continuação do Trabalho, implementação do periférico com o softcore e validação do funcionamento
+---
+
+Continuando a implementação feita pelo Pedro Harenza, o código do controlador foi ajustado o limite de uma variável pois estava com erro na simulação. Após atestar o funcionamento do periférico foi realizado o mapeamento em registrador para iniciar a implementação com o softcore.
+
+O código referente ao arquivo rgb_mapeado, demonstra o periférico mapedo em registrador e com um endereço para o barramento do softcore. após realizar o mapeamento, foi feito um código em C, e usando um compilador, geramos um código em .hex para a simulação do periférico juntamente com o softcore no modelsim, como demonstra a imagem abaixo
+
+## Simulação softcore + periférico
+<p align="center">
+    <img height="600" src="imagens/simulacao_core_periferico.png">
+</p>
+
+Após verificar o funcionamento do periférico com o softcore atraves da simulação no modelsim, se fez necessário o desenvolvimento do código para sintese, o qual foi utilizado o exemplo que está no periférico do GPIO, nele foi inserido a instancia do led_rgb, realizado a sintese no quartus e por meio do in system memory content, foi carregado o arquivo quartus_main.hex, e realizado o teste na placa, a imagem abaixo demonstra o arquivo carregado e a janela do in system memory content.
+
+
+## In system memory content
+<p align="center">
+    <img height="600" src="imagens/in_system_memory_content.png">
+</p>
+
+Com o arquivo carregado, o sw(9) deve estar ativo em alto, ao colocar a chave sw(9) para nivel logico baixo o processador sai do reset e o periférico deve funcionar. O gif abaixo mostra o funcionamento dos leds com base no arquivo escrito para o software que foi compilado. Troca de cor entre vermelho-verde-azul-branco.
+
+## Funcionamento do periférico integrado no softcore
+<p align="center">
+    <img height="700" src="imagens/teste_na_placa_softcore.gif">
+</p>
