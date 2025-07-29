@@ -9,9 +9,6 @@ LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
-use work.my_package.all;
-
-
 
 entity de10_lite is 
 	port (
@@ -73,13 +70,6 @@ end entity;
 
 architecture rtl of de10_lite is
 
-component probes is
-        port(
-            source : out std_logic_vector(31 downto 0); -- source
-            probe  : in  std_logic_vector(31 downto 0) := (others => 'X') -- probe
-        );
-    end component probes;
-
     component pll
         PORT(
             inclk0 : IN  STD_LOGIC := '0';
@@ -88,28 +78,15 @@ component probes is
 
     end component;
 	 
+	 -- Sinais 
     signal clk_pll    : std_logic;
 	 signal clk_10Hz   : std_logic;
-    signal source_out : std_logic_vector(31 downto 0);
-    signal probe_in   : std_logic_vector(31 downto 0);
-	 signal PPR_in    : unsigned(9 downto 0);
 	 signal clk_A   : std_logic;
-	 signal sinal_b   : std_logic;
-	 signal sinal_veloc : unsigned(19 downto 0) := (others => '0');
-
 
 
 begin
-
-	 -- Bloco probes: para entrar com o dado de entrada do cronômetro
-    u0 : component probes
-        port map(
-            source => source_out,       -- sources.source
-            probe  => probe_in          --  probes.probe
-        );
 		  
-		  
-	 -- Bloco PLL
+-- Bloco PLL: Clock de 10MHz para 1MHz
 	 u1 : component pll
         port map(
             inclk0 => ADC_CLK_10,
@@ -117,10 +94,10 @@ begin
 			);
 	
 	 
-	  -- instância do divisor de clock de 10kHz para 10Hz		
+-- instância do divisor de clock de 1MHz para 10Hz		
 	  divisor_clock_inst : entity work.divisor_clock
 	  generic map(
-                max => 500
+                max => 50000
             )
         port map(
             clk    => clk_pll,
@@ -128,10 +105,10 @@ begin
         );
 		  
 		  
-		  -- Gerar A		
+ -- Gerar A: 1MHz para 1kHz para validação do código
 	  Clock_A : entity work.divisor_clock
 	  generic map(
-                max => 100
+                max => 500
             )
         port map(
             clk    => clk_pll,
@@ -139,42 +116,21 @@ begin
         );
 
 		  
-     -- instância do enconder
-	  
+-- instância do enconder
 	     encoder_inst : entity work.encoder
         port map(
-            PPR    => to_unsigned(1000, 10),
             clk    => clk_10Hz,
             aclr_n => sw(9),
-            A      => clk_A, --ARDUINO_IO(0),
-            B      => '0', --ARDUINO_IO(1),
-            --segs_a => HEX0,
-            --segs_b => HEX1,
-            --segs_c => HEX2,
-            --segs_d => HEX3
-				velocidade => sinal_veloc
+            A      => ARDUINO_IO(0), --clk_A,
+            B      => ARDUINO_IO(1),
+            segs_a => HEX0,
+            segs_b => HEX1,
+            segs_c => HEX2,
+				segs_d => HEX3,
+            segs_e => HEX4
         );
-	  
-	  sinal_b <= '0';
-	  HEX0 <= conversion_bin_to_7seg(sinal_veloc(3 downto 0));
-    HEX1 <= conversion_bin_to_7seg(sinal_veloc(7 downto 4));
-    HEX2 <= conversion_bin_to_7seg(sinal_veloc(11 downto 8));
-
-    direction : process(clk_A) is
-    begin
-        if rising_edge(clk_A) then
-            if sinal_b = '0' then
-                HEX3 <= "11111111"; -- Sentido horário
-            else
-                HEX3 <= "10111111"; -- Sentido anti-horário
-            end if;
-        end if;
-
-    end process direction;
-	  
-	  
-	  HEX4 <= (others => '1');
-	  HEX5 <= (others => '1');	
+	  	  
+	  HEX5 <= (others => '1'); -- Apagar Display não utilizado
 
 end;
 
