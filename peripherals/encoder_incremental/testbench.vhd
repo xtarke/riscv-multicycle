@@ -15,7 +15,7 @@ end entity testbench;
 ------------------------------
 
 architecture stimulus of testbench is
-    signal clk_10kHz : std_logic; -- Clock de 10kHz gerado no Quartus com o PLL
+    signal clk_1MHz : std_logic;       -- Clock de 10kHz gerado no Quartus com o PLL
     signal clk_tb    : std_logic;
     signal aclr_n_tb : std_logic;
     signal A_tb      : std_logic;
@@ -24,13 +24,13 @@ architecture stimulus of testbench is
     signal segs_b_tb : std_logic_vector(7 downto 0);
     signal segs_c_tb : std_logic_vector(7 downto 0);
     signal segs_d_tb : std_logic_vector(7 downto 0);
+    signal segs_e_tb : std_logic_vector(7 downto 0);
 
 begin
 
     -- instância do encoder incremental
     encoder_inst : entity work.encoder
         port map(
-            PPR    => to_unsigned(1000, 10),
             clk    => clk_tb,
             aclr_n => aclr_n_tb,
             A      => A_tb,
@@ -38,39 +38,40 @@ begin
             segs_a => segs_a_tb,
             segs_b => segs_b_tb,
             segs_c => segs_c_tb,
-            segs_d => segs_d_tb
+            segs_d => segs_d_tb,
+            segs_e => segs_e_tb
         );
 
-    -- Instância para dividir o clock de 10kHz para 10Hz (fornece o período de 100ms para a contagem dos pulsos)
+    -- Instância para dividir o clock de 1MHz para 10Hz (fornece o período de 100ms para a contagem dos pulsos)
     divisor_clock_inst : entity work.divisor_clock
+        generic map(
+            max => 50000
+        )
+        port map(
+            clk    => clk_1MHz,
+            output => clk_tb
+        );
+
+    -- Instância para gerar o sinal de A (de 1MHz para 1kHz) para validação na placa
+    clock_A_inst : entity work.divisor_clock
         generic map(
             max => 500
         )
         port map(
-            clk    => clk_10kHz,
-            output => clk_tb
-        );
-
-    -- Instância para gerar o sinal de A (de 10kHz para 1kHz) para comparar no Quartus
-    clock_A_inst : entity work.divisor_clock
-        generic map(
-            max => 100
-        )
-        port map(
-            clk    => clk_10kHz,
+            clk    => clk_1MHz,
             output => A_tb
         );
 
     --! Processo para criar sinal de clock que virá do Quartus
     clock_in : process
     begin
-        clk_10kHz <= '0';
-        wait for 50 us;
-        clk_10kHz <= '1';
-        wait for 50 us;
+        clk_1MHz <= '0';
+        wait for 500 ns;
+        clk_1MHz <= '1';
+        wait for 500 ns;
     end process clock_in;
 
-    --! Processo para criar sinal de reset do cronômetro
+    --! Processo para criar sinal de reset
     reset : process
     begin
         aclr_n_tb <= '0';
@@ -87,15 +88,15 @@ begin
 
     begin
         if initial = '0' then
-            B_tb    <= '0';
-            wait for 5 ms;
+            B_tb    <= '1';
+            wait for 0.25 ms;
             initial := '1';
         end if;
 
-        B_tb <= '1';
-        wait for 10 ms;
         B_tb <= '0';
-        wait for 10 ms;
+        wait for 0.5 ms;
+        B_tb <= '1';
+        wait for 0.5 ms;
     end process B_signal;
 
 end architecture stimulus;
