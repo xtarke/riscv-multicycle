@@ -87,7 +87,7 @@ begin
         variable initial : std_logic := '0';
 
     begin
-        if initial = '0' then
+        if initial = '0' then -- Para B ser defasado de 90° de A
             B_tb    <= '1';
             wait for 0.25 ms;
             initial := '1';
