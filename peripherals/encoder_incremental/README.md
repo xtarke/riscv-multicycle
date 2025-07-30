@@ -91,10 +91,10 @@ No primeiro resultado calculado da velocidade (0292), o reset estava ativo em pa
 
 Convertendo o valor 0x578 para decimal, temos o valor de 1400. Portanto, **a velocidade é 140,0 RPM.**
 
+## **Testando com o encoder**
+Pelo GIF abaixo, temos que a velocidade ficou entre 47 a 53 RPM.
 
+<img src="imagem/teste_encoder.gif">
 
-
-
-
-
+OBS: Ficou em aberto realizar a validação da velocidade com um tacômetro.
 
