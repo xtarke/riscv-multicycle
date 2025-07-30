@@ -1,12 +1,9 @@
--------------------------------------------------------
+---------------------------------------------------------------------
 --! @file
 --! @brief RISCV Simple GPIO module
 --         RAM mapped general purpose I/O
-
 --! @Todo: Module should mask bytes (Word, half word and byte access)
---         
---        
--------------------------------------------------------
+---------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -16,7 +13,8 @@ entity irda_bus is
 	generic (
 		--! Chip selec
 		MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
-		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0160";	
+		-- IRDA BASE ADDRESS (4 most significant bytes)
+		MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0180";	
 		DADDRESS_BUS_SIZE : integer := 32
 	);
 	
@@ -37,7 +35,7 @@ entity irda_bus is
 		
 		-- hardware input/output signals
 		irda_sensor  : in std_logic;
-        irda_debug : out std_logic_vector(31 downto 0)
+      irda_debug : out std_logic_vector(31 downto 0)
 	);
 end entity irda_bus;
 
@@ -66,8 +64,6 @@ begin
     end process;
 
     rst_n <= not rst;
-	 
-	 
 	 
     irda: entity work.irda
         port map(
