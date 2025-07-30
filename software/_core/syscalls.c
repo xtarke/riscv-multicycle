@@ -110,6 +110,15 @@ void init_data_section(){
 
 	/* Copy data from .rom to .ram */
 	memcpy(_data, _data_lma, size);
+
+	/* */
+	extern unsigned char __bss_start[];
+	extern unsigned char _bss_end[];
+
+	/* Size computation */
+	size = (long)__bss_start - (long)_bss_end;
+
+	memset(__bss_start, 0, size);
 }
 
  
