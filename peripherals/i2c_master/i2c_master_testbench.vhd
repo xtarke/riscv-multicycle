@@ -12,7 +12,8 @@ architecture RTL of i2c_master_testbench is
 	signal clk_scl : std_logic;
 	signal rst : std_logic;
 	signal ena : std_logic;
-	signal data_w : std_logic_vector(7 downto 0);
+	signal data_wr : std_logic_vector(7 downto 0);
+	signal data_rd : std_logic_vector(7 downto 0);
 	signal ack_err : std_logic;
 	signal rw : std_logic;
 	signal addr : std_logic_vector(6 downto 0);
@@ -29,12 +30,13 @@ begin
 			ena     => ena,
 			rw      => rw,
 			addr    => addr,
-			data_w  => data_w,
+			data_wr => data_wr,
+			data_rd => data_rd,
 			ack_err => ack_err
 		);
 		
 		addr <= "1101000";
-		rw <= '0';
+		rw <= '1';
 		
 		
 		process
@@ -59,11 +61,11 @@ begin
 		end process;
 		
 		process
+			variable data: std_logic_vector(7 downto 0):= "10101100";
 		begin
 			rst <= '1';
 			ena <= '0';
 			
-			data_w <= "10101100";
 			wait for 20 ns;
 			rst <= '0';
 			ena <= '1';
@@ -71,27 +73,16 @@ begin
 			ena <= '0';
 			wait for 300 ns;
 			
-			data_w <= "10100011";
 			ena <= '1';
 			wait;			
 		end process;
-		
+
 		process
 		begin
-			
-			sda <= 'Z';
-			wait for 235 ns;
+			wait for 210 ns;
 			sda <= '0';
-			wait for 20 ns;
+			wait for 40 ns;
 			sda <= 'Z';
-			wait for 180 ns;
-			sda <= '0';
-			wait for 20 ns;
-			sda <= 'Z';
-			wait;			
-			
 		end process;
 		
-		
-
 end architecture RTL;
