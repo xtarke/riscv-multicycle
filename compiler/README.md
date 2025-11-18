@@ -1,6 +1,6 @@
 # Instalação do compilador
 
-1. Baixar [GNU RISC-C GCC](https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases) de acordo com SO do seu PC. Win32-x64 para Windows ou Linux-x64 para Linux.
+1. Baixar [GNU RISC-C GCC](https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/tag/v11.3.0-1) de acordo com SO do seu PC. Win32-x64 para Windows ou Linux-x64 para Linux.
 
     - Utilize a versão máxima 11.3, por exemplo: **xpack-riscv-none-elf-gcc-11.3.0-1-linux-x64.tar.gz**
 
