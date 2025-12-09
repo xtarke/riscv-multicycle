@@ -9,7 +9,7 @@ AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 #LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl
 LDLIBS =
-MAIN = blink
+MAIN = main
 
 quartus_$(MAIN).hex: $(MAIN)32.hex
 	python3 hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex

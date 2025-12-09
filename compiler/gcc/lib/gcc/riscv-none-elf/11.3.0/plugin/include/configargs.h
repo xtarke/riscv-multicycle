@@ -1,0 +1,7 @@
+/* Generated automatically. */
+static const char configuration_arguments[] = "/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/sources/gcc-11.3.0/configure --prefix=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/riscv-none-elf-gcc --prefix=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/riscv-none-elf-gcc --infodir=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/riscv-none-elf-gcc/share/doc/info --mandir=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/riscv-none-elf-gcc/share/doc/man --htmldir=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/riscv-none-elf-gcc/share/doc/html --pdfdir=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/riscv-none-elf-gcc/share/doc/pdf --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=riscv-none-elf --disable-nls --disable-shared --disable-threads --disable-tls --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/Host/home/ilg/Work/riscv-none-elf-gcc-11.3.0-1/linux-x64/install/libs --with-newlib --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-system-zlib --with-abi=ilp32 --with-arch=rv32imac --enable-multilib";
+static const char thread_model[] = "single";
+
+static const struct {
+  const char *name, *value;
+} configure_default_options[] = { { "abi", "ilp32" }, { "arch", "rv32imac" }, { "isa_spec", "2.2" } };
