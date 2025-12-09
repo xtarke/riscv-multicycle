@@ -14,7 +14,6 @@
 // DEFINIÇÕES DO RNG
 // ---------------------------------------------------------
 // Endereço Base: 0x4000640
-// Como o hardware agora é somente leitura, só precisamos deste endereço.
 
 #ifndef RNG_BASE_ADDRESS
 #define RNG_BASE_ADDRESS ((uint32_t)0x4000640)
@@ -23,7 +22,7 @@
 // Acesso direto para leitura
 #define RNG_VAL_READ   *(&RNG_BASE_ADDRESS)
 
-// Ajuste o delay conforme necessário (5000000 ≈ 1 segundo)
+// Ajuste o delay conforme necessário 
 #define DELAY_TIME 100000
 
 int main() {
@@ -42,9 +41,6 @@ int main() {
         // --- B. EXIBIÇÃO NOS DISPLAYS (Hexadecimal) ---
         SEGMENTS_BASE_ADDRESS = val;
         
-        // --- C. EXIBIÇÃO NOS LEDS (Binário) ---
-        // Mostra os 6 primeiros bits do número nos LEDs 1 a 6.
-        // Preserva o LED 7 (Status) e LED 0 (Heartbeat).
         
         uint32_t leds = OUTBUS;     // Lê o estado atual dos LEDs
         leds &= ~0x7E;              // Apaga LEDs 1..6 (Máscara ~01111110)

@@ -1,0 +1,478 @@
+Analysis & Synthesis report for de10_lite
+Mon Dec  8 08:31:08 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Inverted Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "rng:dut_rng"
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Dec  8 08:31:07 2025           ;
+; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                      ; de10_lite                                       ;
+; Top-level Entity Name              ; de10_lite                                       ;
+; Family                             ; MAX 10                                          ;
+; Total logic elements               ; 80                                              ;
+;     Total combinational functions  ; 73                                              ;
+;     Dedicated logic registers      ; 16                                              ;
+; Total registers                    ; 16                                              ;
+; Total pins                         ; 149                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
+; UFM blocks                         ; 0                                               ;
+; ADC blocks                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G     ;                    ;
+; Top-level entity name                                            ; de10_lite          ; de10_lite          ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                  ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------+---------+
+; ../seven_seg.vhd                 ; yes             ; User VHDL File  ; C:/Users/elisa/Documents/PLD/rng_read/seven_seg.vhd           ;         ;
+; ../rng.vhd                       ; yes             ; User VHDL File  ; C:/Users/elisa/Documents/PLD/rng_read/rng.vhd                 ;         ;
+; de10_lite.vhd                    ; yes             ; User VHDL File  ; C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 80          ;
+;                                             ;             ;
+; Total combinational functions               ; 73          ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 65          ;
+;     -- 3 input functions                    ; 0           ;
+;     -- <=2 input functions                  ; 8           ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 73          ;
+;     -- arithmetic mode                      ; 0           ;
+;                                             ;             ;
+; Total registers                             ; 16          ;
+;     -- Dedicated logic registers            ; 16          ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 149         ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; SW[1]~input ;
+; Maximum fan-out                             ; 32          ;
+; Total fan-out                               ; 532         ;
+; Average fan-out                             ; 1.26        ;
++---------------------------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                      ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name       ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------+-------------+--------------+
+; |de10_lite                 ; 73 (0)              ; 16 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 149  ; 0            ; 0          ; |de10_lite                ; de10_lite   ; work         ;
+;    |rng:dut_rng|           ; 9 (9)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|rng:dut_rng    ; rng         ; work         ;
+;    |seven_seg:dut0|        ; 16 (16)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|seven_seg:dut0 ; seven_seg   ; work         ;
+;    |seven_seg:dut1|        ; 16 (16)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|seven_seg:dut1 ; seven_seg   ; work         ;
+;    |seven_seg:dut2|        ; 16 (16)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|seven_seg:dut2 ; seven_seg   ; work         ;
+;    |seven_seg:dut3|        ; 16 (16)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|seven_seg:dut3 ; seven_seg   ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 16    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 16    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; rng:dut_rng|lfsr[0]                    ; 9       ;
+; rng:dut_rng|lfsr[5]                    ; 10      ;
+; rng:dut_rng|lfsr[6]                    ; 9       ;
+; rng:dut_rng|lfsr[7]                    ; 9       ;
+; rng:dut_rng|lfsr[10]                   ; 9       ;
+; rng:dut_rng|lfsr[11]                   ; 9       ;
+; rng:dut_rng|lfsr[13]                   ; 9       ;
+; rng:dut_rng|lfsr[15]                   ; 9       ;
+; Total number of inverted registers = 8 ;         ;
++----------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |de10_lite|rng:dut_rng|read_data[3] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "rng:dut_rng"                                                                                     ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; read_data[31..24] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 149                         ;
+; cycloneiii_ff         ; 16                          ;
+;     CLR               ; 16                          ;
+; cycloneiii_io_obuf    ; 35                          ;
+; cycloneiii_lcell_comb ; 83                          ;
+;     normal            ; 83                          ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 16                          ;
+;         4 data inputs ; 65                          ;
+;                       ;                             ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 1.66                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Processing started: Mon Dec  8 08:30:56 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de10_lite -c de10_lite
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /users/elisa/documents/pld/rng_read/seven_seg.vhd
+    Info (12022): Found design unit 1: seven_seg-behavior File: C:/Users/elisa/Documents/PLD/rng_read/seven_seg.vhd Line: 21
+    Info (12023): Found entity 1: seven_seg File: C:/Users/elisa/Documents/PLD/rng_read/seven_seg.vhd Line: 14
+Info (12021): Found 2 design units, including 1 entities, in source file /users/elisa/documents/pld/rng_read/rng.vhd
+    Info (12022): Found design unit 1: rng-RTL File: C:/Users/elisa/Documents/PLD/rng_read/rng.vhd Line: 23
+    Info (12023): Found entity 1: rng File: C:/Users/elisa/Documents/PLD/rng_read/rng.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file de10_lite.vhd
+    Info (12022): Found design unit 1: de10_lite-rtl File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 69
+    Info (12023): Found entity 1: de10_lite File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 11
+Info (12127): Elaborating entity "de10_lite" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(19): used implicit default value for signal "DRAM_ADDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(20): used implicit default value for signal "DRAM_BA" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 20
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(21): used implicit default value for signal "DRAM_CAS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 21
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(22): used implicit default value for signal "DRAM_CKE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(23): used implicit default value for signal "DRAM_CLK" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 23
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(24): used implicit default value for signal "DRAM_CS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 24
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(26): used implicit default value for signal "DRAM_LDQM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 26
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(27): used implicit default value for signal "DRAM_RAS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 27
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(28): used implicit default value for signal "DRAM_UDQM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 28
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(29): used implicit default value for signal "DRAM_WE_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 29
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(43): used implicit default value for signal "LEDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(49): used implicit default value for signal "VGA_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 49
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(50): used implicit default value for signal "VGA_G" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 50
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(51): used implicit default value for signal "VGA_HS" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 51
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(52): used implicit default value for signal "VGA_R" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 52
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(53): used implicit default value for signal "VGA_VS" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 53
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(56): used implicit default value for signal "GSENSOR_CS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 56
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(58): used implicit default value for signal "GSENSOR_SCLK" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 58
+Info (12128): Elaborating entity "rng" for hierarchy "rng:dut_rng" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 102
+Info (12128): Elaborating entity "seven_seg" for hierarchy "seven_seg:dut0" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 112
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[3]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[4]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[5]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[6]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[7]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[8]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[9]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[10]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[11]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[12]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[13]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[14]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "DRAM_DQ[15]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 25
+    Warning (13040): bidirectional pin "GSENSOR_SDI" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 59
+    Warning (13040): bidirectional pin "GSENSOR_SDO" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 60
+    Warning (13040): bidirectional pin "ARDUINO_IO[0]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[1]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[2]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[3]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[4]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[5]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[6]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[7]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[8]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[9]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[10]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[11]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[12]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[13]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[14]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_IO[15]" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 63
+    Warning (13040): bidirectional pin "ARDUINO_RESET_N" has no driver File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 64
+Info (13000): Registers with preset signals will power-up high File: C:/Users/elisa/Documents/PLD/rng_read/rng.vhd Line: 42
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[5]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[9]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[10]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 19
+    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_CAS_N" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 21
+    Warning (13410): Pin "DRAM_CKE" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 22
+    Warning (13410): Pin "DRAM_CLK" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 23
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 24
+    Warning (13410): Pin "DRAM_LDQM" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 26
+    Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 27
+    Warning (13410): Pin "DRAM_UDQM" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 28
+    Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 29
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[7]" is stuck at VCC File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[7]" is stuck at VCC File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 43
+    Warning (13410): Pin "VGA_B[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 49
+    Warning (13410): Pin "VGA_B[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 49
+    Warning (13410): Pin "VGA_B[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 49
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 49
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_HS" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 51
+    Warning (13410): Pin "VGA_R[0]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 52
+    Warning (13410): Pin "VGA_R[1]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 52
+    Warning (13410): Pin "VGA_R[2]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 52
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 52
+    Warning (13410): Pin "VGA_VS" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 53
+    Warning (13410): Pin "GSENSOR_CS_N" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 56
+    Warning (13410): Pin "GSENSOR_SCLK" is stuck at GND File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 58
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 12 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ADC_CLK_10" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 14
+    Warning (15610): No output dependent on input pin "MAX10_CLK1_50" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 15
+    Warning (15610): No output dependent on input pin "MAX10_CLK2_50" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 16
+    Warning (15610): No output dependent on input pin "KEY[0]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 40
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 40
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 46
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 46
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 46
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 46
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 46
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 57
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: C:/Users/elisa/Documents/PLD/rng_read/de10_lite/de10_lite.vhd Line: 57
+Info (21057): Implemented 229 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 17 input pins
+    Info (21059): Implemented 97 output pins
+    Info (21060): Implemented 35 bidirectional pins
+    Info (21061): Implemented 80 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 134 warnings
+    Info: Peak virtual memory: 4857 megabytes
+    Info: Processing ended: Mon Dec  8 08:31:08 2025
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:24
+
+
