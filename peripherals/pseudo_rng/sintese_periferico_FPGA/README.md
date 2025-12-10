@@ -7,7 +7,7 @@ Aqui ocorre a implementação do periférico **gerador de números pseudoaleató
 O objetivo é validar o funcionamento do **periférico PSEUDO-RNG** no FPGA, utilizando suas chaves como interface.
 
 
-<img src="imagens/periferico_FPGA.gif" title="" alt="Validaçaão do periférico" data-align="center">
+<img src="imagens/periferico_FPGA.mp4" title="" alt="Validaçaão do periférico" data-align="center">
 
 
 
