@@ -17,7 +17,7 @@ O teste foi feito inteiramente no **ModelSim – Intel FPGA Edition**.
 | `tb_rng.vhd` | Testbench da simulação. |
 
 
-<img src="imagens/simulacao_rng.png" title="" alt="Bloco rng e rng_bus" data-align="center">
+<img src="../imagens/simulacao_rng.png" title="" alt="Bloco rng e rng_bus" data-align="center">
 
 
 
