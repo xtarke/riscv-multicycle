@@ -63,7 +63,7 @@ begin
         ddata_r_cordic when x"0015",
     	ddata_r_RS485 when x"0017",
         ddata_r_rgb when x"0020",
-        ddata_r_rng when x"0019",
+        ddata_r_rng when x"0064",
         -- Add new io peripherals here
         (others => '0') when others;
 end architecture RTL;

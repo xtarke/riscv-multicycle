@@ -1,0 +1,77 @@
+-------------------------------------------------------------------
+-- Name        : rng_bus.vhd
+-- Author      : Elisa Anes Romero
+-- Version     : 0.1
+-- Copyright   : Renan, Departamento de Eletrônica, Florianópolis, IFSC
+-- Description : Random number generator bus
+-------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity rng_bus is
+    generic (
+        MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "00";
+        MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000" -- Endereço base deste periférico
+    );
+    port (
+        -- Sinais do Barramento (Conectam no Softcore)
+        clk      : in std_logic;
+        rst      : in std_logic;
+        
+        -- Barramento de Dados/Endereços
+        daddress : in unsigned(31 downto 0);     -- Endereço vindo do processador
+        ddata_w  : in std_logic_vector(31 downto 0); -- Dado vindo do processador (Escrita)
+        ddata_r  : out std_logic_vector(31 downto 0); -- Dado indo para o processador (Leitura)
+        
+        -- Sinais de Controle
+        d_we     : in std_logic;                 -- Write Enable (1 = escrever)
+        d_rd     : in std_logic;                 -- Read Enable (1 = ler)
+        dcsel    : in std_logic_vector(1 downto 0); -- Chip Select do grupo de periféricos
+        dmask    : in std_logic_vector(3 downto 0)  -- Máscara de bytes (não usado aqui, mas parte do padrão)
+    );
+end entity rng_bus;
+
+architecture rtl of rng_bus is
+
+    -- Sinal interno para saber se este periférico específico foi escolhido
+    signal rng_select : std_logic;
+
+begin
+
+    ---------------------------------------------------------------------------
+    -- 1. Decodificação de Endereço (A Lógica do "É comigo?")
+    ---------------------------------------------------------------------------
+    -- O sinal rng_select vai para '1' APENAS se:
+    -- A) O grupo de periféricos estiver selecionado (dcsel)
+    -- B) Os bits superiores do endereço baterem com o endereço base (MY_WORD_ADDRESS)
+    -- Ignoramos os bits 3..0 aqui porque eles selecionam os registradores internos.
+    
+    rng_select <= '1' when (dcsel = MY_CHIPSELECT) and 
+                           (daddress(15 downto 4) = MY_WORD_ADDRESS(15 downto 4)) 
+                  else '0';
+
+    ---------------------------------------------------------------------------
+    -- 2. Instanciação do Componente RNG (O "Recheio")
+    ---------------------------------------------------------------------------
+    dut_rng: entity work.rng
+        port map (
+            clk          => clk,
+            rst          => rst,
+            
+            -- Caminho dos Dados
+            write_data   => ddata_w,       -- Do processador para o RNG
+            read_data    => ddata_r,       -- Do RNG para o processador
+            
+            -- Controle
+            chip_select  => rng_select,    -- Conectado ao nosso decodificador acima
+            write_enable => d_we,          -- Só escreve se o processador mandar
+            
+            -- Endereço do Registrador Interno
+            -- Convertemos de Unsigned (processador) para Std_Logic_Vector (RNG)
+            -- Pegamos os bits 3 e 2 para selecionar entre endereços 0x00, 0x04, 0x08, etc.
+            addr         => std_logic_vector(daddress(3 downto 2)) 
+        );
+
+end architecture rtl;

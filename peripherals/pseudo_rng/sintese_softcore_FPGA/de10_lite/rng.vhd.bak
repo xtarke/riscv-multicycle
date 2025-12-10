@@ -1,0 +1,83 @@
+-------------------------------------------------------------------
+-- Name        : rng.vhd
+-- Author      : Elisa Anes Romero
+-- Version     : 0.1
+-- Copyright   : Renan, Departamento de Eletrônica, Florianópolis, IFSC
+-- Description : Random number generator
+-------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity rng is
+	port(
+		clk : in std_logic;  -- clock do sistema
+		rst : in std_logic;  -- reset sincrono
+		write_data : in std_logic_vector(31 downto 0); 
+        write_enable : in std_logic; -- habilita escrita
+        chip_select : in std_logic; -- ativa este periferico
+		addr : in std_logic_vector(1 downto 0);  -- seleciona registrador
+		read_data : out std_logic_vector(31 downto 0) -- valor lido pelo CPU, mudar para 24bits
+		
+	);
+	
+end entity rng;
+
+architecture RTL of rng is
+    
+    --linear feedback shift register inicia com valor seed
+    signal lfsr : std_logic_vector(15 downto 0) := x"ACE1";
+    -- liga/deslifa RNG
+    signal enable : std_logic := '1';
+    -- bit calculado pelo polinomio
+    signal feedback : std_logic;
+
+begin
+    --polinomio da LFSR gera 65535 numeros 16 bits
+    feedback <= lfsr(15) xor lfsr(12) xor lfsr(8) xor lfsr(5);
+    
+    -- processo principal a cada clk gera um novo numero
+    process(clk, rst)
+    begin
+        if rst = '1' then
+            lfsr <= x"ACE1"; --seed inicial
+        elsif rising_edge(clk) then
+            if enable = '1' then
+                -- 15 LSB shifted to left e coloque o bit feedback no bit0
+                lfsr <= lfsr(14 downto 0) & feedback; --OK
+            end if;
+            --Escrita em registradores bit zero define liga/desliga
+            if chip_select = '1' and write_enable = '1' then
+                case addr is
+                when "01" => --seed
+                    lfsr <= write_data(15 downto 0);
+                when "10" => --CTRL
+                    enable <= write_data(0);
+                when others =>
+                    null;
+                end case;
+            end if;
+        end if;
+    end process;  
+
+    -- Processo de leitura
+    process(chip_select, addr, lfsr, enable)
+    begin
+        if chip_select = '1' then
+            case addr is
+                when "00" =>  -- RNG_VALUE
+                    read_data <= x"0000" & lfsr;
+                when "01" =>  -- RNG_SEED
+                    read_data <= x"0000" & lfsr;
+                when "10" =>  -- CTRL
+                    read_data <= (31 downto 1 => '0') & enable;
+                when others =>
+                    read_data <= (others => '0');
+            end case;
+        else
+            read_data <= (others => '0');
+        end if;
+    end process;
+
+end architecture RTL;
