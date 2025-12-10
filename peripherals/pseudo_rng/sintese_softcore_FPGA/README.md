@@ -10,7 +10,7 @@ O objetivo é testar a comunicação entre o **hardware sintetizado na FPGA** e 
 
 O código em C lê o pseudo-rng a cada determinado tempo e mostra o numero gerado no display.
 
-<img src="../imagens/softcore.mp4" title="" alt="Periférico rodando com código em C." data-align="center">
+<img src="../imagens/softcore.gif" title="" alt="Periférico rodando com código em C." data-align="center">
 
 
 ## Sugestões de melhorias
