@@ -1,0 +1,94 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/elisa/Documents/riscv-multicycle/peripherals/rng/work
+Erng
+Z1 w1765156933
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 7
+R0
+Z5 8rng.vhd
+Z6 Frng.vhd
+l0
+Z7 L12 1
+V]HE8F=fnHOmjc9<jL6HN[3
+!s100 `]CWSjgHiHNBGf`D[WLUk1
+Z8 OV;C;2020.1;71
+32
+Z9 !s110 1765314811
+!i10b 1
+Z10 !s108 1765314811.000000
+Z11 !s90 -reportprogress|300|rng.vhd|tb_rng.vhd|
+Z12 !s107 tb_rng.vhd|rng.vhd|
+!i113 1
+Z13 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+Z14 DEx4 work 3 rng 0 22 ]HE8F=fnHOmjc9<jL6HN[3
+!i122 7
+l29
+Z15 L23 47
+Z16 V;mcPbnh[mj=1@Y`DcM1CJ2
+Z17 !s100 k0X08;l`QgeF`WTd>]gB^1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+Etestbench
+Z18 w1765156976
+R2
+R3
+R4
+!i122 7
+R0
+Z19 8tb_rng.vhd
+Z20 Ftb_rng.vhd
+l0
+R7
+V1Hl?SEWK4^GF]FCYfAj[I0
+!s100 E2fJ5CaXihi_>H`Q6FY`D2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+Astimulus
+R14
+R2
+R3
+R4
+Z21 DEx4 work 9 testbench 0 22 1Hl?SEWK4^GF]FCYfAj[I0
+!i122 7
+l33
+Z22 L15 80
+Z23 V<bh^NYV;GRJi>JIO=ZYPC3
+Z24 !s100 II3H?V@0WGG1mmA[<S;?10
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
