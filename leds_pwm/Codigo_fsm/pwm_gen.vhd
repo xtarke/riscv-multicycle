@@ -8,9 +8,9 @@ entity pwm_gen is
 port
 (
 	clock	:	in	std_logic;
-	pwm_25	:	out	std_logic;
-	pwm_50	:	out	std_logic;
-	pwm_75	:	out	std_logic;
+	pwm_10	:	out	std_logic;
+	pwm_30	:	out	std_logic;
+	pwm_60	:	out	std_logic;
 	pwm_90	:	out	std_logic
 );
 end pwm_gen;
@@ -53,7 +53,8 @@ begin
 				pwm_60 <= '0';
 			end if;
 
-			-- geração do PWM de 90% DC.    
+			-- geração do PWM de 90% DC. 
+			if cont < 90 then
 				pwm_90 <= '1';
 			else
 				pwm_90 <= '0';
@@ -64,3 +65,4 @@ begin
 
 
 end giovanna;
+
