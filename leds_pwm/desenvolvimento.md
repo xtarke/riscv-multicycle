@@ -58,6 +58,11 @@ simulações no ambiente ModelSim. As Figuras a seguir apresentam as formas de
 onda obtidas durante a simulação, evidenciando o funcionamento correto da
 FSM, do divisor de clock e do gerador de PWM.
 
+![Formas de onda da simulação no ModelSim](imagens/modelsim1.jpg)
+
+![Detalhe dos sinais PWM e estados da FSM no ModelSim](imagens/modelsim2.jpg)
+
+
 Observa-se nas formas de onda a transição ordenada dos estados da FSM,
 sincronizada com o sinal `clock_div`, bem como a atuação do sinal `enable`
 no controle do avanço dos estados. Além disso, é possível verificar os
@@ -71,6 +76,13 @@ Após a validação por simulação, o projeto foi sintetizado e implementado na
 placa FPGA DE10-Lite utilizando o software Quartus. Os gifs a seguir 
 mostram a execução do sistema em hardware real, onde é possível observar
 a animação dos LEDs ocorrendo conforme o comportamento previsto.
+
+![Execução do sistema em hardware – animação progressiva](imagens/gif2_prog.gif)
+
+![Execução do sistema em hardware – animação regressiva](imagens/gif3_regr.gif)
+
+![Visão geral da placa DE10-Lite em funcionamento](imagens/gif1.gif)
+
 
 Nos registros visuais apresentados, verifica-se o efeito de “barrinha” de
 LEDs, com crescimento e regressão controlados pelas chaves físicas da
