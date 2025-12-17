@@ -25,7 +25,7 @@ add wave -color "green" /buzzer_tb/sw_jingle_tb
 add wave -color "yellow" /buzzer_tb/wave_out_tb
 
 
-# Roda 40ms (Suficiente para ver várias notas agora!)
+# Roda 40ms 
 run 85 ms
 
 wave zoomfull
