@@ -70,7 +70,7 @@ O arquivo `testbench.vhd` foi projetado para validar a logica de troca de musica
 
 ### Questa / ModelSim
 O projeto inclui um script de automacao (`tb.do`) para facilitar a simulacao.
-Na figura a seguir podemos verificar asimulação do arquivo 'buzzer1.vhd'
+Na figura a seguir podemos verificar a simulação do arquivo 'buzzer1.vhd'
 
 <img width="1364" height="262" alt="image" src="https://github.com/user-attachments/assets/c1ffc334-c660-400a-b36f-9643ea9d4b6d" />
 
@@ -97,3 +97,4 @@ Para expandir este projeto, considere as seguintes implementacoes:
 3.  **Gerador de Envelope (ADSR):** Implementar Ataque e Decaimento na onda para suavizar o som.
 
 4.  **Display de 7 Segmentos:** Mostrar visualmente qual musica esta tocando (Ex: '1' para Imperial, '2' para Jingle).
+
