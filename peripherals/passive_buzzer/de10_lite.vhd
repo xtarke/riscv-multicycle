@@ -1,5 +1,6 @@
 -------------------------------------------------------------------
 -- Name        : de10_lite.vhd
+-- Author      : Sarah Bararua
 -- Description : Seletor de Músicas
 -- Pinagem     : Buzzer no ARDUINO_IO(8) (PIN_AB17)
 -------------------------------------------------------------------
@@ -125,5 +126,6 @@ begin
     VGA_B <= (others => '0'); VGA_G <= (others => '0'); VGA_R <= (others => '0');
     VGA_HS <= '0'; VGA_VS <= '0';
     GSENSOR_CS_N <= '1'; GSENSOR_SCLK <= '0';
+
 
 end architecture rtl;
