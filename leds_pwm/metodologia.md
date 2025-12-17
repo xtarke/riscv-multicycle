@@ -10,7 +10,7 @@ O controle da animação dos LEDs é realizado por meio de uma máquina de
 estados finita (FSM), responsável por definir a quantidade de LEDs ativos
 e o sentido da animação. A FSM foi modelada utilizando o modelo de Moore,
 em que as saídas dependem exclusivamente do estado atual do sistema. A
-Figura 1 apresenta o diagrama de estados da FSM, no qual é possível
+Figura a seguir apresenta o diagrama de estados da FSM, no qual é possível
 visualizar os estados, as transições e a lógica de progressão e regressão
 da animação.
 
@@ -22,7 +22,7 @@ valores adequados ao funcionamento da FSM e à visualização da animação
 dos LEDs. Esse bloco recebe como entradas o clock da placa e o sinal de
 reset, e fornece como saída um clock dividido. O diagrama de bloco do
 divisor de clock, com suas respectivas entradas e saídas, é apresentado
-na Figura 2.
+na Figura a seguir.
 
 FIGURA 2
 
@@ -31,7 +31,7 @@ PWM, responsável por produzir sinais com diferentes ciclos de trabalho.
 Neste projeto, são utilizados sinais PWM com duty cycles de 10%, 30%,
 60% e 90%, permitindo a variação da intensidade luminosa dos LEDs de forma
 discreta. O módulo recebe como entradas o clock e o reset, e fornece como
-saídas os sinais PWM correspondentes. A Figura 3 ilustra o diagrama de
+saídas os sinais PWM correspondentes. A Figura a seguir ilustra o diagrama de
 bloco do gerador PWM, evidenciando suas entradas e saídas.
 
 FIGURA 3
