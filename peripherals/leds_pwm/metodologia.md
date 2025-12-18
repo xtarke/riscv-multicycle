@@ -1,57 +1,15 @@
 # Metodologia
 
-A metodologia adotada neste trabalho baseia-se no desenvolvimento modular
-de um sistema digital em FPGA, descrito em linguagem VHDL, seguido de
-validação por simulação e implementação em hardware. O projeto foi
-organizado em blocos funcionais independentes, o que facilita a
-compreensão, depuração e reutilização do código.
+A metodologia adotada neste trabalho baseia-se no desenvolvimento modular de um sistema digital implementado em FPGA, descrito em linguagem VHDL, seguido de validação por simulação e posterior implementação em hardware. O projeto foi estruturado em blocos funcionais independentes, abordagem que facilita a compreensão do funcionamento do sistema, a depuração do código e sua possível reutilização em projetos futuros.
 
-O controle da animação dos LEDs é realizado por meio de uma máquina de
-estados finita (FSM), responsável por definir a quantidade de LEDs ativos
-e o sentido da animação. A FSM foi modelada utilizando o modelo de Moore,
-em que as saídas dependem exclusivamente do estado atual do sistema. A
-Figura a seguir apresenta o diagrama de estados da FSM, no qual é possível
-visualizar os estados, as transições e a lógica de progressão e regressão
-da animação.
+O controle da animação dos LEDs é realizado por meio de uma máquina de estados finita (FSM), responsável por definir tanto a quantidade de LEDs ativos quanto o sentido da animação. A FSM foi modelada segundo o modelo de Moore, no qual as saídas do sistema dependem exclusivamente do estado atual, proporcionando maior previsibilidade e simplicidade no projeto. As transições entre os estados são controladas por sinais de entrada, permitindo a progressão ou regressão da animação de acordo com a configuração definida pelo usuário.
 
-FIGURA 1
+O sistema também conta com um módulo dedicado à divisão do clock da FPGA. Considerando que o clock nativo da placa opera em uma frequência elevada para observação visual, este bloco tem a função de reduzir a frequência do sinal de clock para valores adequados ao funcionamento da FSM e à visualização da animação dos LEDs. O divisor de clock utiliza um contador interno para gerar um clock mais lento, sincronizando corretamente a atualização dos estados do sistema.
 
-O sistema também conta com um bloco dedicado à divisão do clock da FPGA,
-cuja função é reduzir a frequência do sinal de clock principal para
-valores adequados ao funcionamento da FSM e à visualização da animação
-dos LEDs. Esse bloco recebe como entradas o clock da placa e o sinal de
-reset, e fornece como saída um clock dividido. O diagrama de bloco do
-divisor de clock, com suas respectivas entradas e saídas, é apresentado
-na Figura a seguir.
+Para o controle do brilho dos LEDs, foi desenvolvido um módulo gerador de PWM (Pulse Width Modulation), responsável por produzir sinais com diferentes ciclos de trabalho. Neste projeto, são utilizados sinais PWM com duty cycles de 10%, 30%, 60% e 90%, possibilitando a variação discreta da intensidade luminosa dos LEDs. Essa abordagem permite simular diferentes níveis de brilho de forma simples e eficiente, sem a necessidade de circuitos analógicos adicionais.
 
-FIGURA 2
+O sistema dispõe de três chaves de controle externas: reset, enable e progr_regr. O sinal de reset é responsável por reinicializar o sistema, forçando a FSM ao seu estado inicial. A chave enable permite habilitar ou bloquear a atualização dos estados, possibilitando a pausa da animação dos LEDs. Já o sinal progr_regr define o sentido da animação, permitindo alternar entre progressão e regressão da “barrinha” de LEDs.
 
-Para o controle do brilho dos LEDs, foi desenvolvido um módulo gerador de
-PWM, responsável por produzir sinais com diferentes ciclos de trabalho.
-Neste projeto, são utilizados sinais PWM com duty cycles de 10%, 30%,
-60% e 90%, permitindo a variação da intensidade luminosa dos LEDs de forma
-discreta. O módulo recebe como entradas o clock e o reset, e fornece como
-saídas os sinais PWM correspondentes. A Figura a seguir ilustra o diagrama de
-bloco do gerador PWM, evidenciando suas entradas e saídas.
+A validação funcional do sistema foi realizada por meio de simulações no ambiente ModelSim. Para automatizar esse processo, foi utilizado um script de simulação (script.do), responsável pela criação da biblioteca de trabalho, compilação dos módulos VHDL, inicialização do testbench e configuração da visualização dos sinais na forma de onda. As simulações foram executadas por um intervalo de tempo suficiente para verificar o funcionamento completo da FSM, a atuação das chaves de controle e a geração correta dos sinais PWM.
 
-FIGURA 3
-
-O sistema dispõe de três chaves de controle externas: reset, enable e
-progr_regr. O sinal de reset é responsável por reinicializar o sistema,
-forçando a FSM ao estado inicial. A chave enable habilita ou bloqueia a
-atualização dos estados, permitindo pausar a animação dos LEDs. Por fim,
-a chave progr_regr define o sentido da animação, possibilitando a
-progressão ou regressão da “barrinha” de LEDs.
-
-A validação funcional do sistema foi realizada por meio de simulações no
-ambiente ModelSim. Para automatizar esse processo, foi utilizado um
-script de simulação (`script.do`), responsável por recriar a biblioteca
-de trabalho, compilar os módulos VHDL, iniciar a simulação do testbench e
-configurar a visualização dos sinais na forma de onda. A simulação foi
-executada por um intervalo de tempo suficiente para observar o
-funcionamento completo da animação dos LEDs e a variação dos sinais PWM.
-
-Após a etapa de simulação, o projeto foi sintetizado e implementado em
-uma placa FPGA DE10-Lite, utilizando o software Quartus. Essa etapa
-permitiu verificar o funcionamento do sistema em hardware real,
-confirmando os resultados observados durante a simulação.
+Após a etapa de simulação, o projeto foi sintetizado e implementado em uma placa FPGA DE10-Lite, utilizando o software Quartus. Essa etapa permitiu validar o funcionamento do sistema em hardware real, confirmando os resultados observados durante a simulação e assegurando a correta implementação da animação dos LEDs conforme especificado.
