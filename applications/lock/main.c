@@ -1,3 +1,5 @@
+/*Aluno: Marcelo Zampieri Pereira da Silva*/
+
 #include <stdint.h>
 #include "hardware.h"
 #include "gpio.h"
@@ -103,3 +105,4 @@ int main(void) {
 
     return 0;
 }
+
