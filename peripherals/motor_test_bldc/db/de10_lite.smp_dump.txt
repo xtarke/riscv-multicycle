@@ -1,0 +1,10 @@
+
+State Machine - |de10_lite|motor_test_bldc:dut|state
+Name state.FAIL state.SUCESS state.A_10 state.A_5 state.A_1 state.MODE_ST state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.MODE_ST 0 0 0 0 0 1 1 
+state.A_1 0 0 0 0 1 0 1 
+state.A_5 0 0 0 1 0 0 1 
+state.A_10 0 0 1 0 0 0 1 
+state.SUCESS 0 1 0 0 0 0 1 
+state.FAIL 1 0 0 0 0 0 1 
