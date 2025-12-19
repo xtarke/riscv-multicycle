@@ -1,6 +1,7 @@
 # ============================================================================
 # ARQUIVO: tb.do
-# DESCRIÇÃO: 
+# DESCRIÇÃO:  Script de simulação do ModelSim para o módulo OneShot125,
+#            exibindo o PWM de saída e os sinais relacionados aos displays.
 # ============================================================================
 
 # 1. Limpeza
