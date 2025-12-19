@@ -61,7 +61,7 @@ begin
     begin
         rst_tb <= '1';
         wait for  2 ns;
-        rst_tb <= '0';  
+        rst_tb <= '0';
         wait for 40000000 ns;   
 
     end process;

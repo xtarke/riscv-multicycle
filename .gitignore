@@ -1,4 +1,16 @@
 
+# Toolchain / Compiladores
+compiler/
+*.tar.gz
+*.zip
+
+# ModelSim / Quartus
+work/
+*.wlf
+*.vcd
+transcript
+output_files/
+
 peripherals/*/sint/de10_lite/db
 peripherals/*/sint/de10_lite/incremental_db
 peripherals/*/sint/de10_lite/output_files

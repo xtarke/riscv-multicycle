@@ -82,6 +82,9 @@ architecture rtl of de0_lite_gpio is
     signal clk_50MHz : std_logic;
     -- PLL signals
     signal locked_sig : std_logic;
+	 signal rotate    : unsigned(31 downto 0);
+		signal rotate_tb : unsigned(31 downto 0);
+		signal pwm       : std_logic;
 
     -- Instruction bus signals
     signal idata     : std_logic_vector(31 downto 0);
@@ -128,7 +131,9 @@ architecture rtl of de0_lite_gpio is
     signal ddata_r_key : std_logic_vector(31 downto 0);
     signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
 	 signal ddata_r_cordic : std_logic_vector(31 downto 0);
+	 signal ddata_r_rgb : std_logic_vector(31 downto 0);
 	 signal ddata_r_RS485 : std_logic_vector(31 downto 0);
+	 signal ddata_r_servo : std_logic_vector(31 downto 0);
 	 
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
@@ -255,6 +260,8 @@ begin
             ddata_r_key       => ddata_r_key,
 				ddata_r_cordic    => ddata_r_cordic,
 				ddata_r_RS485     => ddata_r_RS485,
+				ddata_r_rgb       => ddata_r_rgb,
+				ddata_r_servo => ddata_r_servo,
             ddata_r_accelerometer     => ddata_r_accelerometer
         );
 
@@ -314,7 +321,31 @@ begin
             hex6     => open,
             hex7     => open
         );
-
+		  
+	servo_bus : entity work.servo_bus
+    generic map (
+        MY_CHIPSELECT     => "10",      -- Seleciona Grupo Periféricos
+        MY_WORD_ADDRESS   => x"0190",   -- Endereço Base 0x...0190
+        DADDRESS_BUS_SIZE => 32         
+    )
+    port map (
+        -- Clocks
+        clk      => clk,       
+        rst      => rst,
+		  rotate_o => rotate,
+		  pwm => ARDUINO_IO(0),
+        
+        -- Conexões do Barramento
+        daddress => daddress,
+        ddata_w  => ddata_w,     
+        ddata_r  => ddata_r_servo,  
+        
+        -- Controle
+        d_we     => d_we,
+        d_rd     => d_rd,
+        dcsel    => dcsel,
+        dmask    => dmask
+    );
     -- Connect input hardware to gpio data
     gpio_input(3 downto 0) <= SW(3 downto 0);
     LEDR(7 downto 0) <= gpio_output(7 downto 0);
