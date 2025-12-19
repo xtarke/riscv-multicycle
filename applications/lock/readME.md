@@ -1,5 +1,7 @@
 ## Fechadura Digital
 
+aluno: Marcelo Zampieri Pereira da Silva
+
 ## Descrição Geral
 
 Este projeto implementa uma fechadura digital simples em um sistema embarcado baseado em RISC-V, utilizando switches, LEDs e displays de 7 segmentos para interação com o usuário.
