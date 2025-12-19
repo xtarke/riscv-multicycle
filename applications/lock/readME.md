@@ -5,7 +5,11 @@
 Este projeto implementa uma fechadura digital simples em um sistema embarcado baseado em RISC-V, utilizando switches, LEDs e displays de 7 segmentos para interação com o usuário.
 
 O usuário insere dois dígitos usando os switches 3 downto 0 (SW3 a SW0) e confirma cada dígito pressionando o botão ENTER.  
+
+
 O sistema compara os dígitos com uma*senha fixa e indica sucesso ou erro através de LEDs.  
+
+
 Após um número máximo de tentativas erradas, o sistema entra em modo bloqueado.
 
 ---
