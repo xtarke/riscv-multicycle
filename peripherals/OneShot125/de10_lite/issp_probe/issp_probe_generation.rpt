@@ -1,0 +1,28 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate E:\Sarah\diana\de10_lite\issp_probe.qsys --block-symbol-file --output-directory=E:\Sarah\diana\de10_lite\issp_probe --family="MAX 10" --part=10M50DAF484C7G
+Progress: Loading de10_lite/issp_probe.qsys
+Progress: Reading input file
+Progress: Adding in_system_sources_probes_0 [altera_in_system_sources_probes 24.1]
+Progress: Parameterizing module in_system_sources_probes_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate E:\Sarah\diana\de10_lite\issp_probe.qsys --synthesis=VERILOG --output-directory=E:\Sarah\diana\de10_lite\issp_probe\synthesis --family="MAX 10" --part=10M50DAF484C7G
+Progress: Loading de10_lite/issp_probe.qsys
+Progress: Reading input file
+Progress: Adding in_system_sources_probes_0 [altera_in_system_sources_probes 24.1]
+Progress: Parameterizing module in_system_sources_probes_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: issp_probe: Generating "issp_probe" for QUARTUS_SYNTH
+Info: in_system_sources_probes_0: "issp_probe" instantiated altera_in_system_sources_probes "in_system_sources_probes_0"
+Info: issp_probe: Done "issp_probe" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

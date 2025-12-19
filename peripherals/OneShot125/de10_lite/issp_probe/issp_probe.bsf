@@ -1,0 +1,60 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 208 144)
+	(text "issp_probe" (rect 72 -1 115 11)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "probe[19..0]" (rect 0 0 46 12)(font "Arial" (font_size 8)))
+		(text "probe[19..0]" (rect 4 61 76 72)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 80 72)(line_width 3))
+	)
+	(port
+		(pt 0 112)
+		(output)
+		(text "source[19..0]" (rect 0 0 50 12)(font "Arial" (font_size 8)))
+		(text "source[19..0]" (rect 4 101 82 112)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 80 112)(line_width 3))
+	)
+	(drawing
+		(text "probes" (rect 41 43 118 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "probe" (rect 85 67 200 144)(font "Arial" (color 0 0 0)))
+		(text "sources" (rect 35 83 112 179)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "source" (rect 85 107 206 224)(font "Arial" (color 0 0 0)))
+		(text " issp_probe " (rect 158 128 388 266)(font "Arial" ))
+		(line (pt 80 32)(pt 128 32)(line_width 1))
+		(line (pt 128 32)(pt 128 128)(line_width 1))
+		(line (pt 80 128)(pt 128 128)(line_width 1))
+		(line (pt 80 32)(pt 80 128)(line_width 1))
+		(line (pt 81 52)(pt 81 76)(line_width 1))
+		(line (pt 82 52)(pt 82 76)(line_width 1))
+		(line (pt 81 92)(pt 81 116)(line_width 1))
+		(line (pt 82 92)(pt 82 116)(line_width 1))
+		(line (pt 0 0)(pt 208 0)(line_width 1))
+		(line (pt 208 0)(pt 208 144)(line_width 1))
+		(line (pt 0 144)(pt 208 144)(line_width 1))
+		(line (pt 0 0)(pt 0 144)(line_width 1))
+	)
+)
