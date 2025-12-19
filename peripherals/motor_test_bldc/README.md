@@ -56,5 +56,5 @@ A seguir é apresentado na figura 4 o feedback visual para o usuário no caso de
 
 ###### Video 1 - Teste de falha e modo 1 .
 
-[▶ Demonstração em vídeo](./Images/Teste.mp4)
+[▶ Demonstração em vídeo - Clique para Download]([./Images/Teste.mp4](https://github.com/jaojao7/riscv-multicycle/raw/refs/heads/master/peripherals/motor_test_bldc/Images/Teste.mp4))
 
