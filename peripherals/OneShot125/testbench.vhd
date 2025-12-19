@@ -1,3 +1,12 @@
+-- ============================================================================
+-- ARQUIVO: testbench.vhd
+-- DESCRIÇÃO: Testbench para verificação funcional do módulo OneShot125.
+--            O código gera os sinais de clock e reset, aplica diferentes
+--            valores de comando e permite observar o comportamento do
+--            PWM gerado e a conversão do comando para exibição em
+--            displays de sete segmentos.
+-- ============================================================================
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
