@@ -31,3 +31,12 @@
 Adicionalmente, é implementado um sinal de segurança denominado
 motor_emergency_stop que, quando ativado, força a saída de controle do motor
 para nível lógico baixo (GND), promovendo o desligamento imediato do motor.
+
+###### Figura 1 - FSM do sistema implementado.
+
+![FSM](./Images/motor_test_bldc-statemachine.svg) 
+
+
+###### Figura 2 - Diagrama de blocos do sistema implementado.
+
+![BLOCKS](./Images/motor_test_bldc-blockdiagram.svg) 
