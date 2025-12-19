@@ -1,6 +1,6 @@
 ## Fechadura Digital
 
-aluno: Marcelo Zampieri Pereira da Silva
+Aluno: Marcelo Zampieri Pereira da Silva
 
 ## Descrição Geral
 
