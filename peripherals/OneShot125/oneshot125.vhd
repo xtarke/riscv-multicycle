@@ -1,3 +1,14 @@
+# ============================================================================
+# ARQUIVO: oneshot125.vhd
+# ALUNO: Diana Macedo Rodrigues
+# DESCRIÇÃO: O código gera um sinal PWM no padrão OneShot125 a partir de um 
+# valor de entrada (comando), controlando com precisão a largura do pulso 
+# usando uma máquina de estados sincronizada ao clock. Além disso, o valor 
+# do comando é convertido e exibido em quatro displays de sete segmentos, 
+#permitindo a visualização numérica do comando aplicado.
+# ============================================================================
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
