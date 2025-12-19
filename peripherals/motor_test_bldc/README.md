@@ -32,11 +32,29 @@ Adicionalmente, é implementado um sinal de segurança denominado
 motor_emergency_stop que, quando ativado, força a saída de controle do motor
 para nível lógico baixo (GND), promovendo o desligamento imediato do motor.
 
+A figura 1 apresenta a FSM do sistema:
 ###### Figura 1 - FSM do sistema implementado.
 
 ![FSM](./Images/motor_test_bldc-statemachine.svg) 
 
-
+A figura 2 apresenta o diagrama de blocos do sistema:
 ###### Figura 2 - Diagrama de blocos do sistema implementado.
 
 ![BLOCKS](./Images/motor_test_bldc-blockdiagram.svg) 
+
+A figura 3 demonstra a imagem do sinal pwm_out no estado MODE_ST, indicando a saída PWM esperada na entrada do ESC, a largura de pulso inicialmente em 1000 us indicando a condição de motor parado, aguardando a seleção do modo de operação desejado pelo usuário:
+
+###### Figura 3 - Sinal de saída pwm_out.
+
+![out](./Images/Onda.jpeg) 
+
+A seguir é apresentado na figura 4 o feedback visual para o usuário no caso de falha do teste. O vídeo 1 apresenta o funcionamento inicial do sistema no modo de aceleração com incremento a 1% e detectando o sinal weight zerado, levando ao corte do sinal de saída e parando o motor.
+
+###### Figura 4 - Condição de falha.
+
+![BLOCKS](./Images/IMG_5833.JPEG) 
+
+###### Video 1 - Teste de falha e modo 1 .
+
+[▶ Demonstração em vídeo](./Images/Teste.mp4)
+
