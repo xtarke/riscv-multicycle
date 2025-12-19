@@ -15,6 +15,9 @@ Utilize uma das opções abaixo:
 Siga o tutorial abaixo para instalar o WSL:
 https://github.com/xtarke/riscv-multicycle/tree/master/compiler#instala%C3%A7%C3%A3o-no-windows-subsystem-for-linux-wsl
 
+**É importante lembrar que para que os proximos passos funcionem você deve ter seguido o passo-a-passo presente na pasta ../compiler**
+
+
 ## Primeiro Objetivo: Rodar o Código de Exemplo `blink.c`
 
 Com o ambiente Linux ou WSL funcionando, o primeiro passo é **fazer o código de exemplo `blink.c` rodar corretamente**.
