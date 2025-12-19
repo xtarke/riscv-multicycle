@@ -10,6 +10,8 @@ Após a validação por meio de simulação, o projeto foi implementado em hardw
 
 <img width="428" height="365" alt="Captura de tela 2025-12-18 212555" src="https://github.com/user-attachments/assets/4d0d60bc-623c-46f0-8631-1fabc2272da4" />
 
+<img width="597" height="280" alt="Captura de tela 2025-12-19 065428" src="https://github.com/user-attachments/assets/36cc73d2-71a3-49e1-8bcb-81e8409e72c5" />
+
 Por fim, o projeto foi executado em hardware, sendo necessária apenas a modificação do arquivo em linguagem C para a inclusão de um atraso (delay), seguida da regeneração do arquivo .hex. Esse arquivo foi carregado na placa e o sistema foi testado experimentalmente com o auxílio de um osciloscópio. Os sinais observados apresentaram o comportamento esperado do sinal PWM, confirmando que o sistema funcionou corretamente tanto em simulação quanto em ambiente real.
 
 ![TEK0031](https://github.com/user-attachments/assets/55c1b19f-4909-4b9d-9516-29140086871d)
