@@ -1,0 +1,1108 @@
+Analysis & Synthesis report for de10_lite
+Thu Dec 18 21:00:04 2025
+Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |de10_lite|oneshot125:u0|state
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst
+ 15. Parameter Settings for User Entity Instance: issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0
+ 16. Parameter Settings for User Entity Instance: issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl
+ 17. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Mod2
+ 18. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div3
+ 19. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Mod1
+ 20. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div2
+ 21. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Mod0
+ 22. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div1
+ 23. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_mult:Mult0
+ 24. Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div0
+ 25. lpm_mult Parameter Settings by Entity Instance
+ 26. Port Connectivity Checks: "oneshot125:u0"
+ 27. Port Connectivity Checks: "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl"
+ 28. Port Connectivity Checks: "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0"
+ 29. Post-Synthesis Netlist Statistics for Top Partition
+ 30. Elapsed Time Per Partition
+ 31. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Thu Dec 18 21:00:03 2025           ;
+; Quartus Prime Version              ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
+; Revision Name                      ; de10_lite                                       ;
+; Top-level Entity Name              ; de10_lite                                       ;
+; Family                             ; MAX 10                                          ;
+; Total logic elements               ; 2,301                                           ;
+;     Total combinational functions  ; 2,279                                           ;
+;     Dedicated logic registers      ; 160                                             ;
+; Total registers                    ; 160                                             ;
+; Total pins                         ; 149                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 4                                               ;
+; Total PLLs                         ; 0                                               ;
+; UFM blocks                         ; 0                                               ;
+; ADC blocks                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G     ;                    ;
+; Top-level entity name                                            ; de10_lite          ; de10_lite          ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                          ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+-------------+
+; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                ; Library     ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+-------------+
+; issp_probe/synthesis/issp_probe.v                                  ; yes             ; User Verilog HDL File                        ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/issp_probe.v                                  ; issp_probe  ;
+; issp_probe/synthesis/submodules/altsource_probe_top.v              ; yes             ; User Verilog HDL File                        ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/submodules/altsource_probe_top.v              ; issp_probe  ;
+; ../oneshot125.vhd                                                  ; yes             ; User VHDL File                               ; C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd                                                               ;             ;
+; de10_lite.vhd                                                      ; yes             ; User VHDL File                               ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd                                                      ;             ;
+; altsource_probe.v                                                  ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/altsource_probe.v                                                    ;             ;
+; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                        ;             ;
+; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                    ;             ;
+; altsource_probe_body.vhd                                           ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/altsource_probe_body.vhd                                             ;             ;
+; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                       ;             ;
+; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/sld_hub.vhd                                                          ; altera_sld  ;
+; db/ip/slde7a58a48/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/alt_sld_fab.v                                    ; alt_sld_fab ;
+; db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
+; db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
+; db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
+; db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
+; db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
+; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                     ;             ;
+; lpm_divide.tdf                                                     ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/lpm_divide.tdf                                                       ;             ;
+; abs_divider.inc                                                    ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/abs_divider.inc                                                      ;             ;
+; sign_div_unsign.inc                                                ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/sign_div_unsign.inc                                                  ;             ;
+; aglobal251.inc                                                     ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/aglobal251.inc                                                       ;             ;
+; db/lpm_divide_anl.tdf                                              ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_anl.tdf                                              ;             ;
+; db/sign_div_unsign_9nh.tdf                                         ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_9nh.tdf                                         ;             ;
+; db/alt_u_div_ske.tdf                                               ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf                                               ;             ;
+; db/add_sub_t3c.tdf                                                 ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/add_sub_t3c.tdf                                                 ;             ;
+; db/add_sub_u3c.tdf                                                 ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/add_sub_u3c.tdf                                                 ;             ;
+; db/lpm_divide_mtl.tdf                                              ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_mtl.tdf                                              ;             ;
+; db/sign_div_unsign_olh.tdf                                         ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_olh.tdf                                         ;             ;
+; db/alt_u_div_qhe.tdf                                               ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_qhe.tdf                                               ;             ;
+; db/lpm_divide_ptl.tdf                                              ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_ptl.tdf                                              ;             ;
+; db/sign_div_unsign_rlh.tdf                                         ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_rlh.tdf                                         ;             ;
+; db/alt_u_div_0ie.tdf                                               ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_0ie.tdf                                               ;             ;
+; db/lpm_divide_3vl.tdf                                              ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_3vl.tdf                                              ;             ;
+; db/sign_div_unsign_5nh.tdf                                         ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_5nh.tdf                                         ;             ;
+; db/alt_u_div_kke.tdf                                               ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_kke.tdf                                               ;             ;
+; lpm_mult.tdf                                                       ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/lpm_mult.tdf                                                         ;             ;
+; lpm_add_sub.inc                                                    ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/lpm_add_sub.inc                                                      ;             ;
+; multcore.inc                                                       ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/multcore.inc                                                         ;             ;
+; bypassff.inc                                                       ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/bypassff.inc                                                         ;             ;
+; altshift.inc                                                       ; yes             ; Megafunction                                 ; c:/altera_lite/25.1std/quartus/libraries/megafunctions/altshift.inc                                                         ;             ;
+; db/mult_aks.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/mult_aks.tdf                                                    ;             ;
+; db/lpm_divide_sco.tdf                                              ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_sco.tdf                                              ;             ;
+; db/abs_divider_1dg.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/abs_divider_1dg.tdf                                             ;             ;
+; db/alt_u_div_mke.tdf                                               ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_mke.tdf                                               ;             ;
+; db/lpm_abs_5b9.tdf                                                 ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_abs_5b9.tdf                                                 ;             ;
+; db/lpm_abs_8b9.tdf                                                 ; yes             ; Auto-Generated Megafunction                  ; C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_abs_8b9.tdf                                                 ;             ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+-------------+
+
+
++------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                            ;
++---------------------------------------------+--------------------------+
+; Resource                                    ; Usage                    ;
++---------------------------------------------+--------------------------+
+; Estimated Total logic elements              ; 2,301                    ;
+;                                             ;                          ;
+; Total combinational functions               ; 2279                     ;
+; Logic element usage by number of LUT inputs ;                          ;
+;     -- 4 input functions                    ; 662                      ;
+;     -- 3 input functions                    ; 688                      ;
+;     -- <=2 input functions                  ; 929                      ;
+;                                             ;                          ;
+; Logic elements by mode                      ;                          ;
+;     -- normal mode                          ; 1626                     ;
+;     -- arithmetic mode                      ; 653                      ;
+;                                             ;                          ;
+; Total registers                             ; 160                      ;
+;     -- Dedicated logic registers            ; 160                      ;
+;     -- I/O registers                        ; 0                        ;
+;                                             ;                          ;
+; I/O pins                                    ; 149                      ;
+;                                             ;                          ;
+; Embedded Multiplier 9-bit elements          ; 4                        ;
+;                                             ;                          ;
+; Maximum fan-out node                        ; altera_internal_jtag~TDO ;
+; Maximum fan-out                             ; 149                      ;
+; Total fan-out                               ; 7149                     ;
+; Average fan-out                             ; 2.57                     ;
++---------------------------------------------+--------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
+; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                   ; Entity Name                       ; Library Name ;
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
+; |de10_lite                                                                                                                              ; 2279 (19)           ; 160 (0)                   ; 0           ; 0          ; 4            ; 0       ; 2         ; 149  ; 0            ; 0          ; |de10_lite                                                                                                                                                                                                                                                                                                                                            ; de10_lite                         ; work         ;
+;    |issp_probe:u_probe|                                                                                                                 ; 61 (0)              ; 48 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|issp_probe:u_probe                                                                                                                                                                                                                                                                                                                         ; issp_probe                        ; issp_probe   ;
+;       |altsource_probe_top:in_system_sources_probes_0|                                                                                  ; 61 (0)              ; 48 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0                                                                                                                                                                                                                                                                          ; altsource_probe_top               ; issp_probe   ;
+;          |altsource_probe:issp_impl|                                                                                                    ; 61 (0)              ; 48 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl                                                                                                                                                                                                                                                ; altsource_probe                   ; work         ;
+;             |altsource_probe_body:altsource_probe_body_inst|                                                                            ; 61 (3)              ; 48 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst                                                                                                                                                                                                 ; altsource_probe_body              ; work         ;
+;                |altsource_probe_impl:\equal_width_gen:equal_width_inst|                                                                 ; 58 (46)             ; 48 (41)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst                                                                                                                                          ; altsource_probe_impl              ; work         ;
+;                   |sld_rom_sr:\no_instance_id_gen:rom_info_inst|                                                                        ; 12 (12)             ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst|sld_rom_sr:\no_instance_id_gen:rom_info_inst                                                                                             ; sld_rom_sr                        ; work         ;
+;    |oneshot125:u0|                                                                                                                      ; 2081 (145)          ; 34 (34)                   ; 0           ; 0          ; 4            ; 0       ; 2         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0                                                                                                                                                                                                                                                                                                                              ; oneshot125                        ; work         ;
+;       |lpm_divide:Div0|                                                                                                                 ; 817 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div0                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_sco:auto_generated|                                                                                                ; 817 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div0|lpm_divide_sco:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_sco                    ; work         ;
+;             |abs_divider_1dg:divider|                                                                                                   ; 817 (30)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div0|lpm_divide_sco:auto_generated|abs_divider_1dg:divider                                                                                                                                                                                                                                                        ; abs_divider_1dg                   ; work         ;
+;                |alt_u_div_mke:divider|                                                                                                  ; 744 (744)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div0|lpm_divide_sco:auto_generated|abs_divider_1dg:divider|alt_u_div_mke:divider                                                                                                                                                                                                                                  ; alt_u_div_mke                     ; work         ;
+;                |lpm_abs_8b9:my_abs_num|                                                                                                 ; 43 (43)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div0|lpm_divide_sco:auto_generated|abs_divider_1dg:divider|lpm_abs_8b9:my_abs_num                                                                                                                                                                                                                                 ; lpm_abs_8b9                       ; work         ;
+;       |lpm_divide:Div1|                                                                                                                 ; 127 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div1                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_3vl:auto_generated|                                                                                                ; 127 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div1|lpm_divide_3vl:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_3vl                    ; work         ;
+;             |sign_div_unsign_5nh:divider|                                                                                               ; 127 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div1|lpm_divide_3vl:auto_generated|sign_div_unsign_5nh:divider                                                                                                                                                                                                                                                    ; sign_div_unsign_5nh               ; work         ;
+;                |alt_u_div_kke:divider|                                                                                                  ; 127 (127)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div1|lpm_divide_3vl:auto_generated|sign_div_unsign_5nh:divider|alt_u_div_kke:divider                                                                                                                                                                                                                              ; alt_u_div_kke                     ; work         ;
+;       |lpm_divide:Div2|                                                                                                                 ; 164 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div2                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_ptl:auto_generated|                                                                                                ; 164 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div2|lpm_divide_ptl:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_ptl                    ; work         ;
+;             |sign_div_unsign_rlh:divider|                                                                                               ; 164 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div2|lpm_divide_ptl:auto_generated|sign_div_unsign_rlh:divider                                                                                                                                                                                                                                                    ; sign_div_unsign_rlh               ; work         ;
+;                |alt_u_div_0ie:divider|                                                                                                  ; 164 (164)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div2|lpm_divide_ptl:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_0ie:divider                                                                                                                                                                                                                              ; alt_u_div_0ie                     ; work         ;
+;       |lpm_divide:Div3|                                                                                                                 ; 144 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div3                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_mtl:auto_generated|                                                                                                ; 144 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div3|lpm_divide_mtl:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_mtl                    ; work         ;
+;             |sign_div_unsign_olh:divider|                                                                                               ; 144 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div3|lpm_divide_mtl:auto_generated|sign_div_unsign_olh:divider                                                                                                                                                                                                                                                    ; sign_div_unsign_olh               ; work         ;
+;                |alt_u_div_qhe:divider|                                                                                                  ; 144 (144)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Div3|lpm_divide_mtl:auto_generated|sign_div_unsign_olh:divider|alt_u_div_qhe:divider                                                                                                                                                                                                                              ; alt_u_div_qhe                     ; work         ;
+;       |lpm_divide:Mod0|                                                                                                                 ; 153 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod0                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_anl:auto_generated|                                                                                                ; 153 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_anl                    ; work         ;
+;             |sign_div_unsign_9nh:divider|                                                                                               ; 153 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider                                                                                                                                                                                                                                                    ; sign_div_unsign_9nh               ; work         ;
+;                |alt_u_div_ske:divider|                                                                                                  ; 153 (153)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider                                                                                                                                                                                                                              ; alt_u_div_ske                     ; work         ;
+;       |lpm_divide:Mod1|                                                                                                                 ; 233 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod1                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_anl:auto_generated|                                                                                                ; 233 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_anl                    ; work         ;
+;             |sign_div_unsign_9nh:divider|                                                                                               ; 233 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider                                                                                                                                                                                                                                                    ; sign_div_unsign_9nh               ; work         ;
+;                |alt_u_div_ske:divider|                                                                                                  ; 233 (233)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider                                                                                                                                                                                                                              ; alt_u_div_ske                     ; work         ;
+;       |lpm_divide:Mod2|                                                                                                                 ; 284 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod2                                                                                                                                                                                                                                                                                                              ; lpm_divide                        ; work         ;
+;          |lpm_divide_anl:auto_generated|                                                                                                ; 284 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod2|lpm_divide_anl:auto_generated                                                                                                                                                                                                                                                                                ; lpm_divide_anl                    ; work         ;
+;             |sign_div_unsign_9nh:divider|                                                                                               ; 284 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod2|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider                                                                                                                                                                                                                                                    ; sign_div_unsign_9nh               ; work         ;
+;                |alt_u_div_ske:divider|                                                                                                  ; 284 (284)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_divide:Mod2|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider                                                                                                                                                                                                                              ; alt_u_div_ske                     ; work         ;
+;       |lpm_mult:Mult0|                                                                                                                  ; 14 (0)              ; 0 (0)                     ; 0           ; 0          ; 4            ; 0       ; 2         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_mult:Mult0                                                                                                                                                                                                                                                                                                               ; lpm_mult                          ; work         ;
+;          |mult_aks:auto_generated|                                                                                                      ; 14 (14)             ; 0 (0)                     ; 0           ; 0          ; 4            ; 0       ; 2         ; 0    ; 0            ; 0          ; |de10_lite|oneshot125:u0|lpm_mult:Mult0|mult_aks:auto_generated                                                                                                                                                                                                                                                                                       ; mult_aks                          ; work         ;
+;    |sld_hub:auto_hub|                                                                                                                   ; 118 (1)             ; 78 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
+;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 117 (0)             ; 78 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
+;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 117 (0)             ; 78 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
+;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 117 (1)             ; 78 (5)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
+;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 116 (0)             ; 73 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
+;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 116 (79)            ; 73 (45)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
+;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 19 (19)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
+;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 18 (18)             ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 2           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 4           ;
+; Signed Embedded Multipliers           ; 1           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 1           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                                                                                                                                                                                                                               ;
++--------+---------------------------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+; Vendor ; IP Core Name                    ; Version ; Release Date ; License Type ; Entity Instance                                                                                                                                                                                                                                                                ; IP Include File ;
++--------+---------------------------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+; Altera ; Signal Tap                      ; N/A     ; N/A          ; Licensed     ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                 ;                 ;
+; Altera ; Signal Tap                      ; N/A     ; N/A          ; Licensed     ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                             ;                 ;
+; Altera ; Signal Tap                      ; N/A     ; N/A          ; Licensed     ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_presplit:presplit   ;                 ;
+; Altera ; Signal Tap                      ; N/A     ; N/A          ; Licensed     ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric ;                 ;
+; Altera ; Signal Tap                      ; N/A     ; N/A          ; Licensed     ; |de10_lite|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_splitter:splitter   ;                 ;
+; N/A    ; altera_in_system_sources_probes ; 24.1    ; N/A          ; N/A          ; |de10_lite|issp_probe:u_probe                                                                                                                                                                                                                                                  ; issp_probe.qsys ;
++--------+---------------------------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------+
+; State Machine - |de10_lite|oneshot125:u0|state                          ;
++--------------------+--------------------+------------------+------------+
+; Name               ; state.ESPERA_BAIXO ; state.PULSO_ALTO ; state.IDLE ;
++--------------------+--------------------+------------------+------------+
+; state.IDLE         ; 0                  ; 0                ; 0          ;
+; state.PULSO_ALTO   ; 0                  ; 1                ; 1          ;
+; state.ESPERA_BAIXO ; 1                  ; 0                ; 1          ;
++--------------------+--------------------+------------------+------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 160   ;
+; Number of registers using Synchronous Clear  ; 12    ;
+; Number of registers using Synchronous Load   ; 20    ;
+; Number of registers using Asynchronous Clear ; 80    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 93    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                                                                                                                                                                                                                                                              ;
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                                                                                                                                                                                                                                                               ; Fan out ;
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[2] ; 2       ;
+; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[1] ; 3       ;
+; Total number of inverted registers = 2                                                                                                                                                                                                                                                                                          ;         ;
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                                                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst|sld_rom_sr:\no_instance_id_gen:rom_info_inst|word_counter[0] ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst|shift_reg[7]                                                 ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |de10_lite|issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst|sld_rom_sr:\no_instance_id_gen:rom_info_inst|WORD_SR[0]      ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de10_lite|s_comando_final[9]                                                                                                                                                                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst ;
++---------------------------------+-------+------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assignment                      ; Value ; From ; To                                                                                                                                                                      ;
++---------------------------------+-------+------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; NOT_GATE_PUSH_BACK              ; OFF   ; -    ; -                                                                                                                                                                       ;
+; POWER_UP_LEVEL                  ; LOW   ; -    ; -                                                                                                                                                                       ;
+; AUTO_SHIFT_REGISTER_RECOGNITION ; OFF   ; -    ; -                                                                                                                                                                       ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[0]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[19]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[18]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[17]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[16]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[15]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[14]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[13]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[12]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[11]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[10]                                                                                                                                                            ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[9]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[8]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[7]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[6]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[5]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[4]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[3]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[2]                                                                                                                                                             ;
+; AUTO_CLOCK_ENABLE_RECOGNITION   ; OFF   ; -    ; hold_reg[1]                                                                                                                                                             ;
++---------------------------------+-------+------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0 ;
++-------------------------+-----------------+--------------------------------------------------------------------+
+; Parameter Name          ; Value           ; Type                                                               ;
++-------------------------+-----------------+--------------------------------------------------------------------+
+; lpm_type                ; altsource_probe ; String                                                             ;
+; lpm_hint                ; UNUSED          ; String                                                             ;
+; sld_auto_instance_index ; YES             ; String                                                             ;
+; sld_instance_index      ; 0               ; Signed Integer                                                     ;
+; sld_node_info_parameter ; 4746752         ; Signed Integer                                                     ;
+; sld_ir_width            ; 4               ; Signed Integer                                                     ;
+; instance_id             ; NONE            ; String                                                             ;
+; probe_width             ; 20              ; Signed Integer                                                     ;
+; source_width            ; 20              ; Signed Integer                                                     ;
+; source_initial_value    ; 0               ; String                                                             ;
+; enable_metastability    ; NO              ; String                                                             ;
++-------------------------+-----------------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl ;
++-------------------------+-----------------+----------------------------------------------------------------------------------------------+
+; Parameter Name          ; Value           ; Type                                                                                         ;
++-------------------------+-----------------+----------------------------------------------------------------------------------------------+
+; lpm_type                ; altsource_probe ; String                                                                                       ;
+; lpm_hint                ; UNUSED          ; String                                                                                       ;
+; sld_auto_instance_index ; YES             ; String                                                                                       ;
+; sld_instance_index      ; 0               ; Signed Integer                                                                               ;
+; SLD_NODE_INFO           ; 4746752         ; Signed Integer                                                                               ;
+; sld_ir_width            ; 4               ; Signed Integer                                                                               ;
+; instance_id             ; NONE            ; String                                                                                       ;
+; probe_width             ; 20              ; Signed Integer                                                                               ;
+; source_width            ; 20              ; Signed Integer                                                                               ;
+; source_initial_value    ; 0               ; String                                                                                       ;
+; enable_metastability    ; NO              ; String                                                                                       ;
++-------------------------+-----------------+----------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Mod2 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 14             ; Untyped                              ;
+; LPM_WIDTHD             ; 14             ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_anl ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div3 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 14             ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_mtl ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Mod1 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 14             ; Untyped                              ;
+; LPM_WIDTHD             ; 14             ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_anl ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div2 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 14             ; Untyped                              ;
+; LPM_WIDTHD             ; 7              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_ptl ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Mod0 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 14             ; Untyped                              ;
+; LPM_WIDTHD             ; 14             ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_anl ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div1 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 14             ; Untyped                              ;
+; LPM_WIDTHD             ; 10             ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_3vl ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_mult:Mult0   ;
++------------------------------------------------+----------+---------------------+
+; Parameter Name                                 ; Value    ; Type                ;
++------------------------------------------------+----------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON       ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF      ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON       ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF      ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 21       ; Untyped             ;
+; LPM_WIDTHB                                     ; 14       ; Untyped             ;
+; LPM_WIDTHP                                     ; 35       ; Untyped             ;
+; LPM_WIDTHR                                     ; 35       ; Untyped             ;
+; LPM_WIDTHS                                     ; 1        ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0        ; Untyped             ;
+; LATENCY                                        ; 0        ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO       ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES      ; Untyped             ;
+; USE_EAB                                        ; OFF      ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5        ; Untyped             ;
+; DEVICE_FAMILY                                  ; MAX 10   ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL   ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT      ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO     ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0        ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0        ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_aks ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx       ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx       ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF      ; Untyped             ;
++------------------------------------------------+----------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: oneshot125:u0|lpm_divide:Div0 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                              ;
+; LPM_WIDTHD             ; 11             ; Untyped                              ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                              ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_sco ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                       ;
++---------------------------------------+------------------------------+
+; Name                                  ; Value                        ;
++---------------------------------------+------------------------------+
+; Number of entity instances            ; 1                            ;
+; Entity Instance                       ; oneshot125:u0|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 21                           ;
+;     -- LPM_WIDTHB                     ; 14                           ;
+;     -- LPM_WIDTHP                     ; 35                           ;
+;     -- LPM_REPRESENTATION             ; SIGNED                       ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                           ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                          ;
+;     -- USE_EAB                        ; OFF                          ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                         ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                           ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                           ;
++---------------------------------------+------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "oneshot125:u0"                                                                               ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; valor_display ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl"                                                            ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                                                      ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; raw_tck         ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; tdi             ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; usr1            ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_cdr  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_sdr  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_e1dr ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_udr  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_cir  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_uir  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; jtag_state_tlr  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; clr             ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ena             ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ir_in           ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ir_out          ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; tdo             ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0"                                                                                ;
++------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type  ; Severity ; Details                                                                                                                                      ;
++------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; source_ena ; Input ; Info     ; Stuck at VCC                                                                                                                                 ;
+; source_clk ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 170                         ;
+; cycloneiii_ff         ; 82                          ;
+;     CLR               ; 20                          ;
+;     ENA               ; 7                           ;
+;     ENA CLR           ; 26                          ;
+;     ENA CLR SLD       ; 9                           ;
+;     plain             ; 20                          ;
+; cycloneiii_io_obuf    ; 35                          ;
+; cycloneiii_lcell_comb ; 2165                        ;
+;     arith             ; 645                         ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 90                          ;
+;         3 data inputs ; 546                         ;
+;     normal            ; 1520                        ;
+;         0 data inputs ; 74                          ;
+;         1 data inputs ; 22                          ;
+;         2 data inputs ; 700                         ;
+;         3 data inputs ; 110                         ;
+;         4 data inputs ; 614                         ;
+; cycloneiii_mac_mult   ; 2                           ;
+; cycloneiii_mac_out    ; 2                           ;
+;                       ;                             ;
+; Max LUT depth         ; 84.60                       ;
+; Average LUT depth     ; 46.28                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:17     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+    Info: Processing started: Thu Dec 18 20:58:36 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de10_lite -c de10_lite
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file issp_probe/synthesis/issp_probe.v
+    Info (12023): Found entity 1: issp_probe File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/issp_probe.v Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file issp_probe/synthesis/submodules/altsource_probe_top.v
+    Info (12023): Found entity 1: altsource_probe_top File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/submodules/altsource_probe_top.v Line: 14
+Info (12021): Found 2 design units, including 1 entities, in source file /users/diana/onedrive/documentos/diana/diana/oneshot125.vhd
+    Info (12022): Found design unit 1: oneshot125-rtl File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 19
+    Info (12023): Found entity 1: oneshot125 File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file de10_lite.vhd
+    Info (12022): Found design unit 1: de10_lite-rtl File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 69
+    Info (12023): Found entity 1: de10_lite File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 12
+Info (12127): Elaborating entity "de10_lite" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(20): used implicit default value for signal "DRAM_ADDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(21): used implicit default value for signal "DRAM_BA" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 21
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(22): used implicit default value for signal "DRAM_CAS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(23): used implicit default value for signal "DRAM_CKE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 23
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(24): used implicit default value for signal "DRAM_CLK" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 24
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(25): used implicit default value for signal "DRAM_CS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 25
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(27): used implicit default value for signal "DRAM_LDQM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 27
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(28): used implicit default value for signal "DRAM_RAS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 28
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(29): used implicit default value for signal "DRAM_UDQM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 29
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(30): used implicit default value for signal "DRAM_WE_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 30
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(50): used implicit default value for signal "VGA_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 50
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(51): used implicit default value for signal "VGA_G" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 51
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(52): used implicit default value for signal "VGA_HS" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 52
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(53): used implicit default value for signal "VGA_R" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 53
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(54): used implicit default value for signal "VGA_VS" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 54
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(57): used implicit default value for signal "GSENSOR_CS_N" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 57
+Warning (10541): VHDL Signal Declaration warning at de10_lite.vhd(59): used implicit default value for signal "GSENSOR_SCLK" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 59
+Info (12128): Elaborating entity "issp_probe" for hierarchy "issp_probe:u_probe" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 101
+Info (12128): Elaborating entity "altsource_probe_top" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/issp_probe.v Line: 23
+Info (12128): Elaborating entity "altsource_probe" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/submodules/altsource_probe_top.v Line: 55
+Info (12130): Elaborated megafunction instantiation "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/submodules/altsource_probe_top.v Line: 55
+Info (12133): Instantiated megafunction "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/issp_probe/synthesis/submodules/altsource_probe_top.v Line: 55
+    Info (12134): Parameter "lpm_type" = "altsource_probe"
+    Info (12134): Parameter "lpm_hint" = "UNUSED"
+    Info (12134): Parameter "sld_auto_instance_index" = "YES"
+    Info (12134): Parameter "sld_instance_index" = "0"
+    Info (12134): Parameter "SLD_NODE_INFO" = "4746752"
+    Info (12134): Parameter "sld_ir_width" = "4"
+    Info (12134): Parameter "instance_id" = "NONE"
+    Info (12134): Parameter "probe_width" = "20"
+    Info (12134): Parameter "source_width" = "20"
+    Info (12134): Parameter "source_initial_value" = "0"
+    Info (12134): Parameter "enable_metastability" = "NO"
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: c:/altera_lite/25.1std/quartus/libraries/megafunctions/altsource_probe.v Line: 169
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: c:/altera_lite/25.1std/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
+Info (12128): Elaborating entity "altsource_probe_body" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst" File: c:/altera_lite/25.1std/quartus/libraries/megafunctions/altsource_probe.v Line: 205
+Info (12128): Elaborating entity "altsource_probe_impl" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst" File: c:/altera_lite/25.1std/quartus/libraries/megafunctions/altsource_probe_body.vhd Line: 564
+Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "issp_probe:u_probe|altsource_probe_top:in_system_sources_probes_0|altsource_probe:issp_impl|altsource_probe_body:altsource_probe_body_inst|altsource_probe_impl:\equal_width_gen:equal_width_inst|sld_rom_sr:\no_instance_id_gen:rom_info_inst" File: c:/altera_lite/25.1std/quartus/libraries/megafunctions/altsource_probe_body.vhd Line: 776
+Info (12128): Elaborating entity "oneshot125" for hierarchy "oneshot125:u0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 137
+Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
+Info (11172): 2025.12.18.20:59:26 Progress: Loading slde7a58a48/alt_sld_fab_wrapper_hw.tcl
+Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
+Info (11172): Alt_sld_fab: Generating "alt_sld_fab" for QUARTUS_SYNTH
+Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
+Info (11172): Presplit: "alt_sld_fab" instantiated altera_super_splitter "presplit"
+Info (11172): Splitter: "alt_sld_fab" instantiated altera_sld_splitter "splitter"
+Info (11172): Sldfabric: "alt_sld_fab" instantiated altera_sld_jtag_hub "sldfabric"
+Info (11172): Ident: "alt_sld_fab" instantiated altera_connection_identification_hub "ident"
+Info (11172): Alt_sld_fab: Done "alt_sld_fab" with 6 modules, 6 files
+Info (11171): Finished IP generation for the debug fabric: alt_sld_fab.
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slde7a58a48/alt_sld_fab.v
+    Info (12023): Found entity 1: alt_sld_fab File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/alt_sld_fab.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab.v
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_ident.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_presplit.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd
+    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
+Info (278001): Inferred 8 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Mod2" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 109
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Div3" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 108
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Mod1" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 108
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Div2" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 107
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Mod0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 107
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Div1" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 106
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "oneshot125:u0|Mult0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 78
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "oneshot125:u0|Div0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 78
+Info (12130): Elaborated megafunction instantiation "oneshot125:u0|lpm_divide:Mod2" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 109
+Info (12133): Instantiated megafunction "oneshot125:u0|lpm_divide:Mod2" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 109
+    Info (12134): Parameter "LPM_WIDTHN" = "14"
+    Info (12134): Parameter "LPM_WIDTHD" = "14"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_anl.tdf
+    Info (12023): Found entity 1: lpm_divide_anl File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_anl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9nh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_9nh File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_9nh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ske.tdf
+    Info (12023): Found entity 1: alt_u_div_ske File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_t3c.tdf
+    Info (12023): Found entity 1: add_sub_t3c File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/add_sub_t3c.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_u3c.tdf
+    Info (12023): Found entity 1: add_sub_u3c File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/add_sub_u3c.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "oneshot125:u0|lpm_divide:Div3" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 108
+Info (12133): Instantiated megafunction "oneshot125:u0|lpm_divide:Div3" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 108
+    Info (12134): Parameter "LPM_WIDTHN" = "14"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_mtl.tdf
+    Info (12023): Found entity 1: lpm_divide_mtl File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_mtl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_olh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_olh File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_olh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_qhe.tdf
+    Info (12023): Found entity 1: alt_u_div_qhe File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_qhe.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "oneshot125:u0|lpm_divide:Div2" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 107
+Info (12133): Instantiated megafunction "oneshot125:u0|lpm_divide:Div2" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 107
+    Info (12134): Parameter "LPM_WIDTHN" = "14"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_ptl.tdf
+    Info (12023): Found entity 1: lpm_divide_ptl File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_ptl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_rlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_rlh File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_rlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_0ie.tdf
+    Info (12023): Found entity 1: alt_u_div_0ie File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_0ie.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "oneshot125:u0|lpm_divide:Div1" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 106
+Info (12133): Instantiated megafunction "oneshot125:u0|lpm_divide:Div1" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 106
+    Info (12134): Parameter "LPM_WIDTHN" = "14"
+    Info (12134): Parameter "LPM_WIDTHD" = "10"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_3vl.tdf
+    Info (12023): Found entity 1: lpm_divide_3vl File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_3vl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_5nh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_5nh File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/sign_div_unsign_5nh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_kke.tdf
+    Info (12023): Found entity 1: alt_u_div_kke File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_kke.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "oneshot125:u0|lpm_mult:Mult0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 78
+Info (12133): Instantiated megafunction "oneshot125:u0|lpm_mult:Mult0" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 78
+    Info (12134): Parameter "LPM_WIDTHA" = "21"
+    Info (12134): Parameter "LPM_WIDTHB" = "14"
+    Info (12134): Parameter "LPM_WIDTHP" = "35"
+    Info (12134): Parameter "LPM_WIDTHR" = "35"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_aks.tdf
+    Info (12023): Found entity 1: mult_aks File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/mult_aks.tdf Line: 31
+Info (12130): Elaborated megafunction instantiation "oneshot125:u0|lpm_divide:Div0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 78
+Info (12133): Instantiated megafunction "oneshot125:u0|lpm_divide:Div0" with the following parameter: File: C:/Users/diana/OneDrive/Documentos/diana/diana/oneshot125.vhd Line: 78
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "11"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_sco.tdf
+    Info (12023): Found entity 1: lpm_divide_sco File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_divide_sco.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_1dg.tdf
+    Info (12023): Found entity 1: abs_divider_1dg File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/abs_divider_1dg.tdf Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_mke.tdf
+    Info (12023): Found entity 1: alt_u_div_mke File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_mke.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_5b9.tdf
+    Info (12023): Found entity 1: lpm_abs_5b9 File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_abs_5b9.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_8b9.tdf
+    Info (12023): Found entity 1: lpm_abs_8b9 File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/lpm_abs_8b9.tdf Line: 25
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13014): Ignored 75 buffer(s)
+    Info (13016): Ignored 31 CARRY_SUM buffer(s)
+    Info (13019): Ignored 44 SOFT buffer(s)
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[5]" and its non-tri-state driver. File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[3]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[4]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[5]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[6]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[7]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[8]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[9]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[10]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[11]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[12]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[13]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[14]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "DRAM_DQ[15]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 26
+    Warning (13040): bidirectional pin "GSENSOR_SDI" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 60
+    Warning (13040): bidirectional pin "GSENSOR_SDO" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 61
+    Warning (13040): bidirectional pin "ARDUINO_IO[0]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[1]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[2]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[3]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[4]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[6]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[7]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[8]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[9]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[10]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[11]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[12]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[13]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[14]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_IO[15]" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+    Warning (13040): bidirectional pin "ARDUINO_RESET_N" has no driver File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 65
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "ARDUINO_IO[5]~synth" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 64
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[1]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[5]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[9]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[10]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 20
+    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 21
+    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 21
+    Warning (13410): Pin "DRAM_CAS_N" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 22
+    Warning (13410): Pin "DRAM_CKE" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 23
+    Warning (13410): Pin "DRAM_CLK" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 24
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 25
+    Warning (13410): Pin "DRAM_LDQM" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 27
+    Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 28
+    Warning (13410): Pin "DRAM_UDQM" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 29
+    Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 30
+    Warning (13410): Pin "HEX0[7]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 33
+    Warning (13410): Pin "HEX1[7]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 34
+    Warning (13410): Pin "HEX2[7]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 35
+    Warning (13410): Pin "HEX3[7]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 36
+    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX4[7]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 37
+    Warning (13410): Pin "HEX5[0]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[1]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[3]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[4]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[5]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "HEX5[7]" is stuck at VCC File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 38
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 44
+    Warning (13410): Pin "VGA_B[0]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_B[1]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_B[2]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 50
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 51
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 51
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 51
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 51
+    Warning (13410): Pin "VGA_HS" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 52
+    Warning (13410): Pin "VGA_R[0]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 53
+    Warning (13410): Pin "VGA_R[1]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 53
+    Warning (13410): Pin "VGA_R[2]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 53
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 53
+    Warning (13410): Pin "VGA_VS" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 54
+    Warning (13410): Pin "GSENSOR_CS_N" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 57
+    Warning (13410): Pin "GSENSOR_SCLK" is stuck at GND File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 59
+Info (286031): Timing-Driven Synthesis is running on partition "Top"
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_13_result_int[0]~0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 52
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_6_result_int[0]~14" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 77
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_7_result_int[0]~16" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 82
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_8_result_int[0]~18" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 87
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_9_result_int[0]~20" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 92
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_10_result_int[0]~22" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 37
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_11_result_int[0]~24" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 42
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod1|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_12_result_int[0]~26" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 47
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_13_result_int[0]~0" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 52
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_9_result_int[0]~20" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 92
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_10_result_int[0]~22" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 37
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_11_result_int[0]~24" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 42
+    Info (17048): Logic cell "oneshot125:u0|lpm_divide:Mod0|lpm_divide_anl:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_ske:divider|add_sub_12_result_int[0]~26" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/db/alt_u_div_ske.tdf Line: 47
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ADC_CLK_10" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 15
+    Warning (15610): No output dependent on input pin "MAX10_CLK2_50" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 17
+    Warning (15610): No output dependent on input pin "KEY[0]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 41
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 41
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 47
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 47
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 47
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 47
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 47
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 58
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: C:/Users/diana/OneDrive/Documentos/diana/diana/de10_lite/de10_lite.vhd Line: 58
+Info (21057): Implemented 2463 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
+    Info (21059): Implemented 98 output pins
+    Info (21060): Implemented 35 bidirectional pins
+    Info (21061): Implemented 2305 logic cells
+    Info (21062): Implemented 4 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 137 warnings
+    Info: Peak virtual memory: 4865 megabytes
+    Info: Processing ended: Thu Dec 18 21:00:04 2025
+    Info: Elapsed time: 00:01:28
+    Info: Total CPU time (on all processors): 00:01:51
+
+

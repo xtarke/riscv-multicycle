@@ -1,0 +1,6 @@
+
+State Machine - |de10_lite|oneshot125:u0|state
+Name state.ESPERA_BAIXO state.PULSO_ALTO state.IDLE 
+state.IDLE 0 0 0 
+state.PULSO_ALTO 0 1 1 
+state.ESPERA_BAIXO 1 0 1 
