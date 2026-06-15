@@ -306,7 +306,27 @@
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\can.vhd",
+          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\can_engine.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\can_fsm.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\can_pkg.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\can_top.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\register_map.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         },

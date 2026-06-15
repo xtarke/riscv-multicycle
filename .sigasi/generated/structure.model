@@ -71,7 +71,11 @@
           "platform:/resource/riscv-multicycle/Targets/rtl/work/tb_animation_segs.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/buzzer_control.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/de10_lite.vhd?@buzzer",
-          "platform:/resource/riscv-multicycle/Targets/rtl/work/can.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/work/can_engine.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/work/can_fsm.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/work/can_pkg.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/work/can_top.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/work/register_map.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/de10_lite.vhd?@can/sint/de10_lite",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench.vhd?@can",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/cordic_bus.vhd",
@@ -1149,7 +1153,55 @@
           "target": "rtl"
         }
       },
-      "platform:/resource/riscv-multicycle/Targets/rtl/work/can.vhd": {
+      "platform:/resource/riscv-multicycle/Targets/rtl/work/can_engine.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/work/can_fsm.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/work/can_pkg.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/work/can_top.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/work/register_map.vhd": {
         "root": {
           "project": "riscv-multicycle",
           "version": "default",
@@ -5134,8 +5186,28 @@
       "type": 1
     },
     {
-      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can.vhd",
-      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can.vhd",
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_engine.vhd",
+      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_engine.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_fsm.vhd",
+      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_fsm.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_pkg.vhd",
+      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_pkg.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_top.vhd",
+      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_top.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/register_map.vhd",
+      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/register_map.vhd",
       "type": 1
     },
     {
@@ -6960,7 +7032,27 @@
       "version": "VHDL 2019",
       "isLibraryFile": false
     },
-    "platform:/resource/riscv-multicycle/Targets/rtl/work/can.vhd": {
+    "platform:/resource/riscv-multicycle/Targets/rtl/work/can_engine.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/work/can_fsm.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/work/can_pkg.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/work/can_top.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/work/register_map.vhd": {
       "library": null,
       "version": "VHDL 2019",
       "isLibraryFile": false
@@ -8855,8 +8947,28 @@
         "type": 1
       },
       {
-        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can.vhd",
-        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can.vhd",
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_engine.vhd",
+        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_engine.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_fsm.vhd",
+        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_fsm.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_pkg.vhd",
+        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_pkg.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/can_top.vhd",
+        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/can_top.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/register_map.vhd",
+        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/register_map.vhd",
         "type": 1
       },
       {
