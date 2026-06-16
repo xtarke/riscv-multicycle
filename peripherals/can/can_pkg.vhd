@@ -4,9 +4,15 @@ use ieee.numeric_std.all;
 
 package can_pkg is
 
+    ------------------------------------------------------------------
     -- Functions prototypes
-    
-    -- __ MCP2515 Instructions (8 bits) __ -- 
+    ------------------------------------------------------------------
+
+    --function shift_and_xor() return var;
+
+    ------------------------------------------------------------------
+    -- MCP2515 Instructions (8 bits)
+    ------------------------------------------------------------------
     constant RESET          : std_logic_vector(7 downto 0) := x"C0"; 
     constant READ_RXB0SIDH  : std_logic_vector(7 downto 0) := x"90";
     constant READ_RXB0D0    : std_logic_vector(7 downto 0) := x"92";
@@ -29,7 +35,9 @@ package can_pkg is
     constant RX_STATUS      : std_logic_vector(7 downto 0) := x"B0";
     constant BIT_MOD        : std_logic_vector(7 downto 0) := x"05";
 
-    -- __ MCP2515 Register Addresses (8 bits) __ --
+    ------------------------------------------------------------------
+    -- MCP2515 Register Addresses (8 bits)
+    ------------------------------------------------------------------
     constant RXF0SIDH   : std_logic_vector(7 downto 0) := x"00";
     constant RXF0SIDL   : std_logic_vector(7 downto 0) := x"01";
     constant RXF0EID8   : std_logic_vector(7 downto 0) := x"02";
@@ -107,6 +115,42 @@ package can_pkg is
 
     -- array of 8 registers for TXB0 data bytes (D0 to D7)
     type t_tx_data_regs is array (0 to 7) of std_logic_vector(7 downto 0);
+
+    ------------------------------------------------------------------
+    -- FSM States
+    ------------------------------------------------------------------
+--    constant ST_IDLE            : std_logic_vector(3 downto 0) := "0000";
+--    constant ST_SOF             : std_logic_vector(3 downto 0) := "0001";
+--   constant ST_ARBITRATION_VAL : std_logic_vector(3 downto 0) := "0010";
+--    constant ST_RTR             : std_logic_vector(3 downto 0) := "0011";
+--    constant ST_IDE             : std_logic_vector(3 downto 0) := "0100";
+--    constant ST_R0              : std_logic_vector(3 downto 0) := "0101";
+--    constant ST_DLC             : std_logic_vector(3 downto 0) := "0110";
+--   constant ST_DATA            : std_logic_vector(3 downto 0) := "0111";
+--    constant ST_CRC             : std_logic_vector(3 downto 0) := "1000";
+--   constant ST_ACK             : std_logic_vector(3 downto 0) := "1001";
+--    constant ST_EOF             : std_logic_vector(3 downto 0) := "1010";
+--   constant ST_IFS             : std_logic_vector(3 downto 0) := "1011";
+    
+    -- CAN dataframe represented as states of the FSM.
+    type t_can_state is (
+        ST_IDLE, 
+        ST_SOF,             -- ST_SOF (Start of Frame) 1 bit is pushed LOW to indicate the start of a new frame
+        ST_ARBITRATION,     -- ST_ARBITRATION (ID) 11 bits of identifier are transmitted (for standard frames)
+        ST_RTR,             -- ST_RTR (Remote Transmission Request) 1 bit indicating if the frame is a data frame (0) or remote frame (1)
+        ST_IDE,             -- ST_IDE (Identifier Extension) 1 bit indicating if the frame is standard (0) or extended (1)
+        ST_R0,              -- ST_R0 (Reserved bit) 1 bit reserved for future use, typically dominant (0)
+        ST_DLC,             -- ST_DLC (Data Length Code) 4 bits indicating the number of data bytes (0 to 8)
+        ST_DATA,            -- ST_DATA (Data Field) 0 to 8 bytes of data as specified by the DLC
+        ST_CRC,             -- ST_CRC (Cyclic Redundancy Check)
+        ST_ACK,             -- ST_ACK (Acknowledgment) 2 bits: 1 bit for ACK Slot (recessive '1' by transmitter, dominant '0' by receiver) and 1 bit for ACK Delimiter (recessive '1')
+        ST_EOF,             -- ST_EOF (End of Frame) 7 bits of recessive '1' indicating the end of the frame
+        ST_IFS              -- ST_IFS (Interframe Space) 3 bits of recessive '1' minimum between frames
+    );
+
+    ------------------------------------------------------------------
+    -- Other constants and types
+    ------------------------------------------------------------------
 
     constant DOMINANT_BIT : std_logic := '0';
     constant RECESSIVE_BIT : std_logic := '1';

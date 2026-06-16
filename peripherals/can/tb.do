@@ -12,10 +12,10 @@ vlib work
 
 #compila projeto: todos os aquivo. Ordem é importante
 vcom can_pkg.vhd 
-vcom can_engine.vhd 
-vcom register_map.vhd
+#vcom can_engine.vhd 
+#vcom register_map.vhd
 vcom can_fsm.vhd 
-vcom can_top.vhd 
+#vcom can_top.vhd 
 vcom testbench.vhd
 
 #Simula (work é o diretório, testbench é o nome da entity)
@@ -32,19 +32,22 @@ view wave
 # ====================================================================
 add wave -label clk       -radix binary /testbench/clk
 add wave -label reset     -radix binary /testbench/rst
-add wave -label reg_addr  -radix hex    /testbench/reg_addr
-add wave -label wr_en     -radix binary /testbench/reg_wr_en
-add wave -label bit_mod   -radix binary /testbench/reg_bit_mod_en
-add wave -label data_in   -radix hex    /testbench/reg_data_in
-add wave -label bit_mask  -radix hex    /testbench/reg_bit_mask
-add wave -label data_out  -radix hex    /testbench/reg_data_out
-add wave -label can_rx    -radix binary /testbench/can_rx
 add wave -label can_tx    -radix binary /testbench/can_tx
+#add wave -label reg_addr  -radix hex    /testbench/reg_addr
+#add wave -label wr_en     -radix binary /testbench/reg_wr_en
+#add wave -label bit_mod   -radix binary /testbench/reg_bit_mod_en
+#add wave -label data_in   -radix hex    /testbench/reg_data_in
+#add wave -label bit_mask  -radix hex    /testbench/reg_bit_mask
+#add wave -label data_out  -radix hex    /testbench/reg_data_out
+#add wave -label can_rx    -radix binary /testbench/can_rx
+#add wave -label can_tx    -radix binary /testbench/can_tx
 
 # Sinais Internos Críticos
-add wave -label FSM_State -radix hex    /testbench/dut/w_state_vector
-add wave -label bit_valid -radix binary /testbench/dut/w_bit_valid
-add wave -label rx_clean  -radix binary /testbench/dut/w_rx_bit_out
+add wave -label FSM_State -radix hex    /testbench/current_state_out
+#add wave -label bit_valid -radix binary /testbench/dut/w_bit_valid
+#add wave -label rx_clean  -radix binary /testbench/dut/w_rx_bit_out
+add wave -label bit_count -radix unsigned  /testbench/dut/debug
+
 
 #Como mostrar sinais internos do process
 # add wave -radix dec /dut/p0/count

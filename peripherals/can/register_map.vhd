@@ -12,9 +12,9 @@ entity register_map is
         -- Risc-V Bus Interface
         bus_addr      : in  std_logic_vector(31 downto 0); -- Target reg address 
         bus_wdata     : in  std_logic_vector(31 downto 0); -- Data to be written to the target register
-        bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register
+        bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register @TODO
         bus_we        : in  std_logic;                     -- Write Enable
-       -- bus_ack       : out std_logic;                     -- Acknowledge (end of transmission)
+        -- bus_ack       : out std_logic;                   -- Acknowledge (end of transmission)
         
         -- Interface de Interconexão com o Hardware Interno (CAN Core)
         -- Configurações Globais exportadas para can_engine e can_fsm

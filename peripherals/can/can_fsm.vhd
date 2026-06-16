@@ -28,36 +28,23 @@ entity can_fsm is
         
         -- Sinais de Status para atualizar o Register Map
         core_canstat_out : out std_logic_vector(7 downto 0);
-        core_canstat_we  : out std_logic
+        core_canstat_we  : out std_logic;
+
+        -- Debug
+        debug            : out unsigned(7 downto 0)
     );
 end entity can_fsm;
 
 architecture RTL of can_fsm is
 
-    -- CAN dataframe represented as states
-    type t_can_state is (
-        ST_IDLE, 
-        ST_SOF,             -- ST_SOF (Start of Frame) 1 bit is pushed LOW to indicate the start of a new frame
-        ST_ARBITRATION,     -- ST_ARBITRATION (ID) 11 bits of identifier are transmitted (for standard frames)
-        ST_RTR,             -- ST_RTR (Remote Transmission Request) 1 bit indicating if the frame is a data frame (0) or remote frame (1)
-        ST_IDE,             -- ST_IDE (Identifier Extension) 1 bit indicating if the frame is standard (0) or extended (1)
-        ST_R0,              -- ST_R0 (Reserved bit) 1 bit reserved for future use, typically dominant (0)
-        ST_DLC,             -- ST_DLC (Data Length Code) 4 bits indicating the number of data bytes (0 to 8)
-        ST_DATA,            -- ST_DATA (Data Field) 0 to 8 bytes of data as specified by the DLC
-        ST_CRC,             -- ST_CRC (Cyclic Redundancy Check)
-        ST_ACK,             -- ST_ACK (Acknowledgment) 2 bits: 1 bit for ACK Slot (recessive '1' by transmitter, dominant '0' by receiver) and 1 bit for ACK Delimiter (recessive '1')
-        ST_EOF,             -- ST_EOF (End of Frame) 7 bits of recessive '1' indicating the end of the frame
-        ST_IFS              -- ST_IFS (Interframe Space) 3 bits of recessive '1' minimum between frames
-    );
-
-    signal current_state: t_can_state;
-    signal tx_request : std_logic;
-    signal data_length : integer(7 downto 0);
+    signal current_state : t_can_state;
+    signal tx_request    : std_logic;
+    signal data_length   : unsigned(7 downto 0);
 
 begin
 
     -- TXB0CTRL(3) is TXREQ (Request to Send) bit, when set to '1' by the RISC-V, indicates that a transmission should be initiated with the current buffer configuration
-    tx_request <= txb0ctrl_reg(3);      -- @TODO Registrador deve ser mudado ao final da transmissão
+    tx_request <= txb0ctrl_reg(3);      -- @TODO TXREQ do Registrador deve ser mudado ao final da transmissão
 
     ------------------------------------------------------------------
     -- FSM Process (Synchronous)
@@ -75,12 +62,16 @@ begin
             bit_count     := (others => '0');
             byte_count    := (others => '0');
             can_tx        <= RECESSIVE_BIT;
+            data_length   <= x"00";
 
+
+        -- @ TODO - ST_error - quando tx e rx são diferentes durante transmissão - deve ser verificado por can_engine.vhd
         elsif rising_edge(clk) then
 
             case current_state is
 
                 when ST_IDLE =>
+                    can_tx <= RECESSIVE_BIT;
                     if tx_line_free = '1' and tx_request = '1' then
                         current_state <= ST_SOF;
                     end if;
@@ -120,7 +111,7 @@ begin
                     current_state <= ST_DLC;
 
                 when ST_DLC =>
-                    data_length <= to_integer(unsigned(txb0dlc_reg(3 downto 0))); -- lenght in bits of data load
+                    data_length(3 downto 0) <= unsigned(txb0dlc_reg(3 downto 0)); -- lenght in bits of data load
                     if bit_count <= 2 then
                         can_tx <= txb0dlc_reg(3 - to_integer(bit_count)); -- DLC bits are mapped in bits [3:0] of TXB0DLC
                         bit_count := bit_count + 1;
@@ -140,7 +131,6 @@ begin
 
                         if to_integer(byte_count) >= (data_length - 1) then
                             byte_count := (others => '0');
-                            bit_count := (others => '0');
                             current_state <= ST_CRC;
                         else
                             byte_count := byte_count + 1;
@@ -148,21 +138,56 @@ begin
                     end if;
 
                 when ST_CRC =>
-                    current_state <= ST_ACK;
+                    -- CRC calculation is implemented in can_engine.vhd
+                    if bit_count >= 14 then
+                        bit_count := (others => '0');
+                        current_state <= ST_ACK;
+                    else 
+                        bit_count := bit_count + 1;
+                    end if;
+
                 when ST_ACK =>
-                    current_state <= ST_EOF;
+                    -- ack slot
+                    if bit_count = 0 then
+                        bit_count := bit_count + 1;
+                        can_tx <= RECESSIVE_BIT; -- Transmitter always sends a recessive bit;
+                    else    -- ack delimiter
+                        bit_count := (others => '0');
+                        can_tx <= RECESSIVE_BIT; -- ack delimiter is always recessive
+                        current_state <= ST_EOF;
+                    end if;
+                    
                 when ST_EOF =>
-                    current_state <= ST_IFS;
-                when ST_IFS =>
-                    current_state <= ST_IDLE;
+                    if bit_count <= 5 then
+                        can_tx <= RECESSIVE_BIT; -- EOF is 7 recessive bits
+                        bit_count := bit_count + 1;
+                    else
+                        can_tx <= RECESSIVE_BIT;
+                        bit_count := (others => '0');
+                        current_state <= ST_IFS;
+                    end if;
+
+                when ST_IFS => -- Interframe Space is at least 3 recessive bits between frames
+                    if bit_count <= 1 then
+                        bit_count := bit_count + 1;
+                    else
+                        bit_count := (others => '0');
+                        current_state <= ST_IDLE;
+                    end if;
+
                 when others =>
                     current_state <= ST_IDLE;
+
             end case;
-            
+
+            debug <= bit_count;
 
         end if;
     end process;
 
+    ------------------------------------------------------------------
+    -- Process to generate and sync FSM state with other components
+    ------------------------------------------------------------------
     process(current_state)
     begin
         case current_state is
