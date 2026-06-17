@@ -47,7 +47,7 @@ add wave -label FSM_State -radix hex    /testbench/current_state_out
 #add wave -label bit_valid -radix binary /testbench/dut/w_bit_valid
 #add wave -label rx_clean  -radix binary /testbench/dut/w_rx_bit_out
 add wave -label bit_count -radix unsigned  /testbench/dut/debug
-
+add wave /testbench/dut/current_state
 
 #Como mostrar sinais internos do process
 # add wave -radix dec /dut/p0/count

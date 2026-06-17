@@ -93,9 +93,9 @@ begin
         txb0sidh_reg <= x"F0";
         txb0sidl_reg <= "10100000";
         -- datalength (first 8 bits) - 1 byte
-        txb0dlc_reg <= x"02";
+        txb0dlc_reg <= x"01";
         -- all dataload registers are the same;
-        r_TXB0Dn <= (others => "10101010"); 
+        r_TXB0Dn <= (others => "00001000"); 
         wait for 500 ns;
 
     end process;

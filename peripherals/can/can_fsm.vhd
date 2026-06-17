@@ -64,7 +64,6 @@ begin
             can_tx        <= RECESSIVE_BIT;
             data_length   <= x"00";
 
-
         -- @ TODO - ST_error - quando tx e rx são diferentes durante transmissão - deve ser verificado por can_engine.vhd
         elsif rising_edge(clk) then
 

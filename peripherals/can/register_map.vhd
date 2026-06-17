@@ -23,14 +23,14 @@ entity register_map is
         cnf3_out        : out std_logic_vector(7 downto 0);
         canctrl_out     : out std_logic_vector(7 downto 0);
         
-        -- DADOS DO BUFFER DE TRANSMISSÃO EXPORTADOS PARA A can_fsm 
+        -- Transmission buffers exported to can_fsm 
         txb0ctrl_out    : out std_logic_vector(7 downto 0);
         txb0sidh_out    : out std_logic_vector(7 downto 0);
         txb0sidl_out    : out std_logic_vector(7 downto 0);
         txb0dlc_out     : out std_logic_vector(7 downto 0);
         txb0dn_out      : out t_tx_data_regs;
         
-        -- Entradas para o Core CAN atualizar os registradores de Status em tempo real
+        -- Inputs from other componentes to update registers
         core_canstat_in : in  std_logic_vector(7 downto 0);
         core_canstat_we : in  std_logic;
         core_tec_in     : in  std_logic_vector(7 downto 0);
