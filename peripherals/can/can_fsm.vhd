@@ -99,16 +99,16 @@ begin
                 when ST_RTR =>
                     can_tx <= txb0dlc_reg(6); -- RTR bit is mapped in bit 6 of TXB0DLC
                     current_state <= ST_IDE;
-
+                    
                 when ST_IDE =>
                     can_tx <= DOMINANT_BIT; -- IDE bit is '0' for standard frames
                     current_state <= ST_R0;
-
+                    
                 when ST_R0 =>
                     can_tx <= DOMINANT_BIT; -- r0 bit is reserved and set to '0'
                     bit_count := (others => '0');
                     current_state <= ST_DLC;
-
+                    
                 when ST_DLC =>
                     data_length(3 downto 0) <= unsigned(txb0dlc_reg(3 downto 0)); -- lenght in bits of data load
                     if bit_count <= 2 then
@@ -117,8 +117,13 @@ begin
                     else
                         can_tx <= txb0dlc_reg(0); -- Last bit of DLC
                         bit_count := (others => '0');
-                        current_state <= ST_DATA;
+                        if txb0dlc_reg(6) = '0' then -- Transmission Frame
+                            current_state <= ST_DATA;
+                        else                         -- Remote Frame
+                            current_state <= ST_CRC;
+                        end if;
                     end if;
+                    
 
                 when ST_DATA =>
                     -- Serializes MSB First in each byte
@@ -127,7 +132,6 @@ begin
                         bit_count := bit_count + 1;
                     else
                         bit_count := (others => '0');
-
                         if to_integer(byte_count) >= (data_length - 1) then
                             byte_count := (others => '0');
                             current_state <= ST_CRC;

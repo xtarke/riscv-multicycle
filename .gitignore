@@ -19,3 +19,8 @@ software/*/*.elf
 software/*/*.tmp
 software/*/*.hex
 software/*/*.lss
+
+.sigasi/*
+*/*.wlf
+*/*xa
+work/*
