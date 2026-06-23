@@ -20,14 +20,16 @@ int main(){
 
 	while (1){
 		/* Read input bus */
-		if (INBUS)
+		if (INBUS & 0x0F)
 			/* Resets data when any input is high */
 			data = 0;
 
 		/* Counter blink */
 		OUTBUS = data;
 		SEGMENTS_BASE_ADDRESS = data;
-		delay_(10000);
+		
+		/* Volatile delay to prevent optimization and increased count for visibility */
+		for (volatile uint32_t i = 0; i < 2000000; i++);
 
 		data++;
 	}
