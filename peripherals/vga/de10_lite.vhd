@@ -218,8 +218,20 @@ begin
 			q         => rgb_in
 		);
 
-	-- VGA controller (800x600 @ 60Hz, 40MHz pixel clock)
+	-- VGA controller (640x480 @ 60Hz, 25MHz pixel clock)
 	vgactrl: entity work.vga_controller
+		generic map(
+			h_pulse  => 96,
+			h_bp     => 48,
+			h_pixels => 640,
+			h_fp     => 16,
+			h_pol    => '0',
+			v_pulse  => 2,
+			v_bp     => 33,
+			v_pixels => 480,
+			v_fp     => 10,
+			v_pol    => '0'
+		)
 		port map(
 			pixel_clk => clk_vga,
 			reset     => rst,
