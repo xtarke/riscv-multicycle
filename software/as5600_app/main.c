@@ -1,11 +1,15 @@
 #include <stdint.h>
 #include "../_core/hardware.h" 
 
-// Endereços Base conforme definidos nos generics MY_WORD_ADDRESS do VHDL
-#define AS5600_PWM_ADDR    (*(_IO32 *) (PERIPH_BASE + 0x01A0))
-#define AS5600_PERIOD_ADDR (*(_IO32 *) (PERIPH_BASE + 0x01A4))
+// Endereços Base corrigidos de endereço de palavra do VHDL para endereço de byte em C
+// (Multiplicados por 4, pois cada palavra de 32-bits tem 4 bytes)
+// VHDL MY_WORD_ADDRESS = x"01A0" -> Byte Address = x"01A0" * 4 = x"0680"
+#define AS5600_PWM_ADDR    (*(_IO32 *) (PERIPH_BASE + 0x0680))
+// VHDL MY_WORD_ADDRESS + 4 = x"01A4" -> Byte Address = x"01A4" * 4 = x"0690"
+#define AS5600_PERIOD_ADDR (*(_IO32 *) (PERIPH_BASE + 0x0690))
 
-#define DISPLAY_7SEG_ADDR  (*(_IO32 *) (PERIPH_BASE + 0x01B0))
+// VHDL MY_WORD_ADDRESS = x"01B0" -> Byte Address = x"01B0" * 4 = x"06C0"
+#define DISPLAY_7SEG_ADDR  (*(_IO32 *) (PERIPH_BASE + 0x06C0))
 
 int main() {
     uint32_t t_high;
@@ -19,14 +23,27 @@ int main() {
         t_high = AS5600_PWM_ADDR;
         t_period = AS5600_PERIOD_ADDR;
         
-        // 2. Calcular o Ângulo baseado no Duty Cycle
+        // 2. Calcular o Ângulo baseado no Duty Cycle do AS5600
+        // Conforme a Seção "PWM Output Mode" do datasheet do AS5600:
+        // - O frame completo possui 4351 períodos de clock do PWM.
+        // - O tempo mínimo em alto (ângulo = 0) é de 128 períodos de clock.
+        // - A faixa de dados útil de ângulo (12 bits) vai de 0 a 4095.
+        // O valor digital do ângulo (D) é calculado por:
+        // D = (t_high * 4351 / t_period) - 128
+        // Para evitar divisão por ponto flutuante e estouro em 32-bits, usamos uint64_t:
         if (t_period > 0) {
-            // O Duty Cycle (t_high / t_period) mapeia linearmente de 0 a 360 graus.
-            angle = (t_high * 360) / t_period;
+            uint64_t num = 4351ULL * t_high;
+            uint64_t den = 128ULL * t_period;
             
-            // Tratamento de segurança (limita ao valor máximo do AS5600)
-            if (angle > 360) {
-                angle = 360;
+            if (num > den) {
+                uint32_t D = (uint32_t)((num - den) / t_period);
+                if (D > 4095) {
+                    D = 4095;
+                }
+                // Converte a faixa digital de 12 bits (0 a 4095) para graus (0 a 360)
+                angle = (D * 360) / 4095;
+            } else {
+                angle = 0;
             }
         } else {
             angle = 0;

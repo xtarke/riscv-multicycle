@@ -39,8 +39,8 @@ architecture sim of tb_as5600_pwm is
     signal dmask    : std_logic_vector(3 downto 0) := "0000";
     signal pwm_in   : std_logic := '0';
 
-    -- Período de 20ns = 50 MHz
-    constant clk_period : time := 20 ns; 
+    -- Período de 1us = 1 MHz (Frequência do clock do barramento da CPU configurado no SoC)
+    constant clk_period : time := 1 us; 
     
 begin
 
@@ -72,27 +72,27 @@ begin
     rst_process : process
     begin
         rst <= '1';
-        wait for 100 ns;
+        wait for 5 us; -- Reset por 5 ciclos de clock de 1us
         rst <= '0';
         wait;
     end process;
 
-    -- Estímulo do sinal PWM de entrada
+    -- Estímulo do sinal PWM de entrada (Frequência típica padrão do AS5600 = 115 Hz -> Período = 8,696 ms)
     pwm_process : process
     begin
-        wait for 200 ns; -- Espera o reset
+        wait for 10 us; -- Espera o reset
         
-        -- Ciclo 1: Período de 1ms, Duty Cycle de 25% (250us em alto)
+        -- Ciclo 1: Período de 8.696 ms, Duty Cycle de 25% (2.174 ms em alto)
         pwm_in <= '1';
-        wait for 250 us;
+        wait for 2.174 ms;
         pwm_in <= '0';
-        wait for 750 us;
+        wait for 6.522 ms;
         
-        -- Ciclo 2: Período de 1ms, Duty Cycle de 75% (750us em alto)
+        -- Ciclo 2: Período de 8.696 ms, Duty Cycle de 75% (6.522 ms em alto)
         pwm_in <= '1';
-        wait for 750 us;
+        wait for 6.522 ms;
         pwm_in <= '0';
-        wait for 250 us;
+        wait for 2.174 ms;
         
         -- Mantém em 0 no final
         wait;
@@ -101,7 +101,7 @@ begin
     -- Simulação de Leitura pela CPU (Softcore RISC-V)
     cpu_process : process
     begin
-        wait for 1.2 ms; -- Aguarda o primeiro ciclo de 1ms terminar
+        wait for 10 ms; -- Aguarda o primeiro ciclo de 8.7ms terminar
         
         -- CPU Lê Tempo em Alto (Offset 0 = x01A0)
         dcsel <= "10";
@@ -121,7 +121,7 @@ begin
         d_rd <= '0';
         dcsel <= "00";
         
-        wait for 1 ms; -- Aguarda o segundo ciclo de PWM terminar
+        wait for 10 ms; -- Aguarda o segundo ciclo de PWM terminar
         
         -- CPU Lê Novo Tempo em Alto
         dcsel <= "10";

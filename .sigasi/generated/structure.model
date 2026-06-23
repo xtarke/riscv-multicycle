@@ -1,0 +1,84 @@
+{
+  "version": 6,
+  "name": "riscv-multicycle",
+  "projectBaseDir": "file:///c:/Users/Fabricio/Documents/FAB/pld/riscv-multicycle",
+  "compilationGroupModel": {
+    "groups": [],
+    "resourceTargetContexts": {}
+  },
+  "linkedResources": [
+    {
+      "source": "platform:/resource/riscv-multicycle",
+      "target": "virtual:/virtual",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Design",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld/riscv-multicycle",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets",
+      "target": "virtual:/virtual",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl",
+      "target": "virtual:/virtual",
+      "type": 2
+    }
+  ],
+  "resourceInformation": {
+    "platform:/resource/riscv-multicycle/Targets/rtl/Common%20Libraries": {
+      "library": "not mapped",
+      "version": null,
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle": {
+      "library": null,
+      "version": "VHDL 1993",
+      "isLibraryFile": false
+    }
+  },
+  "dependencyInformation": {},
+  "virtualFolderContents": {
+    "platform:/resource": [
+      {
+        "source": "platform:/resource/riscv-multicycle",
+        "target": "virtual:/virtual",
+        "type": 2
+      }
+    ],
+    "platform:/resource/riscv-multicycle": [
+      {
+        "source": "platform:/resource/riscv-multicycle/Design",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld/riscv-multicycle",
+        "type": 2
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets",
+        "target": "virtual:/virtual",
+        "type": 2
+      }
+    ],
+    "platform:/resource/riscv-multicycle/Targets": [
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl",
+        "target": "virtual:/virtual",
+        "type": 2
+      }
+    ]
+  },
+  "targets": {
+    "rtl": {
+      "directoryPath": "c:\\Users\\Fabricio\\Documents\\FAB\\pld\\riscv-multicycle",
+      "libraryMapping": {
+        "": []
+      },
+      "declaredDependencies": [],
+      "kind": "MANUAL"
+    }
+  },
+  "configurableIncludes": {},
+  "cachedVersionMapping": null
+}

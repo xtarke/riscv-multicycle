@@ -33,8 +33,8 @@ add wave -label period_counter -radix unsigned /DUT/period_counter
 add wave -label t_high_reg -radix unsigned /DUT/t_high_reg
 add wave -label t_period_reg -radix unsigned /DUT/t_period_reg
 
-# Roda a simulação por 3 milissegundos (suficiente para ver os dois ciclos de 1ms)
-run 3 ms
+# Roda a simulação por 22 milissegundos (suficiente para ver os dois ciclos de 8.7ms)
+run 22 ms
 
 # Ajusta o zoom para ver toda a simulação
 wave zoomfull
