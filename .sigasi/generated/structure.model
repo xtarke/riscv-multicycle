@@ -78,6 +78,7 @@
           "platform:/resource/riscv-multicycle/Targets/rtl/work/register_map.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/de10_lite.vhd?@can/sint/de10_lite",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench.vhd?@can",
+          "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench_engine.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/cordic_bus.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/cordic_core.vhd",
           "platform:/resource/riscv-multicycle/Targets/rtl/work/de0_lite.vhd?@cordic/sint/de10_lite",
@@ -1226,6 +1227,18 @@
         }
       },
       "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench.vhd?@can": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench_engine.vhd": {
         "root": {
           "project": "riscv-multicycle",
           "version": "default",
@@ -5221,6 +5234,11 @@
       "type": 1
     },
     {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench_engine.vhd",
+      "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/testbench_engine.vhd",
+      "type": 1
+    },
+    {
       "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/cordic_bus.vhd",
       "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/cordic/cordic_bus.vhd",
       "type": 1
@@ -7063,6 +7081,11 @@
       "isLibraryFile": false
     },
     "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench.vhd?@can": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench_engine.vhd": {
       "library": null,
       "version": "VHDL 2019",
       "isLibraryFile": false
@@ -8979,6 +9002,11 @@
       {
         "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench.vhd?@can",
         "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/testbench.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/work/testbench_engine.vhd",
+        "target": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can/testbench_engine.vhd",
         "type": 1
       },
       {

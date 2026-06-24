@@ -21,6 +21,6 @@ software/*/*.hex
 software/*/*.lss
 
 .sigasi/*
-*/*.wlf
-*/*xa
+*.wlf
+xa
 work/*

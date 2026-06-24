@@ -1,0 +1,24 @@
+%!PS-Adobe-3.0
+%%Creator: Model Technology ModelSim - INTEL FPGA STARTER EDITION vsim 2020.1 Simulator 2020.02 Feb 28 2020
+
+%%Title: wave.pss
+%%CreationDate: 2026-06-23 08:58:21 pm
+%%DocumentData: Clean8Bit
+%%DocumentNeededResources: font Helvetica
+%%Orientation: Landscape
+%%PageOrder: ascend
+%%Pages: 1
+%%EndComments
+%%BeginSetup
+%%BeginFeature: *PageSize 3.3464566929133857x4.3307086614173231
+<< /PageSize [240.94488188976376 311.81102362204729]
+/ImagingBBox null
+>> setpagedevice
+%%EndFeature
+%%EndSetup
+%%Page: 1 1
+gsave
+90 rotate 0.12 dup neg scale
+grestore
+showpage
+%%EOF

@@ -341,6 +341,11 @@
           "kind": "COMPILE_FILE"
         },
         {
+          "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\can\\testbench_engine.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
           "path": "c:\\Facul\\Fase_9_Engenharia_Eletronica\\PLD\\projetoFinal\\riscv-multicycle\\peripherals\\cordic\\cordic_bus.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"

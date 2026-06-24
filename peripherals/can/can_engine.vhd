@@ -11,19 +11,22 @@ entity can_engine is
         rst               : in  std_logic;
         
         -- Timing configs 
-        cnf1_reg          : in  std_logic_vector(7 downto 0);   -- config FSM and transmisson timing
-        cnf2_reg          : in  std_logic_vector(7 downto 0); 
-        cnf3_reg          : in  std_logic_vector(7 downto 0); 
+        -- cnf registers will be simplified into one register responsible for the preescalling
+        -- @TODO Adicionar em can_pkg e register_map
+        baud_reg          : in  std_logic_vector(7 downto 0);   -- config FSM and transmisson timing
+        --cnf2_reg          : in  std_logic_vector(7 downto 0); 
+        --cnf3_reg          : in  std_logic_vector(7 downto 0); 
         
-        -- Interface com a can_fsm
+        -- Interface with can_fsm
         current_state     : in  std_logic_vector(3 downto 0); 
         tx_bit_in         : in  std_logic;                    
         rx_bit_out        : out std_logic;                    
-        tx_abort          : out std_logic; -- Abort transmission when tx /= rx                 
+        tx_abort          : out std_logic; -- Abort transmission when tx /= rx
+        stuff_nxt_bit_out : out std_logic;                 
         -- crc_error         : out std_logic;                 
         -- stuff_error       : out std_logic;                    
         
-        -- Linhas físicas conectadas ao Transceiver CAN
+        -- Transceiver CAN communication
         can_rx            : in  std_logic;
         can_tx            : out std_logic
     );
@@ -31,7 +34,7 @@ end entity can_engine;
 
 architecture behavioral of can_engine is
 
-    -- Constantes para decodificação de estado interno da can_fsm
+    -- contants to decode and sync with can_fsm states 
     constant ST_IDLE            : std_logic_vector(3 downto 0) := "0000";
     constant ST_SOF             : std_logic_vector(3 downto 0) := "0001";
     constant ST_ARBITRATION_VAL : std_logic_vector(3 downto 0) := "0010";
@@ -41,38 +44,113 @@ architecture behavioral of can_engine is
     constant ST_DLC             : std_logic_vector(3 downto 0) := "0110";
     constant ST_DATA            : std_logic_vector(3 downto 0) := "0111";
     constant ST_CRC             : std_logic_vector(3 downto 0) := "1000";
-    constant ST_ACK             : std_logic_vector(3 downto 0) := "1001";
-    constant ST_EOF             : std_logic_vector(3 downto 0) := "1010";
-    constant ST_IFS             : std_logic_vector(3 downto 0) := "1011";
+    --constant ST_ACK             : std_logic_vector(3 downto 0) := "1001";
+    --constant ST_EOF             : std_logic_vector(3 downto 0) := "1010";
+    --constant ST_IFS             : std_logic_vector(3 downto 0) := "1011";
 
-
-    -- Sinais para a lógica de Bit Timing
-    signal tq_pulse       : std_logic := '0';
-    signal tq_counter     : unsigned(7 downto 0) := (others => '0');
-    signal sample_point   : std_logic := '0';
-    signal bit_time_count : unsigned(4 downto 0) := (others => '0');
-
-    -- Sinais para a lógica de Bit Stuffing
-    signal rx_consec_ones   : unsigned(2 downto 0) := (others => '0');
-    signal rx_consec_zeros  : unsigned(2 downto 0) := (others => '0');
-    signal rx_is_stuff_bit  : std_logic := '0';
-    signal rx_clean_bit     : std_logic := '1';
+    -- Signals to bit stuffing logic
+    --signal compare_buffer  : std_logic_vector(3 downto 0);
+    signal stuff_nxt_bit   : std_logic;
+    
     
     -- Sinais para o Registrador de Deslocamento do CRC
     signal crc_reg        : std_logic_vector(14 downto 0) := (others => '0');
     signal crc_enable     : std_logic;
 
+    -- Signals t
+    signal clk_out_internal : std_logic;
+    
 begin
 
     ------------------------------------------------------------------
-    -- Bit Timing process - Baud rate (based in MCP2515 CNF1 reg)
+    -- Bit Timing process - Baud rate (abstracted cnf regs)
     ------------------------------------------------------------------
+    process(clk, rst)
 
+        variable v_counter : unsigned(7 downto 0) := (others => '0');
+        variable var_clk   : std_logic := '0';
+        
+    begin
+        if rst = '1' then
+            v_counter := (others => '0');
+            if clk = '0' then   --! syncronizes clk and clk_out logic levels
+                clk_out_internal <= '0';
+                var_clk := '0';
+            else
+                clk_out_internal <= '1';
+                var_clk := '1';
+            end if;
+        -- using a counter for preescalling
+        elsif rising_edge(clk) then
+            if v_counter >= unsigned(baud_reg) then
+                var_clk := not var_clk;
+                v_counter := (others => '0');
+            else 
+                v_counter := v_counter + 1;
+            end if;
+        end if;
+
+        clk_out_internal <= var_clk;
+
+    end process;
+
+    clk_out <= clk_out_internal;
 
     ------------------------------------------------------------------
-    -- bit stuffing and rx_can moutput process
+    -- bit stuffing and rx_can output process
     ------------------------------------------------------------------
+    -- bit stuffing occurs from SOF to CRC of can dataframe
+    process (clk_out_internal, rst) is
 
+        variable counter  : unsigned(2 downto 0) := (others => '0');
+        variable curr_bit : std_logic := '0';
+
+    begin
+        if rst = '1' then
+            counter := (others => '0');
+            curr_bit := DOMINANT_BIT;
+
+        elsif rising_edge(clk_out_internal) then
+            if current_state = ST_IDLE then --! when in IDLE bit is recessive = "1"
+                curr_bit := RECESSIVE_BIT;
+                counter := (others => '0');
+
+            elsif     (current_state = ST_SOF)              --! CAN segments in wich bit stuffing is applied
+                   or (current_state = ST_ARBITRATION_VAL)  
+                   or (current_state = ST_RTR)
+                   or (current_state = ST_IDE)
+                   or (current_state = ST_R0)
+                   or (current_state = ST_DLC)
+                   or (current_state = ST_DATA)
+                   or (current_state = ST_CRC) then
+
+                        -- Compare and count sequence of same bits
+                        if (curr_bit = tx_bit_in) and (stuff_nxt_bit = '0') then    
+                            counter := counter + 1;
+                        else 
+                            counter := (others => '0');
+                        end if;
+
+                        -- Generates a signal to insert a inverted bit
+                        if counter >= "101" then        
+                            stuff_nxt_bit <= '1';
+                        else
+                            curr_bit := tx_bit_in;
+                            stuff_nxt_bit <= '0';
+                        end if;
+
+            else
+                curr_bit := DOMINANT_BIT;
+            end if;
+
+        end if;
+    end process;
+
+    stuff_nxt_bit_out <= stuff_nxt_bit;
+
+    -- Transmit tx_can data to the transceiver considering bit stuffing
+    can_tx <= not tx_bit_in when stuff_nxt_bit = '1' 
+        else tx_bit_in;
 
     ------------------------------------------------------------------
     -- CRC-15 calc process
@@ -82,6 +160,8 @@ begin
     ------------------------------------------------------------------
     -- can bus error check
     ------------------------------------------------------------------
-    can_tx <= tx_bit_in;
+    tx_abort <= '1' when (tx_bit_in /= can_rx) 
+        else '0';
+
 
 end architecture behavioral;

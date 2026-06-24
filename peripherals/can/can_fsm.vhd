@@ -22,6 +22,7 @@ entity can_fsm is
         txb0sidl_reg     : in  std_logic_vector(7 downto 0); -- ID Bits [2:0] mapped in [7:5]
         txb0dlc_reg      : in  std_logic_vector(7 downto 0); -- Data Length Code [3:0]
         r_TXB0Dn         : in  t_tx_data_regs;               -- Transmission data bytes (D0 a D7) 
+
         -- Interface com a linha física CAN (via Transceiver)
         can_rx           : in  std_logic;         -- can_fsm input | can_engine output            
         can_tx           : out std_logic;         -- can_fsm output | can_engine input           
@@ -30,6 +31,9 @@ entity can_fsm is
         core_canstat_out : out std_logic_vector(7 downto 0);
         core_canstat_we  : out std_logic;
 
+        -- Signals from can_engine
+        stuff_nxt_bit   : in std_logic;   -- Tells FSM to stop data transmission for a clock cycle 
+
         -- Debug
         debug            : out unsigned(7 downto 0)
     );
@@ -37,9 +41,9 @@ end entity can_fsm;
 
 architecture RTL of can_fsm is
 
-    signal current_state : t_can_state;
-    signal tx_request    : std_logic;
-    signal data_length   : unsigned(7 downto 0);
+    signal current_state    : t_can_state;
+    signal tx_request       : std_logic;
+    signal data_length      : unsigned(7 downto 0);
 
 begin
 
@@ -80,74 +84,89 @@ begin
                     current_state <= ST_ARBITRATION;
 
                 when ST_ARBITRATION =>
-                    if tx_line_free = '0' then
-                        current_state <= ST_IDLE; -- Message ID has less priority than another message being transmitted, aborting and waiting for the next opportunity
-                    elsif bit_count >= 10 then
-                        current_state <= ST_RTR;
-                        can_tx <=txb0sidl_reg(5);      -- LSB of the ID is mapped in bit 5 of TXB0SIDL
-                        bit_count := (others => '0');
-                    else
-                        -- serialize the first 10 bits of the ID
-                        if bit_count < 8 then
-                            can_tx <= txb0sidh_reg(7 - to_integer(bit_count)); -- Bits [10:3] are mapped in TXB0SIDH
+                    if stuff_nxt_bit = '0' then
+                        if tx_line_free = '0' then
+                            current_state <= ST_IDLE; -- Message ID has less priority than another message being transmitted, aborting and waiting for the next opportunity
+                        elsif bit_count >= 10 then
+                            current_state <= ST_RTR;
+                            can_tx <=txb0sidl_reg(5);      -- LSB of the ID is mapped in bit 5 of TXB0SIDL
+                            bit_count := (others => '0');
                         else
-                            can_tx <= txb0sidl_reg(7 - (to_integer(bit_count) - 8)); -- Bits [2:0] are mapped in bits [7:5] of TXB0SIDL
+                            -- serialize the first 10 bits of the ID
+                            if bit_count < 8 then
+                                can_tx <= txb0sidh_reg(7 - to_integer(bit_count)); -- Bits [10:3] are mapped in TXB0SIDH
+                            else
+                                can_tx <= txb0sidl_reg(7 - (to_integer(bit_count) - 8)); -- Bits [2:0] are mapped in bits [7:5] of TXB0SIDL
+                            end if;
+                            bit_count := bit_count + 1;
                         end if;
-                        bit_count := bit_count + 1;
                     end if;
 
                 when ST_RTR =>
-                    can_tx <= txb0dlc_reg(6); -- RTR bit is mapped in bit 6 of TXB0DLC
-                    current_state <= ST_IDE;
-                    
+                    if stuff_nxt_bit = '0' then
+                        can_tx <= txb0dlc_reg(6); -- RTR bit is mapped in bit 6 of TXB0DLC
+                        current_state <= ST_IDE;
+                    end if;
+
                 when ST_IDE =>
-                    can_tx <= DOMINANT_BIT; -- IDE bit is '0' for standard frames
-                    current_state <= ST_R0;
-                    
-                when ST_R0 =>
-                    can_tx <= DOMINANT_BIT; -- r0 bit is reserved and set to '0'
-                    bit_count := (others => '0');
-                    current_state <= ST_DLC;
-                    
-                when ST_DLC =>
-                    data_length(3 downto 0) <= unsigned(txb0dlc_reg(3 downto 0)); -- lenght in bits of data load
-                    if bit_count <= 2 then
-                        can_tx <= txb0dlc_reg(3 - to_integer(bit_count)); -- DLC bits are mapped in bits [3:0] of TXB0DLC
-                        bit_count := bit_count + 1;
-                    else
-                        can_tx <= txb0dlc_reg(0); -- Last bit of DLC
-                        bit_count := (others => '0');
-                        if txb0dlc_reg(6) = '0' then -- Transmission Frame
-                            current_state <= ST_DATA;
-                        else                         -- Remote Frame
-                            current_state <= ST_CRC;
-                        end if;
+                    if stuff_nxt_bit = '0' then
+                        can_tx <= DOMINANT_BIT; -- IDE bit is '0' for standard frames
+                        current_state <= ST_R0;
                     end if;
                     
+                when ST_R0 =>
+                    if stuff_nxt_bit = '0' then
+                        can_tx <= DOMINANT_BIT; -- r0 bit is reserved and set to '0'
+                        bit_count := (others => '0');
+                        current_state <= ST_DLC;
+                    end if;
+
+                when ST_DLC =>
+                    if stuff_nxt_bit = '0' then
+                        data_length(3 downto 0) <= unsigned(txb0dlc_reg(3 downto 0)); -- lenght in bits of data load
+                        if bit_count <= 2 then
+                            can_tx <= txb0dlc_reg(3 - to_integer(bit_count)); -- DLC bits are mapped in bits [3:0] of TXB0DLC
+                            bit_count := bit_count + 1;
+                        else
+                            can_tx <= txb0dlc_reg(0); -- Last bit of DLC
+                            bit_count := (others => '0');
+                            if txb0dlc_reg(6) = '0' then -- Transmission Frame
+                                current_state <= ST_DATA;
+                            else                         -- Remote Frame
+                                current_state <= ST_CRC;
+                            end if;
+                        end if;
+                    end if;
 
                 when ST_DATA =>
-                    -- Serializes MSB First in each byte
-                    can_tx <= r_TXB0Dn(to_integer(byte_count))(7 - to_integer(bit_count));
-                    if bit_count < 7 then
-                        bit_count := bit_count + 1;
-                    else
-                        bit_count := (others => '0');
-                        if to_integer(byte_count) >= (data_length - 1) then
-                            byte_count := (others => '0');
-                            current_state <= ST_CRC;
+                    if stuff_nxt_bit = '0' then
+                        -- Serializes MSB First in each byte
+                        can_tx <= r_TXB0Dn(to_integer(byte_count))(7 - to_integer(bit_count));
+                        if bit_count < 7 then
+                            bit_count := bit_count + 1;
                         else
-                            byte_count := byte_count + 1;
+                            bit_count := (others => '0');
+                            if to_integer(byte_count) >= (data_length - 1) then
+                                byte_count := (others => '0');
+                                current_state <= ST_CRC;
+                            else
+                                byte_count := byte_count + 1;
+                            end if;
                         end if;
                     end if;
 
                 when ST_CRC =>
-                    -- CRC calculation is implemented in can_engine.vhd
-                    if bit_count >= 14 then
-                        bit_count := (others => '0');
-                        current_state <= ST_ACK;
-                    else 
-                        bit_count := bit_count + 1;
+                    if stuff_nxt_bit = '0' then
+                        -- CRC calculation is implemented in can_engine.vhd
+                        if bit_count >= 14 then
+                            bit_count := (others => '0');
+                            current_state <= ST_ACK;
+                        else 
+                            bit_count := bit_count + 1;
+                        end if;
                     end if;
+
+                    --! @TODO verificar se existe bit de limite (limitador no campo do CRC)
 
                 when ST_ACK =>
                     -- ack slot
@@ -191,23 +210,28 @@ begin
     ------------------------------------------------------------------
     -- Process to generate and sync FSM state with other components
     ------------------------------------------------------------------
-    process(current_state)
+    process(clk, rst)
     begin
-        case current_state is
-            when ST_IDLE        => current_state_out <= "0000";
-            when ST_SOF         => current_state_out <= "0001";
-            when ST_ARBITRATION => current_state_out <= "0010";
-            when ST_RTR         => current_state_out <= "0011";
-            when ST_IDE         => current_state_out <= "0100";
-            when ST_R0          => current_state_out <= "0101";
-            when ST_DLC         => current_state_out <= "0110";
-            when ST_DATA        => current_state_out <= "0111";
-            when ST_CRC         => current_state_out <= "1000";
-            when ST_ACK         => current_state_out <= "1001";
-            when ST_EOF         => current_state_out <= "1010";
-            when ST_IFS         => current_state_out <= "1011";
-            when others         => current_state_out <= "0000";
-        end case;
+        if rst = '1' then
+            current_state_out <= "0000";
+
+        elsif rising_edge(clk) then
+            case current_state is
+                when ST_IDLE        => current_state_out <= "0000";
+                when ST_SOF         => current_state_out <= "0001";
+                when ST_ARBITRATION => current_state_out <= "0010";
+                when ST_RTR         => current_state_out <= "0011";
+                when ST_IDE         => current_state_out <= "0100";
+                when ST_R0          => current_state_out <= "0101";
+                when ST_DLC         => current_state_out <= "0110";
+                when ST_DATA        => current_state_out <= "0111";
+                when ST_CRC         => current_state_out <= "1000";
+                when ST_ACK         => current_state_out <= "1001";
+                when ST_EOF         => current_state_out <= "1010";
+                when ST_IFS         => current_state_out <= "1011";
+                when others         => current_state_out <= "0000";
+            end case;
+        end if;
     end process;
 
 end architecture RTL;
