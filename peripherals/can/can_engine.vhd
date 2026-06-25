@@ -108,49 +108,63 @@ begin
     begin
         if rst = '1' then
             counter := (others => '0');
-            curr_bit := DOMINANT_BIT;
+            curr_bit := RECESSIVE_BIT;
+            stuff_nxt_bit <= '0';
 
         elsif rising_edge(clk_out_internal) then
-            if current_state = ST_IDLE then --! when in IDLE bit is recessive = "1"
-                curr_bit := RECESSIVE_BIT;
+            if current_state = ST_IDLE then
+                curr_bit := RECESSIVE_BIT; --! when in IDLE bit is RECESSIVE = '1'
                 counter := (others => '0');
+                stuff_nxt_bit <= '0';
 
-            elsif     (current_state = ST_SOF)              --! CAN segments in wich bit stuffing is applied
-                   or (current_state = ST_ARBITRATION_VAL)  
-                   or (current_state = ST_RTR)
-                   or (current_state = ST_IDE)
-                   or (current_state = ST_R0)
-                   or (current_state = ST_DLC)
-                   or (current_state = ST_DATA)
-                   or (current_state = ST_CRC) then
+            elsif (current_state = ST_SOF)    --! CAN segments in wich bit stuffing is applied          
+               or (current_state = ST_ARBITRATION_VAL)  
+               or (current_state = ST_RTR)
+               or (current_state = ST_IDE)
+               or (current_state = ST_R0)
+               or (current_state = ST_DLC)
+               or (current_state = ST_DATA)
+               or (current_state = ST_CRC) then
 
-                        -- Compare and count sequence of same bits
-                        if (curr_bit = tx_bit_in) and (stuff_nxt_bit = '0') then    
-                            counter := counter + 1;
-                        else 
-                            counter := (others => '0');
-                        end if;
+               -- Reset counting / prevents bit stuffing in wrong
+                if stuff_nxt_bit = '1' then
+                    curr_bit := not curr_bit; 
+                    counter  := (others => '0');
+                    
+                    if curr_bit = tx_bit_in then
+                        counter := counter + 1;
+                    end if;
+                    stuff_nxt_bit <= '0'; -- disables bit stuffing for the next clk cycle
 
-                        -- Generates a signal to insert a inverted bit
-                        if counter >= "101" then        
-                            stuff_nxt_bit <= '1';
-                        else
-                            curr_bit := tx_bit_in;
-                            stuff_nxt_bit <= '0';
-                        end if;
+                else
+                    -- Compare and count sequence of same bits
+                    if (curr_bit = tx_bit_in) then    
+                        counter := counter + 1;
+                    else 
+                        counter := "000";
+                        curr_bit := tx_bit_in;
+                    end if;
 
-            else
-                curr_bit := DOMINANT_BIT;
+                    -- Generates a signal to insert a inverted bit
+                    if counter >= 4 then        
+                        stuff_nxt_bit <= '1';
+                    else
+                        stuff_nxt_bit <= '0';
+                    end if;
+                end if;
+
+            else    -- bit stuffing is not apllied to ACK, EOF and IFS
+                curr_bit := tx_bit_in;
+                counter := (others => '0');
+                stuff_nxt_bit <= '0';
             end if;
-
         end if;
     end process;
 
     stuff_nxt_bit_out <= stuff_nxt_bit;
 
     -- Transmit tx_can data to the transceiver considering bit stuffing
-    can_tx <= not tx_bit_in when stuff_nxt_bit = '1' 
-        else tx_bit_in;
+    can_tx <= not tx_bit_in when stuff_nxt_bit = '1' else tx_bit_in;
 
     ------------------------------------------------------------------
     -- CRC-15 calc process

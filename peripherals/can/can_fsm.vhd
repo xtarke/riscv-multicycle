@@ -32,10 +32,10 @@ entity can_fsm is
         core_canstat_we  : out std_logic;
 
         -- Signals from can_engine
-        stuff_nxt_bit   : in std_logic;   -- Tells FSM to stop data transmission for a clock cycle 
+        stuff_nxt_bit   : in std_logic   -- Tells FSM to stop data transmission for a clock cycle 
 
         -- Debug
-        debug            : out unsigned(7 downto 0)
+        --debug            : out unsigned(7 downto 0)
     );
 end entity can_fsm;
 
@@ -89,11 +89,11 @@ begin
                             current_state <= ST_IDLE; -- Message ID has less priority than another message being transmitted, aborting and waiting for the next opportunity
                         elsif bit_count >= 10 then
                             current_state <= ST_RTR;
-                            can_tx <=txb0sidl_reg(5);      -- LSB of the ID is mapped in bit 5 of TXB0SIDL
+                            can_tx <= txb0sidl_reg(5);      -- LSB of the ID is mapped in bit 5 of TXB0SIDL
                             bit_count := (others => '0');
                         else
                             -- serialize the first 10 bits of the ID
-                            if bit_count < 8 then
+                            if bit_count <= 7 then
                                 can_tx <= txb0sidh_reg(7 - to_integer(bit_count)); -- Bits [10:3] are mapped in TXB0SIDH
                             else
                                 can_tx <= txb0sidl_reg(7 - (to_integer(bit_count) - 8)); -- Bits [2:0] are mapped in bits [7:5] of TXB0SIDL
@@ -202,7 +202,7 @@ begin
 
             end case;
 
-            debug <= bit_count;
+            --debug <= bit_count;
 
         end if;
     end process;
@@ -210,28 +210,28 @@ begin
     ------------------------------------------------------------------
     -- Process to generate and sync FSM state with other components
     ------------------------------------------------------------------
-    process(clk, rst)
+    process(current_state, rst)
     begin
         if rst = '1' then
             current_state_out <= "0000";
-
-        elsif rising_edge(clk) then
-            case current_state is
-                when ST_IDLE        => current_state_out <= "0000";
-                when ST_SOF         => current_state_out <= "0001";
-                when ST_ARBITRATION => current_state_out <= "0010";
-                when ST_RTR         => current_state_out <= "0011";
-                when ST_IDE         => current_state_out <= "0100";
-                when ST_R0          => current_state_out <= "0101";
-                when ST_DLC         => current_state_out <= "0110";
-                when ST_DATA        => current_state_out <= "0111";
-                when ST_CRC         => current_state_out <= "1000";
-                when ST_ACK         => current_state_out <= "1001";
-                when ST_EOF         => current_state_out <= "1010";
-                when ST_IFS         => current_state_out <= "1011";
-                when others         => current_state_out <= "0000";
-            end case;
         end if;
+
+        case current_state is
+            when ST_IDLE        => current_state_out <= "0000";
+            when ST_SOF         => current_state_out <= "0001";
+            when ST_ARBITRATION => current_state_out <= "0010";
+            when ST_RTR         => current_state_out <= "0011";
+            when ST_IDE         => current_state_out <= "0100";
+            when ST_R0          => current_state_out <= "0101";
+            when ST_DLC         => current_state_out <= "0110";
+            when ST_DATA        => current_state_out <= "0111";
+            when ST_CRC         => current_state_out <= "1000";
+            when ST_ACK         => current_state_out <= "1001";
+            when ST_EOF         => current_state_out <= "1010";
+            when ST_IFS         => current_state_out <= "1011";
+            when others         => current_state_out <= "0000";
+        end case;
+
     end process;
 
 end architecture RTL;

@@ -1,0 +1,15 @@
+{
+    "name": "riscv-multicycle",
+    "targets": {
+        "rtl": {
+            // Sigasi support is enabled in HDL files that are part of a library.
+            "libraryMapping": {
+                // TODO: Add files or folders to libraries,
+                // e.g., to add all HDL files to 'work', use
+                // "": "work"
+                "": [],
+                "peripherals/can": "can"
+            }
+        }
+    }
+}

@@ -18,9 +18,10 @@ entity register_map is
         
         -- Interface de Interconexão com o Hardware Interno (CAN Core)
         -- Configurações Globais exportadas para can_engine e can_fsm
-        cnf1_out        : out std_logic_vector(7 downto 0);
-        cnf2_out        : out std_logic_vector(7 downto 0);
-        cnf3_out        : out std_logic_vector(7 downto 0);
+        baud_reg_out    : out  std_logic_vector(7 downto 0);   -- config FSM and transmisson baudrate
+        --cnf1_out        : out std_logic_vector(7 downto 0);
+        --cnf2_out        : out std_logic_vector(7 downto 0);
+        --cnf3_out        : out std_logic_vector(7 downto 0);
         canctrl_out     : out std_logic_vector(7 downto 0);
         
         -- Transmission buffers exported to can_fsm 
@@ -32,11 +33,11 @@ entity register_map is
         
         -- Inputs from other componentes to update registers
         core_canstat_in : in  std_logic_vector(7 downto 0);
-        core_canstat_we : in  std_logic;
-        core_tec_in     : in  std_logic_vector(7 downto 0);
-        core_rec_in     : in  std_logic_vector(7 downto 0);
-        core_eflg_in    : in  std_logic_vector(7 downto 0);
-        core_status_we  : in  std_logic                      
+        core_canstat_we : in  std_logic
+        --core_tec_in     : in  std_logic_vector(7 downto 0);
+        --core_rec_in     : in  std_logic_vector(7 downto 0);
+        --core_eflg_in    : in  std_logic_vector(7 downto 0);
+        --core_status_we  : in  std_logic                      
     );
 end entity register_map;
 
@@ -45,9 +46,10 @@ architecture RTL of register_map is
     -- Internal config and status registers
     signal r_CANCTRL  : std_logic_vector(7 downto 0);
     signal r_CANSTAT  : std_logic_vector(7 downto 0);
-    signal r_CNF1     : std_logic_vector(7 downto 0);
-    signal r_CNF2     : std_logic_vector(7 downto 0);
-    signal r_CNF3     : std_logic_vector(7 downto 0);
+    --signal r_CNF1     : std_logic_vector(7 downto 0);
+    --signal r_CNF2     : std_logic_vector(7 downto 0);
+    --signal r_CNF3     : std_logic_vector(7 downto 0);
+    signal r_BAUD_REG : std_logic_vector(7 downto 0);
     signal r_CANINTE  : std_logic_vector(7 downto 0);
     signal r_CANINTF  : std_logic_vector(7 downto 0);
     signal r_EFLG     : std_logic_vector(7 downto 0);
@@ -76,9 +78,10 @@ begin
             -- Standard register values(MCP2515)
             r_CANCTRL  <= x"87"; -- Config mode (1000 0111): CONFIG mode, CLKOUT disabled, RXnBF pins disabled
             r_CANSTAT  <= x"80"; -- Status mode (1000 0000): Normal mode, no errors, no interrupts
-            r_CNF1     <= x"00";
-            r_CNF2     <= x"00";
-            r_CNF3     <= x"00";
+            --r_CNF1     <= x"00";
+            --r_CNF2     <= x"00";
+            --r_CNF3     <= x"00";
+            r_BAUD_REG <= x"00";
             r_CANINTE  <= x"00";
             r_CANINTF  <= x"00";
             r_EFLG     <= x"00";
@@ -102,11 +105,11 @@ begin
                 r_CANSTAT <= core_canstat_in;
             end if;
             
-            if core_status_we = '1' then
-                r_TEC  <= core_tec_in;
-                r_REC  <= core_rec_in;
-                r_EFLG <= core_eflg_in;
-            end if;
+            --if core_status_we = '1' then
+                --r_TEC  <= core_tec_in;
+                --r_REC  <= core_rec_in;
+                --r_EFLG <= core_eflg_in;
+            --end if;
 
             -- -----------------------------------------------------------
             -- Updates from processor bus
@@ -116,9 +119,10 @@ begin
             if bus_we = '1' then
                 case bus_addr(7 downto 0) is
                     when CANCTRL  => r_CANCTRL  <= bus_wdata(7 downto 0);
-                    when CNF1     => r_CNF1     <= bus_wdata(7 downto 0);
-                    when CNF2     => r_CNF2     <= bus_wdata(7 downto 0);
-                    when CNF3     => r_CNF3     <= bus_wdata(7 downto 0);
+                    --when CNF1     => r_CNF1     <= bus_wdata(7 downto 0);
+                    --when CNF2     => r_CNF2     <= bus_wdata(7 downto 0);
+                    --when CNF3     => r_CNF3     <= bus_wdata(7 downto 0);
+                    when BAUD_REG => r_BAUD_REG <= bus_wdata(7 downto 0);
                     when CANINTE  => r_CANINTE  <= bus_wdata(7 downto 0);
                     when CANINTF  => r_CANINTF  <= bus_wdata(7 downto 0);
                     when TXB0CTRL => r_TXB0CTRL <= bus_wdata(7 downto 0);
@@ -177,12 +181,11 @@ begin
     ------------------------------------------------------------------
     -- Connection signals (registers) with inputs and outputs
     ------------------------------------------------------------------
-    cnf1_out     <= r_CNF1;
-    cnf2_out     <= r_CNF2;
-    cnf3_out     <= r_CNF3;
+    --cnf1_out     <= r_CNF1;
+    --cnf2_out     <= r_CNF2;
+    --cnf3_out     <= r_CNF3;
+    baud_reg_out <= r_BAUD_REG;
     canctrl_out  <= r_CANCTRL;
-    
-    -- Agora sim, a can_fsm consegue capturar as variáveis de montagem do payload
     txb0ctrl_out <= r_TXB0CTRL;
     txb0sidh_out <= r_TXB0SIDH;
     txb0sidl_out <= r_TXB0SIDL;

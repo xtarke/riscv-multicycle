@@ -113,6 +113,9 @@ package can_pkg is
     constant TXB1D0     : std_logic_vector(7 downto 0) := x"46";
     constant TXB2D0     : std_logic_vector(7 downto 0) := x"56";
 
+    -- Abstracted baud rate timing register instead of CNFn
+    constant BAUD_REG   : std_logic_vector(7 downto 0) := x"F0";
+    
     -- array of 8 registers for TXB0 data bytes (D0 to D7)
     type t_tx_data_regs is array (0 to 7) of std_logic_vector(7 downto 0);
 
