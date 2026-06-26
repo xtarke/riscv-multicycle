@@ -1,4 +1,4 @@
--- Sofia Maia Lee
+-- Sofia Maia Lee e  Ueslei Marian
 -- Testbench do periférico raiz
 -- Projeto Final - Raiz quadrada com ALTSQRT
 

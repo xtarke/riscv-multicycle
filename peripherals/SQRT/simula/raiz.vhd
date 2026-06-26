@@ -1,6 +1,6 @@
 -------------------------------------------------------
 -- IFSC
--- Sofia Maia Lee
+-- Sofia Maia Lee e Ueslei Marian
 -- Projeto Final - Implementação de periferico que faz raiz quadrada
 -------------------------------------------------------
 --Bibliotecas padrão
