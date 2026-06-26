@@ -102,12 +102,12 @@ begin
 
         -- Escrita do data length no registrador txb0dlc
         bus_addr(7 downto 0) <= TXB0DLC;
-        bus_wdata(7 downto 0) <= "00000010";
+        bus_wdata(7 downto 0) <= "00000001";
         wait for CLK_PERIOD;
 
         -- Escrita do buffer de dados
         bus_addr(7 downto 0) <= TXB0D0;
-        bus_wdata(7 downto 0) <= "10101010";
+        bus_wdata(7 downto 0) <= "10000010";
         wait for CLK_PERIOD * 8;
 
         -- Configura o preescaler

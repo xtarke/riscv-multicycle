@@ -41,9 +41,10 @@ end entity can_fsm;
 
 architecture RTL of can_fsm is
 
-    signal current_state    : t_can_state;
-    signal tx_request       : std_logic;
-    signal data_length      : unsigned(7 downto 0);
+    signal current_state  : t_can_state;
+    signal tx_request     : std_logic;
+    signal data_length    : unsigned(7 downto 0);
+    signal crc_reg        : std_logic_vector(14 downto 0) := (others => '0');
 
 begin
 
@@ -158,15 +159,20 @@ begin
                 when ST_CRC =>
                     if stuff_nxt_bit = '0' then
                         -- CRC calculation is implemented in can_engine.vhd
-                        if bit_count >= 14 then
+                        if bit_count >= 14 then             -- 15 CRC data bits
                             bit_count := (others => '0');
-                            current_state <= ST_ACK;
+                            current_state <= ST_CRC_DEL;
                         else 
                             bit_count := bit_count + 1;
                         end if;
                     end if;
 
-                    --! @TODO verificar se existe bit de limite (limitador no campo do CRC)
+                when ST_CRC_DEL =>
+                    -- CRC delimiter
+                    if stuff_nxt_bit = '0' then
+                        can_tx <= RECESSIVE_BIT;
+                        current_state <= ST_ACK;
+                    end if;
 
                 when ST_ACK =>
                     -- ack slot
@@ -226,9 +232,10 @@ begin
             when ST_DLC         => current_state_out <= "0110";
             when ST_DATA        => current_state_out <= "0111";
             when ST_CRC         => current_state_out <= "1000";
-            when ST_ACK         => current_state_out <= "1001";
-            when ST_EOF         => current_state_out <= "1010";
-            when ST_IFS         => current_state_out <= "1011";
+            when ST_CRC_DEL     => current_state_out <= "1001";
+            when ST_ACK         => current_state_out <= "1010";
+            when ST_EOF         => current_state_out <= "1011";
+            when ST_IFS         => current_state_out <= "1100";
             when others         => current_state_out <= "0000";
         end case;
 

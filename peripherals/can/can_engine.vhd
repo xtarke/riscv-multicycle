@@ -44,9 +44,6 @@ architecture behavioral of can_engine is
     constant ST_DLC             : std_logic_vector(3 downto 0) := "0110";
     constant ST_DATA            : std_logic_vector(3 downto 0) := "0111";
     constant ST_CRC             : std_logic_vector(3 downto 0) := "1000";
-    --constant ST_ACK             : std_logic_vector(3 downto 0) := "1001";
-    --constant ST_EOF             : std_logic_vector(3 downto 0) := "1010";
-    --constant ST_IFS             : std_logic_vector(3 downto 0) := "1011";
 
     -- Signals to bit stuffing logic
     --signal compare_buffer  : std_logic_vector(3 downto 0);
@@ -59,6 +56,8 @@ architecture behavioral of can_engine is
 
     -- Signals t
     signal clk_out_internal : std_logic;
+
+    signal current_bit_to_stuff : std_logic;
     
 begin
 
@@ -117,32 +116,32 @@ begin
                 counter := (others => '0');
                 stuff_nxt_bit <= '0';
 
-            elsif (current_state = ST_SOF)    --! CAN segments in wich bit stuffing is applied          
-               or (current_state = ST_ARBITRATION_VAL)  
-               or (current_state = ST_RTR)
-               or (current_state = ST_IDE)
-               or (current_state = ST_R0)
-               or (current_state = ST_DLC)
-               or (current_state = ST_DATA)
-               or (current_state = ST_CRC) then
+            elsif (current_state = ST_SOF) or   --! CAN segments in wich bit stuffing is applied          
+                  (current_state = ST_ARBITRATION_VAL) or  
+                  (current_state = ST_RTR) or
+                  (current_state = ST_IDE) or
+                  (current_state = ST_R0) or
+                  (current_state = ST_DLC) or
+                  (current_state = ST_DATA) or
+                  (current_state = ST_CRC) then
 
-               -- Reset counting / prevents bit stuffing in wrong
+               -- Reset counting / prevents bit stuffing in wrong sequence
                 if stuff_nxt_bit = '1' then
                     curr_bit := not curr_bit; 
                     counter  := (others => '0');
                     
-                    if curr_bit = tx_bit_in then
+                    if curr_bit = current_bit_to_stuff then
                         counter := counter + 1;
                     end if;
                     stuff_nxt_bit <= '0'; -- disables bit stuffing for the next clk cycle
 
                 else
                     -- Compare and count sequence of same bits
-                    if (curr_bit = tx_bit_in) then    
+                    if (curr_bit = current_bit_to_stuff) then    
                         counter := counter + 1;
                     else 
                         counter := "000";
-                        curr_bit := tx_bit_in;
+                        curr_bit := current_bit_to_stuff;
                     end if;
 
                     -- Generates a signal to insert a inverted bit
@@ -154,7 +153,7 @@ begin
                 end if;
 
             else    -- bit stuffing is not apllied to ACK, EOF and IFS
-                curr_bit := tx_bit_in;
+                curr_bit := current_bit_to_stuff;
                 counter := (others => '0');
                 stuff_nxt_bit <= '0';
             end if;
@@ -162,14 +161,83 @@ begin
     end process;
 
     stuff_nxt_bit_out <= stuff_nxt_bit;
+    
+    -- Process to transmit tx_can data to the transceiver considering bit stuffing and CRC multiplexing
+    process(stuff_nxt_bit, current_state, tx_bit_in, crc_reg)
+    begin
+        -- with bit stuffing
+        if stuff_nxt_bit = '1' then
+            if current_state = ST_CRC then
+                can_tx <= not crc_reg(14);
+            else
+                can_tx <= not tx_bit_in;
+            end if;
+        else
+            -- no bit stuffing
+            if current_state = ST_CRC then
+                can_tx <= crc_reg(14);
+            else
+                can_tx <= tx_bit_in;
+            end if;
+        end if;
+    end process;
 
-    -- Transmit tx_can data to the transceiver considering bit stuffing
-    can_tx <= not tx_bit_in when stuff_nxt_bit = '1' else tx_bit_in;
+    -- Selects wich signal must be considered to be counted repeated in bit stuffing process
+    current_bit_to_stuff <= crc_reg(14) when current_state = ST_CRC 
+        else tx_bit_in;
 
     ------------------------------------------------------------------
     -- CRC-15 calc process
     ------------------------------------------------------------------
-
+    process(clk_out_internal, rst)
+        variable crc_next : std_logic;
+    begin
+        if rst = '1' then
+            crc_reg <= (others => '0');
+            
+        elsif rising_edge(clk_out_internal) then
+            
+            if current_state = ST_IDLE then
+                crc_reg <= (others => '0'); -- Reset at every new frame
+                
+            elsif (current_state = ST_SOF) or 
+                  (current_state = ST_ARBITRATION_VAL) or 
+                  (current_state = ST_RTR) or 
+                  (current_state = ST_IDE) or 
+                  (current_state = ST_R0) or 
+                  (current_state = ST_DLC) or 
+                  (current_state = ST_DATA) then
+                  
+                if stuff_nxt_bit = '0' then
+                    -- XOR with actual MSB and bit being transmited
+                    crc_next := tx_bit_in xor crc_reg(14);
+                    
+                    -- CRC-15 polynomial shifts
+                    crc_reg(14) <= crc_reg(13) xor crc_next;
+                    crc_reg(13) <= crc_reg(12);
+                    crc_reg(12) <= crc_reg(11);
+                    crc_reg(11) <= crc_reg(10);
+                    crc_reg(10) <= crc_reg(9)  xor crc_next;
+                    crc_reg(9)  <= crc_reg(8);
+                    crc_reg(8)  <= crc_reg(7)  xor crc_next;
+                    crc_reg(7)  <= crc_reg(6)  xor crc_next;
+                    crc_reg(6)  <= crc_reg(5);
+                    crc_reg(5)  <= crc_reg(4);
+                    crc_reg(4)  <= crc_reg(3)  xor crc_next;
+                    crc_reg(3)  <= crc_reg(2)  xor crc_next;
+                    crc_reg(2)  <= crc_reg(1);
+                    crc_reg(1)  <= crc_reg(0);
+                    crc_reg(0)  <= crc_next;
+                end if;
+                
+            elsif current_state = ST_CRC then
+                if stuff_nxt_bit = '0' then
+                    -- shift CRC calc left every clk_internal cycle
+                    crc_reg <= crc_reg(13 downto 0) & '0';
+                end if;
+            end if;
+        end if;
+    end process;
 
     ------------------------------------------------------------------
     -- can bus error check

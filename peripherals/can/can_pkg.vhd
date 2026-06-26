@@ -8,7 +8,6 @@ package can_pkg is
     -- Functions prototypes
     ------------------------------------------------------------------
 
-    --function shift_and_xor() return var;
 
     ------------------------------------------------------------------
     -- MCP2515 Instructions (8 bits)
@@ -131,9 +130,10 @@ package can_pkg is
 --    constant ST_DLC             : std_logic_vector(3 downto 0) := "0110";
 --   constant ST_DATA            : std_logic_vector(3 downto 0) := "0111";
 --    constant ST_CRC             : std_logic_vector(3 downto 0) := "1000";
---   constant ST_ACK             : std_logic_vector(3 downto 0) := "1001";
---    constant ST_EOF             : std_logic_vector(3 downto 0) := "1010";
---   constant ST_IFS             : std_logic_vector(3 downto 0) := "1011";
+--   constant ST_CRC_DEL          : std_logic_vector(3 downto 0) := "1001";
+--   constant ST_ACK             : std_logic_vector(3 downto 0) := "1010";
+--    constant ST_EOF             : std_logic_vector(3 downto 0) := "1011";
+--   constant ST_IFS             : std_logic_vector(3 downto 0) := "1100";
     
     -- CAN dataframe represented as states of the FSM.
     type t_can_state is (
@@ -146,6 +146,7 @@ package can_pkg is
         ST_DLC,             -- ST_DLC (Data Length Code) 4 bits indicating the number of data bytes (0 to 8)
         ST_DATA,            -- ST_DATA (Data Field) 0 to 8 bytes of data as specified by the DLC
         ST_CRC,             -- ST_CRC (Cyclic Redundancy Check)
+        ST_CRC_DEL,
         ST_ACK,             -- ST_ACK (Acknowledgment) 2 bits: 1 bit for ACK Slot (recessive '1' by transmitter, dominant '0' by receiver) and 1 bit for ACK Delimiter (recessive '1')
         ST_EOF,             -- ST_EOF (End of Frame) 7 bits of recessive '1' indicating the end of the frame
         ST_IFS              -- ST_IFS (Interframe Space) 3 bits of recessive '1' minimum between frames
