@@ -1,3 +1,10 @@
+-------------------------------------------------------
+--! @file   can_pkg.vhdl
+--! @author Christopher Costa
+--! @date   29/06/2026
+--! @brief  CAN 2.0A VHDL package
+-------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

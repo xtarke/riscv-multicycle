@@ -1,3 +1,11 @@
+-------------------------------------------------------
+--! @file   can_fsm.vhdl
+--! @author Christopher Costa
+--! @date   29/06/2026
+--! @brief  VHDL implementation of FSM of CAN 2.0A 
+--          controller
+-------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -11,7 +19,7 @@ entity can_fsm is
         
         -- higher ID message is being transmitted first -- reestart FSM from SOF when tx_abort LOW
         -- may be set for other errors in the future (ex: bus error, bit error, etc)
-        tx_line_free     : in  std_logic; 
+        tx_abort         : in  std_logic; 
 
         current_state_out: out std_logic_vector(3 downto 0);
         
@@ -69,14 +77,13 @@ begin
             can_tx        <= RECESSIVE_BIT;
             data_length   <= x"00";
 
-        -- @ TODO - ST_error - quando tx e rx são diferentes durante transmissão - deve ser verificado por can_engine.vhd
         elsif rising_edge(clk) then
 
             case current_state is
 
                 when ST_IDLE =>
                     can_tx <= RECESSIVE_BIT;
-                    if tx_line_free = '1' and tx_request = '1' then
+                    if tx_abort = '0' and tx_request = '1' then
                         current_state <= ST_SOF;
                     end if;
 
@@ -86,7 +93,7 @@ begin
 
                 when ST_ARBITRATION =>
                     if stuff_nxt_bit = '0' then
-                        if tx_line_free = '0' then
+                        if tx_abort = '1' then
                             current_state <= ST_IDLE; -- Message ID has less priority than another message being transmitted, aborting and waiting for the next opportunity
                         elsif bit_count >= 10 then
                             current_state <= ST_RTR;

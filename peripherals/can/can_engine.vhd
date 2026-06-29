@@ -1,3 +1,11 @@
+-------------------------------------------------------
+--! @file   can_pkg.vhdl
+--! @author Christopher Costa
+--! @date   29/06/2026
+--! @brief  CAN 2.0A controller engine 
+--          | Transceiver & FSM interface
+-------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -12,7 +20,6 @@ entity can_engine is
         
         -- Timing configs 
         -- cnf registers will be simplified into one register responsible for the preescalling
-        -- @TODO Adicionar em can_pkg e register_map
         baud_reg          : in  std_logic_vector(7 downto 0);   -- config FSM and transmisson timing
         --cnf2_reg          : in  std_logic_vector(7 downto 0); 
         --cnf3_reg          : in  std_logic_vector(7 downto 0); 
@@ -242,8 +249,13 @@ begin
     ------------------------------------------------------------------
     -- can bus error check
     ------------------------------------------------------------------
-    tx_abort <= '1' when (tx_bit_in /= can_rx) 
-        else '0';
+
+    -- REMOVE COMMENT BELLOW WHEN USING PROPER HARDWARE
+    --tx_abort <= '1' when (tx_bit_in /= can_rx) 
+    --    else '0';
+
+    -- COMMNENT LINE BELOW FOR DEBUG
+    tx_abort <= '0';
 
 
 end architecture behavioral;

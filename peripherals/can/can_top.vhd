@@ -1,3 +1,12 @@
+-------------------------------------------------------
+--! @file   can_top.vhdl
+--! @author Christopher Costa
+--! @date   29/06/2026
+--! @brief  VHDL implementation of CAN 2.0A controller as 
+--          a RISC-V peripheral
+--                     | TOP ENTITY |
+-------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -41,9 +50,9 @@ architecture RTL of can_top is
     signal core_canstat_we : std_logic;
 
     -- Signals to connect can_fsm.vhd <-> can_engine.vhd
-    signal tx_bit_in : std_logic;
-    signal rx_bit_out  : std_logic;
-    signal tx_line_free : std_logic;
+    signal tx_bit_in     : std_logic;
+    signal rx_bit_out    : std_logic;
+    signal tx_abort      : std_logic;
     signal stuff_nxt_bit : std_logic;
 
 begin
@@ -77,7 +86,7 @@ begin
         port map(
             clk               => clk_out,
             rst               => rst,
-            tx_line_free      => tx_line_free,
+            tx_abort          => tx_abort,
             current_state_out => current_state,
             canctrl_reg       => canctrl_reg,
             txb0ctrl_reg      => txb0ctrl_out,
@@ -104,12 +113,11 @@ begin
             current_state     => current_state,
             tx_bit_in         => tx_bit_in,
             rx_bit_out        => rx_bit_out,
-            tx_abort          => tx_line_free,
+            tx_abort          => tx_abort,
             stuff_nxt_bit_out => stuff_nxt_bit,
             can_rx            => can_rx,
             can_tx            => can_tx
         );
     
-
 
 end architecture RTL;
