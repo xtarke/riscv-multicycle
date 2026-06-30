@@ -20,7 +20,11 @@ software/*/*.tmp
 software/*/*.hex
 software/*/*.lss
 
-.sigasi/*
+project.sigasi
+.project
+.sigasi/
+work/
 *.wlf
-xa
-work/*
+*.ps
+.DS_Store
+.library_mapping.xml
