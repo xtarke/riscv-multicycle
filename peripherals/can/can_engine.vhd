@@ -65,8 +65,18 @@ architecture behavioral of can_engine is
     signal clk_out_internal : std_logic;
 
     signal current_bit_to_stuff : std_logic;
+
+    signal dalayed_State : std_logic_vector(3 downto 0);
+    
     
 begin
+
+    process(clk_out_internal)
+    begin
+        if rising_edge(clk_out_internal) then
+        dalayed_State <= current_state;
+        end if;
+    end process;    
 
     ------------------------------------------------------------------
     -- Bit Timing process - Baud rate (abstracted cnf regs)
@@ -204,16 +214,16 @@ begin
             
         elsif rising_edge(clk_out_internal) then
             
-            if current_state = ST_IDLE then
+            if dalayed_State = ST_IDLE then
                 crc_reg <= (others => '0'); -- Reset at every new frame
                 
-            elsif (current_state = ST_SOF) or 
-                  (current_state = ST_ARBITRATION_VAL) or 
-                  (current_state = ST_RTR) or 
-                  (current_state = ST_IDE) or 
-                  (current_state = ST_R0) or 
-                  (current_state = ST_DLC) or 
-                  (current_state = ST_DATA) then
+            elsif (dalayed_State = ST_SOF) or 
+                  (dalayed_State = ST_ARBITRATION_VAL) or 
+                  (dalayed_State = ST_RTR) or 
+                  (dalayed_State = ST_IDE) or 
+                  (dalayed_State = ST_R0) or 
+                  (dalayed_State = ST_DLC) or 
+                  (dalayed_State = ST_DATA) then
                   
                 if stuff_nxt_bit = '0' then
                     -- XOR with actual MSB and bit being transmited
@@ -237,7 +247,7 @@ begin
                     crc_reg(0)  <= crc_next;
                 end if;
                 
-            elsif current_state = ST_CRC then
+            elsif dalayed_State = ST_CRC then
                 if stuff_nxt_bit = '0' then
                     -- shift CRC calc left every clk_internal cycle
                     crc_reg <= crc_reg(13 downto 0) & '0';

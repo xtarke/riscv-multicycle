@@ -56,6 +56,6 @@ add wave -label can_tx    -radix binary /testbench/can_tx
 # add wave -radix dec /dut/p0/count
 
 #Simula até um 5us
-run 5us
+run 10us
 wave zoomfull
 write wave wave.ps

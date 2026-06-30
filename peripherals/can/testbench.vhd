@@ -112,10 +112,11 @@ begin
 
         -- Configura o preescaler
         bus_addr(7 downto 0) <= BAUD_REG;
-        bus_wdata(7 downto 0) <= "00000000";
+        bus_wdata(7 downto 0) <= "00000001";
         wait for CLK_PERIOD;
 
         -- Habilita a transmission
+        -- atualmente apenas transmission , nenhum outro controle (pg 18)
         bus_addr(7 downto 0) <= TXB0CTRL;
         bus_wdata(7 downto 0) <= "00001000";
         wait for CLK_PERIOD;
