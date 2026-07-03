@@ -238,7 +238,6 @@ begin
                 i_gate_s2    <= '1'; i_gate_s4 <= '1';
                 timer_target <= t_v0_reg;
                 if timer_tick = '1' then next_state <= ST_DEADTIME_1; end if;
-
             when ST_DEADTIME_1 =>
                 timer_target <= DEADTIME_CYCLES;
                 if timer_tick = '1' then

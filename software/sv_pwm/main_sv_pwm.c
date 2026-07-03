@@ -28,21 +28,23 @@ int main(void) {
     /* Começa com saída nula */
     sv_pwm_set_vcmd(0);
 
+    sv_pwm_set_vcmd(60);
+    SEGMENTS_BASE_ADDRESS = 2; //(uint32_t) sv_pwm_get_vcmd();
     while (1) {
 
-        if (INBUS & 0x1) {
+        // if (INBUS & 0x1) {
             /* SW0 ligado: tensão positiva (+60 V) — caminho S1/S4 */
-            sv_pwm_set_vcmd(60);
-        } else if (INBUS & 0x2) {
-            /* SW1 ligado: tensão negativa (-60 V) — caminho S2/S3 */
-            sv_pwm_set_vcmd(-60);
-        } else {
-            /* Nenhum switch: saída nula */
-            sv_pwm_set_vcmd(0);
-        }
+        // sv_pwm_set_vcmd(60);
+        // } else if (INBUS & 0x2) {
+        //     /* SW1 ligado: tensão negativa (-60 V) — caminho S2/S3 */
+        //     sv_pwm_set_vcmd(-60);
+        // } else {
+        //     /* Nenhum switch: saída nula */
+        //     sv_pwm_set_vcmd(0);
+        // }
 
         /* Exibe u_cmd nos displays (cast para uint32 para o display) */
-        SEGMENTS_BASE_ADDRESS = (uint32_t) sv_pwm_get_vcmd();
+        // SEGMENTS_BASE_ADDRESS = (uint32_t) sv_pwm_get_vcmd();
 
         /* Delay para debounce dos switches.
          * Comentar para rodar no testbench. */
