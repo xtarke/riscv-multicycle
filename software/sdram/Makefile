@@ -1,10 +1,15 @@
 ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = riscv-none-embed-
+RISCV_TOOLS_PREFIX = ../../compiler/gcc/bin/riscv-none-elf-
 # Para usar no LSC
 #RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
 endif
 
-QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
+
+HARDWARE_NAME = USB-Blaster [1-2]
+DEVICE_NAME = @1: 10M50DA(.|ES)/10M50DC (0x031050DD)
+
+QUARTUS_DIR = /opt/intelFPGA/25.1/quartus/bin/
+QUARTUS_PROJECT = ../../peripherals/sdram/sint
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
@@ -39,13 +44,16 @@ $(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o
 	chmod -x $(MAIN).elf
 
 sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/gpio/sint/de10_lite/de10_lite.cdf
+	$(QUARTUS_DIR)quartus_sh --flow compile $(QUARTUS_PROJECT)/de10_lite
 
-fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof"
+fpga: sint
+	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;$(QUARTUS_PROJECT)/output_files/de10_lite.sof"
 
-flash:
-	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
+flash: quartus_$(MAIN).hex fpga
+	@echo 'begin_memory_edit -hardware_name {$(HARDWARE_NAME)} -device_name {$(DEVICE_NAME)}' > /tmp/_flash_vga.tcl
+	@echo 'update_content_to_memory_from_file -instance_index 0 -mem_file_path {$(CURDIR)/quartus_$(MAIN).hex} -mem_file_type {hex}' >> /tmp/_flash_vga.tcl
+	@echo 'end_memory_edit' >> /tmp/_flash_vga.tcl
+	$(QUARTUS_DIR)quartus_stp_tcl -t /tmp/_flash_vga.tcl
 
 clean:
 	rm -f ../*/*.o *.o *.d *.tmp start.elf *.lss *.map
