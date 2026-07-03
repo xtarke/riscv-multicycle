@@ -31,6 +31,7 @@ entity iodatabusmux is
         ddata_r_key             : in   std_logic_vector(31 downto 0);
         ddata_r_accelerometer   : in  std_logic_vector(31 downto 0);
         ddata_r_cordic          : in std_logic_vector(31 downto 0);
+        ddata_r_raiz		    : in  std_logic_vector(31 downto 0);
      	ddata_r_RS485   		: in  std_logic_vector(31 downto 0);
         ddata_r_rgb             : in  std_logic_vector(31 downto 0);
         -- Mux 
@@ -57,6 +58,7 @@ begin
         ddata_r_fir_fil  when x"000D",
         ddata_r_key when x"000E",
         ddata_r_crc when x"000F",
+        ddata_r_raiz when x"0010",
         ddata_r_spwm  when x"0011",
         ddata_r_accelerometer when x"0012",
         ddata_r_cordic when x"0015",
