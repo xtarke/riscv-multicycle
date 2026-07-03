@@ -137,7 +137,7 @@ architecture rtl of de10_lite is
     signal interrupts : std_logic_vector(31 downto 0);
     signal gpio_interrupts : std_logic_vector(6 downto 0);
 
-    -- I/O signals	 
+    -- I/O signals
 	signal gate_s1 : std_logic;
 	signal gate_s2 : std_logic;
 	signal gate_s3 : std_logic;
@@ -148,7 +148,7 @@ begin
     rst <= SW(9);
     LEDR(9) <= SW(9);
 
-	    -- Clocks
+    -- Clocks
     pll_inst : entity work.pll
         port map(
             areset	=> '0',

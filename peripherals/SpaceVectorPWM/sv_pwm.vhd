@@ -9,6 +9,7 @@
 --   +1     |  W/R   | u_cmd   | Desired output voltage, signed 16-bit [V]
 --   +2     |  W/R   | f_sw    | Switching frequency [Hz], unsigned 32-bit
 --   +3     |  R     | status  | Gate states: bit3=gate_s4..bit0=gate_s1
+--   +4     |  W/R   | ctrl    | bit0=start (gates stay low until set to 1)
 --
 -- C driver (add to software/_core/hardware.h):
 --   #define SV_PWM_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 25*16*4))
@@ -57,6 +58,7 @@ architecture RTL of sv_pwm is
     signal reg_v_bar : unsigned(31 downto 0) := to_unsigned(100, 32);
     signal reg_u_cmd : signed(31 downto 0)   := (others => '0');
     signal reg_f_sw  : natural               := 10000;
+    signal reg_start : std_logic             := '0';
 
     -- Switching period in clock cycles (updated when reg_f_sw changes)
     signal ts_cycles : natural := INPUT_CLK_FREQ / 10000;
@@ -67,8 +69,7 @@ architecture RTL of sv_pwm is
         ST_S2_S4_ON_1, ST_DEADTIME_1,
         ST_S1_S4_ON,   ST_S2_S3_ON_1, ST_DEADTIME_2,
         ST_S1_S3_ON,   ST_DEADTIME_3, ST_S1_S4_ON_2,
-        ST_S2_S3_ON_2, ST_DEADTIME_4, ST_S2_S4_ON_2,
-        ST_DEADTIME_5
+        ST_S2_S3_ON_2, ST_DEADTIME_4, ST_S2_S4_ON_2
     );
     signal current_state, next_state : state_type;
 
@@ -107,6 +108,7 @@ begin
             reg_u_cmd <= (others => '0');
             reg_f_sw  <= 10000;
             ts_cycles <= INPUT_CLK_FREQ / 10000;
+            reg_start <= '0';
         elsif rising_edge(clk) then
             if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
                 if daddress(15 downto 0) = MY_WORD_ADDRESS then
@@ -118,6 +120,8 @@ begin
                         reg_f_sw  <= to_integer(unsigned(ddata_w));
                         ts_cycles <= INPUT_CLK_FREQ / to_integer(unsigned(ddata_w));
                     end if;
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+                    reg_start <= ddata_w(0);
                 end if;
             end if;
         end if;
@@ -139,6 +143,8 @@ begin
                     ddata_r <= std_logic_vector(to_unsigned(reg_f_sw, 32));
                 elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 3) then
                     ddata_r(3 downto 0) <= i_gate_s4 & i_gate_s3 & i_gate_s2 & i_gate_s1;
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 4) then
+                    ddata_r(0) <= reg_start;
                 end if;
             end if;
         end if;
@@ -216,7 +222,7 @@ begin
 
     -- FSM combinational logic
     -- Symmetric sequence: V0 -> V_active -> V3 -> V_active -> V0
-    process(current_state, timer_tick, vout_is_positive, t_v0_reg, t_v_at_metade_reg, t_v3_reg)
+    process(current_state, timer_tick, vout_is_positive, t_v0_reg, t_v_at_metade_reg, t_v3_reg, reg_start)
     begin
         i_gate_s1    <= '0';
         i_gate_s2    <= '0';
@@ -230,9 +236,10 @@ begin
 
             when ST_CALCULATE =>
                 -- Wait one cycle for timing registers to stabilise after reset
-                timer_en   <= '0';
-                next_state <= ST_S2_S4_ON_1;
-
+                if reg_start = '1' then
+                    timer_en   <= '0';
+                    next_state <= ST_S2_S4_ON_1;
+                end if;
             -- Sequence start: null vector V0 (S2+S4)
             when ST_S2_S4_ON_1 =>
                 i_gate_s2    <= '1'; i_gate_s4 <= '1';
@@ -294,12 +301,11 @@ begin
             when ST_S2_S4_ON_2 =>
                 i_gate_s2    <= '1'; i_gate_s4 <= '1';
                 timer_target <= t_v0_reg;
-                if timer_tick = '1' then next_state <= ST_DEADTIME_5; end if;
-
-            when ST_DEADTIME_5 =>
-                timer_target <= DEADTIME_CYCLES;
                 if timer_tick = '1' then next_state <= ST_S2_S4_ON_1; end if;
 
+            -- Recovery net
+            when others =>
+                next_state <= ST_CALCULATE;
         end case;
     end process;
 

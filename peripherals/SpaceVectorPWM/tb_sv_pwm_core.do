@@ -113,6 +113,7 @@ add wave -divider "Registradores sv_pwm"
 add wave -radix unsigned -label "v_bar (V)"  /sv_pwm_inst/reg_v_bar
 add wave -radix decimal  -label "u_cmd (V)"  /sv_pwm_inst/reg_u_cmd
 add wave -radix unsigned -label "f_sw (Hz)"  /sv_pwm_inst/reg_f_sw
+add wave -radix binary   -label "start"      /sv_pwm_inst/reg_start
 
 # -------------------------------------------------------
 # Temporização interna SVPWM
