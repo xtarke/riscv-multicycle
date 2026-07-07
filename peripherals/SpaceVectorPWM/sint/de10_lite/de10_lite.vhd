@@ -175,7 +175,7 @@ begin
 			MY_WORD_ADDRESS   => x"0190",
 			DADDRESS_BUS_SIZE => 32,
 			INPUT_CLK_FREQ    => 50e6,
-			DEADTIME_CYCLES   => 0
+			DEADTIME_CYCLES   => 50
 		)
 		port map(
 			clk      => clk,

@@ -9,7 +9,7 @@
 --   +1     |  W/R   | u_cmd   | Desired output voltage, signed 16-bit [V]
 --   +2     |  W/R   | f_sw    | Switching frequency [Hz], unsigned 32-bit
 --   +3     |  R     | status  | Gate states: bit3=gate_s4..bit0=gate_s1
---   +4     |  W/R   | ctrl    | bit0=start (gates stay low until set to 1)
+--   +4     |  W/R   | ctrl    | bit0=enable (1=start PWM, 0=stop: gates forced low)
 --
 -- C driver (add to software/_core/hardware.h):
 --   #define SV_PWM_BASE_ADDRESS (*(_IO32 *) (PERIPH_BASE + 25*16*4))
@@ -246,10 +246,22 @@ begin
                 timer_target <= t_v0_reg;
                 if timer_tick = '1' then next_state <= ST_DEADTIME_1; end if;
             when ST_DEADTIME_1 =>
+
                 timer_target <= DEADTIME_CYCLES;
+                if vout_is_positive then 
+                    next_state <= ST_S1_S4_ON;
+                    i_gate_s4 <= '1';
+                else
+                    next_state <= ST_S2_S3_ON_1;
+                    i_gate_s2 <= '1';
+                end if;
+                
                 if timer_tick = '1' then
-                    if vout_is_positive then next_state <= ST_S1_S4_ON;
-                    else                     next_state <= ST_S2_S3_ON_1; end if;
+                    if vout_is_positive then 
+                        next_state <= ST_S1_S4_ON;
+                    else
+                        next_state <= ST_S2_S3_ON_1;
+                    end if;
                 end if;
 
             -- VOUT > 0: active vector V1 (S1+S4)
@@ -265,8 +277,15 @@ begin
                 if timer_tick = '1' then next_state <= ST_DEADTIME_2; end if;
 
             when ST_DEADTIME_2 =>
+                i_gate_s1 <= '1';
                 timer_target <= DEADTIME_CYCLES;
                 if timer_tick = '1' then next_state <= ST_S1_S3_ON; end if;
+
+                if vout_is_positive then
+                    i_gate_s1 <= '1';
+                else
+                    i_gate_s3 <= '1';
+                end if;
 
             -- Middle: null vector V3 (S1+S3)
             when ST_S1_S3_ON =>
@@ -276,9 +295,19 @@ begin
 
             when ST_DEADTIME_3 =>
                 timer_target <= DEADTIME_CYCLES;
+        
+                if vout_is_positive then 
+                        i_gate_s1 <= '1';
+                else
+                        i_gate_s3  <= '1';
+                end if;
+
                 if timer_tick = '1' then
-                    if vout_is_positive then next_state <= ST_S1_S4_ON_2;
-                    else                     next_state <= ST_S2_S3_ON_2; end if;
+                    if vout_is_positive then 
+                        next_state <= ST_S1_S4_ON_2;
+                    else
+                        next_state <= ST_S2_S3_ON_2; 
+                    end if;
                 end if;
 
             -- Return: VOUT > 0 active vector V1 (S1+S4)
@@ -296,6 +325,13 @@ begin
             when ST_DEADTIME_4 =>
                 timer_target <= DEADTIME_CYCLES;
                 if timer_tick = '1' then next_state <= ST_S2_S4_ON_2; end if;
+                
+                if vout_is_positive then
+                    i_gate_s4 <= '1';
+                else
+                    i_gate_s2 <= '1';
+                end if;
+
 
             -- Sequence end: null vector V0 (S2+S4)
             when ST_S2_S4_ON_2 =>
@@ -307,6 +343,16 @@ begin
             when others =>
                 next_state <= ST_CALCULATE;
         end case;
+
+        -- Stop request: all gates off, return to idle
+        if reg_start = '0' then
+            i_gate_s1  <= '0';
+            i_gate_s2  <= '0';
+            i_gate_s3  <= '0';
+            i_gate_s4  <= '0';
+            timer_en   <= '0';
+            next_state <= ST_CALCULATE;
+        end if;
     end process;
 
 end architecture RTL;

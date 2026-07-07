@@ -16,6 +16,11 @@ void sv_pwm_start(void) {
     SV_PWM_0->ctrl = SV_PWM_CTRL_START;
 }
 
+void sv_pwm_stop(void) {
+    SV_PWM_0->ctrl = SV_PWM_CTRL_STOP;
+}
+
+
 uint32_t sv_pwm_get_vbus(void) {
     return SV_PWM_0->v_bar;
 }
