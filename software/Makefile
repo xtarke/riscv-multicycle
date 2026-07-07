@@ -1,6 +1,6 @@
 RISCV_TOOLS_PREFIX = C:/PRG/Atividades/riscv-multicycle/compiler/gcc/bin/riscv-none-embed-
 
-QUARTUS_DIR = C:/intelFPGA/20.1/quartus/bin/
+QUARTUS_DIR = C:/intelFPGA/19.1/quartus/bin/
 
 PYTHON = python
 

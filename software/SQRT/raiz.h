@@ -12,6 +12,8 @@
  * Offset 2 -> Resto
  *------------------------------------------------------*/
 
+
+
 #define SQRT_INPUT      (*(&SQRT_BASE_ADDRESS))
 #define SQRT_RESULT     (*(&SQRT_BASE_ADDRESS + 1))
 #define SQRT_REMAINDER  (*(&SQRT_BASE_ADDRESS + 2))
