@@ -430,17 +430,23 @@ begin
 		end if;
 	end process;
 
-	process ()
+	process (clk, reset)
 		variable remaining_bytes_write: natural := 8;
+		variable writing: std_logic := '0'; 
 	begin
 		if reset = '1' then
-			 
+			remaining_bytes_write := 8;
+			writing := '0';
 		elsif rising_edge(clk) then
-			if d_write = '1' then
+			if d_write = '1' and writing '0' then
+				writing = '1';
 				remaining_bytes_write := write_len;
 			end if
 			
-			DRAM_DQ <= write_data(8 - remaining_bytes_write);
+			if writing = '0' then 
+				DRAM_DQ <= write_data(8 - remaining_bytes_write);
+			else 
+				DRAM_DQ <= (others => 'Z');
 	end process;
 
 	process(clk, reset, byteenable, in_reg_en)
