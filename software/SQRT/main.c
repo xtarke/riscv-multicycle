@@ -24,7 +24,7 @@ int main(void)
         }
         else
         {
-           // valor = raiz_get_result();
+            valor = raiz_get_result();
         }
 
         SEGMENTS_BASE_ADDRESS = valor;
