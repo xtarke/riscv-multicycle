@@ -88,9 +88,5 @@
 #define RS485_BASE_ADDRESS                	(*(_IO32 *) (PERIPH_BASE + 23*16*4))
 #define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 24*16*4))
 
-//#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))	
-//#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))	
-//#define TFT_DATA2		(*(_IO32 *) (PERIPH_BASE + 40))	
-//#define TFT_RETURN    (*(_IO32 *) (PERIPH_BASE + 44))	
 
 #endif //HARDWARE_H

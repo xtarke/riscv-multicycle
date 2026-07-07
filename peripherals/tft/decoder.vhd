@@ -7,9 +7,7 @@ entity decoder_tft is
 		clk      : in  std_logic;
 		mem_init : in  std_logic;
 		mem_full : in  std_logic;
-		daddress : in  natural;
-		dcsel    : in  std_logic_vector(1 downto 0);
-		d_we     : in  std_logic := '0';
+		start : in std_logic;
 		input_a  : in  unsigned(31 downto 0);
 		input_b  : in  unsigned(31 downto 0);
 		input_c  : in  unsigned(31 downto 0);
@@ -21,50 +19,30 @@ end entity;
 
 architecture rtl_decoder_tft of decoder_tft is
 
-	constant n_block : natural := 3;
-	type MUX is array (0 to n_block) of unsigned(output'range);
+constant n_block : natural := 3;
+    type MUX is array (0 to n_block) of unsigned(output'range);
 
-	signal ready    : std_logic;
-	signal color    : unsigned(15 downto 0);
-	signal output_b : unsigned(31 downto 0);
-	signal output_c : unsigned(31 downto 0);
-	signal sel      : unsigned(7 downto 0);
+    signal ready    : std_logic;
+    signal color    : unsigned(15 downto 0);
+    signal output_b : unsigned(31 downto 0);
+    signal output_c : unsigned(31 downto 0);
+    signal sel      : unsigned(7 downto 0);
 
-	signal mux_completed : unsigned(n_block - 1 downto 0);
-	signal mux_enable    : unsigned(n_block - 1 downto 0);
-	signal mux_output    : MUX;
+    signal mux_completed : unsigned(n_block - 1 downto 0);
+    signal mux_enable    : unsigned(n_block - 1 downto 0);
+    signal mux_output    : MUX;
 
-	signal start : std_logic := '0';
+    signal start_sig : std_logic;
 
-	-- Defines the dcsel and daddress to comp
-	constant dcsel_comp    : std_logic_vector(1 downto 0) := "10";
-	constant daddress_comp : unsigned                     := x"08";
 begin
 
-	process(clk)
-	begin
-		--start <= '0';
-		if rising_edge(clk) then
-			if (d_we = '1') and (dcsel = dcsel_comp) then
-				-- ToDo: Simplify compartors
-				-- ToDo: Maybe use byte addressing?  
-				--       x"01" (word addressing) is x"04" (byte addressing)
-				if to_unsigned(daddress, 32)(8 downto 0) = daddress_comp then
-					start <= '1';
-
-				end if;
-
-			else
-				start <= '0';
-			end if;
-		end if;
-	end process;
+	start_sig <= start when (mem_init = '1') else '0';
 
 	controller_inst : entity work.dec_fsm
 		port map(
 			clk      => clk,
 			ready    => ready,
-			start    => start,
+			start    => start_sig,
 			input_a  => input_a,
 			input_b  => input_b,
 			input_c  => input_c,
@@ -76,6 +54,7 @@ begin
 
 	mux_enable(0) <= '0';
 	mux_output(0) <= x"00000000";
+	
 	reset_inst : entity work.dec_reset
 		port map(
 			clk       => clk,

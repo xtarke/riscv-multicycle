@@ -17,29 +17,34 @@
 
 int main(){
 	
-    uint16_t color = 0x0001;
+	uint16_t color = 0x001F;
     uint16_t position = 0;
+	
 	tft_init();
 	delay_(10000);
     
-	tft_clean(color);
+	tft_clean(0x0000);
 	delay_(11000);
 		
     while(1){
         
-        tft_rect(~color, position, position, 0x0050, 0x00A0);
-        delay_(10000);
-        
-        tft_sqrt(~color, position, position, 0x000A);
-        //tft_clean(0x07C0);
+		tft_sqrt(~color, position + 10, position + 10, 0x0014);
         delay_(90000);
-        color = color << 1;
-        position = position + 4;
         
-        if(color == 0x0000)
-            color = 0x0001;
-        if(position > 200)
+		tft_sqrt(~color, position + 10, position + 10, 0x0014);
+        delay_(90000);
+		
+		color = (color << 1) | 0x0001; 
+        position = position + 8;
+        
+		if(color == 0xFFFF || color == 0x0000){
+            color = 0x001F;
+        }
+        if(position > 120){
             position = 0;
+            tft_clean(0x0000);
+            delay_(11000);
+        }
     }
 
 	return 0;
