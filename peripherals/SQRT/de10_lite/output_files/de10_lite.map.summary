@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Tue Jul 07 21:50:52 2026
+Quartus Prime Version : 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+Revision Name : de10_lite
+Top-level Entity Name : de0_lite_gpio
+Family : MAX 10
+Total logic elements : 7,386
+    Total combinational functions : 6,534
+    Dedicated logic registers : 1,742
+Total registers : 1742
+Total pins : 149
+Total virtual pins : 0
+Total memory bits : 67,584
+Embedded Multiplier 9-bit elements : 16
+Total PLLs : 1
+UFM blocks : 0
+ADC blocks : 0

@@ -11,13 +11,6 @@ int main(void)
 
     while (1)
     {
-        /*
-         * SW8 seleciona o que será mostrado.
-         *
-         * SW8 = 0 -> Resultado da raiz
-         * SW8 = 1 -> Resto da divisão
-         */
-
         if (INBUS & (1 << 8))
         {
             valor = raiz_get_remainder();
@@ -27,7 +20,7 @@ int main(void)
             valor = raiz_get_result();
         }
 
-        SEGMENTS_BASE_ADDRESS = valor;
+        SEGMENTS = valor;
     }
 
     return 0;

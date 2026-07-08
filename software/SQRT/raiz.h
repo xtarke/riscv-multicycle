@@ -25,3 +25,4 @@ uint8_t raiz_get_result(void);
 uint8_t raiz_get_remainder(void);
 
 #endif
+
