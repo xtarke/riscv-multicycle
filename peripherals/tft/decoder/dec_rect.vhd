@@ -125,7 +125,7 @@ begin
 
 				when WRITE_X1 =>
 					count := count + 1;
-					if (count < count_x) then
+					if (count <= count_x) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_X1;
 					else
@@ -140,7 +140,7 @@ begin
 
 				when WRITE_Y1 =>
 					count := count + 1;
-					if (count < count_y) then
+					if (count <= count_y) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_Y1;
 					else
@@ -155,7 +155,7 @@ begin
 
 				when WRITE_X2 =>
 					count := count + 1;
-					if (count < count_x) then
+					if (count <= count_x) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_X2;
 					else

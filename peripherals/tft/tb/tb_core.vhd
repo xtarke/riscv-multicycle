@@ -14,7 +14,6 @@ entity coretestbench is
 		DMEMORY_WORDS : integer := 1024;  	--!= 2k (512 * 2) bytes
 		constant SIZE : integer := 8		-- 8 bytes UART package
 	);
-
 	port(
 		----------- SEG7 ------------
 		HEX0 : out std_logic_vector(7 downto 0);
@@ -30,9 +29,7 @@ entity coretestbench is
 		
 		---------- ARDUINO IO -----
 		ARDUINO_IO: inout std_logic_vector(15 downto 0)
-	);	
-	
-	
+	);
 end entity coretestbench;
 
 architecture RTL of coretestbench is
@@ -50,20 +47,15 @@ architecture RTL of coretestbench is
 	signal dmask    : std_logic_vector(3 downto 0);
 	signal dcsel    : std_logic_vector(1 downto 0);
 	signal d_we     : std_logic := '0';
-
 	signal iaddress : integer range 0 to IMEMORY_WORDS - 1 := 0;
-
-	signal address     : std_logic_vector(31 downto 0);
+	signal address  : std_logic_vector(31 downto 0);
 
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
 	signal d_rd : std_logic;
-		
 	signal input_in	: std_logic_vector(31 downto 0);
 	signal cpu_state    : cpu_state_t;
-	
 	signal debugString  : string(1 to 40) := (others => '0');
 	
-
 	-- UART Signals
 	signal clk_baud : std_logic;
 	signal data_in : std_logic_vector(7 downto 0);
@@ -75,16 +67,13 @@ architecture RTL of coretestbench is
 	signal rx_cmp : std_logic;
 	
 	signal csel_uart : std_logic;
-
 	signal dmemory_address : natural;
 	signal d_sig : std_logic;
 
+	-- 1. TFT Read Signal
+	signal ddata_r_tft : std_logic_vector(31 downto 0);
 	
-	-- Display tft signals
-	signal input_a : unsigned(31 downto 0);
-	signal input_b : unsigned(31 downto 0);
-	signal input_c : unsigned(31 downto 0);
-
+	-- Display tft physical signals
 	signal pin_output : unsigned(7 downto 0);
 	signal pin_cs     : std_logic := '0';
 	signal pin_rs     : std_logic := '0';
@@ -92,8 +81,6 @@ architecture RTL of coretestbench is
 	signal pin_rst    : std_logic := '0';
 	signal ret    	  : unsigned(31 downto 0);
 	
-
-
 begin
 
 	clock_driver : process
@@ -113,44 +100,8 @@ begin
 		wait;
 	end process reset;
 
-	
-	-- Dummy out signals
-	-- ARDUINO_IO <= ddata_r(31 downto 16);
-	
---	imem: component imemory
---		generic map(
---			MEMORY_WORDS => IMEMORY_WORDS
---		)
---		port map(
---			clk           => clk,
---			data          => idata,
---			write_address => 0,
---			read_address  => iaddress,
---			we            => '0',
---			q             => idata 
---	);
-
-
 	rst_n <= not rst;
 
-	--	imem: component imemory
-	--		generic map(
-	--			MEMORY_WORDS => IMEMORY_WORDS
-	--		)
-	--		port map(
-	--			clk           => clk,
-	--			data          => idata,
-	--			write_address => 0,
-	--			read_address  => iaddress,
-	--			we            => '0',
-	--			q             => idata 
-	--	);
-
-	-- IMem shoud be read from instruction and data buses
-	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	-- with dcsel select 
-	-- address <= std_logic_vector(to_unsigned(daddress,10)) when "01",
-	--			   std_logic_vector(to_unsigned(iaddress,10)) when others;				   
 	process(d_rd, dcsel, daddress, iaddress)
 	begin
 		if (d_rd = '1') and (dcsel = "00") then
@@ -160,7 +111,7 @@ begin
 		end if;
 	end process;
 
-	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
+	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor)
 	iram_quartus_inst : entity work.iram_quartus
 		port map(
 			address => address(9 downto 0),
@@ -172,6 +123,7 @@ begin
 		);
 
 	dmemory_address <= to_integer(to_unsigned(daddress, 10));
+	
 	-- Data Memory RAM
 	dmem : entity work.dmemory
 		generic map(
@@ -189,15 +141,12 @@ begin
 			q       => ddata_r_mem
 		);
 
-	-- Adress space mux ((check sections.ld) -> Data chip select:
-	-- 0x00000    ->    Instruction memory
-	-- 0x20000    ->    Data memory
-	-- 0x40000    ->    Input/Output generic address space
-	-- 0x60000    ->    SDRAM address space	
+	-- OR input_in with ddata_r_tft allows both the original IO logic and the 
+	-- TFT display to share the dcsel="10" space simultaneously.
 	with dcsel select ddata_r <=
 		idata when "00",
 		ddata_r_mem when "01",
-		input_in when "10",
+		input_in or ddata_r_tft when "10",
 		(others => '0') when others;
 
 	-- Softcore instatiation
@@ -222,65 +171,56 @@ begin
 			state    => cpu_state
 		);
 
-tft_inst : entity work.tft
-	port map(
-		clk        => clk,
-		daddress   => daddress,
-		dcsel      => dcsel,
-		d_we       => d_we,
-		input_a    => input_a,
-		input_b    => input_b,
-		input_c    => input_c,
-		ret        => ret,
-		pin_output => pin_output,
-		pin_cs     => pin_cs,
-		pin_rs     => pin_rs,
-		pin_wr     => pin_wr,
-		pin_rst    => pin_rst
-	);
+	-- 3instantiated the TFT Component
+	tft_inst : entity work.tft
+		generic map(
+			MY_CHIPSELECT     => "10",
+			MY_WORD_ADDRESS   => x"0008",
+			DADDRESS_BUS_SIZE => 32
+		)
+		port map(
+			clk        => clk,
+			daddress   => to_unsigned(daddress, 32),
+			ddata_w    => ddata_w,
+			ddata_r    => ddata_r_tft,
+			d_we       => d_we,
+			d_rd       => d_rd,
+			dcsel      => dcsel,
+			
+			ret        => ret,
+			pin_output => pin_output,
+			pin_cs     => pin_cs,
+			pin_rs     => pin_rs,
+			pin_wr     => pin_wr,
+			pin_rst    => pin_rst
+		);
 
 	-- Output register (Dummy LED blinky)
 	process(clk, rst)
 	begin
 		if rst = '1' then
-			LEDR(7 downto 0) <= (others => '0');			
+			LEDR(7 downto 0) <= (others => '0');
 			HEX0 <= (others => '1');
 			HEX1 <= (others => '1');
 			HEX2 <= (others => '1');
 			HEX3 <= (others => '1');
 			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');		
+			HEX5 <= (others => '1');
 		else
 			if rising_edge(clk) then
 				if (d_we = '1') and (dcsel = "10") then
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
 					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
-						LEDR(7 downto 0) <= ddata_w(7 downto 0);				
+						LEDR(7 downto 0) <= ddata_w(7 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
 						HEX0 <= ddata_w(7 downto 0);
 						HEX1 <= ddata_w(15 downto 8);
 						HEX2 <= ddata_w(23 downto 16);
 						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"08" then
-						input_a <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"09" then
-						input_b <= unsigned(ddata_w);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"0A" then
-						input_c <= unsigned(ddata_w);
 					end if;
 				end if;
 			end if;
 		end if;
 	end process;
-	
-	
-	
-	
-	
 
 	-- Input register
 	process(clk, rst)
@@ -288,19 +228,21 @@ tft_inst : entity work.tft
 		if rst = '1' then
 			input_in <= (others => '0');
 		else
-
 			if rising_edge(clk) then		
 				if (d_rd = '1') and (dcsel = "10") then
 					if to_unsigned(daddress, 32)(8 downto 0) = x"00" then		
-						input_in(4 downto 0) <= SW(4 downto 0);	
+						input_in(4 downto 0) <= SW(4 downto 0);
 					elsif to_unsigned(daddress, 32)(8 downto 0) = x"04" then								
 						input_in(7 downto 0) <= data_out;						
-						
+					else
+						-- Ensures unused addresses evaluate to zero so the OR mux works
+						input_in <= (others => '0');
 					end if;
+				else
+					input_in <= (others => '0');
 				end if;
 			end if;
-		end if;	
-
+		end if;
 	end process;
 
 	-- FileOutput DEBUG	

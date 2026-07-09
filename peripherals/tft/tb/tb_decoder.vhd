@@ -2,36 +2,39 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity testbench_generator is
+entity testbench_decoder is
 end entity;
 
-architecture stimulus_generator of testbench_generator is
+architecture stimulus_decoder of testbench_decoder is
 	
 	signal clk  	    : std_logic := '0';
 	signal reset		: std_logic := '0';
 	signal mem_full    	: std_logic := '0';
 	signal mem_init    	: std_logic := '0';
+	signal start        : std_logic := '0';
 	signal input_a		: unsigned(31 downto 0) := x"00000000";
 	signal input_b		: unsigned(31 downto 0) := x"00000000";
 	signal input_c		: unsigned(31 downto 0) := x"00000000";
 	signal output		: unsigned(31 downto 0);
 	signal rst			: std_logic;
-	signal write_en		: std_logic := '0';
+	signal enable		: std_logic := '0';
 	
 begin
 
-	dut : entity work.generator
+	dut : entity work.decoder_tft
 		port map(
 			clk      => clk,
 			mem_init => mem_init,
 			mem_full => mem_full,
+			start    => start,
 			input_a  => input_a,
 			input_b  => input_b,
 			input_c  => input_c,
 			output   => output,
-			enable   => write_en,
+			enable   => enable,
 			rst      => rst
 		);
+	
 	
 	-- clock
 	process
@@ -47,34 +50,25 @@ begin
 	begin
 		wait for 1 ns;
 		
-		reset <= '1';
-		wait for 1 ns;
-		
-		reset <= '0';
-		wait for 2 ns;
-		
-		input_a <= x"FFFF0000";
-		wait until (rst = '1');
+		mem_full <= '0';
 		mem_init <= '0';
+		start    <= '0';
 		
-		wait for 2 ns;
-		input_a <= x"7FFF0000";
+		wait until rising_edge(clk);
 		
-		wait for 10 ns;
-		input_a <= x"80010000";
-		
-		wait for 5 ns;
-		input_a <= x"00010000";
-		
-		wait for 100 ns;
 		mem_init <= '1';
+		wait until rising_edge(clk);
 		
-		wait for 10 ns;
-		input_a <= x"8001FFFF";
+		input_a <= x"0001F800"; 
+		input_b <= x"00000000";
+		input_c <= x"00000000";
+		wait until rising_edge(clk);
 		
-		wait for 5 ns;
-		input_a <= x"0001FFFF";
+		start <= '1';
+		wait until rising_edge(clk);
+		start <= '0';
 		
+		wait for 2000 ns;
 		wait;
 	end process;
 

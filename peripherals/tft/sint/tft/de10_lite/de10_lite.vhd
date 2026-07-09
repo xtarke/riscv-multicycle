@@ -1,5 +1,5 @@
 -------------------------------------------------------------------
--- Name        : de0_lite.vhd
+-- Name        : de10_lite.vhd
 -- Author      : 
 -- Version     : 0.1
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC

@@ -29,8 +29,8 @@ begin
 	data_mem_inst : entity work.data_mem
 		generic map(
 			RAM_WIDTH => 32,
-			RAM_DEPTH => 20,
-			HEAD_INIT => 10
+			RAM_DEPTH => 512,
+			HEAD_INIT => 0
 		)
 		port map(
 			clk     => clk,
@@ -80,16 +80,30 @@ begin
 
 	process
 	begin
+
 		sel   <= x"00";
 		rst   <= '1';
 		rd_en <= '0';
-		wait for 3 ns;
+		
+		wait for 5 ns;
+		wait until rising_edge(clk);
+		
 		rst   <= '0';
-		sel   <= x"04";
-
-		wait for 50 ns;
-		rd_en <= '1';
-
+		wait until rising_edge(clk);
+		
+		sel   <= x"04"; 
+		wait until rising_edge(clk);
+		
+		wait for 500 ns;
+		wait until rising_edge(clk);
+		
+		while empty = '0' loop
+			rd_en <= '1';
+			wait until rising_edge(clk);
+		end loop;
+		
+		rd_en <= '0';
+		
 		wait;
 	end process;
 

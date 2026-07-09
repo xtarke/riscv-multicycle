@@ -39,8 +39,6 @@ begin
 	begin
 		if start_i = '1' then
 			state <= RESET;
---		if rising_edge(start) then
---			state <= RESET;
 		elsif rising_edge(clk) then
 			case state is
 				when IDLE =>

@@ -1,0 +1,10 @@
+{
+    "name": "tft",
+    "targets": {
+        "rtl": {
+            "libraryMapping": {
+                "": "work"
+            }
+        }
+    }
+}

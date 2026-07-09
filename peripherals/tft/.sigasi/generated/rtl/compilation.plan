@@ -1,0 +1,139 @@
+{
+  "version": 3,
+  "compilationGroups": [
+    {
+      "language": "VHDL",
+      "library": "work",
+      "resources": [
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/boot_mem.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/controller.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/data_mem.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/decoder/dec_clean.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/decoder/dec_fsm.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/decoder/dec_rect.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/decoder/dec_reset.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/decoder_tft.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/mux32.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/sint/core/de10_lite/de10_lite.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/sint/core/de10_lite/pll.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/sint/tft/de10_lite/PLL_100KHz.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/sint/tft/de10_lite/PLL_100KHz_inst.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/sint/tft/de10_lite/de10_lite.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tb/tb_boot_mem.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tb/tb_core.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tb/tb_data_mem.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tb/tb_dec_rect.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tb/tb_decoder.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tb/tb_tft.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/tft.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        },
+        {
+          "path": "/run/user/1001/doc/2d5da686/tft/writer.vhd",
+          "hdlVersion": "VHDL 2019",
+          "kind": "COMPILE_FILE"
+        }
+      ],
+      "overrideDirectives": {},
+      "undefineMacroNames": [],
+      "includePaths": [],
+      "includeFallbackToLocalDirectory": false,
+      "additionalEnvironmentVariables": {},
+      "libraryResourcesConfig": null,
+      "currentWorkingDirectory": "/run/user/1001/doc/2d5da686/tft",
+      "inferOrder": true,
+      "inferLibrary": false,
+      "allowUndefineInitialDefine": false,
+      "allowUndefineAllInitialDefine": false,
+      "conditionalVariables": {},
+      "target": {
+        "project": "tft",
+        "version": "default",
+        "target": "rtl"
+      },
+      "shouldBeValidated": true
+    }
+  ]
+}
