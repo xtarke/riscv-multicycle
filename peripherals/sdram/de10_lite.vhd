@@ -10,6 +10,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
 use work.decoder_types.all;
+use work.sdram_pkg.all;
 
 entity de10_lite is
     generic (
@@ -125,11 +126,10 @@ architecture rtl of de10_lite is
     signal ddata_r_sdram : std_logic_vector(31 downto 0);
     signal daddress_to_sdram : std_logic_vector(31 downto 0);
     signal chipselect_sdram  : std_logic;
-    signal sdram_d_rd        : std_logic;
-    signal sdram_read        : std_logic_vector(15 downto 0);
+    signal sdram_write_data  : io_buffer_t;
+    signal sdram_read_data   : io_buffer_t;
     signal waitrequest       : std_logic;
     signal DRAM_DQM          : std_logic_vector(1 downto 0);
-    signal burst             : std_logic;
 
     -- I/O signals
     signal gpio_input : std_logic_vector(31 downto 0);
@@ -264,10 +264,9 @@ begin
 
     -- SDRAM signals
     daddress_to_sdram <= std_logic_vector(daddress);
-    sdram_d_rd <= d_rd;
-    burst <= '0'; -- Todo: add 32-bit support
-    ddata_r_sdram <= x"0000" & sdram_read;
-    chipselect_sdram <= dcsel(0) and dcsel(1);
+    sdram_write_data  <= (0 => ddata_w(15 downto 0), others => (others => '0'));
+    ddata_r_sdram     <= x"0000" & sdram_read_data(0);
+    chipselect_sdram  <= dcsel(0) and dcsel(1);
     DRAM_UDQM <= DRAM_DQM(1);
     DRAM_LDQM <= DRAM_DQM(0);
 
@@ -282,11 +281,10 @@ begin
             reset       => rst,
             reset_req   => rst,
             write       => d_we,
-            read        => sdram_d_rd,
-            writedata   => ddata_w,
-            burst       => burst,
+            read        => d_rd,
+            write_data  => sdram_write_data,
             -- outputs:
-            readdata    => sdram_read,
+            read_data   => sdram_read_data,
             waitrequest => waitrequest,
             DRAM_ADDR   => DRAM_ADDR,
             DRAM_BA     => DRAM_BA,
