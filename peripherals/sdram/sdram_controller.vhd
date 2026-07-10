@@ -242,7 +242,8 @@ begin
 
 					when SET_COL =>
 						if read = '1' then
-							wait_cycles   <= std_logic_vector(to_unsigned(DATA_AVAL - 2, wait_cycles'length));
+							-- FIX (revert 384db0a): real ISSI part needs DATA_AVAL-1
+							wait_cycles   <= std_logic_vector(to_unsigned(DATA_AVAL - 1, wait_cycles'length));
 							mem_state     <= C_PRE_NOP;
 							nop_nxt_state <= BURST;
 						else
@@ -318,7 +319,7 @@ begin
 			when C_LD_BURST =>
 				waitrequest <= '1';
 
-				-- burst length: 8 words
+				-- burst length: 8 words for READ; writes stay single (A9=1 below)
 				DRAM_ADDR(2 downto 0)   <= "011";
 				-- burst type: sequential
 				DRAM_ADDR(3)            <= '0';
@@ -326,8 +327,8 @@ begin
 				DRAM_ADDR(6 downto 4)   <= "010";
 				-- Op mode: standard operation
 				DRAM_ADDR(8 downto 7)   <= "00";
-				-- Write in burst mode: Programmed Burst Length location, Read in burst mode with specified length
-				DRAM_ADDR(9)            <= '0';
+				-- Write burst mode: single location access
+				DRAM_ADDR(9)            <= '1';
 				-- reserved
 				DRAM_ADDR(12 downto 10) <= "001";
 
