@@ -34,7 +34,7 @@ elaborate: analyze
 	cd $(REPO_ROOT) && $(GHDL) -e $(GHDL_FLAGS) $(TOP)
 
 sim: elaborate
-	cd $(REPO_ROOT) && $(GHDL) -r $(GHDL_FLAGS) $(TOP) --wave=$(WAVE) --stop-time=$(STOP) --time-resolution=ps
+	cd $(REPO_ROOT) && $(GHDL) -r $(GHDL_FLAGS) $(TOP) --wave=$(WAVE) --stop-time=$(STOP)
 	@echo "Simulation done: $(BUILD_DIR)/$(notdir $(WAVE))"
 
 clean:

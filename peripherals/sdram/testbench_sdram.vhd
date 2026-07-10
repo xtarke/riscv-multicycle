@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.sdram_pkg.all;
+
 entity testbench_sdram is
 end entity testbench_sdram;
 
@@ -12,9 +14,8 @@ architecture RTL of testbench_sdram is
 	signal rst              : STD_LOGIC;
 	signal d_we             : STD_LOGIC;
 	signal sdram_d_rd       : std_logic;
-	signal ddata_w          : STD_LOGIC_VECTOR(31 DOWNTO 0);
-	signal burst            : std_logic;
-	signal sdram_read       : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	signal ddata_w          : io_buffer_t;
+	signal sdram_read       : io_buffer_t;
 	signal waitrequest      : std_logic;
 	signal DRAM_ADDR        : std_logic_vector(12 downto 0);
 	signal DRAM_BA          : std_logic_vector(1 downto 0);
@@ -27,9 +28,13 @@ architecture RTL of testbench_sdram is
 	signal DRAM_RAS_N       : std_logic;
 	signal DRAM_WE_N        : std_logic;
 
+	constant TEST_PATTERN : io_buffer_t := (
+		x"1111", x"2222", x"3333", x"4444",
+		x"5555", x"6666", x"7777", x"8888"
+	);
+
 begin
 
-	-- SDRAM instatiation
 	sdram_controller : entity work.sdram_controller
 		port map(
 			address     => sdram_addr,
@@ -41,10 +46,9 @@ begin
 			reset_req   => rst,
 			write       => d_we,
 			read        => sdram_d_rd,
-			writedata   => ddata_w,
-			burst       => burst,
+			write_data  => ddata_w,
 			-- outputs:
-			readdata    => sdram_read,
+			read_data   => sdram_read,
 			waitrequest => waitrequest,
 			DRAM_ADDR   => DRAM_ADDR,
 			DRAM_BA     => DRAM_BA,
@@ -58,7 +62,7 @@ begin
 			DRAM_WE_N   => DRAM_WE_N
 		);
 
-	-- SDRAM model instatiation
+	-- SDRAM model
 	sdram : entity work.mt48lc8m16a2
 		generic map(
 			addr_bits => 13
@@ -77,7 +81,7 @@ begin
 		);
 
 	clock_driver : process
-		constant period : time := 5 ns;
+		constant period : time := 10 ns;
 	begin
 		clk_sdram <= '0';
 		wait for period / 2;
@@ -85,59 +89,42 @@ begin
 		wait for period / 2;
 	end process clock_driver;
 
-	end_gen : process
+	process
 	begin
-		sdram_addr    <= x"00000000";
+		sdram_addr       <= x"00000000";
 		chipselect_sdram <= '1';
-		rst      		<= '1';
+		rst              <= '1';
 		d_we             <= '0';
 		sdram_d_rd       <= '0';
-		ddata_w  <= x"00000004";
-		burst <= '1';
-		wait for 10 ns;
-		rst      <= '0';
+		ddata_w          <= (others => (others => '0'));
+		wait for 20 ns;
+		rst <= '0';
+		wait for 1000 ns;
+
+		-- write burst
+		ddata_w    <= TEST_PATTERN;
+		sdram_addr <= x"00000000";
+		d_we       <= '1';
+		wait for 400 ns;
+		d_we       <= '0';
 		wait for 200 ns;
-		burst <= '0';
-		wait for 500 ns;
-		
-		d_we      	<= '1';
-		ddata_w  	<= x"00001234";
-		sdram_addr    <= x"00000000";
+
+		-- read burst
+		sdram_addr <= x"00000000";
+		sdram_d_rd <= '1';
+		wait for 400 ns;
+		sdram_d_rd <= '0';
 		wait for 200 ns;
-		d_we      <= '0';
-		wait for 200 ns;
-		
-		sdram_d_rd     <= '1';
-		sdram_addr    <= x"00000000";
-		wait for 200 ns;
-		sdram_d_rd     <= '0';
-		wait for 200 ns;
-		
-		d_we      <= '1';
-		ddata_w  	<= x"00000001";
-		sdram_addr    <= x"00000001";
-		wait for 200 ns;
-		d_we      <= '0';
-		wait for 200 ns;
-		
-		sdram_d_rd     <= '1';
-		sdram_addr    <= x"00000001";
-		wait for 200 ns;
-		sdram_d_rd     <= '0';
-		wait for 200 ns;
-		
-		d_we      <= '1';
-		ddata_w  	<= x"00000003";
-		sdram_addr    <= x"00000003";
-		wait for 200 ns;
-		d_we      <= '0';
-		wait for 200 ns;
-		
-		sdram_d_rd     <= '1';
-		sdram_addr    <= x"00000003";
-		wait for 200 ns;
-		sdram_d_rd     <= '0';
-		wait for 200 ns;
+
+		-- check read back equals written
+		for i in 0 to 7 loop
+			assert sdram_read(i) = TEST_PATTERN(i)
+				report "word " & integer'image(i) & " mismatch: got " & to_hstring(sdram_read(i)) & " expected " & to_hstring(TEST_PATTERN(i))
+				severity error;
+		end loop;
+		assert sdram_read /= TEST_PATTERN
+			report "PASS: read data matches written data"
+			severity note;
 
 		wait;
 	end process;
