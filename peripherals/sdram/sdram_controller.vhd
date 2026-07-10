@@ -242,7 +242,7 @@ begin
 
 					when SET_COL =>
 						if read = '1' then
-							wait_cycles   <= std_logic_vector(to_unsigned(DATA_AVAL - 1, wait_cycles'length));
+							wait_cycles   <= std_logic_vector(to_unsigned(DATA_AVAL - 2, wait_cycles'length));
 							mem_state     <= C_PRE_NOP;
 							nop_nxt_state <= BURST;
 						else
