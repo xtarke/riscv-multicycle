@@ -242,7 +242,6 @@ begin
 
 					when SET_COL =>
 						if read = '1' then
-							-- FIX (revert 384db0a): real ISSI part needs DATA_AVAL-1
 							wait_cycles   <= std_logic_vector(to_unsigned(DATA_AVAL - 1, wait_cycles'length));
 							mem_state     <= C_PRE_NOP;
 							nop_nxt_state <= BURST;
