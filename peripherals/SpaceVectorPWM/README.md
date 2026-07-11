@@ -6,7 +6,7 @@ Alunos: Eduardo Francisco Pereira e Cicero Eduardo Dick Junior.
 Implementaçao do periferico de PWM Space Vector Monofásico, que gera os sinais de chaveamento para uma ponte H monofásica 
 
 <figure style="text-align: center;">
-  <img src="./fotos/PonteH.jpg" width="50%" alt="Esquema da Ponte H Monofásica" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/fotos/PonteH.jpg" width="50%" alt="Esquema da Ponte H Monofásica" />
   <figcaption><em>Figura 1: Esquema da Ponte H Monofásica.</em></figcaption>
 </figure>
 
