@@ -31,11 +31,12 @@ architecture sim of testbench is
     signal can_rx           : std_logic;         -- can_fsm input | can_engine output
     signal can_tx           : std_logic;         -- can_fsm output | can_engine input
 
-    -- Interdaface com a CPU 
+    -- Interface com a CPU
     signal bus_addr  : std_logic_vector(31 downto 0);
     signal reg_wr_en : std_logic;                       -- Habilita a escrita nos registradores
     signal bus_wdata : std_logic_vector(31 downto 0);   -- A CPU escreve nos registradores do perfiférico
     signal bus_rdata : std_logic_vector(31 downto 0);   -- A CPU Lê os registradores do periférico
+
 
     -- Debug signals
     signal debug            : unsigned(7 downto 0);
@@ -112,7 +113,7 @@ begin
 
         -- Configura o preescaler
         bus_addr(7 downto 0) <= BAUD_REG;
-        bus_wdata(7 downto 0) <= "00000001";
+        bus_wdata(7 downto 0) <= "00000000";
         wait for CLK_PERIOD;
 
         -- Habilita a transmission

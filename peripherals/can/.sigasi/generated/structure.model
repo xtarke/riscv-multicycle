@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "name": "can",
   "projectBaseDir": "file:///c:/Facul/Fase_9_Engenharia_Eletronica/PLD/projetoFinal/riscv-multicycle/peripherals/can",
   "compilationGroupModel": {

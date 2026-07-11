@@ -42,6 +42,9 @@ add wave -label state     -radix hex    /testbench/can_top_inst/can_fsm_inst/cur
 #add wave -label data_in   -radix hex    /testbench/reg_data_in
 #add wave -label bit_mask  -radix hex    /testbench/reg_bit_mask
 #add wave -label data_out  -radix hex    /testbench/reg_data_out
+
+add wave -label state_name /testbench/can_top_inst/can_fsm_inst/current_state
+
 add wave -label can_rx    -radix binary /testbench/can_rx
 add wave -label can_tx    -radix binary /testbench/can_tx
 
@@ -49,8 +52,8 @@ add wave -label can_tx    -radix binary /testbench/can_tx
 #add wave -label FSM_State -radix hex    /testbench/current_state_out
 #add wave -label bit_valid -radix binary /testbench/dut/w_bit_valid
 #add wave -label rx_clean  -radix binary /testbench/dut/w_rx_bit_out
-#add wave -label bit_count -radix unsigned  /testbench/dut/debug
-#add wave /testbench/dut/current_state
+#add wave -label bit_count -radix unsigned  /testbench/dut/debu
+
  
 #Como mostrar sinais internos do process
 # add wave -radix dec /dut/p0/count
