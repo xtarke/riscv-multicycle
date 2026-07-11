@@ -6,7 +6,7 @@ Alunos: Eduardo Francisco Pereira e Cicero Eduardo Dick Junior.
 Implementaçao do periferico de PWM Space Vector Monofásico, que gera os sinais de chaveamento para uma ponte H monofásica 
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/fotos/PonteH.jpg" width="50%" alt="Esquema da Ponte H Monofásica" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/PonteH.jpg" width="50%" alt="Esquema da Ponte H Monofásica" />
   <figcaption><em>Figura 1: Esquema da Ponte H Monofásica.</em></figcaption>
 </figure>
 
@@ -103,44 +103,44 @@ Confirmado o funcionamento do periférico através do modelsim, foi implementado
 
 ### Para Vbar = 100V, f_sw = 10kHz e u_cmd = 60V:
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV1_60V.jpg" width="50%" alt="Vetor V1 para +60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV1_60V.jpg" width="50%" alt="Vetor V1 para +60V" />
   <figcaption><em>Figura 2: Vetor V1 para +60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV3_60V.jpg" width="50%" alt="Vetor V3 para +60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV3_60V.jpg" width="50%" alt="Vetor V3 para +60V" />
   <figcaption><em>Figura 3: Vetor V3 para +60V com 20us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV1b_60V.jpg" width="50%" alt="Vetor V1 para +60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV1b_60V.jpg" width="50%" alt="Vetor V1 para +60V" />
   <figcaption><em>Figura 4: Vetor V1 para +60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV0_V0b_60V.jpg" width="50%" alt="Vetor V0 para +60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV0_V0b_60V.jpg" width="50%" alt="Vetor V0 para +60V" />
   <figcaption><em>Figura 5: Vetor V0 para +60V com 20us de duração( Está pegando o do fim e o do início 10us*2=20us).</em></figcaption>
 </figure>
 
 ### Para Vbar = 100V, f_sw = 10kHz e u_cmd = -60V:
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV2_N60V.jpg" width="50%" alt="Vetor V2 para -60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV2_N60V.jpg" width="50%" alt="Vetor V2 para -60V" />
   <figcaption><em>Figura 6: Vetor V2 para -60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV3_N60V.jpg" width="50%" alt="Vetor V3 para -60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV3_N60V.jpg" width="50%" alt="Vetor V3 para -60V" />
   <figcaption><em>Figura 7: Vetor V3 para -60V com 20us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV2b_N60V.jpg" width="50%" alt="Vetor V1 para -60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV2b_N60V.jpg" width="50%" alt="Vetor V1 para -60V" />
   <figcaption><em>Figura 8: Vetor V1 para -60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="./fotos/VetorV0_V0_N60V.jpg" width="50%" alt="Vetor V0 para -60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV0_V0_N60V.jpg" width="50%" alt="Vetor V0 para -60V" />
   <figcaption><em>Figura 9: Vetor V0 para -60V com 20us de duração( Está pegando o do fim e o do início 10us*2=20us).</em></figcaption>
 </figure>
 
@@ -149,7 +149,7 @@ Confirmado o funcionamento do periférico através do modelsim, foi implementado
     O dead time é o tempo de atraso entre a abertura de uma chave e o fechamento da outra chave do mesmo braço da ponte H, para evitar curto-circuitos. O tempo escolhido para o deadtime foi de 50 ciclos de clock, o que para um clock de 50MHz, resulta em um deadtime de 1us. 
 
 <figure style="text-align: center;">
-  <img src="./fotos/Deadtime.jpg" width="50%" alt="Vetor V0 para -60V" />
+  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/Deadtime.jpg" width="50%" alt="Vetor V0 para -60V" />
   <figcaption><em>Figura 10: Dead Time  com 1us de duração.</em></figcaption>
 </figure>
 
