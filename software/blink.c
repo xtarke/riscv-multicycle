@@ -29,7 +29,7 @@ int main(){
 		SEGMENTS_BASE_ADDRESS = data;
 		
 		/* Volatile delay to prevent optimization and increased count for visibility */
-		for (volatile uint32_t i = 0; i < 2000000; i++);
+		for (volatile uint32_t i = 0; i < 20000; i++);
 
 		data++;
 	}

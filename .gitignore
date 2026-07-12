@@ -19,3 +19,4 @@ software/*/*.elf
 software/*/*.tmp
 software/*/*.hex
 software/*/*.lss
+compiler/

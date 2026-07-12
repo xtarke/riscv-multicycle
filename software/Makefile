@@ -12,13 +12,13 @@ LDLIBS =
 MAIN = blink
 
 quartus_$(MAIN).hex: $(MAIN)32.hex
-	python3 hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex
+	python hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex
 	rm $(MAIN)32.hex
 
 $(MAIN)32.hex: $(MAIN).elf hex8tohex32.py
 	$(RISCV_TOOLS_PREFIX)objcopy -O verilog $(MAIN).elf $(MAIN).tmp
 	$(RISCV_TOOLS_PREFIX)objdump -h -S $(MAIN).elf > "$(MAIN).lss"
-	python3 hex8tohex32.py $(MAIN).tmp > $(MAIN)32.hex
+	python hex8tohex32.py $(MAIN).tmp > $(MAIN)32.hex
 
 start.o: _core/start.S
 	$(CC) -c -nostdlib _core/start.S $(LDLIBS)

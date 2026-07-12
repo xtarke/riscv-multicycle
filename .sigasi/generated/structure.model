@@ -1,10 +1,10 @@
 {
-  "version": 6,
+  "version": 4,
   "name": "riscv-multicycle",
-  "projectBaseDir": "file:///c:/Users/Fabricio/Documents/FAB/pld/riscv-multicycle",
+  "projectBaseDir": "file:///c:/vhdl/project/riscv-multicycle",
   "compilationGroupModel": {
     "groups": [],
-    "resourceTargetContexts": {}
+    "resourceActualTargets": {}
   },
   "linkedResources": [
     {
@@ -13,8 +13,28 @@
       "type": 2
     },
     {
+      "source": "platform:/resource/riscv-multicycle/Common%20Libraries",
+      "target": "virtual:/virtual",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Common%20Libraries/STD",
+      "target": "sigasiresource:/vhdl/93/STD",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE",
+      "target": "sigasiresource:/vhdl/93/IEEE",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE%20Synopsys",
+      "target": "sigasiresource:/vhdl/93/IEEE%20Synopsys",
+      "type": 2
+    },
+    {
       "source": "platform:/resource/riscv-multicycle/Design",
-      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld/riscv-multicycle",
+      "target": "file:///c:/vhdl/project/riscv-multicycle",
       "type": 2
     },
     {
@@ -34,13 +54,27 @@
       "version": null,
       "isLibraryFile": false
     },
+    "platform:/resource/riscv-multicycle/Common%20Libraries/STD": {
+      "library": "std",
+      "version": "VHDL 1993",
+      "isLibraryFile": true
+    },
+    "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE": {
+      "library": "ieee",
+      "version": "VHDL 1993",
+      "isLibraryFile": true
+    },
+    "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE%20Synopsys": {
+      "library": "ieee",
+      "version": "VHDL 1993",
+      "isLibraryFile": true
+    },
     "platform:/resource/riscv-multicycle": {
       "library": null,
       "version": "VHDL 1993",
       "isLibraryFile": false
     }
   },
-  "dependencyInformation": {},
   "virtualFolderContents": {
     "platform:/resource": [
       {
@@ -51,13 +85,35 @@
     ],
     "platform:/resource/riscv-multicycle": [
       {
+        "source": "platform:/resource/riscv-multicycle/Common%20Libraries",
+        "target": "virtual:/virtual",
+        "type": 2
+      },
+      {
         "source": "platform:/resource/riscv-multicycle/Design",
-        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld/riscv-multicycle",
+        "target": "file:///c:/vhdl/project/riscv-multicycle",
         "type": 2
       },
       {
         "source": "platform:/resource/riscv-multicycle/Targets",
         "target": "virtual:/virtual",
+        "type": 2
+      }
+    ],
+    "platform:/resource/riscv-multicycle/Common%20Libraries": [
+      {
+        "source": "platform:/resource/riscv-multicycle/Common%20Libraries/STD",
+        "target": "sigasiresource:/vhdl/93/STD",
+        "type": 2
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE",
+        "target": "sigasiresource:/vhdl/93/IEEE",
+        "type": 2
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE%20Synopsys",
+        "target": "sigasiresource:/vhdl/93/IEEE%20Synopsys",
         "type": 2
       }
     ],
@@ -69,16 +125,14 @@
       }
     ]
   },
-  "targets": {
+  "manualTargets": {
     "rtl": {
-      "directoryPath": "c:\\Users\\Fabricio\\Documents\\FAB\\pld\\riscv-multicycle",
+      "directoryPath": "c:\\vhdl\\project\\riscv-multicycle",
       "libraryMapping": {
         "": []
       },
-      "declaredDependencies": [],
-      "kind": "MANUAL"
+      "declaredDependencies": []
     }
   },
-  "configurableIncludes": {},
-  "cachedVersionMapping": null
+  "configurableIncludes": {}
 }

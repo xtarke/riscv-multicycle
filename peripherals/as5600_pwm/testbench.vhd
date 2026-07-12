@@ -10,8 +10,9 @@ architecture sim of tb_as5600_pwm is
     -- Declaração do Componente
     component as5600_pwm is
         generic(
-            MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10";
-            MY_WORD_ADDRESS : unsigned(15 downto 0)        := x"01A0"
+            MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
+            MY_WORD_ADDRESS   : unsigned(15 downto 0)        := x"0160";
+            DADDRESS_BUS_SIZE : integer := 32
         );
         port(
             clk      : in  std_logic;
@@ -39,7 +40,7 @@ architecture sim of tb_as5600_pwm is
     signal dmask    : std_logic_vector(3 downto 0) := "0000";
     signal pwm_in   : std_logic := '0';
 
-    -- Período de 1us = 1 MHz (Frequência do clock do barramento da CPU configurado no SoC)
+    -- Período de 1us = 1 MHz (CPU_CLOCK definido no projeto)
     constant clk_period : time := 1 us; 
     
 begin
@@ -72,61 +73,79 @@ begin
     rst_process : process
     begin
         rst <= '1';
-        wait for 5 us; -- Reset por 5 ciclos de clock de 1us
+        wait for 5 us;
         rst <= '0';
         wait;
     end process;
 
-    -- Estímulo do sinal PWM de entrada (Frequência típica padrão do AS5600 = 115 Hz -> Período = 8,696 ms)
+    -- Estímulo do sinal PWM de entrada
+    -- Frequência típica do AS5600 PWM = ~115 Hz -> Período ~= 8.696 ms
+    -- Frame total = 4351 clocks internos do AS5600
+    -- Simulamos dois ângulos diferentes:
+    --   Ciclo 1: ~90 graus  -> data = 1024 -> t_high_interno = 128+1024 = 1152
+    --            duty = 1152/4351 = 26.5% -> t_high = 0.265 * 8696us = 2304 us
+    --   Ciclo 2: ~270 graus -> data = 3072 -> t_high_interno = 128+3072 = 3200
+    --            duty = 3200/4351 = 73.5% -> t_high = 0.735 * 8696us = 6392 us
     pwm_process : process
     begin
         wait for 10 us; -- Espera o reset
         
-        -- Ciclo 1: Período de 8.696 ms, Duty Cycle de 25% (2.174 ms em alto)
+        -- Ciclo 1: ~90 graus
         pwm_in <= '1';
-        wait for 2.174 ms;
+        wait for 2304 us;
         pwm_in <= '0';
-        wait for 6.522 ms;
+        wait for 6392 us;
         
-        -- Ciclo 2: Período de 8.696 ms, Duty Cycle de 75% (6.522 ms em alto)
+        -- Ciclo 2: ~270 graus
         pwm_in <= '1';
-        wait for 6.522 ms;
+        wait for 6392 us;
         pwm_in <= '0';
-        wait for 2.174 ms;
+        wait for 2304 us;
         
         -- Mantém em 0 no final
         wait;
     end process;
     
     -- Simulação de Leitura pela CPU (Softcore RISC-V)
+    -- Endereços de WORD: t_high = x"0160", t_period = x"0161"
     cpu_process : process
     begin
-        wait for 10 ms; -- Aguarda o primeiro ciclo de 8.7ms terminar
+        wait for 10 ms; -- Aguarda o primeiro ciclo PWM terminar
         
-        -- CPU Lê Tempo em Alto (Offset 0 = x01A0)
+        -- CPU Lê t_high (MY_WORD_ADDRESS + 0 = x"0160")
         dcsel <= "10";
         d_rd <= '1';
-        daddress <= x"000001A0";
+        daddress <= x"00000160";
         wait for 2 * clk_period;
         d_rd <= '0';
         dcsel <= "00";
         
-        wait for 100 ns;
+        wait for 5 us;
         
-        -- CPU Lê Período Total (Offset 4 = x01A4)
+        -- CPU Lê t_period (MY_WORD_ADDRESS + 1 = x"0161")
         dcsel <= "10";
         d_rd <= '1';
-        daddress <= x"000001A4";
+        daddress <= x"00000161";
         wait for 2 * clk_period;
         d_rd <= '0';
         dcsel <= "00";
         
         wait for 10 ms; -- Aguarda o segundo ciclo de PWM terminar
         
-        -- CPU Lê Novo Tempo em Alto
+        -- CPU Lê novo t_high após mudança de ângulo
         dcsel <= "10";
         d_rd <= '1';
-        daddress <= x"000001A0";
+        daddress <= x"00000160";
+        wait for 2 * clk_period;
+        d_rd <= '0';
+        dcsel <= "00";
+        
+        wait for 5 us;
+        
+        -- CPU Lê novo t_period
+        dcsel <= "10";
+        d_rd <= '1';
+        daddress <= x"00000161";
         wait for 2 * clk_period;
         d_rd <= '0';
         dcsel <= "00";
