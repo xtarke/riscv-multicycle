@@ -73,7 +73,7 @@ architecture sdram_cache_behavior of sdram_cache is
   
   signal rx_cache_miss       : std_logic;
 
-  signal cache_state         : cache_state_t
+  signal cache_state         : cache_state_t;
 
 begin
 
@@ -111,8 +111,9 @@ begin
 
   process (clk, reset)
   begin
-    if (reset) then
+    if reset = '1' then
       read_fifo_reset <= '1';
+      cache_state     <= CACHE_STATE_INIT;
     elsif rising_edge(clk) then
       read_fifo_reset <= '0';
       case cache_state is
@@ -125,7 +126,7 @@ begin
           end if;
           
           -- Only start writing when read fifo has enough data --
-          if write_fifo_used /= 0 and read_fifo_almost_empty /= 0 then
+          if write_fifo_empty = '0' and read_fifo_almost_empty = '0' then
             cache_state <= CACHE_STATE_WRITING;
           end if;
         when CACHE_STATE_READING =>
@@ -138,7 +139,7 @@ begin
           end if;
         when CACHE_STATE_RX_CACHE_MISS => 
           -- Reset rx fifo for one cycle and start populating --
-          if (usedw = 0) then
+          if read_fifo_used = 0 then
             cache_state <= CACHE_STATE_IDLE;
           end if;
       end case;
