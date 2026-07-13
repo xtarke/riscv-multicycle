@@ -180,7 +180,7 @@ begin
             if delta_t1 > ts_cycles then
                 delta_t1 := ts_cycles;
             end if;
-
+            --TODO: Utilizar shift para otimizar
             t_nulo := ts_cycles - delta_t1;
             t_v_at_metade_reg <= delta_t1 / 2;
             t_v3_reg          <= t_nulo / 2;
@@ -245,14 +245,12 @@ begin
                 i_gate_s2    <= '1'; i_gate_s4 <= '1';
                 timer_target <= t_v0_reg;
                 if timer_tick = '1' then next_state <= ST_DEADTIME_1; end if;
+            
             when ST_DEADTIME_1 =>
-
                 timer_target <= DEADTIME_CYCLES;
                 if vout_is_positive then 
-                    next_state <= ST_S1_S4_ON;
                     i_gate_s4 <= '1';
                 else
-                    next_state <= ST_S2_S3_ON_1;
                     i_gate_s2 <= '1';
                 end if;
                 
@@ -277,7 +275,6 @@ begin
                 if timer_tick = '1' then next_state <= ST_DEADTIME_2; end if;
 
             when ST_DEADTIME_2 =>
-                i_gate_s1 <= '1';
                 timer_target <= DEADTIME_CYCLES;
                 if timer_tick = '1' then next_state <= ST_S1_S3_ON; end if;
 

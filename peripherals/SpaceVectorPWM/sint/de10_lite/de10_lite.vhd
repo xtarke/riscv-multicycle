@@ -178,7 +178,7 @@ begin
 			DEADTIME_CYCLES   => 50
 		)
 		port map(
-			clk      => clk,
+			clk      => clk_50MHz,
 			rst      => rst,
 			daddress => daddress,
 			ddata_w  => ddata_w,
