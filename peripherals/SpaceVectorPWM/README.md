@@ -6,7 +6,7 @@ Alunos: Eduardo Francisco Pereira e Cicero Eduardo Dick Junior.
 Implementaçao do periferico de PWM Space Vector Monofásico, que gera os sinais de chaveamento para uma ponte H monofásica 
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/PonteH.jpg" width="50%" alt="Esquema da Ponte H Monofásica" />
+  <img src="./Fotos/PonteH.jpg" width="50%" alt="Esquema da Ponte H Monofásica" />
   <figcaption><em>Figura 1: Esquema da Ponte H Monofásica.</em></figcaption>
 </figure>
 
@@ -94,8 +94,89 @@ Se o se tor for 1, então o vetor ativo a ser aplicado é o vetor_1_n, caso cont
    v2   |  0 |  1  |  -1.0 |        30.0
    v0   |  0 |  0  |   0.0 |        10.0
 
+## Como rodar o projeto
+
+### 1. Compilar o firmware (software do softcore)
+
+O periférico é controlado pelo software que roda no softcore RISC-V. Para compilar:
+
+    cd software/sv_pwm
+    make
+
+Isso gera o arquivo `quartus_main_sv_pwm.hex`, usado tanto na simulação quanto na síntese para inicializar a memória de instruções. É necessário o toolchain RISC-V em `compiler/gcc/bin/riscv-none-elf-` (ou definir a variável `RISCV_TOOLS_PREFIX` apontando para outro toolchain).
+
+### 2. Simulação do periférico isolado (Questa/ModelSim)
+
+Simula apenas o núcleo SVPWM, com estímulos aplicados diretamente nas entradas (`v_bar`, `u_cmd`), sem o softcore:
+
+    cd peripherals/SpaceVectorPWM
+    do tb_space_vector_pwm.do
+
+O script compila o periférico e o testbench, abre a janela de ondas com os sinais dos gates, da FSM e dos timers, e roda 1000 us.
+
+### 3. Simulação integrada com o softcore
+
+Simula o sistema completo: o core RISC-V executa o `main_sv_pwm.c` (compilado no passo 1), que configura o periférico pelo barramento de dados:
+
+    cd peripherals/SpaceVectorPWM
+    do tb_sv_pwm_core.do
+
+O script compila o core, memórias, barramentos e o periférico, carrega o `quartus_main_sv_pwm.hex` na memória de instruções e roda 10 ms, com a janela de ondas já configurada (registradores do periférico, FSM, gates e displays).
+
+### 4. Síntese e gravação na FPGA (DE10-Lite)
+
+1. Compilar o firmware (passo 1).
+2. Abrir o projeto `sint/de10_lite/de10_lite.qpf` no Quartus.
+3. Executar *Start Compilation*.
+4. Gravar o `.sof` gerado (em `output_files/`) na placa pelo *Programmer* (USB-Blaster).
+5. Gravar i `.hex`compilado na memória do FPGA. 
+
+Os gates ficam disponíveis nos pinos definidos no `de10_lite.qsf` para conexão com o driver da ponte H.
+
+### 5. Controle via software
+
+O driver em `software/sv_pwm/sv_pwm.c` expõe as funções de configuração e controle:
+
+    #include "sv_pwm.h"
+
+    sv_pwm_set_vbus(100);    // Tensão do barramento DC [V]
+    sv_pwm_set_vcmd(60);     // Tensão de saída desejada [V] (aceita negativo)
+    sv_pwm_set_fsw(10000);   // Frequência de chaveamento [Hz]
+
+    sv_pwm_start();          // Inicia o chaveamento
+    // ...
+    sv_pwm_stop();           // Para o PWM: os 4 gates vão imediatamente para 0
+
 ## Simulação 
 
+A simulação foi realizada no Questa/ModelSim com o testbench integrado ao softcore (`tb_sv_pwm_core.do`), com Vbar = 100V e f_sw = 10kHz.
+
+### Start e tensão de 0V
+
+A Figura 2 mostra o sinal `start` mudando de 0 para 1 e o início do chaveamento do PWM. Pelo sinal `estado` é possível verificar que o periférico se mantém no estado `ST_CALCULATE` até que o `start` seja 1. Como a tensão de comando `u_cmd` é 0V nesse momento, o periférico alterna apenas entre os vetores nulos — o estado em que S2 e S4 estão ligados (V0) e o estado em que S1 e S3 estão ligados (V3) — mantendo a diferença de tensão na saída em 0V.
+
+<figure style="text-align: center;">
+  <img src="./Fotos/Sim_Start_e_0V.png" width="80%" alt="Sinal start e chaveamento para u_cmd = 0V" />
+  <figcaption><em>Figura 2: Sinal start indo de 0 para 1 e início do chaveamento com u_cmd = 0V (apenas vetores nulos).</em></figcaption>
+</figure>
+
+### Para u_cmd = +60V
+
+A Figura 3 mostra a forma de onda para o caso de uma tensão positiva, onde o PWM segue a sequência V0 → V1 → V3 → V1 → V0 definida pelos cálculos teóricos demonstrados na seção Cálculos.
+
+<figure style="text-align: center;">
+  <img src="./Fotos/Sim_60V.png" width="80%" alt="Formas de onda para u_cmd = +60V" />
+  <figcaption><em>Figura 3: Formas de onda dos gates para u_cmd = +60V.</em></figcaption>
+</figure>
+
+### Para u_cmd = -60V
+
+A Figura 4 mostra a forma de onda para o caso de uma tensão negativa, onde o PWM segue a sequência V0 → V2 → V3 → V2 → V0, também conforme especificado pela teoria do Space Vector PWM.
+
+<figure style="text-align: center;">
+  <img src="./Fotos/Sim_-60V.png" width="80%" alt="Formas de onda para u_cmd = -60V" />
+  <figcaption><em>Figura 4: Formas de onda dos gates para u_cmd = -60V.</em></figcaption>
+</figure>
 
 ## Prática 
 
@@ -103,45 +184,45 @@ Confirmado o funcionamento do periférico através do modelsim, foi implementado
 
 ### Para Vbar = 100V, f_sw = 10kHz e u_cmd = 60V:
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV1_60V.jpg" width="50%" alt="Vetor V1 para +60V" />
-  <figcaption><em>Figura 2: Vetor V1 para +60V com 30us de duração.</em></figcaption>
+  <img src="./Fotos/VetorV1_60V.JPG" width="50%" alt="Vetor V1 para +60V" />
+  <figcaption><em>Figura 5: Vetor V1 para +60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV3_60V.jpg" width="50%" alt="Vetor V3 para +60V" />
-  <figcaption><em>Figura 3: Vetor V3 para +60V com 20us de duração.</em></figcaption>
+  <img src="./Fotos/VetorV3_60V.JPG" width="50%" alt="Vetor V3 para +60V" />
+  <figcaption><em>Figura 6: Vetor V3 para +60V com 20us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV1b_60V.jpg" width="50%" alt="Vetor V1 para +60V" />
-  <figcaption><em>Figura 4: Vetor V1 para +60V com 30us de duração.</em></figcaption>
+  <img src="./Fotos/VetorV1b_60V.JPG" width="50%" alt="Vetor V1 para +60V" />
+  <figcaption><em>Figura 7: Vetor V1 para +60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV0_V0b_60V.jpg" width="50%" alt="Vetor V0 para +60V" />
-  <figcaption><em>Figura 5: Vetor V0 para +60V com 20us de duração( Está pegando o do fim e o do início 10us*2=20us).</em></figcaption>
+  <img src="./Fotos/VetorV0_V0b_60V.JPG" width="50%" alt="Vetor V0 para +60V" />
+  <figcaption><em>Figura 8: Vetor V0 para +60V com 20us de duração( Está pegando o do fim e o do início 10us*2=20us).</em></figcaption>
 </figure>
 
 ### Para Vbar = 100V, f_sw = 10kHz e u_cmd = -60V:
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV2_N60V.jpg" width="50%" alt="Vetor V2 para -60V" />
-  <figcaption><em>Figura 6: Vetor V2 para -60V com 30us de duração.</em></figcaption>
+  <img src="./Fotos/VetorV2_N60V.JPG" width="50%" alt="Vetor V2 para -60V" />
+  <figcaption><em>Figura 9: Vetor V2 para -60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV3_N60V.jpg" width="50%" alt="Vetor V3 para -60V" />
-  <figcaption><em>Figura 7: Vetor V3 para -60V com 20us de duração.</em></figcaption>
+  <img src="./Fotos/VetorV3_N60V.JPG" width="50%" alt="Vetor V3 para -60V" />
+  <figcaption><em>Figura 10: Vetor V3 para -60V com 20us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV2b_N60V.jpg" width="50%" alt="Vetor V1 para -60V" />
-  <figcaption><em>Figura 8: Vetor V1 para -60V com 30us de duração.</em></figcaption>
+  <img src="./Fotos/VetorV2b_N60V.JPG" width="50%" alt="Vetor V1 para -60V" />
+  <figcaption><em>Figura 11: Vetor V1 para -60V com 30us de duração.</em></figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/VetorV0_V0_N60V.jpg" width="50%" alt="Vetor V0 para -60V" />
-  <figcaption><em>Figura 9: Vetor V0 para -60V com 20us de duração( Está pegando o do fim e o do início 10us*2=20us).</em></figcaption>
+  <img src="./Fotos/VetorV0_V0_N60V.JPG" width="50%" alt="Vetor V0 para -60V" />
+  <figcaption><em>Figura 12: Vetor V0 para -60V com 20us de duração( Está pegando o do fim e o do início 10us*2=20us).</em></figcaption>
 </figure>
 
 ### Dead Time
@@ -149,8 +230,8 @@ Confirmado o funcionamento do periférico através do modelsim, foi implementado
     O dead time é o tempo de atraso entre a abertura de uma chave e o fechamento da outra chave do mesmo braço da ponte H, para evitar curto-circuitos. O tempo escolhido para o deadtime foi de 50 ciclos de clock, o que para um clock de 50MHz, resulta em um deadtime de 1us. 
 
 <figure style="text-align: center;">
-  <img src="https://github.com/ciceroed/riscv-multicycle/tree/master/peripherals/SpaceVectorPWM/Fotos/Deadtime.jpg" width="50%" alt="Vetor V0 para -60V" />
-  <figcaption><em>Figura 10: Dead Time  com 1us de duração.</em></figcaption>
+  <img src="./Fotos/Deadtime.JPG" width="50%" alt="Vetor V0 para -60V" />
+  <figcaption><em>Figura 13: Dead Time  com 1us de duração.</em></figcaption>
 </figure>
 
 
@@ -160,7 +241,7 @@ Confirmado o funcionamento do periférico através do modelsim, foi implementado
   - Implementar a geração de sinais de chaveamento para uma ponte H trifásica.
   - Utilizar os as outras chaves que sobraram da FPGA para mudar a tensão aplicada na carga
   - Atualizar o codigo para entrar com deadtime em ns ao inves de usar em ciclos de clock, para facilitar a implementação em outras FPGAs com frequencias diferentes.
-## RefeRências
+## Referências
 [Modulação Space Vector Para Inversores Alimentados em Tensão: Uma Abordagem Unificada](./documentos/ModulacaoSpaceVectorParaInversoresAlimentadosEmTensao.pdf)
 
 
