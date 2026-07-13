@@ -103,6 +103,7 @@ begin
   write_fifo_push     <= write_commit and (not write_full);
   write_fifo_data_in  <= write_address & write_data;
 
+
   read_fifo : entity work.fifo_512
     port map (
       clock        => clk,
@@ -117,16 +118,14 @@ begin
       usedw        => read_fifo_used
     );
 
-  -- User side read: pop the cached word on a hit, lock and miss otherwise --
   read_hit      <= '1' when read_fifo_head_address = read_address and read_fifo_empty = '0' else '0';
-  rx_cache_miss <= read_enable and (not read_hit);
+  rx_cache_miss <= read_enable when read_fifo_head_address /= read_address else '0';
   read_fifo_pop <= read_enable and read_hit;
   read_data     <= read_fifo_data_out;
-  read_lock     <= rx_cache_miss;
+  read_lock     <= read_enable and (not read_hit);
 
   sdram_addr        <= read_burst_address;
-  sdram_read        <= '1' when cache_state = CACHE_STATE_READING else '0';
-  sdram_chip_select <= '1' when cache_state = CACHE_STATE_READING else '0';
+
 
   process (clk, reset)
   begin
@@ -140,17 +139,18 @@ begin
         when CACHE_STATE_INIT =>
           cache_state <= CACHE_STATE_IDLE;
         when CACHE_STATE_IDLE =>
+          
           -- If idle and nothing to do fill the read fifo cache --
           if read_fifo_used < (READ_FIFO_SIZE - SDRAM_READ_BURST_SIZE) then
             cache_state <= CACHE_STATE_READING;
           end if;
-          
+
           -- Only start writing when read fifo has enough data --
           if write_fifo_empty = '0' and read_fifo_almost_empty = '0' then
             cache_state <= CACHE_STATE_WRITING;
           end if;
 
-          -- Cache miss: drop the cached data and refill from the missed address --
+          -- Cache miss: flush the cached data and refill from the missed address --
           if rx_cache_miss = '1' then
             read_fifo_reset <= '1';
             read_burst_address <= read_address;
@@ -166,16 +166,13 @@ begin
           if sdram_wait_request = '0' then
             cache_state <= CACHE_STATE_IDLE;
           end if;
-        when CACHE_STATE_RX_CACHE_MISS => 
-          -- Reset rx fifo for one cycle and start populating --
+        when CACHE_STATE_RX_CACHE_MISS =>
+          -- Wait until the flush emptied the read fifo --
           if read_fifo_used = 0 then
             cache_state <= CACHE_STATE_IDLE;
           end if;
       end case;
     end if;
-
-
-
   end process;
 
   -- User side read: track the sdram address cached at the fifo head --
@@ -184,7 +181,7 @@ begin
     if reset = '1' then
       read_fifo_head_address <= (others => '0');
     elsif rising_edge(clk) then
-      if cache_state = CACHE_STATE_IDLE and rx_cache_miss = '1' then
+      if cache_state = CACHE_STATE_RX_CACHE_MISS and read_fifo_used = 0 then
         read_fifo_head_address <= read_address;
       elsif read_fifo_pop = '1' then
         read_fifo_head_address <= read_fifo_head_address + 1;
@@ -208,6 +205,22 @@ begin
         read_words_pushed <= read_words_pushed + 1;
       end if;
     end if;
+  end process;
+
+  process (cache_state)
+  begin
+    case cache_state is
+      when CACHE_STATE_READING =>
+        sdram_read <= '1';
+        sdram_chip_select <= '1';
+      when CACHE_STATE_WRITING =>
+        sdram_write <= '1';
+        sdram_chip_select <= '1';
+      when others =>
+        sdram_read <= '0';
+        sdram_write <= '0';
+        sdram_chip_select <= '0';
+    end case;
   end process;
 
 end sdram_cache_behavior;
