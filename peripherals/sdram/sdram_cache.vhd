@@ -25,10 +25,12 @@ entity sdram_cache is
     write_fifo_full : out std_logic;
 
     -- SDRAM signals --
-    sdram_read_buffer  : in  io_buffer_t;
-    sdram_wait_request : in  std_logic;
-    sdram_addr         : out std_logic_vector(31 downto 0);
-    sdram_chip_select  : out std_logic
+    sdram_read_buffer      : in  io_buffer_t;
+    sdram_read_valid_count : in  integer range 0 to 8;
+    sdram_wait_request     : in  std_logic;
+    sdram_addr             : out std_logic_vector(31 downto 0);
+    sdram_read             : out std_logic;
+    sdram_chip_select      : out std_logic
   );
 end entity sdram_cache;
 
@@ -70,6 +72,11 @@ architecture sdram_cache_behavior of sdram_cache is
 
   -- Address of the sdram that the head points --
   signal read_fifo_head_address : std_logic_vector(32 downto 0);
+
+  -- Next sdram address to burst read into the read fifo --
+  signal read_burst_address : std_logic_vector(31 downto 0);
+  -- Words of the current burst already pushed into the read fifo --
+  signal read_words_pushed  : integer range 0 to 8;
   
   signal rx_cache_miss       : std_logic;
 
@@ -109,11 +116,16 @@ begin
       usedw        => read_fifo_used
     );
 
+  sdram_addr        <= read_burst_address;
+  sdram_read        <= '1' when cache_state = CACHE_STATE_READING else '0';
+  sdram_chip_select <= '1' when cache_state = CACHE_STATE_READING else '0';
+
   process (clk, reset)
   begin
     if reset = '1' then
       read_fifo_reset <= '1';
-      cache_state     <= CACHE_STATE_INIT;
+      cache_state <= CACHE_STATE_INIT;
+      read_burst_address <= (others => '0');
     elsif rising_edge(clk) then
       read_fifo_reset <= '0';
       case cache_state is
@@ -130,7 +142,9 @@ begin
             cache_state <= CACHE_STATE_WRITING;
           end if;
         when CACHE_STATE_READING =>
+          -- Burst done: advance to the next burst address --
           if sdram_wait_request = '0' then
+            read_burst_address <= read_burst_address + SDRAM_READ_BURST_SIZE;
             cache_state <= CACHE_STATE_IDLE;
           end if;
         when CACHE_STATE_WRITING =>
@@ -147,6 +161,24 @@ begin
 
 
 
+  end process;
+
+  -- Read process: push burst words into the read fifo as they arrive --
+  process (clk, reset)
+  begin
+    if reset = '1' then
+      read_fifo_push <= '0';
+      read_words_pushed <= 0;
+    elsif rising_edge(clk) then
+      read_fifo_push <= '0';
+      if sdram_read_valid_count = 0 then
+        read_words_pushed <= 0;
+      elsif read_words_pushed < sdram_read_valid_count then
+        read_fifo_data_in <= sdram_read_buffer(read_words_pushed);
+        read_fifo_push <= '1';
+        read_words_pushed <= read_words_pushed + 1;
+      end if;
+    end if;
   end process;
 
 end sdram_cache_behavior;
