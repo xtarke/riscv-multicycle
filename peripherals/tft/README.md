@@ -1,4 +1,5 @@
-﻿# Controlador TFT LCD
+﻿
+# Controlador TFT LCD
 
 Projeto de uma controladora para um display TFT LCD. O hardware é responsável por receber o comando de escrita e converter essa instrução por uma série de informações no display, como comandos para limpar a tela e desenhar quadrados. 
 
@@ -14,6 +15,15 @@ Fonte: [ILI9320 Datasheet](https://www.rockbox.org/wiki/pub/Main/GSoCSansaView/I
 
 Nota-se pela figura 1 que o display recebe palavras de 32 bits enviadas de 8 em 8 bits.
 
+## Mapa de Memória (Registradores)
+
+O periférico é controlado através de 3 registradores de 32 bits mapeados em memória, começando no endereço base configurado no parâmetro `MY_WORD_ADDRESS`.
+
+| Endereço (Offset) | Registrador | Descrição | Gatilho (*Trigger* de Ação) |
+| :--- | :--- | :--- | :--- |
+| `BASE + 0x00` | `reg_input_a` | ID do Comando (Bits 31-16) e Cor (Bits 15-0). | **SIM** (Inicia a operação) |
+| `BASE + 0x04` | `reg_input_b` | Parâmetros A (ex: Posição X nos bits altos, Y nos baixos). | NÃO |
+| `BASE + 0x08` | `reg_input_c` | Parâmetros B (ex: Largura nos bits altos, Altura nos baixos). | NÃO |
 ## Descrição dos blocos do controlador TFT LCD
 
 ![TFT_2](./images/figura2.png "Diagrama de blocos do controlador TFT LCD")
@@ -29,6 +39,15 @@ Figura 2. Diagrama de blocos do controlador TFT LCD.
 
 (Ambas as memórias tem comportamento de uma fila circular, porém a memória de boot possui os pinos de escrita desativados)
 
+### Arquivos e Módulos Internos
+
+* **`tft.vhd` (Top-Level)**: Faz a interface com o barramento de memória (Mapeamento de I/O) e interliga os submódulos internos.
+* **`decoder_tft.vhd` e submódulos (`dec_fsm`, `dec_rect`, `dec_clean`)**: Atuam como o coprocessador do periférico. São máquinas de estado totalmente síncronas que recebem um único comando do processador e geram autonomamente comandos de baixo nível.
+* **`data_mem.vhd`**: Memória FIFO circular (*First-In, First-Out*). Armazena as instruções gráficas produzidas em alta velocidade pelos decodificadores, com sinalização de `full` (cheio) para pausar os geradores temporariamente quando necessário.
+* **`boot_mem.vhd`**: Memória ROM embutida contendo a sequência exata de *bytes* necessária para inicializar o controlador físico do display (ILI9320).
+* **`controller.vhd`**: Dá prioridade à `boot_mem` durante a inicialização e, após concluída, alterna automaticamente a rota de dados para a `data_mem`.
+* **`writer.vhd`**: Controlador da interface física. Converte os comandos de 32 bits no protocolo paralelo de 8 bits da tela LCD (alternando os pinos `CS`, `RS`, `WR`, e `D0-D7`).
+
 ## Descrição dos blocos do decoder
 ![TFT_3](./images/figura3.png "Diagrama de blocos do decoder")
 
@@ -39,11 +58,21 @@ Figura 3. Diagrama de blocos do decoder do controlador TFT LCD.
 * **dec_clean:** Bloco responsável por limpar a tela;
 * **dec_rect:** Bloco responsável por imprimir um retângulo na tela;
 
-## Descrição das funções em C
+### Comandos Suportados
+
+De acordo com o núcleo do decodificador (`dec_fsm`), os seguintes comandos podem ser enviados nos 16 bits mais significativos de `reg_input_a`:
+
+* `0xFFFF`: **RESET / INITIALIZATION** (Inicia a sequência da *boot_mem* para ligar a tela)
+* `0x0001`: **CLEAN SCREEN** (Limpa a tela preenchendo-a com uma cor sólida)
+* `0x0002`: **DRAW SQUARE** (Desenha um quadrado)
+* `0x0003`: **DRAW RECTANGLE** (Desenha um retângulo)
 
 ![TFT_4](./images/figura4.png "Sequência de bytes")
 
 Figura 4. Sequência de bytes enviados ao hardware.  
+
+## Descrição das funções em C
+
 Funções tft.h  
 ```c
 void tft_init();  

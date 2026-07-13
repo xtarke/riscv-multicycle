@@ -55,15 +55,38 @@ begin
 		start    <= '0';
 		
 		wait until rising_edge(clk);
-		
 		mem_init <= '1';
 		wait until rising_edge(clk);
 		
+		-- Reset state (Command: 0xFFFF)
+		input_a <= x"FFFF0000"; 
+		input_b <= x"00000000";
+		input_c <= x"00000000";
+		wait until rising_edge(clk);
+		start <= '1';
+		wait until rising_edge(clk);
+		start <= '0';
+		
+		wait for 500 ns; 
+		
+		-- Clean state (Command: 0x0001, Color: 0xF800 [Red])
 		input_a <= x"0001F800"; 
 		input_b <= x"00000000";
 		input_c <= x"00000000";
 		wait until rising_edge(clk);
+		start <= '1';
+		wait until rising_edge(clk);
+		start <= '0';
 		
+		wait for 500 ns;
+		
+		-- Rect state (Command: 0x0003, Color: 0x07E0 [Green])
+		-- input_b: pos_x (upper 16) = 10 (0x000A), pos_y (lower 16) = 20 (0x0014)
+		-- input_c: len_x (upper 16) = 50 (0x0032), len_y (lower 16) = 40 (0x0028)
+		input_a <= x"000307E0"; 
+		input_b <= x"000A0014"; 
+		input_c <= x"00320028";
+		wait until rising_edge(clk);
 		start <= '1';
 		wait until rising_edge(clk);
 		start <= '0';

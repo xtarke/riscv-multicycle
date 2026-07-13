@@ -62,12 +62,11 @@ begin
 			completed => completed
 		);
 
+	-- Set concurrent parameters
 	pos_x <= x"000A";
 	pos_y <= x"000A";
-
 	len_x <= x"0002";
 	len_y <= x"0002";
-
 	color <= x"FAFA";
 
 	clock : process
@@ -78,9 +77,9 @@ begin
 		wait for 1 ns;
 	end process;
 
+	-- comandos
 	process
 	begin
-
 		sel   <= x"00";
 		rst   <= '1';
 		rd_en <= '0';
@@ -91,12 +90,16 @@ begin
 		rst   <= '0';
 		wait until rising_edge(clk);
 		
+		-- Pulse the selector for exactly one clock cycle
 		sel   <= x"04"; 
 		wait until rising_edge(clk);
+		sel   <= x"00"; -- Return to 0 to prevent FSM looping
 		
-		wait for 500 ns;
+		-- wait for the module 'completed' flag
+		wait until completed = '1';
 		wait until rising_edge(clk);
 		
+		-- Read data back from the memory buffer
 		while empty = '0' loop
 			rd_en <= '1';
 			wait until rising_edge(clk);
@@ -107,4 +110,4 @@ begin
 		wait;
 	end process;
 
-END ARCHITECTURE;
+end architecture;

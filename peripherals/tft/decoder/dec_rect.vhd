@@ -1,8 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_textio.all;
-use std.textio.all;
 
 entity dec_rect is
 	generic(
@@ -28,9 +26,8 @@ architecture rtl_dec_rect of dec_rect IS
 	type state_type is (IDLE, INIT, FULL_VERIFY, FINISHED,
 	                    SET_ADDRESS_X, SET_ADDRESS_Y, SET_DIR_1, SET_DIR_2, SET_DIR_3, SET_DIR_4,
 	                    WRITE_X1, WRITE_X2, WRITE_Y1, WRITE_Y2);
-
-	signal state      : state_type;
-	signal next_state : state_type;
+	signal state      : state_type := IDLE;
+	signal next_state : state_type := IDLE;
 
 	signal x : unsigned(15 downto 0) := (others => '0');
 	signal y : unsigned(15 downto 0) := (others => '0');
@@ -43,8 +40,7 @@ architecture rtl_dec_rect of dec_rect IS
 	signal count_y : unsigned(15 downto 0) := (others => '0');
 
 	signal start   : std_logic;
-	signal start_i : std_logic;
-
+	signal count   : natural := 0;
 begin
 
 	start <= '1' when sel = x"03"
@@ -55,7 +51,7 @@ begin
 
 	len_x_cmp <= x + len_x;
 	len_y_cmp <= y + len_y_i;
-	
+
 	limit_verify : process(pos_x, len_x, len_x_cmp, len_y, len_y_cmp, pos_y, x, y)
 	begin
 		if (pos_x > WIDTH) then
@@ -71,45 +67,31 @@ begin
 		end if;
 
 		if (len_x_cmp > WIDTH) then
-			count_x <= WIDTH - x;
+			count_x <= to_unsigned(WIDTH, 16) - x;
 		else
 			count_x <= len_x;
 		end if;
 
 		if (len_y_cmp > HEIGHT) then
-			count_y <= HEIGHT - y;
+			count_y <= to_unsigned(HEIGHT, 16) - y;
 		else
 			count_y <= len_y;
 		end if;
 	end process;
 
-	start_detect : process(start, state) is
+	process(clk) is
 	begin
-		if (state = INIT) then
-			start_i <= '0';
-		elsif rising_edge(start) then
-			if state = IDLE then
-				start_i <= '1';
-			elsif state = FINISHED then
-				start_i <= '1';
-			end if;
-		end if;
-	end process;
-
-	moore : process(clk, start_i) is
-		variable count : natural := 0;
-	begin
-		if start_i = '1' then
-			state <= INIT;
-		elsif rising_edge(clk) then
+		if rising_edge(clk) then
 			case state is
 				when IDLE =>
-					null;
+					if start = '1' then
+						state <= INIT;
+					end if;
 
 				when INIT =>
 					state      <= FULL_VERIFY;
 					next_state <= SET_ADDRESS_X;
-					count      := 0;
+					count      <= 0;
 
 				when SET_ADDRESS_X =>
 					state      <= FULL_VERIFY;
@@ -124,14 +106,14 @@ begin
 					next_state <= WRITE_X1;
 
 				when WRITE_X1 =>
-					count := count + 1;
-					if (count <= count_x) then
+					count <= count + 1;
+					if (count < to_integer(count_x)) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_X1;
 					else
 						state      <= FULL_VERIFY;
 						next_state <= SET_DIR_2;
-						count      := 0;
+						count      <= 0;
 					end if;
 
 				when SET_DIR_2 =>
@@ -139,14 +121,14 @@ begin
 					next_state <= WRITE_Y1;
 
 				when WRITE_Y1 =>
-					count := count + 1;
-					if (count <= count_y) then
+					count <= count + 1;
+					if (count < to_integer(count_y)) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_Y1;
 					else
 						state      <= FULL_VERIFY;
 						next_state <= SET_DIR_3;
-						count      := 0;
+						count      <= 0;
 					end if;
 
 				when SET_DIR_3 =>
@@ -154,14 +136,14 @@ begin
 					next_state <= WRITE_X2;
 
 				when WRITE_X2 =>
-					count := count + 1;
-					if (count <= count_x) then
+					count <= count + 1;
+					if (count < to_integer(count_x)) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_X2;
 					else
 						state      <= FULL_VERIFY;
 						next_state <= SET_DIR_4;
-						count      := 0;
+						count      <= 0;
 					end if;
 
 				when SET_DIR_4 =>
@@ -169,14 +151,14 @@ begin
 					next_state <= WRITE_Y2;
 
 				when WRITE_Y2 =>
-					count := count + 1;
-					if (count <= count_y) then
+					count <= count + 1;
+					if (count < to_integer(count_y)) then
 						state      <= FULL_VERIFY;
 						next_state <= WRITE_Y2;
 					else
 						state      <= FULL_VERIFY;
 						next_state <= FINISHED;
-						count      := 0;
+						count      <= 0;
 					end if;
 
 				when FULL_VERIFY =>
@@ -187,11 +169,9 @@ begin
 					end if;
 
 				when FINISHED =>
-					state <= FINISHED;
+					state <= IDLE;
 			end case;
-
 		end if;
-
 	end process;
 
 	mealy : process(state, color, x, y)
@@ -216,9 +196,6 @@ begin
 				output(15 downto 0)  <= y;
 
 			when SET_DIR_1 => 
-				--Os comandos 0x0003 são retirados do datasheet (p56)
-				--Esses comandos alteram o sentido de incremento automatico do display
-				--Deixando como necessário apenas enviar a cor que deseja ser impressa
 				output <= x"00031030";
 
 			when WRITE_X1 =>
@@ -254,7 +231,6 @@ begin
 				write_en  <= '0';
 				output    <= x"00000000";
 				completed <= '1';
-
 		end case;
 	end process;
 
