@@ -23,8 +23,10 @@ software/*/*.lss
 project.sigasi
 .project
 .sigasi/
+compiler/gcc
 work/
 *.wlf
 *.ps
 .DS_Store
 .library_mapping.xml
+project.sigasi

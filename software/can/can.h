@@ -1,122 +1,49 @@
 #ifndef CAN_H
 #define CAN_H
 
-#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "../_core/hardware.h"
 
-/*----- Definição dos endereçoes dos registradores -----*/
 
-// ID de 11 bits do can frame
-#define TXB0SIDH  ((uint8_t)0x31)
-#define TXB0SIDL  ((uint8_t)0x32)
 
-// Data length do can frame 
-#define TXB0DLC   ((uint8_t)0x35)
+#define CAN_BASE_BYTE   (0x04000000 + 25*64*4)
+// Macro para acessar um registrador do CAN.
+// O offset é o número do registrador (0x30, 0x31, ...)
+#define REG8(offset)    (*(volatile uint8_t *)(CAN_BASE_BYTE + (offset)))
+// Registradores
+#define TXB0CTRL   REG8(0x30)
+#define TXB0SIDH   REG8(0x31)
+#define TXB0SIDL   REG8(0x32)
+#define TXB0DLC    REG8(0x35)
+#define TXB0D0     REG8(0x36)
+#define TXB0D1     REG8(0x37)
+#define TXB0D2     REG8(0x38)
+#define TXB0D3     REG8(0x39)
+#define TXB0D4     REG8(0x3A)
+#define TXB0D5     REG8(0x3B)
+#define TXB0D6     REG8(0x3C)
+#define TXB0D7     REG8(0x3D)
+#define BAUD_REG   REG8(0xF0)
 
-// Payload do can frame
-#define TXB0D0    ((uint8_t)0x36)
-#define TXB0D1    ((uint8_t)0x37)
-#define TXB0D2    ((uint8_t)0x38)
-#define TXB0D3    ((uint8_t)0x39)
-#define TXB0D4    ((uint8_t)0x3A)
-#define TXB0D5    ((uint8_t)0x3B)
-#define TXB0D6    ((uint8_t)0x3C)
-#define TXB0D7    ((uint8_t)0x4D)
-
-// Configuração do baudrate de transmissão
-#define BAUD_REG ((uint8_t)0xF0)	// Abstração dos registradores CNFn
-
-// Configuração da transmissão
-#define TXB0CTRL ((uint8_t)0x30)
-
-/* ---------------------------------------------------- */
-
+/* Estrutura de um quadro CAN */
 typedef struct {
-    uint16_t id	: 11;		// Id do can frame (TXB0SIDH & TXB0SIDL)
-	uint8_t  dlc : 4;		// Tamanho do pacote (Máximo = 8) (TXB0DLC)
-	uint8_t  baud;			// Age no preescaler (BAUD_REG) 
-	bool     tx_start		// Solicita início da transmissão (TXB0CTRL(3))
-	bool	 rtr;			// (Remote Transmission Request) 1 bit indicating if the frame is a data frame (0) or remote frame (1)
-    uint8_t  payload[8]; 	// "Carga útil" do can frame (TXB0Dn)
+    uint16_t id : 11;          /* Identificador de 11 bits */
+    uint8_t  dlc : 4;          /* Data Length Code (0..8) */
+    uint8_t  baud;             /* Valor do prescaler (BAUD_REG) */
+    bool     tx_start;         /* Solicita transmissão (TXB0CTRL(3)) */
+    bool     rtr;              /* Remote Transmission Request */
+    uint8_t  payload[8];       /* Dados (até 8 bytes) */
 } CAN_t;
 
+/* Funções de baixo nível */
+void can_set_id(uint16_t id);
+void can_set_dlc(uint8_t dlc, bool rtr);
+void can_load_payload(const uint8_t *data, uint8_t len);
+void can_config_baud(uint8_t baud);
+void can_start_transmission(void);
 
-void reset(CAN_t *dev);
-/*
-seta reg_wr_en = 0;
-seta rst = 1;		// Qualquer transmissão é imediatamente interrompida
-seta rst = 0;
-*/
-
-
-void set_id(CAN_t *dev);
-/*
-seta reg_wr_en = 0;
-seta bus_addr = TXB0SIDH;
-seta bus_data = dev->id // 8 primeiros MSB
-seta reg_wr_en = 1;
-
-//espera exatamente 1 ciclo de clock que vai para o periférico conforme mostra testbech.tb
-
-seta bus_data = dev->id // TXB0SIDL[7:5] bits MSB do registrador são vazios
-
-//espera exatamente 1 ciclo de clock que vai para o periférico
-
-seta reg_wr_en = 0;
-*/
-
-
-void set_dlc(CAN_t *dev);
-/*
-seta reg_wr_en = 0;
-seta bus_addr = TXB0DLC;
-seta bus_data = dev->dlc || dev->rtr (bit 6 do reg) 
-seta reg_wr_en = 1;
-
-//espera exatamente 1 ciclo de clock que vai para o periférico conforme mostra testbech.tb
-
-seta reg_wr_en = 0;
-*/
-
-
-void stuff_buffer(CAN_t *dev);
-/*
-seta reg_wr_en = 0;
-seta bus_addr = TXB0D0;
-
-LOOP tamanho de dev->dlc
-	seta bus_data = dev->payload[i]
-	seta reg_wr_en = 1;
-//espera exatamente 1 ciclo de clock que vai para o periférico conforme mostra testbech.tb
-FIM LOOP
-
-seta reg_wr_en = 0;
-*/
-
-
-void config_baud(CAN_t *dev);
-/*
-seta reg_wr_en = 0;
-seta bus_addr = BAUD_REG;
-seta bus_data = dev->baud;
-seta reg_wr_en = 1;
-
-//espera exatamente 1 ciclo de clock que vai para o periférico conforme mostra testbech.tb
-
-seta reg_wr_en = 0;
-*/
-
-
-void set_tx(CAN_t *dev);
-/*
-seta reg_wr_en = 0;
-seta bus_addr = TXB0CTRL;
-seta bus_data = dev->tx_start; // bit 3 do reg
-seta reg_wr_en = 1;
-
-//espera exatamente 1 ciclo de clock que vai para o periférico conforme mostra testbech.tb
-
-seta reg_wr_en = 0;
-*/
-
+/* Função de alto nível */
+void can_send_frame(const CAN_t *frame);
 
 #endif

@@ -2,7 +2,7 @@
 --! @file   can_top.vhdl
 --! @author Christopher Costa
 --! @date   29/06/2026
---! @brief  VHDL implementation of CAN 2.0A controller as 
+--! @brief  VHDL implementation of CAN 2.0A controller as
 --          a RISC-V peripheral
 --                     | TOP ENTITY |
 -------------------------------------------------------
@@ -19,11 +19,11 @@ entity can_top is
         rst : in std_logic;     -- reset from CPU
 
         -- Data interface with CPU
-        bus_addr      : in  std_logic_vector(31 downto 0);  -- only the lowest 8 bits is read (target register addr)
+        bus_addr      : in  unsigned(7 downto 0);  -- only the lowest 8 bits is read (target register addr)
         reg_wr_en     : in  std_logic;      -- instead a instruction like in SPI, this pin allows the can peripheral registers write
         bus_wdata     : in  std_logic_vector(31 downto 0);  -- only the lowest 8 bits is read (data to be read)
         bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register @TODO
-        
+
         -- Transceiver CAN interface
         can_rx        : in  std_logic;  -- Receives serial data
         can_tx        : out std_logic   -- Sends serial data
@@ -54,15 +54,17 @@ architecture RTL of can_top is
     signal rx_bit_out    : std_logic;
     signal tx_abort      : std_logic;
     signal stuff_nxt_bit : std_logic;
+	signal bus_addr_vec : std_logic_vector(7 downto 0);
 
 begin
-    
+
     -- Instantiate register_map.vhd
+	bus_addr_vec <= std_logic_vector(bus_addr);
     register_map_inst : entity work.register_map
         port map(
             clk             => clk,
             rst             => rst,
-            bus_addr        => bus_addr,
+            bus_addr        => bus_addr_vec,
             bus_wdata       => bus_wdata,
             bus_rdata       => bus_rdata,
             bus_we          => reg_wr_en,
@@ -80,7 +82,7 @@ begin
             --core_eflg_in    => core_eflg_in,
             --core_status_we  => core_status_we
         );
-    
+
     -- Instantiate can_fsm.vhd
     can_fsm_inst : entity work.can_fsm
         port map(
@@ -101,7 +103,7 @@ begin
             stuff_nxt_bit     => stuff_nxt_bit
             --debug             => debug
         );
-    
+
 
     -- Instantiate can_engine.vhd
     can_engine_inst : entity work.can_engine
@@ -118,6 +120,6 @@ begin
             can_rx            => can_rx,
             can_tx            => can_tx
         );
-    
+
 
 end architecture RTL;

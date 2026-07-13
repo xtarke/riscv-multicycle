@@ -1,7 +1,7 @@
 -------------------------------------------------------
 --! @file
 --! @brief RISCV Simple io data bux mux.
---         Multiplex io data bus accordingly to address space. 
+--         Multiplex io data bus accordingly to address space.
 --         See hardware.h (software/_core directory)
 --         Address space is multiplexed using WORD address.
 -------------------------------------------------------
@@ -13,7 +13,7 @@ use ieee.numeric_std.all;
 entity iodatabusmux is
 
     port(
-        daddress                : in  unsigned(31 downto 0); --! Connect to RISC-V data bus address 
+        daddress                : in  unsigned(31 downto 0); --! Connect to RISC-V data bus address
 
         ddata_r_gpio            : in  std_logic_vector(31 downto 0);
         ddata_r_segments        : in  std_logic_vector(31 downto 0);
@@ -33,7 +33,8 @@ entity iodatabusmux is
         ddata_r_cordic          : in std_logic_vector(31 downto 0);
      	ddata_r_RS485   		: in  std_logic_vector(31 downto 0);
         ddata_r_rgb             : in  std_logic_vector(31 downto 0);
-        -- Mux 
+		ddata_r_can				: in std_logic_vector(31 downto 0);
+        -- Mux
         ddata_r_periph   : out std_logic_vector(31 downto 0) --! Connect to data bus mux
     );
 end entity iodatabusmux;
@@ -62,6 +63,7 @@ begin
         ddata_r_cordic when x"0015",
     	ddata_r_RS485 when x"0017",
         ddata_r_rgb when x"0020",
+		ddata_r_can when x"0019",
         -- Add new io peripherals here
         (others => '0') when others;
 end architecture RTL;

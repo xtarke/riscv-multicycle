@@ -15,14 +15,14 @@ entity register_map is
     port (
         clk           : in  std_logic;  -- system clock, may be the faster possible
         rst           : in  std_logic;  -- Restats the internal state of the CAN controller
-        
+
         -- Risc-V Bus Interface
-        bus_addr      : in  std_logic_vector(31 downto 0); -- Target reg address 
+        bus_addr      : in  std_logic_vector(7 downto 0); -- Target reg address
         bus_wdata     : in  std_logic_vector(31 downto 0); -- Data to be written to the target register
         bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register @TODO
         bus_we        : in  std_logic;                     -- Write Enable
         -- bus_ack       : out std_logic;                   -- Acknowledge (end of transmission)
-        
+
         -- Interface de Interconexão com o Hardware Interno (CAN Core)
         -- Configurações Globais exportadas para can_engine e can_fsm
         baud_reg_out    : out  std_logic_vector(7 downto 0);   -- config FSM and transmisson baudrate
@@ -30,21 +30,21 @@ entity register_map is
         --cnf2_out        : out std_logic_vector(7 downto 0);
         --cnf3_out        : out std_logic_vector(7 downto 0);
         canctrl_out     : out std_logic_vector(7 downto 0);
-        
-        -- Transmission buffers exported to can_fsm 
+
+        -- Transmission buffers exported to can_fsm
         txb0ctrl_out    : out std_logic_vector(7 downto 0);
         txb0sidh_out    : out std_logic_vector(7 downto 0);
         txb0sidl_out    : out std_logic_vector(7 downto 0);
         txb0dlc_out     : out std_logic_vector(7 downto 0);
         txb0dn_out      : out t_tx_data_regs;
-        
+
         -- Inputs from other componentes to update registers
         core_canstat_in : in  std_logic_vector(7 downto 0);
         core_canstat_we : in  std_logic
         --core_tec_in     : in  std_logic_vector(7 downto 0);
         --core_rec_in     : in  std_logic_vector(7 downto 0);
         --core_eflg_in    : in  std_logic_vector(7 downto 0);
-        --core_status_we  : in  std_logic                      
+        --core_status_we  : in  std_logic
     );
 end entity register_map;
 
@@ -62,7 +62,7 @@ architecture RTL of register_map is
     signal r_EFLG     : std_logic_vector(7 downto 0);
     signal r_TEC      : std_logic_vector(7 downto 0);
     signal r_REC      : std_logic_vector(7 downto 0);
-    
+
     -- Transmission Buffers (TXB0)
     signal r_TXB0CTRL : std_logic_vector(7 downto 0);
     signal r_TXB0SIDH : std_logic_vector(7 downto 0);
@@ -79,7 +79,7 @@ begin
 
         variable txb0SID_count : bit := '0';
         variable txb0_count : unsigned (2 downto 0) := "000";
-        
+
     begin
         if rst = '1' then
             -- Standard register values(MCP2515)
@@ -102,16 +102,16 @@ begin
 
             txb0SID_count := '0';
             txb0_count := "000";
-            
+
         elsif rising_edge(clk) then
-            
+
             -- -----------------------------------------------------------
             -- Internal updates
             -- -----------------------------------------------------------
             if core_canstat_we = '1' then
                 r_CANSTAT <= core_canstat_in;
             end if;
-            
+
             --if core_status_we = '1' then
                 --r_TEC  <= core_tec_in;
                 --r_REC  <= core_rec_in;
@@ -133,7 +133,7 @@ begin
                     when CANINTE  => r_CANINTE  <= bus_wdata(7 downto 0);
                     when CANINTF  => r_CANINTF  <= bus_wdata(7 downto 0);
                     when TXB0CTRL => r_TXB0CTRL <= bus_wdata(7 downto 0);
-                    when TXB0SIDH => 
+                    when TXB0SIDH =>
                         if txb0SID_count = '0' then -- allows writing the entire ID with one adress, first the SIDH and then the SIDL
                             r_TXB0SIDH <= bus_wdata(7 downto 0);
                             txb0SID_count := '1';
@@ -173,7 +173,7 @@ begin
                     when TXB0D7   => r_TXB0Dn(7) <= bus_wdata(7 downto 0);
                     when others   => null;
                 end case;
-                
+
             end if;
 
         end if;
