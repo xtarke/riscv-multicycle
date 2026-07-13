@@ -154,6 +154,13 @@ begin
 			wait_cycles <= std_logic_vector(to_unsigned(RESET_NOP, wait_cycles'length));
 		else
 			if rising_edge(clk) then
+				if read = '0' then
+					read_last_value <= '0';
+				end if;
+				if write = '0' then
+					write_last_value <= '0';
+				end if;
+
 				case mem_state is
 					when CONFIG =>
 						if reset = '0' then
@@ -227,13 +234,6 @@ begin
 							write_last_value <= '1';
 							is_write         <= '1';
 							mem_state        <= ACTIVATE_ROW;
-						end if;
-
-						if read = '0' then
-							read_last_value <= '0';
-						end if;
-						if write = '0' then
-							write_last_value <= '0';
 						end if;
 
 						refresh_counter := refresh_counter + 1;
