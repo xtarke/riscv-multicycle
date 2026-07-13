@@ -30,6 +30,8 @@ entity sdram_cache is
     sdram_wait_request     : in  std_logic;
     sdram_addr             : out std_logic_vector(31 downto 0);
     sdram_read             : out std_logic;
+    sdram_write            : out std_logic;
+    sdram_write_data       : out io_buffer_t;
     sdram_chip_select      : out std_logic
   );
 end entity sdram_cache;
@@ -124,29 +126,33 @@ begin
   read_data     <= read_fifo_data_out;
   read_lock     <= read_enable and (not read_hit);
 
-  sdram_addr        <= read_burst_address;
-
-
   process (clk, reset)
   begin
     if reset = '1' then
       read_fifo_reset <= '1';
       cache_state <= CACHE_STATE_INIT;
       read_burst_address <= (others => '0');
+      sdram_addr <= (others => '0');
+      sdram_write_data <= (others => (others => '0'));
+      write_fifo_pop <= '0';
     elsif rising_edge(clk) then
       read_fifo_reset <= '0';
+      write_fifo_pop <= '0';
       case cache_state is
         when CACHE_STATE_INIT =>
           cache_state <= CACHE_STATE_IDLE;
         when CACHE_STATE_IDLE =>
-          
+
           -- If idle and nothing to do fill the read fifo cache --
           if read_fifo_used < (READ_FIFO_SIZE - SDRAM_READ_BURST_SIZE) then
+            sdram_addr <= read_burst_address;
             cache_state <= CACHE_STATE_READING;
           end if;
 
           -- Only start writing when read fifo has enough data --
           if write_fifo_empty = '0' and read_fifo_almost_empty = '0' then
+            sdram_addr <= write_fifo_data_out(47 downto 16);
+            sdram_write_data(0) <= write_fifo_data_out(15 downto 0);
             cache_state <= CACHE_STATE_WRITING;
           end if;
 
@@ -164,6 +170,7 @@ begin
           end if;
         when CACHE_STATE_WRITING =>
           if sdram_wait_request = '0' then
+            write_fifo_pop <= '1';
             cache_state <= CACHE_STATE_IDLE;
           end if;
         when CACHE_STATE_RX_CACHE_MISS =>
