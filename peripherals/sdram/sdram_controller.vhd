@@ -68,6 +68,7 @@ entity sdram_controller is
 		write_data  : in    io_buffer_t;
 		-- outputs:
 		read_data    : OUT   io_buffer_t;
+		read_valid_count : out integer range 0 to 8;
 		waitrequest  : out   std_logic;
 		DRAM_ADDR    : out   std_logic_vector(12 downto 0);
 		DRAM_BA      : out   std_logic_vector(1 downto 0);
@@ -129,6 +130,8 @@ architecture rtl of sdram_controller is
 
 	signal idx      : integer range 0 to 7;
 	signal is_write : std_logic;
+
+	signal read_valid_count_i : integer range 0 to 8;
 
 begin
 
@@ -425,6 +428,19 @@ begin
 			end if;
 		end if;
 	end process;
+
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			if mem_state = SET_COL then
+				read_valid_count_i <= 0;
+			elsif d_read = '1' then
+				read_valid_count_i <= idx + 1;
+			end if;
+		end if;
+	end process;
+
+	read_valid_count <= read_valid_count_i;
 
 	DRAM_DQ <= write_data(idx) when d_write = '1' else (others => 'Z');
 
