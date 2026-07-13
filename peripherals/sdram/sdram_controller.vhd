@@ -351,6 +351,7 @@ begin
 				DRAM_WE_N  <= '1';
 
 			when C_AUTO_REFRESH =>
+				waitrequest <= '1';
 
 				-- commands
 				DRAM_BA    <= "00";
