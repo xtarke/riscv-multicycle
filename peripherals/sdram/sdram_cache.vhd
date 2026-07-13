@@ -71,7 +71,7 @@ architecture sdram_cache_behavior of sdram_cache is
   signal read_fifo_reset     : std_logic;
 
   -- Address of the sdram that the head points --
-  signal read_fifo_head_address : std_logic_vector(32 downto 0);
+  signal read_fifo_head_address : std_logic_vector(31 downto 0);
 
   -- Next sdram address to burst read into the read fifo --
   signal read_burst_address : std_logic_vector(31 downto 0);
@@ -79,6 +79,7 @@ architecture sdram_cache_behavior of sdram_cache is
   signal read_words_pushed  : integer range 0 to 8;
   
   signal rx_cache_miss       : std_logic;
+  signal read_hit            : std_logic;
 
   signal cache_state         : cache_state_t;
 
@@ -116,6 +117,13 @@ begin
       usedw        => read_fifo_used
     );
 
+  -- User side read: pop the cached word on a hit, lock and miss otherwise --
+  read_hit      <= '1' when read_fifo_head_address = read_address and read_fifo_empty = '0' else '0';
+  rx_cache_miss <= read_enable and (not read_hit);
+  read_fifo_pop <= read_enable and read_hit;
+  read_data     <= read_fifo_data_out;
+  read_lock     <= rx_cache_miss;
+
   sdram_addr        <= read_burst_address;
   sdram_read        <= '1' when cache_state = CACHE_STATE_READING else '0';
   sdram_chip_select <= '1' when cache_state = CACHE_STATE_READING else '0';
@@ -141,6 +149,13 @@ begin
           if write_fifo_empty = '0' and read_fifo_almost_empty = '0' then
             cache_state <= CACHE_STATE_WRITING;
           end if;
+
+          -- Cache miss: drop the cached data and refill from the missed address --
+          if rx_cache_miss = '1' then
+            read_fifo_reset <= '1';
+            read_burst_address <= read_address;
+            cache_state <= CACHE_STATE_RX_CACHE_MISS;
+          end if;
         when CACHE_STATE_READING =>
           -- Burst done: advance to the next burst address --
           if sdram_wait_request = '0' then
@@ -161,6 +176,20 @@ begin
 
 
 
+  end process;
+
+  -- User side read: track the sdram address cached at the fifo head --
+  process (clk, reset)
+  begin
+    if reset = '1' then
+      read_fifo_head_address <= (others => '0');
+    elsif rising_edge(clk) then
+      if cache_state = CACHE_STATE_IDLE and rx_cache_miss = '1' then
+        read_fifo_head_address <= read_address;
+      elsif read_fifo_pop = '1' then
+        read_fifo_head_address <= read_fifo_head_address + 1;
+      end if;
+    end if;
   end process;
 
   -- Read process: push burst words into the read fifo as they arrive --
