@@ -3,14 +3,15 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../_core/hardware.h"
+// #include "../_core/hardware.h"
 
-
-
-#define CAN_BASE_BYTE   (0x04000000 + 25*64*4)
 // Macro para acessar um registrador do CAN.
 // O offset é o número do registrador (0x30, 0x31, ...)
-#define REG8(offset)    (*(volatile uint8_t *)(CAN_BASE_BYTE + (offset)))
+#define CAN_BASE 0x04000000+28*16*4*4 //0x01000700*4
+#define REG8(offset)    (*(volatile uint8_t *)(CAN_BASE + (offset*4)))
+
+
+
 // Registradores
 #define TXB0CTRL   REG8(0x30)
 #define TXB0SIDH   REG8(0x31)

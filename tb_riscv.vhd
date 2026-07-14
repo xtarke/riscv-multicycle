@@ -41,22 +41,29 @@ architecture sim of tb_riscv is
 
     signal can_rx    : std_logic := '1';
     signal can_tx    : std_logic;
-    signal can_sel   : std_logic;
     signal can_wr_en : std_logic;
 
     signal cpu_state : cpu_state_t;
     signal debugString : string(1 to 40) := (others => '0');
 	signal can_reg_addr : unsigned(7 downto 0);
 
+    signal can_sel   : std_logic;
 	signal tmp : unsigned(31 downto 0);
+	signal offset : unsigned(7 downto 0);
+	constant BASE_ADDR : unsigned(31 downto 0) := x"01000000"; -- base do espaço
+	constant BLOCK_OFFSET : unsigned(31 downto 0) := x"00000700";
 begin
 	-- Cálculo: word address → byte address → subtrai base → offset
-	-- tmp <= resize(daddress sll 2, 32) - x"04000640";
-	tmp <= daddress - x"01000190";
-	-- can_reg_addr <= tmp(7 downto 0);
-	can_reg_addr <= tmp(7 downto 0) when (dcsel = "10") else (others => '0');
-    can_wr_en <= '1' when (dcsel = "10" and daddress(19 downto 4) = x"0019") else '0';
-	-- can_reg_addr <= tmp(7 downto 0) when (dcsel = "10" and daddress(19 downto 4) = x"0019") else (others => '0');
+	-- tmp <= resize(daddress sll 2, 32) - x"04000800";
+	tmp <= daddress - BASE_ADDR;               -- diferença em relação à base
+    offset <= tmp(7 downto 0);                 -- bytes internos do bloco
+    -- Verifica se a parte alta (acima do byte) é exatamente BLOCK_OFFSET
+    can_sel <= '1' when (tmp(15 downto 8) = BLOCK_OFFSET(15 downto 8)) else '0';
+    -- ou, mantendo sua forma: (tmp - offset) = BLOCK_OFFSET
+    -- can_sel <= '1' when ((tmp - offset) = BLOCK_OFFSET) else '0';
+
+    can_reg_addr <= offset when (dcsel = "10" and can_sel = '1') else (others => '0');
+    can_wr_en <= '1' when (dcsel = "10" and can_sel = '1') else '0';
 
     -----------------------------------------------------------------
     -- CAN
@@ -74,21 +81,6 @@ begin
         can_tx     => can_tx
     );
 
-		entity can_top is
-			port(
-				clk : in std_logic;     -- faster clock from CPU
-				rst : in std_logic;     -- reset from CPU
-
-				-- Data interface with CPU
-				bus_addr      : in  unsigned(7 downto 0);  -- only the lowest 8 bits is read (target register addr)
-				reg_wr_en     : in  std_logic;      -- instead a instruction like in SPI, this pin allows the can peripheral registers write
-				bus_wdata     : in  std_logic_vector(31 downto 0);  -- only the lowest 8 bits is read (data to be read)
-				bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register @TODO
-
-				-- Transceiver CAN interface
-				can_rx        : in  std_logic;  -- Receives serial data
-				can_tx        : out std_logic   -- Sends serial data
-			);
     -- clocks
     clk <= not clk after CLK_PERIOD/2;
     clk_32x <= not clk_32x after CLK32_PERIOD/2;
@@ -104,12 +96,27 @@ begin
     -----------------------------------------------------------------
     -- Barramento de instrução
     -----------------------------------------------------------------
+	-- IMem shoud be read from instruction and data buses
+    -- Not enough RAM ports for instruction bus, data bus and in-circuit programming
     instr_mux: entity work.instructionbusmux
-        port map (d_rd, dcsel, daddress, iaddress, address);
+        port map(
+            d_rd     => d_rd,
+            dcsel    => dcsel,
+            daddress => daddress,
+            iaddress => iaddress,
+            address  => address
+    );
 
     iram_inst: entity work.iram_quartus
         generic map (init_file => "./software/can/can_main.hex")
-        port map (address, "1111", clk, (others => '0'), '0', idata);
+		port map(
+			address => address(9 downto 0),
+			byteena => "1111",
+			clock   => clk,
+			data    => (others => '0'),
+			wren    => '0',
+			q       => idata
+		);
 
     -----------------------------------------------------------------
     -- Memória de dados (com associação explícita)
@@ -131,8 +138,20 @@ begin
     -----------------------------------------------------------------
     -- Multiplexador principal do barramento
     -----------------------------------------------------------------
-    data_bus_mux: entity work.databusmux
-        port map (dcsel, idata, ddata_r_mem, ddata_r_periph, ddata_r_sdram, ddata_r);
+	-- Adress space mux ((check sections.ld) -> Data chip select:
+	-- 0x00000    ->    Instruction memory
+	-- 0x20000    ->    Data memory
+	-- 0x40000    ->    Input/Output generic address space
+	-- 0x60000    ->    SDRAM address space
+	data_bus_mux: entity work.databusmux
+	    port map(
+	        dcsel          => dcsel,
+	        idata          => idata,
+	        ddata_r_mem    => ddata_r_mem,
+	        ddata_r_periph => ddata_r_periph,
+	        ddata_r_sdram  => ddata_r_sdram,
+	        ddata_r        => ddata_r
+	    );
 
     -----------------------------------------------------------------
     -- Multiplexador de periféricos (apenas CAN)
@@ -158,7 +177,6 @@ begin
             ddata_r_cordic   => (others => '0'),
             ddata_r_RS485    => (others => '0'),
             ddata_r_rgb      => (others => '0'),
-            ddata_r_morse    => (others => '0'),
             ddata_r_can      => ddata_r_can,
             ddata_r_periph   => ddata_r_periph
         );
@@ -166,11 +184,25 @@ begin
     -----------------------------------------------------------------
     -- Core RISC-V
     -----------------------------------------------------------------
-    core_inst: entity work.core
-        port map (clk, rst, clk_32x, iaddress, idata, daddress, ddata_r, ddata_w,
-                   d_we, d_rd, d_sig, dcsel, dmask, interrupts, cpu_state);
-
-
+	-- Softcore instatiation
+	myRiscv : entity work.core
+		port map(
+			clk      => clk,
+			rst      => rst,
+			clk_32x  => clk_32x,
+			iaddress => iaddress,
+			idata    => idata,
+			daddress => daddress,
+			ddata_r  => ddata_r,
+			ddata_w  => ddata_w,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			d_sig	 => d_sig,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			interrupts=>interrupts,
+			state    => cpu_state
+		);
     -----------------------------------------------------------------
     -- Debug
     -----------------------------------------------------------------
