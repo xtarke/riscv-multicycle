@@ -11,7 +11,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
-entity de0_lite_gpio is
+entity de10_lite is
     generic (
         --! Num of 32-bits memory words
         IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
@@ -75,7 +75,7 @@ end entity;
 
 
 
-architecture rtl of de0_lite_gpio is
+architecture rtl of de10_lite is
     -- Clocks and reset
     signal clk : std_logic;
     signal rst : std_logic;
@@ -123,6 +123,7 @@ architecture rtl of de0_lite_gpio is
     signal ddata_r_lcd : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
     signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+    signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
     signal ddata_r_spwm : std_logic_vector(31 downto 0);
     signal ddata_r_crc : std_logic_vector(31 downto 0);
     signal ddata_r_key : std_logic_vector(31 downto 0);
@@ -156,6 +157,19 @@ architecture rtl of de0_lite_gpio is
 	signal offset : unsigned(7 downto 0);
 	constant BASE_ADDR : unsigned(31 downto 0) := x"01000000"; -- base do espaço
 	constant BLOCK_OFFSET : unsigned(31 downto 0) := x"00000700";
+
+	----------------------------------------------------------------
+	-- Declaração do componente PLL
+	----------------------------------------------------------------
+	-- component pll_can is
+    -- port(
+    --   areset  : in  std_logic := '0';
+    --   inclk0  : in  std_logic := '0';
+    --   c0      : out std_logic;
+    --   c1      : out std_logic;
+    --   locked  : out std_logic
+    -- );
+	-- end component;
 begin
 	-- Cálculo: word address → byte address → subtrai base → offset
 	-- tmp <= resize(daddress sll 2, 32) - x"04000800";
@@ -171,8 +185,16 @@ begin
     rst <= SW(9);
     LEDR(9) <= SW(9);
 
-    -- Reset
-    LEDR(0) <= tx_done;
+    -- TX done
+    LEDR(5) <= tx_done;
+
+    -- Transceiver interface
+    ARDUINO_IO(0) <= can_tx;
+    LEDR(0)       <= can_tx;
+
+    ARDUINO_IO(1) <= can_rx;
+    LEDR(1)       <= can_rx;
+
     -----------------------------------------------------------------
     -- CAN
     -----------------------------------------------------------------
@@ -192,7 +214,7 @@ begin
 
 
     -- Clocks
-    pll_inst : entity work.pll
+    pll_inst : entity work.pll_quartus
         port map(
             areset	=> '0',
             inclk0 	=> MAX10_CLK1_50,
@@ -203,7 +225,7 @@ begin
 
     -- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
     iram_inst: entity work.iram_quartus
-        generic map (init_file => "../../software/can/can_main.hex") --testar se funciona
+        -- generic map (init_file => "../../software/can/can.hex") --testar se funciona
 		port map(
 			address => address(9 downto 0),
 			byteena => "1111",
@@ -258,25 +280,24 @@ begin
         );
 
     -- Softcore instatiation
-    myRiscv : entity work.core
-        port map(
-            clk      => clk,
-            rst      => rst,
-            clk_32x  => clk_50MHz,
-            iaddress => iaddress,
-            idata    => idata,
-            daddress => daddress,
-            ddata_r  => ddata_r,
-            ddata_w  => ddata_w,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            d_sig	 => d_sig,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            interrupts=>interrupts,
-            state    => state
-        );
-
+	myRiscv : entity work.core
+		port map(
+			clk      => clk,
+			rst      => rst,
+			clk_32x  => MAX10_CLK1_50,
+			iaddress => iaddress,
+			idata    => idata,
+			daddress => daddress,
+			ddata_r  => ddata_r,
+			ddata_w  => ddata_w,
+			d_we     => d_we,
+			d_rd     => d_rd,
+			d_sig	 => d_sig,
+			dcsel    => dcsel,
+			dmask    => dmask,
+			interrupts=>interrupts,
+			state    => cpu_state
+		);
     -- IRQ lines
     interrupts(24 downto 18) <= gpio_interrupts(6 downto 0);
     interrupts(30 downto 25) <= timer_interrupt;
@@ -309,85 +330,62 @@ begin
     -----------------------------------------------------------------
     -- Multiplexador de periféricos (apenas CAN)
     -----------------------------------------------------------------
-    io_mux: entity work.iodatabusmux
-        port map (
-            daddress         => daddress,
-            ddata_r_gpio     => (others => '0'),
-            ddata_r_segments => (others => '0'),
-            ddata_r_uart     => (others => '0'),
-            ddata_r_adc      => (others => '0'),
-            ddata_r_i2c      => (others => '0'),
-            ddata_r_timer    => (others => '0'),
-            ddata_r_dif_fil  => (others => '0'),
-            ddata_r_stepmot  => (others => '0'),
-            ddata_r_lcd      => (others => '0'),
-            ddata_r_nn_accelerator => (others => '0'),
-            ddata_r_fir_fil  => (others => '0'),
-            ddata_r_spwm     => (others => '0'),
-            ddata_r_crc      => (others => '0'),
-            ddata_r_key      => (others => '0'),
-            ddata_r_accelerometer => (others => '0'),
-            ddata_r_cordic   => (others => '0'),
-            ddata_r_RS485    => (others => '0'),
-            ddata_r_rgb      => (others => '0'),
-            ddata_r_can      => ddata_r_can,
-            ddata_r_periph   => ddata_r_periph
-        );
-	  generic_gpio: entity work.gpio
-        port map(
-            clk      => clk,
-            rst      => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_gpio,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            input    => gpio_input,
-            output   => gpio_output,
-            gpio_interrupts => gpio_interrupts
-        );
+
+	--   generic_gpio: entity work.gpio
+    --     port map(
+    --         clk      => clk,
+    --         rst      => rst,
+    --         daddress => daddress,
+    --         ddata_w  => ddata_w,
+    --         ddata_r  => ddata_r_gpio,
+    --         d_we     => d_we,
+    --         d_rd     => d_rd,
+    --         dcsel    => dcsel,
+    --         dmask    => dmask,
+    --         input    => gpio_input,
+    --         output   => gpio_output,
+    --         gpio_interrupts => gpio_interrupts
+    --     );
 
     -- Timer instantiation
-    timer : entity work.Timer
-        generic map(
-            PRESCALER_SIZE => 16,
-            COMPARE_SIZE   => 32
-        )
-        port map(
-            clock       => clk,
-            reset       => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_timer,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            timer_interrupt => timer_interrupt,
-            ifcap => ifcap
-        );
+    -- timer : entity work.Timer
+    --     generic map(
+    --         PRESCALER_SIZE => 16,
+    --         COMPARE_SIZE   => 32
+    --     )
+    --     port map(
+    --         clock       => clk,
+    --         reset       => rst,
+    --         daddress => daddress,
+    --         ddata_w  => ddata_w,
+    --         ddata_r  => ddata_r_timer,
+    --         d_we     => d_we,
+    --         d_rd     => d_rd,
+    --         dcsel    => dcsel,
+    --         dmask    => dmask,
+    --         timer_interrupt => timer_interrupt,
+    --         ifcap => ifcap
+    --     );
 
-    generic_displays : entity work.led_displays
-        port map(
-            clk      => clk,
-            rst      => rst,
-            daddress => daddress,
-            ddata_w  => ddata_w,
-            ddata_r  => ddata_r_segments,
-            d_we     => d_we,
-            d_rd     => d_rd,
-            dcsel    => dcsel,
-            dmask    => dmask,
-            hex0     => HEX0,
-            hex1     => HEX1,
-            hex2     => HEX2,
-            hex3     => HEX3,
-            hex4     => HEX4,
-            hex5     => HEX5,
-            hex6     => open,
-            hex7     => open
-        );
+    -- generic_displays : entity work.led_displays
+    --     port map(
+    --         clk      => clk,
+    --         rst      => rst,
+    --         daddress => daddress,
+    --         ddata_w  => ddata_w,
+    --         ddata_r  => ddata_r_segments,
+    --         d_we     => d_we,
+    --         d_rd     => d_rd,
+    --         dcsel    => dcsel,
+    --         dmask    => dmask,
+    --         hex0     => HEX0,
+    --         hex1     => HEX1,
+    --         hex2     => HEX2,
+    --         hex3     => HEX3,
+    --         hex4     => HEX4,
+    --         hex5     => HEX5,
+    --         hex6     => open,
+    --         hex7     => open
+    --     );
 
 end;

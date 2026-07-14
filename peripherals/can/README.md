@@ -23,7 +23,7 @@ Abaixo, uma imagem representativa das entidades do periférico em diagrama de bl
 - **can_top.vhd** -> Responsável por instanciar e interconectar todos os submódulos do projeto, expondo apenas a interface de comunicação com o processador e o *transceiver*.
 
 
-# Instruções de uso
+# Instruções de Uso
 
 Similarmente ao MCP2515, é necessário a configuração inicial do periférico através da escrita de seus periféricos.
 
@@ -40,7 +40,7 @@ E por fim, solicitar a transmissão em *one-shot mode*:
 - **TXB0CTRL**     -> TXB0CTRL(3) é o bit TXREQ (Request to Send) do registrados. O bit TXREQ deve ser setado '1' para solicitar uma transmissão.
 
 
-# Simulação do componente
+# Simulação do Componente
 
 Para verificar o funcionamento isolado do periférico, execute o script [tb.do](/peripherals/can/tb.do) no ModelSim/Questa. Esse testbench instancia apenas o `can_top` e estimula diretamente seus sinais. [testbench.vhd](/peripherals/can/testbench.vhd) pode ser alterado conforme instruções de uso para simular diferentes *CAN frames*.
 
@@ -96,7 +96,7 @@ Na imagem, pode-se observar a concordância de todos os campos do protocolo CAN,
 Adendo: Para fins de validação, o sinal **can_tx** que representa a transmissão da mensagem apresenta-se atrasado em um ciclo de clock do sinal **state_name** que representa o estado da máquina de estados.
 
 
-# maquina de estados
+# Máquina de Estados
 
 A máquina de estados é implementada na entidade [can_fsm.vhd](/peripherals/can/can_fsm.vhd), cujos estados correspondem diretamente aos segmentos do pacote CAN. A imagem que representa essa máquina de estados pode ser visualizada abaixo:
 
@@ -119,20 +119,58 @@ Os estados podem ser descritos brevemente da seguinte forma:
 - **ST_IFS** -> Estado para garantir um tempo mínimo entre *frames*. Envia 3 bits recessivos e retorna para **ST_IDLE**.
 
 
-# Simulação com o RISCV
+# Simulação com o RISC-V
 
-Para simular o periférico com o **RISC-V** é necessário compilar o código de teste [can_main.c](/../../software/can/can_main.c) ou utilizar o [can.hex](/../../software/can/can.hex) previamente compilado.  
+Para simular o periférico com o **RISC-V** é necessário compilar o código de teste [can_main.c](/software/can/can_main.c) ou utilizar o [can.hex](/software/can/can.hex) previamente compilado.  
 
 É preciso certificar-se de que, no arquivo **tb_riscv.vhd**, a instância **iram_inst** esteja configurada para indicar o arquivo `.hex` no formato correto e que este se encontre no caminho adequado em relação ao **tb.do**. Além disso, a instância **iram** deve possuir um *generic* que ofereça suporte a essa configuração.  
 
 A imagem abaixo apresenta o resultado da simulação do periférico em conjunto com o **RISC-V**:
 
+![image](img/tb_riscv.png)
+
 De igual forma ao apresentado anteriormente, há concordância de todos os campos do protocolo CAN no sinal can_tx. No entando, os registadores são agora escritos pelo núcleo do **RISC-V** através dos barramentos:
 
-- daddress
-- ddata_w
-- dcsel
-- d_we
+- **daddress** -> Informa o endereço do periférico juntamente com o endereço do registrador que será escrito.  
+- **ddata_w** -> Os 8 LSB do barramento são escritos no registrador indicado por **daddress**.  
+- **dcsel** -> Seleciona o barramento destinado como "Periféricos".  
+- **d_we** -> Habilita a escrita nos registradores do periférico.
 
-![image](img/tb_riscv.png)
-falar do resultado
+
+# Síntese
+
+Para realizar a síntese, são compilados no quartus as seguintes entidades:
+
+- register_map.vhd
+- can_top.vhd
+- can_pkg.vhd
+- can_fsm.vhd
+- can_engine.vhd
+- iregister.vhd
+- decoder_types.vhd
+- decode.vhd
+- iram_quartus.vhd
+- dmemory.vhd
+- instructionbusmux.vhd
+- databusmux.vhd
+- iodatabusmux.vhd
+- alu_types.vhd
+- alu.vhd
+- division_functions.vhd
+- quick_naive.vhd
+- M_types.vhd
+- M.vhd
+- register_file.vhd
+- csr.vhd
+- core.vhd
+- txt_util.vhdl
+- trace_debug.vhd
+
+A entidade top é [de10_lite.vhd](peripherals/can/sint/de10_lite/de10_lite.vhd) que instancia todos os componentes préviamente listados e gera o sinal de saída no pinos **IO0** (tx_can) e **IO1** (rx_can) do kit FPGA DE10-lite.
+
+
+# Referências
+
+* [MCP2515 Datasheet](https://www.microchip.com/en-us/product/mcp2515)
+* [Artigo sobre camada física do CAN](https://www.ti.com/lit/an/slla270/slla270.pdf)
+* [Artigo sobre protocolo CAN](https://www.port.de/fileadmin/user_upload/Dateien_IST_fuer_Migration/CAN20A.pdf)
