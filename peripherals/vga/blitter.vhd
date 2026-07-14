@@ -160,9 +160,12 @@ begin
           if cmd_empty = '0' then
             cmd_r <= cmd_q;
             case cmd_q(7 downto 0) is
-              when OP_FILL => blit_state <= BLIT_FILL_INIT;
-              when others  => null;         -- unknown opcode: consumed, stay idle
-            end case;
+              when OP_FILL => 
+				  blit_state <= BLIT_FILL_INIT;
+              when others  => 
+				  -- unknown opcode: consumed, stay idle
+				  null;                     
+		  	end case;
           end if;
         when BLIT_FILL_INIT =>
           i_cnt    <= 0;
