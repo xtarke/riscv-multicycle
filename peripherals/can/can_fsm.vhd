@@ -164,13 +164,15 @@ begin
                     end if;
 
                 when ST_CRC =>
+                    -- serializes crc bits
                     if stuff_nxt_bit = '0' then
-                        -- CRC calculation is implemented in can_engine.vhd
-                        if bit_count >= 14 then             -- 15 CRC data bits
+                        if bit_count <= 13 then
+                            can_tx <= crc_reg(14 - to_integer(bit_count)); 
+                            bit_count := bit_count + 1;
+                        else
+                            can_tx <= crc_reg(0); -- Last bit of crc_reg
                             bit_count := (others => '0');
                             current_state <= ST_CRC_DEL;
-                        else 
-                            bit_count := bit_count + 1;
                         end if;
                     end if;
 
@@ -218,6 +220,82 @@ begin
             --debug <= bit_count;
 
         end if;
+    end process;
+
+    ------------------------------------------------------------------
+    -- CRC-15 calc Process
+    ------------------------------------------------------------------
+    process(txb0sidh_reg, txb0sidl_reg, txb0dlc_reg, r_TXB0Dn)
+        variable crc      : std_logic_vector(14 downto 0);
+        variable crc_next : std_logic;
+        variable bit_val  : std_logic;
+        variable dlc_int  : integer range 0 to 15;
+        variable max_bits : integer range 19 to 83;
+        
+        variable byte_idx : integer range 0 to 7;
+        variable bit_idx  : integer range 0 to 7;
+    begin
+        -- starts in '0'
+        crc := (others => '0');
+
+        -- ensures maximum data lenght is 8 bytes
+        dlc_int := to_integer(unsigned(txb0dlc_reg(3 downto 0)));
+        if dlc_int > 8 then
+            dlc_int := 8;
+        end if;
+
+        -- 19 bits header (1 SOF + 11 ID + 1 RTR + 1 IDE + 1 r0 + 4 DLC) + payload
+        max_bits := 19 + (dlc_int * 8);
+
+        -- Loop to solve crc
+        for i in 0 to 82 loop
+            if i < max_bits then
+                
+                -- bitstream multiplexer (MSB first)
+                if i = 0 then
+                    bit_val := '0';                                -- SOF (Dominant)
+                elsif i <= 8 then
+                    bit_val := txb0sidh_reg(8 - i);                -- ID[10:3]
+                elsif i <= 11 then
+                    bit_val := txb0sidl_reg(11 - i + 5);           -- ID[2:0]
+                elsif i = 12 then
+                    bit_val := txb0dlc_reg(6);                     -- RTR
+                elsif i = 13 then
+                    bit_val := '0';                                -- IDE = 0 (Standard Frame)
+                elsif i = 14 then
+                    bit_val := '0';                                -- r0  = 0
+                elsif i <= 18 then
+                    bit_val := txb0dlc_reg(18 - i);                -- DLC[3:0]
+                else
+
+                    byte_idx := (i - 19) / 8;
+                    bit_idx  := 7 - ((i - 19) mod 8);
+                    bit_val  := r_TXB0Dn(byte_idx)(bit_idx);
+                end if;
+
+                -- CRC-15 poly calc (0x4599)
+                crc_next := bit_val xor crc(14);
+
+                crc(14) := crc(13) xor crc_next;
+                crc(13) := crc(12);
+                crc(12) := crc(11);
+                crc(11) := crc(10);
+                crc(10) := crc(9)  xor crc_next;
+                crc(9)  := crc(8);
+                crc(8)  := crc(7)  xor crc_next;
+                crc(7)  := crc(6)  xor crc_next;
+                crc(6)  := crc(5);
+                crc(5)  := crc(4);
+                crc(4)  := crc(3)  xor crc_next;
+                crc(3)  := crc(2)  xor crc_next;
+                crc(2)  := crc(1);
+                crc(1)  := crc(0);
+                crc(0)  := crc_next;
+                
+            end if;
+        end loop;
+
+        crc_reg <= crc;
     end process;
 
     ------------------------------------------------------------------

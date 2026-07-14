@@ -23,6 +23,7 @@ software/*/*.lss
 project.sigasi
 .project
 .sigasi/
+.settings/
 compiler/gcc
 work/
 *.wlf
