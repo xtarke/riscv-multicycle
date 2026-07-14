@@ -236,3 +236,4 @@ Não        Sim
 - Projeto base: https://github.com/xtarke/riscv-multicycle
 - Periférico do teclado: https://github.com/xtarke/riscv-multicycle/tree/master/peripherals/keyboard
 - Especificação RISC-V: https://riscv.org/
+- Imagem Teclado Matricial (Ligação elétrica): https://www.robocore.net/tutoriais/usando-teclado-matricial-com-arduino
