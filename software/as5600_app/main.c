@@ -7,7 +7,6 @@
 #define AS5600_T_HIGH   (*(_IO32 *) (PERIPH_BASE + 22*16*4))
 #define AS5600_T_PERIOD (*(_IO32 *) (PERIPH_BASE + 22*16*4 + 4))
 
-// ----------------------------------------------------------------------------
 // variáveis globais para lembrar a posição do giro entre uma leitura e outra
 int32_t prev_angle = -1;
 int32_t accum_angle = 0;
@@ -44,7 +43,6 @@ uint32_t calcular_modo_display(uint32_t angle_atual, uint32_t sw0_ligado) {
         return angle_atual;
     }
 }
-// ----------------------------------------------------------------------------
 
 int main() {
     uint32_t t_high;
@@ -72,38 +70,32 @@ int main() {
 
                 // faz a conversão pra 360 graus
                 angle = (data_val * 360) / 4095;
-// ----------------------------------------------------------------------------
-        // lê a chave 
+            }
+        }
+
+        // lê a chave (usando INBUS de gpio.h)
         uint32_t sw0_ligado = INBUS & 0x01;
         
         // chama o bloco novo passando o angulo que seu código já calculou
         uint32_t valor_para_tela = calcular_modo_display(angle, sw0_ligado);
 
-        // prepara os dados para o display usando a variável nova
+        // prepara os dados para o display usando a variável nova (valor_para_tela)
         uint32_t u = valor_para_tela % 10;
         uint32_t d = (valor_para_tela / 10) % 10;
         uint32_t c = (valor_para_tela / 100) % 10;
-// ----------------------------------------------------------------------------
-            }
-        }
-
-        // prepara os dados para o display
-        uint32_t u = angle % 10;
-        uint32_t d = (angle / 10) % 10;
-        uint32_t c = (angle / 100) % 10;
 
         bcd_val = 0xA;              // escreve '°' no primeiro display
         bcd_val |= (u << 4);        // escreve a unidade no segundo display
 
         // apaga a dezena caso seja menor que 10, para não ficar um zero a esquerda
-        if (angle >= 10) {
+        if (valor_para_tela >= 10) {
             bcd_val |= (d << 8);
         } else {
             bcd_val |= (0xF << 8);
         }
 
         // apaga a centena caso seja menor que 100, para não ficar um zero a esquerda
-        if (angle >= 100) {
+        if (valor_para_tela >= 100) {
             bcd_val |= (c << 12);
         } else {
             bcd_val |= (0xF << 12);
@@ -115,7 +107,7 @@ int main() {
         SEGMENTS_BASE_ADDRESS = bcd_val;
 
         // delay para tela não piscar
-        for (volatile uint32_t d = 0; d < 25000; d++);
+        for (volatile uint32_t i = 0; i < 25000; i++);
     }
 
     return 0;
