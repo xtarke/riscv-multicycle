@@ -17,7 +17,7 @@ entity register_map is
         rst           : in  std_logic;  -- Restats the internal state of the CAN controller
 
         -- Risc-V Bus Interface
-        bus_addr      : in  std_logic_vector(7 downto 0); -- Target reg address
+        bus_addr      : in  std_logic_vector(31 downto 0); -- Target reg address
         bus_wdata     : in  std_logic_vector(31 downto 0); -- Data to be written to the target register
         bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register @TODO
         bus_we        : in  std_logic;                     -- Write Enable

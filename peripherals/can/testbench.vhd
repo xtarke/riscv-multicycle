@@ -93,23 +93,26 @@ begin
         wait for CLK_PERIOD;
         -- Escrita do endereço nos registradors txb0sidh e txb0sidl
         bus_addr(7 downto 0) <= TXB0SIDH;
-        bus_wdata(7 downto 0) <= "10101010";
+        bus_wdata(7 downto 0) <= "00000000";
         reg_wr_en <= '1';
-        --wait for CLK_PERIOD;
+        wait for CLK_PERIOD;
         --bus_addr(7 downto 0) <= TXB0SIDL;
-        --bus_wdata(7 downto 0) <= "00100000";
-        --wait for CLK_PERIOD;
-        wait for CLK_PERIOD * 2; -- both SIDH and SIDL must be writtne
+        bus_wdata(7 downto 0) <= "00100000";
+        wait for CLK_PERIOD;
+        --wait for CLK_PERIOD * 2; -- both SIDH and SIDL must be writtne
 
         -- Escrita do data length no registrador txb0dlc
         bus_addr(7 downto 0) <= TXB0DLC;
-        bus_wdata(7 downto 0) <= "00000101";
+        bus_wdata(7 downto 0) <= "00000001";
         wait for CLK_PERIOD;
 
         -- Escrita do buffer de dados
         bus_addr(7 downto 0) <= TXB0D0;
         bus_wdata(7 downto 0) <= "10101010";
-        wait for CLK_PERIOD * 8;
+        wait for CLK_PERIOD;
+        --bus_addr(7 downto 0) <= TXB0D0;
+        bus_wdata(7 downto 0) <= "00011100";
+        wait for CLK_PERIOD;
 
         -- Configura o preescaler
         bus_addr(7 downto 0) <= BAUD_REG;

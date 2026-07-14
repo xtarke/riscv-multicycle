@@ -67,9 +67,56 @@ end entity;
 
 
 architecture rtl of de10_lite is
+
+	-- Output signals
+	signal can_tx : std_logic;
+
+
+	-- Input signals
+	signal can_rx : std_logic;
+
+	-- Signals to connect multiple instances
+
+
+
+
 begin
 	
+	-- PLL instance
+
+
+	-- can_top instance
+	can_top_inst : entity work.can_top
+		port map(
+			clk       => clk,
+			rst       => rst,
+			bus_addr  => bus_addr,
+			reg_wr_en => reg_wr_en,
+			bus_wdata => bus_wdata,
+			bus_rdata => bus_rdata,
+			can_rx    => can_rx,
+			can_tx    => can_tx
+		);
 	
+	-- RISCV core instance
+	myRiscv : entity work.core
+        port map(
+            clk        => clk,
+            rst        => rst,
+            clk_32x    => clk_50MHz,
+            iaddress   => iaddress,
+            idata      => idata,
+            daddress   => daddress,
+            ddata_r    => ddata_r,
+            ddata_w    => ddata_w,
+            d_we       => d_we,
+            d_rd       => d_rd,
+            d_sig      => d_sig,
+            dcsel      => dcsel,
+            dmask      => dmask,
+            interrupts => interrupts,
+            state      => state
+        );
 	
 	
 	

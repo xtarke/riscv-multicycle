@@ -1,5 +1,5 @@
 -------------------------------------------------------
---! @file   can_pkg.vhdl
+--! @file   can_engine.vhdl
 --! @author Christopher Costa
 --! @date   29/06/2026
 --! @brief  CAN 2.0A controller engine 
@@ -179,29 +179,20 @@ begin
 
     stuff_nxt_bit_out <= stuff_nxt_bit;
     
-    -- Process to transmit tx_can data to the transceiver considering bit stuffing and CRC multiplexing
-    process(stuff_nxt_bit, current_state, tx_bit_in, crc_reg)
+    -- Process to transmit tx_can data to the transceiver considering bit stuffing
+    process(stuff_nxt_bit, tx_bit_in)
     begin
         -- with bit stuffing
         if stuff_nxt_bit = '1' then
-            if current_state = ST_CRC then
-                can_tx <= not crc_reg(14);
-            else
-                can_tx <= not tx_bit_in;
-            end if;
+            can_tx <= not tx_bit_in;
         else
-            -- no bit stuffing
-            if current_state = ST_CRC then
-                can_tx <= crc_reg(14);
-            else
+         -- no bit stuffing
                 can_tx <= tx_bit_in;
-            end if;
         end if;
     end process;
 
     -- Selects wich signal must be considered to be counted repeated in bit stuffing process
-    current_bit_to_stuff <= crc_reg(14) when current_state = ST_CRC 
-        else tx_bit_in;
+    current_bit_to_stuff <= tx_bit_in;
 
     ------------------------------------------------------------------
     -- CRC-15 calc process
