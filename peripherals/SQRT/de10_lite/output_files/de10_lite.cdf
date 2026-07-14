@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484) Path("C:/PRG/Atividades/riscv-multicycle/peripherals/gpio/sint/de10_lite/output_files/") File("de10_lite.sof") MfrSpec(OpMask(1));
+		Device PartName(10M50DAF484) Path("C:/PRG/Atividades/riscv-multicycle/peripherals/SQRT/de10_lite/output_files/") File("de10_lite.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

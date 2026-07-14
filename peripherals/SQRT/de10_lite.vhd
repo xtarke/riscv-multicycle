@@ -1,6 +1,6 @@
 -------------------------------------------------------------------
 -- Name        : de0_lite.vhd
--- Author      : Sofia e Uéslei
+-- Author      :
 -- Version     : 0.1
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
 -- Description : Projeto base DE10-Lite
@@ -11,7 +11,7 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
-entity de0_lite_sqrt is
+entity de0_lite_gpio is
     generic (
         --! Num of 32-bits memory words
         IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
@@ -75,7 +75,7 @@ end entity;
 
 
 
-architecture rtl of de0_lite_sqrt is
+architecture rtl of de0_lite_gpio is
     -- Clocks and reset
     signal clk : std_logic;
     signal rst : std_logic;
@@ -142,8 +142,12 @@ architecture rtl of de0_lite_sqrt is
 
     signal ifcap :  std_logic;      -- capture flag
 
+    signal switches_sqrt:  std_logic_vector(9 downto 0);
+    signal raiz_inteira:  std_logic_vector(9 downto 0);
+
     -- Signdata raiz
    
+
 begin
 
     -- Reset
@@ -322,10 +326,7 @@ begin
         );
 
     generic_raiz : entity work.raiz
-        generic map(
-            MY_CHIPSELECT     => "10",
-            MY_WORD_ADDRESS   => x"0010"
-        )
+
         port map(
             clk      => clk,
             rst      => rst,
@@ -336,15 +337,18 @@ begin
             d_rd     => d_rd,
             dcsel    => dcsel,
             dmask    => dmask,
-            switches => sw
+            switches => switches_sqrt,
+            sqrt_result_out => raiz_inteira(4 downto 0),
+		    sqrt_remainder_out => open
         );
 
     
+    
         
-
+    --LEDR(7 downto 0) <= ddata_r_raiz(7 downto 0);
     -- Connect input hardware to gpio data
-    --gpio_input(3 downto 0) <= SW(3 downto 0);
-    --LEDR(7 downto 0) <= gpio_output(7 downto 0);
+    switches_sqrt(7 downto 0) <= SW(7 downto 0);
+    LEDR(7 downto 0) <= raiz_inteira(7 downto 0);
 
 end;
 

@@ -1,5 +1,5 @@
 Assembler report for de10_lite
-Tue Jul 07 21:51:46 2026
+Mon Jul 13 22:54:57 2026
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -39,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Jul 07 21:51:46 2026 ;
+; Assembler Status      ; Successful - Mon Jul 13 22:54:57 2026 ;
 ; Revision Name         ; de10_lite                             ;
 ; Top-level Entity Name ; de0_lite_gpio                         ;
 ; Family                ; MAX 10                                ;
@@ -78,8 +78,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------+---------------------------------------------------------------------------------------------------+
 ; Option         ; Setting                                                                                           ;
 +----------------+---------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x006CB0A3                                                                                        ;
-; Checksum       ; 0x006CB0A3                                                                                        ;
+; JTAG usercode  ; 0x006E74ED                                                                                        ;
+; Checksum       ; 0x006E74ED                                                                                        ;
 +----------------+---------------------------------------------------------------------------------------------------+
 
 
@@ -89,7 +89,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Tue Jul 07 21:51:43 2026
+    Info: Processing started: Mon Jul 13 22:54:53 2026
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off de10_lite -c de10_lite
 Warning (125092): Tcl Script File ../../../../memory/iram_quartus.qip not found
     Info (125063): set_global_assignment -name QIP_FILE ../../../../memory/iram_quartus.qip
@@ -97,8 +97,8 @@ Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4717 megabytes
-    Info: Processing ended: Tue Jul 07 21:51:46 2026
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Processing ended: Mon Jul 13 22:54:57 2026
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 

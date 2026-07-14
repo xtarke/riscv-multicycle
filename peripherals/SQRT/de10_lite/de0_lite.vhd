@@ -1,6 +1,6 @@
 -------------------------------------------------------------------
 -- Name        : de0_lite.vhd
--- Author      :
+-- Author      : Sofia e Ueslei
 -- Version     : 0.1
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
 -- Description : Projeto base DE10-Lite
@@ -323,7 +323,9 @@ begin
         );
 
     generic_raiz : entity work.raiz
-
+        generic map(
+            MY_WORD_ADDRESS => x"0190"   -- indice 25 (hardware.h) * 16 = 400 = 0x190
+        )
         port map(
             clk      => clk,
             rst      => rst,
@@ -337,10 +339,18 @@ begin
             switches => switches_sqrt
         );
 
-    
-    
-    -- Connect input hardware to gpio data
-    switches_sqrt(3 downto 0)<= SW(3 downto 0);
-    LEDR(3 downto 0) <= switches_sqrt(3 downto 0);
+    -- hardware do gpio 
+    -- Bits 0-8  -> SW0-SW8  (SW9 é usado como reset, ver acima)
+    -- Bits 10-11 -> KEY0 (ativo em nivel baixo)
+    gpio_input(9 downto 0)   <= SW;
+    gpio_input(11 downto 10) <= KEY;
+    gpio_input(31 downto 12) <= (others => '0');
+
+    -- Chaves conectadas ao periferico de raiz quadrada
+    -- SW9 já é usada como reset geral, então não entra aqui
+    switches_sqrt(8 downto 0) <= SW(8 downto 0);
+    switches_sqrt(9)          <= '0';
+
+    LEDR(8 downto 0) <= switches_sqrt(8 downto 0);
 
 end;

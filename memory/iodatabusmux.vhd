@@ -58,12 +58,12 @@ begin
         ddata_r_fir_fil  when x"000D",
         ddata_r_key when x"000E",
         ddata_r_crc when x"000F",
-        ddata_r_raiz when x"0019",
         ddata_r_spwm  when x"0011",
         ddata_r_accelerometer when x"0012",
         ddata_r_cordic when x"0015",
     	ddata_r_RS485 when x"0017",
         ddata_r_rgb when x"0020",
+         ddata_r_raiz when x"0019",
         -- Add new io peripherals here
         (others => '0') when others;
 end architecture RTL;
