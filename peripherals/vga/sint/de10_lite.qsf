@@ -47,7 +47,7 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Altera FPGA (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
@@ -218,6 +218,13 @@ set_global_assignment -name VHDL_FILE ../vga_controller.vhd
 set_global_assignment -name QIP_FILE ../pll/pll.qip
 set_global_assignment -name VHDL_FILE ../ram_vga.vhd
 set_global_assignment -name QIP_FILE ../ram_vga.qip
+# SDRAM cache framebuffer sources
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_pkg.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_controller.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/fifo_16/fifo_16.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/fifo_512/fifo_512.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_cache.vhd
+set_global_assignment -name VHDL_FILE ../vga_framebuffer.vhd
 set_global_assignment -name VHDL_FILE ../de10_lite.vhd
 set_global_assignment -name SDC_FILE de10_lite.sdc
 set_global_assignment -name VHDL_FILE ../../../alu/alu_types.vhd
