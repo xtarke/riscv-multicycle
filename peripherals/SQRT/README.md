@@ -1,6 +1,6 @@
 ## Periférico de Raiz Quadrada
 
-Este projeto implementa um periférico capaz de calcular a raiz quadrada inteira de um número utilizando a megafunção `ALTSQRT` do Quartus. O valor de entrada é definido pelas chaves da placa, enquanto o resultado ou o resto da operação é exibido nos displays de sete segmentos da FPGA.
+Este projeto implementa um periférico capaz de calcular a raiz quadrada inteira de um número utilizando a _megafunction_ `ALTSQRT` do Quartus. O valor de entrada é definido pelas chaves da placa, enquanto o resultado ou o resto da operação é exibido nos displays de sete segmentos da FPGA.
 
 ## Código
 
@@ -38,13 +38,14 @@ $$
 
 Foi elaborada uma simulação no ModelSim, antes da integração do periférico à síntese, para verificar se o arquivo `raiz.vhd` realizava corretamente o cálculo da raiz quadrada e do resto.
 
-![Simulação no ModelSim](image.png)
+<img width="1632" height="260" alt="image" src="https://github.com/user-attachments/assets/d120983e-a2da-4b35-a179-af0f15cc968f" />
 
 ## Fluxograma do periférico
 
 O fluxograma apresenta a integração entre o hardware e o software. 
-
-![Fluxograma do sistema](fluxograma.png)
+<div align="center">
+<img width="565" height="595" alt="fluxograma_raiz" src="https://github.com/user-attachments/assets/430bcdbf-44a1-4c68-bf00-6b26d248bf42" />
+</div>
 
 ## Funcionamento na FPGA
 
@@ -52,7 +53,7 @@ Na placa, as chaves `SW0`–`SW8` representam o número de entrada em binário e
 
 O botão `KEY0` permite alternar a informação exibida. Com o botão solto, os displays mostram o resultado da raiz quadrada. Enquanto o botão estiver pressionado, mostram o resto da operação para a entrada 4, sendo que o resto é zero, pois $4 = 2^2 + 0$.
 
-Vale notar que os displays de sete segmentos exibem os valores sempre em **hexadecimal**. Para entradas pequenas isso passa despercebido, como no exemplo acima, mas a diferença aparece a partir de resultados de dois dígitos em hexadecimal. Ligando todas as chaves de entrada, o valor de entrada é 511:
+Vale notar que os displays de sete segmentos exibem os valores em **hexadecimal**. Para entradas pequenas isso passa despercebido, como no exemplo acima, mas a diferença aparece a partir de resultados de dois dígitos em hexadecimal. Ligando todas as chaves de entrada, o valor de entrada é 511:
 
 $$
 \sqrt{511} \approx 22{,}6 \implies \text{resultado} = 22, \quad \text{resto} = 511 - 22^2 = 27
