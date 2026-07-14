@@ -6,32 +6,32 @@
       "library": "as5600_pwm",
       "resources": [
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\as5600_pwm.vhd",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\as5600_pwm.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_sldfabric.vhd",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_sldfabric.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\de0_lite.vhd",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\de0_lite.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\pll.BAK.vhd",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\pll.BAK.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\pll.vhd",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\pll.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\testbench.vhd",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\testbench.vhd",
           "hdlVersion": "VHDL 2019",
           "kind": "COMPILE_FILE"
         }
@@ -42,7 +42,7 @@
       "includeFallbackToLocalDirectory": false,
       "additionalEnvironmentVariables": {},
       "libraryResourcesConfig": null,
-      "currentWorkingDirectory": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle",
+      "currentWorkingDirectory": "c:\\vhdl\\project\\riscv-multicycle",
       "inferOrder": true,
       "inferLibrary": false,
       "allowUndefineInitialDefine": false,
@@ -60,32 +60,32 @@
       "library": "as5600_pwm",
       "resources": [
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\alt_sld_fab.v",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\alt_sld_fab.v",
           "hdlVersion": "Verilog",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab.v",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab.v",
           "hdlVersion": "Verilog",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_ident.sv",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_ident.sv",
           "hdlVersion": "SystemVerilog",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_presplit.sv",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_presplit.sv",
           "hdlVersion": "SystemVerilog",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_splitter.sv",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\ip\\slde7a58a48\\submodules\\alt_sld_fab_alt_sld_fab_splitter.sv",
           "hdlVersion": "SystemVerilog",
           "kind": "COMPILE_FILE"
         },
         {
-          "path": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\pll_altpll.v",
+          "path": "c:\\vhdl\\project\\riscv-multicycle\\peripherals\\as5600_pwm\\sint\\de10_lite\\db\\pll_altpll.v",
           "hdlVersion": "Verilog",
           "kind": "COMPILE_FILE"
         }
@@ -99,7 +99,7 @@
         "libraryFolderMatchConfigs": [],
         "searchStrategy": "DEFAULT"
       },
-      "currentWorkingDirectory": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle",
+      "currentWorkingDirectory": "c:\\vhdl\\project\\riscv-multicycle",
       "inferOrder": true,
       "inferLibrary": false,
       "allowUndefineInitialDefine": false,

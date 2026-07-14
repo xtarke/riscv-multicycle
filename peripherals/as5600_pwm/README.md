@@ -22,6 +22,21 @@ O arquivo principal é o `as5600_pwm.vhd`. A FPGA atua medindo sinais físicos e
 * **Cronômetros:** O VHDL não calcula ângulos. Ele apenas possui dois cronômetros: um que conta o tempo total do ciclo PWM (`t_period`) e outro que conta o tempo que o sinal fica em nível lógico alto (`t_high`).
 * **Comunicação:** O módulo disponibiliza esses tempos no **Slot 22** do barramento de dados do processador.
 
+**Simulação e Sinais (Testbench):**
+
+Para validar o funcionamento do hardware, simulamos o circuito no ModelSim. A imagem abaixo demonstra o comportamento dos sinais internos durante a leitura do sensor.
+
+![Simulação do Testbench no ModelSim](img/testbench_wave.png)
+
+Na análise da forma de onda, destacam-se os seguintes sinais:
+* **clk e rst:** Os sinais de clock (50 MHz) e reset que comandam todo o sincronismo.
+* **pwm_in:** É a entrada bruta vinda do pino físico do sensor AS5600. Note que ele é totalmente assíncrono.
+* **pwm_sync_1 e pwm_sync_2:** São as saídas dos flip-flops de sincronização. Eles replicam o `pwm_in`, mas com um atraso de 1 e 2 ciclos de clock, garantindo estabilidade. O sistema detecta uma nova borda de subida avaliando quando `pwm_sync_1` está alto e `pwm_sync_2` está baixo.
+* **period_counter:** Um contador contínuo que incrementa a cada ciclo de clock, registrando o tempo total.
+* **high_counter:** Um contador que incrementa apenas enquanto o sinal sincronizado `pwm_sync_2` está em nível lógico alto.
+* **t_high_reg e t_period_reg:** Registradores que capturam os valores finais dos contadores no exato instante em que um novo ciclo inicia. São esses valores estáveis que ficam disponíveis para o processador ler.
+* **daddress, ddata_r, d_rd e dcsel:** Sinais do barramento Avalon/RISC-V. Quando o processador envia o endereço de leitura correto e ativa o chip select (`dcsel`), o valor dos registradores é colocado no barramento `ddata_r` para o software em C processar.
+
 ### B. Camada de Software (C)
 O arquivo principal é o `main.c`. Rodando dentro do núcleo RISC-V, o software é o "cérebro" matemático.
 * **Memory-Mapped I/O:** O C acessa o Slot 22 físico através dos ponteiros `#define AS5600_T_HIGH` e `AS5600_T_PERIOD` presentes no mapa de memória (`hardware.h`).
