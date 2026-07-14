@@ -78,7 +78,7 @@ end architecture RTL;
 #endif //HARDWARE_H
 ```
 
-3. [`software/rtc/rtc.h`](../../software/rtc/rtc.h)
+3. [`software/rtc2/rtc.h`](../../software/rtc2/rtc.h)
 
 O arquivo rtc.h define os registradores do periférico RTC a partir do endereço base declarado em hardware.h, onde cada macro representa um registrador de 32 bits do periférico.
 O endereço de cada registrador é obtido somando um deslocamento ao endereço base RTC_BASE_ADDRESS. Como o endereço base é definido como um registrador de 32 bits, cada incremento representa o avanço de uma palavra de 32 bits, que equivale a 4 bytes.
