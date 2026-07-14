@@ -70,8 +70,12 @@ O software interpreta esse código, executa a operação correspondente e envia 
 
 O teclado utilizado é um teclado matricial 4×4, formado por 16 teclas distribuídas em quatro linhas e quatro colunas. Esse tipo de teclado é bastante utilizado em sistemas embarcados porque permite utilizar apenas oito conexões elétricas para identificar todas as teclas.
 
+![Funcionamento](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/figures/272_img_5_H.png)
+
 Cada tecla representa uma conexão elétrica entre uma linha e uma coluna. Dessa forma, o teclado necessita de apenas oito conexões elétricas para identificar todas as dezesseis teclas disponíveis.
 As ligações com o DE10 são feitas da seguinte maneira:
+
+![circuito](https://github.com/luiz-sene/riscv-multicycle/blob/master/peripherals/keyboard/figures/de10teclado2.png)
 
 * Cabos laranjas = Linhas
 * Cabos azuis = Colunas
