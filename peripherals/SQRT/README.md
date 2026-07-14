@@ -1,6 +1,6 @@
 ## Periférico de Raiz Quadrada
 
-Este projeto implementa um periférico capaz de calcular a raiz quadrada inteira de um número utilizando a megafunção `ALTSQRT` do Quartus. O valor de entrada é definido pelas chaves da placa, enquanto o resultado ou o resto da operação é exibido nos displays de sete segmentos da FPGA.
+Este projeto implementa um periférico capaz de calcular a raiz quadrada inteira de um número utilizando a _megafunction_ `ALTSQRT` do Quartus. O valor de entrada é definido pelas chaves da placa, enquanto o resultado ou o resto da operação é exibido nos displays de sete segmentos da FPGA.
 
 ## Código
 
@@ -38,13 +38,13 @@ $$
 
 Foi elaborada uma simulação no ModelSim, antes da integração do periférico à síntese, para verificar se o arquivo `raiz.vhd` realizava corretamente o cálculo da raiz quadrada e do resto.
 
-![Simulação no ModelSim](image.png)
+<img width="1632" height="260" alt="image" src="https://github.com/user-attachments/assets/d120983e-a2da-4b35-a179-af0f15cc968f" />
 
 ## Fluxograma do periférico
 
 O fluxograma apresenta a integração entre o hardware e o software. 
 
-![Fluxograma do sistema](fluxograma.png)
+<img width="1654" height="1785" alt="fluxograma_raiz" src="https://github.com/user-attachments/assets/430bcdbf-44a1-4c68-bf00-6b26d248bf42" />
 
 ## Funcionamento na FPGA
 
