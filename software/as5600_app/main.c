@@ -11,19 +11,16 @@ int32_t accum_angle = 0;
 
 uint32_t calcular_modo_display(uint32_t angle_atual, uint32_t sw0_ligado) {
     if (sw0_ligado) {
-        // Modo potenciômetro: acumula rotação em múltiplas voltas (0 a 100)
         if (prev_angle == -1) {
             prev_angle = angle_atual;
         } else {
             int32_t delta = angle_atual - prev_angle;
 
-            // Corrige wrap-around ao cruzar 0°/360°
             if (delta < -180) delta += 360;
             else if (delta > 180) delta -= 360;
 
             accum_angle += delta;
 
-            // Limita a 2 voltas (720° = valor 100)
             if (accum_angle > 720) accum_angle = 720;
             if (accum_angle < 0) accum_angle = 0;
 
@@ -33,7 +30,6 @@ uint32_t calcular_modo_display(uint32_t angle_atual, uint32_t sw0_ligado) {
         return (accum_angle * 50) / 360;
 
     } else {
-        // Modo normal: exibe ângulo absoluto (0 a 360)
         prev_angle = -1;
         accum_angle = 0;
         return angle_atual;
