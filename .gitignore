@@ -27,6 +27,9 @@ compiler/gcc
 work/
 *.wlf
 *.ps
+*.d
+*.o
 .DS_Store
 .library_mapping.xml
 project.sigasi
+sim.s
