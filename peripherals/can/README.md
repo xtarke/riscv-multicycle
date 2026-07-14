@@ -93,15 +93,46 @@ A imagem acima apresenta o *CAN frame* que é resultado da seguinte configuraç�
 
 Na imagem, pode-se observar a concordância de todos os campos do protocolo CAN, desde o *Start of Frame* até o *End of Frame*. Nota-se também o *bit stuffing* ocorrendo no campo de payload, o que contribui para a redução do nível DC da mensagem e, consequentemente, para o aumento do seu comprimento.
 
+Adendo: Para fins de validação, o sinal **can_tx** que representa a transmissão da mensagem apresenta-se atrasado em um ciclo de clock do sinal **state_name** que representa o estado da máquina de estados.
+
 
 # maquina de estados
-descrever brevemente cada um
+
+A máquina de estados é implementada na entidade [can_fsm.vhd](/peripherals/can/can_fsm.vhd), cujos estados correspondem diretamente aos segmentos do pacote CAN. A imagem que representa essa máquina de estados pode ser visualizada abaixo:
+
 ![image](img/fsm.png)
 
-# Simulação com o RISCV
-- Compilar o código de teste `software/can/can_main.c` ou usar o 'can.hex' previamante compilado
-certificar que no tb_riscv.vhd em iram_inst indicam o .hex do formato certo e esta no caminho correto em relação a tb.do e que iram tem um generic que o suporte
+Os estados podem ser descritos brevemente da seguinte forma:
 
-resultado
+- **ST_IDLE** -> Verifica se é possível iniciar uma nova transmissão.
+- **ST_SOF** -> Envia um bit dominante e inicia um *frame*.
+- **ST_ARBITRATION** -> Envia o ID enquanto verifica se há um *frame* mais prioritário sendo transmitido ao mesmo tempo.
+- **ST_RTR** -> Envia '1' para *remote frame* ou '0' para *data frame*.
+- **ST_IDE** -> Envia '0' para CAN2.0A (*standard*).
+- **ST_R0** -> Bit reservado, envia '0'.
+- **ST_DLC** -> Envia o tamanho do pacote e verifica se o pacote é um *remote frame* ou *data frame*.
+- **ST_DATA** -> Envia o *payload* contido nos registadores TXB0Dn.
+- **ST_CRC** -> Envia o CRC-15 a partir do calculo de todo o pacote até **ST_DATA**.
+- **ST_CRC_DEL** -> Envia bit demilitador do CRC.
+- **ST_ACK** -> Transmissor envia sempre bit recessivo.
+- **ST_EOF** -> Envia 7 bits recessivos sem *bit stuffing* indicando o fim do pacote.
+- **ST_IFS** -> Estado para garantir um tempo mínimo entre *frames*. Envia 3 bits recessivos e retorna para **ST_IDLE**.
+
+
+# Simulação com o RISCV
+
+Para simular o periférico com o **RISC-V** é necessário compilar o código de teste [can_main.c](/../../software/can/can_main.c) ou utilizar o [can.hex](/../../software/can/can.hex) previamente compilado.  
+
+É preciso certificar-se de que, no arquivo **tb_riscv.vhd**, a instância **iram_inst** esteja configurada para indicar o arquivo `.hex` no formato correto e que este se encontre no caminho adequado em relação ao **tb.do**. Além disso, a instância **iram** deve possuir um *generic* que ofereça suporte a essa configuração.  
+
+A imagem abaixo apresenta o resultado da simulação do periférico em conjunto com o **RISC-V**:
+
+De igual forma ao apresentado anteriormente, há concordância de todos os campos do protocolo CAN no sinal can_tx. No entando, os registadores são agora escritos pelo núcleo do **RISC-V** através dos barramentos:
+
+- daddress
+- ddata_w
+- dcsel
+- d_we
+
 ![image](img/tb_riscv.png)
 falar do resultado
