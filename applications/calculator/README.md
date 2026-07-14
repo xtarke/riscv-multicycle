@@ -4,6 +4,9 @@
 
 Este projeto apresenta o desenvolvimento de uma calculadora digital executada sobre um processador **RISC-V Multicycle**, implementado como um **softcore** na FPGA Intel DE10-Lite. O objetivo foi desenvolver uma aplicação capaz de integrar hardware e software, utilizando os recursos da FPGA para receber dados de um teclado matricial, processar as operações matemáticas e apresentar os resultados nos displays de sete segmentos.
 
+![Funcionamento](https://github.com/marinabampi/riscv-multicycle/blob/master/applications/calculator/unnamed.jpg)
+
+
 A aplicação foi desenvolvida em linguagem C e é executada diretamente pelo processador RISC-V. A comunicação com os periféricos é realizada por meio de **Memory Mapped I/O**, permitindo que dispositivos como o teclado e os displays sejam acessados através de endereços de memória.
 
 Para o desenvolvimento do projeto foi utilizada como base a plataforma **riscv-multicycle**, aproveitando sua infraestrutura de hardware e o periférico responsável pelo teclado matricial. A partir dessa base, foi desenvolvida toda a aplicação da calculadora, integrando os periféricos disponíveis e implementando a lógica necessária para o funcionamento do sistema.
