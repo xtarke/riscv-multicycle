@@ -112,8 +112,12 @@ architecture rtl of de10_lite is
 	-- VGA Signals
 	signal clk_sdram : std_logic;                       -- 125 MHz cache domain
 	signal clk_vga   : std_logic;                       -- 25 MHz pixel clock (PLL c1)
-	signal clk_vga_d : std_logic;
+	signal pix_toggle    : std_logic;
+	signal pix_toggle_s  : std_logic;
+	signal pix_toggle_d  : std_logic;
 	signal pixel_en  : std_logic;                       -- pixel tick in the 125 MHz domain
+	signal vga_we_d  : std_logic;
+	signal fb_commit : std_logic;                       -- one commit per CPU store
 	signal disp_ena  : std_logic;
 	signal hsync_sig : std_logic;
 	signal vsync_sig : std_logic;
@@ -127,7 +131,9 @@ architecture rtl of de10_lite is
 
 begin
 
-	rst <= SW(9);
+	-- Hold everything in reset until the PLL locks, so a JTAG reconfigure
+	-- boots cleanly without needing a manual SW(9) toggle
+	rst <= '1' when SW(9) = '1' or locked_sig = '0' else '0';
 	LEDR(9) <= SW(9);
 
 	-- No interrupts used in this design
@@ -138,7 +144,7 @@ begin
 	-- PLL: c0 = CPU clock, c1 = 25 MHz pixel clock, c2 = 125 MHz SDRAM/cache domain
 	pll_inst: entity work.pll
 		port map(
-			areset => rst,
+			areset => SW(9),
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
 			c1     => clk_vga,
@@ -146,14 +152,27 @@ begin
 			locked => locked_sig
 		);
 
+	-- Pixel tick: a pixel-clock flop toggles once per pixel, edge-detected in the
+	-- 125 MHz domain -> one clean pixel_en (sampling clk_vga as data races -> 2-wide).
+	process(clk_vga, rst)
+	begin
+		if rst = '1' then
+			pix_toggle <= '0';
+		elsif rising_edge(clk_vga) then
+			pix_toggle <= not pix_toggle;
+		end if;
+	end process;
+
 	process(clk_sdram, rst)
 	begin
 		if rst = '1' then
-			clk_vga_d <= '0';
+			pix_toggle_s <= '0';
+			pix_toggle_d <= '0';
 			pixel_en <= '0';
 		elsif rising_edge(clk_sdram) then
-			clk_vga_d <= clk_vga;
-			pixel_en <= clk_vga and (not clk_vga_d);
+			pix_toggle_s <= pix_toggle;
+			pix_toggle_d <= pix_toggle_s;
+			pixel_en <= pix_toggle_s xor pix_toggle_d;
 		end if;
 	end process;
 
@@ -207,19 +226,42 @@ begin
 			q          => ddata_r_mem
 		);
 
-	-- VGA write address from CPU data address (limited to 13 bits = 8192 words)
-	vgaaddrwr <= std_logic_vector(daddress(12 downto 0));
+	-- CPU write port (store, dcsel="11"): edge-detect the slow CPU write strobe
+	process(clk_sdram, rst)
+	begin
+		if rst = '1' then
+			vga_we_d  <= '0';
+			fb_commit <= '0';
+		elsif rising_edge(clk_sdram) then
+			vga_we_d  <= wren_vga;
+			fb_commit <= wren_vga and (not vga_we_d);
+		end if;
+	end process;
 
-	-- VGA dual-port RAM
-	vgamem: entity work.ram_vga
+	-- Framebuffer in SDRAM via the cache --
+	fb: entity work.vga_framebuffer
 		port map(
-			data      => ddata_w(15 downto 0),
-			rdaddress => addr_vga,
-			rdclock   => clk_vga,
-			wraddress => vgaaddrwr,
-			wrclock   => clk,
-			wren      => wren_vga,
-			q         => rgb_in
+			clk       => clk_sdram,
+			reset     => rst,
+			pixel_en  => pixel_en,
+			disp_ena  => disp_ena,
+			vsync     => vsync_sig,
+			rgb       => rgb_in,
+			write_commit  => fb_commit,
+			write_address => std_logic_vector(resize(daddress(18 downto 0), 32)),
+			write_data    => ddata_w(15 downto 0),
+			write_busy    => open,
+			DRAM_ADDR => DRAM_ADDR,
+			DRAM_BA   => DRAM_BA,
+			DRAM_CAS_N=> DRAM_CAS_N,
+			DRAM_CKE  => DRAM_CKE,
+			DRAM_CLK  => DRAM_CLK,
+			DRAM_CS_N => DRAM_CS_N,
+			DRAM_DQ   => DRAM_DQ,
+			DRAM_LDQM => DRAM_LDQM,
+			DRAM_RAS_N=> DRAM_RAS_N,
+			DRAM_UDQM => DRAM_UDQM,
+			DRAM_WE_N => DRAM_WE_N
 		);
 
 	-- VGA controller (640x480 @ 60Hz, 25MHz pixel clock)
@@ -237,7 +279,8 @@ begin
 			v_pol    => '0'
 		)
 		port map(
-			pixel_clk => clk_vga,
+			pixel_clk => clk_sdram,
+			pixel_en  => pixel_en,
 			reset     => rst,
 			h_sync    => hsync_sig,
 			v_sync    => vsync_sig,
