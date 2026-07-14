@@ -57,6 +57,13 @@ Figura 3. Diagrama de blocos do decoder do controlador TFT LCD.
 * **dec_reset:** Bloco responsável pelo reset de todos os componentes do controlador TFT LCD;
 * **dec_clean:** Bloco responsável por limpar a tela;
 * **dec_rect:** Bloco responsável por imprimir um retângulo na tela;
+* 
+## Imagens de simulação do periférico
+![TFT_4](./images/simulacao_tft.png "Sequência de comandos")
+Figura 4. Parte da simulação do TFT executando comandos de limpar a tela e desenhar um retângulo.
+
+![TFT_5](./images/simulacao_tft_rectangle.png "Comando de desenhar retangulo")
+Figura 5. Parte da simulação do TFT executando comando de desenhar um retângulo.
 
 ### Comandos Suportados
 
@@ -67,9 +74,9 @@ De acordo com o núcleo do decodificador (`dec_fsm`), os seguintes comandos pode
 * `0x0002`: **DRAW SQUARE** (Desenha um quadrado)
 * `0x0003`: **DRAW RECTANGLE** (Desenha um retângulo)
 
-![TFT_4](./images/figura4.png "Sequência de bytes")
+![TFT_6](./images/figura4.png "Sequência de bytes")
 
-Figura 4. Sequência de bytes enviados ao hardware.  
+Figura 6. Sequência de bytes enviados ao hardware.  
 
 ## Descrição das funções em C
 
