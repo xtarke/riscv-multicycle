@@ -110,13 +110,17 @@ architecture rtl of de10_lite is
 	signal interrupts : std_logic_vector(31 downto 0);
 
 	-- VGA Signals
-	signal clk_vga   : std_logic;
+	signal clk_sdram : std_logic;                       -- 125 MHz cache domain
+	signal clk_vga   : std_logic;                       -- 25 MHz pixel clock (PLL c1)
+	signal clk_vga_d : std_logic;
+	signal pixel_en  : std_logic;                       -- pixel tick in the 125 MHz domain
 	signal disp_ena  : std_logic;
+	signal hsync_sig : std_logic;
+	signal vsync_sig : std_logic;
 	signal addr_vga  : std_logic_vector(12 downto 0);
 	signal rgb_in    : std_logic_vector(15 downto 0);
 	signal wren_dm   : std_logic;
 	signal wren_vga  : std_logic;
-	signal vgaaddrwr : std_logic_vector(12 downto 0);
 
 	-- VGA read-back (dcsel = "11")
 	signal ddata_r_sdram : std_logic_vector(31 downto 0);
@@ -129,29 +133,29 @@ begin
 	-- No interrupts used in this design
 	interrupts <= (others => '0');
 
-	-- Unused SDRAM/Arduino directly driven
-	DRAM_DQ    <= (others => 'Z');
-	DRAM_ADDR  <= (others => '0');
-	DRAM_BA    <= (others => '0');
-	DRAM_CAS_N <= '1';
-	DRAM_CKE   <= '0';
-	DRAM_CLK   <= '0';
-	DRAM_CS_N  <= '1';
-	DRAM_LDQM  <= '0';
-	DRAM_RAS_N <= '1';
-	DRAM_UDQM  <= '0';
-	DRAM_WE_N  <= '1';
 	ARDUINO_IO <= (others => 'Z');
 
-	-- PLL: c0 = 1 MHz (CPU clock), c1 = 40 MHz (VGA pixel clock)
+	-- PLL: c0 = CPU clock, c1 = 25 MHz pixel clock, c2 = 125 MHz SDRAM/cache domain
 	pll_inst: entity work.pll
 		port map(
 			areset => rst,
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
 			c1     => clk_vga,
+			c2     => clk_sdram,
 			locked => locked_sig
 		);
+
+	process(clk_sdram, rst)
+	begin
+		if rst = '1' then
+			clk_vga_d <= '0';
+			pixel_en <= '0';
+		elsif rising_edge(clk_sdram) then
+			clk_vga_d <= clk_vga;
+			pixel_en <= clk_vga and (not clk_vga_d);
+		end if;
+	end process;
 
 	-- Instruction bus mux
 	instr_mux: entity work.instructionbusmux
@@ -235,8 +239,8 @@ begin
 		port map(
 			pixel_clk => clk_vga,
 			reset     => rst,
-			h_sync    => VGA_HS,
-			v_sync    => VGA_VS,
+			h_sync    => hsync_sig,
+			v_sync    => vsync_sig,
 			disp_ena  => disp_ena,
 			column    => open,
 			row       => open,
@@ -244,6 +248,11 @@ begin
 			n_blank   => open,
 			n_sync    => open
 		);
+
+	VGA_HS <= hsync_sig;
+	VGA_VS <= vsync_sig;
+
+	-- Framebuffer status on spare LEDs --
 
 	-- VGA image generator (extracts RGB from RAM data)
 	vgaimg: entity work.hw_image_generator
