@@ -17,6 +17,7 @@ ENTITY vga_controller IS
 		v_pol    : STD_LOGIC := '1');   --vertical sync pulse polarity (1 = positive, 0 = negative)
 	PORT(
 		pixel_clk : IN  STD_LOGIC;      --pixel clock at frequency of VGA mode being used
+		pixel_en  : IN  STD_LOGIC := '1'; --clock enable: advance one pixel when high (tie '1' if pixel_clk already is the pixel rate)
 		reset   : IN  STD_LOGIC;      --active low asycnchronous reset
 		h_sync    : OUT STD_LOGIC;      --horiztonal sync pulse
 		v_sync    : OUT STD_LOGIC;      --vertical sync pulse
@@ -52,6 +53,7 @@ BEGIN
 			row      <= 0;              --reset row pixel coordinate
 
 		ELSIF (pixel_clk'EVENT AND pixel_clk = '1') THEN
+		 IF (pixel_en = '1') THEN     --advance only on the pixel tick
 
 			--counters
 			IF (h_count < h_period - 1) THEN --horizontal counter (pixels)
@@ -95,6 +97,7 @@ BEGIN
 				disp_ena <= '0';        --disable display
 			END IF;
 
+		 END IF;                        --pixel_en
 		END IF;
 	END PROCESS;
 
