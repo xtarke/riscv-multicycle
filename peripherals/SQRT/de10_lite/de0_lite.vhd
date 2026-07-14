@@ -340,7 +340,7 @@ begin
         );
 
     -- hardware do gpio 
-    -- Bits 0-8  -> SW0-SW8  (SW9 é usado como reset, ver acima)
+    -- Bits 0-8  -> SW0-SW8  (Valores de entrada)
     -- Bits 10-11 -> KEY0 (ativo em nivel baixo)
     gpio_input(9 downto 0)   <= SW;
     gpio_input(11 downto 10) <= KEY;
