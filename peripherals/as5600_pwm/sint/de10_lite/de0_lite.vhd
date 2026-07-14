@@ -281,7 +281,7 @@ begin
             d_rd     => d_rd,
             dcsel    => dcsel,
             dmask    => dmask,
-            pwm_in   => ARDUINO_IO(0)
+            pwm_in   => ARDUINO_IO(2)
         );
 
 	  generic_gpio: entity work.gpio	    
