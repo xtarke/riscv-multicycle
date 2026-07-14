@@ -26,7 +26,9 @@ entity can_top is
 
         -- Transceiver CAN interface
         can_rx        : in  std_logic;  -- Receives serial data
-        can_tx        : out std_logic   -- Sends serial data
+        can_tx        : out std_logic;   -- Sends serial data
+
+		tx_done        : out std_logic   -- Sends serial data
     );
 end entity can_top;
 
@@ -56,7 +58,7 @@ architecture RTL of can_top is
     signal stuff_nxt_bit : std_logic;
 	signal bus_addr_vec     : std_logic_vector(7 downto 0);
 
-	signal tx_done : std_logic;
+	signal tx_done_s : std_logic:='0';
 begin
 	bus_addr_vec <=std_logic_vector(bus_addr);
     -- Instantiate register_map.vhd
@@ -77,7 +79,7 @@ begin
             txb0dn_out      => r_TXB0Dn,
             core_canstat_in => core_canstat_s,
             core_canstat_we => core_canstat_we,
-			tx_done			=> tx_done
+			tx_done			=> tx_done_s
             --core_tec_in     => core_tec_in,
             --core_rec_in     => core_rec_in,
             --core_eflg_in    => core_eflg_in,
@@ -102,7 +104,7 @@ begin
             core_canstat_out  => core_canstat_s,
             core_canstat_we   => core_canstat_we,
             stuff_nxt_bit     => stuff_nxt_bit,
-			tx_done			=> tx_done
+			tx_done			=> tx_done_s
             --debug             => debug
         );
 
@@ -122,5 +124,5 @@ begin
             can_rx            => can_rx,
             can_tx            => can_tx
         );
-
+		tx_done <=tx_done_s;
 end architecture RTL;

@@ -44,9 +44,9 @@ add wave -label state     -radix hex    /testbench/can_top_inst/can_fsm_inst/cur
 #add wave -label data_out  -radix hex    /testbench/reg_data_out
 
 add wave -label state_name /can_top_inst/can_fsm_inst/current_state
-
-add wave -label can_rx    -radix binary /testbench/can_rx
-add wave -label can_tx    -radix binary /testbench/can_tx
+add wave -label tx_done		tx_done
+add wave -label can_rx    -radix binary can_rx
+add wave -label can_tx    -radix binary can_tx
 
 # Sinais Internos Críticos
 #add wave -label FSM_State -radix hex    /testbench/current_state_out

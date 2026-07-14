@@ -50,7 +50,7 @@ add wave -height 15 -divider "CAN Internal"
 add wave -label can_clk_out     /can_inst/clk_out
 add wave -label can_fsm_state   -radix hex  /can_inst/current_state
 add wave -label state_name /can_inst/can_fsm_inst/current_state
-add wave -label tx_done /can_inst/tx_done
+add wave tx_done
 add wave -label baud_reg        -radix hex  /can_inst/baud_reg_out
 add wave -label txb0ctrl_reg    -radix hex  /can_inst/txb0ctrl_out
 add wave -label txb0sidh_reg    -radix hex  /can_inst/txb0sidh_out

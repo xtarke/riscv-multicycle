@@ -19,13 +19,14 @@ int main(void)
     frame.payload[4] = 0xEE;
     /* bytes 5..7 não são usados (DLC=5) */
 
-    /* Envia o quadro */
-    can_send_frame(&frame);
-	delay_(100);
-	can_send_frame(&frame);
-    /* Loop infinito – o hardware transmite repetidamente enquanto TXREQ=1 */
-    while (1);
 
+    /* Loop infinito para analisar a comunicação*/
+	// pode se checar se frame.tx_start foi limpo ou se tx_done foi para 1
+    while (1){
+		/* Envia o quadro */
+		can_send_frame(&frame);
+		delay_(100);
+	}
     return 0;
 }
 // int main(void) {
@@ -48,7 +49,7 @@ int main(void)
 
 //     // 5. Dispara a transmissão (bit 3 do TXB0CTRL)
 //     TXB0CTRL = 0x08;
-// 	TXB0CTRL = 0x00;
+
 
 
 //     while(1);  // Fica em loop infinito

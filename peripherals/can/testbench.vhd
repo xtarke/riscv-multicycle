@@ -40,7 +40,7 @@ architecture sim of testbench is
 	signal bus_addr_vec : std_logic_vector(7 downto 0);
     -- Debug signals
     signal debug            : unsigned(7 downto 0);
-
+	signal tx_done           : std_logic;
 begin
 	can_rx<='1';
 	-- bus_addr_vec <= std_logic_vector(bus_addr);
@@ -56,7 +56,8 @@ begin
             bus_wdata => bus_wdata,
             bus_rdata => bus_rdata,
             can_rx    => can_rx,
-            can_tx    => can_tx
+            can_tx    => can_tx,
+			tx_done   => tx_done
         );
 
 

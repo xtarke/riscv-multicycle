@@ -42,6 +42,7 @@ architecture sim of tb_riscv is
     signal can_rx    : std_logic := '1';
     signal can_tx    : std_logic;
     signal can_wr_en : std_logic;
+	signal tx_done   : std_logic;
 
     signal cpu_state : cpu_state_t;
     signal debugString : string(1 to 40) := (others => '0');
@@ -77,7 +78,8 @@ begin
         bus_wdata  => ddata_w,
         bus_rdata  => ddata_r_can,
         can_rx     => can_rx,
-        can_tx     => can_tx
+        can_tx     => can_tx,
+		tx_done   => tx_done
     );
 
     -- clocks
