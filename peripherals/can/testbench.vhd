@@ -32,17 +32,18 @@ architecture sim of testbench is
     signal can_tx           : std_logic;         -- can_fsm output | can_engine input
 
     -- Interface com a CPU
-    signal bus_addr  : std_logic_vector(31 downto 0);
+    signal bus_addr  : unsigned(7 downto 0):=(others => '0');
     signal reg_wr_en : std_logic;                       -- Habilita a escrita nos registradores
-    signal bus_wdata : std_logic_vector(31 downto 0);   -- A CPU escreve nos registradores do perfiférico
-    signal bus_rdata : std_logic_vector(31 downto 0);   -- A CPU Lê os registradores do periférico
+    signal bus_wdata : std_logic_vector(31 downto 0):=(others => '0');   -- A CPU escreve nos registradores do perfiférico
+    signal bus_rdata : std_logic_vector(31 downto 0):=(others => '0');   -- A CPU Lê os registradores do periférico
 
-
+	signal bus_addr_vec : std_logic_vector(7 downto 0);
     -- Debug signals
     signal debug            : unsigned(7 downto 0);
 
 begin
-
+	can_rx<='1';
+	-- bus_addr_vec <= std_logic_vector(bus_addr);
     ------------------------------------------------------------------
     -- Instanciação do Dispositivo Sob Teste (DUT)
     ------------------------------------------------------------------
@@ -57,7 +58,7 @@ begin
             can_rx    => can_rx,
             can_tx    => can_tx
         );
-    
+
 
     ------------------------------------------------------------------
     -- Gerador de Clock
@@ -77,7 +78,7 @@ begin
     begin
         -- 1. Reset Inicial do Sistema
         rst <= '1';
-        wait for 1 ns;
+        wait for 10 ns;
         rst <= '0';
         wait;
     end process;
@@ -85,47 +86,49 @@ begin
     ------------------------------------------------------------------
     -- escrita dos registadores
     ------------------------------------------------------------------
-    regiters_config_p : process
+	regiters_config_p : process
     begin
+        -- espera o fim do reset
+        wait for 150 ns;
 
-        reg_wr_en <= '0';
-
-        wait for CLK_PERIOD;
-        -- Escrita do endereço nos registradors txb0sidh e txb0sidl
-        bus_addr(7 downto 0) <= TXB0SIDH;
-        bus_wdata(7 downto 0) <= "10101010";
+        -- 1. TXB0SIDH (ID alto)
+        bus_addr  <= unsigned(TXB0SIDH);   -- conversão direta, sem resize
+        bus_wdata <= x"000000AA";
         reg_wr_en <= '1';
-        --wait for CLK_PERIOD;
-        --bus_addr(7 downto 0) <= TXB0SIDL;
-        --bus_wdata(7 downto 0) <= "00100000";
-        --wait for CLK_PERIOD;
-        wait for CLK_PERIOD * 2; -- both SIDH and SIDL must be writtne
-
-        -- Escrita do data length no registrador txb0dlc
-        bus_addr(7 downto 0) <= TXB0DLC;
-        bus_wdata(7 downto 0) <= "00000101";
         wait for CLK_PERIOD;
-
-        -- Escrita do buffer de dados
-        bus_addr(7 downto 0) <= TXB0D0;
-        bus_wdata(7 downto 0) <= "10101010";
-        wait for CLK_PERIOD * 8;
-
-        -- Configura o preescaler
-        bus_addr(7 downto 0) <= BAUD_REG;
-        bus_wdata(7 downto 0) <= "00000000";
-        wait for CLK_PERIOD;
-
-        -- Habilita a transmission
-        -- atualmente apenas transmission , nenhum outro controle (pg 18)
-        bus_addr(7 downto 0) <= TXB0CTRL;
-        bus_wdata(7 downto 0) <= "00001000";
-        wait for CLK_PERIOD;
-
-        -- desabilita escrita dos registadores
         reg_wr_en <= '0';
+        wait for CLK_PERIOD;               -- gap entre escritas
 
-        wait;
+        -- 2. TXB0DLC (DLC = 5)
+        bus_addr  <= unsigned(TXB0DLC);
+        bus_wdata <= x"00000005";
+        reg_wr_en <= '1';
+        wait for CLK_PERIOD;
+        reg_wr_en <= '0';
+        wait for CLK_PERIOD;
+
+        -- 3. TXB0D0 (primeiro byte de dados)
+        bus_addr  <= unsigned(TXB0D0);
+        bus_wdata <= x"000000AA";
+        reg_wr_en <= '1';
+        wait for CLK_PERIOD;
+        reg_wr_en <= '0';
+        wait for CLK_PERIOD;
+
+        -- 4. BAUD_REG (prescaler = 0)
+        bus_addr  <= unsigned(BAUD_REG);
+        bus_wdata <= x"00000000";
+        reg_wr_en <= '1';
+        wait for CLK_PERIOD;
+        reg_wr_en <= '0';
+        wait for CLK_PERIOD;
+
+        -- 5. TXB0CTRL (pedido de transmissão)
+        bus_addr  <= unsigned(TXB0CTRL);
+        bus_wdata <= x"00000008";
+        reg_wr_en <= '1';
+        wait for CLK_PERIOD;
+        reg_wr_en <= '0';
 
     end process;
 
