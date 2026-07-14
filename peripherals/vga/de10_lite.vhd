@@ -119,6 +119,19 @@ architecture rtl of de10_lite is
 	signal vga_we_d  : std_logic;
 	signal fb_commit : std_logic;                       -- one commit per CPU store
 	signal disp_ena  : std_logic;
+
+	-- Blitter (2D accelerator) command port and muxed write path
+	signal blit_we      : std_logic;                    -- CPU write to the command port
+	signal blit_we_d    : std_logic;
+	signal blit_push    : std_logic;                    -- one push per CPU store
+	signal blit_busy    : std_logic;
+	signal blit_commit  : std_logic;
+	signal blit_address : std_logic_vector(31 downto 0);
+	signal blit_data    : std_logic_vector(15 downto 0);
+	signal fb_commit_m  : std_logic;                    -- muxed write port (CPU / blitter)
+	signal fb_address_m : std_logic_vector(31 downto 0);
+	signal fb_data_m    : std_logic_vector(15 downto 0);
+	signal fb_wbusy     : std_logic;
 	signal hsync_sig : std_logic;
 	signal vsync_sig : std_logic;
 	signal addr_vga  : std_logic_vector(12 downto 0);
@@ -226,17 +239,51 @@ begin
 			q          => ddata_r_mem
 		);
 
-	-- CPU write port (store, dcsel="11"): edge-detect the slow CPU write strobe
+	-- Blitter register block: CPU stores to I/O addresses 256..263 (dcsel="10",
+	-- block 16) write the X/Y/W/H/COLOR/CMD registers; daddress(2:0) is the reg
+	blit_we <= '1' when d_we = '1' and dcsel = "10" and daddress(8 downto 3) = "100000"
+	           else '0';
+
+	-- Edge-detect the slow CPU write strobes into single 125 MHz pulses: fb_commit
+	-- for direct pixel stores (dcsel="11"), blit_push for command-port stores
 	process(clk_sdram, rst)
 	begin
 		if rst = '1' then
 			vga_we_d  <= '0';
 			fb_commit <= '0';
+			blit_we_d <= '0';
+			blit_push <= '0';
 		elsif rising_edge(clk_sdram) then
 			vga_we_d  <= wren_vga;
 			fb_commit <= wren_vga and (not vga_we_d);
+			blit_we_d <= blit_we;
+			blit_push <= blit_we and (not blit_we_d);
 		end if;
 	end process;
+
+	-- 2D accelerator: drains its command fifo and drives the framebuffer write
+	-- port (muxed below). Reuses the same write path as the CPU. Register writes
+	-- select X/Y/W/H/COLOR/CMD by daddress(2:0); the push is edge-detected above
+	blit: entity work.blitter
+		generic map(SCREEN_W => 640)
+		port map(
+			clk   => clk_sdram,
+			reset => rst,
+			reg_we   => blit_push,
+			reg_addr => std_logic_vector(daddress(2 downto 0)),
+			reg_data => ddata_w,
+			busy     => blit_busy,
+			write_commit  => blit_commit,
+			write_address => blit_address,
+			write_data    => blit_data,
+			write_busy    => fb_wbusy
+		);
+
+	-- Framebuffer write port: the blitter owns it while busy, else the CPU
+	fb_commit_m  <= blit_commit  when blit_busy = '1' else fb_commit;
+	fb_address_m <= blit_address when blit_busy = '1'
+	                else std_logic_vector(resize(daddress(18 downto 0), 32));
+	fb_data_m    <= blit_data    when blit_busy = '1' else ddata_w(15 downto 0);
 
 	-- Framebuffer in SDRAM via the cache --
 	fb: entity work.vga_framebuffer
@@ -247,10 +294,10 @@ begin
 			disp_ena  => disp_ena,
 			vsync     => vsync_sig,
 			rgb       => rgb_in,
-			write_commit  => fb_commit,
-			write_address => std_logic_vector(resize(daddress(18 downto 0), 32)),
-			write_data    => ddata_w(15 downto 0),
-			write_busy    => open,
+			write_commit  => fb_commit_m,
+			write_address => fb_address_m,
+			write_data    => fb_data_m,
+			write_busy    => fb_wbusy,
 			DRAM_ADDR => DRAM_ADDR,
 			DRAM_BA   => DRAM_BA,
 			DRAM_CAS_N=> DRAM_CAS_N,
@@ -376,7 +423,12 @@ begin
 		else
 			if rising_edge(clk) then
 				if (d_rd = '1') and (dcsel = "10") then
-					input_in(4 downto 0) <= SW(4 downto 0);
+					if daddress(8 downto 3) = "100000" then
+						-- Blitter status: bit0 = busy (command running or queued)
+						input_in <= (0 => blit_busy, others => '0');
+					else
+						input_in(4 downto 0) <= SW(4 downto 0);
+					end if;
 				end if;
 			end if;
 		end if;
