@@ -36,9 +36,9 @@ Quando tick_counter atinge CLOCK_HZ-1, ocorre:
 
 
 # Simulação da inicialização do RTC
-<p align="center">
-    <img width="100%" height="50%" src="inic.png">
-</p>
+Para simulação incial do sistema foi usado o testbench:[`peripherals/rtc2/tb_rtc2.vhd`](../../peripherals/rtc2/tb_rtc2.vhd)
+
+<img width="1842" height="742" alt="image" src="https://github.com/user-attachments/assets/1f90442d-4de8-4368-9ebf-75ced055bc61" />
 
 # Integração do _hardware_ ao núcleo RISCV
 
@@ -115,6 +115,9 @@ As funções rtc_read_sec, rtc_read_min e rtc_read_hour realizam a leitura dos r
 
 
 4. [`software/rtc2/rtc.c`](../../software/rtc2/rtc.c)
+
+As funções de leitura retornam diretamente o conteúdo dos registradores mapeados em memória. As funções de escrita atribuem um novo valor aos registradores correspondentes. 
+Ao executar rtc_enable, o valor 1 é escrito no registrador de controle, habilitando a contagem.
  
 ```C
 #include "rtc.h"
@@ -159,8 +162,7 @@ void rtc_disable(void)
     RTC_CTRL = 0;
 }
 ```
-As funções de leitura retornam diretamente o conteúdo dos registradores mapeados em memória. As funções de escrita atribuem um novo valor aos registradores correspondentes. 
-Ao executar rtc_enable, o valor 1 é escrito no registrador de controle, habilitando a contagem.
+
 
 
 ## Exemplo
@@ -169,9 +171,9 @@ Ao fim do desenvolvimento das funções,foi feito um exemplo no arquivo, [`softw
 
 Os registradores de horas, minutos e segundos são configurados com os valores 0. Em seguida, a contagem do RTC é habilitada por meio da função rtc_enable.
 
-Durante a execução, o programa permanece em um laço infinito, realizando continuamente a leitura do registrador de segundos através da função rtc_read_sec.
+Durante a execução, o programa permanece em um laço infinito, realizando continuamente a leitura dos registradores de segundos, minutos e horas através da função rtc_read_sec.
 
-O valor lido é enviado para a saída do periférico GPIO por meio da função gpio_write. A função delay implementa apenas um atraso simples por software, reduzindo a frequência de atualização durante a execução.
+A função `two_digits` separa cada valor em dezena e unidade. A dezena é posicionada nos quatro bits mais significativos do byte, enquanto a unidade permanece nos quatro bits menos significativos. Os valores convertidos são agrupados em uma palavra de 32 bits e escritos no registrador `SEGMENTS`, que pertence ao periférico `led_displays`. Por esse motivo foi incluso o arquivo gpio.h.
 
 ```C
 #include <stdint.h>
@@ -213,50 +215,40 @@ int main(void)
 
 ## Compilação do exemplo
 
-Após a implementação do software, o arquivo executável é gerado utilizando o sistema de compilação do projeto.
-
-No diretório `software`, execute:
-
-```bash
-make main_rtc
+A compilação é feita com o auxílio do arquivo [`software/Makefile`](../../software/Makefile).
+É necessário instalar o compilador `riscv-none-embed-gcc`, e o caminho do compilador deve estar configurado corretamente no `Makefile`, por exemplo:
+```Makefile
+RISCV_TOOLS_PREFIX = ../compiler/gcc/bin/riscv-none-elf-
 ```
 
-Ao final da compilação será gerado o arquivo:
+O nome da arquivo que será executado também é definido no Makefile:
 
+```Makefile
+MAIN = main_rtc
 ```
+A compilação foi feita pelo terminal MSYS2, onde foi acessado a pasta [`software/rtc2`](../../software/rtc2).
+Executando os comandos "make clean" para limpar algum arquivo antigo e "make" para gerar o novo arquivo .hex 
+
+```text
 quartus_main_rtc.hex
 ```
 
-Esse arquivo deve ser utilizado como memória de instruções do processador RISC-V durante a síntese ou simulação do projeto.
-
 # Simulação do _testbench_
 
-Primeiramente, antes de realizar o _testbench_, devem ser comentadas as linhas que contenham `delay_(10000)` no arquivo de exemplo [`software/lcd/main_lcd.c`](../../software/lcd/main_lcd.c).
 
-O _testbench_ foi implementado no arquivo [`testbench.vhd`](testbench.vhd), ele já possui integração ao núcleo RISCV e exibe nas suas últimas linhas os sinais de saída para o _display_ e os sinais internos do controlador, como denotado pela imagem abaixo:
+O _testbench_ foi implementado no arquivo [`peripherals/rtc2/testbench2.vhd`](../../peripherals/rtc2/testbench2.vhd), ele já possui integração ao núcleo RISCV e exibe nas suas últimas linhas os sinais de saída para o _display_:
 
-<p align="center">
-    <img width="100%" height="50%" src="op.png">
-</p>
+<img width="1872" height="739" alt="image" src="https://github.com/user-attachments/assets/ca1acbbf-5ca4-4196-9586-073072764254" />
+
 
 # Síntese na FPGA Altera MAX10 DE10-Lite
 
-Já para a síntese na FPGA, devem ser descomentadas as linhas que contenham `delay_(10000)` no arquivo de exemplo [`software/lcd/main_lcd.c`](../../software/lcd/main_lcd.c).
+O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10_lite/de0_lite.vhd)
 
-O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10_lite/de0_lite.vhd), em que são utilizados as portas Arduino IO[[2]](#bibliografia), a porta de alimentação de 3,3V ou 5V (de acordo com o modelo do _display_) e a referência no GND, seguindo o mesmo modelo do esquemático abaixo:
-
-<p align="center">
-    <img width="100%" height="50%" src="connection.png">
-</p>
-
-Ao final, após a síntese e gravação do arquivo [`software/lcd/quartus_main_lcd.hex`](../../software/lcd/quartus_main_lcd.hex) na memória interna utilizada para o núcleo RISCV, espera-se do exemplo o comportamento demonstrado abaixo:
-
-<p align="center">
-    <img width="25%" height="25%" src="Nokia5110LCD.gif">
-</p>
+Ao final, após a síntese e gravação do arquivo .hex na memória interna utilizada para o núcleo RISCV, é possível observar o funcionamento do RTC:
+'COLOCAR GIF FUNCIONANDO'
 
 # Bibliografia
-[1] [_Datasheet_ do display Nokia 5110 LCD](https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf)
 
-[2] [_Datasheet_ da placa de desenvolvimento Altera DE10-Lite](https://www.intel.com/content/dam/www/programmable/us/en/portal/dsn/42/doc-us-dsnbk-42-2912030810549-de10-lite-user-manual.pdf)
+[1] [_Datasheet_ da placa de desenvolvimento Altera DE10-Lite](https://www.intel.com/content/dam/www/programmable/us/en/portal/dsn/42/doc-us-dsnbk-42-2912030810549-de10-lite-user-manual.pdf)
 
