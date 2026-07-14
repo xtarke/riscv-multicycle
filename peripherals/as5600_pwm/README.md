@@ -49,9 +49,17 @@ Rodando dentro do núcleo RISC-V, o software calcula os valores a serem mostrado
 
 * **Memória:** O C acessa o Slot 22 através dos ponteiros `#define AS5600_T_HIGH` e `AS5600_T_PERIOD` presentes no mapa de memória (`hardware.h`).
 
-* **Datasheet:** Com base no *datasheet* do AS5600, o sinal PWM tem um quadro de **4351 clocks**, possuindo um cabeçalho obrigatório de **256 clocks**. O software subtrai o 128, e converte o restante em um ângulo de **0 a 360 graus**.
+* **Datasheet:** Com base no *datasheet* do AS5600, o sinal PWM possui um formato específico.
 
-* **BCD:** Enviamos o ângulo final ao hardware dos displays de 7 segmentos.
+  ![Diagrama de Tempos do PWM](img/figure_30_datasheet_as5600.png)
+
+  O quadro total (período) dura exatos **4351 clocks internos** do chip. Deste total, o sinal inicia com um cabeçalho em nível alto por **128 clocks**. Em seguida, a informação do ângulo é transmitida em nível alto de 0 a 4095 clocks. Por fim, há um rodapé em nível baixo de 128 clocks.
+
+  ![Fórmulas do PWM](img/figure_35_datasheet_as5600.png)
+
+  O software aplica uma regra de três convertendo a proporção de tempo lida pela FPGA para a base de clocks internos. Em seguida, converte a porção de dados resultante  para o arco em graus (**0 a 360**).
+
+* **BCD:** Enviamos o ângulo final formatado ao hardware dos displays de 7 segmentos.
 
 ---
 
