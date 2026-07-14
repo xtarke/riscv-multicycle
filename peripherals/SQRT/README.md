@@ -43,8 +43,9 @@ Foi elaborada uma simulação no ModelSim, antes da integração do periférico 
 ## Fluxograma do periférico
 
 O fluxograma apresenta a integração entre o hardware e o software. 
-
-<img width="1654" height="1785" alt="fluxograma_raiz" src="https://github.com/user-attachments/assets/430bcdbf-44a1-4c68-bf00-6b26d248bf42" />
+<div align="center">
+<img width="565" height="595" alt="fluxograma_raiz" src="https://github.com/user-attachments/assets/430bcdbf-44a1-4c68-bf00-6b26d248bf42" />
+</div>
 
 ## Funcionamento na FPGA
 
@@ -52,7 +53,7 @@ Na placa, as chaves `SW0`–`SW8` representam o número de entrada em binário e
 
 O botão `KEY0` permite alternar a informação exibida. Com o botão solto, os displays mostram o resultado da raiz quadrada. Enquanto o botão estiver pressionado, mostram o resto da operação para a entrada 4, sendo que o resto é zero, pois $4 = 2^2 + 0$.
 
-Vale notar que os displays de sete segmentos exibem os valores sempre em **hexadecimal**. Para entradas pequenas isso passa despercebido, como no exemplo acima, mas a diferença aparece a partir de resultados de dois dígitos em hexadecimal. Ligando todas as chaves de entrada, o valor de entrada é 511:
+Vale notar que os displays de sete segmentos exibem os valores em **hexadecimal**. Para entradas pequenas isso passa despercebido, como no exemplo acima, mas a diferença aparece a partir de resultados de dois dígitos em hexadecimal. Ligando todas as chaves de entrada, o valor de entrada é 511:
 
 $$
 \sqrt{511} \approx 22{,}6 \implies \text{resultado} = 22, \quad \text{resto} = 511 - 22^2 = 27
