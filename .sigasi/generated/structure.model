@@ -1,10 +1,228 @@
 {
-  "version": 4,
+  "version": 7,
   "name": "riscv-multicycle",
-  "projectBaseDir": "file:///c:/vhdl/project/riscv-multicycle",
+  "projectBaseDir": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle",
   "compilationGroupModel": {
-    "groups": [],
-    "resourceActualTargets": {}
+    "groups": [
+      {
+        "language": "VHDL",
+        "currentWorkingDirectory": {
+          "platformUri": "platform:/resource/riscv-multicycle/Design/",
+          "fileUri": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/"
+        },
+        "resources": [
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/as5600_pwm.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_sldfabric.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/de0_lite.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.BAK.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.vhd",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/testbench.vhd"
+        ],
+        "includePaths": [],
+        "includeFallbackToLocalDirectory": false,
+        "additionalEnvVars": {},
+        "initialDefines": [],
+        "continueFrom": null,
+        "inferOrder": true,
+        "allowUndefine": false,
+        "allowUndefineAll": false,
+        "conditionalVariables": {},
+        "targetContext": {
+          "root": {
+            "project": "riscv-multicycle",
+            "version": "default",
+            "target": "rtl"
+          },
+          "actual": {
+            "project": "riscv-multicycle",
+            "version": "default",
+            "target": "rtl"
+          }
+        }
+      },
+      {
+        "language": "Verilog/SystemVerilog",
+        "currentWorkingDirectory": {
+          "platformUri": "platform:/resource/riscv-multicycle/Design/",
+          "fileUri": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/"
+        },
+        "resources": [
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab.v",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab.v",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_ident.sv",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_presplit.sv",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_splitter.sv",
+          "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll_altpll.v"
+        ],
+        "includePaths": [],
+        "includeFallbackToLocalDirectory": false,
+        "additionalEnvVars": {},
+        "initialDefines": [],
+        "continueFrom": null,
+        "inferOrder": true,
+        "allowUndefine": false,
+        "allowUndefineAll": false,
+        "conditionalVariables": {},
+        "targetContext": {
+          "root": {
+            "project": "riscv-multicycle",
+            "version": "default",
+            "target": "rtl"
+          },
+          "actual": {
+            "project": "riscv-multicycle",
+            "version": "default",
+            "target": "rtl"
+          }
+        }
+      }
+    ],
+    "resourceTargetContexts": {
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/as5600_pwm.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_sldfabric.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/de0_lite.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.BAK.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/testbench.vhd": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab.v": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab.v": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_ident.sv": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_presplit.sv": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_splitter.sv": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      },
+      "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll_altpll.v": {
+        "root": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        },
+        "actual": {
+          "project": "riscv-multicycle",
+          "version": "default",
+          "target": "rtl"
+        }
+      }
+    }
   },
   "linkedResources": [
     {
@@ -13,28 +231,28 @@
       "type": 2
     },
     {
-      "source": "platform:/resource/riscv-multicycle/Common%20Libraries",
+      "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D",
       "target": "virtual:/virtual",
       "type": 2
     },
     {
-      "source": "platform:/resource/riscv-multicycle/Common%20Libraries/STD",
-      "target": "sigasiresource:/vhdl/93/STD",
+      "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/STD",
+      "target": "sigasiresource:/vhdl/2019/STD",
       "type": 2
     },
     {
-      "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE",
-      "target": "sigasiresource:/vhdl/93/IEEE",
+      "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/IEEE",
+      "target": "sigasiresource:/vhdl/2019/IEEE",
       "type": 2
     },
     {
-      "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE%20Synopsys",
-      "target": "sigasiresource:/vhdl/93/IEEE%20Synopsys",
+      "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/IEEE%20Synopsys",
+      "target": "sigasiresource:/vhdl/2019/IEEE%20Synopsys",
       "type": 2
     },
     {
       "source": "platform:/resource/riscv-multicycle/Design",
-      "target": "file:///c:/vhdl/project/riscv-multicycle",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle",
       "type": 2
     },
     {
@@ -46,6 +264,71 @@
       "source": "platform:/resource/riscv-multicycle/Targets/rtl",
       "target": "virtual:/virtual",
       "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm",
+      "target": "virtual:/virtual",
+      "type": 2
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/as5600_pwm.vhd",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/as5600_pwm.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_sldfabric.vhd",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/de0_lite.vhd",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/de0_lite.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.BAK.vhd",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/pll.BAK.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.vhd",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/pll.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/testbench.vhd",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/testbench.vhd",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab.v",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/alt_sld_fab.v",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab.v",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab.v",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_ident.sv",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_ident.sv",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_presplit.sv",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_presplit.sv",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_splitter.sv",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_splitter.sv",
+      "type": 1
+    },
+    {
+      "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll_altpll.v",
+      "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/pll_altpll.v",
+      "type": 1
     }
   ],
   "resourceInformation": {
@@ -54,27 +337,93 @@
       "version": null,
       "isLibraryFile": false
     },
-    "platform:/resource/riscv-multicycle/Common%20Libraries/STD": {
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm": {
+      "library": "as5600_pwm",
+      "version": null,
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/as5600_pwm.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_sldfabric.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/de0_lite.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.BAK.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/testbench.vhd": {
+      "library": null,
+      "version": "VHDL 2019",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab.v": {
+      "library": null,
+      "version": "Verilog",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab.v": {
+      "library": null,
+      "version": "Verilog",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_ident.sv": {
+      "library": null,
+      "version": "SystemVerilog",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_presplit.sv": {
+      "library": null,
+      "version": "SystemVerilog",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_splitter.sv": {
+      "library": null,
+      "version": "SystemVerilog",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll_altpll.v": {
+      "library": null,
+      "version": "Verilog",
+      "isLibraryFile": false
+    },
+    "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/STD": {
       "library": "std",
-      "version": "VHDL 1993",
+      "version": "VHDL 2019",
       "isLibraryFile": true
     },
-    "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE": {
+    "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/IEEE": {
       "library": "ieee",
-      "version": "VHDL 1993",
+      "version": "VHDL 2019",
       "isLibraryFile": true
     },
-    "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE%20Synopsys": {
+    "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/IEEE%20Synopsys": {
       "library": "ieee",
-      "version": "VHDL 1993",
+      "version": "VHDL 2019",
       "isLibraryFile": true
     },
     "platform:/resource/riscv-multicycle": {
       "library": null,
-      "version": "VHDL 1993",
+      "version": "VHDL 2019",
       "isLibraryFile": false
     }
   },
+  "dependencyInformation": {},
   "virtualFolderContents": {
     "platform:/resource": [
       {
@@ -85,13 +434,13 @@
     ],
     "platform:/resource/riscv-multicycle": [
       {
-        "source": "platform:/resource/riscv-multicycle/Common%20Libraries",
+        "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D",
         "target": "virtual:/virtual",
         "type": 2
       },
       {
         "source": "platform:/resource/riscv-multicycle/Design",
-        "target": "file:///c:/vhdl/project/riscv-multicycle",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle",
         "type": 2
       },
       {
@@ -100,20 +449,20 @@
         "type": 2
       }
     ],
-    "platform:/resource/riscv-multicycle/Common%20Libraries": [
+    "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D": [
       {
-        "source": "platform:/resource/riscv-multicycle/Common%20Libraries/STD",
-        "target": "sigasiresource:/vhdl/93/STD",
+        "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/STD",
+        "target": "sigasiresource:/vhdl/2019/STD",
         "type": 2
       },
       {
-        "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE",
-        "target": "sigasiresource:/vhdl/93/IEEE",
+        "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/IEEE",
+        "target": "sigasiresource:/vhdl/2019/IEEE",
         "type": 2
       },
       {
-        "source": "platform:/resource/riscv-multicycle/Common%20Libraries/IEEE%20Synopsys",
-        "target": "sigasiresource:/vhdl/93/IEEE%20Synopsys",
+        "source": "platform:/resource/riscv-multicycle/VHDL%20Standard%20Libraries%5B2019%5D/IEEE%20Synopsys",
+        "target": "sigasiresource:/vhdl/2019/IEEE%20Synopsys",
         "type": 2
       }
     ],
@@ -123,16 +472,92 @@
         "target": "virtual:/virtual",
         "type": 2
       }
+    ],
+    "platform:/resource/riscv-multicycle/Targets/rtl": [
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm",
+        "target": "virtual:/virtual",
+        "type": 2
+      }
+    ],
+    "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm": [
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/as5600_pwm.vhd",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/as5600_pwm.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_sldfabric.vhd",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/de0_lite.vhd",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/de0_lite.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.BAK.vhd",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/pll.BAK.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll.vhd",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/pll.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/testbench.vhd",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/testbench.vhd",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab.v",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/alt_sld_fab.v",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab.v",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab.v",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_ident.sv",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_ident.sv",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_presplit.sv",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_presplit.sv",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/alt_sld_fab_alt_sld_fab_splitter.sv",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/ip/slde7a58a48/submodules/alt_sld_fab_alt_sld_fab_splitter.sv",
+        "type": 1
+      },
+      {
+        "source": "platform:/resource/riscv-multicycle/Targets/rtl/as5600_pwm/pll_altpll.v",
+        "target": "file:///c:/Users/Fabricio/Documents/FAB/pld2/riscv-multicycle/peripherals/as5600_pwm/sint/de10_lite/db/pll_altpll.v",
+        "type": 1
+      }
     ]
   },
-  "manualTargets": {
+  "targets": {
     "rtl": {
-      "directoryPath": "c:\\vhdl\\project\\riscv-multicycle",
+      "directoryPath": "c:\\Users\\Fabricio\\Documents\\FAB\\pld2\\riscv-multicycle",
       "libraryMapping": {
-        "": []
+        "": [],
+        "peripherals\\as5600_pwm": [
+          "as5600_pwm"
+        ]
       },
-      "declaredDependencies": []
+      "declaredDependencies": [],
+      "kind": "MANUAL"
     }
   },
-  "configurableIncludes": {}
+  "configurableIncludes": {
+    "rtl": []
+  },
+  "cachedVersionMapping": null
 }

@@ -1,11 +1,1 @@
-[
-  {
-    "severity": "WARNING",
-    "message": "Project target 'riscv-multicycle/rtl' does not configure any libraries with HDL files",
-    "path": "file:///c:/vhdl/project/riscv-multicycle/project.sigasi",
-    "beginLine": 4,
-    "beginColumn": 9,
-    "endLine": 4,
-    "endColumn": 14
-  }
-]
+[]
