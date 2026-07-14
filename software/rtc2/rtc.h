@@ -9,7 +9,7 @@
 #define RTC_SEC     *(&RTC_BASE_ADDRESS + 0)
 #define RTC_MIN     *(&RTC_BASE_ADDRESS + 1)
 #define RTC_HOUR    *(&RTC_BASE_ADDRESS + 2)
-define RTC_DAY     *(&RTC_BASE_ADDRESS + 3)
+#define RTC_DAY     *(&RTC_BASE_ADDRESS + 3)
 #define RTC_MONTH   *(&RTC_BASE_ADDRESS + 4)
 #define RTC_YEAR    *(&RTC_BASE_ADDRESS + 5)
 #define RTC_CTRL    *(&RTC_BASE_ADDRESS + 6)
