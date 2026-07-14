@@ -1,22 +1,41 @@
+# C/C++ Compilation
+*.o
+*.a
+*.elf
+*.hex
+*.tmp
+*.map
+*.lss
+*.d
+*.bin
+*.out
 
-peripherals/*/sint/de10_lite/db
-peripherals/*/sint/de10_lite/incremental_db
-peripherals/*/sint/de10_lite/output_files
-peripherals/*/sint/de10_lite/simulation
-peripherals/*/sint/de10_lite/*.bak
-peripherals/*/sint/de10_lite/*.qdf
-peripherals/*/sint/de10_lite/*.qws
+# Quartus
+*.sof
+*.pof
+*.qws
+*.summary
+*.jdi
+*.pin
+*.smsg
+db/
+incremental_db/
+output_files/
+simulation/
+greybox_tmp/
+*.bak
+*.qdf
 
-peripherals/*/*.s
-peripherals/*/transcript
-peripherals/*/*.wlf
-peripherals/*/work
-peripherals/*/*.bak
+# Modelsim
+work/
+transcript
+*.wlf
+*.do~
 
-software/*/*.o
-software/*/*.map
-software/*/*.elf
-software/*/*.tmp
-software/*/*.hex
-software/*/*.lss
+# OS and Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Custom directories
 compiler/
