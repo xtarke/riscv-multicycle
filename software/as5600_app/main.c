@@ -1,28 +1,12 @@
 /*
- * main.c - Aplicação AS5600 PWM -> Display 7 Segmentos
- *
- * Lê o sinal PWM do sensor magnético AS5600,
- * calcula o ângulo de rotação (0 a 360 graus)
- * e exibe o resultado nos displays de 7 segmentos da DE10-Lite.
- *
- * Conforme datasheet do AS5600 (seção PWM Output):
- *   - Período total do frame   = 4351 clocks internos
- *   - Cabeçalho fixo em HIGH   = 128  clocks internos
- *   - Dados úteis (ângulo)     = 0 a 4095 (12 bits)
- *   - Rodapé fixo em LOW       = 128  clocks internos
- *
- *   Fórmula: DATA = (t_high * 4351 / t_period) - 128
- *            Ângulo = DATA * 360 / 4095
+ * main.c - Leitura do sensor AS5600 PWM e display de 7 segmentos
  */
 
 #include <stdint.h>
 #include "../_core/hardware.h"
 #include "../gpio/gpio.h"
 
-/* AS5600 PWM Input - Slot 22 do iodatabusmux (x"0016")
- * MY_WORD_ADDRESS no VHDL = x"0160"
- * Byte offset = 22 * 16 * 4 = 0x580
- * Offset +0 = t_high,  Offset +1 word (+4 bytes) = t_period */
+// Definições de endereço para o periférico AS5600 (Slot 22)
 #define AS5600_T_HIGH   (*(_IO32 *) (PERIPH_BASE + 22*16*4))
 #define AS5600_T_PERIOD (*(_IO32 *) (PERIPH_BASE + 22*16*4 + 4))
 
@@ -33,50 +17,57 @@ int main() {
     uint32_t bcd_val;
 
     while (1) {
-        /* 1. Ler as medições do periférico */
+        // Leitura do sensor
         t_high   = AS5600_T_HIGH;
         t_period = AS5600_T_PERIOD;
 
-        /* 2. Calcular o ângulo conforme datasheet
-         *
-         * Com clock de 1 MHz e PWM a ~115 Hz:
-         *   t_period ≈ 8696,  t_high máx ≈ 8696
-         *   t_high * 4351 máx ≈ 37.8 milhões (cabe em 32 bits)
-         */
+        // Cálculo do ângulo
         angle = 0;
         if (t_period > 0) {
-            /* Converter proporção medida para clocks internos do AS5600 */
+            // Converte proporção medida para clocks do sensor
             uint32_t internal_high = (t_high * 4351) / t_period;
 
-            /* Subtrair cabeçalho fixo de 128 clocks */
+            // Remove o offset de 128 do cabeçalho
             if (internal_high > 128) {
                 uint32_t data_val = internal_high - 128;
 
-                /* Limitar ao máximo de 12 bits */
+                // Limita ao máximo (12 bits)
                 if (data_val > 4095)
                     data_val = 4095;
 
-                /* Converter para graus: 0-4095 -> 0-360 */
+                // Converte para graus (0 a 360)
                 angle = (data_val * 360) / 4095;
             }
         }
 
-        /* 3. Converter ângulo para BCD e enviar ao display
-         *
-         * led_displays decodifica cada nibble (4 bits) como um dígito.
-         * Valores 0x0-0x9 mostram o dígito, 0xF apaga o display.
-         * HEX0 = unidade, HEX1 = dezena, HEX2 = centena
-         * HEX3-HEX5 = apagados
-         */
-        bcd_val  = (angle % 10);              /* HEX0: unidade */
-        bcd_val |= ((angle / 10) % 10) << 4;  /* HEX1: dezena  */
-        bcd_val |= ((angle / 100) % 10) << 8; /* HEX2: centena */
-        bcd_val |= 0xFFF000;                  /* HEX3-5: apagados */
+        // Formatação para exibir o ângulo e o símbolo de grau (HEX0: °, HEX1: uni, HEX2: dez, HEX3: cent)
+        uint32_t u = angle % 10;
+        uint32_t d = (angle / 10) % 10;
+        uint32_t c = (angle / 100) % 10;
+
+        bcd_val = 0xA;              // HEX0: símbolo de grau (°)
+        bcd_val |= (u << 4);        // HEX1: unidade
+
+        // Dezena (apaga se ângulo < 10)
+        if (angle >= 10) {
+            bcd_val |= (d << 8);
+        } else {
+            bcd_val |= (0xF << 8);
+        }
+
+        // Centena (apaga se ângulo < 100)
+        if (angle >= 100) {
+            bcd_val |= (c << 12);
+        } else {
+            bcd_val |= (0xF << 12);
+        }
+
+        bcd_val |= 0xFF0000;        // HEX4-HEX5: apagados
 
         SEGMENTS_BASE_ADDRESS = bcd_val;
 
-        /* Pequeno atraso para estabilidade visual */
-        for (volatile uint32_t d = 0; d < 50000; d++);
+        // Delay para estabilização visual
+        for (volatile uint32_t d = 0; d < 25000; d++);
     }
 
     return 0;

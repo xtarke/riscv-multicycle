@@ -142,6 +142,14 @@ architecture rtl of de0_lite_gpio is
 
     signal ifcap :  std_logic;      -- capture flag
 
+    -- Intermediate signals for seven-segment displays
+    signal hex0_sig : std_logic_vector(7 downto 0);
+    signal hex1_sig : std_logic_vector(7 downto 0);
+    signal hex2_sig : std_logic_vector(7 downto 0);
+    signal hex3_sig : std_logic_vector(7 downto 0);
+    signal hex4_sig : std_logic_vector(7 downto 0);
+    signal hex5_sig : std_logic_vector(7 downto 0);
+
 begin
 
     -- Reset
@@ -312,7 +320,7 @@ begin
             ifcap => ifcap
         );
 
-    generic_displays : entity work.led_displays
+     generic_displays : entity work.led_displays
         port map(
             clk      => clk,
             rst      => rst,
@@ -323,15 +331,26 @@ begin
             d_rd     => d_rd,
             dcsel    => dcsel,
             dmask    => dmask,
-            hex0     => HEX0,
-            hex1     => HEX1,
-            hex2     => HEX2,
-            hex3     => HEX3,
-            hex4     => HEX4,
-            hex5     => HEX5,
+            hex0     => hex0_sig,
+            hex1     => hex1_sig,
+            hex2     => hex2_sig,
+            hex3     => hex3_sig,
+            hex4     => hex4_sig,
+            hex5     => hex5_sig,
             hex6     => open,
             hex7     => open
         );
+
+    -- Mapeamento para o símbolo de grau (°) e desligar os displays (quando recebem 0xF/others que geram "10001110")
+    HEX0 <= "10011100" when hex0_sig = "10001000" else 
+            "11111111" when hex0_sig = "10001110" else 
+            hex0_sig;
+
+    HEX1 <= "11111111" when hex1_sig = "10001110" else hex1_sig;
+    HEX2 <= "11111111" when hex2_sig = "10001110" else hex2_sig;
+    HEX3 <= "11111111" when hex3_sig = "10001110" else hex3_sig;
+    HEX4 <= "11111111" when hex4_sig = "10001110" else hex4_sig;
+    HEX5 <= "11111111" when hex5_sig = "10001110" else hex5_sig;
 
     -- Connect input hardware to gpio data
     gpio_input(3 downto 0) <= SW(3 downto 0);
