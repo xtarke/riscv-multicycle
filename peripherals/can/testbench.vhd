@@ -95,7 +95,7 @@ begin
         bus_addr  <= unsigned(TXB0SIDH);
         bus_wdata <= x"000000AA";
         reg_wr_en <= '1';
-        wait for CLK_PERIOD*2;
+        wait for CLK_PERIOD*2;  -- Escreve os registradores TXB0SIDH e TXB0SIDH
 
         -- 2. TXB0DLC (DLC = 5)
         bus_addr  <= unsigned(TXB0DLC);
@@ -106,6 +106,9 @@ begin
         bus_addr  <= unsigned(TXB0D0);
         bus_wdata <= x"000000AA";
         wait for CLK_PERIOD;
+        -- Escreve os registradores TXB0D1 a TXB0D7
+        bus_wdata <= x"00000000";
+        wait for CLK_PERIOD*7;
 
         -- 4. BAUD_REG (prescaler = 0)
         bus_addr  <= unsigned(BAUD_REG);
