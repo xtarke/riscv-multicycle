@@ -171,8 +171,7 @@ begin
             cache_state <= CACHE_STATE_WRITING;
           end if;
 
-          -- Cache miss: flush the cached
-          -- data and refill from the missed address --
+          -- Cache miss: flush the cached data and refill from the missed address --
           if rx_cache_miss = '1' or flush_pending = '1' then
             read_fifo_reset <= '1';
             read_burst_address <= read_address;
