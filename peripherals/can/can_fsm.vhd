@@ -164,12 +164,13 @@ begin
                     end if;
 
                 when ST_CRC =>
+                    -- serializes crc bits
                     if stuff_nxt_bit = '0' then
                         if bit_count <= 13 then
                             can_tx <= crc_reg(14 - to_integer(bit_count)); 
                             bit_count := bit_count + 1;
                         else
-                            can_tx <= crc_reg(0); -- Last bit of crc_reh
+                            can_tx <= crc_reg(0); -- Last bit of crc_reg
                             bit_count := (others => '0');
                             current_state <= ST_CRC_DEL;
                         end if;

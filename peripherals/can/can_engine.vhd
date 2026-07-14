@@ -187,65 +187,12 @@ begin
             can_tx <= not tx_bit_in;
         else
          -- no bit stuffing
-                can_tx <= tx_bit_in;
+            can_tx <= tx_bit_in;
         end if;
     end process;
 
     -- Selects wich signal must be considered to be counted repeated in bit stuffing process
     current_bit_to_stuff <= tx_bit_in;
-
-    ------------------------------------------------------------------
-    -- CRC-15 calc process
-    ------------------------------------------------------------------
-    process(clk_out_internal, rst)
-        variable crc_next : std_logic;
-    begin
-        if rst = '1' then
-            crc_reg <= (others => '0');
-            
-        elsif rising_edge(clk_out_internal) then
-            
-            if dalayed_State = ST_IDLE then
-                crc_reg <= (others => '0'); -- Reset at every new frame
-                
-            elsif (dalayed_State = ST_SOF) or 
-                  (dalayed_State = ST_ARBITRATION_VAL) or 
-                  (dalayed_State = ST_RTR) or 
-                  (dalayed_State = ST_IDE) or 
-                  (dalayed_State = ST_R0) or 
-                  (dalayed_State = ST_DLC) or 
-                  (dalayed_State = ST_DATA) then
-                  
-                if stuff_nxt_bit = '0' then
-                    -- XOR with actual MSB and bit being transmited
-                    crc_next := tx_bit_in xor crc_reg(14);
-                    
-                    -- CRC-15 polynomial shifts
-                    crc_reg(14) <= crc_reg(13) xor crc_next;
-                    crc_reg(13) <= crc_reg(12);
-                    crc_reg(12) <= crc_reg(11);
-                    crc_reg(11) <= crc_reg(10);
-                    crc_reg(10) <= crc_reg(9)  xor crc_next;
-                    crc_reg(9)  <= crc_reg(8);
-                    crc_reg(8)  <= crc_reg(7)  xor crc_next;
-                    crc_reg(7)  <= crc_reg(6)  xor crc_next;
-                    crc_reg(6)  <= crc_reg(5);
-                    crc_reg(5)  <= crc_reg(4);
-                    crc_reg(4)  <= crc_reg(3)  xor crc_next;
-                    crc_reg(3)  <= crc_reg(2)  xor crc_next;
-                    crc_reg(2)  <= crc_reg(1);
-                    crc_reg(1)  <= crc_reg(0);
-                    crc_reg(0)  <= crc_next;
-                end if;
-                
-            elsif dalayed_State = ST_CRC then
-                if stuff_nxt_bit = '0' then
-                    -- shift CRC calc left every clk_internal cycle
-                    crc_reg <= crc_reg(13 downto 0) & '0';
-                end if;
-            end if;
-        end if;
-    end process;
 
     ------------------------------------------------------------------
     -- can bus error check
