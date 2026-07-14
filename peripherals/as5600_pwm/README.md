@@ -14,12 +14,13 @@ O sistema conta com um **Modo Potenciômetro (Multi-voltas)**: ao ligar a chave 
 
 ## 2. Arquitetura do Sistema
 
-O projeto é dividido rigidamente em duas camadas: **Hardware (VHDL)** e **Software (C)**.
+O projeto é dividido em duas partes: **Hardware (VHDL)** e **Software (C)**.
 
 ### A. Camada de Hardware (VHDL)
-O arquivo principal é o `as5600_pwm.vhd`. A FPGA atua medindo sinais físicos em altíssima velocidade.
-* **Filtro Anti-Metastabilidade:** Como o sinal do sensor é externo e assíncrono, ele passa por dois Flip-Flops (`pwm_sync_1` e `pwm_sync_2`) para se alinhar perfeitamente com o clock da placa, evitando falhas lógicas.
-* **Cronômetros:** O VHDL não calcula ângulos. Ele apenas possui dois cronômetros: um que conta o tempo total do ciclo PWM (`t_period`) e outro que conta o tempo que o sinal fica em nível lógico alto (`t_high`).
+A FPGA atua medindo os sinais na placa DE10-Lite.
+* **Filtro:** Como o sinal do sensor é externo e assíncrono, ele passa por duas variáveis (`pwm_sync_1` e `pwm_sync_2`) para se alinhar com o clock da placa, evitando falhas.
+
+* **Cronômetros:** O VHDL não calcula ângulos. Ele apenas possui dois timers, um que conta o tempo total do ciclo PWM (`t_period`) e outro que conta o tempo que o sinal fica em nível lógico alto (`t_high`).
 * **Comunicação:** O módulo disponibiliza esses tempos no **Slot 22** do barramento de dados do processador.
 
 **Simulação e Sinais (Testbench):**
@@ -29,42 +30,50 @@ Para validar o funcionamento do hardware, simulamos o circuito no ModelSim. A im
 ![Simulação do Testbench no ModelSim](img/testbench_wave.png)
 
 Na análise da forma de onda, destacam-se os seguintes sinais:
-* **clk e rst:** Os sinais de clock (50 MHz) e reset que comandam todo o sincronismo.
-* **pwm_in:** É a entrada bruta vinda do pino físico do sensor AS5600. Note que ele é totalmente assíncrono.
-* **pwm_sync_1 e pwm_sync_2:** São as saídas dos flip-flops de sincronização. Eles replicam o `pwm_in`, mas com um atraso de 1 e 2 ciclos de clock, garantindo estabilidade. O sistema detecta uma nova borda de subida avaliando quando `pwm_sync_1` está alto e `pwm_sync_2` está baixo.
+* **clk e rst:** Sinais de clock (50 MHz) e reset.
+
+* **pwm_in:** É o pino *out* do sensor AS5600.
+
+* **pwm_sync_1 e pwm_sync_2:** São duas variáveis de sincronização. Eles replicam o `pwm_in`, mas com um atraso de 1 e 2 ciclos de clock. O sistema detecta uma nova borda de subida avaliando quando `pwm_sync_1` está alto e `pwm_sync_2` está baixo.
+
 * **period_counter:** Um contador contínuo que incrementa a cada ciclo de clock, registrando o tempo total.
+
 * **high_counter:** Um contador que incrementa apenas enquanto o sinal sincronizado `pwm_sync_2` está em nível lógico alto.
-* **t_high_reg e t_period_reg:** Registradores que capturam os valores finais dos contadores no exato instante em que um novo ciclo inicia. São esses valores estáveis que ficam disponíveis para o processador ler.
-* **daddress, ddata_r, d_rd e dcsel:** Sinais do barramento Avalon/RISC-V. Quando o processador envia o endereço de leitura correto e ativa o chip select (`dcsel`), o valor dos registradores é colocado no barramento `ddata_r` para o software em C processar.
+
+* **t_high_reg e t_period_reg:** Registradores que capturam os valores finais dos contadores no exato instante em que um novo ciclo inicia. São esses valores enviados para o processador ler.
+
+* **daddress, ddata_r, d_rd e dcsel:** Sinais do barramento. Quando o processador envia o endereço de leitura correto e ativa o chip select (`dcsel`), o valor dos registradores é colocado no barramento `ddata_r` para o software em C processar.
 
 ### B. Camada de Software (C)
-O arquivo principal é o `main.c`. Rodando dentro do núcleo RISC-V, o software é o "cérebro" matemático.
-* **Memory-Mapped I/O:** O C acessa o Slot 22 físico através dos ponteiros `#define AS5600_T_HIGH` e `AS5600_T_PERIOD` presentes no mapa de memória (`hardware.h`).
-* **Matemática do Datasheet:** Com base no manual oficial do AS5600, o sinal PWM tem um quadro de **4351 clocks**, possuindo um cabeçalho obrigatório de **128 clocks**. O software faz a regra de três para converter o tempo lido pela FPGA, subtrai o 128, e converte o restante (limite de 4095 de resolução) em um ângulo de **0 a 360 graus**.
-* **Formatação BCD:** Fatiamos o ângulo final com a matemática de resto de divisão (`% 10`) e agrupamos os pedaços com deslocamento de bits (`<< 4`) para enviar a informação correta ao hardware dos displays de 7 segmentos.
+Rodando dentro do núcleo RISC-V, o software calcula os valores a serem mostrados no display.
+
+* **Memória:** O C acessa o Slot 22 através dos ponteiros `#define AS5600_T_HIGH` e `AS5600_T_PERIOD` presentes no mapa de memória (`hardware.h`).
+
+* **Datasheet:** Com base no *datasheet* do AS5600, o sinal PWM tem um quadro de **4351 clocks**, possuindo um cabeçalho obrigatório de **256 clocks**. O software subtrai o 128, e converte o restante em um ângulo de **0 a 360 graus**.
+
+* **BCD:** Enviamos o ângulo final ao hardware dos displays de 7 segmentos.
 
 ---
 
-## 3. Setup Físico (Montagem)
+## 3. Montagem
 
-Para que o projeto funcione no mundo real, você precisará de:
-1. Uma FPGA **Terasic DE10-Lite**.
+Para que o projeto funcione, você precisará de:
+1. FPGA **Terasic DE10-Lite**.
 2. O módulo do sensor magnético **AS5600**.
-3. Um ímã diametral.
+3. Um ímã diametral (com os polos perpendiculares à face do ímã).
 
-**Conexões Básicas dos Pinos:**
-* **VDD / VCC:** Ligar no pino de 3.3V ou 5V da DE10-Lite (verifique a versão exata da sua plaquinha do AS5600).
+**Conexões dos Pinos:**
+* **VCC:** Ligar no pino de 3.3V ou 5V da DE10-Lite (verifique a versão exata da sua plaquinha do AS5600).
+
 * **GND:** Ligar em qualquer pino GND da FPGA.
-* **PWM / OUT:** Ligar no pino de GPIO específico definido pelo seu projeto Quartus (onde o sinal `pwm_in` está mapeado fisicamente, geralmente no cabeçalho Arduino ou GPIO lateral da DE10-Lite).
 
-> [!WARNING]
-> **Alinhamento do Ímã:** O ímã diametral deve ser posicionado milimetricamente acima do centro do chip AS5600 (a distância de *airgap* recomendada pelo datasheet é de 0.5 mm a 3 mm). Eixos tortos geram leituras de PWM ruidosas.
+* **PWM OUT:** Ligar no pino de GPIO específico definido pelo seu projeto Quartus (onde o sinal `pwm_in` está mapeado, aqui é `ARDUINO_IO(2)`).
+
+> **Alinhamento do Ímã:** O ímã diametral deve ser posicionado acima do centro do chip AS5600 (distância entre 0.5 mm a 3 mm).
 
 ---
 
 ## 4. Como Compilar e Rodar
-
-Sempre que você alterar o código em C (`main.c`), não é necessário recompilar a FPGA inteira! Siga os passos:
 
 ### Passo 1: Compilar o C
 Abra o seu terminal Linux/WSL/MSYS2, navegue até a pasta `software/as5600_app/` e rode:
@@ -76,25 +85,24 @@ Isso gerará o arquivo atualizado `quartus_main.hex`.
 
 ### Passo 2: Gravar na FPGA
 
-**Opção A (A mais rápida - via Terminal / In-System Memory):**
-Se a placa já estiver ligada, no mesmo terminal onde deu o `make`, rode:
-```bash
-make flash
-```
-*(Isso vai injetar o arquivo `.hex` diretamente na memória RAM da placa pela porta JTAG em poucos segundos, atualizando o C).*
+**In-System Memory:**
 
-**Opção B (O método clássico - via Intel Quartus):**
 1. Abra o projeto principal **`de10_lite.qpf`** (localizado em `sint/de10_lite/`) no software Intel Quartus.
+
 2. Na barra superior, clique em: `Processing` -> `Update Memory Initialization File`.
+
 3. Na barra superior, clique em: `Processing` -> `Start` -> `Start Assembler`.
+
 4. Abra o `Programmer` (Tools -> Programmer), selecione o novo arquivo `.sof` gerado e clique em **Start** para gravar a placa.
 
 ---
 
 ## 5. Como Testar e Apresentar
 
-Com a placa gravada e o sensor conectado:
-1. Gire o ímã suavemente sobre o sensor.
-2. Os displays hexagonais da DE10-Lite (HEX1 a HEX3) exibirão o ângulo de **0 a 359**, e o display HEX0 exibirá o símbolo de grau `°`.
-3. Levante a **Chave SW0** (primeiro interruptor à direita na placa). Isso aciona o nosso "Modo Potenciômetro".
-4. Dê voltas consecutivas com o ímã. O display não irá mais zerar após o 360; ele vai acumular os giros e a tela exibirá uma escala unificada de **0 a 100**, onde 100 só é atingido após você completar exatamente duas voltas (720 graus)!
+1. Gire o ímã sobre o sensor.
+
+2. Os displays da DE10-Lite  exibirão o ângulo de **0 a 360°**.
+
+3. Levante a **Chave SW0**. Isso aciona o 'Modo Potenciômetro'.
+
+4. Dê voltas com o ímã. Ele vai acumular os giros e a tela exibirá uma escala unificada de **0 a 100**, onde 100 só é atingido após você completar exatamente duas voltas (720 graus).
