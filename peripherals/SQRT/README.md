@@ -60,5 +60,8 @@ $$
 $$
 
 Como o display mostra em hexadecimal, o resultado (22 em decimal) aparece como `16`, e o resto (27 em decimal) aparece como `1b`.
-
+<div align="center">
+  
 https://github.com/user-attachments/assets/edcabd74-3f22-4893-bba9-e5746b951fc4
+
+</div>
