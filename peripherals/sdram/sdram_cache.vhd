@@ -17,6 +17,8 @@ entity sdram_cache is
     read_address : in  std_logic_vector(31 downto 0);
     read_data    : out std_logic_vector(15 downto 0);
     read_lock    : out std_logic;
+    -- Force a "cache miss" only for RX
+    read_flush   : in  std_logic := '0';
 
     -- Write domain --
     write_commit    : in  std_logic;
@@ -83,9 +85,11 @@ architecture sdram_cache_behavior of sdram_cache is
   signal read_words_pushed  : integer range 0 to 8;
   -- Gate: only unload once a fresh transaction boundary is seen after reset --
   signal read_unload_armed  : std_logic;
-  
+
   signal rx_cache_miss       : std_logic;
   signal read_hit            : std_logic;
+  -- Latched read_flush request, held until IDLE services it --
+  signal flush_pending       : std_logic;
 
   signal cache_state         : cache_state_t;
 
@@ -140,31 +144,39 @@ begin
       sdram_addr <= (others => '0');
       sdram_write_data <= (others => (others => '0'));
       write_fifo_pop <= '0';
+      flush_pending <= '0';
     elsif rising_edge(clk) then
       read_fifo_reset <= '0';
       write_fifo_pop <= '0';
+      if read_flush = '1' then
+        flush_pending <= '1';
+      end if;
       case cache_state is
         when CACHE_STATE_INIT =>
           cache_state <= CACHE_STATE_IDLE;
         when CACHE_STATE_IDLE =>
 
-          -- If idle and nothing to do fill the read fifo cache --
-          if read_fifo_used < (READ_FIFO_SIZE - SDRAM_READ_BURST_SIZE) then
+          -- Prefetch when there is room.
+          if read_fifo_full = '0'
+             and read_fifo_used < (READ_FIFO_SIZE - SDRAM_READ_BURST_SIZE) then
             sdram_addr <= read_burst_address;
             cache_state <= CACHE_STATE_READING;
           end if;
 
-          -- Only start writing when read fifo has enough data --
-          if write_fifo_empty = '0' and read_fifo_almost_empty = '0' then
+          -- Start writing only with enough read data.
+          if write_fifo_empty = '0' and read_fifo_almost_empty = '0'
+             and write_fifo_pop = '0' then
             sdram_addr <= write_fifo_data_out(47 downto 16);
             sdram_write_data(0) <= write_fifo_data_out(15 downto 0);
             cache_state <= CACHE_STATE_WRITING;
           end if;
 
-          -- Cache miss: flush the cached data and refill from the missed address --
-          if rx_cache_miss = '1' then
+          -- Cache miss: flush the cached
+          -- data and refill from the missed address --
+          if rx_cache_miss = '1' or flush_pending = '1' then
             read_fifo_reset <= '1';
             read_burst_address <= read_address;
+            flush_pending <= '0';
             cache_state <= CACHE_STATE_RX_CACHE_MISS;
           end if;
         when CACHE_STATE_READING =>
