@@ -113,6 +113,9 @@ void rtc_disable(void);
 ```
 As funções rtc_read_sec, rtc_read_min e rtc_read_hour realizam a leitura dos registradores de segundos, minutos e horas, rtc_write_sec, rtc_write_min e rtc_write_hour permitem configurar os valores iniciais do relógio e pro fim rtc_enable e rtc_disable controlam a contagem do RTC.
 
+
+4. [`software/rtc2/rtc.c`](../../software/rtc2/rtc.c)
+ 
 ```C
 #include "rtc.h"
 
@@ -162,9 +165,9 @@ Ao executar rtc_enable, o valor 1 é escrito no registrador de controle, habilit
 
 ## Exemplo
 
-Ao fim do desenvolvimento das funções,foi feito um exemplo no arquivo, [`software/lcd/main_lcd.c`](../../software/lcd/main_lcd.c)
+Ao fim do desenvolvimento das funções,foi feito um exemplo no arquivo, [`software/rtc2/main_rtc.c`](../../software/rtc2/main_rtc.c)
 
-Inicialmente, os registradores de horas, minutos e segundos são configurados com os valores 12, 0 e 0, respectivamente. Em seguida, a contagem do RTC é habilitada por meio da função rtc_enable.
+Os registradores de horas, minutos e segundos são configurados com os valores 0. Em seguida, a contagem do RTC é habilitada por meio da função rtc_enable.
 
 Durante a execução, o programa permanece em um laço infinito, realizando continuamente a leitura do registrador de segundos através da função rtc_read_sec.
 
