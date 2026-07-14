@@ -245,7 +245,7 @@ O _testbench_ foi implementado no arquivo [`peripherals/rtc2/testbench2.vhd`](..
 
 O arquivo principal para síntese é o [`sint/de10_lite/de0_lite.vhd`](sint/de10_lite/de0_lite.vhd)
 
-Ao final, após a síntese e gravação do arquivo .hex na memória interna utilizada para o núcleo RISCV, é possível observar o funcionamento do RTC. A fim de teste, foram setadas as horas e minutos nos registradores.
+Ao final, após a síntese e gravação do arquivo .hex na memória interna utilizada para o núcleo RISCV, é possível observar o funcionamento do RTC. A fim de teste, foram setadas as horas e minutos nos displays.
 
 <img width="25%" height="25%" src="PLD_rtcGIF.gif">
 
