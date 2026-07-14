@@ -65,6 +65,6 @@ add wave -label txb0d1          -radix hex  /can_top_inst/r_TXB0Dn(1)
 # add wave -radix dec /dut/p0/count
 
 #Simula até um 5us
-run 100us
+run 20us
 wave zoomfull
 write wave wave.ps

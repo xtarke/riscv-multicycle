@@ -57,7 +57,7 @@ architecture RTL of can_fsm is
 begin
 
     -- TXB0CTRL(3) is TXREQ (Request to Send) bit, when set to '1' by the RISC-V, indicates that a transmission should be initiated with the current buffer configuration
-    tx_request <= txb0ctrl_reg(3);      -- @TODO TXREQ do Registrador deve ser mudado ao final da transmissão
+    tx_request <= txb0ctrl_reg(3);      -- TXREQ do Registrador é mudado ao final da transmissão
 
     ------------------------------------------------------------------
     -- FSM Process (Synchronous)
@@ -95,8 +95,8 @@ begin
 
                 when ST_ARBITRATION =>
                     if stuff_nxt_bit = '0' then
-                        if tx_abort = '1' then
-                            current_state <= ST_IDLE; -- Message ID has less priority than another message being transmitted, aborting and waiting for the next opportunity
+                        if tx_abort = '1' then-- Message ID has less priority than another message being transmitted, aborting and waiting for the next opportunity
+							current_state <= ST_IDLE;
                         elsif bit_count >= 10 then
                             current_state <= ST_RTR;
                             can_tx <= txb0sidl_reg(5);      -- LSB of the ID is mapped in bit 5 of TXB0SIDL
