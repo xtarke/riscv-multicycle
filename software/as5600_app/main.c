@@ -7,6 +7,8 @@
 #define AS5600_T_HIGH   (*(_IO32 *) (PERIPH_BASE + 22*16*4))
 #define AS5600_T_PERIOD (*(_IO32 *) (PERIPH_BASE + 22*16*4 + 4))
 
+// ===========================================================================
+
 // variáveis globais para lembrar a posição do giro entre uma leitura e outra
 int32_t prev_angle = -1;
 int32_t accum_angle = 0;
@@ -44,6 +46,8 @@ uint32_t calcular_modo_display(uint32_t angle_atual, uint32_t sw0_ligado) {
     }
 }
 
+// ===========================================================================
+
 int main() {
     uint32_t t_high;
     uint32_t t_period;
@@ -73,6 +77,7 @@ int main() {
             }
         }
 
+        // ===========================================================================
         // lê a chave (usando INBUS de gpio.h)
         uint32_t sw0_ligado = INBUS & 0x01;
         
@@ -83,6 +88,7 @@ int main() {
         uint32_t u = valor_para_tela % 10;
         uint32_t d = (valor_para_tela / 10) % 10;
         uint32_t c = (valor_para_tela / 100) % 10;
+        // ===========================================================================
 
         bcd_val = 0xA;              // escreve '°' no primeiro display
         bcd_val |= (u << 4);        // escreve a unidade no segundo display
