@@ -7,25 +7,24 @@
 
 // Macro para acessar um registrador do CAN.
 // O offset é o número do registrador (0x30, 0x31, ...)
-#define CAN_BASE 0x04000000+28*16*4*4 //0x01000700*4
-#define REG8(offset)    (*(volatile uint8_t *)(CAN_BASE + (offset*4)))
+#define CAN_BASE 0x04000000+28*16*4*4 //0x01000640*4
+#define REG8(offset)   (*(volatile uint8_t *)(CAN_BASE + (offset * 4)))
 
+// Mapeamento dos registradores
+#define TXB0CTRL       REG8(0x30)
+#define TXB0SIDH       REG8(0x31)
+#define TXB0SIDL       REG8(0x32)
+#define TXB0DLC        REG8(0x35)
+#define TXB0D0         REG8(0x36)
+#define TXB0D1         REG8(0x37)
+#define TXB0D2         REG8(0x38)
+#define TXB0D3         REG8(0x39)
+#define TXB0D4         REG8(0x3A)
+#define TXB0D5         REG8(0x3B)
+#define TXB0D6         REG8(0x3C)
+#define TXB0D7         REG8(0x3D)
+#define BAUD_REG       REG8(0xF0)
 
-
-// Registradores
-#define TXB0CTRL   REG8(0x30)
-#define TXB0SIDH   REG8(0x31)
-#define TXB0SIDL   REG8(0x32)
-#define TXB0DLC    REG8(0x35)
-#define TXB0D0     REG8(0x36)
-#define TXB0D1     REG8(0x37)
-#define TXB0D2     REG8(0x38)
-#define TXB0D3     REG8(0x39)
-#define TXB0D4     REG8(0x3A)
-#define TXB0D5     REG8(0x3B)
-#define TXB0D6     REG8(0x3C)
-#define TXB0D7     REG8(0x3D)
-#define BAUD_REG   REG8(0xF0)
 
 /* Estrutura de um quadro CAN */
 typedef struct {

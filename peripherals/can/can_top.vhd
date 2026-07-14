@@ -19,7 +19,7 @@ entity can_top is
         rst : in std_logic;     -- reset from CPU
 
         -- Data interface with CPU
-        bus_addr      : in  std_logic_vector(31 downto 0);  -- only the lowest 8 bits is read (target register addr)
+        bus_addr      : in  unsigned(7 downto 0);  -- only the lowest 8 bits is read (target register addr)
         reg_wr_en     : in  std_logic;      -- instead a instruction like in SPI, this pin allows the can peripheral registers write
         bus_wdata     : in  std_logic_vector(31 downto 0);  -- only the lowest 8 bits is read (data to be read)
         bus_rdata     : out std_logic_vector(31 downto 0); -- Data read from the target register @TODO
@@ -54,15 +54,17 @@ architecture RTL of can_top is
     signal rx_bit_out    : std_logic;
     signal tx_abort      : std_logic;
     signal stuff_nxt_bit : std_logic;
+	signal bus_addr_vec     : std_logic_vector(7 downto 0);
 
+	signal tx_done : std_logic;
 begin
-
+	bus_addr_vec <=std_logic_vector(bus_addr);
     -- Instantiate register_map.vhd
     register_map_inst : entity work.register_map
         port map(
             clk             => clk,
             rst             => rst,
-            bus_addr        => bus_addr,
+            bus_addr        => bus_addr_vec,
             bus_wdata       => bus_wdata,
             bus_rdata       => bus_rdata,
             bus_we          => reg_wr_en,
@@ -74,7 +76,8 @@ begin
             txb0dlc_out     => txb0dlc_out,
             txb0dn_out      => r_TXB0Dn,
             core_canstat_in => core_canstat_s,
-            core_canstat_we => core_canstat_we
+            core_canstat_we => core_canstat_we,
+			tx_done			=> tx_done
             --core_tec_in     => core_tec_in,
             --core_rec_in     => core_rec_in,
             --core_eflg_in    => core_eflg_in,
@@ -98,7 +101,8 @@ begin
             can_tx            => tx_bit_in,
             core_canstat_out  => core_canstat_s,
             core_canstat_we   => core_canstat_we,
-            stuff_nxt_bit     => stuff_nxt_bit
+            stuff_nxt_bit     => stuff_nxt_bit,
+			tx_done			=> tx_done
             --debug             => debug
         );
 
@@ -118,6 +122,5 @@ begin
             can_rx            => can_rx,
             can_tx            => can_tx
         );
-
 
 end architecture RTL;

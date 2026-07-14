@@ -47,7 +47,7 @@ architecture sim of tb_riscv is
     signal debugString : string(1 to 40) := (others => '0');
 	signal can_reg_addr : unsigned(7 downto 0);
 
-    signal can_sel   : std_logic;
+    -- signal can_sel   : std_logic;
 	signal tmp : unsigned(31 downto 0);
 	signal offset : unsigned(7 downto 0);
 	constant BASE_ADDR : unsigned(31 downto 0) := x"01000000"; -- base do espaço
@@ -58,12 +58,11 @@ begin
 	tmp <= daddress - BASE_ADDR;               -- diferença em relação à base
     offset <= tmp(7 downto 0);                 -- bytes internos do bloco
     -- Verifica se a parte alta (acima do byte) é exatamente BLOCK_OFFSET
-    can_sel <= '1' when (tmp(15 downto 8) = BLOCK_OFFSET(15 downto 8)) else '0';
+    can_wr_en <= '1' when (tmp(15 downto 8) = BLOCK_OFFSET(15 downto 8)) else '0';
     -- ou, mantendo sua forma: (tmp - offset) = BLOCK_OFFSET
     -- can_sel <= '1' when ((tmp - offset) = BLOCK_OFFSET) else '0';
 
-    can_reg_addr <= offset when (dcsel = "10" and can_sel = '1') else (others => '0');
-    can_wr_en <= '1' when (dcsel = "10" and can_sel = '1') else '0';
+    can_reg_addr <= offset when (dcsel = "10" and can_wr_en = '1') else (others => '0');
 
     -----------------------------------------------------------------
     -- CAN

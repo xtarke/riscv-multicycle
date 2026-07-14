@@ -2,7 +2,7 @@
 --! @file   can_fsm.vhdl
 --! @author Christopher Costa
 --! @date   29/06/2026
---! @brief  VHDL implementation of FSM of CAN 2.0A 
+--! @brief  VHDL implementation of FSM of CAN 2.0A
 --          controller
 -------------------------------------------------------
 
@@ -16,32 +16,32 @@ entity can_fsm is
     port (
         clk              : in  std_logic;
         rst              : in  std_logic;
-        
+
         -- higher ID message is being transmitted first -- reestart FSM from SOF when tx_abort LOW
         -- may be set for other errors in the future (ex: bus error, bit error, etc)
-        tx_abort         : in  std_logic; 
+        tx_abort         : in  std_logic;
 
         current_state_out: out std_logic_vector(3 downto 0);
-        
+
         -- Register Map Interface (transmission configuration and data)
         canctrl_reg      : in  std_logic_vector(7 downto 0); -- Control Register (CANCTRL) - Bit 0: REQOP0, Bit 1: REQOP1, Bit 2: REQOP2 (define the operating mode of the CAN controller)
         txb0ctrl_reg     : in  std_logic_vector(7 downto 0); -- TXREQ bit (3) is responsible for starting the transmission when set to '1' by the RISC-V
         txb0sidh_reg     : in  std_logic_vector(7 downto 0); -- ID Bits [10:3]
         txb0sidl_reg     : in  std_logic_vector(7 downto 0); -- ID Bits [2:0] mapped in [7:5]
         txb0dlc_reg      : in  std_logic_vector(7 downto 0); -- Data Length Code [3:0]
-        r_TXB0Dn         : in  t_tx_data_regs;               -- Transmission data bytes (D0 a D7) 
+        r_TXB0Dn         : in  t_tx_data_regs;               -- Transmission data bytes (D0 a D7)
 
         -- Interface com a linha física CAN (via Transceiver)
-        can_rx           : in  std_logic;         -- can_fsm input | can_engine output            
-        can_tx           : out std_logic;         -- can_fsm output | can_engine input           
-        
+        can_rx           : in  std_logic;         -- can_fsm input | can_engine output
+        can_tx           : out std_logic;         -- can_fsm output | can_engine input
+
         -- Sinais de Status para atualizar o Register Map
         core_canstat_out : out std_logic_vector(7 downto 0);
         core_canstat_we  : out std_logic;
 
         -- Signals from can_engine
-        stuff_nxt_bit   : in std_logic   -- Tells FSM to stop data transmission for a clock cycle 
-
+        stuff_nxt_bit   : in std_logic;   -- Tells FSM to stop data transmission for a clock cycle
+		tx_done : out std_logic:='0'   -- pulso de 1 ciclo quando a transmissão termina
         -- Debug
         --debug            : out unsigned(7 downto 0)
     );
@@ -76,6 +76,7 @@ begin
             byte_count    := (others => '0');
             can_tx        <= RECESSIVE_BIT;
             data_length   <= x"00";
+			tx_done <= '0';
 
         elsif rising_edge(clk) then
 
@@ -84,6 +85,7 @@ begin
                 when ST_IDLE =>
                     can_tx <= RECESSIVE_BIT;
                     if tx_abort = '0' and tx_request = '1' then
+						tx_done <= '0';
                         current_state <= ST_SOF;
                     end if;
 
@@ -121,7 +123,7 @@ begin
                         can_tx <= DOMINANT_BIT; -- IDE bit is '0' for standard frames
                         current_state <= ST_R0;
                     end if;
-                    
+
                 when ST_R0 =>
                     if stuff_nxt_bit = '0' then
                         can_tx <= DOMINANT_BIT; -- r0 bit is reserved and set to '0'
@@ -167,7 +169,7 @@ begin
                     -- serializes crc bits
                     if stuff_nxt_bit = '0' then
                         if bit_count <= 13 then
-                            can_tx <= crc_reg(14 - to_integer(bit_count)); 
+                            can_tx <= crc_reg(14 - to_integer(bit_count));
                             bit_count := bit_count + 1;
                         else
                             can_tx <= crc_reg(0); -- Last bit of crc_reg
@@ -193,7 +195,7 @@ begin
                         can_tx <= RECESSIVE_BIT; -- ack delimiter is always recessive
                         current_state <= ST_EOF;
                     end if;
-                    
+
                 when ST_EOF =>
                     if bit_count <= 5 then
                         can_tx <= RECESSIVE_BIT; -- EOF is 7 recessive bits
@@ -209,6 +211,7 @@ begin
                         bit_count := bit_count + 1;
                     else
                         bit_count := (others => '0');
+						tx_done <= '1';
                         current_state <= ST_IDLE;
                     end if;
 
@@ -231,7 +234,7 @@ begin
         variable bit_val  : std_logic;
         variable dlc_int  : integer range 0 to 15;
         variable max_bits : integer range 19 to 83;
-        
+
         variable byte_idx : integer range 0 to 7;
         variable bit_idx  : integer range 0 to 7;
     begin
@@ -250,7 +253,7 @@ begin
         -- Loop to solve crc
         for i in 0 to 82 loop
             if i < max_bits then
-                
+
                 -- bitstream multiplexer (MSB first)
                 if i = 0 then
                     bit_val := '0';                                -- SOF (Dominant)
@@ -291,7 +294,7 @@ begin
                 crc(2)  := crc(1);
                 crc(1)  := crc(0);
                 crc(0)  := crc_next;
-                
+
             end if;
         end loop;
 

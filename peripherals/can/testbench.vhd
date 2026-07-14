@@ -78,7 +78,7 @@ begin
     begin
         -- 1. Reset Inicial do Sistema
         rst <= '1';
-        wait for 1 ns;
+        wait for 10 ns;
         rst <= '0';
         wait;
     end process;
@@ -88,69 +88,37 @@ begin
     ------------------------------------------------------------------
 	regiters_config_p : process
     begin
+        -- espera o fim do reset
+        wait for 10 ns;
 
         -- 1. TXB0SIDH (ID alto)
-        bus_addr  <= unsigned(TXB0SIDH);   -- conversão direta, sem resize
+        bus_addr  <= unsigned(TXB0SIDH);
         bus_wdata <= x"000000AA";
         reg_wr_en <= '1';
-        wait for CLK_PERIOD;
-        reg_wr_en <= '0';
-        wait for CLK_PERIOD;               -- gap entre escritas
+        wait for CLK_PERIOD*2;
 
         -- 2. TXB0DLC (DLC = 5)
         bus_addr  <= unsigned(TXB0DLC);
         bus_wdata <= x"00000005";
-        reg_wr_en <= '1';
-        wait for CLK_PERIOD;
-        reg_wr_en <= '0';
         wait for CLK_PERIOD;
 
         -- 3. TXB0D0 (primeiro byte de dados)
         bus_addr  <= unsigned(TXB0D0);
         bus_wdata <= x"000000AA";
-        -- Escrita do endereço nos registradors txb0sidh e txb0sidl
-        bus_addr(7 downto 0) <= TXB0SIDH;
-        bus_wdata(7 downto 0) <= "00000000";
-        reg_wr_en <= '1';
-        wait for CLK_PERIOD;
-        reg_wr_en <= '0';
-        wait for CLK_PERIOD;
-        --bus_addr(7 downto 0) <= TXB0SIDL;
-        bus_wdata(7 downto 0) <= "00100000";
-        wait for CLK_PERIOD;
-        --wait for CLK_PERIOD * 2; -- both SIDH and SIDL must be writtne
-
-        -- Escrita do data length no registrador txb0dlc
-        bus_addr(7 downto 0) <= TXB0DLC;
-        bus_wdata(7 downto 0) <= "00000001";
         wait for CLK_PERIOD;
 
         -- 4. BAUD_REG (prescaler = 0)
         bus_addr  <= unsigned(BAUD_REG);
         bus_wdata <= x"00000000";
-        reg_wr_en <= '1';
-        wait for CLK_PERIOD;
-        reg_wr_en <= '0';
-        -- Escrita do buffer de dados
-        bus_addr(7 downto 0) <= TXB0D0;
-        bus_wdata(7 downto 0) <= "10101010";
-        wait for CLK_PERIOD;
-        --bus_addr(7 downto 0) <= TXB0D0;
-        bus_wdata(7 downto 0) <= "00011100";
-        wait for CLK_PERIOD;
-
-        -- Configura o preescaler
-        bus_addr(7 downto 0) <= BAUD_REG;
-        bus_wdata(7 downto 0) <= "00000000";
+        -- reg_wr_en <= '1';
         wait for CLK_PERIOD;
 
         -- 5. TXB0CTRL (pedido de transmissão)
         bus_addr  <= unsigned(TXB0CTRL);
         bus_wdata <= x"00000008";
-        reg_wr_en <= '1';
         wait for CLK_PERIOD;
         reg_wr_en <= '0';
-
+		wait;
     end process;
 
 end architecture sim;

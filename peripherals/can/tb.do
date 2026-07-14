@@ -43,7 +43,7 @@ add wave -label state     -radix hex    /testbench/can_top_inst/can_fsm_inst/cur
 #add wave -label bit_mask  -radix hex    /testbench/reg_bit_mask
 #add wave -label data_out  -radix hex    /testbench/reg_data_out
 
-add wave -label state_name /testbench/can_top_inst/can_fsm_inst/current_state
+add wave -label state_name /can_top_inst/can_fsm_inst/current_state
 
 add wave -label can_rx    -radix binary /testbench/can_rx
 add wave -label can_tx    -radix binary /testbench/can_tx
@@ -65,6 +65,6 @@ add wave -label txb0d1          -radix hex  /can_top_inst/r_TXB0Dn(1)
 # add wave -radix dec /dut/p0/count
 
 #Simula até um 5us
-run 10us
+run 100us
 wave zoomfull
 write wave wave.ps

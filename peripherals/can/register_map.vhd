@@ -40,7 +40,8 @@ entity register_map is
 
         -- Inputs from other componentes to update registers
         core_canstat_in : in  std_logic_vector(7 downto 0);
-        core_canstat_we : in  std_logic
+        core_canstat_we : in  std_logic;
+		tx_done  : in  std_logic	   -- limpa o bit TXREQ quando '1'
         --core_tec_in     : in  std_logic_vector(7 downto 0);
         --core_rec_in     : in  std_logic_vector(7 downto 0);
         --core_eflg_in    : in  std_logic_vector(7 downto 0);
@@ -111,7 +112,10 @@ begin
             if core_canstat_we = '1' then
                 r_CANSTAT <= core_canstat_in;
             end if;
-
+			 -- Limpeza do TXREQ quando transmissão concluída
+			 if tx_done = '1' then
+				r_TXB0CTRL(3) <= '0';
+			end if;
             --if core_status_we = '1' then
                 --r_TEC  <= core_tec_in;
                 --r_REC  <= core_rec_in;

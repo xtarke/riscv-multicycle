@@ -44,11 +44,13 @@ add wave -height 15 -divider "Data Bus"
 add wave d_we dcsel d_sig
 add wave -radix hex daddress ddata_w ddata_r dmask
 add wave -height 15 -divider "CAN"
-add wave can_sel can_wr_en can_tx can_rx
+add wave can_wr_en can_tx can_rx
 add wave -radix hex can_reg_addr
 add wave -height 15 -divider "CAN Internal"
 add wave -label can_clk_out     /can_inst/clk_out
 add wave -label can_fsm_state   -radix hex  /can_inst/current_state
+add wave -label state_name /can_inst/can_fsm_inst/current_state
+add wave -label tx_done /can_inst/tx_done
 add wave -label baud_reg        -radix hex  /can_inst/baud_reg_out
 add wave -label txb0ctrl_reg    -radix hex  /can_inst/txb0ctrl_out
 add wave -label txb0sidh_reg    -radix hex  /can_inst/txb0sidh_out
@@ -56,9 +58,7 @@ add wave -label txb0sidl_reg    -radix hex  /can_inst/txb0sidl_out
 add wave -label txb0dlc_reg     -radix hex  /can_inst/txb0dlc_out
 add wave -label txb0d0          -radix hex  /can_inst/r_TXB0Dn(0)
 add wave -label txb0d1          -radix hex  /can_inst/r_TXB0Dn(1)
-add wave -label reg_wr_en_top   /can_inst/reg_wr_en
-add wave -label can_sel     can_sel
-add wave  -label tmp  -radix hex tmp
-add wave -label can_fsm_state   -radix hex  /can_inst/can_engine_inst/crc_reg
+#add wave  -label tmp  -radix hex tmp
+#add wave -label crc_reg   -radix hex  /can_inst/can_engine_inst/crc_reg
 run 2 ms
 wave zoomfull
