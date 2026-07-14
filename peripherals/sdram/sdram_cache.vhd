@@ -23,6 +23,9 @@ entity sdram_cache is
     write_address   : in  std_logic_vector(31 downto 0);
     write_data      : in  std_logic_vector(15 downto 0);
     write_fifo_full : out std_logic;
+    write_fifo_almost_full : out std_logic;
+
+    read_used       : out std_logic_vector(8 downto 0);
 
     -- SDRAM signals --
     sdram_read_buffer      : in  io_buffer_t;
@@ -58,7 +61,6 @@ architecture sdram_cache_behavior of sdram_cache is
   signal write_fifo_pop      : std_logic;
   signal write_fifo_empty    : std_logic;
   signal write_full          : std_logic;
-  signal write_fifo_almost_full : std_logic;
   signal write_fifo_used     : std_logic_vector(3 downto 0);
 
   -- Read FIFO (fifo_512): 16-bit, depth 512
@@ -79,6 +81,8 @@ architecture sdram_cache_behavior of sdram_cache is
   signal read_burst_address : std_logic_vector(31 downto 0);
   -- Words of the current burst already pushed into the read fifo --
   signal read_words_pushed  : integer range 0 to 8;
+  -- Gate: only unload once a fresh transaction boundary is seen after reset --
+  signal read_unload_armed  : std_logic;
   
   signal rx_cache_miss       : std_logic;
   signal read_hit            : std_logic;
@@ -101,10 +105,11 @@ begin
       usedw       => write_fifo_used
     );
 
-  write_fifo_full     <= write_full;
+  write_fifo_full     <= '1' when write_full = '1' or write_fifo_used >= WRITE_FIFO_SIZE - 1 else '0';
   write_fifo_push     <= write_commit and (not write_full);
   write_fifo_data_in  <= write_address & write_data;
 
+  read_used <= read_fifo_used;
 
   read_fifo : entity work.fifo_512
     port map (
@@ -202,11 +207,13 @@ begin
     if reset = '1' then
       read_fifo_push <= '0';
       read_words_pushed <= 0;
+      read_unload_armed <= '0';
     elsif rising_edge(clk) then
       read_fifo_push <= '0';
       if sdram_read_valid_count = 0 then
         read_words_pushed <= 0;
-      elsif read_words_pushed < sdram_read_valid_count then
+        read_unload_armed <= '1';
+      elsif read_unload_armed = '1' and read_words_pushed < sdram_read_valid_count then
         read_fifo_data_in <= sdram_read_buffer(read_words_pushed);
         read_fifo_push <= '1';
         read_words_pushed <= read_words_pushed + 1;
