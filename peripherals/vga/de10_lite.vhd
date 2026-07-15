@@ -262,8 +262,7 @@ begin
 	end process;
 
 	-- 2D accelerator: drains its command fifo and drives the framebuffer write
-	-- port (muxed below). Reuses the same write path as the CPU. Register writes
-	-- select X/Y/W/H/COLOR/CMD by daddress(2:0); the push is edge-detected above
+	-- port (muxed below).
 	blit: entity work.blitter
 		generic map(SCREEN_W => 640)
 		port map(
@@ -424,7 +423,6 @@ begin
 			if rising_edge(clk) then
 				if (d_rd = '1') and (dcsel = "10") then
 					if daddress(8 downto 3) = "100000" then
-						-- Blitter status: bit0 = busy (command running or queued)
 						input_in <= (0 => blit_busy, others => '0');
 					else
 						input_in(4 downto 0) <= SW(4 downto 0);
