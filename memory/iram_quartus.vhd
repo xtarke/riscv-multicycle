@@ -1,7 +1,7 @@
 -- megafunction wizard: %RAM: 1-PORT%
 -- GENERATION: STANDARD
 -- VERSION: WM1.0
--- MODULE: altsyncram 
+-- MODULE: altsyncram
 
 -- ============================================================
 -- File Name: iram_quartus.vhd
@@ -19,12 +19,12 @@
 
 
 --Copyright (C) 2022  Intel Corporation. All rights reserved.
---Your use of Intel Corporation's design tools, logic functions 
---and other software and tools, and any partner logic 
---functions, and any output files from any of the foregoing 
---(including device programming or simulation files), and any 
---associated documentation or information are expressly subject 
---to the terms and conditions of the Intel Program License 
+--Your use of Intel Corporation's design tools, logic functions
+--and other software and tools, and any partner logic
+--functions, and any output files from any of the foregoing
+--(including device programming or simulation files), and any
+--associated documentation or information are expressly subject
+--to the terms and conditions of the Intel Program License
 --Subscription Agreement, the Intel Quartus Prime License Agreement,
 --the Intel FPGA IP License Agreement, or other applicable license
 --agreement, including, without limitation, that your use is for
@@ -41,6 +41,10 @@ LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
 
 ENTITY iram_quartus IS
+	GENERIC (
+		-- Caminho para o arquivo de inicialização da RAM
+		init_file : string := "./software/quartus_blink.hex"
+	);
 	PORT
 	(
 		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
@@ -66,12 +70,9 @@ BEGIN
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
 		intended_device_family => "MAX 10",
-    
-		-- Specify here core software binary
-		init_file => "./software/quartus_blink.hex",
-		--init_file => "./software/led_rgb/quartus_main.hex",
-		-- init_file => "./software/irq/quartus_irq_example.hex",
-		-- init_file => "./software/irq/quartus_irq_example.hex",
+
+		-- Usa o valor do generic, que pode ser alterado externamente
+		init_file => init_file,
 
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",
@@ -94,10 +95,7 @@ BEGIN
 		q_a => sub_wire0
 	);
 
-
-
 END SYN;
-
 -- ============================================================
 -- CNX file retrieval info
 -- ============================================================

@@ -168,6 +168,26 @@ Para realizar a síntese, são compilados no quartus as seguintes entidades:
 
 A entidade top é [de10_lite.vhd](peripherals/can/sint/de10_lite/de10_lite.vhd) que instancia todos os componentes préviamente listados e gera o sinal de saída no pinos **IO0** (tx_can) e **IO1** (rx_can) do kit FPGA DE10-lite.
 
+# Testes
+
+A imagem abaixo apresenta a aquisição do tempo de um pulso que corresponde ao *baud rate* de 500 kHz, esperado para a transmissão. Esse é o período mínimo de transmissão, mas pode ser aumentado mediante a alteração do valor do registrador **BAUD_REG**.  
+
+![image](img/tempo_pulso.JPG)
+
+A duas imagens abaixo apresentam os pacotes enviados em simulação em *hardware* ambos com a seguinte configuração para fins de comparação:
+
+```C
+    frame.id       = 0x2AA;     /* 11 bits */
+    frame.dlc      = 5;         /* 5 bytes de dados */
+    frame.baud     = 0;         /* prescaler = 0 (sem divisão) */
+    frame.rtr      = false;     /* data frame, não remote */
+    frame.tx_start = true;      /* transmite imediatamente */
+```
+
+![image](img/tx_compare.png)
+
+![image](img/Tx_completo.JPG)
+
 
 # Referências
 

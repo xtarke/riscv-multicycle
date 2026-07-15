@@ -185,15 +185,16 @@ begin
     rst <= SW(9);
     LEDR(9) <= SW(9);
 
-    -- TX done
-    LEDR(5) <= tx_done;
-
+    
     -- Transceiver interface
     ARDUINO_IO(0) <= can_tx;
     LEDR(0)       <= can_tx;
-
+    
     ARDUINO_IO(1) <= can_rx;
     LEDR(1)       <= can_rx;
+    -- TX done
+    ARDUINO_IO(3) <= tx_done;
+    LEDR(5) <= tx_done;
 
     -----------------------------------------------------------------
     -- CAN

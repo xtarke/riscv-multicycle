@@ -109,7 +109,7 @@ begin
     );
 
     iram_inst: entity work.iram_quartus
-        -- generic map (init_file => "../../software/can/can_main.hex")
+        generic map (init_file => "../../software/can/can_main.hex")
 		port map(
 			address => address(9 downto 0),
 			byteena => "1111",
