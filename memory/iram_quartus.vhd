@@ -70,9 +70,12 @@ BEGIN
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
 		intended_device_family => "MAX 10",
-
-		-- Usa o valor do generic, que pode ser alterado externamente
-		init_file => init_file,
+    
+		-- Specify here core software binary
+		init_file => "../../../../software/quartus_blink.hex",
+		--init_file => "./software/led_rgb/quartus_main.hex",
+		-- init_file => "./software/irq/quartus_irq_example.hex",
+		-- init_file => "./software/irq/quartus_irq_example.hex",
 
 		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=1",
 		lpm_type => "altsyncram",

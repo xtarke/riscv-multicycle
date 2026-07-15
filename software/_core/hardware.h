@@ -88,6 +88,8 @@
 #define RS485_BASE_ADDRESS                	(*(_IO32 *) (PERIPH_BASE + 23*16*4))
 #define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 24*16*4))
 #define CAN_BASE_ADDRESS                    (*(_IO32 *) (PERIPH_BASE + 25*16*4))
+#define SQRT_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 26*16*4))
+
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))
 //#define TFT_DATA1		(*(_IO32 *) (PERIPH_BASE + 36))

@@ -1,17 +1,60 @@
+# ============================================================
+# Quartus - projetos de síntese dos periféricos
+# ============================================================
 
-peripherals/*/sint/de10_lite/db
-peripherals/*/sint/de10_lite/incremental_db
-peripherals/*/sint/de10_lite/output_files
-peripherals/*/sint/de10_lite/simulation
+peripherals/*/sint/de10_lite/db/
+peripherals/*/sint/de10_lite/incremental_db/
+peripherals/*/sint/de10_lite/output_files/
+peripherals/*/sint/de10_lite/simulation/
 peripherals/*/sint/de10_lite/*.bak
 peripherals/*/sint/de10_lite/*.qdf
 peripherals/*/sint/de10_lite/*.qws
+peripherals/*/sint/de10_lite/*.rpt
+peripherals/*/sint/de10_lite/*.summary
+peripherals/*/sint/de10_lite/*.smsg
+peripherals/*/sint/de10_lite/*.done
+peripherals/*/sint/de10_lite/*.pin
+peripherals/*/sint/de10_lite/*.sof
+peripherals/*/sint/de10_lite/*.pof
+peripherals/*/sint/de10_lite/*.jic
 
-peripherals/*/*.s
+
+# ============================================================
+# ModelSim / Questa
+# ============================================================
+
+work/
+work_*/
+*.wlf
+transcript
+modelsim.ini
+*.vcd
+
 peripherals/*/transcript
 peripherals/*/*.wlf
-peripherals/*/work
+peripherals/*/work/
+peripherals/*/work_*/
 peripherals/*/*.bak
+
+
+# ============================================================
+# Arquivos gerados pelo compilador RISC-V
+# Diretamente dentro de software/
+# ============================================================
+
+software/*.o
+software/*.map
+software/*.elf
+software/*.tmp
+software/*.hex
+software/*.lss
+software/*.d
+
+
+# ============================================================
+# Arquivos gerados em subpastas de software/
+# Exemplo: software/SQRT/main.o
+# ============================================================
 
 software/*/*.o
 software/*/*.map
@@ -34,3 +77,37 @@ work/
 .library_mapping.xml
 project.sigasi
 sim.s
+software/*/*.d
+
+
+# ============================================================
+# Temporários
+# ============================================================
+
+software/greybox_tmp/
+software/*/greybox_tmp/
+greybox_tmp/
+*.bak
+*.log
+
+# Quartus gerado diretamente dentro de peripherals/<periferico>
+peripherals/*/db/
+peripherals/*/incremental_db/
+peripherals/*/output_files/
+peripherals/*/simulation/
+peripherals/*/*.qws
+peripherals/*/*.qdf
+peripherals/*/*.rpt
+peripherals/*/*.summary
+peripherals/*/*.smsg
+peripherals/*/*.done
+peripherals/*/*.pin
+peripherals/*/*.sof
+peripherals/*/*.pof
+peripherals/*/*.jic
+peripherals/*/*.bak
+peripherals/*/*.flock
+
+# Toolchain local - não versionar compilador inteiro
+compiler/gcc/
+compiler/gcc-riscv-none-embed/

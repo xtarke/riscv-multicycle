@@ -15,5 +15,20 @@
 !*/sint/**.md
 !*/sint/**.vhd
 
+**/db/
+**/incremental_db/
+**/output_files/
+**/greybox_tmp/
+**/simulation/
+*.qws
+*.rpt
+*.summary
+*.smsg
+*.done
+*.jdi
+*.sld
+*.qarlog
+*.qorlog
+
 # For Modelsim:
 *.ps
