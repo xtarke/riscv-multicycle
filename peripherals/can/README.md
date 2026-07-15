@@ -174,7 +174,7 @@ A imagem abaixo apresenta a aquisição do tempo de um pulso que corresponde ao 
 
 ![image](img/tempo_pulso.JPG)
 
-A duas imagens abaixo apresentam os pacotes enviados em simulação em *hardware* ambos com a seguinte configuração para fins de comparação:
+As duas imagens abaixo apresentam os pacotes enviados em simulação em *hardware*, ambos configurados da mesma forma para fins de comparação:  
 
 ```C
     frame.id       = 0x2AA;     /* 11 bits */
