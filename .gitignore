@@ -62,6 +62,21 @@ software/*/*.elf
 software/*/*.tmp
 software/*/*.hex
 software/*/*.lss
+
+project.sigasi
+.project
+.sigasi/
+.settings/
+compiler/gcc
+work/
+*.wlf
+*.ps
+*.d
+*.o
+.DS_Store
+.library_mapping.xml
+project.sigasi
+sim.s
 software/*/*.d
 
 

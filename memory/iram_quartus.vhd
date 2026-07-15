@@ -1,7 +1,7 @@
 -- megafunction wizard: %RAM: 1-PORT%
 -- GENERATION: STANDARD
 -- VERSION: WM1.0
--- MODULE: altsyncram 
+-- MODULE: altsyncram
 
 -- ============================================================
 -- File Name: iram_quartus.vhd
@@ -18,6 +18,15 @@
 -- ************************************************************
 
 
+--Copyright (C) 2022  Intel Corporation. All rights reserved.
+--Your use of Intel Corporation's design tools, logic functions
+--and other software and tools, and any partner logic
+--functions, and any output files from any of the foregoing
+--(including device programming or simulation files), and any
+--associated documentation or information are expressly subject
+--to the terms and conditions of the Intel Program License
+--Subscription Agreement, the Intel Quartus Prime License Agreement,
+--the Intel FPGA IP License Agreement, or other applicable license
 --Copyright (C) 2025  Altera Corporation. All rights reserved.
 --Your use of Altera Corporation's design tools, logic functions 
 --and other software and tools, and any partner logic 
@@ -41,6 +50,10 @@ LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
 
 ENTITY iram_quartus IS
+	GENERIC (
+		-- Caminho para o arquivo de inicialização da RAM
+		init_file : string := "./software/quartus_blink.hex"
+	);
 	PORT
 	(
 		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
@@ -93,10 +106,7 @@ BEGIN
 		q_a => sub_wire0
 	);
 
-
-
 END SYN;
-
 -- ============================================================
 -- CNX file retrieval info
 -- ============================================================
