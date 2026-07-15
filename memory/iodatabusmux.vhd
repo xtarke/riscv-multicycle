@@ -34,6 +34,8 @@ entity iodatabusmux is
         ddata_r_raiz		    : in  std_logic_vector(31 downto 0);
       	ddata_r_RS485   		: in  std_logic_vector(31 downto 0);
         ddata_r_rgb             : in  std_logic_vector(31 downto 0);
+        ddata_r_tft             : in std_logic_vector(31 downto 0);
+        -- Mux 
         ddata_r_rtc             : in std_logic_vector(31 downto 0);
 
         ddata_r_sv_pwm          : in  std_logic_vector(31 downto 0);
@@ -54,6 +56,7 @@ begin
         ddata_r_adc when x"0003",
         ddata_r_i2c when x"0004",
         ddata_r_timer when x"0005",
+        ddata_r_tft when x"0007",
         ddata_r_dif_fil when x"0008",
         ddata_r_stepmot when x"0009",
         ddata_r_lcd when x"000A",

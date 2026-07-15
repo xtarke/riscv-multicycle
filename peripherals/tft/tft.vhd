@@ -3,14 +3,22 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity tft is
+	generic (
+			MY_CHIPSELECT : std_logic_vector(1 downto 0) := "10";
+			MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0000";	
+			DADDRESS_BUS_SIZE : integer := 32
+		);
 	port(
 		clk        : in  std_logic;
-		daddress   : in  natural;
-		dcsel      : in  std_logic_vector(1 downto 0);
-		d_we       : in  std_logic;
-		input_a    : in  unsigned(31 downto 0);
-		input_b    : in  unsigned(31 downto 0);
-		input_c    : in  unsigned(31 downto 0);
+		
+		-- Core data bus signals
+		daddress  : in  unsigned(DADDRESS_BUS_SIZE-1 downto 0);
+		ddata_w   : in  std_logic_vector(31 downto 0);  -- Substituir input_a, input_b, etc (se aplicável)
+		ddata_r   : out std_logic_vector(31 downto 0);
+		d_we      : in  std_logic;
+		d_rd      : in  std_logic;
+		dcsel     : in  std_logic_vector(1 downto 0);
+		
 		ret        : out unsigned(31 downto 0);
 		pin_output : out unsigned(7 downto 0);
 		pin_cs     : out std_logic;
@@ -40,7 +48,12 @@ architecture rtl_tft of tft is
 
 	signal mux_sel : std_logic;
 	signal mux_out : unsigned(31 downto 0);
-
+	
+	signal reg_input_a : unsigned(31 downto 0) := (others => '0');
+	signal reg_input_b : unsigned(31 downto 0) := (others => '0');
+	signal reg_input_c : unsigned(31 downto 0) := (others => '0');
+	signal start_sig   : std_logic := '0';
+	
 begin
 	pin_rst <= not reset;
 
@@ -105,19 +118,45 @@ begin
 		);
 
 	decoder_inst : entity work.decoder_tft
-		port map(
-			clk      => clk,
-			mem_init => empty_boot_mem,
-			mem_full => full_data_mem,
-			daddress => daddress,
-			dcsel    => dcsel,
-			d_we     => d_we,
-			input_a  => input_a,
-			input_b  => input_b,
-			input_c  => input_c,
-			output   => wr_data_data_mem,
-			enable   => wr_en_data_mem,
-			rst      => reset
-		);
-
+			port map(
+				clk      => clk,
+				mem_init => empty_boot_mem,
+				mem_full => full_data_mem,
+				start    => start_sig, -- Novo sinalizador
+				input_a  => reg_input_a,
+				input_b  => reg_input_b,
+				input_c  => reg_input_c,
+				output   => wr_data_data_mem,
+				enable   => wr_en_data_mem,
+				rst      => reset
+			);
+		
+	-- Processo de escrita nos registradores do TFT (baseado no GPIO)
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            reg_input_a <= (others => '0');
+            reg_input_b <= (others => '0');
+            reg_input_c <= (others => '0');
+            start_sig   <= '0';
+        elsif rising_edge(clk) then
+            start_sig <= '0';
+            
+            if (d_we = '1') and (dcsel = MY_CHIPSELECT) then
+                -- Endereço Base (Offset + 0 palavras) -> Mapeia o TFT_BASE_ADDRESS do C
+                if daddress(15 downto 0) = MY_WORD_ADDRESS then
+                    reg_input_a <= unsigned(ddata_w);
+                    start_sig   <= '1';
+                
+                -- Endereço Base + 1 palavra -> Equivalente a TFT_BASE_ADDRESS + 4 no C
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 1) then
+                    reg_input_b <= unsigned(ddata_w);
+                    
+                -- Endereço Base + 2 palavras -> Equivalente a TFT_BASE_ADDRESS + 8 no C
+                elsif daddress(15 downto 0) = (MY_WORD_ADDRESS + 2) then
+                    reg_input_c <= unsigned(ddata_w);
+                end if;
+            end if;
+        end if;
+    end process;
 end architecture;

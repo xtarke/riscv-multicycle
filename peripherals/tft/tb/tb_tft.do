@@ -6,7 +6,7 @@ vlib work
 
 vcom ../mux32.vhd ../boot_mem.vhd ../data_mem.vhd ../decoder/dec_clean.vhd ../decoder/dec_fsm.vhd ../decoder/dec_rect.vhd ../decoder/dec_reset.vhd ../decoder.vhd ../writer.vhd ../controller.vhd ../tft.vhd tb_tft.vhd
 
-vsim -t ns work.testbench_tft_controller
+vsim -voptargs="+acc" -t ns work.testbench_tft_controller
 
 view wave
 
@@ -34,15 +34,14 @@ add wave -radix hex		-label input /tft_inst/wr_data_data_mem
 add wave -radix binary  -label full /tft_inst/full_data_mem
 
 add wave -height 15 -divider "WRITE_OUT"
-add wave -radix bin  	-label ready /tft_inst/write_cdmdata_inst/ready
-add wave -radix hex  	-label start /tft_inst/start
-add wave -radix hex  	-label state_write /tft_inst/write_cdmdata_inst/state
-add wave -radix hex  	-label output /pin_output
+add wave -radix bin     -label ready       /tft_inst/write_cdmdata_inst/ready
+add wave -radix hex     -label start       /tft_inst/start_sig
+add wave -radix hex     -label state_write /tft_inst/write_cdmdata_inst/state
+add wave -radix hex     -label output      /pin_output
 
 add wave -height 15 -divider "FSM_CTR"
-add wave -radix hex  	-label state_fsm /tft_inst/fsm_inst/state
-add wave -radix hex  	-label read_en1 /tft_inst/fsm_inst/read_en1
-add wave -radix hex  	-label read_en2 /tft_inst/fsm_inst/read_en2
+add wave -radix hex     -label state_fsm   /tft_inst/decoder_inst/controller_inst/state
+add wave -radix bin     -label start       /tft_inst/decoder_inst/controller_inst/start
 
 add wave -height 15 -divider "MUX"
 add wave -radix hex  	-label rd_data_1 /tft_inst/rd_data_boot_mem

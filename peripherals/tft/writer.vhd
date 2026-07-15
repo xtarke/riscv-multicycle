@@ -37,6 +37,8 @@ begin
 		if (reset = '1') then
 			state <= IDLE;
 			count <= (others => '0');
+			state_out <= IDLE;
+			count_cmp <= (others => '0');
 		elsif rising_edge(clk) then
 			case state is
 				when IDLE =>

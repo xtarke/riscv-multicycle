@@ -13,60 +13,44 @@ entity dec_reset is
 end entity;
 
 architecture rtl_dec_reset of dec_reset is
-	type state_type is (IDLE, RESET, FINISHED);
-	
-	signal state		: state_type;
-	signal start		: std_logic;
-	signal start_i		: std_logic;
+	type state_type is (IDLE, RESET_PULSE, WAIT_INIT, FINISHED);
+	signal state : state_type := IDLE;
+	signal start : std_logic;
 begin
 	
 	start <= '1' when sel = x"01" else '0';
 	
-	start_detect : process(start, state) is
+	process(clk) is
 	begin
-		if(state = RESET) then
-			start_i <= '0';
-		elsif rising_edge(start) then
-			if state = IDLE then
-				start_i <= '1';
-			elsif state = FINISHED then
-				start_i <= '1';
-			end if;
-		end if;
-	end process;
-	
-	moore : process(clk, start_i) is
-	begin
-		if start_i = '1' then
-			state <= RESET;
---		if rising_edge(start) then
---			state <= RESET;
-		elsif rising_edge(clk) then
+		if rising_edge(clk) then
 			case state is
 				when IDLE =>
+					if start = '1' then
+						state <= RESET_PULSE;
+					end if;
+				when RESET_PULSE =>
+					state <= WAIT_INIT;
+				when WAIT_INIT =>
 					if (mem_init = '1') then
 						state <= FINISHED;
 					end if;
-				when RESET =>
-					state <= IDLE;
 				when FINISHED =>
-					null;
+					state <= IDLE;
 			end case;
 		end if;
 	end process;
 
-	mealy : process(state)
+	process(state)
 	begin
 		completed <= '0';
 		rst <= '0';
 		case state is
-			when IDLE =>
-				null;
-			when RESET =>
+			when RESET_PULSE =>
 				rst <= '1';
 			when FINISHED =>
 				completed <= '1';
+			when others =>
+				null;
 		end case;
 	end process;
-
 end architecture;
