@@ -91,7 +91,6 @@ Para ativar o modo PWM no seu sensor, realize os dois procedimentos a seguir:
 Adicione abaixo a foto do seu módulo identificando o componente a ser retirado:
 
 ![Localização do Resistor R4 no Módulo AS5600](img/sensor_as5600_r4_location.png)
-*(Coloque a sua imagem com o R4 circulado na pasta `img` com o nome `sensor_as5600_r4_location.png`)*
 
 #### 2. Configuração de Registrador (Software/Firmware)
 Além da alteração física, o registrador interno de configuração do AS5600 deve ser programado para definir o modo de saída como PWM. 
