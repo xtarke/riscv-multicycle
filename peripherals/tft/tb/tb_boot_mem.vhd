@@ -15,6 +15,7 @@ architecture stimulus_boot_mem of testbench_boot_mem is
 	signal empty      : std_logic;
 
 begin
+	
 	boot_mem_inst : entity work.boot_mem
 		port map(
 			clk     => clk,
@@ -23,6 +24,7 @@ begin
 			rd_data => rd_data,
 			empty   => empty
 		);
+	
 	
 	clock : process
 	begin

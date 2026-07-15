@@ -93,11 +93,17 @@ architecture RTL of core_main_testbench is
 	signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
    signal ddata_r_cordic : std_logic_vector(31 downto 0);
 	signal ddata_r_RS485 : std_logic_vector(31 downto 0);
-	
+		signal ddata_r_rgb : std_logic_vector(31 downto 0);
+
+	--signal can_rx_in  : std_logic := '1';  -- linha CAN em estado recessivo
+	--signal can_tx_out : std_logic;
+	--signal can_rdata  : std_logic_vector(31 downto 0);
+	--signal can_sel    : std_logic;
+
 
 	-- Timer
 	signal ifcap : std_logic;
-	
+
 
 begin
 
@@ -226,6 +232,7 @@ begin
             ddata_r_accelerometer => ddata_r_accelerometer,
 				ddata_r_cordic    => ddata_r_cordic,
 				ddata_r_RS485     => ddata_r_RS485,
+				ddata_r_rgb => ddata_r_rgb,
             ddata_r_periph   => ddata_r_periph
         );
 
@@ -326,5 +333,4 @@ begin
 		data => idata,
 		inst => debugString
 	);
-
 end architecture RTL;

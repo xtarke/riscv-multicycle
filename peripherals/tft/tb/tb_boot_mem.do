@@ -2,7 +2,7 @@ vlib work
 
 vcom ../boot_mem.vhd tb_boot_mem.vhd
 
-vsim -t ns work.testbench_boot_mem
+vsim -voptargs="+acc" -t ns work.testbench_boot_mem
 
 view wave
 

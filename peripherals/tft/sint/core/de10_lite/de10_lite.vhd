@@ -142,22 +142,26 @@ begin
  	rst <= SW(9);
  
 
- tft_inst : entity work.tft
-	port map(
-		clk        => clock_tft,
-		daddress   => daddress,
-		dcsel      => dcsel,
-		d_we       => d_we,
-		input_a    => input_a,
-		input_b    => input_b,
-		input_c    => input_c,
-		ret        => ret,
-		pin_output => pin_output,
-		pin_cs     => pin_cs,
-		pin_rs     => pin_rs,
-		pin_wr     => pin_wr,
-		pin_rst    => pin_rst
-	);
+	tft_inst : entity work.tft
+			generic map(
+				MY_CHIPSELECT     => "10",       -- Alinhado com o PERIPH_BASE
+				MY_WORD_ADDRESS   => x"0070",    -- 7 * 16 = 112 em decimal (0x0070)
+				DADDRESS_BUS_SIZE => 32
+			)
+			port map(
+				clk      => clk,
+				rst      => rst,                 -- Conecte o reset do sistema
+				daddress => daddress,
+				ddata_w  => ddata_w,
+				d_we     => d_we,
+				dcsel    => dcsel,
+				-- Conecte os pinos físicos do TFT que saem para a placa externa:
+				pin_output => TFT_DATA,          -- Substitua pelos nomes corretos dos seus pinos
+				pin_cs     => TFT_CS,
+				pin_rs     => TFT_RS,
+				pin_wr     => TFT_WR,
+				pin_rst    => TFT_RST
+			);
 	
 	ARDUINO_IO(8) <= std_logic(pin_output(0));
 	ARDUINO_IO(9) <= std_logic(pin_output(1));

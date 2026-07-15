@@ -8,19 +8,19 @@ entity controller is
 		clk      : in  std_logic;
 		reset    : in  std_logic;
 		ready    : in  std_logic;
-		start    : out std_logic;
-		mux_sel  : out std_logic;
 		empty_1  : in  std_logic;
 		empty_2  : in  std_logic;
 		read_en1 : out std_logic;
-		read_en2 : out std_logic
+		read_en2 : out std_logic;
+		start    : out std_logic;
+		mux_sel  : out std_logic
 	);
 end entity;
 
 architecture rtl_controller of controller is
 --  IDLE:  Estado para espera de uma nova informacao nas memorias
 --  READ:  Estado para a leitura da memoria (Incremento na fila circular)
---  WRITE: Estado para o inicio do envio da informcao pelo writer
+--  WRITE: Estado para o inicio do envio da informação pelo writer
 	type state_type is (IDLE, READ, WRITE);
 	signal state : state_type;
 begin
