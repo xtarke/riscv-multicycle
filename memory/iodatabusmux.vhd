@@ -31,6 +31,7 @@ entity iodatabusmux is
         ddata_r_key             : in   std_logic_vector(31 downto 0);
         ddata_r_accelerometer   : in  std_logic_vector(31 downto 0);
         ddata_r_cordic          : in std_logic_vector(31 downto 0);
+        ddata_r_raiz		    : in  std_logic_vector(31 downto 0);
      	ddata_r_RS485   		: in  std_logic_vector(31 downto 0);
         ddata_r_rgb             : in  std_logic_vector(31 downto 0);
         -- Mux 
@@ -62,6 +63,7 @@ begin
         ddata_r_cordic when x"0015",
     	ddata_r_RS485 when x"0017",
         ddata_r_rgb when x"0020",
+         ddata_r_raiz when x"0019",
         -- Add new io peripherals here
         (others => '0') when others;
 end architecture RTL;
