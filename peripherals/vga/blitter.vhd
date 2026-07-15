@@ -1,6 +1,5 @@
 --------------------------------------------------------------------------------
---  2D blitter -- command-driven accelerator (fill-rect; extensible to line,
---  circle, triangle, sprite by adding opcodes)
+--  2D blitter -- command-driven accelerator
 --------------------------------------------------------------------------------
 --
 -- Departamento de Eletronica, Florianopolis, IFSC
@@ -8,14 +7,18 @@
 -- The CPU stages a command in a small register block and writes CMD; that
 -- snapshots the registers into ONE wide fifo entry (whole command per entry).
 -- BLIT_IDLE just checks the fifo and DISPATCHES to a per-opcode state; each
--- opcode's state reads the fields it needs from the latched command (cmd_r) via
--- the named field views below. Adding a primitive = one dispatch line + its
--- state(s). Writes go to the SAME port the CPU uses (muxed at the top level).
+-- opcode's state reads the fields it needs from the latched command
+-- (active_command) via the named views (arg_*) below. Adding a primitive = one
+-- dispatch line + its state(s). Writes go to the SAME port the CPU uses (muxed
+-- at the top level) and are throttled on write_busy.
 --
--- Packed command word (128-bit fifo entry, fields reused per opcode):
---   [15:0] opcode|flags   [31:16] P0   [47:32] P1   [63:48] P2
---   [79:64] P3   [95:80] P4   [111:96] P5   [127:112] color
---   FILL_RECT: P0=x P1=y P2=w P3=h
+-- OPCODES  (command byte [7:0]; [15:8] = per-opcode flags)
+--   0x01  OP_FILL    filled rectangle        -- implemented
+--   0x02  OP_LINE    Bresenham line          -- implemented
+--
+--
+--     OP_FILL:  P0=x   P1=y   P2=w   P3=h    color
+--     OP_LINE:  P0=x0  P1=y0  P2=x1  P3=y1   color
 --------------------------------------------------------------------------------
 
 library ieee;
@@ -46,8 +49,15 @@ end entity blitter;
 architecture blitter_behavior of blitter is
 
   constant OP_FILL : std_logic_vector(7 downto 0) := x"01";
+  constant OP_LINE : std_logic_vector(7 downto 0) := x"02";
 
-  type blit_state_t is (BLIT_IDLE, BLIT_FILL_INIT, BLIT_FILL);
+  type blit_state_t is (
+    BLIT_IDLE,
+    BLIT_FILL_INIT,
+    BLIT_FILL,
+    BLIT_LINE_INIT,
+    BLIT_LINE
+  );
   signal blit_state : blit_state_t;
 
   -- Command register block: staged by the CPU, snapshot on the CMD trigger --
@@ -57,26 +67,39 @@ architecture blitter_behavior of blitter is
   signal op_reg                         : std_logic_vector(15 downto 0);
 
   -- Command fifo: one whole command per 128-bit entry
-  signal cmd_din   : std_logic_vector(127 downto 0);
-  signal cmd_q     : std_logic_vector(127 downto 0);
-  signal cmd_wr    : std_logic;
-  signal cmd_rd    : std_logic;
-  signal cmd_empty : std_logic;
-  signal cmd_full  : std_logic;
+  signal cmd_fifo_data  : std_logic_vector(127 downto 0);
+  signal cmd_fifo_head  : std_logic_vector(127 downto 0);
+  signal cmd_fifo_push  : std_logic;
+  signal cmd_fifo_pop   : std_logic;
+  signal cmd_fifo_empty : std_logic;
+  signal cmd_fifo_full  : std_logic;
 
   -- Latched command being executed, and named views of the packed layout --
-  signal cmd_r   : std_logic_vector(127 downto 0);
-  signal f_x     : unsigned(15 downto 0);   -- P0
-  signal f_y     : unsigned(15 downto 0);   -- P1
-  signal f_w     : unsigned(15 downto 0);   -- P2
-  signal f_h     : unsigned(15 downto 0);   -- P3
-  signal f_color : std_logic_vector(15 downto 0);
+  signal active_command : std_logic_vector(127 downto 0);
+  signal arg_x          : unsigned(15 downto 0);            -- P0
+  signal arg_y          : unsigned(15 downto 0);            -- P1
+  signal arg_w          : unsigned(15 downto 0);            -- P2 (fill w)
+  signal arg_h          : unsigned(15 downto 0);            -- P3 (fill h)
+  signal arg_x1         : unsigned(15 downto 0);            -- P2 (line end x)
+  signal arg_y1         : unsigned(15 downto 0);            -- P3 (line end y)
+  signal arg_color      : std_logic_vector(15 downto 0);
 
-  -- Pixel walker --
-  signal i_cnt    : natural range 0 to 65535;        -- column within the rect
-  signal j_cnt    : natural range 0 to 65535;        -- row within the rect
-  signal row_base : natural range 0 to 2**26 - 1;    -- address of (x, y+j)
-  signal cur_addr : natural range 0 to 2**26 - 1;    -- current pixel address
+  -- Fill pixel walker --
+  signal fill_col       : natural range 0 to 65535;        -- column within the rect
+  signal fill_row       : natural range 0 to 65535;        -- row within the rect
+  signal fill_row_addr  : natural range 0 to 2**26 - 1;    -- address of (x, y+row)
+  signal fill_addr      : natural range 0 to 2**26 - 1;    -- current pixel address
+
+  -- Line walker (Bresenham) --
+  signal line_x         : integer range 0 to 65535;        -- current point x
+  signal line_y         : integer range 0 to 65535;        -- current point y
+  signal line_end_x     : integer range 0 to 65535;        -- end point x
+  signal line_end_y     : integer range 0 to 65535;        -- end point y
+  signal line_delta_x   : integer range 0 to 65535;        -- |x1-x0|
+  signal line_delta_y   : integer range -65535 to 0;       -- -|y1-y0|
+  signal line_step_x    : integer range -1 to 1;           -- x step (+/-1)
+  signal line_step_y    : integer range -1 to 1;           -- y step (+/-1)
+  signal line_error     : integer range -131072 to 131072;
 
 begin
 
@@ -84,28 +107,30 @@ begin
     port map (
       clock       => clk,
       sclr        => reset,
-      data        => cmd_din,
-      wrreq       => cmd_wr,
-      rdreq       => cmd_rd,
-      q           => cmd_q,
-      empty       => cmd_empty,
-      full        => cmd_full,
+      data        => cmd_fifo_data,
+      wrreq       => cmd_fifo_push,
+      rdreq       => cmd_fifo_pop,
+      q           => cmd_fifo_head,
+      empty       => cmd_fifo_empty,
+      full        => cmd_fifo_full,
       almost_full => open,
       usedw       => open
     );
 
-  cmd_din <= color_reg & p5_reg & p4_reg & p3_reg & p2_reg & p1_reg & p0_reg & op_reg;
-  busy    <= '0' when blit_state = BLIT_IDLE and cmd_empty = '1' else '1';
+  cmd_fifo_data <= color_reg & p5_reg & p4_reg & p3_reg & p2_reg & p1_reg & p0_reg & op_reg;
+  busy          <= '0' when blit_state = BLIT_IDLE and cmd_fifo_empty = '1' else '1';
 
   -- Named views of the latched command layout, for the execution states --
-  f_x     <= unsigned(cmd_r(31 downto 16));
-  f_y     <= unsigned(cmd_r(47 downto 32));
-  f_w     <= unsigned(cmd_r(63 downto 48));
-  f_h     <= unsigned(cmd_r(79 downto 64));
-  f_color <= cmd_r(127 downto 112);
+  arg_x     <= unsigned(active_command(31 downto 16));
+  arg_y     <= unsigned(active_command(47 downto 32));
+  arg_w     <= unsigned(active_command(63 downto 48));
+  arg_h     <= unsigned(active_command(79 downto 64));
+  arg_x1    <= unsigned(active_command(63 downto 48));
+  arg_y1    <= unsigned(active_command(79 downto 64));
+  arg_color <= active_command(127 downto 112);
 
-  -- Pop the head the cycle we dispatch it (show-ahead: cmd_q is the head) --
-  cmd_rd <= '1' when blit_state = BLIT_IDLE and cmd_empty = '0' else '0';
+  -- Pop the head the cycle we dispatch it (show-ahead: cmd_fifo_head is the head) --
+  cmd_fifo_pop <= '1' when blit_state = BLIT_IDLE and cmd_fifo_empty = '0' else '0';
 
   process (clk, reset)
   begin
@@ -114,28 +139,28 @@ begin
       p2_reg <= (others => '0'); p3_reg <= (others => '0');
       p4_reg <= (others => '0'); p5_reg <= (others => '0');
       color_reg <= (others => '0'); op_reg <= (others => '0');
-      cmd_wr <= '0';
+      cmd_fifo_push <= '0';
     elsif rising_edge(clk) then
-      cmd_wr <= '0';
+      cmd_fifo_push <= '0';
       if reg_we = '1' then
         case reg_addr is
           when "000"  => 
-			  p0_reg <= reg_data(15 downto 0);
+        p0_reg <= reg_data(15 downto 0);
           when "001"  =>
-			  p1_reg <= reg_data(15 downto 0);
+        p1_reg <= reg_data(15 downto 0);
           when "010"  =>
-			  p2_reg <= reg_data(15 downto 0);
+        p2_reg <= reg_data(15 downto 0);
           when "011"  =>
-			  p3_reg <= reg_data(15 downto 0);
+        p3_reg <= reg_data(15 downto 0);
           when "100"  =>
-			  p4_reg <= reg_data(15 downto 0);
+        p4_reg <= reg_data(15 downto 0);
           when "101"  =>
-			  p5_reg <= reg_data(15 downto 0);
+        p5_reg <= reg_data(15 downto 0);
           when "110"  => 
-			  color_reg <= reg_data(15 downto 0);
+        color_reg <= reg_data(15 downto 0);
           when others => 
-			  op_reg <= reg_data(15 downto 0);
-              cmd_wr <= '1';
+        op_reg <= reg_data(15 downto 0);
+              cmd_fifo_push <= '1';
         end case;
       end if;
     end if;
@@ -143,36 +168,42 @@ begin
 
   -- Blitter FSM --
   process (clk, reset)
+    variable delta_x       : integer range 0 to 65535;      -- |x1-x0|
+    variable delta_y       : integer range -65535 to 0;     -- -|y1-y0|
+    variable doubled_error : integer range -262144 to 262144;
+    variable next_error    : integer range -131072 to 131072;
   begin
     if reset = '1' then
       blit_state    <= BLIT_IDLE;
-      cmd_r         <= (others => '0');
+      active_command         <= (others => '0');
       write_commit  <= '0';
       write_address <= (others => '0');
       write_data    <= (others => '0');
-      i_cnt <= 0; j_cnt <= 0;
-      row_base <= 0; cur_addr <= 0;
+      fill_col <= 0; fill_row <= 0;
+      fill_row_addr <= 0; fill_addr <= 0;
     elsif rising_edge(clk) then
       write_commit <= '0';
 
       case blit_state is
         when BLIT_IDLE =>
-          if cmd_empty = '0' then
-            cmd_r <= cmd_q;
-            case cmd_q(7 downto 0) is
-              when OP_FILL => 
-				  blit_state <= BLIT_FILL_INIT;
-              when others  => 
-				  -- unknown opcode: consumed, stay idle
-				  null;                     
-		  	end case;
+          if cmd_fifo_empty = '0' then
+            active_command <= cmd_fifo_head;
+            case cmd_fifo_head(7 downto 0) is
+              when OP_FILL =>
+          blit_state <= BLIT_FILL_INIT;
+              when OP_LINE =>
+          blit_state <= BLIT_LINE_INIT;
+              when others  =>
+          -- unknown opcode: consumed, stay idle
+          null;
+        end case;
           end if;
         when BLIT_FILL_INIT =>
-          i_cnt    <= 0;
-          j_cnt    <= 0;
-          row_base <= to_integer(f_y) * SCREEN_W + to_integer(f_x);
-          cur_addr <= to_integer(f_y) * SCREEN_W + to_integer(f_x);
-          if f_w /= 0 and f_h /= 0 then
+          fill_col    <= 0;
+          fill_row    <= 0;
+          fill_row_addr <= to_integer(arg_y) * SCREEN_W + to_integer(arg_x);
+          fill_addr <= to_integer(arg_y) * SCREEN_W + to_integer(arg_x);
+          if arg_w /= 0 and arg_h /= 0 then
             blit_state <= BLIT_FILL;
           else
             blit_state <= BLIT_IDLE;        -- empty rectangle
@@ -182,20 +213,58 @@ begin
         when BLIT_FILL =>
           if write_busy = '0' then
             write_commit  <= '1';
-            write_address <= std_logic_vector(to_unsigned(cur_addr, 32));
-            write_data    <= f_color;
-            if i_cnt = to_integer(f_w) - 1 then
-              i_cnt <= 0;
-              if j_cnt = to_integer(f_h) - 1 then
+            write_address <= std_logic_vector(to_unsigned(fill_addr, 32));
+            write_data    <= arg_color;
+            if fill_col = to_integer(arg_w) - 1 then
+              fill_col <= 0;
+              if fill_row = to_integer(arg_h) - 1 then
                 blit_state <= BLIT_IDLE;    -- rectangle done
               else
-                j_cnt    <= j_cnt + 1;
-                row_base <= row_base + SCREEN_W;
-                cur_addr <= row_base + SCREEN_W;
+                fill_row    <= fill_row + 1;
+                fill_row_addr <= fill_row_addr + SCREEN_W;
+                fill_addr <= fill_row_addr + SCREEN_W;
               end if;
             else
-              i_cnt    <= i_cnt + 1;
-              cur_addr <= cur_addr + 1;
+              fill_col    <= fill_col + 1;
+              fill_addr <= fill_addr + 1;
+            end if;
+          end if;
+
+        -- LINE (Bresenham): P0,P1 = start, P2,P3 = end --
+        when BLIT_LINE_INIT =>
+          delta_x    := abs(to_integer(arg_x1) - to_integer(arg_x));
+          delta_y    := -abs(to_integer(arg_y1) - to_integer(arg_y));
+          line_x   <= to_integer(arg_x);
+          line_y   <= to_integer(arg_y);
+          line_end_x  <= to_integer(arg_x1);
+          line_end_y  <= to_integer(arg_y1);
+          line_delta_x  <= delta_x;
+          line_delta_y  <= delta_y;
+          line_error <= delta_x + delta_y;
+          if arg_x1 >= arg_x then line_step_x <= 1; else line_step_x <= -1; end if;
+          if arg_y1 >= arg_y then line_step_y <= 1; else line_step_y <= -1; end if;
+          blit_state <= BLIT_LINE;
+
+        -- LINE: one write per pixel, then the Bresenham step (throttled) --
+        when BLIT_LINE =>
+          if write_busy = '0' then
+            write_commit  <= '1';
+            write_address <= std_logic_vector(to_unsigned(line_y * SCREEN_W + line_x, 32));
+            write_data    <= arg_color;
+            if line_x = line_end_x and line_y = line_end_y then
+              blit_state <= BLIT_IDLE;      -- last pixel plotted
+            else
+              doubled_error   := 2 * line_error;
+              next_error := line_error;
+              if doubled_error >= line_delta_y then
+                next_error := next_error + line_delta_y;
+                line_x <= line_x + line_step_x;
+              end if;
+              if doubled_error <= line_delta_x then
+                next_error := next_error + line_delta_x;
+                line_y <= line_y + line_step_y;
+              end if;
+              line_error <= next_error;
             end if;
           end if;
 
