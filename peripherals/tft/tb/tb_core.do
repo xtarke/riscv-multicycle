@@ -49,7 +49,7 @@ vcom ../tft.vhd
 
 vcom ./tb_core.vhd
 
-vsim -t ns work.coretestbench
+vsim -voptargs="+acc" -t ns work.coretestbench
 
 view wave
 add wave -radix binary 	/clk

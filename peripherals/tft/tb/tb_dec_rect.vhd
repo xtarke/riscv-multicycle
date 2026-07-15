@@ -29,8 +29,8 @@ begin
 	data_mem_inst : entity work.data_mem
 		generic map(
 			RAM_WIDTH => 32,
-			RAM_DEPTH => 20,
-			HEAD_INIT => 10
+			RAM_DEPTH => 512,
+			HEAD_INIT => 0
 		)
 		port map(
 			clk     => clk,
@@ -62,12 +62,11 @@ begin
 			completed => completed
 		);
 
+	-- Set concurrent parameters
 	pos_x <= x"000A";
 	pos_y <= x"000A";
-
 	len_x <= x"0002";
 	len_y <= x"0002";
-
 	color <= x"FAFA";
 
 	clock : process
@@ -78,19 +77,37 @@ begin
 		wait for 1 ns;
 	end process;
 
+	-- comandos
 	process
 	begin
 		sel   <= x"00";
 		rst   <= '1';
 		rd_en <= '0';
-		wait for 3 ns;
+		
+		wait for 5 ns;
+		wait until rising_edge(clk);
+		
 		rst   <= '0';
-		sel   <= x"04";
-
-		wait for 50 ns;
-		rd_en <= '1';
-
+		wait until rising_edge(clk);
+		
+		-- Pulse the selector for exactly one clock cycle
+		sel   <= x"04"; 
+		wait until rising_edge(clk);
+		sel   <= x"00"; -- Return to 0 to prevent FSM looping
+		
+		-- wait for the module 'completed' flag
+		wait until completed = '1';
+		wait until rising_edge(clk);
+		
+		-- Read data back from the memory buffer
+		while empty = '0' loop
+			rd_en <= '1';
+			wait until rising_edge(clk);
+		end loop;
+		
+		rd_en <= '0';
+		
 		wait;
 	end process;
 
-END ARCHITECTURE;
+end architecture;
