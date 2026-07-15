@@ -1,3 +1,44 @@
+# C/C++ Compilation
+*.o
+*.a
+*.elf
+*.hex
+*.tmp
+*.map
+*.lss
+*.d
+*.bin
+*.out
+
+# Quartus
+*.sof
+*.pof
+*.qws
+*.summary
+*.jdi
+*.pin
+*.smsg
+db/
+incremental_db/
+output_files/
+simulation/
+greybox_tmp/
+*.bak
+*.qdf
+
+# Modelsim
+work/
+transcript
+*.wlf
+*.do~
+
+# OS and Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Custom directories
+compiler/
 # ============================================================
 # Quartus - projetos de síntese dos periféricos
 # ============================================================
