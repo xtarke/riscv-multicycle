@@ -174,7 +174,13 @@ A imagem abaixo apresenta a aquisição do tempo de um pulso que corresponde ao 
 
 ![image](img/tempo_pulso.JPG)
 
-As duas imagens abaixo apresentam os pacotes enviados em simulação em *hardware*, ambos configurados da mesma forma para fins de comparação:  
+As duas imagens abaixo apresentam os pacotes CAN enviados em simulação e em *hardware*, ambos configurados da mesma forma para fins de comparação:  
+
+![image](img/tx_compare.png)
+
+![image](img/Tx_completo.JPG)
+
+Configuração dos registradores:
 
 ```C
     frame.id       = 0x2AA;     /* 11 bits */
@@ -183,10 +189,6 @@ As duas imagens abaixo apresentam os pacotes enviados em simulação em *hardwar
     frame.rtr      = false;     /* data frame, não remote */
     frame.tx_start = true;      /* transmite imediatamente */
 ```
-
-![image](img/tx_compare.png)
-
-![image](img/Tx_completo.JPG)
 
 
 # Referências
