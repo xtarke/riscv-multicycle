@@ -9,7 +9,8 @@ LDFLAGS = -Wl
 LDLIBS =
 MAIN = main_vga
 
-HARDWARE_NAME = USB-Blaster [1-2]
+# Auto-detect the USB-Blaster cable name (its [1-x] index changes with USB
+CABLE = $(shell $(QUARTUS_DIR)jtagconfig 2>/dev/null | grep -oE 'USB-Blaster \[[0-9-]+\]' | head -1)
 DEVICE_NAME = @1: 10M50DA(.|ES)/10M50DC (0x031050DD)
 
 quartus_$(MAIN).hex: $(MAIN)32.hex
@@ -32,10 +33,10 @@ sint:
 	$(QUARTUS_DIR)quartus_sh --flow compile $(QUARTUS_PROJECT)/de10_lite
 
 fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;$(QUARTUS_PROJECT)/output_files/de10_lite.sof"
+	$(QUARTUS_DIR)quartus_pgm -c "$(CABLE)" -m jtag -o "p;$(QUARTUS_PROJECT)/output_files/de10_lite.sof@1"
 
 flash: quartus_$(MAIN).hex fpga
-	@echo 'begin_memory_edit -hardware_name {$(HARDWARE_NAME)} -device_name {$(DEVICE_NAME)}' > /tmp/_flash_vga.tcl
+	@echo 'begin_memory_edit -hardware_name {$(CABLE)} -device_name {$(DEVICE_NAME)}' > /tmp/_flash_vga.tcl
 	@echo 'update_content_to_memory_from_file -instance_index 0 -mem_file_path {$(CURDIR)/quartus_$(MAIN).hex} -mem_file_type {hex}' >> /tmp/_flash_vga.tcl
 	@echo 'end_memory_edit' >> /tmp/_flash_vga.tcl
 	$(QUARTUS_DIR)quartus_stp_tcl -t /tmp/_flash_vga.tcl
