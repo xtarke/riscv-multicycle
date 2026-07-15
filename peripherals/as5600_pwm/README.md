@@ -77,6 +77,35 @@ Para que o projeto funcione, você precisará de:
 
 * **PWM OUT:** Ligar no pino de GPIO específico definido pelo seu projeto Quartus (onde o sinal `pwm_in` está mapeado, aqui é `ARDUINO_IO(2)`).
 
+### Configuração Física do Sensor (Ativação do Modo PWM)
+
+Por padrão de fábrica, muitos módulos comerciais do AS5600 vêm configurados para operar no modo de saída analógica (DAC) ou necessitam de preparação física e de firmware para que o pino de saída disponibilize o sinal PWM correto exigido pela FPGA.
+
+Para ativar o modo PWM no seu sensor, realize os dois procedimentos a seguir:
+
+#### 1. Modificação de Hardware (Remover o Resistor R4)
+É necessário remover fisicamente o resistor SMD **R4** da plaquinha do sensor AS5600. Esse resistor atua como um pull-up/pull-down que força o chip a iniciar em modo de saída analógica. Removendo-o, o pino de saída é liberado para trabalhar com modulação por largura de pulso (PWM).
+
+> **Atenção:** Realize a dessoldagem com cuidado utilizando uma estação de solda ou soprador de ar quente para não danificar as trilhas adjacentes do circuito impresso.
+
+Adicione abaixo a foto do seu módulo identificando o componente a ser retirado:
+
+![Localização do Resistor R4 no Módulo AS5600](img/sensor_as5600_r4_location.png)
+*(Coloque a sua imagem com o R4 circulado na pasta `img` com o nome `sensor_as5600_r4_location.png`)*
+
+#### 2. Configuração de Registrador (Software/Firmware)
+Além da alteração física, o registrador interno de configuração do AS5600 deve ser programado para definir o modo de saída como PWM. 
+
+O registrador de configuração **`CONF`** (endereço mapeado via I2C nos registradores `0x07` e `0x08` do chip) possui o campo **`OUTS`** (Output Stage) nos bits `4` e `5` do byte menos significativo. Para habilitar o PWM, esses bits devem ser configurados conforme a tabela do datasheet:
+
+| Valor do Campo `OUTS` (bits 5:4) | Modo de Saída Selecionado |
+| :---: | :--- |
+| `00` | Saída Analógica (Ratiométrica de 0 a VDD) |
+| `01` | Saída Analógica (Não-ratiométrica) |
+| **`10`** | **Saída PWM (Modulada por Largura de Pulso)** |
+
+Portanto, antes de realizar as medições com a FPGA, certifique-se de que o registrador correspondente foi gravado via interface I2C com o valor binário correspondente para ativar a saída PWM (bits `OUTS` ajustados em `10`).
+
 > **Alinhamento do Ímã:** O ímã diametral deve ser posicionado acima do centro do chip AS5600 (distância entre 0.5 mm a 3 mm).
 
 ---
