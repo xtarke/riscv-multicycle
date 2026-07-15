@@ -66,10 +66,9 @@ BEGIN
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
 		intended_device_family => "MAX 10",
-
+    
 		-- Specify here core software binary
-		init_file => "./software/sv_pwm/quartus_main_sv_pwm.hex",
-		--init_file => "./software/quartus_blink.hex",
+		init_file => "../../../../software/quartus_blink.hex",
 		--init_file => "./software/led_rgb/quartus_main.hex",
 		-- init_file => "./software/irq/quartus_irq_example.hex",
 
