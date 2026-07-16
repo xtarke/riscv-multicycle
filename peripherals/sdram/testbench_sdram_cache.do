@@ -5,12 +5,13 @@
 vlib work
 
 # Compile. Order matters: package and models before the DUTs and testbench.
-# fifo_sim provides simulation models of the fifo_16 / fifo_512 Altera
-# megafunctions the cache instantiates.
+# fifo_16 / fifo_512 instantiate the Altera scfifo megafunction; ModelSim Intel
+# FPGA Edition ships altera_mf precompiled, so they simulate directly.
 vcom sdram_pkg.vhd
 vcom ./sim/mti_pkg.vhd ./sim/mt48lc8m16a2.vhd
 vcom sdram_controller.vhd
-vcom ./sim/fifo_sim.vhd
+vcom ./fifo_16/fifo_16.vhd
+vcom ./fifo_512/fifo_512.vhd
 vcom sdram_cache.vhd
 vcom testbench_sdram_cache.vhd
 
