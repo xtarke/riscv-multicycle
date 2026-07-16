@@ -8,7 +8,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use std.env.all;
 
 use work.sdram_pkg.all;
 
@@ -168,8 +167,8 @@ begin
         if rbuf(j) /= expected then
           error_count := error_count + 1;
           report "mismatch @ word " & integer'image(BASE_ADDR + b * 8 + j)
-               & ": got " & to_hstring(rbuf(j))
-               & " expected " & to_hstring(expected)
+               & ": got " & integer'image(to_integer(unsigned(rbuf(j))))
+               & " expected " & integer'image(to_integer(unsigned(expected)))
             severity error;
         end if;
       end loop;
@@ -181,7 +180,7 @@ begin
     report "SDRAM RW sweep PASSED (" & integer'image(NUM_WORDS) & " words)"
       severity note;
 
-    finish;
+    wait;
   end process stim;
 
 end architecture stimulus;

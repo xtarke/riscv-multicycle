@@ -1,22 +1,10 @@
--- SDRAM cache testbench: write through the cache, read it back through the cache.
---
--- The cache sits between a word-at-a-time user interface and the burst SDRAM
--- controller. This test drives only the user side:
---   1. push N words into the cache write port,
---   2. wait for the cache to flush them out to the SDRAM,
---   3. stream the same N words back through the cache read port and compare.
--- A match proves the data made a full round trip (cache -> controller -> SDRAM
--- -> controller -> cache). A single final assert reports pass/fail.
---
--- Note on write gating: the cache only drains its write FIFO once the read
--- prefetch FIFO holds at least 64 words (ALMOST_EMPTY_VALUE), so after pushing
--- the writes we wait a generous fixed time for the prefetch to fill and the
--- writes to reach SDRAM before reading back.
+-- SDRAM cache testbench: write N words through the cache, read them back
+-- through the cache, and check they match. A match proves the full round trip
+-- cache -> controller -> SDRAM -> controller -> cache.
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use std.env.all;
 
 use work.sdram_pkg.all;
 
@@ -33,7 +21,6 @@ architecture stimulus of testbench_sdram_cache is
   signal read_address : std_logic_vector(31 downto 0);
   signal read_data    : std_logic_vector(15 downto 0);
   signal read_lock    : std_logic;
-
   signal write_commit  : std_logic;
   signal write_address : std_logic_vector(31 downto 0);
   signal write_data    : std_logic_vector(15 downto 0);
@@ -61,16 +48,16 @@ architecture stimulus of testbench_sdram_cache is
   signal DRAM_WE_N  : std_logic;
 
   constant CLK_PERIOD : time    := 10 ns;
-  -- N_WORDS words starting at BASE_ADDR. BASE is 8-aligned (one read burst) and
-  -- kept away from address 0 so the read-back forces a cache miss + refill.
+  -- N_WORDS words at BASE_ADDR. BASE is 8-aligned and away from 0 so the
+  -- read-back forces a cache miss + refill (instead of hitting stale prefetch).
   constant N_WORDS   : natural := 8;
   constant BASE_ADDR : natural := 16#100#;
 
-  -- Each word carries its own address as data, so a mis-addressed access fails.
-  function pattern(addr : natural) return std_logic_vector is
-  begin
-    return std_logic_vector(to_unsigned(addr, 16));
-  end function pattern;
+  function addr(a : natural) return std_logic_vector is   -- 32-bit cache address
+  begin return std_logic_vector(to_unsigned(a, 32)); end function;
+
+  function pattern(a : natural) return std_logic_vector is -- 16-bit data = address
+  begin return std_logic_vector(to_unsigned(a, 16)); end function;
 
 begin
 
@@ -78,20 +65,17 @@ begin
     port map(
       clk   => clk_sdram,
       reset => rst,
-
       read_enable  => read_enable,
       read_address => read_address,
       read_data    => read_data,
       read_lock    => read_lock,
       read_flush   => '0',
-
       write_commit           => write_commit,
       write_address          => write_address,
       write_data             => write_data,
       write_fifo_full        => open,
       write_fifo_almost_full => open,
       read_used              => open,
-
       sdram_read_buffer      => sdram_read_buffer,
       sdram_read_valid_count => read_valid_count,
       sdram_wait_request     => waitrequest,
@@ -103,8 +87,7 @@ begin
     );
 
   sdram_controller : entity work.sdram_controller
-    -- Micron sim model presents read data one cycle earlier than the real
-    -- ISSI part, so DATA_AVAL is 1 in simulation (default 2 targets the HW).
+    -- DATA_AVAL = 1 matches the Micron sim model (real ISSI part uses 2).
     generic map(
       DATA_AVAL => 1
     )
@@ -119,7 +102,6 @@ begin
       write            => sdram_write,
       read             => sdram_read,
       write_data       => sdram_write_data,
-      -- outputs:
       read_data        => sdram_read_buffer,
       read_valid_count => read_valid_count,
       waitrequest      => waitrequest,
@@ -135,7 +117,6 @@ begin
       DRAM_WE_N        => DRAM_WE_N
     );
 
-  -- SDRAM model
   sdram : entity work.mt48lc8m16a2
     generic map(
       addr_bits => 13
@@ -162,62 +143,44 @@ begin
   end process clock_driver;
 
   stim : process
-    variable error_count : natural := 0;
   begin
-    -- Idle inputs and reset.
-    read_enable   <= '0';
-    read_address  <= (others => '0');
-    write_commit  <= '0';
-    write_address <= (others => '0');
-    write_data    <= (others => '0');
-    rst           <= '1';
+    -- Reset, then let the controller finish its power-up / init sequence.
+    read_enable  <= '0';
+    write_commit <= '0';
+    rst          <= '1';
     wait for 20 ns;
     rst <= '0';
-
-    -- Let the controller finish its power-up / mode-register init.
     wait for 2 us;
 
-    -- Write phase: push N words into the cache write port, one per clock.
+    -- Write N words through the cache, one commit per clock.
     for i in 0 to N_WORDS - 1 loop
-      write_address <= std_logic_vector(to_unsigned(BASE_ADDR + i, 32));
+      write_address <= addr(BASE_ADDR + i);
       write_data    <= pattern(BASE_ADDR + i);
       write_commit  <= '1';
       wait until rising_edge(clk_sdram);
     end loop;
     write_commit <= '0';
 
-    -- Give the cache time to fill its read prefetch (which un-gates writes)
-    -- and drain every queued word out to the SDRAM.
+    -- Writes only drain once the read prefetch fifo is full; give it time.
     wait for 20 us;
 
-    -- Read phase: stream the words back. The first access to BASE_ADDR misses
-    -- (read_lock high) and refills from SDRAM; then each word arrives on a
-    -- cycle with read_lock low.
-    read_address <= std_logic_vector(to_unsigned(BASE_ADDR, 32));
+    -- Read the words back. The stream is continuous: hold read_enable high and
+    -- step read_address; each hit delivers one word (read_lock low).
+    read_address <= addr(BASE_ADDR);
     read_enable  <= '1';
-    -- Let the new address settle and the cache miss engage before polling,
-    -- so we don't sample a stale word still sitting in the prefetch FIFO.
-    wait until rising_edge(clk_sdram);
+    wait until rising_edge(clk_sdram);   -- let the miss engage before polling
     for i in 0 to N_WORDS - 1 loop
       wait until rising_edge(clk_sdram) and read_lock = '0';
-      if read_data /= pattern(BASE_ADDR + i) then
-        error_count := error_count + 1;
-        report "mismatch @ word " & integer'image(BASE_ADDR + i)
-             & ": got " & to_hstring(read_data)
-             & " expected " & to_hstring(pattern(BASE_ADDR + i))
-          severity error;
-      end if;
-      read_address <= std_logic_vector(to_unsigned(BASE_ADDR + i + 1, 32));
+      assert read_data = pattern(BASE_ADDR + i)
+        report "word " & integer'image(BASE_ADDR + i) & " mismatch: got "
+             & integer'image(to_integer(unsigned(read_data)))
+        severity failure;
+      read_address <= addr(BASE_ADDR + i + 1);
     end loop;
-    read_enable <= '0';
 
-    assert error_count = 0
-      report "SDRAM cache RW test FAILED: " & integer'image(error_count) & " mismatch(es)"
-      severity failure;
     report "SDRAM cache RW test PASSED (" & integer'image(N_WORDS) & " words)"
       severity note;
-
-    finish;
+    wait;
   end process stim;
 
 end architecture stimulus;
