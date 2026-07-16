@@ -62,7 +62,7 @@ Além destes, o diretório possui:
 * Uma pasta `sim/` com o modelo comportamental de uma memória SDRAM (`mt48lc8m16a2.vhd`) e os pacotes de apoio.
 * As pastas `fifo_16/` e `fifo_512/` com as FIFOs (IP da Altera) usadas pelo cache, e `pll/` com o PLL de clock.
 
-Para simular com o GHDL, basta rodar `make sim` neste diretório. O testbench padrão é o `testbench_sdram`, mas é possível trocar informando a variável `TOP` (por exemplo, `make sim TOP=testbench_sdram_cache`). A forma de onda é gerada em `build/wave.ghw` e o tempo de simulação pode ser ajustado pela variável `STOP`. O comando `make clean` remove os arquivos gerados.
+Para simular com o GHDL, basta rodar `make sim` neste diretório. O testbench padrão é o `testbench_sdram`, A forma de onda é gerada em `build/wave.ghw` e o tempo de simulação pode ser ajustado pela variável `STOP`. O comando `make clean` remove os arquivos gerados.
 
 Caso o executável do GHDL não esteja no `PATH`, é possível indicar o seu caminho através da variável `GHDL`:
 
@@ -135,6 +135,13 @@ Assim como as etapas de leitura:
 ## Funcionamento do [teste em Software](https://github.com/xtarke/riscv-multicycle/tree/master/software/sdram)
 A main.c de Grava e verifica o conteudo da SDRAM, acendendo o LEDR0 caso o conteudo lido seja igual ao escrito na SDRAM. Em seguida grava novamente a memoria, lendo ela de forma crescente e decrescente, conforme o Gif abaixo.
 <img src="./img/funcionamento.gif?raw=true" width="400px">
+
+## Exemplo de uso
+
+O melhor exemplo do sistema funcionando por completo é o periférico de VGA, que fica em peripherals/vga/. Diferente do exemplo da DE10-Lite, que usa apenas o softcore e por isso dispensa o cache, o VGA precisa de um fluxo de dados contínuo e de alta velocidade para alimentar a tela sem interrupções.
+
+Nesse cenário a SDRAM é operada em uma frequência bastante alta e em conjunto com o cache, que mantém a FIFO de leitura sempre abastecida e garante o throughput necessário. Assim, o exemplo do VGA exercita toda a pilha (core, cache e controlador acessando a memória física), sendo o melhor lugar para ver a integração completa em funcionamento.
+
 
 ## Referências
 
