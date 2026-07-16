@@ -75,12 +75,30 @@ architecture RTL of core_sdram_testbench is
     signal ddata_r_adc : std_logic_vector(31 downto 0);
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
 
-    -- SDRAM signals
-    signal daddress_to_sdram : std_logic_vector(31 downto 0);
-    signal chipselect_sdram  : std_logic;
-    signal sdram_write_data  : io_buffer_t;
-    signal sdram_read_data   : io_buffer_t;
-    signal waitrequest       : std_logic;
+    -- SDRAM via cache: each 32-bit CPU word is stored as two 16-bit cache
+    -- words (low half at 2*A, high half at 2*A+1).
+    signal chipselect_sdram : std_logic;
+
+    -- CPU write bridge -> cache user port
+    signal cache_write_commit  : std_logic;
+    signal cache_write_address : std_logic_vector(31 downto 0);
+    signal cache_write_data    : std_logic_vector(15 downto 0);
+    signal cache_write_busy    : std_logic;
+    signal cpu_wr              : std_logic;
+    signal cpu_wr_d            : std_logic;
+    signal wr_high             : std_logic;
+    signal sdram_base          : unsigned(31 downto 0);
+
+    -- cache <-> controller
+    signal c_addr       : std_logic_vector(31 downto 0);
+    signal c_read       : std_logic;
+    signal c_write      : std_logic;
+    signal c_cs         : std_logic;
+    signal c_write_data : io_buffer_t;
+    signal c_read_data  : io_buffer_t;
+    signal c_valid_cnt  : integer range 0 to 8;
+    signal c_wait       : std_logic;
+
     signal DRAM_ADDR         : std_logic_vector(12 downto 0);
     signal DRAM_BA           : std_logic_vector(1 downto 0);
     signal DRAM_CAS_N        : std_logic;
@@ -189,7 +207,20 @@ begin
             ddata_r_adc      => ddata_r_adc,
             ddata_r_i2c      => ddata_r_i2c,
             ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph
+            ddata_r_periph   => ddata_r_periph,
+            -- Peripherals not present in this testbench: tie their read data low.
+            ddata_r_dif_fil        => (others => '0'),
+            ddata_r_stepmot        => (others => '0'),
+            ddata_r_lcd            => (others => '0'),
+            ddata_r_nn_accelerator => (others => '0'),
+            ddata_r_fir_fil        => (others => '0'),
+            ddata_r_spwm           => (others => '0'),
+            ddata_r_crc            => (others => '0'),
+            ddata_r_key            => (others => '0'),
+            ddata_r_accelerometer  => (others => '0'),
+            ddata_r_cordic         => (others => '0'),
+            ddata_r_RS485          => (others => '0'),
+            ddata_r_rgb            => (others => '0')
         );
 
     -- Softcore instatiation
@@ -241,40 +272,100 @@ begin
         gpio_interrupts => gpio_interrupts
     );
 
-    -- SDRAM: each 32-bit CPU word maps to two 16-bit SDRAM columns
-    chipselect_sdram   <= dcsel(1) and dcsel(0);
-    daddress_to_sdram  <= std_logic_vector(daddress(30 downto 0)) & '0';
-    sdram_write_data(0) <= ddata_w(15 downto 0);
-    sdram_write_data(1) <= ddata_w(31 downto 16);
-    sdram_write_data(2 to 7) <= (others => (others => '0'));
-    ddata_r_sdram <= sdram_read_data(1) & sdram_read_data(0);
+    -- SDRAM through the cache. A 32-bit CPU store becomes two 16-bit cache
+    -- commits: low half at word 2*A, high half at word 2*A+1.
+    chipselect_sdram <= dcsel(1) and dcsel(0);
+    cpu_wr           <= chipselect_sdram and d_we;
+    sdram_base       <= shift_left(daddress, 1);   -- 2 * CPU word address
 
-    -- SDRAM controller instantiation
-    sdram_controller : entity work.sdram_controller
+    -- Write bridge: one CPU write -> two cache commits (low then high).
+    sdram_write_bridge : process(clk_32x, rst)
+    begin
+        if rst = '1' then
+            wr_high            <= '0';
+            cpu_wr_d           <= '0';
+            cache_write_commit <= '0';
+        elsif rising_edge(clk_32x) then
+            cache_write_commit <= '0';
+            cpu_wr_d           <= cpu_wr;
+            if wr_high = '1' then
+                -- second half
+                cache_write_address <= std_logic_vector(sdram_base + 1);
+                cache_write_data    <= ddata_w(31 downto 16);
+                cache_write_commit  <= '1';
+                wr_high             <= '0';
+            elsif cpu_wr = '1' and cpu_wr_d = '0' then
+                -- first half (on the CPU write edge)
+                cache_write_address <= std_logic_vector(sdram_base);
+                cache_write_data    <= ddata_w(15 downto 0);
+                cache_write_commit  <= '1';
+                wr_high             <= '1';
+            end if;
+        end if;
+    end process;
+
+    -- The streaming cache can't serve CPU random reads without a waitrequest,
+    -- so (like the VGA framebuffer) the CPU does not read SDRAM back here.
+    ddata_r_sdram <= (others => '0');
+
+    -- Cache: prefetches to fill its read fifo (which un-gates the write drain)
+    -- and pushes the queued CPU writes out to the SDRAM controller.
+    cache : entity work.sdram_cache
         port map(
-            address     => daddress_to_sdram,
-            byteenable  => "11",
-            chipselect  => chipselect_sdram,
-            clk         => clk_32x,
-            clken       => '1',
-            reset       => rst,
-            reset_req   => rst,
-            write       => d_we,
-            read        => d_rd,
-            write_data  => sdram_write_data,
+            clk          => clk_32x,
+            reset        => rst,
+            read_enable  => '0',
+            read_address => (others => '0'),
+            read_data    => open,
+            read_lock    => open,
+            read_flush   => '0',
+            write_commit           => cache_write_commit,
+            write_address          => cache_write_address,
+            write_data             => cache_write_data,
+            write_fifo_full        => open,
+            write_fifo_almost_full => cache_write_busy,
+            read_used              => open,
+            sdram_read_buffer      => c_read_data,
+            sdram_read_valid_count => c_valid_cnt,
+            sdram_wait_request     => c_wait,
+            sdram_addr             => c_addr,
+            sdram_read             => c_read,
+            sdram_write            => c_write,
+            sdram_write_data       => c_write_data,
+            sdram_chip_select      => c_cs
+        );
+
+    -- SDRAM controller. DATA_AVAL = 1 matches the Micron sim model (the real
+    -- ISSI part uses the default 2).
+    sdram_controller : entity work.sdram_controller
+        generic map(
+            DATA_AVAL => 1
+        )
+        port map(
+            address          => c_addr,
+            byteenable       => "11",
+            chipselect       => c_cs,
+            clk              => clk_32x,
+            clken            => '1',
+            reset            => rst,
+            reset_req        => rst,
+            write            => c_write,
+            read             => c_read,
+            write_data       => c_write_data,
             -- outputs:
-            read_data   => sdram_read_data,
-            waitrequest => waitrequest,
-            DRAM_ADDR   => DRAM_ADDR,
-            DRAM_BA     => DRAM_BA,
-            DRAM_CAS_N  => DRAM_CAS_N,
-            DRAM_CKE    => DRAM_CKE,
-            DRAM_CLK    => DRAM_CLK,
-            DRAM_CS_N   => DRAM_CS_N,
-            DRAM_DQ     => DRAM_DQ,
-            DRAM_DQM    => DRAM_DQM,
-            DRAM_RAS_N  => DRAM_RAS_N,
-            DRAM_WE_N   => DRAM_WE_N
+            read_data        => c_read_data,
+            read_valid_count => c_valid_cnt,
+            waitrequest      => c_wait,
+            DRAM_ADDR        => DRAM_ADDR,
+            DRAM_BA          => DRAM_BA,
+            DRAM_CAS_N       => DRAM_CAS_N,
+            DRAM_CKE         => DRAM_CKE,
+            DRAM_CLK         => DRAM_CLK,
+            DRAM_CS_N        => DRAM_CS_N,
+            DRAM_DQ          => DRAM_DQ,
+            DRAM_DQM         => DRAM_DQM,
+            DRAM_RAS_N       => DRAM_RAS_N,
+            DRAM_WE_N        => DRAM_WE_N
         );
 
     -- SDRAM model instantiation
