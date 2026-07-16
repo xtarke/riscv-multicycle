@@ -15,10 +15,7 @@ SRC = \
 	$(DIR)/sim/mti_pkg.vhd \
 	$(DIR)/sim/mt48lc8m16a2.vhd \
 	$(DIR)/sdram_controller.vhd \
-	$(DIR)/sim/fifo_sim.vhd \
-	$(DIR)/sdram_cache.vhd \
-	$(DIR)/testbench_sdram.vhd \
-	$(DIR)/testbench_sdram_cache.vhd
+	$(DIR)/testbench_sdram.vhd
 
 GHDL_FLAGS = --std=$(STD) --workdir=$(BUILD_DIR) -frelaxed -fsynopsys
 
