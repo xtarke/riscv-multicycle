@@ -40,14 +40,15 @@
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY de10_lite
+set_global_assignment -name SEARCH_PATH ../../../
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:49:34  JUNE 20, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Standard Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Altera FPGA (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
@@ -218,11 +219,22 @@ set_global_assignment -name VHDL_FILE ../vga_controller.vhd
 set_global_assignment -name QIP_FILE ../pll/pll.qip
 set_global_assignment -name VHDL_FILE ../ram_vga.vhd
 set_global_assignment -name QIP_FILE ../ram_vga.qip
+# SDRAM cache framebuffer sources
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_pkg.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_controller.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/fifo_16/fifo_16.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/fifo_512/fifo_512.vhd
+set_global_assignment -name VHDL_FILE ../../sdram/sdram_cache.vhd
+set_global_assignment -name VHDL_FILE ../vga_framebuffer.vhd
+set_global_assignment -name VHDL_FILE ../blitter.vhd
 set_global_assignment -name VHDL_FILE ../de10_lite.vhd
 set_global_assignment -name SDC_FILE de10_lite.sdc
 set_global_assignment -name VHDL_FILE ../../../alu/alu_types.vhd
 set_global_assignment -name VHDL_FILE ../../../alu/alu.vhd
 set_global_assignment -name VHDL_FILE ../../../alu/m/M_types.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/division_functions.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/quick_clz.vhd
+set_global_assignment -name VHDL_FILE ../../../alu/m/quick_naive.vhd
 set_global_assignment -name VHDL_FILE ../../../alu/m/M.vhd
 set_global_assignment -name VHDL_FILE ../../../memory/dmemory.vhd
 set_global_assignment -name VHDL_FILE ../../../memory/iram_quartus.vhd
@@ -231,8 +243,10 @@ set_global_assignment -name VHDL_FILE ../../../decoder/iregister.vhd
 set_global_assignment -name VHDL_FILE ../../../decoder/decoder_types.vhd
 set_global_assignment -name VHDL_FILE ../../../decoder/decoder.vhd
 set_global_assignment -name VHDL_FILE ../../../core/core.vhd
+set_global_assignment -name VHDL_FILE ../../../core/csr.vhd
 set_global_assignment -name VHDL_FILE ../../../registers/register_file.vhd
+set_global_assignment -name VHDL_FILE ../../../memory/instructionbusmux.vhd
+set_global_assignment -name VHDL_FILE ../../../memory/databusmux.vhd
 
-
-
+set_global_assignment -name QIP_FILE ../fifo_128/fifo_128.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

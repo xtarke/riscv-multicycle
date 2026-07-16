@@ -1,26 +1,17 @@
-ifndef RISCV_TOOLS_PREFIX
-RISCV_TOOLS_PREFIX = riscv-none-embed-
-# Para usar no LSC
-#RISCV_TOOLS_PREFIX = ~/opt/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/8.3.0-1.1.1/.content/bin/riscv-none-embed-
-endif
+RISCV_TOOLS_PREFIX = ../../compiler/gcc/bin/riscv-none-elf-
 
-QUARTUS_DIR=/opt/intelFPGA/19.1/quartus/bin/
+QUARTUS_DIR = /opt/intelFPGA/25.1/quartus/bin/
+QUARTUS_PROJECT = ../../peripherals/vga/sint
 CXX = $(RISCV_TOOLS_PREFIX)g++ -march=rv32im
 CC = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im -O1 -fpack-struct
 AS = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
-#CXXFLAGS = -MD -O1 -Wall -std=c++11
-#CCFLAGS = -MD -O1 -Wall
-#LDFLAGS = -Wl,--gc-sections,--no-relax
 LDFLAGS = -Wl
 LDLIBS =
 MAIN = main_vga
 
-#test: testbench.vvp $(MAIN)32.hex
-#	# vvp -l testbench.log -N testbench.vvp
-
-#testbench.vvp: testbench.v ../../picorv32.v $(MAIN)_dbg.v
-#	#iverilog -o testbench.vvp testbench.v ../../picorv32.v
-#	#chmod -x testbench.vvp
+# Auto-detect the USB-Blaster cable name (its [1-x] index changes with USB
+CABLE = $(shell $(QUARTUS_DIR)jtagconfig 2>/dev/null | grep -oE 'USB-Blaster \[[0-9-]+\]' | head -1)
+DEVICE_NAME = @1: 10M50DA(.|ES)/10M50DC (0x031050DD)
 
 quartus_$(MAIN).hex: $(MAIN)32.hex
 	python3 ../hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex
@@ -39,17 +30,20 @@ $(MAIN).elf: $(MAIN).o start.o ../_core/syscalls.o ../_core/utils.o
 	chmod -x $(MAIN).elf
 
 sint:
-	$(QUARTUS_DIR)quartus_sh --flow compile ../peripherals/gpio/sint/de10_lite/de10_lite.cdf
+	$(QUARTUS_DIR)quartus_sh --flow compile $(QUARTUS_PROJECT)/de10_lite
 
 fpga:
-	$(QUARTUS_DIR)quartus_pgm -z -m JTAG -o "p;../peripherals/gpio/sint/de10_lite/output_files/de10_lite.sof"
+	$(QUARTUS_DIR)quartus_pgm -c "$(CABLE)" -m jtag -o "p;$(QUARTUS_PROJECT)/output_files/de10_lite.sof@1"
 
-flash:
-	$(QUARTUS_DIR)quartus_stp_tcl -t "flash.tcl"
+flash: quartus_$(MAIN).hex fpga
+	@echo 'begin_memory_edit -hardware_name {$(CABLE)} -device_name {$(DEVICE_NAME)}' > /tmp/_flash_vga.tcl
+	@echo 'update_content_to_memory_from_file -instance_index 0 -mem_file_path {$(CURDIR)/quartus_$(MAIN).hex} -mem_file_type {hex}' >> /tmp/_flash_vga.tcl
+	@echo 'end_memory_edit' >> /tmp/_flash_vga.tcl
+	$(QUARTUS_DIR)quartus_stp_tcl -t /tmp/_flash_vga.tcl
 
 clean:
 	rm -f ../*/*.o *.o *.d *.tmp start.elf *.lss *.map
 	rm -f $(MAIN).elf $(MAIN).hex $(MAIN)32.hex quartus_$(MAIN).hex
 
 -include *.d
-.PHONY: test clean
+.PHONY: sint fpga flash clean

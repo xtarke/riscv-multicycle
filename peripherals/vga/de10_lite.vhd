@@ -1,9 +1,9 @@
 -------------------------------------------------------------------
--- Name        : de0_lite.vhd
--- Author      : 
--- Version     : 0.1
+-- Name        : de10_lite.vhd
+-- Author      :
+-- Version     : 0.2
 -- Copyright   : Departamento de Eletrônica, Florianópolis, IFSC
--- Description : Projeto base DE10-Lite
+-- Description : Projeto base DE10-Lite com VGA
 -------------------------------------------------------------------
 LIBRARY ieee;
 USE IEEE.STD_LOGIC_1164.ALL;
@@ -11,33 +11,32 @@ use ieee.numeric_std.all;
 
 use work.decoder_types.all;
 
-entity de10_lite is 
+entity de10_lite is
 	generic (
-		--! Num of 32-bits memory words 
+		--! Num of 32-bits memory words
 		IMEMORY_WORDS : integer := 1024;	--!= 4K (1024 * 4) bytes
-		DMEMORY_WORDS : integer := 4096  	--!= 8k (512 * 2) bytes
+		DMEMORY_WORDS : integer := 1024  	--!= 4K (1024 * 4) bytes
 	);
-
 
 	port (
 		---------- CLOCK ----------
 		ADC_CLK_10:	in std_logic;
 		MAX10_CLK1_50: in std_logic;
 		MAX10_CLK2_50: in std_logic;
-		
+
 		----------- SDRAM ------------
 		DRAM_ADDR: out std_logic_vector (12 downto 0);
 		DRAM_BA: out std_logic_vector (1 downto 0);
 		DRAM_CAS_N: out std_logic;
 		DRAM_CKE: out std_logic;
 		DRAM_CLK: out std_logic;
-		DRAM_CS_N: out std_logic;		
+		DRAM_CS_N: out std_logic;
 		DRAM_DQ: inout std_logic_vector(15 downto 0);
 		DRAM_LDQM: out std_logic;
 		DRAM_RAS_N: out std_logic;
 		DRAM_UDQM: out std_logic;
 		DRAM_WE_N: out std_logic;
-		
+
 		----------- SEG7 ------------
 		HEX0: out std_logic_vector(7 downto 0);
 		HEX1: out std_logic_vector(7 downto 0);
@@ -61,14 +60,14 @@ entity de10_lite is
 		VGA_HS: out std_logic;
 		VGA_R: out std_logic_vector(3 downto 0);
 		VGA_VS: out std_logic;
-	
+
 		----------- Accelerometer ------------
 		GSENSOR_CS_N: out std_logic;
 		GSENSOR_INT: in std_logic_vector(2 downto 1);
 		GSENSOR_SCLK: out std_logic;
 		GSENSOR_SDI: inout std_logic;
 		GSENSOR_SDO: inout std_logic;
-	
+
 		----------- Arduino ------------
 		ARDUINO_IO: inout std_logic_vector(15 downto 0);
 		ARDUINO_RESET_N: inout std_logic
@@ -76,77 +75,131 @@ entity de10_lite is
 end entity;
 
 
-
 architecture rtl of de10_lite is
-		
+
 	signal clk : std_logic;
 	signal rst : std_logic;
-	
+
 	-- Instruction bus signals
 	signal idata     : std_logic_vector(31 downto 0);
-	signal iaddress  : integer range 0 to IMEMORY_WORDS-1 := 0;
+	signal iaddress  : unsigned(15 downto 0);
 	signal address   : std_logic_vector (9 downto 0);
-	
+
 	-- Data bus signals
-	signal daddress :  integer range 0 to DMEMORY_WORDS-1;
-	signal ddata_r	:  	std_logic_vector(31 downto 0);
-	signal ddata_w  :	std_logic_vector(31 downto 0);
-	signal dmask    : std_logic_vector(3 downto 0);
-	signal dcsel    : std_logic_vector(1 downto 0);
-	signal d_we     : std_logic := '0';
-	
+	signal daddress  : unsigned(31 downto 0);
+	signal ddata_r   : std_logic_vector(31 downto 0);
+	signal ddata_w   : std_logic_vector(31 downto 0);
+	signal dmask     : std_logic_vector(3 downto 0);
+	signal dcsel     : std_logic_vector(1 downto 0);
+	signal d_we      : std_logic := '0';
+	signal d_rd      : std_logic;
+	signal d_sig     : std_logic;
+
 	signal ddata_r_mem : std_logic_vector(31 downto 0);
-	signal d_rd : std_logic;			
-	
+
 	-- I/O signals
 	signal input_in : std_logic_vector(31 downto 0);
-	
+
 	-- PLL signals
 	signal locked_sig : std_logic;
-	
+
 	-- CPU state signals
 	signal state : cpu_state_t;
-	
+
+	-- Interrupt signals
+	signal interrupts : std_logic_vector(31 downto 0);
+
 	-- VGA Signals
-	signal clk_vga : STD_LOGIC;
-	signal disp_ena : STD_LOGIC;
-	signal addr_vga : std_logic_vector(12 downto 0);
-	signal rgb_in : std_logic_vector(15 downto 0);
-	signal wren_dm : std_logic;
-	signal wren_vga : std_logic;
-	signal vgaaddrwr : std_logic_vector(12 downto 0);
-	
+	signal clk_sdram : std_logic;                       -- 125 MHz cache domain
+	signal clk_vga   : std_logic;                       -- 25 MHz pixel clock (PLL c1)
+	signal pix_toggle    : std_logic;
+	signal pix_toggle_s  : std_logic;
+	signal pix_toggle_d  : std_logic;
+	signal pixel_en  : std_logic;                       -- pixel tick in the 125 MHz domain
+	signal vga_we_d  : std_logic;
+	signal fb_commit : std_logic;                       -- one commit per CPU store
+	signal disp_ena  : std_logic;
+
+	-- Blitter (2D accelerator) command port and muxed write path
+	signal blit_we      : std_logic;                    -- CPU write to the command port
+	signal blit_we_d    : std_logic;
+	signal blit_push    : std_logic;                    -- one push per CPU store
+	signal blit_busy    : std_logic;
+	signal blit_commit  : std_logic;
+	signal blit_address : std_logic_vector(31 downto 0);
+	signal blit_data    : std_logic_vector(15 downto 0);
+	signal fb_commit_m  : std_logic;                    -- muxed write port (CPU / blitter)
+	signal fb_address_m : std_logic_vector(31 downto 0);
+	signal fb_data_m    : std_logic_vector(15 downto 0);
+	signal fb_wbusy     : std_logic;
+	signal hsync_sig : std_logic;
+	signal vsync_sig : std_logic;
+	signal addr_vga  : std_logic_vector(12 downto 0);
+	signal rgb_in    : std_logic_vector(15 downto 0);
+	signal wren_dm   : std_logic;
+	signal wren_vga  : std_logic;
+
+	-- VGA read-back (dcsel = "11")
+	signal ddata_r_sdram : std_logic_vector(31 downto 0);
+
 begin
-	
+
+	-- Hold everything in reset until the PLL locks, so a JTAG reconfigure
+	-- boots cleanly without needing a manual SW(9) toggle
+	rst <= '1' when SW(9) = '1' or locked_sig = '0' else '0';
+	LEDR(9) <= SW(9);
+
+	-- No interrupts used in this design
+	interrupts <= (others => '0');
+
+	ARDUINO_IO <= (others => 'Z');
+
+	-- PLL: c0 = CPU clock, c1 = 25 MHz pixel clock, c2 = 125 MHz SDRAM/cache domain
 	pll_inst: entity work.pll
 		port map(
-			areset => rst,
+			areset => SW(9),
 			inclk0 => MAX10_CLK1_50,
 			c0     => clk,
 			c1     => clk_vga,
+			c2     => clk_sdram,
 			locked => locked_sig
 		);
-	
-	rst <= SW(9);
-	
-	-- Dummy out signals
-	DRAM_DQ <= ddata_r(15 downto 0);
-	ARDUINO_IO <= ddata_r(31 downto 16);
-	LEDR(9) <= SW(9);
-	DRAM_ADDR(9 downto 0) <= address;
-		
-	-- IMem shoud be read from instruction and data buses
-	-- Not enough RAM ports for instruction bus, data bus and in-circuit programming
-	process(d_rd, dcsel, daddress, iaddress)
+
+	-- Pixel tick: a pixel-clock flop toggles once per pixel, edge-detected in the
+	-- 125 MHz domain -> one clean pixel_en (sampling clk_vga as data races -> 2-wide).
+	process(clk_vga, rst)
 	begin
-		if (d_rd = '1') and (dcsel = "00") then
-			address <= std_logic_vector(to_unsigned(daddress,10));
-		else
-			address <= std_logic_vector(to_unsigned(iaddress,10));
-		end if;		
+		if rst = '1' then
+			pix_toggle <= '0';
+		elsif rising_edge(clk_vga) then
+			pix_toggle <= not pix_toggle;
+		end if;
 	end process;
 
-	-- 32-bits x 1024 words quartus RAM (dual port: portA -> riscV, portB -> In-System Mem Editor
+	process(clk_sdram, rst)
+	begin
+		if rst = '1' then
+			pix_toggle_s <= '0';
+			pix_toggle_d <= '0';
+			pixel_en <= '0';
+		elsif rising_edge(clk_sdram) then
+			pix_toggle_s <= pix_toggle;
+			pix_toggle_d <= pix_toggle_s;
+			pixel_en <= pix_toggle_s xor pix_toggle_d;
+		end if;
+	end process;
+
+	-- Instruction bus mux
+	instr_mux: entity work.instructionbusmux
+		port map(
+			d_rd     => d_rd,
+			dcsel    => dcsel,
+			daddress => daddress,
+			iaddress => iaddress,
+			address  => address
+		);
+
+	-- 32-bits x 1024 words quartus RAM
 	iram_quartus_inst: entity work.iram_quartus
 		port map(
 			address => address,
@@ -156,53 +209,127 @@ begin
 			wren    => '0',
 			q       => idata
 		);
-		
+
+	-- VGA write enable: dcsel = "11" selects VGA memory
 	process(dcsel, d_we)
 	begin
 		if dcsel = "11" then
-			wren_vga <= d_we; -- write to vga
+			wren_vga <= d_we;
 			wren_dm  <= '0';
 		else
 			wren_vga <= '0';
-			wren_dm  <= d_we; -- write do data memory
+			wren_dm  <= d_we;
 		end if;
 	end process;
-	
+
 	-- Data Memory RAM
 	dmem: entity work.dmemory
 		generic map(
 			MEMORY_WORDS => DMEMORY_WORDS
 		)
 		port map(
-			rst     => rst,
-			clk     => clk,
-			data    => ddata_w,
-			address => daddress,
-			we      => wren_dm,
-			csel    => dcsel(0),
-			dmask   => dmask,
-			q       => ddata_r_mem
+			rst        => rst,
+			clk        => clk,
+			data       => ddata_w,
+			address    => daddress,
+			we         => wren_dm,
+			csel       => dcsel(0),
+			dmask      => dmask,
+			signal_ext => d_sig,
+			q          => ddata_r_mem
 		);
-	
-	vgaaddrwr <= Std_logic_vector(To_unsigned(daddress,13));
-	
-	vgamem : entity work.ram_vga
+
+	-- Blitter register block: CPU stores to I/O addresses 256..263 (dcsel="10",
+	-- block 16) write the X/Y/W/H/COLOR/CMD registers; daddress(2:0) is the reg
+	blit_we <= '1' when d_we = '1' and dcsel = "10" and daddress(8 downto 3) = "100000"
+	           else '0';
+
+	-- Edge-detect the slow CPU write strobes into single 125 MHz pulses: fb_commit
+	-- for direct pixel stores (dcsel="11"), blit_push for command-port stores
+	process(clk_sdram, rst)
+	begin
+		if rst = '1' then
+			vga_we_d  <= '0';
+			fb_commit <= '0';
+			blit_we_d <= '0';
+			blit_push <= '0';
+		elsif rising_edge(clk_sdram) then
+			vga_we_d  <= wren_vga;
+			fb_commit <= wren_vga and (not vga_we_d);
+			blit_we_d <= blit_we;
+			blit_push <= blit_we and (not blit_we_d);
+		end if;
+	end process;
+
+	-- 2D accelerator: drains its command fifo and drives the framebuffer write
+	-- port (muxed below).
+	blit: entity work.blitter
+		generic map(SCREEN_W => 640)
 		port map(
-			data      => ddata_w(15 downto 0),
-			rdaddress => addr_vga,
-			rdclock   => clk_vga,
-			wraddress => vgaaddrwr,
-			wrclock   => clk,
-			wren      => wren_vga,
-			q         => rgb_in
+			clk   => clk_sdram,
+			reset => rst,
+			reg_we   => blit_push,
+			reg_addr => std_logic_vector(daddress(2 downto 0)),
+			reg_data => ddata_w,
+			busy     => blit_busy,
+			write_commit  => blit_commit,
+			write_address => blit_address,
+			write_data    => blit_data,
+			write_busy    => fb_wbusy
 		);
-	
-	vgactrl: entity work.vga_controller
+
+	-- Framebuffer write port: the blitter owns it while busy, else the CPU
+	fb_commit_m  <= blit_commit  when blit_busy = '1' else fb_commit;
+	fb_address_m <= blit_address when blit_busy = '1'
+	                else std_logic_vector(resize(daddress(18 downto 0), 32));
+	fb_data_m    <= blit_data    when blit_busy = '1' else ddata_w(15 downto 0);
+
+	-- Framebuffer in SDRAM via the cache --
+	fb: entity work.vga_framebuffer
 		port map(
-			pixel_clk => clk_vga,
+			clk       => clk_sdram,
 			reset     => rst,
-			h_sync    => VGA_HS,
-			v_sync    => VGA_VS,
+			pixel_en  => pixel_en,
+			disp_ena  => disp_ena,
+			vsync     => vsync_sig,
+			rgb       => rgb_in,
+			write_commit  => fb_commit_m,
+			write_address => fb_address_m,
+			write_data    => fb_data_m,
+			write_busy    => fb_wbusy,
+			DRAM_ADDR => DRAM_ADDR,
+			DRAM_BA   => DRAM_BA,
+			DRAM_CAS_N=> DRAM_CAS_N,
+			DRAM_CKE  => DRAM_CKE,
+			DRAM_CLK  => DRAM_CLK,
+			DRAM_CS_N => DRAM_CS_N,
+			DRAM_DQ   => DRAM_DQ,
+			DRAM_LDQM => DRAM_LDQM,
+			DRAM_RAS_N=> DRAM_RAS_N,
+			DRAM_UDQM => DRAM_UDQM,
+			DRAM_WE_N => DRAM_WE_N
+		);
+
+	-- VGA controller (640x480 @ 60Hz, 25MHz pixel clock)
+	vgactrl: entity work.vga_controller
+		generic map(
+			h_pulse  => 96,
+			h_bp     => 48,
+			h_pixels => 640,
+			h_fp     => 16,
+			h_pol    => '0',
+			v_pulse  => 2,
+			v_bp     => 33,
+			v_pixels => 480,
+			v_fp     => 10,
+			v_pol    => '0'
+		)
+		port map(
+			pixel_clk => clk_sdram,
+			pixel_en  => pixel_en,
+			reset     => rst,
+			h_sync    => hsync_sig,
+			v_sync    => vsync_sig,
 			disp_ena  => disp_ena,
 			column    => open,
 			row       => open,
@@ -210,6 +337,13 @@ begin
 			n_blank   => open,
 			n_sync    => open
 		);
+
+	VGA_HS <= hsync_sig;
+	VGA_VS <= vsync_sig;
+
+	-- Framebuffer status on spare LEDs --
+
+	-- VGA image generator (extracts RGB from RAM data)
 	vgaimg: entity work.hw_image_generator
 		port map(
 			disp_ena => disp_ena,
@@ -218,27 +352,27 @@ begin
 			green    => VGA_G,
 			blue     => VGA_B
 		);
-		
-	-- Address space (check sections.ld) and chip select:
-	-- 0x0000000000 ->  0b000 0000 0000 0000 0000 0000 0000
-	-- 0x0002000000 ->  0b010 0000 0000 0000 0000 0000 0000		
-	-- 0x0004000000 ->  0b100 0000 0000 0000 0000 0000 0000
-	-- 0x0006000000 ->  0b110 0000 0000 0000 0000 0000 0000		
-	with dcsel select 
-		ddata_r <= idata when "00",
-		           ddata_r_mem when "01",
-		           input_in when "10",
-		           (others => '0') when others;
-	
-	-- Softcore instatiation
-	myRisc: entity work.core
-		generic map(
-			IMEMORY_WORDS => IMEMORY_WORDS,
-			DMEMORY_WORDS => DMEMORY_WORDS
-		)
+
+	-- No read-back from VGA memory for now
+	ddata_r_sdram <= (others => '0');
+
+	-- Data bus mux
+	datamux: entity work.databusmux
+		port map(
+			dcsel          => dcsel,
+			idata          => idata,
+			ddata_r_mem    => ddata_r_mem,
+			ddata_r_periph => input_in,
+			ddata_r_sdram  => ddata_r_sdram,
+			ddata_r        => ddata_r
+		);
+
+	-- Softcore instantiation
+	myRiscv: entity work.core
 		port map(
 			clk      => clk,
 			rst      => rst,
+			clk_32x  => MAX10_CLK1_50,
 			iaddress => iaddress,
 			idata    => idata,
 			daddress => daddress,
@@ -246,58 +380,56 @@ begin
 			ddata_w  => ddata_w,
 			d_we     => d_we,
 			d_rd     => d_rd,
+			d_sig    => d_sig,
 			dcsel    => dcsel,
 			dmask    => dmask,
+			interrupts => interrupts,
 			state    => state
 		);
-	
-	-- Output register (Dummy LED blinky)
+
+	-- Output register (LED and HEX display via I/O space dcsel = "10")
 	process(clk, rst)
-	begin		
+	begin
 		if rst = '1' then
-			LEDR(3 downto 0) <= (others => '0');			
+			LEDR(3 downto 0) <= (others => '0');
 			HEX0 <= (others => '1');
 			HEX1 <= (others => '1');
 			HEX2 <= (others => '1');
 			HEX3 <= (others => '1');
 			HEX4 <= (others => '1');
-			HEX5 <= (others => '1');			
+			HEX5 <= (others => '1');
 		else
-			if rising_edge(clk) then		
-				if (d_we = '1') and (dcsel = "10")then					
-					-- ToDo: Simplify compartors
-					-- ToDo: Maybe use byte addressing?  
-					--       x"01" (word addressing) is x"04" (byte addressing)
-					if to_unsigned(daddress, 32)(8 downto 0) = x"01" then										
+			if rising_edge(clk) then
+				if (d_we = '1') and (dcsel = "10") then
+					if daddress(8 downto 0) = "000000001" then
 						LEDR(4 downto 0) <= ddata_w(4 downto 0);
-					elsif to_unsigned(daddress, 32)(8 downto 0) = x"02" then
+					elsif daddress(8 downto 0) = "000000010" then
 					 	HEX0 <= ddata_w(7 downto 0);
 						HEX1 <= ddata_w(15 downto 8);
 						HEX2 <= ddata_w(23 downto 16);
 						HEX3 <= ddata_w(31 downto 24);
-						-- HEX4 <= ddata_w(7 downto 0);
-						-- HEX5 <= ddata_w(7 downto 0);
-					end if;				
+					end if;
 				end if;
 			end if;
-		end if;		
+		end if;
 	end process;
-	
-	
+
 	-- Input register
 	process(clk, rst)
-	begin		
+	begin
 		if rst = '1' then
 			input_in <= (others => '0');
 		else
-			if rising_edge(clk) then		
+			if rising_edge(clk) then
 				if (d_rd = '1') and (dcsel = "10") then
-					input_in(4 downto 0) <= SW(4 downto 0);				
+					if daddress(8 downto 3) = "100000" then
+						input_in <= (0 => blit_busy, others => '0');
+					else
+						input_in(4 downto 0) <= SW(4 downto 0);
+					end if;
 				end if;
 			end if;
-		end if;		
+		end if;
 	end process;
-	
 
 end;
-

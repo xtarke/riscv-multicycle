@@ -1,115 +1,83 @@
-#******************************************************************************
-#                                                                             *
-#                  Copyright (C) 2019 IFSC                                    *
-#                                                                             *
-#                                                                             *
-# All information provided herein is provided on an "as is" basis,            *
-# without warranty of any kind.                                               *
-#                                                                             *
-# File Name: testbench.do          						    				  *
-#                                                                             *
-# Function: riscv muticycle simulation script		  	                 	  *
-#                                                                             *
-# REVISION HISTORY:                                                           *
-#  Revision 0.1.0    08/01/2018 - Initial Revision                            *
-#******************************************************************************
+# ModelSim/Questa macro for the full core + SDRAM (cache) testbench.
+# Run headless from peripherals/sdram:  vsim -c -do coretestbench.do
+#
+# iram_quartus instantiates the Altera altsyncram megafunction. ModelSim Intel
+# FPGA Edition already ships a precompiled altera_mf library (mapped in the
+# install's modelsim.ini), so it does not need to be compiled here.
 
 vlib work
-# vcom ../../memory/imemory.vhd
-# vcom ../../memory/imemory_load.vhd
-vcom ../../memory/iram_quartus.vhd
-vcom ../../memory/dmemory.vhd
 
-vcom ../../alu/alu_types.vhd
-vcom ../../alu/alu.vhd
-vcom ../../alu/m/M_types.vhd
-vcom ../../alu/m/M.vhd
+# Design sources, dependency order (packages first). fifo_sim provides the
+# behavioral fifo_16 / fifo_512 the cache uses (real ones are megafunctions).
+vcom -2008 ../../alu/alu_types.vhd
+vcom -2008 ../../alu/m/M_types.vhd
+vcom -2008 ../../alu/m/division_functions.vhd
+vcom -2008 ../../decoder/decoder_types.vhd
+vcom -2008 ./sdram_pkg.vhd
+vcom -2008 ../../core/txt_util.vhdl
 
-vcom ../../decoder/decoder_types.vhd
-vcom ../../decoder/iregister.vhd
-vcom ../../decoder/decoder.vhd
-vcom ../../registers/register_file.vhd
-vcom ../../core/core.vhd
-vcom ../../core/txt_util.vhdl
-vcom ../../core/trace_debug.vhd
-vcom ./sim/mti_pkg.vhd ./sim/mt48lc8m16a2.vhd ./sdram_controller.vhd 
-vcom core_sdram_testbench.vhd
+vcom -2008 ../../alu/alu.vhd
+vcom -2008 ../../alu/m/quick_naive.vhd
+vcom -2008 ../../alu/m/M.vhd
+vcom -2008 ../../decoder/iregister.vhd
+vcom -2008 ../../decoder/decoder.vhd
+vcom -2008 ../../registers/register_file.vhd
+vcom -2008 ../../core/csr.vhd
+vcom -2008 ../../memory/iram_quartus.vhd
+vcom -2008 ../../memory/dmemory.vhd
+vcom -2008 ../../memory/instructionbusmux.vhd
+vcom -2008 ../../memory/databusmux.vhd
+vcom -2008 ../../memory/iodatabusmux.vhd
+vcom -2008 ../../core/core.vhd
+vcom -2008 ../../core/trace_debug.vhd
+vcom -2008 ../../peripherals/gpio/gpio.vhd
+
+vcom -2008 ./sim/mti_pkg.vhd ./sim/mt48lc8m16a2.vhd
+vcom -2008 ./sdram_controller.vhd
+vcom -2008 ./sim/fifo_sim.vhd
+vcom -2008 ./sdram_cache.vhd
+vcom -2008 ./core_sdram_testbench.vhd
 
 vsim -t ns work.core_sdram_testbench
 
-
 view wave
-add wave -radix binary 	/clk
-add wave -radix binary 	/rst
+add wave -radix binary /clk
+add wave -radix binary /rst
+
 add wave -height 15 -divider "Instruction Memory"
 add wave -label iAddr -radix hex /address
-add wave -label iWord -radix hex idata
+add wave -label iWord -radix hex /idata
 add wave -label decoded -radix ASCII /debugString
-# add wave /debugString
-# add wave -radix hex /imem/RAM
-# add wave -radix hex /q
-
-add wave -height 15 -divider "PC and Ctrl Targers"
-# add wave -radix hex -label pc 			/myRiscv/pc
-# add wave -radix hex -label jal_target 	/myRiscv/jal_target
-# add wave -radix hex -label jalr_target 	/myRiscv/jalr_target
-# add wave -label branch_cmp 				/myRiscv/branch_cmp
-
-add wave -height 15 -divider "Iregister debug"
-add wave -label opcode  /myRiscv/opcodes 
-add wave -label rd /myRiscv/rd   
-add wave -label rs1 /myRiscv/rs1
-add wave -label rs2 /myRiscv/rs2
-add wave -label imm_i /myRiscv/imm_i
-add wave -label imm_s /myRiscv/imm_s 
-add wave -label imm_b /myRiscv/imm_b
-add wave -label imm_u /myRiscv/imm_u
-add wave -label imm_j /myRiscv/imm_j
-
-
-add wave -height 15 -divider "Register file debug"
- add wave -label registers -radix hex /myRiscv/registers/ram
- add wave -label w_ena 	/myRiscv/rf_w_ena
- add wave -label w_data 	/myRiscv/rw_data
- add wave -label r1_data -radix hex /myRiscv/rs1_data
- add wave -label r2_data -radix hex /myRiscv/rs2_data
-
-# decoder debug
-add wave -label states /myRiscv/decoder0/state
-
-# add wave -height 15 -divider "Alu debug"
-# add wave -label aluData /myRiscv/alu_data
-#add wave -label aluOut 	/myRiscv/alu_out
-
-add wave -height 15 -divider "Data memory debug"
-add wave -label daddr -radix hex /myRiscv/memAddrTypeSBlock/addr
-add wave -label fsm_data -radix hex /dmem/fsm_data
-add wave -label ram_data -radix hex /dmem/ram_data
-add wave -label mState /dmem/state
-add wave -label fsm_we /dmem/fsm_we
 
 add wave -height 15 -divider "Data bus"
 add wave -label daddress -radix hex /daddress
-add wave -label ddata_r -radix hex 	/ddata_r
-add wave -label ddata_w -radix hex 	/ddata_w
-add wave -label dmask -radix bin /dmask
-add wave -label dcsel 	/dcsel
-add wave -label d_we 	/d_we
-add wave -label d_rd 	/d_rd
+add wave -label ddata_r  -radix hex /ddata_r
+add wave -label ddata_w  -radix hex /ddata_w
+add wave -label dmask    -radix bin /dmask
+add wave -label dcsel               /dcsel
+add wave -label d_we                /d_we
+add wave -label d_rd                /d_rd
 
-add wave -height 15 -divider "Input/Output SIM"
-add wave -label LEDR -radix hex /LEDR
-add wave -label ARDUINO_IO -radix hex /ARDUINO_IO
+add wave -height 15 -divider "CPU -> cache write bridge"
+add wave -label cpu_wr                        /cpu_wr
+add wave -label wr_high                       /wr_high
+add wave -label cache_write_commit            /cache_write_commit
+add wave -label cache_write_address -radix hex /cache_write_address
+add wave -label cache_write_data    -radix hex /cache_write_data
+
+add wave -height 15 -divider "Cache internals"
+add wave -label cache_state                    /cache/cache_state
+add wave -label read_fifo_used  -radix unsigned /cache/read_fifo_used
+add wave -label write_fifo_used -radix unsigned /cache/write_fifo_used
 
 add wave -height 15 -divider "SDRAM"
-add wave -radix unsigned -label DRAM_ADDR /DRAM_ADDR
-add wave -radix unsigned -label DRAM_CS_N /DRAM_CS_N
-add wave -radix unsigned -label DRAM_CKE /DRAM_CKE
-add wave -radix unsigned -label DRAM_RAS_N /DRAM_RAS_N
-add wave -radix unsigned -label DRAM_CAS_N /DRAM_CAS_N    
-add wave -radix unsigned -label DRAM_WE_N /DRAM_WE_N    
-add wave -radix unsigned -label DRAM_DQ /DRAM_DQ
-add wave -label mem_state 				/sdram_controller/mem_state
+add wave -label mem_state              /sdram_controller/mem_state
+add wave -label DRAM_ADDR  -radix hex  /DRAM_ADDR
+add wave -label DRAM_DQ    -radix hex  /DRAM_DQ
+add wave -label DRAM_CS_N               /DRAM_CS_N
+add wave -label DRAM_RAS_N              /DRAM_RAS_N
+add wave -label DRAM_CAS_N              /DRAM_CAS_N
+add wave -label DRAM_WE_N               /DRAM_WE_N
 
-wave zoomfull
 run 600000 ns
+wave zoomfull

@@ -32,8 +32,9 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
-entity sdram_controller is
+use work.sdram_pkg.all;
 
+entity sdram_controller is
 	-- Altera SDRAM controller configuration
 	generic(
 		ASIZE      : integer := 25;
@@ -47,7 +48,7 @@ entity sdram_controller is
 		-- SDRAM latencies
 		DATA_AVAL  : integer := 2;      -- cycles
 		RESET_NOP  : integer := 4;      -- cycles
-		RAS_TO_CAS : integer := 3;      -- cycles			
+		RAS_TO_CAS : integer := 3;      -- cycles
 		PRE_TO_ACT : integer := 3;      -- cycles
 		tRP        : integer := 3;      -- cycles
 		tRC        : integer := 12       -- cycles
@@ -64,27 +65,27 @@ entity sdram_controller is
 		reset_req   : IN    STD_LOGIC;
 		write       : IN    STD_LOGIC;
 		read        : in    std_logic;
-		writedata   : IN    STD_LOGIC_VECTOR(31 DOWNTO 0);
-		burst       : in    std_logic;
+		write_data  : in    io_buffer_t;
 		-- outputs:
-		readdata    : OUT   STD_LOGIC_VECTOR(15 DOWNTO 0);
-		waitrequest : out   std_logic;
-		DRAM_ADDR   : out   std_logic_vector(12 downto 0);
-		DRAM_BA     : out   std_logic_vector(1 downto 0);
-		DRAM_CAS_N  : out   std_logic;
-		DRAM_CKE    : out   std_logic;
-		DRAM_CLK    : out   std_logic;
-		DRAM_CS_N   : out   std_logic;
-		DRAM_DQ     : inout std_logic_vector(15 downto 0);
-		DRAM_DQM    : out   std_logic_vector(1 downto 0);
-		DRAM_RAS_N  : out   std_logic;
-		DRAM_WE_N   : out   std_logic
+		read_data    : OUT   io_buffer_t;
+		read_valid_count : out integer range 0 to 8;
+		waitrequest  : out   std_logic;
+		DRAM_ADDR    : out   std_logic_vector(12 downto 0);
+		DRAM_BA      : out   std_logic_vector(1 downto 0);
+		DRAM_CAS_N   : out   std_logic;
+		DRAM_CKE     : out   std_logic;
+		DRAM_CLK     : out   std_logic;
+		DRAM_CS_N    : out   std_logic;
+		DRAM_DQ      : inout std_logic_vector(15 downto 0);
+		DRAM_DQM     : out   std_logic_vector(1 downto 0);
+		DRAM_RAS_N   : out   std_logic;
+		DRAM_WE_N    : out   std_logic
 	);
 end entity sdram_controller;
 
 architecture rtl of sdram_controller is
 
-	type mem_state_type is (CONFIG, C_PRE, C_PRE_NOP, C_INIT_AUTO_REFRESH, C_LD, C_LD_BURST, C_AUTO_REFRESH, IDLE, WRITE_ROW, WRITE_COL, DATA_REG, DONE);
+	type mem_state_type is (CONFIG, C_PRE, C_PRE_NOP, C_INIT_AUTO_REFRESH, C_LD_BURST, C_AUTO_REFRESH, IDLE, ACTIVATE_ROW, SET_COL, BURST, DONE);
 	signal mem_state     : mem_state_type;
 	signal nop_nxt_state : mem_state_type;
 
@@ -127,6 +128,11 @@ architecture rtl of sdram_controller is
 	signal write_last_value      : std_logic;
 	signal burst_last_value      : std_logic;
 
+	signal idx      : integer range 0 to 7;
+	signal is_write : std_logic;
+
+	signal read_valid_count_i : integer range 0 to 8;
+
 begin
 
 	reset_n  <= not reset;
@@ -148,6 +154,13 @@ begin
 			wait_cycles <= std_logic_vector(to_unsigned(RESET_NOP, wait_cycles'length));
 		else
 			if rising_edge(clk) then
+				if read = '0' then
+					read_last_value <= '0';
+				end if;
+				if write = '0' then
+					write_last_value <= '0';
+				end if;
+
 				case mem_state is
 					when CONFIG =>
 						if reset = '0' then
@@ -187,14 +200,9 @@ begin
 						mem_state     <= C_PRE_NOP;
 						init_refresh_counter := init_refresh_counter + 1;
 						if init_refresh_counter >= 2 then
-							nop_nxt_state <= C_LD;
+							nop_nxt_state <= C_LD_BURST;
 							init_refresh_counter := 0;
 						end if;
-
-					when C_LD =>
-						wait_cycles   <= std_logic_vector(to_unsigned(PRE_TO_ACT, wait_cycles'length));
-						mem_state     <= C_PRE_NOP;
-						nop_nxt_state <= C_AUTO_REFRESH;
 
 					when C_LD_BURST =>
 						wait_cycles   <= std_logic_vector(to_unsigned(PRE_TO_ACT, wait_cycles'length));
@@ -216,50 +224,38 @@ begin
 						if refresh_counter = 10 then
 							refresh_counter := 0;
 							mem_state       <= C_AUTO_REFRESH;
-						elsif burst = '1' and burst_last_value = '0' then
-							refresh_counter := 0;
-							mem_state       <= C_LD_BURST;
-						elsif burst = '0' and burst_last_value = '1' then
-							refresh_counter := 0;
-							mem_state       <= C_LD;
 						elsif chipselect = '1' and (read = '1' and read_last_value = '0') then
 							refresh_counter := 0;
 							read_last_value <= '1';
-							mem_state       <= WRITE_ROW;
+							is_write        <= '0';
+							mem_state       <= ACTIVATE_ROW;
 						elsif chipselect = '1' and (write = '1' and write_last_value = '0') then
 							refresh_counter  := 0;
 							write_last_value <= '1';
-							mem_state        <= WRITE_ROW;
-						end if;
-
-						if read = '0' then
-							read_last_value <= '0';
-						end if;
-						if write = '0' then
-							write_last_value <= '0';
-						end if;
-						if burst /= burst_last_value then
-							burst_last_value <= burst;
+							is_write         <= '1';
+							mem_state        <= ACTIVATE_ROW;
 						end if;
 
 						refresh_counter := refresh_counter + 1;
 
-					when WRITE_ROW =>
+					when ACTIVATE_ROW =>
 						wait_cycles   <= std_logic_vector(to_unsigned(RAS_TO_CAS - 1, wait_cycles'length));
 						mem_state     <= C_PRE_NOP;
-						nop_nxt_state <= WRITE_COL;
+						nop_nxt_state <= SET_COL;
 
-					when WRITE_COL =>
+					when SET_COL =>
 						if read = '1' then
 							wait_cycles   <= std_logic_vector(to_unsigned(DATA_AVAL - 1, wait_cycles'length));
 							mem_state     <= C_PRE_NOP;
-							nop_nxt_state <= DATA_REG;
+							nop_nxt_state <= BURST;
 						else
-							mem_state <= DONE;
+							mem_state <= BURST;
 						end if;
 
-					when DATA_REG =>
-						mem_state <= DONE;
+					when BURST =>
+						if idx = 7 then
+							mem_state <= DONE;
+						end if;
 
 					when DONE =>
 						mem_state <= C_PRE;
@@ -273,7 +269,7 @@ begin
 	col_addr  <= address(COLSTART + COLSIZE - 1 downto COLSTART); -- (0 + (9 - 1) downto 	0) -> (9 downto 0)	       -- assignment of the column address bits
 	bank_addr <= address(BANKSTART + BANKSIZE - 1 downto BANKSTART); -- (23 + (2 - 1) downto 23) -> (24 downto 23)    -- assignment of the bank address bits
 
-	do_clk_mem_acc_state_output : process(mem_state, reset, chipselect, write, byteenable, address, chip_en_reg, byteenable_reg, bank_addr, row_addr, col_addr)
+	do_clk_mem_acc_state_output : process(mem_state, reset, chipselect, write, byteenable, address, chip_en_reg, byteenable_reg, bank_addr, row_addr, col_addr, is_write)
 	begin
 		in_reg_en   <= '0';
 		waitrequest <= '0';
@@ -322,33 +318,10 @@ begin
 				waitrequest <= '1';
 				DRAM_CS_N   <= '0';
 
-			when C_LD =>
-				waitrequest <= '1';
-
-				-- burst length: 1 word
-				DRAM_ADDR(2 downto 0)   <= "000";
-				-- burst type: sequential
-				DRAM_ADDR(3)            <= '0';
-				-- cas latency: 2
-				DRAM_ADDR(6 downto 4)   <= "010";
-				-- Op mode: standard operation
-				DRAM_ADDR(8 downto 7)   <= "00";
-				-- Write burst mode: single location
-				DRAM_ADDR(9)            <= '1';
-				-- reserved
-				DRAM_ADDR(12 downto 10) <= "001";
-
-				-- commands
-				DRAM_BA    <= "00";
-				DRAM_CS_N  <= '0';
-				DRAM_RAS_N <= '0';
-				DRAM_CAS_N <= '0';
-				DRAM_WE_N  <= '0';
-
 			when C_LD_BURST =>
 				waitrequest <= '1';
 
-				-- burst length: 8 words
+				-- burst length: 8 words for READ; writes stay single (A9=1 below)
 				DRAM_ADDR(2 downto 0)   <= "011";
 				-- burst type: sequential
 				DRAM_ADDR(3)            <= '0';
@@ -356,7 +329,7 @@ begin
 				DRAM_ADDR(6 downto 4)   <= "010";
 				-- Op mode: standard operation
 				DRAM_ADDR(8 downto 7)   <= "00";
-				-- Write in nonburst mode: single location, Read in burst mode with specified length
+				-- Write burst mode: single location access
 				DRAM_ADDR(9)            <= '1';
 				-- reserved
 				DRAM_ADDR(12 downto 10) <= "001";
@@ -378,6 +351,7 @@ begin
 				DRAM_WE_N  <= '1';
 
 			when C_AUTO_REFRESH =>
+				waitrequest <= '1';
 
 				-- commands
 				DRAM_BA    <= "00";
@@ -391,7 +365,7 @@ begin
 			when IDLE =>
 				waitrequest <= chipselect;
 
-			when WRITE_ROW =>
+			when ACTIVATE_ROW =>
 				waitrequest <= '1';
 
 				DRAM_BA    <= bank_addr;
@@ -402,7 +376,7 @@ begin
 
 				DRAM_ADDR <= row_addr;
 
-			when WRITE_COL =>
+			when SET_COL =>
 				waitrequest <= '1';
 
 				if write = '1' then
@@ -420,54 +394,56 @@ begin
 				-- enable auto precharge
 				DRAM_ADDR(10)                   <= '1';
 
-			when DATA_REG =>
+			when BURST =>
 				waitrequest <= '1';
-				d_read      <= '1';
+				d_read      <= not is_write;
+				d_write     <= is_write;
 
 			when DONE =>
 
 		end case;
 	end process;
 
-	process(clk, reset, d_read, byteenable, DRAM_DQ)
-		variable counter : natural   := 0;
-		variable read    : std_logic := '0';
+	process(clk, reset)
 	begin
 		if reset = '1' then
-			readdata <= (others => '0');
-		else
-			if rising_edge(clk) then
-
-				if d_read = '1' and burst = '1' then
-					counter := 8;
-				elsif d_read = '1' then
-					counter := 1;
+			idx <= 0;
+		elsif rising_edge(clk) then
+			if d_read = '1' or d_write = '1' then
+				if idx = 7 then
+					idx <= 0;
+				else
+					idx <= idx + 1;
 				end if;
-
-				if counter > 0 then
-					case byteenable is
-
-						when "00" =>
-
-						when "01" =>
-							readdata <= x"00" & DRAM_DQ(7 downto 0);
-
-						when "10" =>
-							readdata <= x"00" & DRAM_DQ(15 downto 8);
-
-						when "11" =>
-							readdata <= DRAM_DQ;
-
-						when others =>
-					end case;
-					counter := counter - 1;
-				end if;
-
+			else
+				idx <= 0;
 			end if;
 		end if;
 	end process;
 
-	DRAM_DQ <= (DRAM_DQ'range => 'Z') WHEN (d_write = '0') ELSE writedata(15 downto 0);
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			if d_read = '1' then
+				read_data(idx) <= DRAM_DQ;
+			end if;
+		end if;
+	end process;
+
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			if mem_state = SET_COL then
+				read_valid_count_i <= 0;
+			elsif d_read = '1' then
+				read_valid_count_i <= idx + 1;
+			end if;
+		end if;
+	end process;
+
+	read_valid_count <= read_valid_count_i;
+
+	DRAM_DQ <= write_data(idx) when d_write = '1' else (others => 'Z');
 
 	process(clk, reset, byteenable, in_reg_en)
 	begin
