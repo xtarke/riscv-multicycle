@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity rtc2 is
     generic (
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10"; --regiao de memoria dos perifericos(10)
-        MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0190";  --Endereço base interno do RTC nos perifericos
+        MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0260";  --Endereço base interno do RTC nos perifericos
         DADDRESS_BUS_SIZE : integer := 32;    --Tamanho do barramento de endereço.
         CLOCK_HZ          : integer := 1000000 --Frequência do clock de entrada em Hz.para contar 1 segundo
     );

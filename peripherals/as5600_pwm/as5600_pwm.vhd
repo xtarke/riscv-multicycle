@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity as5600_pwm is
     generic (
         MY_CHIPSELECT   : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0160";     -- slot 22
+        MY_WORD_ADDRESS : unsigned(15 downto 0) := x"0290";     -- slot 22
         DADDRESS_BUS_SIZE : integer := 32
     );
     port(

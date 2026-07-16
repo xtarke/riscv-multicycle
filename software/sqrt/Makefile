@@ -1,6 +1,6 @@
-RISCV_TOOLS_PREFIX = C:/PRG/Atividades/riscv-multicycle/compiler/gcc/bin/riscv-none-embed-
+RISCV_TOOLS_PREFIX = ../../compiler/gcc/bin/riscv-none-elf-
 
-QUARTUS_DIR = C:/intelFPGA/19.1/quartus/bin/
+QUARTUS_DIR=~/Data/Apps/intelFPGA/20.1/quartus/bin/
 
 PYTHON = python
 
@@ -11,7 +11,7 @@ AS  = $(RISCV_TOOLS_PREFIX)gcc -march=rv32im
 LDFLAGS = -Wl
 LDLIBS =
 
-MAIN = MAIN
+MAIN = main
 
 quartus_$(MAIN).hex: $(MAIN)32.hex
 	$(PYTHON) ../hex8tointel.py $(MAIN).tmp > quartus_$(MAIN).hex

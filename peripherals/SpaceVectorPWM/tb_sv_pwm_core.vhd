@@ -51,6 +51,7 @@ architecture RTL of coretestbench is
     signal address  : std_logic_vector(9 downto 0);
     signal iaddress : unsigned(15 downto 0);
     signal idata    : std_logic_vector(31 downto 0);
+    signal ddata_r_sdram : std_logic_vector(31 downto 0);
 
     -- Barramento de dados
     signal daddress    : unsigned(31 downto 0);
@@ -75,29 +76,35 @@ architecture RTL of coretestbench is
     -- GPIO
     signal gpio_input  : std_logic_vector(31 downto 0);
     signal gpio_output : std_logic_vector(31 downto 0);
+    
 
     -- Sinais ddata_r de cada periférico
-    signal ddata_r_gpio           : std_logic_vector(31 downto 0);
-    signal ddata_r_segments       : std_logic_vector(31 downto 0);
-    signal ddata_r_uart           : std_logic_vector(31 downto 0);
-    signal ddata_r_adc            : std_logic_vector(31 downto 0);
-    signal ddata_r_i2c            : std_logic_vector(31 downto 0);
-    signal ddata_r_timer          : std_logic_vector(31 downto 0);
-    signal ddata_r_dif_fil        : std_logic_vector(31 downto 0);
-    signal ddata_r_stepmot        : std_logic_vector(31 downto 0);
-    signal ddata_r_lcd            : std_logic_vector(31 downto 0);
+    -- Peripheral data signals
+    signal ddata_r_gpio : std_logic_vector(31 downto 0);
+    signal ddata_r_timer : std_logic_vector(31 downto 0);
+    signal ddata_r_periph : std_logic_vector(31 downto 0);
+    signal ddata_r_segments : std_logic_vector(31 downto 0);
+    signal ddata_r_uart : std_logic_vector(31 downto 0);
+    signal ddata_r_adc : std_logic_vector(31 downto 0);
+    signal ddata_r_i2c : std_logic_vector(31 downto 0);
+    signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
+    signal ddata_r_tft : std_logic_vector(31 downto 0);
+    signal ddata_r_stepmot : std_logic_vector(31 downto 0);
+    signal ddata_r_lcd : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
-    signal ddata_r_fir_fil        : std_logic_vector(31 downto 0);
-    signal ddata_r_spwm           : std_logic_vector(31 downto 0);
-    signal ddata_r_crc            : std_logic_vector(31 downto 0);
-    signal ddata_r_key            : std_logic_vector(31 downto 0);
-    signal ddata_r_accelerometer  : std_logic_vector(31 downto 0);
-    signal ddata_r_cordic         : std_logic_vector(31 downto 0);
-    signal ddata_r_RS485          : std_logic_vector(31 downto 0);
-    signal ddata_r_rgb            : std_logic_vector(31 downto 0);
-    signal ddata_r_sv_pwm         : std_logic_vector(31 downto 0);
-    signal ddata_r_periph         : std_logic_vector(31 downto 0);
-    signal ddata_r_sdram          : std_logic_vector(31 downto 0);
+    signal ddata_r_fir_fil : std_logic_vector(31 downto 0);
+    signal ddata_r_spwm : std_logic_vector(31 downto 0);
+    signal ddata_r_crc : std_logic_vector(31 downto 0);
+    signal ddata_r_key : std_logic_vector(31 downto 0);
+    signal ddata_r_accelerometer : std_logic_vector(31 downto 0);
+    signal ddata_r_cordic : std_logic_vector(31 downto 0);
+    signal ddata_r_rgb : std_logic_vector(31 downto 0);
+    signal ddata_r_RS485 : std_logic_vector(31 downto 0);    
+    signal ddata_r_can : std_logic_vector(31 downto 0);
+    signal ddata_r_rtc : std_logic_vector(31 downto 0);
+    signal ddata_r_sv_pwm : std_logic_vector(31 downto 0);
+    signal ddata_r_raiz : std_logic_vector(31 downto 0);
+    signal ddata_r_as5600_pwm : std_logic_vector(31 downto 0);
 
     -- Saídas do sv_pwm
     signal gate_s1 : std_logic;
@@ -241,29 +248,36 @@ begin
             ddata_r        => ddata_r
         );
 
-    io_data_bus_mux : entity work.iodatabusmux
-        port map (
-            daddress               => daddress,
-            ddata_r_gpio           => ddata_r_gpio,
-            ddata_r_segments       => ddata_r_segments,
-            ddata_r_uart           => ddata_r_uart,
-            ddata_r_adc            => ddata_r_adc,
-            ddata_r_i2c            => ddata_r_i2c,
-            ddata_r_timer          => ddata_r_timer,
-            ddata_r_dif_fil        => ddata_r_dif_fil,
-            ddata_r_stepmot        => ddata_r_stepmot,
-            ddata_r_lcd            => ddata_r_lcd,
-            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_fir_fil        => ddata_r_fir_fil,
-            ddata_r_spwm           => ddata_r_spwm,
-            ddata_r_crc            => ddata_r_crc,
-            ddata_r_key            => ddata_r_key,
-            ddata_r_accelerometer  => ddata_r_accelerometer,
-            ddata_r_cordic         => ddata_r_cordic,
-            ddata_r_RS485          => ddata_r_RS485,
-            ddata_r_rgb            => ddata_r_rgb,
-            ddata_r_sv_pwm         => ddata_r_sv_pwm,
-            ddata_r_periph         => ddata_r_periph
+    io_data_bus_mux: entity work.iodatabusmux
+        port map(
+            daddress         => daddress,
+            ddata_r_gpio     => ddata_r_gpio,
+            ddata_r_segments => ddata_r_segments,
+            ddata_r_uart     => ddata_r_uart,
+            ddata_r_adc      => ddata_r_adc,
+            ddata_r_i2c      => ddata_r_i2c,
+            ddata_r_timer    => ddata_r_timer,
+            ddata_r_tft      => ddata_r_tft,
+			ddata_r_dif_fil  => ddata_r_dif_fil,
+            ddata_r_stepmot  => ddata_r_stepmot,
+			ddata_r_lcd      => ddata_r_lcd,
+			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			ddata_r_fir_fil  => ddata_r_fir_fil,
+            ddata_r_spwm => ddata_r_spwm,
+            ddata_r_crc => ddata_r_crc,
+            ddata_r_key => ddata_r_key,
+            ddata_r_accelerometer => ddata_r_accelerometer,
+			ddata_r_cordic    => ddata_r_cordic,
+			ddata_r_RS485     => ddata_r_RS485,
+			ddata_r_rgb => ddata_r_rgb,
+			
+			ddata_r_can => ddata_r_can,
+			ddata_r_rtc => ddata_r_rtc,
+			ddata_r_sv_pwm => ddata_r_sv_pwm,
+			ddata_r_raiz => ddata_r_raiz,
+			ddata_r_as5600_pwm => ddata_r_as5600_pwm,
+
+            ddata_r_periph   => ddata_r_periph
         );
 
     -- ----------------------------------------------------------------

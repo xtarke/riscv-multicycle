@@ -87,14 +87,11 @@
 #define CORDIC_BASE_ADDRESS                 (*(_IO32 *) (PERIPH_BASE + 21*16*4))
 #define RS485_BASE_ADDRESS                	(*(_IO32 *) (PERIPH_BASE + 23*16*4))
 #define IRDA_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 24*16*4))
-
-
 #define CAN_BASE_ADDRESS                    (*(_IO32 *) (PERIPH_BASE + 25*16*4))
-#define RTC_BASE_ADDRESS 		                (*(_IO32 *) (PERIPH_BASE + 25*16*4))
-
-#define SV_PWM_BASE_ADDRESS                 (*(_IO32 *) (PERIPH_BASE + 26*16*4))
-#define SQRT_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 27*16*4))
-
+#define RTC_BASE_ADDRESS	                (*(_IO32 *) (PERIPH_BASE + 26*16*4))
+#define SV_PWM_BASE_ADDRESS                 (*(_IO32 *) (PERIPH_BASE + 27*16*4))
+#define SQRT_BASE_ADDRESS                   (*(_IO32 *) (PERIPH_BASE + 28*16*4))
+#define AS5600_BASE_ADDRESS                 (*(_IO32 *) (PERIPH_BASE + 29*16*4))
 
 
 //#define TFT_DATA0		(*(_IO32 *) (PERIPH_BASE + 32))

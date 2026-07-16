@@ -11,7 +11,7 @@ use ieee.numeric_std.all;
 entity raiz is
     generic (
         MY_CHIPSELECT     : std_logic_vector(1 downto 0) := "10";
-        MY_WORD_ADDRESS   : unsigned(15 downto 0) := x"0030";
+        MY_WORD_ADDRESS   : unsigned(15 downto 0) := x"0280";
         DADDRESS_BUS_SIZE : integer := 32
     );
 

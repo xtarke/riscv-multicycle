@@ -2,7 +2,7 @@
 vlib work
 
 #compila projeto: todos os arquivo. Ordem é importante
-vcom sqrt.vhd raiz.vhd testbench.vhd
+vcom ../de10_lite/sqrt.vhd raiz.vhd testbench.vhd
 
 #Simula (work é o diretório, testbench é o nome da entity)
 vsim -voptargs="+acc" -t ns -L altera_mf work.testbench

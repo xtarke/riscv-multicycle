@@ -15,33 +15,31 @@ entity iodatabusmux is
     port(
         daddress                : in  unsigned(31 downto 0); --! Connect to RISC-V data bus address
 
-        ddata_r_gpio            : in  std_logic_vector(31 downto 0);
-        ddata_r_segments        : in  std_logic_vector(31 downto 0);
-        ddata_r_uart            : in  std_logic_vector(31 downto 0);
-        ddata_r_adc             : in  std_logic_vector(31 downto 0);
-        ddata_r_i2c             : in  std_logic_vector(31 downto 0);
-        ddata_r_timer           : in  std_logic_vector(31 downto 0);
-        ddata_r_dif_fil         : in  std_logic_vector(31 downto 0);
-        ddata_r_stepmot         : in  std_logic_vector(31 downto 0);
-        ddata_r_lcd             : in  std_logic_vector(31 downto 0);
-        ddata_r_nn_accelerator  : in   std_logic_vector(31 downto 0);
-        ddata_r_fir_fil         : in   std_logic_vector(31 downto 0);
-        ddata_r_spwm            : in   std_logic_vector(31 downto 0);
-        ddata_r_crc		        : in  std_logic_vector(31 downto 0);
-        ddata_r_key             : in   std_logic_vector(31 downto 0);
-        ddata_r_accelerometer   : in  std_logic_vector(31 downto 0);
-        ddata_r_cordic          : in std_logic_vector(31 downto 0);
-        ddata_r_raiz		    : in  std_logic_vector(31 downto 0);
-      	ddata_r_RS485   		: in  std_logic_vector(31 downto 0);
-        ddata_r_rgb             : in  std_logic_vector(31 downto 0);
-
-        ddata_r_as5600_pwm      : in  std_logic_vector(31 downto 0);
-  
-      ddata_r_can				: in std_logic_vector(31 downto 0);
+        ddata_r_gpio            : in std_logic_vector(31 downto 0);
+        ddata_r_segments        : in std_logic_vector(31 downto 0);
+        ddata_r_uart            : in std_logic_vector(31 downto 0);
+        ddata_r_adc             : in std_logic_vector(31 downto 0);
+        ddata_r_i2c             : in std_logic_vector(31 downto 0);
+        ddata_r_timer           : in std_logic_vector(31 downto 0);
         ddata_r_tft             : in std_logic_vector(31 downto 0);
-        ddata_r_rtc             : in std_logic_vector(31 downto 0);
+        ddata_r_dif_fil         : in std_logic_vector(31 downto 0);
+        ddata_r_stepmot         : in std_logic_vector(31 downto 0);
+        ddata_r_lcd             : in std_logic_vector(31 downto 0);
+        ddata_r_nn_accelerator  : in std_logic_vector(31 downto 0);
+        ddata_r_fir_fil         : in std_logic_vector(31 downto 0);
+        ddata_r_spwm            : in std_logic_vector(31 downto 0);
+        ddata_r_crc		        : in std_logic_vector(31 downto 0);
+        ddata_r_key             : in std_logic_vector(31 downto 0);
+        ddata_r_accelerometer   : in std_logic_vector(31 downto 0);
+        ddata_r_cordic          : in std_logic_vector(31 downto 0);        
+      	ddata_r_RS485   		: in std_logic_vector(31 downto 0);
+        ddata_r_rgb             : in std_logic_vector(31 downto 0);
 
-        ddata_r_sv_pwm          : in  std_logic_vector(31 downto 0);
+        ddata_r_can             : in std_logic_vector(31 downto 0);
+        ddata_r_rtc             : in std_logic_vector(31 downto 0);
+        ddata_r_sv_pwm          : in std_logic_vector(31 downto 0);
+        ddata_r_raiz            : in std_logic_vector(31 downto 0);
+        ddata_r_as5600_pwm      : in std_logic_vector(31 downto 0);
 
         ddata_r_periph   : out std_logic_vector(31 downto 0) --! Connect to data bus mux
     );
@@ -70,13 +68,17 @@ begin
         ddata_r_spwm  when x"0011",
         ddata_r_accelerometer when x"0012",
         ddata_r_cordic when x"0015",
+    	ddata_r_RS485 when x"0017",
+        ddata_r_rgb when x"0020",
         
-    	  ddata_r_RS485 when x"0017",  
-        ddata_r_sv_pwm when x"0019",
-        ddata_r_rgb    when x"0020",        
-        ddata_r_raiz when x"0021",      
-        ddata_r_rtc when x"0022",
-    ddata_r_as5600_pwm when x"0016",
+        -- 2026.1
+        ddata_r_can  when x"0025",
+        ddata_r_rtc when x"0026",
+        ddata_r_sv_pwm when x"0027",
+        ddata_r_raiz when x"0028",
+        ddata_r_as5600_pwm when x"0029",
+
+         -- 2026.2
         
         -- Add new io peripherals here
         (others => '0') when others;

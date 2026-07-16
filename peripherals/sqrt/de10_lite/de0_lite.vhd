@@ -118,7 +118,8 @@ architecture rtl of de0_lite_gpio is
     signal ddata_r_uart : std_logic_vector(31 downto 0);
     signal ddata_r_adc : std_logic_vector(31 downto 0);
     signal ddata_r_i2c : std_logic_vector(31 downto 0);
-    signal ddata_r_dig_fil : std_logic_vector(31 downto 0);
+    signal ddata_r_dif_fil : std_logic_vector(31 downto 0);
+    signal ddata_r_tft : std_logic_vector(31 downto 0);
     signal ddata_r_stepmot : std_logic_vector(31 downto 0);
     signal ddata_r_lcd : std_logic_vector(31 downto 0);
     signal ddata_r_nn_accelerator : std_logic_vector(31 downto 0);
@@ -130,7 +131,12 @@ architecture rtl of de0_lite_gpio is
     signal ddata_r_cordic : std_logic_vector(31 downto 0);
     signal ddata_r_rgb : std_logic_vector(31 downto 0);
     signal ddata_r_RS485 : std_logic_vector(31 downto 0);
+    
+    signal ddata_r_can : std_logic_vector(31 downto 0);
+    signal ddata_r_rtc : std_logic_vector(31 downto 0);
+    signal ddata_r_sv_pwm : std_logic_vector(31 downto 0);
     signal ddata_r_raiz : std_logic_vector(31 downto 0);
+    signal ddata_r_as5600_pwm : std_logic_vector(31 downto 0);
 	 
     -- Interrupt Signals
     signal interrupts : std_logic_vector(31 downto 0);
@@ -249,20 +255,27 @@ begin
             ddata_r_adc      => ddata_r_adc,
             ddata_r_i2c      => ddata_r_i2c,
             ddata_r_timer    => ddata_r_timer,
-            ddata_r_periph   => ddata_r_periph,
-            ddata_r_dif_fil  => ddata_r_dig_fil,
+            ddata_r_tft      => ddata_r_tft,
+			ddata_r_dif_fil  => ddata_r_dif_fil,
             ddata_r_stepmot  => ddata_r_stepmot,
-            ddata_r_lcd      => ddata_r_lcd,
-            ddata_r_fir_fil  => ddata_r_fir_fil,
-            ddata_r_nn_accelerator => ddata_r_nn_accelerator,
-            ddata_r_spwm  		=> ddata_r_spwm,
-            ddata_r_crc			=> ddata_r_crc,
-            ddata_r_key       => ddata_r_key,
-            ddata_r_cordic    => ddata_r_cordic,
-            ddata_r_RS485     => ddata_r_RS485,
-            ddata_r_rgb       => ddata_r_rgb,
-            ddata_r_accelerometer     => ddata_r_accelerometer,
-            ddata_r_raiz => ddata_r_raiz
+			ddata_r_lcd      => ddata_r_lcd,
+			ddata_r_nn_accelerator => ddata_r_nn_accelerator,
+			ddata_r_fir_fil  => ddata_r_fir_fil,
+            ddata_r_spwm => ddata_r_spwm,
+            ddata_r_crc => ddata_r_crc,
+            ddata_r_key => ddata_r_key,
+            ddata_r_accelerometer => ddata_r_accelerometer,
+			ddata_r_cordic    => ddata_r_cordic,
+			ddata_r_RS485     => ddata_r_RS485,
+			ddata_r_rgb => ddata_r_rgb,
+			
+			ddata_r_can => ddata_r_can,
+			ddata_r_rtc => ddata_r_rtc,
+			ddata_r_sv_pwm => ddata_r_sv_pwm,
+			ddata_r_raiz => ddata_r_raiz,
+			ddata_r_as5600_pwm => ddata_r_as5600_pwm,
+
+            ddata_r_periph   => ddata_r_periph
         );
 
 	  generic_gpio: entity work.gpio	    
@@ -322,10 +335,7 @@ begin
             hex7     => open
         );
 
-    generic_raiz : entity work.raiz
-        generic map(
-            MY_WORD_ADDRESS => x"0190"   -- indice 25 (hardware.h) * 16 = 400 = 0x190
-        )
+    generic_raiz : entity work.raiz        
         port map(
             clk      => clk,
             rst      => rst,
